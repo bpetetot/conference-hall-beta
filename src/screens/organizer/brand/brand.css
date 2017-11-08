@@ -1,0 +1,42 @@
+.brand {
+  align-items: center;
+  background-color: var(--primary-color);
+  color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 0 20px;
+  outline: none;
+  cursor: pointer;
+}
+
+.brand:hover {
+  color: var(--font-color);
+}
+
+.brand .brand-title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  transition: all 0.5s;
+}
+
+.brand .brand-menu {
+  left: 0;
+  top: 0;
+  font-size: 0.7em;
+  font-weight: 300;
+  width: 100%;
+  box-shadow: 0px 1px 5px 0px #111;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0px;
+  margin-top: 60px;
+  padding: 0;
+}
+
+.brand .brand-menu > * {
+  height: 3.5em;
+  line-height: 3.5em;
+}

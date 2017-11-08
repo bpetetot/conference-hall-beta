@@ -1,0 +1,35 @@
+.avatar {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  height: 3em;
+  width: 3em;
+}
+
+.avatar-image > img {
+  border-radius: 50%;
+  height: 3em;
+  width: 3em;
+}
+
+.avatar-image > img:hover {
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.avatar-initials {
+  background: var(--primary-color);
+}
+
+.avatar-initials:hover {
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.avatar-initials > span {
+  font-size: 1.5em;
+  font-weight: 300;
+}
