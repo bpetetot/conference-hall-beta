@@ -9,7 +9,6 @@
 
 .layout-main {
   grid-area: main;
-  padding: 20px;
   overflow: scroll;
 }
 

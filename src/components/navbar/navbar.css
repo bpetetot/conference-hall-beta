@@ -3,9 +3,9 @@
   background: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: flex-end;
-  padding-right: 20px;
+  padding-right: 1.5em;
 }
 
 .navbar > * {
-  margin-left: 20px;
+  margin-left: 1.5em;
 }

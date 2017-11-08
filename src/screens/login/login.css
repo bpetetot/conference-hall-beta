@@ -1,7 +1,6 @@
 .login {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -9,16 +8,16 @@
 
 .login .login-title {
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 1em;
 }
 
 .login .login-back {
-  margin-top: 30px;
+  margin-top: 1em;
 }
 
 .login button {
-  margin: 10px 0;
-  min-width: 300px;
+  margin: 1em 0;
+  min-width: 20em;
 }
 
 .login button.btn-google {

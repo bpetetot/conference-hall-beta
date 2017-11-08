@@ -5,7 +5,7 @@ import Brand from './brand'
 import Navbar from './navbar'
 import Sidebar from './sidebar'
 
-import './layout.css'
+import './organizer.css'
 
 const Organizer = () => (
   <div className="layout-screen">
