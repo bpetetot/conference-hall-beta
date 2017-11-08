@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { replace } from 'redux-little-router'
 import { connect } from 'react-redux'
 
-import { isAuthenticated, isInitialized } from '../../redux/auth'
+import { isAuthenticated, isInitialized } from '../auth.selectors'
 
 export default (Component) => {
   class ProtectedComponent extends React.Component {

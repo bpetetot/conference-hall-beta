@@ -1,6 +1,6 @@
 import React from 'react'
 
-import protect from '../../components/protect'
+import { protect } from '../../redux/auth'
 import Brand from './brand'
 import Navbar from './navbar'
 import Sidebar from './sidebar'
