@@ -1,0 +1,103 @@
+.default-theme {
+  --bg-color: #2a2c2b;
+  --font-color: #fff;
+  --font-size: 14px;
+  --primary-color: rgb(247, 190, 2);
+
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  font-size: var(--font-size);
+
+  height: 100%;
+  overflow: scroll;
+}
+
+.default-theme small {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/** link */
+.default-theme a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.5s;
+}
+
+.default-theme a:hover {
+  color: var(--font-color);
+}
+
+/** Button */
+.default-theme .btn {
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 1px;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 0.5s;
+  white-space: nowrap;
+}
+
+.default-theme .btn:active {
+  top: 1px;
+}
+
+/** Button primary */
+.default-theme .btn.btn-primary {
+  background: var(--primary-color);
+  color: var(--font-color);
+}
+
+.default-theme .btn.btn-primary:hover {
+  color: var(--primary-color);
+  background: var(--font-color);
+}
+
+/** Button link */
+.default-theme .btn.btn-link {
+  border: 1px solid var(--primary-color);
+}
+
+.default-theme .btn.btn-link:hover {
+  border: 1px solid var(--font-color);
+}
+
+/** Tabs */
+.default-theme ul.tabs {
+  margin: 10px 0 30px 0;
+  padding: 0;
+  width: 100%;
+  text-align: right;
+}
+
+.default-theme ul.tabs > li {
+  display: inline;
+  list-style: none;
+  text-transform: uppercase;
+  margin-left: 3em;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+
+.default-theme ul.tabs > li a {
+  color: var(--font-color);
+}
+
+.default-theme ul.tabs > li a:hover {
+  text-decoration: underline;
+}
+
+.default-theme ul.tabs > li a.tab-active {
+  color: var(--primary-color);
+  text-decoration: none;
+  cursor: default;
+}
+
+.default-theme ul.tabs > li:first-child {
+  margin-left: 0;
+}

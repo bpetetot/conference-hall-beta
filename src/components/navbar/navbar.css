@@ -1,0 +1,11 @@
+.navbar {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1.5em;
+}
+
+.navbar > * {
+  margin-left: 1.5em;
+}

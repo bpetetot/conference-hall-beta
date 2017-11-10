@@ -1,0 +1,51 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login .login-title {
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+
+.login .login-back {
+  margin-top: 1em;
+}
+
+.login button {
+  margin: 1em 0;
+  min-width: 20em;
+}
+
+.login button.btn-google {
+  background: #ea2533;
+  color: #fff;
+}
+
+.login button.btn-google:hover {
+  background: #fff;
+  color: #ea2533;
+}
+
+.login button.btn-twitter {
+  background: #34ccfe;
+  color: #fff;
+}
+
+.login button.btn-twitter:hover {
+  background: #fff;
+  color: #34ccfe;
+}
+
+.login button.btn-github {
+  background: #000;
+  color: #fff;
+}
+
+.login button.btn-github:hover {
+  background: #fff;
+  color: #000;
+}

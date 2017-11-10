@@ -1,0 +1,58 @@
+{
+  "name": "conference-hall",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "date-fns": "^1.29.0",
+    "firebase": "^4.6.1",
+    "font-awesome": "^4.7.0",
+    "normalize.css": "^7.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-sizes": "^0.3.1",
+    "redux": "^3.7.2",
+    "redux-little-router": "^14.2.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "prettier": "^1.7.4",
+    "react-scripts": "1.0.14",
+    "redux-devtools-extension": "^2.13.2"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": ["airbnb"],
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "semi": [2, "never"],
+      "import/no-extraneous-dependencies": 0,
+      "import/no-unresolved": 0,
+      "import/extensions": 0,
+      "jsx-a11y/label-has-for": 0,
+      "jsx-a11y/click-events-have-key-events": 0,
+      "jsx-a11y/interactive-supports-focus": 0,
+      "jsx-a11y/anchor-is-valid": 0
+    }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}

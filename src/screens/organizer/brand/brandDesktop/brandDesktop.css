@@ -1,0 +1,21 @@
+.brand-dropdown .brand {
+  height: 100%;
+}
+
+.brand-dropdown .brand-menu {
+  left: 0;
+  top: 0;
+  font-weight: 300;
+  box-shadow: 0px 1px 5px 0px #111;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0px;
+  margin-top: 60px;
+  padding: 0;
+}
+
+.brand-dropdown .brand-menu > * {
+  height: 3.5em;
+  line-height: 3.5em;
+  padding: 0 1.5em;
+}

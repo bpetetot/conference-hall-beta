@@ -1,0 +1,39 @@
+.sidebar {
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100%;
+}
+
+.sidebar .sidebar-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .sidebar-header {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.9em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+  padding: 20px 20px 10px 20px;
+  text-transform: uppercase;
+}
+
+.sidebar a.sidebar-link {
+  color: rgba(255, 255, 255, 0.7);
+  padding: 10px 0;
+  padding: 10px 20px 10px 20px;
+}
+
+.sidebar a.sidebar-link-active {
+  color: var(--primary-color);
+}
+
+.sidebar a.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 1);
+}
+
+.sidebar a.sidebar-link-active:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary-color);
+}

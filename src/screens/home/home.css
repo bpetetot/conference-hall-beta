@@ -1,0 +1,50 @@
+.home {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+}
+
+.home .home-link {
+  align-items: center;
+  background: var(--primary-color);
+  border-radius: 0.5em;
+  color: var(--font-color);
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: 1px;
+  margin: 2.5em;
+  min-height: 12em;
+  min-width: 12em;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 0.5s;
+}
+
+.home .home-link > i {
+  font-size: 5em;
+}
+
+.home .home-link > span {
+  margin-top: 1.5em;
+  white-space: nowrap;
+}
+
+.home .home-link:hover {
+  background: var(--font-color);
+  color: var(--primary-color);
+}
+
+@media only screen and (max-width: 640px) {
+  .home {
+    flex-direction: column;
+  }
+
+  .home .home-link {
+    font-size: 0.9em;
+  }
+}
