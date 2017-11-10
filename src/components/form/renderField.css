@@ -29,7 +29,6 @@
     display: block;
   }
   .form-label > label {
-    overflow: hidden;
     min-width: 100%;
   }
 }
