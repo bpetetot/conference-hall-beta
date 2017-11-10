@@ -1,0 +1,34 @@
+.form-label {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.form-label > label {
+  color: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  min-width: 20%;
+}
+
+.form-has-error > label {
+  color: var(--error-color);
+}
+
+.form-has-error > input {
+  border: 1px solid var(--error-color);
+}
+
+.form-has-error > textarea {
+  border: 1px solid var(--error-color);
+}
+
+@media screen and (max-width: 640px) {
+  .form-label {
+    display: block;
+  }
+  .form-label > label {
+    min-width: 100%;
+  }
+}

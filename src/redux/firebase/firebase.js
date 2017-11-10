@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
@@ -10,10 +11,20 @@ const config = {
 
 export const middleware = ({ dispatch }) => (next) => {
   // initialize firebase app
-  const app = firebase.initializeApp(config)
+  firebase.initializeApp(config)
 
   // initialize firestore
-  app.firestore()
+  firebase
+    .firestore()
+    .enablePersistence()
+    .then(() => firebase.firestore())
+    .catch((error) => {
+      if (error.code === 'failed-precondition') {
+        console.error('Multiple tabs open, persistence can only be enabled in one tab at a a time.')
+      } else if (error.code === 'unimplemented') {
+        console.error('The current browser does not support all of the features required to enable persistence')
+      }
+    })
 
   // intialize authentication locale
   firebase.auth().useDeviceLanguage()

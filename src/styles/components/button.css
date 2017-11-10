@@ -1,0 +1,51 @@
+/** Button */
+.btn {
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 1px;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 0.5s;
+  white-space: nowrap;
+  min-width: 12em;
+}
+
+.btn:active {
+  top: 1px;
+}
+
+/** Button primary */
+.btn.btn-primary {
+  background: var(--primary-color);
+  color: var(--font-color);
+}
+
+.btn.btn-primary:hover {
+  color: var(--primary-color);
+  background: var(--font-color);
+}
+
+.btn.btn-primary:disabled {
+  cursor: default;
+  background: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.btn.btn-primary:disabled:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/** Button link */
+.btn.btn-link {
+  border: 1px solid var(--primary-color);
+}
+
+.btn.btn-link:hover {
+  border: 1px solid var(--font-color);
+}
