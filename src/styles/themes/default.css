@@ -3,6 +3,7 @@
   --font-color: #fff;
   --font-size: 14px;
   --primary-color: rgb(247, 190, 2);
+  --error-color: rgb(220, 53, 34);
 
   background-color: var(--bg-color);
   color: var(--font-color);
@@ -25,46 +26,6 @@
 
 .default-theme a:hover {
   color: var(--font-color);
-}
-
-/** Button */
-.default-theme .btn {
-  border-radius: 3px;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 700;
-  letter-spacing: 1px;
-  outline: none;
-  padding: 10px 16px;
-  position: relative;
-  text-transform: uppercase;
-  transition: all 0.5s;
-  white-space: nowrap;
-}
-
-.default-theme .btn:active {
-  top: 1px;
-}
-
-/** Button primary */
-.default-theme .btn.btn-primary {
-  background: var(--primary-color);
-  color: var(--font-color);
-}
-
-.default-theme .btn.btn-primary:hover {
-  color: var(--primary-color);
-  background: var(--font-color);
-}
-
-/** Button link */
-.default-theme .btn.btn-link {
-  border: 1px solid var(--primary-color);
-}
-
-.default-theme .btn.btn-link:hover {
-  border: 1px solid var(--font-color);
 }
 
 /** Tabs */

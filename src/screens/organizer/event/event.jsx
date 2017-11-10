@@ -1,19 +1,32 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { Field, reduxForm } from 'redux-form'
 
-import { InputLabel, TextareaLabel } from '../../../components/form'
+import { input, textarea, required } from '../../../components/form'
 import './event.css'
 
-const Event = () => (
-  <div className="event">
-    <InputLabel name="name" label="Name" type="text" />
-    <TextareaLabel name="description" label="description" />
-    <InputLabel name="address" label="Venue address" type="text" />
-    <InputLabel name="city" label="City" type="text" />
-    <InputLabel name="country" label="Country" type="text" />
-    <InputLabel name="website" label="Website" type="text" />
-    <InputLabel name="tags" label="Tags" type="text" />
-    <button className="btn btn-primary">Create event</button>
-  </div>
+const Event = ({
+  handleSubmit, pristine, submitting, invalid,
+}) => (
+  <form onSubmit={handleSubmit} className="event">
+    <Field name="name" label="Name" type="text" component={input} validate={required} />
+    <Field name="description" label="description" component={textarea} validate={required} />
+    <Field name="address" label="Venue address" type="text" component={input} />
+    <Field name="city" label="City" type="text" component={input} />
+    <Field name="country" label="Country" type="text" component={input} />
+    <Field name="website" label="Website" type="text" component={input} />
+    <Field name="tags" label="Tags" type="text" component={input} />
+    <button type="submit" className="btn btn-primary" disabled={pristine || submitting || invalid}>
+      Create event
+    </button>
+  </form>
 )
 
-export default Event
+Event.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
+  invalid: PropTypes.bool.isRequired,
+}
+
+export default reduxForm({ form: 'event' })(Event)

@@ -1,12 +1,6 @@
-import withLabel from './withLabel'
-import Input from './input'
-import Textarea from './textarea'
+import renderField from './renderField'
 
-/** exported components */
-export { default as withLabel } from './withLabel'
+export const input = renderField('input')
+export const textarea = renderField('textarea')
 
-export { default as Input } from './input'
-export const InputLabel = withLabel(Input)
-
-export { default as Textarea } from './textarea'
-export const TextareaLabel = withLabel(Textarea)
+export * from './validators'
