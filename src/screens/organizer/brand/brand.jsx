@@ -1,32 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
 import cn from 'classnames'
 
-import Dropdown from '../../../components/dropdown'
-import IconLabel from '../../../components/iconLabel'
+import { withSizes } from '../../../styles/utils'
 import './brand.css'
 
-const Brand = ({ title, className }) => {
-  const brand = (
-    <div className="brand-title">
-      <span>{title}</span>
-      <span>
-        <i className="fa fa-caret-down" />
-      </span>
-    </div>
-  )
-  return (
-    <Dropdown className={cn('brand', className)} menuClassName="brand-menu" action={brand}>
-      <Link href="/">
-        <IconLabel icon="fa fa-home" label="Conference Hall" />
-      </Link>
-    </Dropdown>
-  )
+import BrandMobile from './brandMobile'
+import BrandDesktop from './brandDesktop'
+
+const Brand = ({ title, isMobile, className }) => {
+  if (isMobile) {
+    return <BrandMobile title={title} className={cn('brand', className)} />
+  }
+  return <BrandDesktop title={title} className={cn('brand', className)} />
 }
 
 Brand.propTypes = {
   title: PropTypes.string.isRequired,
+  isMobile: PropTypes.bool.isRequired,
   className: PropTypes.string,
 }
 
@@ -34,4 +25,4 @@ Brand.defaultProps = {
   className: undefined,
 }
 
-export default Brand
+export default withSizes(Brand)

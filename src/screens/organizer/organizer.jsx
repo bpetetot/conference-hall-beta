@@ -1,19 +1,34 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { Fragment } from 'redux-little-router'
 
 import { protect } from '../../redux/auth'
+import { withSizes } from '../../styles/utils'
 import Brand from './brand'
 import Navbar from './navbar'
 import Sidebar from './sidebar'
 
 import './organizer.css'
 
-const Organizer = () => (
+const Organizer = ({ isMobile }) => (
   <div className="layout-screen">
     <Brand className="layout-brand" />
-    <Navbar className="layout-navbar" />
-    <Sidebar className="layout-sidebar" />
-    <div className="layout-main" />
+    {!isMobile && <Navbar className="layout-navbar" />}
+    {!isMobile && <Sidebar className="layout-sidebar" />}
+    <div className="layout-main">
+      <Fragment forRoute="/menu" withConditions={() => isMobile}>
+        <Sidebar />
+      </Fragment>
+    </div>
   </div>
 )
 
-export default protect(Organizer)
+Organizer.propTypes = {
+  isMobile: PropTypes.bool,
+}
+
+Organizer.defaultProps = {
+  isMobile: false,
+}
+
+export default protect(withSizes(Organizer))

@@ -6,9 +6,9 @@ import Brand from './brand'
 const mapState = (state) => {
   const { pathname } = state.router
   if (startsWith(pathname, '/organizer')) {
-    return { currentApp: 'organizer', title: 'Organizer Hall' }
+    return { title: 'Organizer Hall', path: '/organizer' }
   }
-  return { currentApp: 'home', title: 'Conference Hall' }
+  return { title: 'Conference Hall', path: '/' }
 }
 
 export default connect(mapState)(Brand)

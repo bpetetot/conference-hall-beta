@@ -1,5 +1,6 @@
 .sidebar {
   background-color: rgba(0, 0, 0, 0.2);
+  height: 100%;
 }
 
 .sidebar .sidebar-panel {
