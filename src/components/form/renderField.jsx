@@ -11,8 +11,12 @@ const renderField = component => ({
   return (
     <div className={cn('form-label', { 'form-has-error': hasError })}>
       <label htmlFor={input.name}>{label}</label>
-      {component === 'input' && <input {...input} type={type} />}
-      {component === 'textarea' && <textarea {...input}>{input.value}</textarea>}
+      {component === 'input' && <input {...input} id={input.name} type={type} />}
+      {component === 'textarea' && (
+        <textarea id={input.name} {...input}>
+          {input.value}
+        </textarea>
+      )}
     </div>
   )
 }
