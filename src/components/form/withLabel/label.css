@@ -1,0 +1,23 @@
+.form-label {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.form-label > label {
+  color: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  min-width: 20%;
+}
+
+@media screen and (max-width: 480px) {
+  .form-label {
+    display: block;
+  }
+  .form-label > label {
+    overflow: hidden;
+    min-width: 100%;
+  }
+}

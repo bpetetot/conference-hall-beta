@@ -1,7 +1,11 @@
 import { routerForBrowser } from 'redux-little-router'
 
 const routes = {
-  '/organizer': {},
+  '/organizer': {
+    '/event': {
+      '/create': {},
+    },
+  },
   '/login': {},
   '/': {},
 }
