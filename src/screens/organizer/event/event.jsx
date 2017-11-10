@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 
-import { input, textarea, required } from '../../../components/form'
+import { input, textarea, SubmitButton, required } from '../../../components/form'
 import './event.css'
 
 const Event = ({
@@ -16,9 +16,13 @@ const Event = ({
     <Field name="country" label="Country" type="text" component={input} />
     <Field name="website" label="Website" type="text" component={input} />
     <Field name="tags" label="Tags" type="text" component={input} />
-    <button type="submit" className="btn btn-primary" disabled={pristine || submitting || invalid}>
+    <SubmitButton
+      disabled={pristine || submitting || invalid}
+      submitting={submitting}
+      loadingMessage="Saving..."
+    >
       Create event
-    </button>
+    </SubmitButton>
   </form>
 )
 

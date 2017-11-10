@@ -4,3 +4,5 @@ export const input = renderField('input')
 export const textarea = renderField('textarea')
 
 export * from './validators'
+
+export { default as SubmitButton } from './submitButton'
