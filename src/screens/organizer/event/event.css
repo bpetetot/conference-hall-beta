@@ -1,11 +1,4 @@
 .event {
   padding: 1em;
-}
-
-.event > * {
-  margin-bottom: 1em;
-}
-
-.event > button {
-  float: right;
+  height: 100%;
 }
