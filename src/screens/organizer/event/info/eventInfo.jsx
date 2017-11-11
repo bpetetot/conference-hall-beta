@@ -10,7 +10,7 @@ const EventInfo = ({
   name, description, address, website,
 }) => (
   <div className="event-info">
-    <div className="event-data">
+    <div className="event-header">
       <h1>{name}</h1>
       {website && (
         <p>
@@ -26,13 +26,15 @@ const EventInfo = ({
           </a>
         </p>
       )}
-      <p>
-        <ReactMarkdown source={description} />
-      </p>
     </div>
-    <div className="event-map">
-      <EventMap address={address} />
+    <div className="event-content">
+      <ReactMarkdown className="markdown" source={description} escapeHtml />
     </div>
+    {address && (
+      <div className="event-map">
+        <EventMap address={address} />
+      </div>
+    )}
   </div>
 )
 

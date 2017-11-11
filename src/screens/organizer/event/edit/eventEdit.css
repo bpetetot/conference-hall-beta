@@ -1,3 +1,7 @@
+.event-form {
+  padding: 2em;
+}
+
 .event-form > * {
   margin-bottom: 1em;
 }
