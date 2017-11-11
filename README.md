@@ -1,16 +1,16 @@
 # Conference Hall
 
-# Firebase
+## Firebase
 
 Firebase [documentation](https://firebase.google.com/docs/web)
 
-## Configure
+### Configure
 
 Create a firebase project with the [firebase console](https://console.firebase.google.com).
 
 Create a `.env.local` file by copying `.env` file and set firebase configuration variables.
 
-## Deploy
+### Deploy
 Install [firebase-cli](https://firebase.google.com/docs/cli/) :
 ```
 npm install firebase-tools -g
@@ -27,3 +27,11 @@ Build and deploy the app :
 yarn build
 firebase deploy
 ```
+
+## Google APIs
+
+[Google developer console](https://console.developers.google.com/apis)
+
+Activer les services :
+* Google Places API Web Service
+* Google Maps Embed API
