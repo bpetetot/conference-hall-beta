@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import IconLabel from '../../../components/iconLabel'
 import { SideBar, SideBarPanel, SideBarLink } from '../../../components/sidebar'
+import EventSideBar from '../event/sidebar'
 
 const OrganizerSideBar = ({ className }) => (
   <SideBar className={className}>
@@ -11,6 +12,7 @@ const OrganizerSideBar = ({ className }) => (
         <IconLabel icon="fa fa-home" label="Home" />
       </SideBarLink>
     </SideBarPanel>
+    <EventSideBar />
   </SideBar>
 )
 
