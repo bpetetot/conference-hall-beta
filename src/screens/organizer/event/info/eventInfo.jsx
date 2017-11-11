@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ReactMarkdown from 'react-markdown'
 
 import EventMap from '../../../../components/maps'
 import IconLabel from '../../../../components/iconLabel'
@@ -25,7 +26,9 @@ const EventInfo = ({
           </a>
         </p>
       )}
-      <p>{description}</p>
+      <p>
+        <ReactMarkdown source={description} />
+      </p>
     </div>
     <div className="event-map">
       <EventMap address={address} />
