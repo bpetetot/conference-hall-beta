@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import loader from 'hoc-react-loader'
 
 import event, { getEvent } from '../../../../redux/event'
+import LoadingIndicator from '../../../../components/loading'
 import EventInfo from './eventInfo'
 
 const mapState = state => ({
@@ -13,6 +14,6 @@ const mapDispatch = dispatch => ({
   load: () => dispatch(getEvent()),
 })
 
-const Loadable = loader({ print: ['loaded'] })(EventInfo)
+const Loadable = loader({ print: ['loaded'], LoadingIndicator })(EventInfo)
 
 export default connect(mapState, mapDispatch)(Loadable)
