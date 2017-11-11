@@ -1,17 +1,37 @@
 .event-info {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
 }
 
-.event-info .event-data {
-  margin-right: 3em;
+.event-info .event-header {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2em 400px 2em 2em;
 }
 
-@media only screen and (max-width: 480px) {
-  .event-info {
-    display: block;
+.event-info .event-content {
+  margin-right: 400px;
+  padding: 2em;
+}
+
+.event-info .event-map {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  height: 300px;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+@media only screen and (max-width: 1024px) {
+  .event-info .event-header {
+    padding: 2em;
   }
-  .event-info .event-data {
-    margin: 1.5em;
+
+  .event-info .event-content {
+    margin-right: 0;
+    padding: 2em;
+  }
+
+  .event-info .event-map {
+    display: none;
   }
 }
