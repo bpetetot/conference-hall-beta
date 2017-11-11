@@ -7,10 +7,13 @@ import { reducer as router, middleware as routerMiddleware, enhancer } from './r
 import firebase, { middleware as firebaseMiddleware } from './firebase'
 
 import auth from './auth'
+import event from './event'
 
 /** create redux store */
 const store = createStore(
-  combineReducers({ router, auth, form }),
+  combineReducers({
+    router, auth, form, event,
+  }),
   composeWithDevTools(
     applyMiddleware(routerMiddleware, firebaseMiddleware, thunk.withExtraArgument(firebase)),
     enhancer,

@@ -1,0 +1,7 @@
+.event-form > * {
+  margin-bottom: 1em;
+}
+
+.event-form > button {
+  float: right;
+}

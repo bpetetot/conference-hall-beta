@@ -1,1 +1,1 @@
-export { default } from './event.container'
+export { default } from './event'

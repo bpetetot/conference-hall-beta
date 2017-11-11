@@ -1,15 +1,16 @@
-/* eslint-disable import/prefer-default-export */
 import { push } from 'redux-little-router'
+
+import event from './event'
 import { getUser } from '../auth'
 
-export const saveEvent = event => async (dispatch, getState, fb) => {
+export const saveEvent = data => async (dispatch, getState, fb) => {
   try {
     // add event to database
     const ref = await fb
       .firestore()
       .collection('events')
       .add({
-        ...event,
+        ...data,
         timestamp: fb.firestore.FieldValue.serverTimestamp(),
         owner: getUser(getState()).uid,
       })
@@ -21,18 +22,28 @@ export const saveEvent = event => async (dispatch, getState, fb) => {
   }
 }
 
-export const getEvent = id => async (dispatch, getState, fb) => {
+export const getEvent = () => async (dispatch, getState, fb) => {
+  // FIXME : get id from router (should not be there)
+  const { id } = getState().router.params
+  const current = event.get()(getState())
+  if (current && current.id === id) {
+    return
+  }
+
+  // wipe current event data in the store
+  dispatch(event.reset())
   try {
     // get event from database
     const ref = await fb
       .firestore()
       .collection('events')
-      .get(id)
+      .doc(id)
+      .get()
 
     if (ref.exists) {
-      console.log(ref.data())
+      dispatch(event.set({ id, ...ref.data() }))
     } else {
-      console.warn(`event with id ${id} not found`)
+      console.error(`event with id ${id} not found`)
     }
   } catch (e) {
     console.error(e)

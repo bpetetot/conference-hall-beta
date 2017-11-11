@@ -21,11 +21,8 @@ const Organizer = ({ isMobile }) => (
       <Fragment forRoute="/menu" withConditions={() => isMobile}>
         <Sidebar />
       </Fragment>
-      <Fragment forRoute="/event/create">
+      <Fragment forRoute="/event">
         <Event />
-      </Fragment>
-      <Fragment forRoute="/event/:id">
-        <div>Event created !</div>
       </Fragment>
       <Fragment forRoute="/">
         <Home />
