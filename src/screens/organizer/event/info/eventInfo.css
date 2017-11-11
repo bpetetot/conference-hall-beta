@@ -1,0 +1,17 @@
+.event-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-info .event-data {
+  margin-right: 3em;
+}
+
+@media only screen and (max-width: 480px) {
+  .event-info {
+    display: block;
+  }
+  .event-info .event-data {
+    margin: 1.5em;
+  }
+}
