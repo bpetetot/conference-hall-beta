@@ -9,3 +9,9 @@
 .event-form > button {
   float: right;
 }
+
+@media only screen and (max-width: 480px) {
+  .event-form {
+    padding: 1em;
+  }
+}

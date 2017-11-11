@@ -13,18 +13,18 @@ const EventInfo = ({
     <div className="event-header">
       <h1>{name}</h1>
       {website && (
-        <p>
+        <div>
           <a href={website} target="NEW">
             <IconLabel icon="fa fa-globe" label="Website" />
           </a>
-        </p>
+        </div>
       )}
       {address && (
-        <p>
+        <div>
           <a href={`https://www.google.com/maps/place/${encodeURI(address)}`} target="NEW">
             <IconLabel icon="fa fa-map-marker" label={address} />
           </a>
-        </p>
+        </div>
       )}
     </div>
     <div className="event-content">
