@@ -14,7 +14,7 @@ function* createEventForm({ payload }) {
     // get user id
     const { uid } = yield select(getUser)
 
-    // add event to database
+    // create event into database
     const ref = yield call(createEvent, payload, uid)
 
     // go to event page
@@ -25,6 +25,7 @@ function* createEventForm({ payload }) {
     yield put(stopSubmit('event'))
   } catch (error) {
     // set errors to the form
+    console.error(error)
     yield put(stopSubmit('event', { _error: error.message }))
   }
 }
@@ -40,7 +41,7 @@ function* getEvent() {
       return
     }
 
-    // wipe current event data in the store
+    // wipe current event in the store
     yield put(event.reset())
 
     // fetch event from id
@@ -50,8 +51,8 @@ function* getEvent() {
     } else {
       console.error(`event with id ${id} not found`)
     }
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
   }
 }
 
