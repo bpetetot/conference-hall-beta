@@ -1,8 +1,8 @@
 input {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 1);
   border-radius: 3px;
   border: none;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2px 0px, rgba(0, 0, 0, 0.1) -2px 2px 2px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 1px 0px, rgba(0, 0, 0, 0.1) -1px 1px 1px 0px inset;
   color: var(--primary-color-font);
   font-family: inherit;
   outline: none;

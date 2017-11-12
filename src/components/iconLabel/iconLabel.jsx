@@ -6,7 +6,9 @@ import './iconLabel.css'
 
 const IconLabel = ({ icon, label, className }) => (
   <span className={cn(className, 'icon-label')}>
-    <i className={icon} />
+    <span>
+      <i className={icon} />
+    </span>
     <span>{label}</span>
   </span>
 )
