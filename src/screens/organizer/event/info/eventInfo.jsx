@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
 
-import EventMap from '../../../../components/maps'
-import IconLink from '../../../../components/iconLink'
+import EventMap from 'components/maps'
+import IconLink from 'components/iconLink'
 import './eventInfo.css'
 
 const EventInfo = ({

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'redux-little-router'
-import IconLabel from '../../../components/iconLabel'
 
+import IconLabel from 'components/iconLabel'
 import './home.css'
 
 const Home = () => (

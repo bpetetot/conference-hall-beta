@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { signout } from '../../../redux/auth'
+import { signout } from 'redux/auth'
 import Navbar from './navbar'
 
 const mapDispatch = dispatch => ({

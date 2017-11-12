@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import event from '../../../../redux/event'
+import event from 'redux/event'
 import EventSidebar from './eventSidebar'
 
 const mapState = (state) => {

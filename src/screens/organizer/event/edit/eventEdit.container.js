@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { saveEvent } from '../../../../redux/event'
+import { saveEvent } from 'redux/event'
 import EventEdit from './eventEdit'
 
 const mapState = () => ({

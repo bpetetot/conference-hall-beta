@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'redux-little-router'
 
-import Dropdown from '../../../../components/dropdown'
-import IconLabel from '../../../../components/iconLabel'
+import Dropdown from 'components/dropdown'
+import IconLabel from 'components/iconLabel'
 import './brandDesktop.css'
 
 const BrandDesktop = ({ title, className }) => {

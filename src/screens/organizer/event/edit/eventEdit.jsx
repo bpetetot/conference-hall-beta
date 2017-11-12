@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 
-import { input, address, textarea, SubmitButton, required } from '../../../../components/form'
+import { input, address, textarea, SubmitButton, required } from 'components/form'
 import './eventEdit.css'
 
 const Event = ({
