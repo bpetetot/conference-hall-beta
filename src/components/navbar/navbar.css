@@ -1,11 +1,12 @@
 .navbar {
   align-items: center;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--primary-color);
+  color: var(--primary-color-font);
   display: flex;
   justify-content: flex-end;
-  padding-right: 1.5em;
+  padding-right: var(--spacing-md);
 }
 
 .navbar > * {
-  margin-left: 1.5em;
+  margin-left: var(--spacing-md);
 }

@@ -1,5 +1,5 @@
 .icon-label > i {
-  width: 1em;
-  margin-right: 0.9em;
+  width: var(--spacing-sm);
+  margin-right: var(--spacing-sm);
   text-align: center;
 }

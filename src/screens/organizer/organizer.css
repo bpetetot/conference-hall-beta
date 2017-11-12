@@ -18,8 +18,8 @@
 
 .layout-screen {
   display: grid;
-  grid-template-columns: 240px auto;
-  grid-template-rows: 60px auto;
+  grid-template-columns: var(--layout-sidebar-width) auto;
+  grid-template-rows: var(--layout-navbar-height) auto;
   grid-template-areas: 'brand navbar' 'sidebar main';
   height: 100%;
 }
