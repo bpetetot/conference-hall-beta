@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 
-import { saveEvent } from 'redux/event'
 import EventEdit from './eventEdit'
 
 const mapState = () => ({
@@ -8,7 +7,7 @@ const mapState = () => ({
 })
 
 const mapDispatch = dispatch => ({
-  onSubmit: event => dispatch(saveEvent(event)),
+  onSubmit: event => dispatch({ type: 'CREATE_EVENT_FORM', payload: event }),
 })
 
 export default connect(mapState, mapDispatch)(EventEdit)
