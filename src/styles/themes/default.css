@@ -1,64 +1,21 @@
 .default-theme {
-  --bg-color: #2a2c2b;
-  --font-color: #fff;
+  --primary-color: #212121;
+  --primary-color-light: #484848;
+  --primary-color-dark: #000;
+  --primary-color-font: #fff;
+
+  --secondary-color: #ffd600;
+  --secondary-color-light: #ffff52;
+  --secondary-color-dark: #c7a500;
+  --secondary-color-font: #000;
+
   --font-size: 14px;
-  --primary-color: rgb(247, 190, 2);
   --error-color: rgb(220, 53, 34);
 
-  background-color: var(--bg-color);
-  color: var(--font-color);
+  background-color: var(--primary-color);
+  color: var(--primary-color-font);
   font-size: var(--font-size);
 
   height: 100%;
   overflow: scroll;
-}
-
-.default-theme small {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-/** link */
-.default-theme a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: all 0.5s;
-}
-
-.default-theme a:hover {
-  color: var(--font-color);
-}
-
-/** Tabs */
-.default-theme ul.tabs {
-  margin: 10px 0 30px 0;
-  padding: 0;
-  width: 100%;
-  text-align: right;
-}
-
-.default-theme ul.tabs > li {
-  display: inline;
-  list-style: none;
-  text-transform: uppercase;
-  margin-left: 3em;
-  font-size: 1.1em;
-  letter-spacing: 1px;
-}
-
-.default-theme ul.tabs > li a {
-  color: var(--font-color);
-}
-
-.default-theme ul.tabs > li a:hover {
-  text-decoration: underline;
-}
-
-.default-theme ul.tabs > li a.tab-active {
-  color: var(--primary-color);
-  text-decoration: none;
-  cursor: default;
-}
-
-.default-theme ul.tabs > li:first-child {
-  margin-left: 0;
 }

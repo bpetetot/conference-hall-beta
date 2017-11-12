@@ -35,8 +35,8 @@
 }
 
 .home .home-link:hover {
-  background: var(--font-color);
-  color: var(--primary-color);
+  background: var(--primary-color-light);
+  color: var(--primary-color-dark);
 }
 
 @media only screen and (max-width: 640px) {

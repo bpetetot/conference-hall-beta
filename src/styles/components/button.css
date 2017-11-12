@@ -21,13 +21,13 @@
 
 /** Button primary */
 .btn.btn-primary {
-  background: var(--primary-color);
-  color: var(--font-color);
+  background: var(--secondary-color);
+  color: var(--secondary-color-font);
 }
 
 .btn.btn-primary:hover {
-  color: var(--primary-color);
-  background: var(--font-color);
+  background: var(--secondary-color-font);
+  color: var(--secondary-color);
 }
 
 .btn.btn-primary:disabled {

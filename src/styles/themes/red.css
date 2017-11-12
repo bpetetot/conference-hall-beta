@@ -1,7 +1,14 @@
 .red-theme {
-  --bg-color: #2a2c2b;
-  --font-color: #fff;
+  --primary-color: #212121;
+  --primary-color-light: #484848;
+  --primary-color-dark: #000;
+  --primary-color-font: #fff;
+
+  --secondary-color: #d32f2f;
+  --secondary-color-light: #ff6659;
+  --secondary-color-dark: #9a0007;
+  --secondary-color-font: #fff;
+
   --font-size: 14px;
-  --primary-color: rgb(220, 53, 34);
   --error-color: rgb(220, 53, 34);
 }
