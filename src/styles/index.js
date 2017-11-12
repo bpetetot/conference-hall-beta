@@ -2,6 +2,7 @@ import './global.css'
 
 import './themes/default.css'
 import './themes/red.css'
+import './themes/light.css'
 
 import './components/a.css'
 import './components/button.css'

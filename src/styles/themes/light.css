@@ -1,0 +1,17 @@
+.light-theme {
+  --primary-color: #21314d;
+  --primary-color-light: #f2f4f7;
+  --primary-color-dark: #000;
+  --primary-color-font: #21314d;
+
+  --secondary-color: #01c3a7;
+  --secondary-color-light: rgba(255, 255, 255, 0.4);
+  --secondary-color-dark: #01907c;
+  --secondary-color-font: #21314d;
+
+  --sidebar-color-header: rgba(255, 255, 255, 0.4);
+  --sidebar-color-link: rgba(255, 255, 255, 0.2);
+
+  --font-size: 14px;
+  --error-color: rgb(220, 53, 34);
+}

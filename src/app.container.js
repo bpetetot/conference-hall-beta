@@ -8,7 +8,7 @@ const mapState = (state) => {
   const { pathname } = state.router
   return {
     theme: classnames('default-theme', {
-      'red-theme': startsWith(pathname, '/organizer'),
+      'light-theme': startsWith(pathname, '/organizer'),
     }),
   }
 }
