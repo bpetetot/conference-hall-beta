@@ -1,9 +1,9 @@
 input {
-  background: rgba(255, 255, 255, 1);
+  background: #fff;
   border-radius: 3px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 1px 0px, rgba(0, 0, 0, 0.1) -1px 1px 1px 0px inset;
-  color: var(--primary-color-font);
+  color: #000;
   font-family: inherit;
   outline: none;
   padding: 10px;
@@ -13,5 +13,4 @@ input {
 
 input:focus {
   background: #fff;
-  color: rgba(0, 0, 0, 0.7);
 }

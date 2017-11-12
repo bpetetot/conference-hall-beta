@@ -5,7 +5,8 @@
 }
 
 .form-label > label {
-  color: var(--menu-color-header);
+  color: var(--primary-color-font);
+  font-weight: 300;
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: uppercase;
