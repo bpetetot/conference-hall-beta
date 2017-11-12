@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import IconLabel from '../../iconLabel'
+import IconLabel from 'components/iconLabel'
 
 const SubmitButton = ({
   disabled, submitting, loadingMessage, className, children,

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import IconLabel from '../../../../components/iconLabel'
-import Avatar from '../../../../components/avatar'
-import Dropdown from '../../../../components/dropdown'
+import IconLabel from 'components/iconLabel'
+import Avatar from 'components/avatar'
+import Dropdown from 'components/dropdown'
 
 const AvatarDropdown = ({ fullname, image, signout }) => {
   const avatar = <Avatar image={image} fullname={fullname} />

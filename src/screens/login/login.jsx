@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'redux-little-router'
 
-import IconLabel from '../../components/iconLabel'
+import IconLabel from 'components/iconLabel'
 import './login.css'
 
 const Login = ({ signin, nextUrl }) => (

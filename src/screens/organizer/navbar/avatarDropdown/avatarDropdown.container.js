@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { getUser, signout } from '../../../../redux/auth'
+import { getUser, signout } from 'redux/auth'
 import AvatarDropdown from './avatarDropdown'
 
 const mapState = state => ({

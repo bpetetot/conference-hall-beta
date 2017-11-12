@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import { withSizes } from '../../../styles/utils'
+import { withSizes } from 'styles/utils'
 import './brand.css'
 
 import BrandMobile from './brandMobile'

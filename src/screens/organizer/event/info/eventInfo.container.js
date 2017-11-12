@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import loader from 'hoc-react-loader'
 
-import event, { getEvent } from '../../../../redux/event'
-import LoadingIndicator from '../../../../components/loading'
+import event, { getEvent } from 'redux/event'
+import LoadingIndicator from 'components/loading'
 import EventInfo from './eventInfo'
 
 const mapState = state => ({
