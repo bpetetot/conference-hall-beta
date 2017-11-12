@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--primary-color);
   height: 100%;
 }
 
@@ -9,31 +9,33 @@
 }
 
 .sidebar .sidebar-header {
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--menu-color-header);
   font-size: 0.9em;
   font-weight: bold;
   letter-spacing: 1px;
-  padding-bottom: 10px;
-  padding: 20px 20px 10px 20px;
+  overflow: hidden;
+  padding-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  text-overflow: ellipsis;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .sidebar a.sidebar-link {
-  color: rgba(255, 255, 255, 0.7);
-  padding: 10px 0;
-  padding: 10px 20px 10px 20px;
+  color: var(--menu-color-link);
+  padding: var(--spacing-xs) var(--spacing-sm);
 }
 
 .sidebar a.sidebar-link-active {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .sidebar a.sidebar-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 1);
+  background: var(--primary-color-light);
+  color: var(--primary-color-font);
 }
 
 .sidebar a.sidebar-link-active:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }

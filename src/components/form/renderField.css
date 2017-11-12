@@ -5,10 +5,12 @@
 }
 
 .form-label > label {
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--primary-color-font);
+  font-weight: 300;
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: uppercase;
+  white-space: nowrap;
   min-width: 20%;
 }
 
@@ -18,14 +20,6 @@
 
 .form-has-error > label {
   color: var(--error-color);
-}
-
-.form-has-error > input {
-  border: 1px solid var(--error-color);
-}
-
-.form-has-error > textarea {
-  border: 1px solid var(--error-color);
 }
 
 @media screen and (max-width: 640px) {

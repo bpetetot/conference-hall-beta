@@ -21,31 +21,31 @@
 
 /** Button primary */
 .btn.btn-primary {
-  background: var(--primary-color);
-  color: var(--font-color);
+  background: var(--secondary-color);
+  color: var(--secondary-color-font);
 }
 
 .btn.btn-primary:hover {
-  color: var(--primary-color);
-  background: var(--font-color);
+  background: var(--secondary-color-font);
+  color: var(--secondary-color);
 }
 
 .btn.btn-primary:disabled {
-  cursor: default;
+  cursor: not-allowed;
   background: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .btn.btn-primary:disabled:hover {
   background: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 /** Button link */
 .btn.btn-link {
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--secondary-color);
 }
 
 .btn.btn-link:hover {
-  border: 1px solid var(--font-color);
+  border: 1px solid var(--secondary-color-font);
 }

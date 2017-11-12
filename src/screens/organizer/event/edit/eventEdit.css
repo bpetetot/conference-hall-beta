@@ -1,9 +1,9 @@
 .event-form {
-  padding: 2em;
+  padding: var(--spacing-lg);
 }
 
 .event-form > * {
-  margin-bottom: 1em;
+  margin-bottom: var(--spacing-sm);
 }
 
 .event-form > button {
@@ -12,6 +12,6 @@
 
 @media only screen and (max-width: 480px) {
   .event-form {
-    padding: 1em;
+    padding: var(--spacing-sm);
   }
 }

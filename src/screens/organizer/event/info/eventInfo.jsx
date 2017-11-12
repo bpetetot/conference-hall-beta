@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
 
 import EventMap from '../../../../components/maps'
-import IconLabel from '../../../../components/iconLabel'
+import IconLink from '../../../../components/iconLink'
 import './eventInfo.css'
 
 const EventInfo = ({
@@ -12,20 +12,14 @@ const EventInfo = ({
   <div className="event-info">
     <div className="event-header">
       <h1>{name}</h1>
-      {website && (
-        <div>
-          <a href={website} target="NEW">
-            <IconLabel icon="fa fa-globe" label="Website" />
-          </a>
-        </div>
-      )}
-      {address && (
-        <div>
-          <a href={`https://www.google.com/maps/place/${encodeURI(address)}`} target="NEW">
-            <IconLabel icon="fa fa-map-marker" label={address} />
-          </a>
-        </div>
-      )}
+      <div className="event-header-links">
+        <IconLink href={website} label="Website" icon="fa fa-globe" />
+        <IconLink
+          href={`https://www.google.com/maps/place/${encodeURI(address)}`}
+          label={address}
+          icon="fa fa-map-marker"
+        />
+      </div>
     </div>
     <div className="event-content">
       <ReactMarkdown className="markdown" source={description} escapeHtml />
