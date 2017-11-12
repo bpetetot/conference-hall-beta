@@ -1,34 +1,42 @@
 .event-info {
   position: relative;
+  --img-size: 300px;
+  --img-margin: 50px;
 }
 
 .event-info .event-header {
   background: rgba(0, 0, 0, 0.1);
-  padding: 2em 400px 2em 2em;
+  padding: var(--spacing-lg) calc(var(--img-size) + (var(--img-margin) * 2)) var(--spacing-lg)
+    var(--spacing-lg);
+}
+
+.event-info .event-header .event-header-links > a {
+  display: block;
+  padding-bottom: var(--spacing-sm);
 }
 
 .event-info .event-content {
-  margin-right: 400px;
-  padding: 2em;
+  margin-right: calc(var(--img-size) + (var(--img-margin) * 2));
+  padding: var(--spacing-lg);
 }
 
 .event-info .event-map {
   position: absolute;
-  top: 50px;
-  right: 50px;
-  height: 300px;
-  width: 300px;
+  top: var(--img-margin);
+  right: var(--img-margin);
+  height: var(--img-size);
+  width: var(--img-size);
   background: rgba(255, 255, 255, 0.6);
 }
 
 @media only screen and (max-width: 1024px) {
   .event-info .event-header {
-    padding: 2em;
+    padding: var(--spacing-sm);
   }
 
   .event-info .event-content {
     margin-right: 0;
-    padding: 2em;
+    padding: var(--spacing-sm);
   }
 
   .event-info .event-map {
