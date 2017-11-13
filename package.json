@@ -25,8 +25,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.1.2",
     "redux-little-router": "^14.2.0",
-    "redux-thunk": "^2.2.0",
-    "tinycolor2": "^1.4.1"
+    "redux-saga": "^0.16.0"
   },
   "devDependencies": {
     "eslint": "^4.9.0",
@@ -40,12 +39,17 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["airbnb"],
+    "extends": [
+      "airbnb"
+    ],
     "env": {
       "browser": true
     },
     "rules": {
-      "semi": [2, "never"],
+      "semi": [
+        2,
+        "never"
+      ],
       "import/no-extraneous-dependencies": 0,
       "import/no-unresolved": 0,
       "import/extensions": 0,

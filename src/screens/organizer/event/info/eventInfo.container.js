@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import loader from 'hoc-react-loader'
+import loader from 'hoc-react-loader/build/core'
 
-import event, { getEvent } from 'redux/event'
+import event from 'redux/data/event'
 import LoadingIndicator from 'components/loading'
 import EventInfo from './eventInfo'
 
@@ -11,7 +11,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch(getEvent()),
+  load: () => dispatch({ type: 'FETCH_EVENT' }),
 })
 
 const Loadable = loader({ print: ['loaded'], LoadingIndicator })(EventInfo)

@@ -1,23 +1,21 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 
-import { reducer as form } from 'redux-form'
-import { reducer as router, middleware as routerMiddleware, enhancer } from './routes'
-import firebase, { middleware as firebaseMiddleware } from './firebase'
+import sagas from 'sagas'
+import { middleware as routerMiddleware, enhancer } from './routes'
 
-import auth from './auth'
-import event from './event'
+import reducers from './reducers'
 
-/** create redux store */
+const sagaMiddleware = createSagaMiddleware()
+
 const store = createStore(
-  combineReducers({
-    router, auth, form, event,
-  }),
-  composeWithDevTools(
-    applyMiddleware(routerMiddleware, firebaseMiddleware, thunk.withExtraArgument(firebase)),
-    enhancer,
-  ),
+  reducers,
+  composeWithDevTools(applyMiddleware(routerMiddleware, sagaMiddleware), enhancer),
 )
+
+sagaMiddleware.run(sagas)
+
+store.dispatch({ type: 'INITIALIZE_FIREBASE' })
 
 export default store
