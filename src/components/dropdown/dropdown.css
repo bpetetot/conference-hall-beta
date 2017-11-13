@@ -36,6 +36,16 @@
 }
 
 .dropdown .dropdown-menu > a:hover {
+  color: var(--primary-color-font);
+}
+
+.dropdown .dropdown-menu > button {
+  color: var(--menu-color-link);
+  border: none;
   background: var(--primary-color-light);
+}
+
+.dropdown .dropdown-menu > button:hover {
+  cursor: pointer;
   color: var(--primary-color-font);
 }

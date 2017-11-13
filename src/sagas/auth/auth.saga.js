@@ -17,9 +17,11 @@ function* signout() {
 function* signedIn({
   uid, displayName, email, photoURL,
 }) {
+  // set auth initialized and authenticated
   yield put({ type: 'FIREBASE_INITIALIZED' })
   yield put({ type: 'FIREBASE_AUTHENTICATED', payload: true })
 
+  // set the user data
   yield put(user.set({
     uid,
     displayName,
@@ -27,6 +29,7 @@ function* signedIn({
     photoURL,
   }))
 
+  // go to the next url if exists
   const { next } = yield select(state => state.router.query)
   if (next) {
     yield put(push(next))
@@ -40,7 +43,7 @@ function* signedOut() {
 }
 
 export default function* authSaga() {
-  yield takeLatest('SIGN_IN', signin)
+  yield takeLatest('SIGN_IN', action => signin(action.payload))
   yield takeLatest('SIGN_OUT', signout)
   yield takeLatest(({ type, payload }) => type === 'ON_AUTH_STATE_CHANGED' && !payload, signedOut)
   yield takeLatest(

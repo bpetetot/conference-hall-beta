@@ -10,9 +10,9 @@ const AvatarDropdown = ({ fullname, image, signout }) => {
   return (
     <Dropdown action={avatar}>
       <div>{fullname}</div>
-      <a href="/" onClick={signout}>
+      <button onClick={signout}>
         <IconLabel icon="fa fa-sign-out" label="Sign out" />
-      </a>
+      </button>
     </Dropdown>
   )
 }
