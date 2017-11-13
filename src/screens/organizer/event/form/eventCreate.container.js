@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import EventEdit from './eventForm'
 
 const mapState = () => ({
-  mode: 'create',
+  form: 'event-create',
 })
 
 const mapDispatch = dispatch => ({
   onSubmit: data =>
     dispatch({
       type: 'SUBMIT_EVENT_FORM',
-      payload: { event: data, mode: 'create' },
+      payload: { event: data, form: 'event-create' },
     }),
 })
 

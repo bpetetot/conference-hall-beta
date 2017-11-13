@@ -6,7 +6,7 @@ import { input, address, textarea, SubmitButton, required } from 'components/for
 import './eventForm.css'
 
 const EventForm = ({
-  mode, handleSubmit, pristine, submitting, invalid,
+  form, handleSubmit, pristine, submitting, invalid,
 }) => (
   <form onSubmit={handleSubmit} className="event-form">
     <Field name="name" label="Name" type="text" component={input} validate={required} autoFocus />
@@ -19,13 +19,13 @@ const EventForm = ({
       submitting={submitting}
       loadingMessage="Saving..."
     >
-      {mode === 'create' ? 'Create event' : 'Update event'}
+      {form === 'event-create' ? 'Create event' : 'Update event'}
     </SubmitButton>
   </form>
 )
 
 EventForm.propTypes = {
-  mode: PropTypes.oneOf(['create', 'edit']).isRequired,
+  form: PropTypes.oneOf(['event-create', 'event-edit']).isRequired,
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
