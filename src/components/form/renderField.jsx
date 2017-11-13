@@ -6,16 +6,18 @@ import PlacesAutocomplete from 'react-places-autocomplete'
 import './renderField.css'
 
 const renderField = component => ({
-  input, label, type, meta,
+  input, label, type, meta, autoFocus,
 }) => {
   const hasError = meta.touched && meta.error
   return (
     <div className={cn('form-label', { 'form-has-error': hasError })}>
       <label htmlFor={input.name}>{label}</label>
       {component === 'address' && <PlacesAutocomplete inputProps={input} />}
-      {component === 'input' && <input {...input} id={input.name} type={type} />}
+      {component === 'input' && (
+        <input {...input} id={input.name} type={type} autoFocus={autoFocus} />
+      )}
       {component === 'textarea' && (
-        <textarea id={input.name} {...input}>
+        <textarea id={input.name} {...input} autoFocus={autoFocus}>
           {input.value}
         </textarea>
       )}

@@ -9,6 +9,7 @@ import Navbar from './navbar'
 import Sidebar from './sidebar'
 import Home from './home'
 import Event from './event'
+import { CreateEventForm } from './event/form'
 
 import './organizer.css'
 
@@ -21,7 +22,10 @@ const Organizer = ({ isMobile }) => (
       <Fragment forRoute="/menu" withConditions={() => isMobile}>
         <Sidebar />
       </Fragment>
-      <Fragment forRoute="/event">
+      <Fragment forRoute="/event/create">
+        <CreateEventForm />
+      </Fragment>
+      <Fragment forRoute="/event/:id">
         <Event />
       </Fragment>
       <Fragment forRoute="/">

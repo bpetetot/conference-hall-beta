@@ -5,24 +5,31 @@ import { push } from 'redux-little-router'
 import event from 'redux/data/event'
 import user from 'redux/data/user'
 import { toast } from 'redux/ui/toaster'
-import { createEvent, fetchEvent } from './event.firebase'
+import { createEvent, updateEvent, fetchEvent } from './event.firebase'
 
-function* createEventForm({ payload }) {
+function* createOrUpdateEvent({ payload }) {
   try {
     // indicate start submitting form
     yield put(startSubmit('event'))
 
-    // get user id
-    const { uid } = yield select(user.get())
-
-    // create event into database
-    const ref = yield call(createEvent, payload, uid)
-
-    // go to event page
-    yield put(push(`/organizer/event/${ref.id}`))
-
+    if (payload.mode === 'create') {
+      // get user id
+      const { uid } = yield select(user.get())
+      // create event into database
+      const ref = yield call(createEvent, payload.event, uid)
+      // go to event page
+      yield put(push(`/organizer/event/${ref.id}`))
+      // reset form
+      yield put(reset('event'))
+    } else {
+      // create event into database
+      yield call(updateEvent, payload.event)
+      // update event in store
+      yield put(event.set(payload.event))
+      // toast update
+      yield put(toast(Date.now(), 'Event updated', 'info'))
+    }
     // set form submitted
-    yield put(reset('event'))
     yield put(stopSubmit('event'))
   } catch (error) {
     yield put(stopSubmit('event', { _error: error.message }))
@@ -54,6 +61,6 @@ function* getEvent() {
 }
 
 export default function* eventSagas() {
-  yield takeLatest('CREATE_EVENT_FORM', createEventForm)
+  yield takeLatest('SUBMIT_EVENT_FORM', createOrUpdateEvent)
   yield takeLatest('FETCH_EVENT', getEvent)
 }
