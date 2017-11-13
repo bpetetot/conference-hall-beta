@@ -13,15 +13,15 @@
   min-width: 200px;
   display: flex;
   flex-direction: column;
-  margin-top: var(--spacing-sm);
+  margin-top: 1em;
   padding: 5px 0;
 }
 
 .dropdown .dropdown-menu > * {
   display: block;
-  height: var(--spacing-xl);
-  line-height: var(--spacing-xl);
-  padding: 0 var(--spacing-sm);
+  height: 3em;
+  line-height: 3em;
+  padding: 0 1em;
 }
 
 .dropdown .dropdown-menu > div {

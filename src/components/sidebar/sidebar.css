@@ -14,9 +14,9 @@
   font-weight: bold;
   letter-spacing: 1px;
   overflow: hidden;
-  padding-bottom: var(--spacing-sm);
-  padding-left: var(--spacing-sm);
-  padding-top: var(--spacing-md);
+  padding-bottom: 1em;
+  padding-left: 1em;
+  padding-top: 1.5em;
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
@@ -24,7 +24,7 @@
 
 .sidebar a.sidebar-link {
   color: var(--menu-color-link);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: 0.7em 1em;
 }
 
 .sidebar a.sidebar-link-active {

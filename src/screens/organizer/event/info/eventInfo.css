@@ -6,18 +6,17 @@
 
 .event-info .event-header {
   background: rgba(0, 0, 0, 0.1);
-  padding: var(--spacing-lg) calc(var(--img-size) + (var(--img-margin) * 2)) var(--spacing-lg)
-    var(--spacing-lg);
+  padding: 2em calc(var(--img-size) + (var(--img-margin) * 2)) 2em 2em;
 }
 
 .event-info .event-header .event-header-links > a {
   display: block;
-  padding-bottom: var(--spacing-sm);
+  padding-bottom: 1em;
 }
 
 .event-info .event-content {
   margin-right: calc(var(--img-size) + (var(--img-margin) * 2));
-  padding: var(--spacing-lg);
+  padding: 2em;
 }
 
 .event-info .event-map {
@@ -31,12 +30,12 @@
 
 @media only screen and (max-width: 1024px) {
   .event-info .event-header {
-    padding: var(--spacing-sm);
+    padding: 1em;
   }
 
   .event-info .event-content {
     margin-right: 0;
-    padding: var(--spacing-sm);
+    padding: 1em;
   }
 
   .event-info .event-map {

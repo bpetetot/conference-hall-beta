@@ -8,7 +8,7 @@ button .icon-label {
 }
 
 .icon-label > span > i {
-  width: var(--spacing-sm);
-  margin-right: var(--spacing-sm);
+  width: 1em;
+  margin-right: 1em;
   text-align: center;
 }

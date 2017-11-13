@@ -8,5 +8,5 @@
   justify-content: space-between;
   align-items: center;
   transition: all 0.5s;
-  padding: 0 var(--spacing-sm);
+  padding: 0 1em;
 }

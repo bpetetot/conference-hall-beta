@@ -4,9 +4,9 @@
   color: var(--primary-color-font);
   display: flex;
   justify-content: flex-end;
-  padding-right: var(--spacing-md);
+  padding-right: 1.5em;
 }
 
 .navbar > * {
-  margin-left: var(--spacing-md);
+  margin-left: 1.5em;
 }

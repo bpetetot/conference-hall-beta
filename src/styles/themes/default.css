@@ -21,12 +21,6 @@
   --menu-color-header: #666;
   --menu-color-link: #aaa;
 
-  --spacing-xs: 0.7em;
-  --spacing-sm: 1em;
-  --spacing-md: 1.5em;
-  --spacing-lg: 2em;
-  --spacing-xl: 3em;
-
   background: var(--primary-color-light);
   color: var(--primary-color-font);
   font-size: var(--font-size);
