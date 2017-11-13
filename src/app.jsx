@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Fragment } from 'redux-little-router'
 
+import Toaster from 'components/toaster'
 import Home from './screens/home'
 import Login from './screens/login'
 import Organizer from './screens/organizer'
@@ -20,6 +21,7 @@ const App = ({ theme }) => (
       <Fragment forRoute="/">
         <Home />
       </Fragment>
+      <Toaster />
     </div>
   </Fragment>
 )

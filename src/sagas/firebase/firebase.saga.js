@@ -4,6 +4,7 @@ import 'firebase/firestore'
 
 import { eventChannel } from 'redux-saga'
 import { call, put, takeLatest, take } from 'redux-saga/effects'
+import { toast } from 'redux/ui/toaster'
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -27,8 +28,11 @@ function* initializeAuth() {
 function* initialize() {
   yield call(firebase.initializeApp, config)
 
-  yield call(() => firebase.firestore().enablePersistence())
-
+  try {
+    yield call(() => firebase.firestore().enablePersistence())
+  } catch (error) {
+    yield put(toast(error.code, error.message, 'warning'))
+  }
   yield call(() => firebase.firestore())
 
   yield* initializeAuth()

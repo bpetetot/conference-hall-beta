@@ -1,5 +1,10 @@
 .icon-label {
   display: flex;
+  align-items: center;
+}
+
+button .icon-label {
+  justify-content: center;
 }
 
 .icon-label > span > i {

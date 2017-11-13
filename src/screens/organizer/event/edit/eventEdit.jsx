@@ -9,7 +9,7 @@ const Event = ({
   handleSubmit, pristine, submitting, invalid,
 }) => (
   <form onSubmit={handleSubmit} className="event-form">
-    <Field name="name" label="Name" type="text" component={input} validate={required} />
+    <Field name="name" label="Name" type="text" component={input} validate={required} autoFocus />
     <Field name="description" label="description" component={textarea} validate={required} />
     <Field name="address" label="Venue address" type="text" component={address} />
     <Field name="website" label="Website" type="text" component={input} />
