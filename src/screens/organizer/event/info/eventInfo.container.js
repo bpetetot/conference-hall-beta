@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import loader from 'hoc-react-loader'
+import loader from 'hoc-react-loader/build/core'
 
-import event from 'redux/event'
+import event from 'redux/data/event'
 import LoadingIndicator from 'components/loading'
 import EventInfo from './eventInfo'
 

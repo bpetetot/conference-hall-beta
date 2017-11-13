@@ -1,7 +1,5 @@
 import { connect } from 'react-redux'
 
-import { signin } from 'redux/auth'
-
 import Login from './login'
 
 const mapState = state => ({
@@ -9,7 +7,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  signin: (provider, nextUrl) => dispatch(signin(provider, nextUrl)),
+  signin: (provider, nextUrl) => dispatch({ type: 'SIGN_IN', payload: { provider, nextUrl } }),
 })
 
 export default connect(mapState, mapDispatch)(Login)

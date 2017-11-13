@@ -1,10 +1,10 @@
-import { all, call, put, takeLatest, select } from 'redux-saga/effects'
+import { call, put, takeLatest, select } from 'redux-saga/effects'
 import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
+import event from 'redux/data/event'
+import user from 'redux/data/user'
 import { createEvent, fetchEvent } from './event.firebase'
-import event from './event'
-import { getUser } from '../auth'
 
 function* createEventForm({ payload }) {
   try {
@@ -12,7 +12,7 @@ function* createEventForm({ payload }) {
     yield put(startSubmit('event'))
 
     // get user id
-    const { uid } = yield select(getUser)
+    const { uid } = yield select(user.get())
 
     // create event into database
     const ref = yield call(createEvent, payload, uid)
@@ -56,8 +56,7 @@ function* getEvent() {
   }
 }
 
-function* eventSagas() {
-  yield all([takeLatest('CREATE_EVENT_FORM', createEventForm), takeLatest('FETCH_EVENT', getEvent)])
+export default function* eventSagas() {
+  yield takeLatest('CREATE_EVENT_FORM', createEventForm)
+  yield takeLatest('FETCH_EVENT', getEvent)
 }
-
-export default eventSagas

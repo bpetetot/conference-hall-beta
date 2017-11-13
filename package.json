@@ -25,9 +25,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.1.2",
     "redux-little-router": "^14.2.0",
-    "redux-saga": "^0.16.0",
-    "redux-thunk": "^2.2.0",
-    "tinycolor2": "^1.4.1"
+    "redux-saga": "^0.16.0"
   },
   "devDependencies": {
     "eslint": "^4.9.0",
