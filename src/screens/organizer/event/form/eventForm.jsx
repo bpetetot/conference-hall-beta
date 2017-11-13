@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 
 import { input, address, textarea, SubmitButton, required } from 'components/form'
-import './eventEdit.css'
+import './eventForm.css'
 
-const Event = ({
-  handleSubmit, pristine, submitting, invalid,
+const EventForm = ({
+  form, handleSubmit, pristine, submitting, invalid,
 }) => (
   <form onSubmit={handleSubmit} className="event-form">
     <Field name="name" label="Name" type="text" component={input} validate={required} autoFocus />
@@ -19,16 +19,17 @@ const Event = ({
       submitting={submitting}
       loadingMessage="Saving..."
     >
-      Create event
+      {form === 'event-create' ? 'Create event' : 'Update event'}
     </SubmitButton>
   </form>
 )
 
-Event.propTypes = {
+EventForm.propTypes = {
+  form: PropTypes.oneOf(['event-create', 'event-edit']).isRequired,
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   invalid: PropTypes.bool.isRequired,
 }
 
-export default reduxForm({ form: 'event' })(Event)
+export default reduxForm({ form: 'event' })(EventForm)
