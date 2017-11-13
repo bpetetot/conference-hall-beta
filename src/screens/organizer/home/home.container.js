@@ -4,7 +4,7 @@ import { toast } from 'redux/ui/toaster'
 import Home from './home'
 
 const mapDispatch = dispatch => ({
-  toast: date => dispatch(toast(date, date)),
+  toast: date => dispatch(toast(date, date, 'question')),
 })
 
 export default connect(undefined, mapDispatch)(Home)

@@ -13,7 +13,10 @@
   --layout-navbar-height: 60px;
   --layout-sidebar-width: 240px;
 
-  --error-color: rgb(220, 53, 34);
+  --info-color: #fff;
+  --question-color: #2170bf;
+  --error-color: #c73228;
+  --warning-color: #ff9900;
 
   --menu-color-header: #666;
   --menu-color-link: #aaa;

@@ -31,7 +31,7 @@ function* initialize() {
   try {
     yield call(() => firebase.firestore().enablePersistence())
   } catch (error) {
-    yield put(toast(error.code, error.message))
+    yield put(toast(error.code, error.message, 'warning'))
   }
   yield call(() => firebase.firestore())
 
