@@ -4,6 +4,7 @@ import { push } from 'redux-little-router'
 
 import event from 'redux/data/event'
 import user from 'redux/data/user'
+import { toast } from 'redux/ui/toaster'
 import { createEvent, fetchEvent } from './event.firebase'
 
 function* createEventForm({ payload }) {
@@ -24,35 +25,31 @@ function* createEventForm({ payload }) {
     yield put(reset('event'))
     yield put(stopSubmit('event'))
   } catch (error) {
-    // set errors to the form
-    console.error(error)
     yield put(stopSubmit('event', { _error: error.message }))
+    throw error
   }
 }
 
 function* getEvent() {
-  try {
-    // get event id from router
-    const { id } = yield select(state => state.router.params)
+  // get event id from router
+  const { id } = yield select(state => state.router.params)
 
-    // check if already in the store
-    const current = yield select(event.get())
-    if (current && current.id === id) {
-      return
-    }
+  // check if already in the store
+  const current = yield select(event.get())
+  if (current && current.id === id) {
+    return
+  }
 
-    // wipe current event in the store
-    yield put(event.reset())
+  // wipe current event in the store
+  yield put(event.reset())
 
-    // fetch event from id
-    const ref = yield call(fetchEvent, id)
-    if (ref.exists) {
-      yield put(event.set({ id, ...ref.data() }))
-    } else {
-      console.error(`event with id ${id} not found`)
-    }
-  } catch (error) {
-    console.error(error)
+  // fetch event from id
+  const ref = yield call(fetchEvent, id)
+  if (ref.exists) {
+    yield put(event.set({ id, ...ref.data() }))
+  } else {
+    yield put(toast(id, `Event '${id}' not found, it might be deleted or it's not yours.`, 'warning'))
+    yield put(push('/organizer'))
   }
 }
 
