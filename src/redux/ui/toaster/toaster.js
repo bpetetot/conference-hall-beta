@@ -1,8 +1,8 @@
 const initialState = []
 
-export const toast = (id, label, type = 'default') => ({
+export const toast = (code, label, type = 'default') => ({
   type: 'TOAST',
-  payload: { id, label, type },
+  payload: { code, label, type },
 })
 
 export default (state = initialState, action) => {
@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case 'ADD_TOAST':
       return [...state, action.payload]
     case 'REMOVE_TOAST':
-      return state.filter(({ id }) => id !== action.payload.id)
+      return state.filter(({ code }) => code !== action.payload.code)
     default:
       return state
   }

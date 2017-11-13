@@ -3,7 +3,7 @@ import { takeEvery, put, call } from 'redux-saga/effects'
 
 function* addToast(toast) {
   yield put({ type: 'ADD_TOAST', payload: toast })
-  yield call(delay, 3000)
+  yield call(delay, 10000)
   yield put({ type: 'REMOVE_TOAST', payload: toast })
 }
 
