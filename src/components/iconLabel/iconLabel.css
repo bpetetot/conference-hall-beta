@@ -3,6 +3,10 @@
   align-items: center;
 }
 
+button .icon-label {
+  justify-content: center;
+}
+
 .icon-label > span > i {
   width: var(--spacing-sm);
   margin-right: var(--spacing-sm);

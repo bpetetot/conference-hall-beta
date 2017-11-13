@@ -45,6 +45,10 @@
   background: var(--primary-color-light);
 }
 
+.dropdown .dropdown-menu > button .icon-label {
+  justify-content: flex-start;
+}
+
 .dropdown .dropdown-menu > button:hover {
   cursor: pointer;
   color: var(--primary-color-font);
