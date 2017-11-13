@@ -12,15 +12,18 @@ const renderField = component => ({
   return (
     <div className={cn('form-label', { 'form-has-error': hasError })}>
       <label htmlFor={input.name}>{label}</label>
-      {component === 'address' && <PlacesAutocomplete inputProps={input} />}
-      {component === 'input' && (
-        <input {...input} id={input.name} type={type} autoFocus={autoFocus} />
-      )}
-      {component === 'textarea' && (
-        <textarea id={input.name} {...input} autoFocus={autoFocus}>
-          {input.value}
-        </textarea>
-      )}
+      <div>
+        {component === 'address' && <PlacesAutocomplete inputProps={input} />}
+        {component === 'input' && (
+          <input {...input} id={input.name} type={type} autoFocus={autoFocus} />
+        )}
+        {component === 'textarea' && (
+          <textarea id={input.name} {...input} autoFocus={autoFocus}>
+            {input.value}
+          </textarea>
+        )}
+        {<div className="form-error">{meta.touched ? meta.error : ''}</div>}
+      </div>
     </div>
   )
 }

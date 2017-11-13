@@ -22,11 +22,21 @@
   color: var(--error-color);
 }
 
+.form-label .form-error {
+  height: 1em;
+  font-size: 0.8em;
+  color: var(--error-color);
+  margin-top: 0.3em;
+}
+
 @media screen and (max-width: 640px) {
   .form-label {
     display: block;
   }
   .form-label > label {
+    font-size: 0.9em;
+    display: block;
     min-width: 100%;
+    padding-bottom: 0.3em;
   }
 }
