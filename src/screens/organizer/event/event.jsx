@@ -6,8 +6,8 @@ import './event.css'
 
 const Event = () => (
   <div className="event">
-    <EditEventForm forRoute="/edit" />
-    <EventInfo forRoute="/" />
+    <EditEventForm />
+    <EventInfo />
   </div>
 )
 

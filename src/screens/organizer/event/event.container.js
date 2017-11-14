@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
+import forRoute from 'hoc-little-router'
 
-import withRoute from 'components/withRoute'
 import event from 'redux/data/event'
 import LoadingIndicator from 'components/loading'
 import Event from './event'
@@ -16,4 +16,4 @@ const mapDispatch = dispatch => ({
 
 const Loadable = loader({ print: ['loaded'], LoadingIndicator })(Event)
 
-export default withRoute(connect(mapState, mapDispatch)(Loadable))
+export default forRoute('HOME_EVENT')(connect(mapState, mapDispatch)(Loadable))

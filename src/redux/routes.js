@@ -2,15 +2,19 @@ import { routerForBrowser } from 'redux-little-router'
 
 const routes = {
   '/organizer': {
+    title: 'ORGANIZER',
+    '/menu': { title: 'MOBILE_MENU' },
+    '/event/create': { title: 'CREATE_EVENT' },
     '/event': {
+      title: 'HOME_EVENT',
       '/:id': {
-        '/edit': {},
+        title: 'CONSULT_EVENT',
+        '/edit': { title: 'EDIT_EVENT' },
       },
-      '/create': {},
     },
   },
-  '/login': {},
-  '/': {},
+  '/login': { title: 'LOGIN' },
+  '/': { title: 'HOME' },
 }
 
 export const { reducer, middleware, enhancer } = routerForBrowser({ routes })

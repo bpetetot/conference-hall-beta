@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import withRoute from 'components/withRoute'
 import IconLabel from 'components/iconLabel'
 import { SideBar, SideBarPanel, SideBarLink } from 'components/sidebar'
 import EventSideBar from '../event/sidebar'
@@ -25,4 +24,4 @@ OrganizerSideBar.defaultProps = {
   className: undefined,
 }
 
-export default withRoute(OrganizerSideBar)
+export default OrganizerSideBar

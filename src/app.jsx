@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import withRoute from 'components/withRoute'
 import Toaster from 'components/toaster'
 import Home from './screens/home'
 import Login from './screens/login'
@@ -11,9 +10,9 @@ import './styles'
 
 const App = ({ theme }) => (
   <div className={theme}>
-    <Organizer forRoute="/organizer" />
-    <Login forRoute="/login" />
-    <Home forRoute="/" />
+    <Home />
+    <Login />
+    <Organizer />
     <Toaster />
   </div>
 )
@@ -26,4 +25,4 @@ App.defaultProps = {
   theme: 'default-theme',
 }
 
-export default withRoute(App)
+export default App
