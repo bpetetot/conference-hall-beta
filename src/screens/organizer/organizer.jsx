@@ -6,7 +6,7 @@ import { protect } from 'redux/auth'
 import Brand from './brand'
 import Navbar from './navbar'
 import { Sidebar, SidebarMobile } from './sidebar'
-import Home from './home'
+import MyEvents from './myEvents'
 import Event from './event'
 import { CreateEventForm } from './event/form'
 
@@ -21,9 +21,9 @@ const Organizer = () => (
       <SidebarMobile />
       <CreateEventForm />
       <Event />
-      <Home />
+      <MyEvents />
     </div>
   </div>
 )
 
-export default compose(forRoute('ORGANIZER'), protect)(Organizer)
+export default compose(forRoute('HOME_ORGANIZER'), protect)(Organizer)

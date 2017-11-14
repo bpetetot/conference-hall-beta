@@ -2,7 +2,7 @@ import { routerForBrowser } from 'redux-little-router'
 
 const routes = {
   '/organizer': {
-    title: 'ORGANIZER',
+    title: 'HOME_ORGANIZER',
     '/menu': { title: 'MOBILE_MENU' },
     '/event/create': { title: 'CREATE_EVENT' },
     '/event': {
