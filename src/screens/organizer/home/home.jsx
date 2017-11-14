@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'redux-little-router'
 
+import withRoute from 'components/withRoute'
 import IconLabel from 'components/iconLabel'
 import './home.css'
 
@@ -12,4 +13,4 @@ const Home = () => (
   </div>
 )
 
-export default Home
+export default withRoute(Home)

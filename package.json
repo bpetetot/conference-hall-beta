@@ -13,6 +13,7 @@
     "date-fns": "^1.29.0",
     "firebase": "^4.6.1",
     "font-awesome": "^4.7.0",
+    "hoc-little-router": "^1.0.1",
     "hoc-react-loader": "^6.1.1",
     "k-redux-factory": "^3.7.0",
     "normalize.css": "^7.0.0",
@@ -39,12 +40,17 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["airbnb"],
+    "extends": [
+      "airbnb"
+    ],
     "env": {
       "browser": true
     },
     "rules": {
-      "semi": [2, "never"],
+      "semi": [
+        2,
+        "never"
+      ],
       "import/no-extraneous-dependencies": 0,
       "import/no-unresolved": 0,
       "import/extensions": 0,

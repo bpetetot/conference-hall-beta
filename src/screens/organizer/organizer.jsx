@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Fragment } from 'redux-little-router'
 
+import withRoute from 'components/withRoute'
 import { protect } from 'redux/auth'
 import { withSizes } from 'styles/utils'
 import Brand from './brand'
@@ -19,18 +19,10 @@ const Organizer = ({ isMobile }) => (
     {!isMobile && <Navbar className="layout-navbar" />}
     {!isMobile && <Sidebar className="layout-sidebar" />}
     <div className="layout-main">
-      <Fragment forRoute="/menu" withConditions={() => isMobile}>
-        <Sidebar />
-      </Fragment>
-      <Fragment forRoute="/event/create">
-        <CreateEventForm />
-      </Fragment>
-      <Fragment forRoute="/event/:id">
-        <Event />
-      </Fragment>
-      <Fragment forRoute="/">
-        <Home />
-      </Fragment>
+      {isMobile && <Sidebar forRoute="/menu" />}
+      <CreateEventForm forRoute="/event/create" />
+      <Event forRoute="/event/:id" />
+      <Home forRoute="/" />
     </div>
   </div>
 )
@@ -43,4 +35,4 @@ Organizer.defaultProps = {
   isMobile: false,
 }
 
-export default protect(withSizes(Organizer))
+export default withRoute(protect(withSizes(Organizer)))

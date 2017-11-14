@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Fragment } from 'redux-little-router'
 
+import withRoute from 'components/withRoute'
 import Toaster from 'components/toaster'
 import Home from './screens/home'
 import Login from './screens/login'
@@ -10,20 +10,12 @@ import Organizer from './screens/organizer'
 import './styles'
 
 const App = ({ theme }) => (
-  <Fragment forRoute="/">
-    <div className={theme}>
-      <Fragment forRoute="/organizer">
-        <Organizer />
-      </Fragment>
-      <Fragment forRoute="/login">
-        <Login />
-      </Fragment>
-      <Fragment forRoute="/">
-        <Home />
-      </Fragment>
-      <Toaster />
-    </div>
-  </Fragment>
+  <div className={theme}>
+    <Organizer forRoute="/organizer" />
+    <Login forRoute="/login" />
+    <Home forRoute="/" />
+    <Toaster />
+  </div>
 )
 
 App.propTypes = {
@@ -34,4 +26,4 @@ App.defaultProps = {
   theme: 'default-theme',
 }
 
-export default App
+export default withRoute(App)
