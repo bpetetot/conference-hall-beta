@@ -1,26 +1,24 @@
 import React from 'react'
 import { compose } from 'redux'
-import PropTypes from 'prop-types'
 import forRoute from 'hoc-little-router'
 
 import { protect } from 'redux/auth'
-import { withSizes } from 'styles/utils'
 import Brand from './brand'
 import Navbar from './navbar'
-import Sidebar from './sidebar'
+import { Sidebar, SidebarMobile } from './sidebar'
 import Home from './home'
 import Event from './event'
 import { CreateEventForm } from './event/form'
 
 import './organizer.css'
 
-const Organizer = ({ isMobile }) => (
+const Organizer = () => (
   <div className="layout-screen">
     <Brand className="layout-brand" />
-    {!isMobile && <Navbar className="layout-navbar" />}
-    {!isMobile && <Sidebar className="layout-sidebar" />}
+    <Navbar className="layout-navbar" />
+    <Sidebar className="layout-sidebar" />
     <div className="layout-main">
-      {isMobile && <Sidebar />}
+      <SidebarMobile />
       <CreateEventForm />
       <Event />
       <Home />
@@ -28,12 +26,4 @@ const Organizer = ({ isMobile }) => (
   </div>
 )
 
-Organizer.propTypes = {
-  isMobile: PropTypes.bool,
-}
-
-Organizer.defaultProps = {
-  isMobile: false,
-}
-
-export default compose(forRoute('ORGANIZER'), protect, withSizes)(Organizer)
+export default compose(forRoute('ORGANIZER'), protect)(Organizer)
