@@ -3183,6 +3183,10 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
+hoc-little-router@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hoc-little-router/-/hoc-little-router-1.0.1.tgz#55bfa58134fd79b345bf8e44cf02682fb17b963e"
+
 hoc-react-loader@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/hoc-react-loader/-/hoc-react-loader-6.1.1.tgz#443c1c5dbaa2ce2be97797bebc5db92d1fc2da5d"

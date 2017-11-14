@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 
+import withRoute from 'components/withRoute'
 import event from 'redux/data/event'
 import EventEdit from './eventForm'
 
@@ -16,4 +17,4 @@ const mapDispatch = dispatch => ({
     }),
 })
 
-export default connect(mapState, mapDispatch)(EventEdit)
+export default withRoute(connect(mapState, mapDispatch)(EventEdit))
