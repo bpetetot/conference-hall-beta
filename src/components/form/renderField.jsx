@@ -13,7 +13,12 @@ const renderField = component => ({
     <div className={cn('form-label', { 'form-has-error': hasError })}>
       <label htmlFor={input.name}>{label}</label>
       <div>
-        {component === 'address' && <PlacesAutocomplete inputProps={input} />}
+        {component === 'address' && (
+          <PlacesAutocomplete
+            inputProps={input}
+            styles={{ autocompleteContainer: { zIndex: 1 } }}
+          />
+        )}
         {component === 'input' && (
           <input {...input} id={input.name} type={type} autoFocus={autoFocus} />
         )}
