@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'redux-little-router'
+import forRoute from 'hoc-little-router'
 
 import './home.css'
 
@@ -12,4 +13,4 @@ const Home = () => (
   </div>
 )
 
-export default Home
+export default forRoute('HOME', { absolute: true })(Home)

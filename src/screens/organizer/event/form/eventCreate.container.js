@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import forRoute from 'hoc-little-router'
 
 import EventEdit from './eventForm'
 
@@ -14,4 +15,4 @@ const mapDispatch = dispatch => ({
     }),
 })
 
-export default connect(mapState, mapDispatch)(EventEdit)
+export default forRoute('CREATE_EVENT', { absolute: true })(connect(mapState, mapDispatch)(EventEdit))
