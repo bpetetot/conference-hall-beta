@@ -9,6 +9,7 @@ import MyEvents from './myEvents'
 
 const mapState = state => ({
   loaded: events.isInitialized(state),
+  events: events.getKeys(state),
 })
 
 const mapDispatch = dispatch => ({

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 
 import 'normalize.css'
 import 'font-awesome/css/font-awesome.min.css'
+import 'react-virtualized/styles.css'
 
 import store from './redux'
 import App from './app.container'

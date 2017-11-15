@@ -4,7 +4,7 @@ import { Link } from 'redux-little-router'
 import IconLabel from 'components/iconLabel'
 import './myEvents.css'
 
-const Home = () => (
+const MyEvents = ({ events }) => (
   <div className="organizer-events">
     <Link href="/organizer/event/create" className="btn btn-link">
       <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
@@ -12,4 +12,4 @@ const Home = () => (
   </div>
 )
 
-export default Home
+export default MyEvents
