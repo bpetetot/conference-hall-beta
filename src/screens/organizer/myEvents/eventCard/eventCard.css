@@ -1,0 +1,16 @@
+.event-card .event-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.event-card .event-header > a {
+  font-size: 1.3em;
+  margin-bottom: 5px;
+}
+
+.event-card .event-header .event-badges > * {
+  margin-left: 10px;
+}

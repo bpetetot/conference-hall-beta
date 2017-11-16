@@ -1,4 +1,21 @@
 .organizer-events {
-  padding: 2em;
   height: 100%;
+}
+
+.events-header {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.events-content > div {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.events-content > div:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.events-content > div:last-child {
+  border-bottom: none;
 }
