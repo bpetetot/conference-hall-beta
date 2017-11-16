@@ -5,9 +5,9 @@ import IconLabel from 'components/iconLabel'
 import { SideBar, SideBarPanel, SideBarLink } from 'components/sidebar'
 import EventSideBar from '../event/sidebar'
 
-const OrganizerSideBar = ({ className }) => (
+const OrganizerSideBar = ({ fullname, className }) => (
   <SideBar className={className}>
-    <SideBarPanel label="General">
+    <SideBarPanel label={fullname}>
       <SideBarLink to="/organizer">
         <IconLabel icon="fa fa-calendar-check-o" label="My events" />
       </SideBarLink>
@@ -17,10 +17,12 @@ const OrganizerSideBar = ({ className }) => (
 )
 
 OrganizerSideBar.propTypes = {
+  fullname: PropTypes.string,
   className: PropTypes.string,
 }
 
 OrganizerSideBar.defaultProps = {
+  fullname: 'Organizer',
   className: undefined,
 }
 
