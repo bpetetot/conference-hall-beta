@@ -6,4 +6,5 @@ export const fetchUserEvents = uid =>
     .firestore()
     .collection('events')
     .where('owner', '==', uid)
+    // .orderBy('timestamp') // need an index to be done
     .get()

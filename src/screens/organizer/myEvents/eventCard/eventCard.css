@@ -4,6 +4,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   margin: 0;
+  cursor: pointer;
 }
 
 .event-card .event-header > a {

@@ -9,7 +9,7 @@ const OrganizerSideBar = ({ className }) => (
   <SideBar className={className}>
     <SideBarPanel label="General">
       <SideBarLink to="/organizer">
-        <IconLabel icon="fa fa-home" label="Home" />
+        <IconLabel icon="fa fa-calendar-check-o" label="My events" />
       </SideBarLink>
     </SideBarPanel>
     <EventSideBar />
