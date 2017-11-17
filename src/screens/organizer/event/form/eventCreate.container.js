@@ -8,11 +8,13 @@ const mapState = () => ({
 })
 
 const mapDispatch = dispatch => ({
-  onSubmit: data =>
+  onSubmit: (data) => {
+    console.log(data)
     dispatch({
       type: 'SUBMIT_EVENT_FORM',
       payload: { event: data, form: 'event-create' },
-    }),
+    })
+  },
 })
 
 export default forRoute('CREATE_EVENT', { absolute: true })(connect(mapState, mapDispatch)(EventEdit))

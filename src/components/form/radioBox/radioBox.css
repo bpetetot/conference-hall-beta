@@ -1,0 +1,19 @@
+.form-radio input[type='radio'] {
+  display: none;
+}
+
+.form-radio input[type='radio'] ~ label {
+  border-radius: 3px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  display: block;
+  padding: 10px;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.form-radio input[type='radio']:checked ~ label {
+  background: #666666;
+  color: #ffffff;
+  border: 1px solid #666666;
+}
