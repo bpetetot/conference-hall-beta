@@ -1,0 +1,32 @@
+ul.tabs {
+  padding: 0;
+  width: 100%;
+  display: flex;
+}
+
+ul.tabs > li {
+  display: inline;
+  list-style: none;
+  text-transform: uppercase;
+  margin-left: 3em;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+
+ul.tabs > li a {
+  color: var(--font-color);
+}
+
+ul.tabs > li a:hover {
+  text-decoration: underline;
+}
+
+ul.tabs > li a.tab-active {
+  color: var(--secondary-color);
+  text-decoration: none;
+  cursor: default;
+}
+
+ul.tabs > li:first-child {
+  margin-left: 0;
+}

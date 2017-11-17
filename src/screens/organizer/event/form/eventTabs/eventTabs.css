@@ -1,0 +1,8 @@
+.event-tabs {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1em 2em;
+}
+
+.event-tabs > ul {
+  justify-content: flex-end;
+}
