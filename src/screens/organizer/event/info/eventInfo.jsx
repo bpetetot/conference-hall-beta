@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactMarkdown from 'react-markdown'
+import Markdown from 'react-markdown'
 
 import EventMap from 'components/maps'
 import IconLink from 'components/iconLink'
@@ -22,7 +22,7 @@ const EventInfo = ({
       </div>
     </div>
     <div className="event-content">
-      <ReactMarkdown className="markdown" source={description} escapeHtml />
+      {description && <Markdown className="markdown" source={description} escapeHtml />}
     </div>
     {address && (
       <div className="event-map">
@@ -33,13 +33,15 @@ const EventInfo = ({
 )
 
 EventInfo.propTypes = {
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  description: PropTypes.string,
   address: PropTypes.string,
   website: PropTypes.string,
 }
 
 EventInfo.defaultProps = {
+  name: undefined,
+  description: undefined,
   address: undefined,
   website: undefined,
 }
