@@ -7,7 +7,7 @@ import Label from './label'
 const renderField = component => ({
   input, label, type, meta, autoFocus,
 }) => (
-  <Label name={input.name} label={label} meta={meta}>
+  <Label name={input.name} label={label} error={meta.error}>
     {component === 'address' && (
       <PlacesAutocomplete inputProps={input} styles={{ autocompleteContainer: { zIndex: 1 } }} />
     )}

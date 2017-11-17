@@ -40,6 +40,11 @@ EventForm.propTypes = {
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   invalid: PropTypes.bool.isRequired,
+  type: PropTypes.string,
+}
+
+EventForm.defaultProps = {
+  type: undefined,
 }
 
 export default reduxForm({ form: 'event' })(EventForm)
