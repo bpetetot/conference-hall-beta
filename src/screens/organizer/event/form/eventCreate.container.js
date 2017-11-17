@@ -1,20 +1,24 @@
 import { connect } from 'react-redux'
+import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
 import EventEdit from './eventForm'
 
-const mapState = () => ({
-  form: 'event-create',
+const FORM_NAME = 'event-create'
+const select = formValueSelector(FORM_NAME)
+
+const mapState = state => ({
+  form: FORM_NAME,
+  type: select(state, 'type'),
+  initialValues: { type: 'conference' },
 })
 
 const mapDispatch = dispatch => ({
-  onSubmit: (data) => {
-    console.log(data)
+  onSubmit: data =>
     dispatch({
       type: 'SUBMIT_EVENT_FORM',
-      payload: { event: data, form: 'event-create' },
-    })
-  },
+      payload: { event: data, form: FORM_NAME },
+    }),
 })
 
 export default forRoute('CREATE_EVENT', { absolute: true })(connect(mapState, mapDispatch)(EventEdit))

@@ -7,7 +7,7 @@ import RadioGroup from '../../../../components/form/radioGroup'
 import './eventForm.css'
 
 const EventForm = ({
-  form, handleSubmit, pristine, submitting, invalid,
+  form, handleSubmit, pristine, submitting, invalid, type,
 }) => (
   <form onSubmit={handleSubmit} className="event-form">
     <RadioGroup name="type" inline>
@@ -16,7 +16,12 @@ const EventForm = ({
     </RadioGroup>
     <Field name="name" label="Name" type="text" component={input} validate={required} autoFocus />
     <Field name="description" label="description" component={textarea} validate={required} />
-    <Field name="address" label="Venue address" type="text" component={address} />
+    <Field
+      name="address"
+      label={type === 'conference' ? 'Venue address' : 'City'}
+      type="text"
+      component={address}
+    />
     <Field name="website" label="Website" type="text" component={input} />
     <Field name="tags" label="Tags" type="text" component={input} />
     <SubmitButton
