@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'redux-little-router'
 
 import IconLabel from 'components/iconLabel'
@@ -20,5 +21,13 @@ const MyEvents = ({ events }) => (
     </div>
   </div>
 )
+
+MyEvents.propTypes = {
+  events: PropTypes.string,
+}
+
+MyEvents.defaultProps = {
+  events: [],
+}
 
 export default MyEvents

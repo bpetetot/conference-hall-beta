@@ -9,7 +9,7 @@ const EventSidebar = ({ id, name }) => {
   return (
     <SideBarPanel label={name}>
       <SideBarLink to={`/organizer/event/${id}`}>
-        <IconLabel icon="fa fa-pie-chart" label="Dashboard" />
+        <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
       <SideBarLink to={`/organizer/event/${id}/edit`}>
         <IconLabel icon="fa fa-gear" label="Configuration" />

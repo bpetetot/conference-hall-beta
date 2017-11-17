@@ -40,17 +40,12 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": [
-      "airbnb"
-    ],
+    "extends": ["airbnb"],
     "env": {
       "browser": true
     },
     "rules": {
-      "semi": [
-        2,
-        "never"
-      ],
+      "semi": [2, "never"],
       "import/no-extraneous-dependencies": 0,
       "import/no-unresolved": 0,
       "import/extensions": 0,
