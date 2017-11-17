@@ -1,0 +1,28 @@
+.form-radio-group {
+  width: 100%;
+  display: flex;
+}
+
+.form-radio-group-col {
+  flex-direction: column;
+}
+
+.form-radio-group-col > * {
+  margin-bottom: 15px;
+}
+
+.form-radio-group-col > *:last-child {
+  margin-bottom: 0;
+}
+
+.form-radio-group-inline {
+  flex-direction: row;
+}
+
+.form-radio-group-inline > * {
+  margin-right: 15px;
+}
+
+.form-radio-group-inline > *:last-child {
+  margin-right: 0;
+}

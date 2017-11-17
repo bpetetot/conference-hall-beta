@@ -26,7 +26,7 @@ const MyEvents = ({ events }) => (
 )
 
 MyEvents.propTypes = {
-  events: PropTypes.string,
+  events: PropTypes.arrayOf(PropTypes.string),
 }
 
 MyEvents.defaultProps = {
