@@ -3,7 +3,7 @@
   font-size: 1.2em;
   font-weight: 700;
   letter-spacing: 1px;
-  color: var(--secondary-color-dark);
+  color: var(--primary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;

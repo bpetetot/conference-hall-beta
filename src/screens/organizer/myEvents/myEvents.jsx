@@ -10,7 +10,10 @@ const MyEvents = ({ events }) => (
   <div className="organizer-events">
     <div className="events-table">
       <div className="events-header">
-        <Link href="/organizer/event/create" className="btn btn-link">
+        <h1>
+          <IconLabel icon="fa fa-calendar" label="My events" />
+        </h1>
+        <Link href="/organizer/event/create" className="btn btn-primary btn-create-event">
           <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
         </Link>
       </div>

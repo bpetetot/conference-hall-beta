@@ -1,8 +1,8 @@
 .brand > a.burger-link {
   display: inline-block;
-  color: var(--secondary-color-dark);
+  color: var(--primary-font-color);
 }
 
 .brand:hover {
-  color: var(--secondary-color-dark);
+  color: var(--primary-font-color);
 }

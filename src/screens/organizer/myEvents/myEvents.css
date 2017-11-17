@@ -4,12 +4,15 @@
 
 .events-header {
   background: rgba(0, 0, 0, 0.1);
-  padding: 15px;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .events-content > div {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 15px;
+  padding: 1em 2em;
 }
 
 .events-content > div:hover {
@@ -19,4 +22,16 @@
 
 .events-content > div:last-child {
   border-bottom: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .events-header {
+    font-size: 0.8em;
+  }
+  .events-header h1 {
+    margin: 0.6em 0;
+  }
+  .events-header .btn-create-event {
+    display: none;
+  }
 }
