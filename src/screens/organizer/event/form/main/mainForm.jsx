@@ -47,4 +47,4 @@ EventForm.defaultProps = {
   type: undefined,
 }
 
-export default reduxForm({ form: 'event' })(EventForm)
+export default reduxForm()(EventForm)

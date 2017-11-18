@@ -1,1 +1,1 @@
-export { default } from './cfp'
+export { default } from './cfp.container'

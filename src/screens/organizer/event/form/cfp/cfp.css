@@ -1,6 +1,13 @@
 .cfp-form {
   padding: 2em;
 }
+.cfp-form > * {
+  margin-bottom: 0.7em;
+}
+
+.cfp-form > button {
+  float: right;
+}
 
 @media only screen and (max-width: 480px) {
   .cfp-form {
