@@ -19,5 +19,5 @@ const mapDispatch = () => ({
 export default compose(
   forRoute('EDIT_EVENT_CFP', { absolute: true }),
   connect(mapState, mapDispatch),
-  reduxForm({ form: 'cfp-edit', enableReinitialize: true, keepDirtyOnReinitialize: true }),
+  reduxForm({ form: 'cfp-edit' }),
 )(CFPForm)

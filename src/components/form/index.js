@@ -7,5 +7,6 @@ export const dayPicker = renderField('dayPicker')
 export const dayRangePicker = renderField('dayRangePicker')
 
 export { default as radio } from './renderRadio'
+export { default as categories } from './renderCategories'
 export { default as SubmitButton } from './submitButton'
 export { default as RadioGroup } from './radioGroup'

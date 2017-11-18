@@ -1,7 +1,7 @@
 import React from 'react'
-import { Field, propTypes } from 'redux-form'
+import { Field, FieldArray, propTypes } from 'redux-form'
 
-import { dayPicker, dayRangePicker, SubmitButton } from 'components/form'
+import { categories, dayPicker, dayRangePicker, SubmitButton } from 'components/form'
 
 import './cfp.css'
 
@@ -9,8 +9,13 @@ const CFPForm = ({
   handleSubmit, pristine, submitting, invalid,
 }) => (
   <form onSubmit={handleSubmit} className="cfp-form">
+    <Field name="cfpDates" label="CFP opening dates" component={dayRangePicker} />
     <Field name="deliberationDate" label="Deliberation date" component={dayPicker} />
-    <Field name="cfpDates" label="CFP date" component={dayRangePicker} />
+    <FieldArray
+      name="categories"
+      label="Categories"
+      component={categories('categories', 'Categories')}
+    />
     <SubmitButton
       disabled={pristine || submitting || invalid}
       submitting={submitting}
