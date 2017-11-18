@@ -48,6 +48,11 @@ class DayPicker extends React.Component {
 DayPicker.propTypes = {
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+}
+
+DayPicker.defaultProps = {
+  value: undefined,
 }
 
 export default DayPicker

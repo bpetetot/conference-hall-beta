@@ -1,5 +1,5 @@
 .DateRangePicker {
-  width: 100%;
+  width: 400px;
 }
 
 .DateRangePickerInput {
@@ -43,7 +43,6 @@
   width: 100%;
   box-shadow: none;
   cursor: pointer;
-  text-align: center;
 }
 
 .DateRangePickerInput .DateInput .DateInput_input:focus {

@@ -1,19 +1,36 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
+import moment from 'moment'
 import { DateRangePicker } from 'react-dates'
 
 import './dayRangePicker.css'
 
-const START_DATE = 'START_DATE_ID'
-const END_DATE = 'END_DATE_ID'
+let START_DATE = 'START_DATE_ID'
+let END_DATE = 'END_DATE_ID'
 
 class DayRangePicker extends React.Component {
-  state = {
-    focusedInput: undefined,
+  constructor(props) {
+    super(props)
+    const { value } = props
+    this.state = {
+      focusedInput: undefined,
+      start: value && value.start ? moment(value.start) : undefined,
+      end: value && value.end ? moment(value.end) : undefined,
+    }
+  }
+
+  componentWillMount() {
+    const { id } = this.props
+    START_DATE += `${id}Start`
+    END_DATE += `${id}End`
   }
 
   onDatesChange = ({ startDate, endDate }) => {
-    this.setState({ startDate, endDate })
+    this.setState({ start: startDate, end: endDate })
+    this.props.onChange({
+      start: startDate ? startDate.toDate() : undefined,
+      end: endDate ? endDate.toDate() : undefined,
+    })
   }
 
   onFocusChange = (focusedInput) => {
@@ -21,7 +38,7 @@ class DayRangePicker extends React.Component {
   }
 
   render() {
-    const { focusedInput, startDate, endDate } = this.state
+    const { focusedInput, start, end } = this.state
     return (
       <div>
         <DateRangePicker
@@ -36,8 +53,8 @@ class DayRangePicker extends React.Component {
           onDatesChange={this.onDatesChange}
           onFocusChange={this.onFocusChange}
           focusedInput={focusedInput}
-          startDate={startDate}
-          endDate={endDate}
+          startDate={start}
+          endDate={end}
           minimumNights={0}
           customInputIcon={<i className="fa fa-calendar" />}
           customArrowIcon={<i className="fa fa-arrow-right" />}
@@ -47,6 +64,16 @@ class DayRangePicker extends React.Component {
       </div>
     )
   }
+}
+
+DayRangePicker.propTypes = {
+  id: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+}
+
+DayRangePicker.defaultProps = {
+  value: undefined,
 }
 
 export default DayRangePicker
