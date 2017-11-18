@@ -3,7 +3,7 @@ import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
 import event from 'redux/data/event'
-import EventEdit from './eventForm'
+import EventEdit from './mainForm'
 
 const FORM_NAME = 'event-edit'
 const select = formValueSelector(FORM_NAME)
