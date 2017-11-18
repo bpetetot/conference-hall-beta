@@ -10,12 +10,12 @@ const EventTabs = ({ id }) => (
     <ul className="tabs">
       <li>
         <Link href={`/organizer/event/${id}/edit`} activeProps={{ className: 'tab-active' }}>
-          <IconLabel icon="fa fa-calendar-check-o" label="Event information" />
+          <IconLabel icon="fa fa-calendar-check-o" label="Event" />
         </Link>
       </li>
       <li>
         <Link href={`/organizer/event/${id}/edit/cfp`} activeProps={{ className: 'tab-active' }}>
-          <IconLabel icon="fa fa-gear" label="CFP Settings" />
+          <IconLabel icon="fa fa-gear" label="CFP" />
         </Link>
       </li>
       <li>

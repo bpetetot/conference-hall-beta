@@ -6,3 +6,11 @@
 .event-tabs > ul {
   justify-content: flex-end;
 }
+
+@media only screen and (max-width: 480px) {
+  .event-tabs > ul {
+    font-size: 0.7em;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
