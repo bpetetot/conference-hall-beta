@@ -1,17 +1,22 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
 
 import './dayPicker.css'
 
 class DayPicker extends React.Component {
-  state = {
-    focused: false,
-    date: moment(),
+  constructor(props) {
+    super(props)
+    this.state = {
+      focused: false,
+      date: props.value ? moment(props.value) : undefined,
+    }
   }
 
   onDateChange = (date) => {
     this.setState({ date })
+    this.props.onChange(date ? date.toDate() : undefined)
   }
 
   onFocusChange = ({ focused }) => {
@@ -20,10 +25,10 @@ class DayPicker extends React.Component {
 
   render() {
     const { focused, date } = this.state
-
+    const { id } = this.props
     return (
       <SingleDatePicker
-        id="date_input"
+        id={id}
         date={date}
         focused={focused}
         onDateChange={this.onDateChange}
@@ -38,6 +43,11 @@ class DayPicker extends React.Component {
       />
     )
   }
+}
+
+DayPicker.propTypes = {
+  id: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default DayPicker
