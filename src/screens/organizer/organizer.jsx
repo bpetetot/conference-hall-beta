@@ -8,7 +8,7 @@ import Navbar from './navbar'
 import { Sidebar, SidebarMobile } from './sidebar'
 import MyEvents from './myEvents'
 import Event from './event'
-import { CreateEventForm } from './event/form'
+import { CreateEventForm } from './event/form/main'
 
 import './organizer.css'
 

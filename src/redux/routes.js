@@ -9,7 +9,11 @@ const routes = {
       title: 'HOME_EVENT',
       '/:id': {
         title: 'CONSULT_EVENT',
-        '/edit': { title: 'EDIT_EVENT' },
+        '/edit': {
+          title: 'EDIT_EVENT',
+          '/cfp': { title: 'EDIT_EVENT_CFP' },
+          '/members': { title: 'EDIT_EVENT_MEMBERS' },
+        },
       },
     },
   },

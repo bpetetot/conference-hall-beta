@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { EditEventForm } from './form'
+import EditEventForm from './form'
 import EventInfo from './info'
 import './event.css'
 

@@ -1,0 +1,9 @@
+.cfp-form {
+  padding: 2em;
+}
+
+@media only screen and (max-width: 480px) {
+  .cfp-form {
+    padding: 1em;
+  }
+}
