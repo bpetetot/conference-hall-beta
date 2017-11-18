@@ -1,0 +1,95 @@
+.DateRangePicker {
+  width: 400px;
+}
+
+.DateRangePickerInput {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 1px 0px, rgba(0, 0, 0, 0.1) -1px 1px 1px 0px inset;
+  border-radius: 3px;
+}
+
+.DateRangePickerInput .DateRangePickerInput_calendarIcon {
+  z-index: 1;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.DateRangePickerInput .DateInput {
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: initial;
+  color: var(--primary-color);
+}
+
+.DateRangePickerInput .DateInput .DateInput_input {
+  font-size: 1em;
+  background: #fff;
+  font-weight: inherit;
+  border: none;
+  color: #000;
+  font-family: inherit;
+  outline: none;
+  padding: 11px 0 9px 0;
+  transition: all 0.5s;
+  width: 100%;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.DateRangePickerInput .DateInput .DateInput_input:focus {
+  background: #fff;
+}
+
+.DateRangePickerInput .DateRangePickerInput_arrow {
+  color: #000;
+  margin: 0 1em;
+}
+
+.DateRangePicker .DateInput__openDown:after {
+  top: 40px;
+  z-index: 3;
+}
+.DateRangePicker .DateInput__openDown:before {
+  top: 40px;
+  z-index: 3;
+}
+
+.DateRangePicker_picker {
+  z-index: 2;
+}
+
+.DateRangePicker_picker__openDown {
+  top: 50px;
+}
+
+.DateRangePicker_picker .CalendarDay__selected {
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color-font);
+}
+
+.DateRangePicker_picker .CalendarDay__selected_span {
+  background: var(--secondary-color-light);
+  border: 1px solid var(--secondary-color-light);
+  color: var(--secondary-color-font);
+}
+
+.DateRangePicker_picker .CalendarDay__hovered_span {
+  background: var(--secondary-color-light);
+  border: 1px solid var(--secondary-color-light);
+  color: var(--secondary-color-font);
+}
+
+.DateRangePicker_picker .DayPickerNavigation_button {
+  border: none;
+  background: none;
+}

@@ -2,6 +2,8 @@
 import React from 'react'
 import PlacesAutocomplete from 'react-places-autocomplete'
 
+import { DayPicker, DayRangePicker } from './dayPicker'
+
 import Label from './label'
 
 const renderField = component => ({
@@ -18,6 +20,10 @@ const renderField = component => ({
       <textarea id={input.name} {...input} autoFocus={autoFocus}>
         {input.value}
       </textarea>
+    )}
+    {component === 'dayPicker' && <DayPicker id={input.name} {...input} autoFocus={autoFocus} />}
+    {component === 'dayRangePicker' && (
+      <DayRangePicker id={input.name} {...input} autoFocus={autoFocus} />
     )}
   </Label>
 )

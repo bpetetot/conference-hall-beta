@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, propTypes } from 'redux-form'
 
 import { input, address, textarea, radio, SubmitButton, RadioGroup } from 'components/form'
 import { required } from 'components/form/validators'
@@ -35,11 +35,7 @@ const EventForm = ({
 )
 
 EventForm.propTypes = {
-  form: PropTypes.oneOf(['event-create', 'event-edit']).isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  pristine: PropTypes.bool.isRequired,
-  submitting: PropTypes.bool.isRequired,
-  invalid: PropTypes.bool.isRequired,
+  ...propTypes,
   type: PropTypes.string,
 }
 
@@ -47,4 +43,4 @@ EventForm.defaultProps = {
   type: undefined,
 }
 
-export default reduxForm({ form: 'event' })(EventForm)
+export default reduxForm()(EventForm)
