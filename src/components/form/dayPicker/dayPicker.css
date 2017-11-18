@@ -1,0 +1,62 @@
+.SingleDatePicker {
+  width: 300px;
+}
+
+.SingleDatePickerInput {
+  background: none;
+  border: none;
+}
+
+.SingleDatePickerInput .SingleDatePickerInput_calendarIcon {
+  position: absolute;
+  z-index: 1;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.SingleDatePickerInput .DateInput {
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: initial;
+  color: var(--primary-color);
+}
+
+.SingleDatePickerInput .DateInput .DateInput_input {
+  font-size: 1em;
+  background: #fff;
+  font-weight: inherit;
+  border-radius: 3px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 1px 0px, rgba(0, 0, 0, 0.1) -1px 1px 1px 0px inset;
+  color: #000;
+  font-family: inherit;
+  outline: none;
+  padding: 11px 10px 9px 32px;
+  transition: all 0.5s;
+  width: 100%;
+}
+
+.SingleDatePickerInput .DateInput .DateInput_input:focus {
+  background: #fff;
+}
+
+.SingleDatePicker .DateInput__openDown:after {
+  top: 40px;
+}
+.SingleDatePicker .DateInput__openDown:before {
+  top: 40px;
+}
+
+.SingleDatePicker_picker__openDown {
+  top: 50px;
+}
+.SingleDatePicker_picker .CalendarDay__selected {
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: #fff;
+}

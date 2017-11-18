@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 
 import 'normalize.css'
 import 'font-awesome/css/font-awesome.min.css'
+import 'react-dates/initialize'
+import 'react-dates/lib/css/_datepicker.css'
 
 import store from './redux'
 import App from './app.container'

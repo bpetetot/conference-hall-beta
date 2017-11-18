@@ -16,8 +16,11 @@
     "hoc-little-router": "^1.0.1",
     "hoc-react-loader": "^6.1.1",
     "k-redux-factory": "^3.7.0",
+    "moment": "^2.18.1",
     "normalize.css": "^7.0.0",
     "react": "^16.0.0",
+    "react-addons-shallow-compare": "^15.6.2",
+    "react-dates": "^15.1.0",
     "react-dom": "^16.0.0",
     "react-markdown": "^2.5.1",
     "react-places-autocomplete": "^5.4.3",
@@ -40,12 +43,17 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["airbnb"],
+    "extends": [
+      "airbnb"
+    ],
     "env": {
       "browser": true
     },
     "rules": {
-      "semi": [2, "never"],
+      "semi": [
+        2,
+        "never"
+      ],
       "import/no-extraneous-dependencies": 0,
       "import/no-unresolved": 0,
       "import/extensions": 0,
