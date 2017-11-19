@@ -1,0 +1,14 @@
+.formats-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formats-form > button {
+  min-width: initial;
+  margin: 0 0.5em 0.5em 0;
+}
+
+.formats-form > div {
+  height: 100%;
+  margin: 0 0.5em 0.5em 0;
+}
