@@ -1,0 +1,14 @@
+.categories-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.categories-form > button {
+  min-width: initial;
+  margin: 0 0.5em 0.5em 0;
+}
+
+.categories-form > div {
+  height: 100%;
+  margin: 0 0.5em 0.5em 0;
+}

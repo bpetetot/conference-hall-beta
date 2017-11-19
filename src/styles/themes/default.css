@@ -20,11 +20,4 @@
 
   --menu-color-header: #666;
   --menu-color-link: #aaa;
-
-  background: var(--primary-color-light);
-  color: var(--primary-color-font);
-  font-size: var(--font-size);
-
-  height: 100%;
-  overflow: scroll;
 }

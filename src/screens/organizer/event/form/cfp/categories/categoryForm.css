@@ -1,0 +1,29 @@
+.category-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.category-form > h2 {
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 1em;
+}
+
+.category-form .category-form-content {
+  padding: 2em;
+}
+
+.category-form .category-form-content > div {
+  margin-bottom: 0.7em;
+}
+
+.category-form .category-form-content > button {
+  float: right;
+}
+
+@media only screen and (max-width: 480px) {
+  .category-form .category-form-content {
+    padding: 1em;
+  }
+}

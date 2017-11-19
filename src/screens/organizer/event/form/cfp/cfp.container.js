@@ -9,6 +9,7 @@ const mapState = () => ({
   initialValues: {
     deliberationDate: new Date(),
     cfpDates: { start: new Date(), end: new Date() },
+    categories: [{ id: 'kddfjks', name: 'Benjamin', description: 'desc' }],
   },
 })
 

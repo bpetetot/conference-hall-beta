@@ -1,29 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import { propTypes } from 'redux-form'
 
 import IconLabel from 'components/iconLabel'
 
 const SubmitButton = ({
-  disabled, submitting, loadingMessage, className, children,
+  handleSubmit,
+  pristine,
+  submitting,
+  invalid,
+  loadingMessage,
+  className,
+  children,
 }) => (
-  <button type="submit" className={cn('btn btn-primary', className)} disabled={disabled}>
+  <button
+    type="submit"
+    className={cn('btn btn-primary', className)}
+    onClick={handleSubmit}
+    disabled={pristine || submitting || invalid}
+  >
     {submitting && <IconLabel icon="fa fa-cog fa-spin fa-fw" label={loadingMessage} />}
     {!submitting && children}
   </button>
 )
 
 SubmitButton.propTypes = {
-  disabled: PropTypes.bool,
-  submitting: PropTypes.bool,
+  ...propTypes,
   loadingMessage: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 }
 
 SubmitButton.defaultProps = {
-  disabled: false,
-  submitting: false,
   className: undefined,
   loadingMessage: 'Loading...',
 }

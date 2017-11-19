@@ -8,10 +8,18 @@ body {
   height: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #root {
   height: 100%;
 }
 
-* {
-  box-sizing: border-box;
+.app {
+  background: var(--primary-color-light);
+  color: var(--primary-color-font);
+  font-size: var(--font-size);
+  height: 100%;
+  overflow: scroll;
 }

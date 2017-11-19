@@ -9,7 +9,7 @@ import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 
 import store from './redux'
-import App from './app.container'
+import App from './app'
 
 ReactDOM.render(
   <Provider store={store}>

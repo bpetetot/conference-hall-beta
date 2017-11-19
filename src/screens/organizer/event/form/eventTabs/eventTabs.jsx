@@ -15,15 +15,7 @@ const EventTabs = ({ id }) => (
       </li>
       <li>
         <Link href={`/organizer/event/${id}/edit/cfp`} activeProps={{ className: 'tab-active' }}>
-          <IconLabel icon="fa fa-gear" label="CFP" />
-        </Link>
-      </li>
-      <li>
-        <Link
-          href={`/organizer/event/${id}/edit/members`}
-          activeProps={{ className: 'tab-active' }}
-        >
-          <IconLabel icon="fa fa-users" label="Members" />
+          <IconLabel icon="fa fa-gear" label="CFP Settings" />
         </Link>
       </li>
     </ul>
