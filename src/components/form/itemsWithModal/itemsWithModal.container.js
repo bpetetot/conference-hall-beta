@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 
 import { openModal, closeModal } from 'redux/ui/modal'
-import FormatsForm from './formatsForm'
+import ItemsWithModal from './itemsWithModal'
 
 const mapDispatch = dispatch => ({
   openModal: id => () => dispatch(openModal(id)),
   closeModal: () => dispatch(closeModal()),
 })
 
-export default connect(undefined, mapDispatch)(FormatsForm)
+export default (name, Form) => connect(undefined, mapDispatch)(ItemsWithModal(name, Form))

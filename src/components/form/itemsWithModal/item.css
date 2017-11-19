@@ -1,10 +1,10 @@
-.category-box.btn {
+.item-box.btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-width: initial;
 }
 
-.category-box > a {
+.item-box > a {
   margin-left: 1em;
 }

@@ -1,1 +1,4 @@
-export { default } from './formatsForm.container'
+import { itemsWithModal } from 'components/form'
+import FormatForm from './formatForm'
+
+export default itemsWithModal('format', FormatForm)

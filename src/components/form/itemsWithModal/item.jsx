@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import './category.css'
+import './item.css'
 
-const Category = ({ name, onEdit, onDelete }) => (
-  <div role="button" onClick={onEdit} className="category-box btn btn-link">
+const Item = ({ name, onEdit, onDelete }) => (
+  <div role="button" onClick={onEdit} className="item-box btn btn-link">
     <div>{name}</div>
     <a
       role="button"
@@ -18,10 +18,10 @@ const Category = ({ name, onEdit, onDelete }) => (
   </div>
 )
 
-Category.propTypes = {
+Item.propTypes = {
   name: PropTypes.string.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 }
 
-export default Category
+export default Item
