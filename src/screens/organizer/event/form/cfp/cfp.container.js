@@ -10,7 +10,7 @@ const FORM_NAME = 'cfp-edit'
 
 const mapState = (state) => {
   const {
-    id, type, deliberationDate, cfpDates, categories,
+    id, type, deliberationDate, cfpDates = {}, categories = [],
   } = event.get()(state)
   return {
     type,
@@ -24,11 +24,13 @@ const mapState = (state) => {
 }
 
 const mapDispatch = dispatch => ({
-  onSubmit: data =>
+  onSubmit: (data) => {
+    console.log(data)
     dispatch({
       type: 'SUBMIT_EVENT_FORM',
       payload: { event: data, form: FORM_NAME },
-    }),
+    })
+  },
 })
 
 export default compose(

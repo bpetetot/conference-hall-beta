@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
+import uuid from 'uuid/v5'
 
 import Category from './category'
 import CategoryFormModal from './categoryForm'
@@ -11,7 +12,8 @@ import './categoriesForm.css'
 class CategoriesForm extends React.Component {
   onAddCategory = (data) => {
     const { fields, closeModal } = this.props
-    fields.push(data)
+    const id = uuid(data.name + Math.random(), uuid.URL)
+    fields.push({ id, ...data })
     closeModal()
   }
 
