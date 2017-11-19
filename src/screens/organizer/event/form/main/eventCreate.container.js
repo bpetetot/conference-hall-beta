@@ -10,7 +10,7 @@ const select = formValueSelector(FORM_NAME)
 const mapState = state => ({
   form: FORM_NAME,
   type: select(state, 'type'),
-  initialValues: { type: 'conference' },
+  initialValues: { type: 'conference', conferenceDates: {} },
 })
 
 const mapDispatch = dispatch => ({
