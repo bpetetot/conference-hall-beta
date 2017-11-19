@@ -12,7 +12,7 @@ import './categoriesForm.css'
 class CategoriesForm extends React.Component {
   onAddCategory = (data) => {
     const { fields, closeModal } = this.props
-    const id = uuid(data.name + Math.random(), uuid.URL)
+    const id = uuid(data.name, uuid.URL)
     fields.push({ id, ...data })
     closeModal()
   }
