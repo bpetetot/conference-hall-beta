@@ -1,0 +1,25 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: var(--primary-color-light);
+  color: var(--primary-color-font);
+  margin: 10% auto;
+  width: 70%;
+}
+
+@media only screen and (max-width: 480px) {
+  .modal-content {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

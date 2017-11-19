@@ -3,21 +3,36 @@ import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
+import event from 'redux/data/event'
 import CFPForm from './cfp'
 
-const mapState = () => ({
-  initialValues: {
-    deliberationDate: new Date(),
-    cfpDates: { start: new Date(), end: new Date() },
-  },
-})
+const FORM_NAME = 'cfp-edit'
 
-const mapDispatch = () => ({
-  onSubmit: data => console.log(data),
+const mapState = (state) => {
+  const {
+    id, type, deliberationDate, cfpDates = {}, categories = [],
+  } = event.get()(state)
+  return {
+    type,
+    initialValues: {
+      id,
+      deliberationDate,
+      cfpDates,
+      categories,
+    },
+  }
+}
+
+const mapDispatch = dispatch => ({
+  onSubmit: data =>
+    dispatch({
+      type: 'SUBMIT_EVENT_FORM',
+      payload: { event: data, form: FORM_NAME },
+    }),
 })
 
 export default compose(
   forRoute('EDIT_EVENT_CFP', { absolute: true }),
   connect(mapState, mapDispatch),
-  reduxForm({ form: 'cfp-edit', enableReinitialize: true, keepDirtyOnReinitialize: true }),
+  reduxForm({ form: 'cfp-edit' }),
 )(CFPForm)

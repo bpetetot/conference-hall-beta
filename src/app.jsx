@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
 
+import withTheme from 'styles/withTheme'
 import Toaster from 'components/toaster'
 import Home from './screens/home'
 import Login from './screens/login'
@@ -8,8 +10,8 @@ import Organizer from './screens/organizer'
 
 import './styles'
 
-const App = ({ theme }) => (
-  <div className={theme}>
+const App = ({ className }) => (
+  <div className={cn('app', className)}>
     <Home />
     <Login />
     <Organizer />
@@ -18,11 +20,11 @@ const App = ({ theme }) => (
 )
 
 App.propTypes = {
-  theme: PropTypes.string,
+  className: PropTypes.string,
 }
 
 App.defaultProps = {
-  theme: 'default-theme',
+  className: 'default-theme',
 }
 
-export default App
+export default withTheme(App)

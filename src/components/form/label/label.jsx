@@ -17,13 +17,14 @@ const Label = ({
 )
 
 Label.propTypes = {
-  name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  name: PropTypes.string,
   error: PropTypes.string,
 }
 
 Label.defaultProps = {
+  name: undefined,
   error: undefined,
 }
 

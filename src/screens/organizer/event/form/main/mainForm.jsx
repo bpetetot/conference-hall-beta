@@ -6,10 +6,8 @@ import { input, address, textarea, radio, SubmitButton, RadioGroup } from 'compo
 import { required } from 'components/form/validators'
 import './mainForm.css'
 
-const EventForm = ({
-  form, handleSubmit, pristine, submitting, invalid, type,
-}) => (
-  <form onSubmit={handleSubmit} className="event-form">
+const EventForm = ({ type, ...formProps }) => (
+  <form className="event-form">
     <RadioGroup name="type" inline>
       <Field name="type" value="conference" label="Conference" type="radio" component={radio} />
       <Field name="type" value="meetup" label="Meetup" type="radio" component={radio} />
@@ -24,12 +22,8 @@ const EventForm = ({
     />
     <Field name="website" label="Website" type="text" component={input} />
     <Field name="tags" label="Tags" type="text" component={input} />
-    <SubmitButton
-      disabled={pristine || submitting || invalid}
-      submitting={submitting}
-      loadingMessage="Saving..."
-    >
-      {form === 'event-create' ? 'Create event' : 'Update event'}
+    <SubmitButton {...formProps} loadingMessage="Saving...">
+      {formProps.form === 'event-create' ? 'Create event' : 'Update event'}
     </SubmitButton>
   </form>
 )

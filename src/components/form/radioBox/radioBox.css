@@ -4,7 +4,7 @@
 
 .form-radio input[type='radio'] ~ label {
   border-radius: 3px;
-  border: 1px solid #fff;
+  border: 1px solid var(--primary-color);
   cursor: pointer;
   display: block;
   padding: 10px;
@@ -13,7 +13,7 @@
 }
 
 .form-radio input[type='radio']:checked ~ label {
-  background: #666666;
+  background: var(--primary-color);
   color: #ffffff;
-  border: 1px solid #666666;
+  border: 1px solid var(--primary-color);
 }
