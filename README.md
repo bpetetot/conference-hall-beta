@@ -25,7 +25,7 @@ yarn start
    - activate "Cloud Firestore" for Database
    - activate "Google Provider" for Authentication
 
-2. Create a `.env.local` file by copying `.env` file at root folderand set firebase environment variables.
+2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables.
 
 3. Install [firebase-cli](https://firebase.google.com/docs/cli/) :
 ```
