@@ -1,0 +1,29 @@
+.format-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.format-form > h2 {
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 1em;
+}
+
+.format-form .format-form-content {
+  padding: 2em;
+}
+
+.format-form .format-form-content > div {
+  margin-bottom: 0.7em;
+}
+
+.format-form .format-form-content > button {
+  float: right;
+}
+
+@media only screen and (max-width: 480px) {
+  .format-form .format-form-content {
+    padding: 1em;
+  }
+}

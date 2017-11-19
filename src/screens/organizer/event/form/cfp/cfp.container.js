@@ -12,10 +12,11 @@ const mapState = (state) => {
   const {
     id,
     type,
-    deliberationDate,
+    meetupOpened = false,
+    deliberationDate = null,
     cfpDates = {},
     categories = [],
-    meetupOpened = false,
+    formats = [],
   } = event.get()(state)
   return {
     type,
@@ -25,6 +26,7 @@ const mapState = (state) => {
       deliberationDate,
       cfpDates,
       categories,
+      formats,
     },
   }
 }

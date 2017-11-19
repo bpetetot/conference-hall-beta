@@ -4,6 +4,7 @@ import { Field, FieldArray, propTypes } from 'redux-form'
 
 import { dayPicker, dayRangePicker, Label, SubmitButton, RadioGroup, radio } from 'components/form'
 import CategoriesForm from './categories'
+import FormatsForm from './formats'
 
 import './cfp.css'
 
@@ -23,6 +24,9 @@ const CFPForm = ({ type, ...formProps }) => (
     )}
     <Label label="Talk Categories">
       <FieldArray name="categories" component={CategoriesForm} />
+    </Label>
+    <Label label="Talk Formats">
+      <FieldArray name="formats" component={FormatsForm} />
     </Label>
     <SubmitButton {...formProps}>Save CFP settings</SubmitButton>
   </form>
