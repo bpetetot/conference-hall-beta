@@ -10,11 +10,12 @@ export const createEvent = (event, userId) =>
       owner: userId,
     })
 
-export const updateEvent = ({ id, ...event }) => firebase
-  .firestore()
-  .collection('events')
-  .doc(id)
-  .set(event)
+export const updateEvent = ({ id, ...event }) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(id)
+    .update(event)
 
 export const fetchEvent = id =>
   firebase
