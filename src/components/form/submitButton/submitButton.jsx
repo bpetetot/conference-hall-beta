@@ -34,7 +34,7 @@ SubmitButton.propTypes = {
 
 SubmitButton.defaultProps = {
   className: undefined,
-  loadingMessage: 'Loading...',
+  loadingMessage: 'Saving...',
 }
 
 export default SubmitButton

@@ -13,7 +13,6 @@
 }
 
 .SingleDatePickerInput .SingleDatePickerInput_calendarIcon {
-  z-index: 1;
   color: var(--primary-color);
   margin: 0;
 }

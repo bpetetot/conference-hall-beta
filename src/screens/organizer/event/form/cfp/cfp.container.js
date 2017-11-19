@@ -10,12 +10,18 @@ const FORM_NAME = 'cfp-edit'
 
 const mapState = (state) => {
   const {
-    id, type, deliberationDate, cfpDates = {}, categories = [],
+    id,
+    type,
+    deliberationDate,
+    cfpDates = {},
+    categories = [],
+    meetupOpened = false,
   } = event.get()(state)
   return {
     type,
     initialValues: {
       id,
+      meetupOpened,
       deliberationDate,
       cfpDates,
       categories,
