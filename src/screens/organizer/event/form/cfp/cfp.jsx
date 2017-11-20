@@ -16,7 +16,7 @@ const CFPForm = ({ type, ...formProps }) => (
     {type === 'conference' && (
       <Field name="deliberationDate" label="Deliberation date" component={dayPicker} />
     )}
-    {type === 'meetup' && <Field name="openCFP" label="Open CFP" component={toggle} />}
+    {type === 'meetup' && <Field name="cfpOpened" label="Open CFP" component={toggle} />}
     <Label label="Talk Categories">
       <FieldArray name="categories" component={CategoriesForm} />
     </Label>
