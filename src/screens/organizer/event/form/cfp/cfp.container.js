@@ -12,7 +12,7 @@ const mapState = (state) => {
   const {
     id,
     type,
-    meetupOpened = false,
+    cfpOpened = false,
     deliberationDate = null,
     cfpDates = {},
     categories = [],
@@ -22,7 +22,7 @@ const mapState = (state) => {
     type,
     initialValues: {
       id,
-      meetupOpened,
+      cfpOpened,
       deliberationDate,
       cfpDates,
       categories,
