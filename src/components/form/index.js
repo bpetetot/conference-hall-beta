@@ -5,6 +5,7 @@ export const textarea = renderField('textarea')
 export const address = renderField('address')
 export const dayPicker = renderField('dayPicker')
 export const dayRangePicker = renderField('dayRangePicker')
+export const toggle = renderField('toggle')
 
 export { default as radio } from './renderRadio'
 export { default as SubmitButton } from './submitButton'

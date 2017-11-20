@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, FieldArray, propTypes } from 'redux-form'
 
-import { dayPicker, dayRangePicker, Label, SubmitButton, RadioGroup, radio } from 'components/form'
+import { dayPicker, dayRangePicker, Label, SubmitButton, toggle } from 'components/form'
 import CategoriesForm from './categories'
 import FormatsForm from './formats'
 
@@ -16,12 +16,7 @@ const CFPForm = ({ type, ...formProps }) => (
     {type === 'conference' && (
       <Field name="deliberationDate" label="Deliberation date" component={dayPicker} />
     )}
-    {type === 'meetup' && (
-      <RadioGroup name="meetupOpened" label="CFP Opening" inline>
-        <Field name="meetupOpened" value="opened" label="Opened" type="radio" component={radio} />
-        <Field name="meetupOpened" value="closed" label="Closed" type="radio" component={radio} />
-      </RadioGroup>
-    )}
+    {type === 'meetup' && <Field name="openCFP" label="Open CFP" component={toggle} />}
     <Label label="Talk Categories">
       <FieldArray name="categories" component={CategoriesForm} />
     </Label>

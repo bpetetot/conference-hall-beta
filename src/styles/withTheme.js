@@ -6,7 +6,7 @@ const mapState = (state, { className }) => {
   const { pathname } = state.router
   return {
     className: classnames('default-theme', className, {
-      'red-theme': startsWith(pathname, '/organizer'),
+      'light-theme': startsWith(pathname, '/organizer'),
     }),
   }
 }

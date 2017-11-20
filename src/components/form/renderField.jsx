@@ -2,6 +2,7 @@
 import React from 'react'
 import PlacesAutocomplete from 'react-places-autocomplete'
 
+import Toggle from './toggle'
 import { DayPicker, DayRangePicker } from './dayPicker'
 
 import Label from './label'
@@ -25,6 +26,7 @@ const renderField = component => ({
     {component === 'dayRangePicker' && (
       <DayRangePicker id={input.name} {...input} autoFocus={autoFocus} />
     )}
+    {component === 'toggle' && <Toggle {...input} name={input.name} />}
   </Label>
 )
 
