@@ -32,8 +32,8 @@
 }
 
 .sidebar a.sidebar-link:hover {
-  background: var(--primary-color-light);
   color: var(--primary-color-font);
+  text-decoration: none;
 }
 
 .sidebar a.sidebar-link-active:hover {

@@ -22,12 +22,15 @@
 /** Button primary */
 .btn.btn-primary {
   background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
   color: var(--secondary-color-font);
 }
 
 .btn.btn-primary:hover {
   background: var(--secondary-color-font);
   color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  text-decoration: none;
 }
 
 .btn.btn-primary:disabled {
@@ -48,4 +51,5 @@
 
 .btn.btn-link:hover {
   border: 1px solid var(--secondary-color-font);
+  text-decoration: none;
 }

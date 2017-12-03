@@ -7,7 +7,7 @@
 .dropdown .dropdown-menu {
   position: absolute;
   right: 0;
-  background: var(--primary-color-light);
+  background: var(--primary-color);
   border-radius: 3px;
   box-shadow: 0px 1px 5px 0px #111;
   min-width: 200px;
@@ -42,7 +42,7 @@
 .dropdown .dropdown-menu > button {
   color: var(--menu-color-link);
   border: none;
-  background: var(--primary-color-light);
+  background: var(--primary-color);
 }
 
 .dropdown .dropdown-menu > button .icon-label {

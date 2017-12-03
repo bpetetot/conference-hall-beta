@@ -5,5 +5,5 @@ a {
 }
 
 a:hover {
-  color: var(--secondary-color-font);
+  text-decoration: underline;
 }

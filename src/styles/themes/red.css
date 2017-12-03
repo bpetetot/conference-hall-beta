@@ -1,10 +1,10 @@
 .red-theme {
-  --primary-color: #222222;
-  --primary-color-light: #383838;
+  --primary-color: rgb(22, 24, 30);
+  --primary-color-light: #eee;
   --primary-color-dark: #000;
   --primary-color-font: #fff;
 
-  --secondary-color: #d9372c;
+  --secondary-color: rgba(217, 15, 48, 1);
   --secondary-color-light: #ff6659;
   --secondary-color-dark: #6c1b16;
   --secondary-color-font: #fff;
