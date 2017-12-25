@@ -1,17 +1,13 @@
-.category-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .category-form > h2 {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--background-color);
   margin: 0;
-  padding: 1em;
+  padding: 2em;
 }
 
 .category-form .category-form-content {
-  padding: 2em;
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
 }
 
 .category-form .category-form-content > div {
@@ -19,7 +15,7 @@
 }
 
 .category-form .category-form-content > button {
-  float: right;
+  align-self: flex-end;
 }
 
 @media only screen and (max-width: 480px) {

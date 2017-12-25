@@ -12,6 +12,10 @@
   overflow: scroll;
 }
 
+.layout-main > div {
+  padding: 3em;
+}
+
 .layout-brand {
   grid-area: brand;
 }
@@ -32,8 +36,10 @@
   .layout-navbar {
     display: none;
   }
-
   .layout-sidebar {
     display: none;
+  }
+  .layout-main > div {
+    padding: 1em;
   }
 }

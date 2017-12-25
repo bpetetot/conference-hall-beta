@@ -1,14 +1,9 @@
-.DateRangePicker {
-  width: 400px;
-}
-
 .DateRangePickerInput {
   background: none;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   background: #fff;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 1px 0px, rgba(0, 0, 0, 0.1) -1px 1px 1px 0px inset;
   border-radius: 3px;
 }
 
@@ -51,15 +46,6 @@
 .DateRangePickerInput .DateRangePickerInput_arrow {
   color: #000;
   margin: 0 1em;
-}
-
-.DateRangePicker .DateInput__openDown:after {
-  top: 40px;
-  z-index: 3;
-}
-.DateRangePicker .DateInput__openDown:before {
-  top: 40px;
-  z-index: 3;
 }
 
 .DateRangePicker_picker {

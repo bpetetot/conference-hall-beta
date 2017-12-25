@@ -1,26 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
-import { Link } from 'redux-little-router'
+
+import IconLabel from 'components/iconLabel'
 
 import './eventCard.css'
 
-const EventCard = ({
-  id, name, timestamp, goToEvent,
-}) => {
+const EventCard = ({ name, timestamp, goToEvent }) => {
   const relativeDate = distanceInWordsToNow(timestamp, { addSuffix: true })
   return (
     <div className="event-card" onClick={goToEvent} role="button">
-      <div className="event-header">
-        <Link href={`/organizer/event/${id}`}>{name}</Link>
-      </div>
-      <small>created {relativeDate}</small>
+      <span className="event-card-title">{name}</span>
+      <small>
+        <IconLabel icon="fa fa-clock-o" label={relativeDate} />
+      </small>
     </div>
   )
 }
 
 EventCard.propTypes = {
-  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   timestamp: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   goToEvent: PropTypes.func.isRequired,

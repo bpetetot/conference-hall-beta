@@ -1,6 +1,9 @@
 .default-theme {
-  --primary-color: #212121;
-  --primary-color-light: #484848;
+  --font-size: 14px;
+  --background-color: #2a3244;
+
+  --primary-color: rgb(22, 24, 30);
+  --primary-color-light: rgb(22, 24, 30);
   --primary-color-dark: #000;
   --primary-color-font: #fff;
 
@@ -9,7 +12,10 @@
   --secondary-color-dark: #c67c00;
   --secondary-color-font: #fff;
 
-  --font-size: 14px;
+  --grey-color: #c4c9d6;
+  --grey-color-dark: #95949b;
+  --grey-color-light: #c4c9d6;
+
   --layout-navbar-height: 60px;
   --layout-sidebar-width: 240px;
 
@@ -17,7 +23,4 @@
   --question-color: #2170bf;
   --error-color: #c73228;
   --warning-color: #ff9900;
-
-  --menu-color-header: #666;
-  --menu-color-link: #aaa;
 }

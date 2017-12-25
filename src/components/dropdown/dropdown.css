@@ -7,7 +7,7 @@
 .dropdown .dropdown-menu {
   position: absolute;
   right: 0;
-  background: var(--primary-color-light);
+  background: var(--primary-color);
   border-radius: 3px;
   box-shadow: 0px 1px 5px 0px #111;
   min-width: 200px;
@@ -26,23 +26,26 @@
 
 .dropdown .dropdown-menu > div {
   font-size: 0.9em;
-  color: var(--menu-color-header);
+  font-weight: bold;
+  color: var(--grey-color-dark);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .dropdown .dropdown-menu > a {
-  color: var(--menu-color-link);
+  color: var(--grey-color-light);
 }
 
 .dropdown .dropdown-menu > a:hover {
   color: var(--primary-color-font);
+  background: var(--primary-color-light);
+  text-decoration: none;
 }
 
 .dropdown .dropdown-menu > button {
-  color: var(--menu-color-link);
+  color: var(--grey-color-light);
   border: none;
-  background: var(--primary-color-light);
+  background: var(--primary-color);
 }
 
 .dropdown .dropdown-menu > button .icon-label {
@@ -52,4 +55,5 @@
 .dropdown .dropdown-menu > button:hover {
   cursor: pointer;
   color: var(--primary-color-font);
+  background: var(--primary-color-light);
 }

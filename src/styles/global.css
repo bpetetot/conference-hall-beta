@@ -17,8 +17,8 @@ body {
 }
 
 .app {
-  background: var(--primary-color-light);
-  color: var(--primary-color-font);
+  background: var(--background-color);
+  color: var(--primary-color);
   font-size: var(--font-size);
   height: 100%;
   overflow: scroll;

@@ -1,15 +1,23 @@
 .event-tabs {
-  background: rgba(0, 0, 0, 0.1);
   padding: 1em 2em;
+  background: #fff;
+  border: 1px solid var(--grey-color);
+  border-radius: 3px;
+  margin-bottom: 2em;
 }
 
 .event-tabs > ul {
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 @media only screen and (max-width: 480px) {
+  .event-tabs {
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+
   .event-tabs > ul {
-    font-size: 0.7em;
+    font-size: 0.9em;
     align-items: center;
     justify-content: space-around;
   }

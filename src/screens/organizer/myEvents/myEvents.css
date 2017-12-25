@@ -1,23 +1,23 @@
-.organizer-events {
-  height: 100%;
-}
-
 .events-header {
-  background: rgba(0, 0, 0, 0.1);
-  padding: 1em 2em;
+  margin-bottom: 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.events-content > div {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border: 1px solid var(--grey-color);
+  border-radius: 3px;
+  margin-bottom: 2em;
   padding: 1em 2em;
 }
 
-.events-content > div:hover {
-  background: rgba(255, 255, 255, 0.05);
-  cursor: pointer;
+.events-content {
+  border: 1px solid var(--grey-color);
+  border-radius: 3px;
+  background: #fff;
+}
+
+.events-content > div {
+  border-bottom: 1px solid var(--grey-color);
 }
 
 .events-content > div:last-child {
@@ -25,6 +25,14 @@
 }
 
 @media only screen and (max-width: 480px) {
+  .organizer-events {
+    padding: 0;
+  }
+
+  .events-content {
+    border-radius: 0;
+    margin: 0;
+  }
   .events-header {
     font-size: 0.8em;
   }

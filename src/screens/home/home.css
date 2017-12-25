@@ -37,6 +37,7 @@
 .home .home-link:hover {
   background: var(--secondary-color-font);
   color: var(--secondary-color);
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 640px) {

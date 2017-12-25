@@ -10,8 +10,7 @@
 }
 
 .modal-content {
-  background-color: var(--primary-color-light);
-  color: var(--primary-color-font);
+  background-color: #fff;
   margin: 10% auto;
   width: 70%;
 }
