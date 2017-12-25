@@ -7,7 +7,7 @@ import EventCard from './eventCard'
 import './myEvents.css'
 
 const MyEvents = ({ events }) => (
-  <div className="events-table">
+  <div>
     <div className="events-header">
       <h2>
         <IconLabel icon="fa fa-calendar-o" label="My events" />
