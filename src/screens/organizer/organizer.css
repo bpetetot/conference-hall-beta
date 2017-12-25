@@ -12,8 +12,8 @@
   overflow: scroll;
 }
 
-.layout-main > div {
-  padding: 3em;
+.layout-main > * {
+  margin: 3em;
 }
 
 .layout-brand {
@@ -39,7 +39,7 @@
   .layout-sidebar {
     display: none;
   }
-  .layout-main > div {
-    padding: 1em;
+  .layout-main > * {
+    margin: 1em;
   }
 }
