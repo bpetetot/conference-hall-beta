@@ -1,17 +1,17 @@
 .red-theme {
-  --primary-color: rgb(22, 24, 30);
-  --primary-color-light: #eee;
-  --primary-color-dark: #000;
+  --background-color: #edf2f5;
+
+  --primary-color: #2a3244;
+  --primary-color-light: #373f51;
+  --primary-color-dark: #1f2022;
   --primary-color-font: #fff;
 
-  --secondary-color: rgba(217, 15, 48, 1);
-  --secondary-color-light: #ff6659;
-  --secondary-color-dark: #6c1b16;
+  --secondary-color: #fc1047;
+  --secondary-color-light: #fd7fa0;
+  --secondary-color-dark: #db0c3e;
   --secondary-color-font: #fff;
 
-  --menu-color-header: #666;
-  --menu-color-link: #aaa;
-
-  --font-size: 14px;
-  --error-color: rgb(220, 53, 34);
+  --grey-color: #c4c9d6;
+  --grey-color-dark: #95949b;
+  --grey-color-light: #c4c9d6;
 }

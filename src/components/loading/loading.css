@@ -13,7 +13,7 @@
 .spinner > div {
   width: 18px;
   height: 18px;
-  background-color: var(--primary-color-font);
+  background-color: var(--secondary-color);
   margin: 10px;
   border-radius: 100%;
   display: inline-block;

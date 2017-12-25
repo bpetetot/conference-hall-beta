@@ -1,12 +1,15 @@
 .event-info {
-  position: relative;
-  --img-size: 300px;
-  --img-margin: 50px;
+  background: #fff;
+  border: 1px solid var(--grey-color);
+  border-radius: 3px;
 }
 
 .event-info .event-header {
-  background: rgba(0, 0, 0, 0.1);
-  padding: 2em calc(var(--img-size) + (var(--img-margin) * 2)) 2em 2em;
+  padding: 2em 2em 0 2em;
+}
+
+.event-info .event-header > h1 {
+  margin: 0 0 1em 0;
 }
 
 .event-info .event-header .event-header-links > a {
@@ -15,30 +18,20 @@
 }
 
 .event-info .event-content {
-  margin-right: calc(var(--img-size) + (var(--img-margin) * 2));
-  padding: 2em;
-}
-
-.event-info .event-map {
-  position: absolute;
-  top: var(--img-margin);
-  right: var(--img-margin);
-  height: var(--img-size);
-  width: var(--img-size);
-  background: rgba(255, 255, 255, 0.6);
+  padding: 0 2em 2em;
 }
 
 @media only screen and (max-width: 1024px) {
-  .event-info .event-header {
+  .event-info {
     padding: 1em;
+  }
+
+  .event-info .event-header {
+    padding: 1em 1em 0 1em;
   }
 
   .event-info .event-content {
     margin-right: 0;
     padding: 1em;
-  }
-
-  .event-info .event-map {
-    display: none;
   }
 }

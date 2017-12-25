@@ -1,8 +1,6 @@
 input {
-  background: #fff;
   border-radius: 3px;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 1px 0px, rgba(0, 0, 0, 0.1) -1px 1px 1px 0px inset;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   color: #000;
   font-family: inherit;
   outline: none;
@@ -12,5 +10,5 @@ input {
 }
 
 input:focus {
-  background: #fff;
+  border: 1px solid var(--primary-color);
 }

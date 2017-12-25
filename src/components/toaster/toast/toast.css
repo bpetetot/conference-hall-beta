@@ -3,17 +3,19 @@
   margin-bottom: 1em;
   min-width: 300px;
   max-width: 600px;
-  box-shadow: 0px 1px 5px 0px #111;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   border-radius: 3px;
-  background: var(--primary-color-light);
+  border: 1px solid var(--grey-color);
+  background: #fff;
+  color: var(--primary-color);
 }
 
 .toast .toast-default {
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .toast .toast-info {
-  color: var(--info-color);
+  color: var(--primary-color);
 }
 
 .toast .toast-warning {

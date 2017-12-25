@@ -7,20 +7,18 @@ import EventCard from './eventCard'
 import './myEvents.css'
 
 const MyEvents = ({ events }) => (
-  <div className="organizer-events">
-    <div className="events-table">
-      <div className="events-header">
-        <h1>
-          <IconLabel icon="fa fa-calendar-o" label="My events" />
-        </h1>
-        <Link href="/organizer/event/create" className="btn btn-primary btn-create-event">
-          <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
-        </Link>
-      </div>
-      <div className="events-content">
-        {events.length === 0 && 'Aucun événement'}
-        {events.map(id => <EventCard key={id} id={id} />)}
-      </div>
+  <div className="events-table">
+    <div className="events-header">
+      <h2>
+        <IconLabel icon="fa fa-calendar-o" label="My events" />
+      </h2>
+      <Link href="/organizer/event/create" className="btn btn-primary btn-create-event">
+        <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
+      </Link>
+    </div>
+    <div className="events-content">
+      {events.length === 0 && 'Aucun événement'}
+      {events.map(id => <EventCard key={id} id={id} />)}
     </div>
   </div>
 )

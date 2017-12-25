@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Markdown from 'react-markdown'
 
-import EventMap from 'components/maps'
 import IconLink from 'components/iconLink'
 import './eventInfo.css'
 
@@ -24,11 +23,6 @@ const EventInfo = ({
     <div className="event-content">
       {description && <Markdown className="markdown" source={description} escapeHtml />}
     </div>
-    {address && (
-      <div className="event-map">
-        <EventMap address={address} />
-      </div>
-    )}
   </div>
 )
 

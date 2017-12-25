@@ -9,6 +9,7 @@
 .login .login-title {
   text-transform: uppercase;
   margin-bottom: 1em;
+  color: var(--primary-color-font);
 }
 
 .login .login-back {

@@ -17,7 +17,7 @@ body {
 }
 
 .app {
-  background: var(--primary-color-light);
+  background: var(--background-color);
   color: var(--primary-color);
   font-size: var(--font-size);
   height: 100%;
