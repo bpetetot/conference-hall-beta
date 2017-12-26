@@ -1,7 +1,9 @@
 import './global.css'
+import './layout.css'
 
 import './themes/default.css'
 import './themes/red.css'
+import './themes/blue.css'
 
 import './components/a.css'
 import './components/button.css'

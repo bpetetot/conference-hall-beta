@@ -17,6 +17,10 @@ const routes = {
       },
     },
   },
+  '/speaker': {
+    title: 'HOME_SPEAKER',
+    '/menu': { title: 'MOBILE_MENU' },
+  },
   '/login': { title: 'LOGIN' },
   '/': { title: 'HOME' },
 }
