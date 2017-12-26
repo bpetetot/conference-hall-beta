@@ -1,0 +1,17 @@
+.blue-theme {
+  --background-color: #edf2f5;
+
+  --primary-color: #2a3244;
+  --primary-color-light: #373f51;
+  --primary-color-dark: #1f2022;
+  --primary-color-font: #fff;
+
+  --secondary-color: #0b73ff;
+  --secondary-color-light: #0b73ff;
+  --secondary-color-dark: #05147d;
+  --secondary-color-font: #fff;
+
+  --grey-color: #c4c9d6;
+  --grey-color-dark: #95949b;
+  --grey-color-light: #c4c9d6;
+}

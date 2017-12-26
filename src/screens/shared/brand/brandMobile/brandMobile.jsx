@@ -6,7 +6,7 @@ import { Link } from 'redux-little-router'
 import './brandMobile.css'
 
 const Brand = ({
-  title, className, opened, goBack,
+  title, opened, className, app, goBack,
 }) => (
   <div className={cn('brand', className)}>
     {opened ? (
@@ -14,7 +14,7 @@ const Brand = ({
         <i className="fa fa-arrow-left" />
       </a>
     ) : (
-      <Link href="/organizer/menu" className="burger-link">
+      <Link href={`/${app}/menu`} className="burger-link">
         <i className="fa fa-bars" />
       </Link>
     )}
@@ -24,13 +24,13 @@ const Brand = ({
 
 Brand.propTypes = {
   title: PropTypes.string.isRequired,
+  opened: PropTypes.bool.isRequired,
   goBack: PropTypes.func.isRequired,
-  opened: PropTypes.bool,
+  app: PropTypes.string.isRequired,
   className: PropTypes.string,
 }
 
 Brand.defaultProps = {
-  opened: false,
   className: undefined,
 }
 

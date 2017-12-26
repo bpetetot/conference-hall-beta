@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import withTheme from 'styles/withTheme'
+import withTheme from 'styles/themes/withTheme'
 import { isModalOpened, closeModal } from 'redux/ui/modal'
 
 import Modal from './modal'
