@@ -10,7 +10,7 @@ const CategoryForm = ({ edit, ...formProps }) => (
   <form className="category-form">
     <h2>{edit ? 'Update category' : 'Add a new category'}</h2>
     <div className="category-form-content">
-      <Field name="name" label="Name" type="text" component={input} validate={required} autoFocus />
+      <Field name="name" label="Name" type="text" component={input} validate={required} />
       <Field name="description" label="Description" type="text" component={textarea} />
       <SubmitButton {...formProps} className="btn-save-category">
         {edit ? 'Update category' : 'Add category'}
