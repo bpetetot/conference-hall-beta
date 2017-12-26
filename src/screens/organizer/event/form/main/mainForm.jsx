@@ -22,7 +22,7 @@ const EventForm = ({ type, ...formProps }) => (
         <Field name="type" value="meetup" label="Meetup" type="radio" component={radio} />
       </RadioGroup>
     )}
-    <Field name="name" label="Name" type="text" component={input} validate={required} autoFocus />
+    <Field name="name" label="Name" type="text" component={input} validate={required} />
     <Field name="description" label="description" component={textarea} validate={required} />
     <Field
       name="address"
