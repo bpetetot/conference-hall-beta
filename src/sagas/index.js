@@ -5,10 +5,11 @@ import authSaga from './auth'
 import eventSaga from './event'
 import eventsSaga from './events'
 import toasterSaga from './toaster'
+import userSaga from './user'
 
 export default function* sagas() {
   try {
-    yield all([firebaseSaga(), authSaga(), eventSaga(), eventsSaga(), toasterSaga()])
+    yield all([firebaseSaga(), authSaga(), eventSaga(), eventsSaga(), toasterSaga(), userSaga()])
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('saga exception', error)

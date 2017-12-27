@@ -1,0 +1,40 @@
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.profile-header > img {
+  margin-right: 2em;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  height: 100px;
+}
+
+.profile-header h1 {
+  margin-top: 0;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}
+
+.profile-form > button {
+  align-self: flex-end;
+}
+
+@media only screen and (max-width: 480px) {
+  .profile-header {
+    margin-bottom: 1em;
+  }
+
+  .profile-header > img {
+    margin-right: 1em;
+  }
+
+  .profile-header h1 {
+    font-size: 1.2em;
+  }
+}

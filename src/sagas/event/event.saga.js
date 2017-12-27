@@ -25,8 +25,6 @@ function* createOrUpdateEvent(form, event) {
       yield call(updateEvent, event)
       // update event in store
       yield put(eventData.update(event))
-      // toast update
-      yield put(toast(Date.now(), 'Event updated', 'info'))
     }
     // set form submitted
     yield put(stopSubmit(form))

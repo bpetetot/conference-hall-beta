@@ -1,6 +1,6 @@
 input {
   border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--grey-color);
   color: #000;
   font-family: inherit;
   outline: none;
