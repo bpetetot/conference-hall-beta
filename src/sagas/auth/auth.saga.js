@@ -2,8 +2,8 @@ import firebase from 'firebase/app'
 import { call, put, takeLatest, select } from 'redux-saga/effects'
 import { push } from 'redux-little-router'
 
-import { fetchUser, createUser } from 'sagas/user'
 import user from 'redux/data/user'
+import userCrud from 'sagas/user/user.firebase'
 
 function* signin() {
   const provider = yield new firebase.auth.GoogleAuthProvider()
@@ -25,12 +25,12 @@ function* signedIn({
   yield put({ type: 'FIREBASE_AUTHENTICATED', payload: true })
 
   // check if user exists in database
-  const ref = yield call(fetchUser, uid)
+  const ref = yield call(userCrud.read, uid)
   if (ref.exists) {
     yield put(user.set({ uid, ...ref.data(), ...userInfo }))
   } else {
     // first connexion, so create user
-    yield call(createUser, { uid, ...userInfo })
+    yield call(userCrud.create, { uid, ...userInfo })
     yield put(user.set({ uid, ...userInfo }))
   }
 

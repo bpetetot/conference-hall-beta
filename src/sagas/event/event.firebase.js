@@ -1,25 +1,3 @@
-import firebase from 'firebase/app'
+import crud from 'sagas/firebase/crud'
 
-export const createEvent = (event, userId) =>
-  firebase
-    .firestore()
-    .collection('events')
-    .add({
-      ...event,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      owner: userId,
-    })
-
-export const updateEvent = ({ id, ...event }) =>
-  firebase
-    .firestore()
-    .collection('events')
-    .doc(id)
-    .update(event)
-
-export const fetchEvent = id =>
-  firebase
-    .firestore()
-    .collection('events')
-    .doc(id)
-    .get()
+export default crud('events', 'id')
