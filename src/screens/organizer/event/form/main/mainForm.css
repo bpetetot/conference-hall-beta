@@ -1,8 +1,5 @@
 .event-form {
   padding: 2em;
-  background: #fff;
-  border: 1px solid var(--grey-color);
-  border-radius: 3px;
   display: flex;
   flex-direction: column;
 }

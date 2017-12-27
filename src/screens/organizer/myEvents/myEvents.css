@@ -1,19 +1,9 @@
 .events-header {
-  margin-bottom: 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
-  border: 1px solid var(--grey-color);
-  border-radius: 3px;
   margin-bottom: 2em;
   padding: 1em 2em;
-}
-
-.events-content {
-  border: 1px solid var(--grey-color);
-  border-radius: 3px;
-  background: #fff;
 }
 
 .events-content > div {

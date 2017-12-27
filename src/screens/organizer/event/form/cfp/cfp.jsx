@@ -9,7 +9,7 @@ import FormatsForm from './formats'
 import './cfp.css'
 
 const CFPForm = ({ type, ...formProps }) => (
-  <form className="cfp-form">
+  <form className="cfp-form card">
     {type === 'conference' && (
       <Field name="cfpDates" label="CFP opening period" component={dayRangePicker} />
     )}
