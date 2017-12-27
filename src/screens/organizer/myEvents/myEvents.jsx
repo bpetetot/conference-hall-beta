@@ -8,7 +8,7 @@ import './myEvents.css'
 
 const MyEvents = ({ events }) => (
   <div>
-    <div className="events-header">
+    <div className="events-header card">
       <h2>
         <IconLabel icon="fa fa-calendar-o" label="My events" />
       </h2>
@@ -16,7 +16,7 @@ const MyEvents = ({ events }) => (
         <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
       </Link>
     </div>
-    <div className="events-content">
+    <div className="events-content card">
       {events.length === 0 && 'Aucun événement'}
       {events.map(id => <EventCard key={id} id={id} />)}
     </div>

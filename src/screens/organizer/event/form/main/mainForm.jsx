@@ -15,7 +15,7 @@ import { required } from 'components/form/validators'
 import './mainForm.css'
 
 const EventForm = ({ type, ...formProps }) => (
-  <form className="event-form">
+  <form className="event-form card">
     {formProps.form === 'event-create' && (
       <RadioGroup name="type" label="Event type" inline>
         <Field name="type" value="conference" label="Conference" type="radio" component={radio} />

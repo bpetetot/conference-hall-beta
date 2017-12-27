@@ -8,7 +8,7 @@ import './eventInfo.css'
 const EventInfo = ({
   name, description, address, website,
 }) => (
-  <div className="event-info">
+  <div className="event-info card">
     <div className="event-header">
       <h1>{name}</h1>
       <div className="event-header-links">

@@ -1,12 +1,6 @@
-.event-tabs {
-  padding: 1em 2em;
-  background: #fff;
-  border: 1px solid var(--grey-color);
-  border-radius: 3px;
+ul.event-tabs {
+  padding: 2em;
   margin-bottom: 2em;
-}
-
-.event-tabs > ul {
   justify-content: flex-start;
 }
 
@@ -14,9 +8,6 @@
   .event-tabs {
     padding: 1em;
     margin-bottom: 1em;
-  }
-
-  .event-tabs > ul {
     font-size: 0.9em;
     align-items: center;
     justify-content: space-around;
