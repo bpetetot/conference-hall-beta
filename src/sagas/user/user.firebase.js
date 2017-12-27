@@ -1,3 +1,3 @@
 import crud from 'sagas/firebase/crud'
 
-export default crud('events', 'id')
+export default crud('users', 'uid')

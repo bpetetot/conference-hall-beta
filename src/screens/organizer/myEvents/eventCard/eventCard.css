@@ -17,10 +17,6 @@
   font-weight: 600;
 }
 
-.event-card small {
-  font-size: 1em;
-}
-
 @media only screen and (max-width: 480px) {
   .event-card {
     font-size: 1.1em;

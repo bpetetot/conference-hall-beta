@@ -5,6 +5,7 @@ import forRoute from 'hoc-little-router'
 import { protect } from 'redux/auth'
 import { Brand, Navbar } from 'screens/shared'
 import { Sidebar, SidebarMobile } from './sidebar'
+import Profile from './profile'
 
 const Speaker = () => (
   <div className="layout-screen">
@@ -13,6 +14,7 @@ const Speaker = () => (
     <Sidebar className="layout-sidebar" />
     <div className="layout-main">
       <SidebarMobile />
+      <Profile />
     </div>
   </div>
 )

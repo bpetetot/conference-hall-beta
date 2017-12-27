@@ -20,6 +20,7 @@ const routes = {
   '/speaker': {
     title: 'HOME_SPEAKER',
     '/menu': { title: 'MOBILE_MENU' },
+    '/profile': { title: 'SPEAKER_PROFILE' },
   },
   '/login': { title: 'LOGIN' },
   '/': { title: 'HOME' },

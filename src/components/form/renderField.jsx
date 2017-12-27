@@ -12,7 +12,10 @@ const renderField = component => ({
 }) => (
   <Label name={input.name} label={label} error={meta.error}>
     {component === 'address' && (
-      <PlacesAutocomplete inputProps={input} styles={{ autocompleteContainer: { zIndex: 1 } }} />
+      <PlacesAutocomplete
+        inputProps={{ ...input, autoComplete: 'nope' }}
+        styles={{ autocompleteContainer: { zIndex: 1 } }}
+      />
     )}
     {component === 'input' && <input {...input} id={input.name} type={type} />}
     {component === 'textarea' && (

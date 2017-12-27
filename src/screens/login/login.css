@@ -7,6 +7,10 @@
   background: var(--primary-color);
 }
 
+.login-loading {
+  background: var(--primary-color);
+}
+
 .login .login-title {
   text-transform: uppercase;
   margin-bottom: 1em;
