@@ -8,7 +8,7 @@ import { Sidebar, SidebarMobile } from './sidebar'
 
 import EventCreate from './event/create'
 import EventEdit from './event/edit'
-import Event from './event/read'
+import Event from './event/page'
 import MyEvents from './event/myEvents'
 
 const Organizer = () => (
