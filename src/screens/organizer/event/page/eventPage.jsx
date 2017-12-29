@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import Markdown from 'react-markdown'
 
 import IconLink from 'components/iconLink'
-import './eventInfo.css'
+import './eventPage.css'
 
 const EventInfo = ({
   name, description, address, website,
 }) => (
-  <div className="event-info card">
+  <div className="event-page card">
     <div className="event-header">
       <h1>{name}</h1>
       <div className="event-header-links">

@@ -1,30 +1,30 @@
-.event-info .event-header {
+.event-page .event-header {
   padding: 2em 2em 0 2em;
 }
 
-.event-info .event-header > h1 {
+.event-page .event-header > h1 {
   margin: 0 0 1em 0;
 }
 
-.event-info .event-header .event-header-links > a {
+.event-page .event-header .event-header-links > a {
   display: block;
   padding-bottom: 1em;
 }
 
-.event-info .event-content {
+.event-page .event-content {
   padding: 0 2em 2em;
 }
 
 @media only screen and (max-width: 1024px) {
-  .event-info {
+  .event-page {
     padding: 1em;
   }
 
-  .event-info .event-header {
+  .event-page .event-header {
     padding: 1em 1em 0 1em;
   }
 
-  .event-info .event-content {
+  .event-page .event-content {
     margin-right: 0;
     padding: 1em;
   }

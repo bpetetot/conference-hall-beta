@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import IconLabel from 'components/iconLabel'
 import { SideBar, SideBarPanel, SideBarLink } from 'components/sidebar'
-import EventSideBar from './eventSidebar'
+import EventSideBar from './event'
 
 const OrganizerSideBar = ({ fullname, className }) => (
   <SideBar className={className}>
@@ -22,7 +22,7 @@ OrganizerSideBar.propTypes = {
 }
 
 OrganizerSideBar.defaultProps = {
-  fullname: 'Organizer',
+  fullname: undefined,
   className: undefined,
 }
 

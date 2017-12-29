@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import Tabs from './eventTabs'
 import EventForm from './eventForm'
 import CfpForm from './cfp'
 
 const EventEdit = () => (
-  <div>
+  <Fragment>
     <Tabs />
     <EventForm />
     <CfpForm />
-  </div>
+  </Fragment>
 )
 
 export default EventEdit

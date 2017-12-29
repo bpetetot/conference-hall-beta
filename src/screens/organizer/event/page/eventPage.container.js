@@ -5,7 +5,7 @@ import forRoute from 'hoc-little-router'
 
 import event from 'redux/data/event'
 import LoadingIndicator from 'components/loading'
-import EventInfo from './eventInfo'
+import EventPage from './eventPage'
 
 const mapState = state => ({
   loaded: event.isInitialized(state),
@@ -20,4 +20,4 @@ export default compose(
   forRoute('CONSULT_EVENT', { absolute: true }),
   connect(mapState, mapDispatch),
   loader({ print: ['loaded'], LoadingIndicator }),
-)(EventInfo)
+)(EventPage)
