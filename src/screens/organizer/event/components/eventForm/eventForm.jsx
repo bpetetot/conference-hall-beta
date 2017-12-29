@@ -35,7 +35,7 @@ const EventForm = ({ type, ...formProps }) => (
     )}
     <Field name="website" label="Website" type="text" component={input} />
     <SubmitButton {...formProps}>
-      {formProps.form === 'event-create' ? 'Create event' : 'Update event'}
+      {formProps.form === 'event-create' ? 'Create event' : 'Save event'}
     </SubmitButton>
   </form>
 )

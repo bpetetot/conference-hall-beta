@@ -13,7 +13,7 @@ const FormatForm = ({ edit, ...formProps }) => (
       <Field name="name" label="Name" type="text" component={input} validate={required} />
       <Field name="description" label="Description" type="text" component={textarea} />
       <SubmitButton {...formProps} className="btn-save-format">
-        {edit ? 'Update format' : 'Add format'}
+        {edit ? 'Save format' : 'Add format'}
       </SubmitButton>
     </div>
   </form>

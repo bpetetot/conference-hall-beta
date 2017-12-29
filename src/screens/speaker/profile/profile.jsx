@@ -23,7 +23,7 @@ const Profile = ({
       <Field name="language" label="Favorite language" type="text" component={input} />
       <Field name="city" label="City" type="text" component={address} />
       <Field name="bio" label="Biography" component={textarea} />
-      <SubmitButton {...formProps}>Update profile</SubmitButton>
+      <SubmitButton {...formProps}>Save profile</SubmitButton>
     </form>
   </div>
 )
