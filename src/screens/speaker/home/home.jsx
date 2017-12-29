@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import forRoute from 'hoc-little-router'
 import { Link } from 'redux-little-router'
 
 const Home = () => (
-  <div>
+  <Fragment>
     <Link href="/speaker/talk/create" className="btn btn-link">
       Create talk
     </Link>
-  </div>
+  </Fragment>
 )
 
 export default forRoute('HOME_SPEAKER', { absolute: true })(Home)

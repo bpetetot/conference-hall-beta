@@ -20,7 +20,7 @@ SpeakerSideBar.propTypes = {
 }
 
 SpeakerSideBar.defaultProps = {
-  fullname: 'Speaker',
+  fullname: undefined,
   className: undefined,
 }
 

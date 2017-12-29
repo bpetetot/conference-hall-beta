@@ -3,11 +3,13 @@ import { compose } from 'redux'
 import forRoute from 'hoc-little-router'
 
 import { protect } from 'redux/auth'
-import { Brand, Navbar } from 'screens/shared'
+import { Brand, Navbar } from 'screens/components'
 import { Sidebar, SidebarMobile } from './sidebar'
-import MyEvents from './myEvents'
-import Event from './event'
-import { CreateEventForm } from './event/form/main'
+
+import EventCreate from './event/create'
+import EventEdit from './event/edit'
+import Event from './event/read'
+import MyEvents from './event/myEvents'
 
 const Organizer = () => (
   <div className="layout-screen">
@@ -16,7 +18,8 @@ const Organizer = () => (
     <Sidebar className="layout-sidebar" />
     <div className="layout-main">
       <SidebarMobile />
-      <CreateEventForm />
+      <EventCreate />
+      <EventEdit />
       <Event />
       <MyEvents />
     </div>

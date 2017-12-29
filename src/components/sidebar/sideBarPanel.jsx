@@ -9,8 +9,12 @@ const SideBarPanel = ({ label, children }) => (
 )
 
 SideBarPanel.propTypes = {
-  label: PropTypes.node.isRequired,
+  label: PropTypes.node,
   children: PropTypes.node.isRequired,
+}
+
+SideBarPanel.defaultProps = {
+  label: undefined,
 }
 
 export default SideBarPanel

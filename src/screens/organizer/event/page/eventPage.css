@@ -1,0 +1,31 @@
+.event-page .event-header {
+  padding: 2em 2em 0 2em;
+}
+
+.event-page .event-header > h1 {
+  margin: 0 0 1em 0;
+}
+
+.event-page .event-header .event-header-links > a {
+  display: block;
+  padding-bottom: 1em;
+}
+
+.event-page .event-content {
+  padding: 0 2em 2em;
+}
+
+@media only screen and (max-width: 1024px) {
+  .event-page {
+    padding: 1em;
+  }
+
+  .event-page .event-header {
+    padding: 1em 1em 0 1em;
+  }
+
+  .event-page .event-content {
+    margin-right: 0;
+    padding: 1em;
+  }
+}
