@@ -1,7 +1,7 @@
 import { takeLatest, put, select } from 'redux-saga/effects'
 
 import userData from 'redux/data/user'
-import eventsData from 'redux/data/organizer/events'
+import eventsData from 'redux/data/events'
 import { fetchUserEvents } from './events.firebase'
 
 function* fetchMyEvents() {

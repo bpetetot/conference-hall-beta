@@ -4,7 +4,7 @@
 
 .form-radio input[type='radio'] ~ label {
   border-radius: 3px;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--grey-color);
   cursor: pointer;
   display: block;
   padding: 10px;
