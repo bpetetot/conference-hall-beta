@@ -6,8 +6,8 @@ import IconLabel from 'components/iconLabel'
 
 import './eventCard.css'
 
-const EventCard = ({ name, timestamp, goToEvent }) => {
-  const relativeDate = distanceInWordsToNow(timestamp, { addSuffix: true })
+const EventCard = ({ name, createTimestamp, goToEvent }) => {
+  const relativeDate = distanceInWordsToNow(createTimestamp, { addSuffix: true })
   return (
     <div className="event-card" onClick={goToEvent} role="button">
       <span className="event-card-title">{name}</span>
@@ -20,7 +20,7 @@ const EventCard = ({ name, timestamp, goToEvent }) => {
 
 EventCard.propTypes = {
   name: PropTypes.string.isRequired,
-  timestamp: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  createTimestamp: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   goToEvent: PropTypes.func.isRequired,
 }
 

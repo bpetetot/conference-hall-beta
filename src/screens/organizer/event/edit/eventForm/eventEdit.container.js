@@ -3,7 +3,7 @@ import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
 import event from 'redux/data/event'
-import EventEdit from './mainForm'
+import EventForm from '../../components/eventForm'
 
 const FORM_NAME = 'event-edit'
 const select = formValueSelector(FORM_NAME)
@@ -22,4 +22,4 @@ const mapDispatch = dispatch => ({
     }),
 })
 
-export default forRoute('EDIT_EVENT', { absolute: true })(connect(mapState, mapDispatch)(EventEdit))
+export default forRoute('EDIT_EVENT', { absolute: true })(connect(mapState, mapDispatch)(EventForm))

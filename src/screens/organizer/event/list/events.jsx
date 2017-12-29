@@ -4,7 +4,7 @@ import { Link } from 'redux-little-router'
 
 import IconLabel from 'components/iconLabel'
 import EventCard from './eventCard'
-import './myEvents.css'
+import './events.css'
 
 const MyEvents = ({ events }) => (
   <div>
@@ -17,7 +17,11 @@ const MyEvents = ({ events }) => (
       </Link>
     </div>
     <div className="events-content card">
-      {events.length === 0 && 'Aucun événement'}
+      {events.length === 0 && (
+        <div className="no-events">
+          <h3>No event yet !</h3>
+        </div>
+      )}
       {events.map(id => <EventCard key={id} id={id} />)}
     </div>
   </div>

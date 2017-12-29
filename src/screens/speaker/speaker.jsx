@@ -7,7 +7,7 @@ import { Brand, Navbar } from 'screens/shared'
 import { Sidebar, SidebarMobile } from './sidebar'
 import Home from './home'
 import Profile from './profile'
-import CreateTalkForm from './talk'
+import TalkCreate from './talk/create'
 
 const Speaker = () => (
   <div className="layout-screen">
@@ -18,7 +18,7 @@ const Speaker = () => (
       <SidebarMobile />
       <Home />
       <Profile />
-      <CreateTalkForm />
+      <TalkCreate />
     </div>
   </div>
 )

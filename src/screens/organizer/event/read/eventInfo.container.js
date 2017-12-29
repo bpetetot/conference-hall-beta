@@ -3,21 +3,21 @@ import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
-import events from 'redux/data/events'
+import event from 'redux/data/event'
 import LoadingIndicator from 'components/loading'
-import MyEvents from './myEvents'
+import EventInfo from './eventInfo'
 
 const mapState = state => ({
-  loaded: events.isInitialized(state),
-  events: events.getKeys(state),
+  loaded: event.isInitialized(state),
+  ...event.get()(state),
 })
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'MY_EVENTS_SEARCH' }),
+  load: () => dispatch({ type: 'FETCH_EVENT' }),
 })
 
 export default compose(
-  forRoute('HOME_ORGANIZER', { absolute: true }),
+  forRoute('CONSULT_EVENT', { absolute: true }),
   connect(mapState, mapDispatch),
   loader({ print: ['loaded'], LoadingIndicator }),
-)(MyEvents)
+)(EventInfo)

@@ -2,7 +2,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import forRoute from 'hoc-little-router'
 
-import TalkForm from './talkForm'
+import TalkForm from '../components/talkForm'
 
 const FORM_NAME = 'talk-create'
 

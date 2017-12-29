@@ -12,7 +12,7 @@ import {
   dayRangePicker,
 } from 'components/form'
 import { required } from 'components/form/validators'
-import './mainForm.css'
+import './eventForm.css'
 
 const EventForm = ({ type, ...formProps }) => (
   <form className="event-form card">
