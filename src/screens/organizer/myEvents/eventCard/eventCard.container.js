@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { push } from 'redux-little-router'
 
-import events from 'redux/data/organizer/events'
+import events from 'redux/data/events'
 import EventCard from './eventCard'
 
 const mapState = (state, { id }) => ({

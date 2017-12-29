@@ -21,6 +21,7 @@ const routes = {
     title: 'HOME_SPEAKER',
     '/menu': { title: 'MOBILE_MENU' },
     '/profile': { title: 'SPEAKER_PROFILE' },
+    '/talk/create': { title: 'CREATE_TALK' },
   },
   '/login': { title: 'LOGIN' },
   '/': { title: 'HOME' },

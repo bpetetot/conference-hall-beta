@@ -9,6 +9,7 @@
   outline: none;
   padding: 10px 16px;
   position: relative;
+  text-align: center;
   text-transform: uppercase;
   transition: all 0.5s;
   white-space: nowrap;

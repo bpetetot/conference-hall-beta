@@ -1,0 +1,20 @@
+.talk-form {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.talk-form > * {
+  margin-bottom: 0.7em;
+}
+
+.talk-form > button {
+  width: 50px;
+  align-self: flex-end;
+}
+
+@media only screen and (max-width: 480px) {
+  .talk-form {
+    padding: 1em;
+  }
+}
