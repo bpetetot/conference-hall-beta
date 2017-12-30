@@ -39,9 +39,7 @@ function* getEvent() {
   const { id } = yield select(state => state.router.params)
   // check if already in the store
   const current = yield select(eventData.get())
-  if (current && current.id === id) {
-    return
-  }
+  if (current && current.id === id) return
   // wipe current event in the store
   yield put(eventData.reset())
   // fetch event from id

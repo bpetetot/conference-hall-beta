@@ -9,7 +9,7 @@ const routes = {
     '/event': {
       title: 'HOME_EVENT',
       '/:id': {
-        title: 'CONSULT_EVENT',
+        title: 'EVENT_PAGE',
         '/edit': {
           title: 'EDIT_EVENT',
           '/cfp': { title: 'EDIT_EVENT_CFP' },
@@ -23,6 +23,10 @@ const routes = {
     '/menu': { title: 'MOBILE_MENU' },
     '/profile': { title: 'SPEAKER_PROFILE' },
     '/talk/create': { title: 'CREATE_TALK' },
+    '/talk': {
+      title: 'HOME_TALK',
+      '/:id': { title: 'TALK_PAGE' },
+    },
   },
   '/login': { title: 'LOGIN' },
   '/': { title: 'HOME' },
