@@ -7,38 +7,43 @@ import IconLabel from 'components/iconLabel'
 
 import './talkPage.css'
 
-const TalkPage = ({ title, abstract, references }) => (
+const TalkPage = ({
+  id, title, abstract, level, references,
+}) => (
   <div className="talk-page">
     <div className="talk-header card">
       <h2>{title}</h2>
-      <Link href="/speaker/talk/id/edit" className="btn btn-primary">
-        <IconLabel icon="fa fa-pencil" label="Edit" />
-      </Link>
+      <div className="talk-toolbar">
+        <Link href={`/speaker/talk/${id}/edit`} className="btn btn-primary">
+          <IconLabel icon="fa fa-pencil" label="Edit" />
+        </Link>
+      </div>
     </div>
-    <div className="talk-content">
-      <div className="talk-data card">
-        <h2>Abstract</h2>
-        {abstract && <Markdown className="markdown" source={abstract} escapeHtml />}
-        <h2>References</h2>
-        {references && <Markdown className="markdown" source={references} escapeHtml />}
-      </div>
-      <div className="talk-submissions card">
-        <h2>Submissions</h2>
-        <small>No submission yet</small>
-      </div>
+    <div className="talk-content card">
+      <p>Level : {level}</p>
+      <h2>Abstract</h2>
+      {abstract && <Markdown className="markdown" source={abstract} escapeHtml />}
+      <h2>References</h2>
+      {references && <Markdown className="markdown" source={references} escapeHtml />}
+    </div>
+    <div className="talk-proposals card">
+      <h2>Proposals</h2>
+      <small>No proposal yet</small>
     </div>
   </div>
 )
 
 TalkPage.propTypes = {
-  title: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   abstract: PropTypes.string,
+  level: PropTypes.string,
   references: PropTypes.string,
 }
 
 TalkPage.defaultProps = {
-  title: undefined,
   abstract: undefined,
+  level: 'not defined',
   references: undefined,
 }
 
