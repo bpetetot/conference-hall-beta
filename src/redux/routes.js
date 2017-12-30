@@ -40,6 +40,7 @@ export const matchRecursively = (result, title) => {
 }
 
 // route matching
+export const isRouteNotFound = state => !getRouterResult(state)
 export const isOrganizerRoute = state => matchRecursively(getRouterResult(state), 'HOME_ORGANIZER')
 export const isSpeakerRoute = state => matchRecursively(getRouterResult(state), 'HOME_SPEAKER')
 export const isMobileMenuRoute = state => matchRecursively(getRouterResult(state), 'MOBILE_MENU')
