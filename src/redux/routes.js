@@ -25,7 +25,10 @@ const routes = {
     '/talk/create': { title: 'CREATE_TALK' },
     '/talk': {
       title: 'HOME_TALK',
-      '/:id': { title: 'TALK_PAGE' },
+      '/:id': {
+        title: 'TALK_PAGE',
+        '/edit': { title: 'EDIT_TALK' },
+      },
     },
   },
   '/login': { title: 'LOGIN' },

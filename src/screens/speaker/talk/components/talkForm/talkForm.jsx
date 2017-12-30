@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 
 import { input, textarea, radio, SubmitButton, RadioGroup } from 'components/form'
@@ -21,8 +22,14 @@ const TalkForm = formProps => (
       <Field name="level" value="advanced" label="Advanced" type="radio" component={radio} />
     </RadioGroup>
     <Field name="references" label="References" component={textarea} />
-    <SubmitButton {...formProps}>Create Talk</SubmitButton>
+    <SubmitButton {...formProps}>
+      {formProps.form === 'talk-create' ? 'Create Talk' : 'Save Talk'}
+    </SubmitButton>
   </form>
 )
+
+TalkForm.propTypes = {
+  form: PropTypes.string.isRequired,
+}
 
 export default reduxForm()(TalkForm)
