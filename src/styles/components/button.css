@@ -13,7 +13,6 @@
   text-transform: uppercase;
   transition: all 0.5s;
   white-space: nowrap;
-  min-width: 12em;
 }
 
 .btn:active {

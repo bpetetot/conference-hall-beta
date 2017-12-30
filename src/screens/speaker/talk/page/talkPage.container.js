@@ -3,21 +3,21 @@ import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
-import event from 'redux/data/event'
+import talk from 'redux/data/talk'
 import LoadingIndicator from 'components/loading'
-import EventPage from './eventPage'
+import TalkPage from './talkPage'
 
 const mapState = state => ({
-  loaded: event.isInitialized(state),
-  ...event.get()(state),
+  loaded: talk.isInitialized(state),
+  ...talk.get()(state),
 })
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_EVENT' }),
+  load: () => dispatch({ type: 'FETCH_TALK' }),
 })
 
 export default compose(
-  forRoute('EVENT_PAGE', { absolute: true }),
+  forRoute('TALK_PAGE', { absolute: true }),
   connect(mapState, mapDispatch),
   loader({ print: ['loaded'], LoadingIndicator }),
-)(EventPage)
+)(TalkPage)

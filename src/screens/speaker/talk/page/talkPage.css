@@ -1,0 +1,41 @@
+.talk-page .talk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+  padding: 1em 2em;
+}
+
+.talk-page .talk-content {
+  display: flex;
+}
+
+.talk-page .talk-content .talk-data {
+  padding: 1em 2em;
+  margin-right: 2em;
+}
+
+.talk-page .talk-content .talk-submissions {
+  padding: 1em 2em;
+}
+
+@media only screen and (max-width: 1024px) {
+  .talk-page .talk-header {
+    padding: 0 1em;
+    margin-bottom: 1em;
+  }
+
+  .talk-page .talk-header > a {
+    display: none;
+  }
+
+  .talk-page .talk-content {
+    flex-direction: column;
+  }
+
+  .talk-page .talk-content .talk-data {
+    margin-right: 0;
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+}
