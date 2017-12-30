@@ -10,3 +10,11 @@
   transition: all 0.5s;
   padding: 0 1em;
 }
+
+.brand > a {
+  color: var(--secondary-color-font);
+}
+
+.brand > a:hover {
+  text-decoration: none;
+}

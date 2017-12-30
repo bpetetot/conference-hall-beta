@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import { Link } from 'redux-little-router'
 
 import { withSizes } from 'styles/utils'
 import BrandMobile from './brandMobile'
@@ -18,7 +19,9 @@ const Brand = ({
       opened={opened}
     />
   ) : (
-    <div className={cn('brand', className)}>{title}</div>
+    <div className={cn('brand', className)}>
+      <Link href={app === 'organizer' ? '/organizer' : '/speaker'}>{title}</Link>
+    </div>
   ))
 
 Brand.propTypes = {
