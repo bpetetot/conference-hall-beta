@@ -23,6 +23,10 @@ function* createOrUpdateTalk(form, talk) {
     } else {
       // update talk into database
       yield call(talkCrud.update, talk)
+      // update talk into store
+      yield put(talkData.update(talk))
+      // go to talk page
+      yield put(push(`/speaker/talk/${talk.id}`))
     }
     // set form submitted
     yield put(stopSubmit(form))
