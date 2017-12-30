@@ -7,6 +7,7 @@ import eventsSaga from './events'
 import toasterSaga from './toaster'
 import userSaga from './user'
 import talkSaga from './talk'
+import talksSaga from './talks'
 
 export default function* sagas() {
   try {
@@ -18,6 +19,7 @@ export default function* sagas() {
       toasterSaga(),
       userSaga(),
       talkSaga(),
+      talksSaga(),
     ])
   } catch (error) {
     // eslint-disable-next-line no-console

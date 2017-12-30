@@ -1,9 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app'
 
-export const fetchUserEvents = uid =>
+export const fetchUserTalks = uid =>
   firebase
     .firestore()
-    .collection('events')
-    .where('owner', '==', uid)
+    .collection('talks')
+    .where(`speakers.${uid}`, '==', true)
     .get()
