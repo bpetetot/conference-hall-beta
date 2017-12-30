@@ -15,13 +15,13 @@ function* createOrUpdateTalk(form, talk) {
       // get user id
       const { uid } = yield select(userData.get())
       // create talk into database
-      yield call(talkCrud.create, { ...talk, speakers: { [uid]: true } })
-      // go to event page
-      yield put(push('/speaker'))
+      const ref = yield call(talkCrud.create, { ...talk, speakers: { [uid]: true } })
+      // go to talk page
+      yield put(push(`/speaker/talk/${ref.id}`))
       // reset form
       yield put(reset(form))
     } else {
-      // create event into database
+      // update talk into database
       yield call(talkCrud.update, talk)
     }
     // set form submitted

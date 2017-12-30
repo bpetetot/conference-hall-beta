@@ -21,7 +21,7 @@ function* createOrUpdateEvent(form, event) {
       // reset form
       yield put(reset(form))
     } else {
-      // create event into database
+      // update event into database
       yield call(eventCrud.update, event)
       // update event in store
       yield put(eventData.update(event))
