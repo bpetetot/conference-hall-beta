@@ -1,0 +1,25 @@
+.talk-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0;
+  cursor: pointer;
+  padding: 1.5em;
+}
+
+.talk-card:hover {
+  background: var(--background-color);
+}
+
+.talk-card .talk-card-title {
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 480px) {
+  .talk-card {
+    font-size: 1.1em;
+    padding: 1.5em 1em;
+  }
+}
