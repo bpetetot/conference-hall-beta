@@ -11,7 +11,7 @@
   padding: 1em 2em 2em 2em;
 }
 
-.talk-content > h2 {
+.talk-content > h3 {
   margin-top: 2em;
 }
 
@@ -31,13 +31,11 @@
 
 @media only screen and (max-width: 1024px) {
   .talk-page {
-    display: grid;
     grid-template-columns: auto 30%;
     grid-template-rows: auto auto;
     grid-template-areas: 'talk-header talk-header' 'talk-content talk-content'
       'talk-submissions talk-submissions';
     grid-gap: 1em;
-    height: 100%;
   }
 
   .talk-toolbar {

@@ -21,13 +21,13 @@ const TalkPage = ({
     </div>
     <div className="talk-content card">
       <p>Level : {level}</p>
-      <h2>Abstract</h2>
+      <h3>Abstract</h3>
       {abstract && <Markdown className="markdown" source={abstract} escapeHtml />}
-      <h2>References</h2>
+      <h3>References</h3>
       {references && <Markdown className="markdown" source={references} escapeHtml />}
     </div>
     <div className="talk-proposals card">
-      <h2>Proposals</h2>
+      <h3>Proposals</h3>
       <small>No proposal yet</small>
     </div>
   </div>

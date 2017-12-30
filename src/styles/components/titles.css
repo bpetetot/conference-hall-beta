@@ -3,16 +3,15 @@ h2,
 h3 {
   letter-spacing: 2px;
   font-weight: 400;
+  text-transform: uppercase;
 }
 
 h1 {
   font-size: 1.8em;
-  text-transform: uppercase;
 }
 
 h2 {
   font-size: 1.3em;
-  text-transform: uppercase;
 }
 
 h3 {
