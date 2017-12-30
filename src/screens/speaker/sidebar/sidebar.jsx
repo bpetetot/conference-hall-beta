@@ -10,6 +10,9 @@ const SpeakerSideBar = ({ fullname, className }) => (
       <SideBarLink to="/speaker/profile">
         <IconLabel icon="fa fa-user-o" label="Profile" />
       </SideBarLink>
+      <SideBarLink to="/speaker">
+        <IconLabel icon="fa fa-microphone" label="My talks" />
+      </SideBarLink>
     </SideBarPanel>
   </SideBar>
 )
