@@ -1,19 +1,14 @@
 import { connect } from 'react-redux'
 import { goBack } from 'redux-little-router'
-import startsWith from 'lodash/startsWith'
-import endsWith from 'lodash/endsWith'
+import { isOrganizerRoute, isMobileMenuRoute } from 'redux/routes'
 
 import Brand from './brand'
 
-const mapState = (state) => {
-  const { pathname } = state.router
-  const isOrganizer = startsWith(pathname, '/organizer')
-  return {
-    title: isOrganizer ? 'Organizer Hall' : 'Speaker Hall',
-    app: isOrganizer ? 'organizer' : 'speaker',
-    opened: endsWith(pathname, '/menu'),
-  }
-}
+const mapState = state => ({
+  title: isOrganizerRoute(state) ? 'Organizer Hall' : 'Speaker Hall',
+  app: isOrganizerRoute(state) ? 'organizer' : 'speaker',
+  opened: isMobileMenuRoute(state),
+})
 
 const mapDispatch = dispatch => ({
   goBack: () => dispatch(goBack()),

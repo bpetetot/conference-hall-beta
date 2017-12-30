@@ -1,5 +1,6 @@
 import { routerForBrowser } from 'redux-little-router'
 
+// application routes
 const routes = {
   '/organizer': {
     title: 'HOME_ORGANIZER',
@@ -27,4 +28,21 @@ const routes = {
   '/': { title: 'HOME' },
 }
 
+// selectors
+export const getRouter = state => state.router
+export const getRouterResult = state => getRouter(state).result
+
+// check if given title match with the current route hierarchy
+export const matchRecursively = (result, title) => {
+  if (!result) return false
+  if (result.title === title) return true
+  return matchRecursively(result.parent, title)
+}
+
+// route matching
+export const isOrganizerRoute = state => matchRecursively(getRouterResult(state), 'HOME_ORGANIZER')
+export const isSpeakerRoute = state => matchRecursively(getRouterResult(state), 'HOME_SPEAKER')
+export const isMobileMenuRoute = state => matchRecursively(getRouterResult(state), 'MOBILE_MENU')
+
+// redux-little-router configuration
 export const { reducer, middleware, enhancer } = routerForBrowser({ routes })
