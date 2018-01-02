@@ -4,21 +4,21 @@ import Avatar from 'components/avatar'
 
 import './speaker.css'
 
-const Speaker = ({ fullname, avatar }) => (
+const Speaker = ({ displayName, photoURL }) => (
   <div className="speaker-avatar">
-    <Avatar fullname={fullname} image={avatar} />
-    <span className="speaker-avatar-fullname">{fullname}</span>
+    <Avatar displayName={displayName} photoURL={photoURL} />
+    <span className="speaker-avatar-fullname">{displayName}</span>
   </div>
 )
 
 Speaker.propTypes = {
-  fullname: PropTypes.string,
-  avatar: PropTypes.string,
+  displayName: PropTypes.string,
+  photoURL: PropTypes.string,
 }
 
 Speaker.defaultProps = {
-  fullname: undefined,
-  avatar: undefined,
+  displayName: 'Speaker',
+  photoURL: undefined,
 }
 
 export default Speaker

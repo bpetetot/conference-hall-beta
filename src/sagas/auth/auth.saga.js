@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import { call, put, takeLatest, select } from 'redux-saga/effects'
 import { push } from 'redux-little-router'
 
-import user from 'redux/data/user'
+import usersData from 'redux/data/users'
 import userCrud from 'sagas/user/user.firebase'
 
 function* signin() {
@@ -25,14 +25,18 @@ function* signedIn({
   yield put({ type: 'FIREBASE_AUTHENTICATED', payload: true })
 
   // check if user exists in database
+  let user
   const ref = yield call(userCrud.read, uid)
   if (ref.exists) {
-    yield put(user.set({ uid, ...ref.data(), ...userInfo }))
+    user = { uid, ...ref.data(), ...userInfo }
   } else {
-    // first connexion, so create user
-    yield call(userCrud.create, { uid, ...userInfo })
-    yield put(user.set({ uid, ...userInfo }))
+    // first connexion, add user in database
+    user = { uid, ...userInfo }
+    yield call(userCrud.create, user)
   }
+  // add user in store
+  yield put(usersData.add(user))
+  yield put({ type: 'SET_AUTHENTICATED_USER', payload: uid })
 
   // go to the next url if exists
   const { next } = yield select(state => state.router.query)
@@ -44,7 +48,7 @@ function* signedIn({
 function* signedOut() {
   yield put({ type: 'FIREBASE_INITIALIZED' })
   yield put({ type: 'FIREBASE_AUTHENTICATED', payload: false })
-  yield put(user.reset())
+  yield put(usersData.reset())
 }
 
 export default function* authSaga() {

@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
 import forRoute from 'hoc-little-router'
 
-import user from 'redux/data/user'
+import { getUser } from 'redux/auth'
 import Profile from './profile'
 
 const mapState = (state) => {
   const {
     displayName, photoURL, email, ...profile
-  } = user.get()(state)
+  } = getUser(state)
   return {
     displayName,
     photoURL,

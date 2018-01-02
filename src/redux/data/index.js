@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
-import user from './user'
+import users from './users'
 import event from './event'
 import events from './events'
 import talk from './talk'
 import talks from './talks'
 
 export default combineReducers({
-  user,
+  users,
   event,
   events,
   talk,

@@ -5,20 +5,30 @@ import cn from 'classnames'
 
 import './avatar.css'
 
-const Avatar = ({ fullname, image, className }) => (
-  <div className={cn('avatar', { 'avatar-initials': !image, 'avatar-image': image }, className)}>
-    {image ? <img src={image} alt="avatar" /> : <span>{fullname.charAt(0)}</span>}
-  </div>
-)
+const Avatar = ({ displayName, photoURL, className }) => {
+  const classes = cn(
+    'avatar',
+    { 'avatar-initials': !photoURL, 'avatar-image': photoURL },
+    className,
+  )
+  return (
+    <div className={classes}>
+      {photoURL && <img src={photoURL} alt="avatar" />}
+      {!photoURL && displayName && <span>{displayName.charAt(0)}</span>}
+      {!photoURL && !displayName && <i className="fa fa-user-o" />}
+    </div>
+  )
+}
 
 Avatar.propTypes = {
-  fullname: PropTypes.string.isRequired,
-  image: PropTypes.string,
+  displayName: PropTypes.string,
+  photoURL: PropTypes.string,
   className: PropTypes.string,
 }
 
 Avatar.defaultProps = {
-  image: undefined,
+  displayName: undefined,
+  photoURL: undefined,
   className: undefined,
 }
 

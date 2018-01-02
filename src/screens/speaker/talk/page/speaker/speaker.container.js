@@ -2,17 +2,16 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
 
+import usersData from 'redux/data/users'
 import Speaker from './speaker'
 
-const mapState = () => ({
-  existSpeaker: true,
-  fullname: 'Benjamin Petetot',
-  avatar:
-    'https://lh6.googleusercontent.com/-eLNPp-cIkYU/AAAAAAAAAAI/AAAAAAAAK0g/GSqGVZIugwk/photo.jpg',
+const mapState = (state, { id }) => {
+  const { displayName, photoURL } = usersData.get(id)(state) || {}
+  return { displayName, photoURL }
+}
+
+const mapDispatch = (dispatch, { id }) => ({
+  load: () => dispatch({ type: 'FETCH_USER', payload: id }),
 })
 
-const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_SPEAKER' }),
-})
-
-export default compose(connect(mapState, mapDispatch), loader({ existSpeaker: ['loaded'] }))(Speaker)
+export default compose(connect(mapState, mapDispatch), loader())(Speaker)
