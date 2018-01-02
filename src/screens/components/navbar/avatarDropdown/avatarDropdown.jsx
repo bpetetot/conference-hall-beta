@@ -6,8 +6,10 @@ import IconLabel from 'components/iconLabel'
 import Avatar from 'components/avatar'
 import Dropdown from 'components/dropdown'
 
+import './avatarDropdown.css'
+
 const AvatarDropdown = ({ fullname, image, signout }) => {
-  const avatar = <Avatar image={image} fullname={fullname} />
+  const avatar = <Avatar image={image} fullname={fullname} className="avatar-dropdown" />
   return (
     <Dropdown action={avatar}>
       <div>{fullname}</div>

@@ -7,7 +7,7 @@ import './avatar.css'
 
 const Avatar = ({ fullname, image, className }) => (
   <div className={cn('avatar', { 'avatar-initials': !image, 'avatar-image': image }, className)}>
-    {image ? <img src={image} alt="user's avatar" /> : <span>{fullname}</span>}
+    {image ? <img src={image} alt="avatar" /> : <span>{fullname.charAt(0)}</span>}
   </div>
 )
 

@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: auto 30%;
   grid-template-rows: auto;
-  grid-template-areas: 'talk-content talk-submissions';
+  grid-template-areas: 'talk-content talk-info';
   grid-gap: 2em;
 }
 
@@ -10,20 +10,24 @@
   grid-area: talk-content;
 }
 
-.talk-page .talk-content > h3 {
-  margin-top: 2em;
+.talk-page .talk-info {
+  grid-area: talk-info;
+  align-self: start;
 }
 
-.talk-page .talk-proposals {
-  grid-area: talk-submissions;
-  align-self: start;
+.margin-gap {
+  margin-top: 2em;
 }
 
 @media only screen and (max-width: 1024px) {
   .talk-page {
     grid-template-columns: auto 30%;
     grid-template-rows: auto auto;
-    grid-template-areas: 'talk-content talk-content' 'talk-submissions talk-submissions';
+    grid-template-areas: 'talk-content talk-content' 'talk-info talk-info';
     grid-gap: 1em;
+  }
+
+  .margin-gap {
+    margin-top: 1em;
   }
 }

@@ -5,11 +5,13 @@ import { Link } from 'redux-little-router'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
+import Badge from 'components/badge'
+import Speaker from './speaker'
 
 import './talkPage.css'
 
 const TalkPage = ({
-  id, title, abstract, level, references,
+  id, title, abstract, level, references, speakers,
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
@@ -19,15 +21,21 @@ const TalkPage = ({
     </Titlebar>
     <div className="talk-page">
       <div className="talk-content card">
-        <span>Level : {level}</span>
         <h3>Abstract</h3>
         {abstract && <Markdown className="markdown" source={abstract} escapeHtml />}
-        <h3>References</h3>
+        <h3 className="margin-gap">References</h3>
         {references && <Markdown className="markdown" source={references} escapeHtml />}
       </div>
-      <div className="talk-proposals card">
-        <h3>Proposals</h3>
-        <small>No proposal yet</small>
+      <div className="talk-info">
+        <div className="card">
+          <h3>Speakers & Details</h3>
+          {Object.keys(speakers).map(key => <Speaker key={key} id={key} />)}
+          <Badge>Level {level}</Badge>
+        </div>
+        <div className="card margin-gap">
+          <h3>Proposals</h3>
+          <small>No proposal yet</small>
+        </div>
       </div>
     </div>
   </div>
@@ -39,12 +47,14 @@ TalkPage.propTypes = {
   abstract: PropTypes.string,
   level: PropTypes.string,
   references: PropTypes.string,
+  speakers: PropTypes.objectOf(PropTypes.bool),
 }
 
 TalkPage.defaultProps = {
   abstract: undefined,
   level: 'not defined',
   references: undefined,
+  speakers: {},
 }
 
 export default TalkPage
