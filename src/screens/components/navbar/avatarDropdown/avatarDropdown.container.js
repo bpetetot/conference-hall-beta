@@ -4,7 +4,7 @@ import { getUser } from 'redux/auth'
 import AvatarDropdown from './avatarDropdown'
 
 const mapState = (state) => {
-  const { displayName, photoURL } = getUser(state) || {}
+  const { displayName, photoURL } = getUser(state)
   return { displayName, photoURL }
 }
 

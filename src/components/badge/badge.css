@@ -11,9 +11,3 @@
   background-color: var(--primary-color);
   color: var(--primary-color-font);
 }
-
-.badge-pill {
-  padding-right: 0.6em;
-  padding-left: 0.6em;
-  border-radius: 10rem;
-}
