@@ -1,0 +1,9 @@
+.speaker-avatar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.speaker-avatar .speaker-avatar-fullname {
+  margin-left: 1em;
+}

@@ -3,7 +3,7 @@ import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
 import eventData from 'redux/data/event'
-import userData from 'redux/data/user'
+import { getUserId } from 'redux/auth'
 import { toast } from 'redux/ui/toaster'
 import eventCrud from 'sagas/event/event.firebase'
 
@@ -13,7 +13,7 @@ function* createOrUpdateEvent(form, event) {
     yield put(startSubmit(form))
     if (form === 'event-create') {
       // get user id
-      const { uid } = yield select(userData.get())
+      const uid = yield select(getUserId)
       // create event into database
       const ref = yield call(eventCrud.create, { ...event, owner: uid })
       // go to event page

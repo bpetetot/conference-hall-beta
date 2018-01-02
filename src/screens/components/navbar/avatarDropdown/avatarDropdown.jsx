@@ -6,11 +6,15 @@ import IconLabel from 'components/iconLabel'
 import Avatar from 'components/avatar'
 import Dropdown from 'components/dropdown'
 
-const AvatarDropdown = ({ fullname, image, signout }) => {
-  const avatar = <Avatar image={image} fullname={fullname} />
+import './avatarDropdown.css'
+
+const AvatarDropdown = ({ displayName, photoURL, signout }) => {
+  const avatar = (
+    <Avatar photoURL={photoURL} displayName={displayName} className="avatar-dropdown" />
+  )
   return (
     <Dropdown action={avatar}>
-      <div>{fullname}</div>
+      <div>{displayName}</div>
       <Link href="/">
         <IconLabel icon="fa fa-home" label="Conference Hall" />
       </Link>
@@ -22,14 +26,14 @@ const AvatarDropdown = ({ fullname, image, signout }) => {
 }
 
 AvatarDropdown.propTypes = {
-  fullname: PropTypes.string,
-  image: PropTypes.string,
+  displayName: PropTypes.string,
+  photoURL: PropTypes.string,
   signout: PropTypes.func.isRequired,
 }
 
 AvatarDropdown.defaultProps = {
-  fullname: undefined,
-  image: undefined,
+  displayName: undefined,
+  photoURL: undefined,
 }
 
 export default AvatarDropdown

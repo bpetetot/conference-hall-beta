@@ -1,12 +1,11 @@
 import { takeLatest, put, select } from 'redux-saga/effects'
 
-import userData from 'redux/data/user'
 import talksData from 'redux/data/talks'
+import { getUserId } from 'redux/auth'
 import { fetchUserTalks } from './talks.firebase'
 
 function* fetchMyTalks() {
-  // get user id
-  const { uid } = yield select(userData.get())
+  const uid = yield select(getUserId)
 
   const result = yield fetchUserTalks(uid)
 

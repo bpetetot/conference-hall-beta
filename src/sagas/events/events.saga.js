@@ -1,12 +1,11 @@
 import { takeLatest, put, select } from 'redux-saga/effects'
 
-import userData from 'redux/data/user'
 import eventsData from 'redux/data/events'
+import { getUserId } from 'redux/auth'
 import { fetchUserEvents } from './events.firebase'
 
 function* fetchMyEvents() {
-  // get user id
-  const { uid } = yield select(userData.get())
+  const uid = yield select(getUserId)
 
   const result = yield fetchUserEvents(uid)
 

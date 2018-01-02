@@ -8,30 +8,17 @@
 }
 
 .avatar-image > img {
-  border: 2px solid var(--primary-color-font);
   border-radius: 50%;
   height: 3em;
   width: 3em;
 }
 
-.avatar-image > img:hover {
-  border: 2px solid var(--secondary-color);
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
 .avatar-initials {
-  border: 2px solid var(--secondary-color);
   background: var(--secondary-color);
+  color: var(--secondary-color-font);
 }
 
-.avatar-initials:hover {
-  border: 2px solid var(--secondary-color-font);
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.avatar-initials > span {
+.avatar-initials > * {
   font-size: 1.5em;
   font-weight: 300;
 }

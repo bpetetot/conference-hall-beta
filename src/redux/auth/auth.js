@@ -1,6 +1,7 @@
 const initialState = {
   initialized: false,
   authenticated: false,
+  uid: undefined,
 }
 
 export default (state = initialState, action = {}) => {
@@ -9,6 +10,8 @@ export default (state = initialState, action = {}) => {
       return { ...state, initialized: true }
     case 'FIREBASE_AUTHENTICATED':
       return { ...state, authenticated: action.payload }
+    case 'SET_AUTHENTICATED_USER':
+      return { ...state, uid: action.payload }
     default:
       return state
   }

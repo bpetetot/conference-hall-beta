@@ -3,7 +3,7 @@ import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
 import { toast } from 'redux/ui/toaster'
-import userData from 'redux/data/user'
+import { getUserId } from 'redux/auth'
 import talkData from 'redux/data/talk'
 import talkCrud from 'sagas/talk/talk.firebase'
 
@@ -13,7 +13,7 @@ function* createOrUpdateTalk(form, talk) {
     yield put(startSubmit(form))
     if (form === 'talk-create') {
       // get user id
-      const { uid } = yield select(userData.get())
+      const uid = yield select(getUserId)
       // create talk into database
       const ref = yield call(talkCrud.create, { ...talk, speakers: { [uid]: true } })
       // go to talk page

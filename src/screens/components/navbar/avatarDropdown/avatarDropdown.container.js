@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
 
-import user from 'redux/data/user'
+import { getUser } from 'redux/auth'
 import AvatarDropdown from './avatarDropdown'
 
-const mapState = state => ({
-  fullname: user.get()(state).displayName,
-  image: user.get()(state).photoURL,
-})
+const mapState = (state) => {
+  const { displayName, photoURL } = getUser(state)
+  return { displayName, photoURL }
+}
 
 const mapDispatch = dispatch => ({
   signout: () => dispatch({ type: 'SIGN_OUT' }),
