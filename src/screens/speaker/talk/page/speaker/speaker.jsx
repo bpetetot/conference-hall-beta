@@ -17,7 +17,7 @@ Speaker.propTypes = {
 }
 
 Speaker.defaultProps = {
-  displayName: 'Speaker',
+  displayName: undefined,
   photoURL: undefined,
 }
 
