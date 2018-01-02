@@ -1,43 +1,70 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Markdown from 'react-markdown'
+import { Link } from 'redux-little-router'
 
-import IconLink from 'components/iconLink'
+import Titlebar from 'components/titlebar'
+import IconLabel from 'components/iconLabel'
+import CopyInput from 'components/copyInput'
+import Address from './addressBlock'
+import List from './listBlock'
+import Description from './descriptionBlock'
+import Cfp from './cfpBlock'
+import Dates from './datesBlock'
+import Website from './websiteBlock'
+
 import './eventPage.css'
 
-const EventInfo = ({
-  name, description, address, website,
+const EventPage = ({
+  id,
+  name,
+  type,
+  address,
+  conferenceDates,
+  description,
+  website,
+  categories,
+  formats,
 }) => (
-  <div className="event-page card">
-    <div className="event-header">
-      <h1>{name}</h1>
-      <div className="event-header-links">
-        <IconLink href={website} label="Website" icon="fa fa-globe" />
-        <IconLink
-          href={`https://www.google.com/maps/place/${encodeURI(address)}`}
-          label={address}
-          icon="fa fa-map-marker"
-        />
-      </div>
-    </div>
-    <div className="event-content">
-      {description && <Markdown className="markdown" source={description} escapeHtml />}
+  <div>
+    <Titlebar icon="fa fa-calendar-check-o" title={name}>
+      <CopyInput title="Share link" />
+      <Link href={`/organizer/event/${id}/edit`} className="btn btn-primary">
+        <IconLabel icon="fa fa-pencil" label="Edit" />
+      </Link>
+    </Titlebar>
+    <div className="event-page card">
+      <Cfp className="event-cfp" />
+      <Address className="event-address" address={address} />
+      {type === 'meetup' && <Website className="event-date" website={website} />}
+      {type === 'conference' && <Dates className="event-date" dates={conferenceDates} />}
+      <Description className="event-content" description={description} />
+      <List className="event-categories" title="Talk categories" list={categories} />
+      <List className="event-formats" title="Talk formats" list={formats} />
     </div>
   </div>
 )
 
-EventInfo.propTypes = {
+EventPage.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string,
-  description: PropTypes.string,
+  type: PropTypes.string,
   address: PropTypes.string,
+  conferenceDates: PropTypes.objectOf(PropTypes.instanceOf(Date)),
+  description: PropTypes.string,
   website: PropTypes.string,
+  categories: PropTypes.arrayOf(PropTypes.object),
+  formats: PropTypes.arrayOf(PropTypes.object),
 }
 
-EventInfo.defaultProps = {
+EventPage.defaultProps = {
   name: undefined,
-  description: undefined,
+  type: undefined,
   address: undefined,
+  conferenceDates: {},
+  description: undefined,
   website: undefined,
+  categories: [],
+  formats: [],
 }
 
-export default EventInfo
+export default EventPage

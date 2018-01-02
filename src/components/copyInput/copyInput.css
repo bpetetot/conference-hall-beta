@@ -1,0 +1,30 @@
+.copy-input {
+  display: flex;
+  border: 1px solid var(--grey-color);
+  border-radius: 3px;
+  align-items: center;
+}
+
+.copy-input .copy-title {
+  white-space: nowrap;
+  padding: 0 1em;
+}
+
+.copy-input > input {
+  border: none;
+  border-left: 1px solid var(--grey-color);
+  border-radius: 0;
+}
+
+.copy-input > input:focus {
+  border: none;
+  border-left: 1px solid var(--grey-color);
+}
+
+.copy-input > button {
+  background: var(--background-color);
+  border: none;
+  border-left: 1px solid var(--grey-color);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

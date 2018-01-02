@@ -1,46 +1,29 @@
-.talk-header {
-  grid-area: talk-header;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1em 2em;
-}
-
-.talk-content {
-  grid-area: talk-content;
-  padding: 1em 2em 2em 2em;
-}
-
-.talk-content > h2 {
-  margin-top: 2em;
-}
-
-.talk-proposals {
-  grid-area: talk-submissions;
-  padding: 1em 2em 2em 2em;
-  align-self: start;
-}
-
 .talk-page {
   display: grid;
   grid-template-columns: auto 30%;
   grid-template-rows: auto;
-  grid-template-areas: 'talk-header talk-header' 'talk-content talk-submissions';
+  grid-template-areas: 'talk-content talk-submissions';
   grid-gap: 2em;
+}
+
+.talk-page .talk-content {
+  grid-area: talk-content;
+}
+
+.talk-page .talk-content > h3 {
+  margin-top: 2em;
+}
+
+.talk-page .talk-proposals {
+  grid-area: talk-submissions;
+  align-self: start;
 }
 
 @media only screen and (max-width: 1024px) {
   .talk-page {
-    display: grid;
     grid-template-columns: auto 30%;
     grid-template-rows: auto auto;
-    grid-template-areas: 'talk-header talk-header' 'talk-content talk-content'
-      'talk-submissions talk-submissions';
+    grid-template-areas: 'talk-content talk-content' 'talk-submissions talk-submissions';
     grid-gap: 1em;
-    height: 100%;
-  }
-
-  .talk-toolbar {
-    display: none;
   }
 }

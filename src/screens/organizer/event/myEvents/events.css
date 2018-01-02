@@ -1,20 +1,20 @@
-.events-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.events-page .events-header {
   margin-bottom: 2em;
-  padding: 1em 2em;
 }
 
-.events-content > div {
+.events-page .events-content {
+  padding: 0em;
+}
+
+.events-page .events-content > div {
   border-bottom: 1px solid var(--grey-color);
 }
 
-.events-content > div:last-child {
+.events-page .events-content > div:last-child {
   border-bottom: none;
 }
 
-.no-events {
+.events-page .no-events {
   margin: 2em;
   color: var(--grey-color);
 }

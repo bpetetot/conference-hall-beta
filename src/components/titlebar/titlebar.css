@@ -1,0 +1,42 @@
+.titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2em;
+}
+
+.titlebar .titlebar-title {
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.titlebar .titlebar-actions {
+  display: flex;
+}
+
+.titlebar .titlebar-actions > * {
+  margin-left: 1em;
+}
+
+@media only screen and (max-width: 480px) {
+  .titlebar {
+    flex-direction: column;
+    margin-bottom: 1em;
+  }
+
+  .titlebar .titlebar-title {
+    margin: 0.5em 0;
+  }
+
+  .titlebar .titlebar-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .titlebar .titlebar-actions > * {
+    margin: 0;
+    margin-top: 1em;
+  }
+}
