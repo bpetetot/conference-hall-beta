@@ -1,62 +1,70 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Markdown from 'react-markdown'
 import { Link } from 'redux-little-router'
 
+import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
-import IconLink from 'components/iconLink'
+import CopyInput from 'components/copyInput'
+import Address from './addressBlock'
+import List from './listBlock'
+import Description from './descriptionBlock'
+import Cfp from './cfpBlock'
+import Dates from './datesBlock'
+import Website from './websiteBlock'
+
 import './eventPage.css'
 
-const EventInfo = ({
-  id, name, description, address, website, categories, formats,
+const EventPage = ({
+  id,
+  name,
+  type,
+  address,
+  conferenceDates,
+  description,
+  website,
+  categories,
+  formats,
 }) => (
-  <div className="event-page">
-    <div className="event-header card">
-      <h2>
-        <IconLabel icon="fa fa-calendar-check-o" label={name} />
-      </h2>
+  <div>
+    <Titlebar icon="fa fa-calendar-check-o" title={name}>
+      <CopyInput title="Share link" />
       <Link href={`/organizer/event/${id}/edit`} className="btn btn-primary">
         <IconLabel icon="fa fa-pencil" label="Edit" />
       </Link>
-    </div>
-    <div className="event-content card">
-      <div className="event-links">
-        <IconLink href={website} label="Website" icon="fa fa-globe" />
-        <IconLink
-          href={`https://www.google.com/maps/place/${encodeURI(address)}`}
-          label={address}
-          icon="fa fa-map-marker"
-        />
-      </div>
-      <div className="event-description">
-        {description && <Markdown className="markdown" source={description} escapeHtml />}
-        <h3>Talk categories</h3>
-        <div>{categories.map(c => c.name).join(', ')}</div>
-        <h3>Talk formats</h3>
-        <div>{formats.map(c => c.name).join(', ')}</div>
-      </div>
-    </div>
-    <div className="event-cfp card">
-      <h3>Call for paper</h3>
+    </Titlebar>
+    <div className="event-page card">
+      <Cfp className="event-cfp" />
+      <Address className="event-address" address={address} />
+      {type === 'meetup' && <Website className="event-date" website={website} />}
+      {type === 'conference' && <Dates className="event-date" dates={conferenceDates} />}
+      <Description className="event-content" description={description} />
+      <List className="event-categories" title="Talk categories" list={categories} />
+      <List className="event-formats" title="Talk formats" list={formats} />
     </div>
   </div>
 )
 
-EventInfo.propTypes = {
+EventPage.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  type: PropTypes.string,
   address: PropTypes.string,
+  conferenceDates: PropTypes.objectOf(PropTypes.instanceOf(Date)),
+  description: PropTypes.string,
   website: PropTypes.string,
   categories: PropTypes.arrayOf(PropTypes.object),
   formats: PropTypes.arrayOf(PropTypes.object),
 }
 
-EventInfo.defaultProps = {
+EventPage.defaultProps = {
+  name: undefined,
+  type: undefined,
   address: undefined,
+  conferenceDates: {},
+  description: undefined,
   website: undefined,
-  categories: {},
-  formats: {},
+  categories: [],
+  formats: [],
 }
 
-export default EventInfo
+export default EventPage

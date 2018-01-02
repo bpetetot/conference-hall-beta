@@ -1,0 +1,19 @@
+.list-block > ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 1em;
+  border-left: 2px solid var(--grey-color);
+}
+
+.list-block > ul > li {
+  padding: 0.5em 0;
+}
+
+.list-block .list-item-name {
+  font-weight: 600;
+}
+
+.list-block .list-item-description {
+  padding-top: 0.5em;
+  color: var(--grey-color-dark);
+}

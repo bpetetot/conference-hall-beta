@@ -2,20 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'redux-little-router'
 
+import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import TalkCard from './talkCard'
 import './talks.css'
 
 const MyTalks = ({ talks }) => (
-  <div>
-    <div className="talks-header card">
-      <h2>
-        <IconLabel icon="fa fa-calendar-o" label="My talks" />
-      </h2>
+  <div className="talks-page">
+    <Titlebar icon="fa fa-microphone" title="My talks">
       <Link href="/speaker/talk/create" className="btn btn-primary btn-create-talk">
         <IconLabel icon="fa fa-calendar-plus-o" label="Create talk" />
       </Link>
-    </div>
+    </Titlebar>
     <div className="talks-content card">
       {talks.length === 0 && (
         <div className="no-talks">

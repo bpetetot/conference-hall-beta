@@ -1,16 +1,12 @@
-.talks-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2em;
-  padding: 1em 2em;
+.talks-page .talks-content {
+  padding: 0em;
 }
 
-.talks-content > div {
+.talks-page .talks-content > div {
   border-bottom: 1px solid var(--grey-color);
 }
 
-.talks-content > div:last-child {
+.talks-page .talks-content > div:last-child {
   border-bottom: none;
 }
 
@@ -20,21 +16,11 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .organizer-talks {
-    padding: 0;
-  }
-
-  .talks-content {
+  .talks-page .talks-content {
     border-radius: 0;
     margin: 0;
   }
-  .talks-header {
+  .talks-page .talks-header {
     font-size: 0.8em;
-  }
-  .talks-header h1 {
-    margin: 0.6em 0;
-  }
-  .talks-header .btn-create-talk {
-    display: none;
   }
 }

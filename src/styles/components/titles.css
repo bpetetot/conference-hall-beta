@@ -4,6 +4,8 @@ h3 {
   letter-spacing: 2px;
   font-weight: 400;
   text-transform: uppercase;
+  margin-top: 0;
+  color: var(--grey-color-dark);
 }
 
 h1 {
