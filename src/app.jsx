@@ -9,6 +9,7 @@ import Home from './screens/home'
 import Login from './screens/login'
 import Organizer from './screens/organizer'
 import Speaker from './screens/speaker'
+import Public from './screens/public'
 
 import './styles'
 
@@ -18,6 +19,7 @@ const App = ({ className }) => (
     <Login />
     <Organizer />
     <Speaker />
+    <Public />
     <Toaster />
     <NotFound />
   </div>

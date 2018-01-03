@@ -16,6 +16,12 @@
   margin: 3em;
 }
 
+.layout-main.layout-main-public {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1400px;
+}
+
 .layout-brand {
   grid-area: brand;
 }
@@ -28,9 +34,16 @@
   height: 100%;
 }
 
+.layout-screen.layout-screen-public {
+  grid-template-areas: 'brand navbar' 'main main';
+}
+
 @media only screen and (max-width: 480px) {
   .layout-screen {
     grid-template-columns: auto;
+    grid-template-areas: 'brand' 'main';
+  }
+  .layout-screen.layout-screen-public {
     grid-template-areas: 'brand' 'main';
   }
   .layout-navbar {

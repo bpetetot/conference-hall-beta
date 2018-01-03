@@ -14,9 +14,10 @@ import Cfp from './cfpBlock'
 import Dates from './datesBlock'
 import Website from './websiteBlock'
 
-import './eventPage.css'
+import './event.css'
 
-const EventPage = ({
+const Event = ({
+  isPublic,
   id,
   name,
   type,
@@ -29,10 +30,12 @@ const EventPage = ({
 }) => (
   <div className="event-page">
     <Titlebar icon="fa fa-calendar-check-o" title={name} className="event-page-header">
-      <CopyInput title="Share link" />
-      <Link href={`/organizer/event/${id}/edit`} className="btn btn-primary">
-        <IconLabel icon="fa fa-pencil" label="Edit" />
-      </Link>
+      {!isPublic && <CopyInput title="Share link" />}
+      {!isPublic && (
+        <Link href={`/organizer/event/${id}/edit`} className="btn btn-primary">
+          <IconLabel icon="fa fa-pencil" label="Edit" />
+        </Link>
+      )}
     </Titlebar>
     <div className="event-page-content card">
       <Cfp className="event-cfp" />
@@ -49,7 +52,8 @@ const EventPage = ({
   </div>
 )
 
-EventPage.propTypes = {
+Event.propTypes = {
+  isPublic: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
   type: PropTypes.string,
@@ -61,7 +65,7 @@ EventPage.propTypes = {
   formats: PropTypes.arrayOf(PropTypes.object),
 }
 
-EventPage.defaultProps = {
+Event.defaultProps = {
   name: undefined,
   type: undefined,
   address: undefined,
@@ -72,4 +76,4 @@ EventPage.defaultProps = {
   formats: [],
 }
 
-export default EventPage
+export default Event

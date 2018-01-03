@@ -31,6 +31,10 @@ const routes = {
       },
     },
   },
+  '/public': {
+    title: 'PUBLIC',
+    '/event/:id': { title: 'PUBLIC_EVENT' },
+  },
   '/login': { title: 'LOGIN' },
   '/': { title: 'HOME' },
 }
@@ -48,6 +52,7 @@ export const matchRecursively = (result, title) => {
 
 // route matching
 export const isRouteNotFound = state => !getRouterResult(state)
+export const isPublicRoute = state => matchRecursively(getRouterResult(state), 'PUBLIC')
 export const isOrganizerRoute = state => matchRecursively(getRouterResult(state), 'HOME_ORGANIZER')
 export const isSpeakerRoute = state => matchRecursively(getRouterResult(state), 'HOME_SPEAKER')
 export const isMobileMenuRoute = state => matchRecursively(getRouterResult(state), 'MOBILE_MENU')
