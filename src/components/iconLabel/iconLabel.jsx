@@ -9,13 +9,13 @@ const IconLabel = ({ icon, label, className }) => (
     <span>
       <i className={icon} />
     </span>
-    <span>{label}</span>
+    <span className="icon-label-label">{label}</span>
   </span>
 )
 
 IconLabel.propTypes = {
   icon: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
   className: PropTypes.string,
 }
 

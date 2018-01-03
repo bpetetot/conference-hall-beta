@@ -4,21 +4,18 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: var(--primary-color);
-}
-
-.login-loading {
-  background: var(--primary-color);
 }
 
 .login .login-title {
   text-transform: uppercase;
   margin-bottom: 1em;
-  color: var(--primary-color-font);
+  color: var(--primary-color);
 }
 
 .login .login-back {
   margin-top: 1em;
+  color: var(--secondary-color);
+  text-decoration: underline;
 }
 
 .login button {

@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import IconCard from 'components/iconCard'
+import IconLink from 'components/iconLink'
 
 const AddressBlock = ({ address, className }) => {
   if (!address) return null
   return (
-    <IconCard
-      icon="fa fa-map-marker"
+    <IconLink
+      icon="fa fa-map-marker fa-2x"
+      label={address}
       className={className}
       href={`https://www.google.com/maps/place/${encodeURIComponent(address)}`}
-    >
-      {address}
-    </IconCard>
+    />
   )
 }
 

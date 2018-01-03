@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { lgf, mdf } from 'helpers/date'
-import IconCard from 'components/iconCard'
+import IconLabel from 'components/iconLabel'
 import isEqual from 'date-fns/is_equal'
 
 import './datesBlock.css'
@@ -10,15 +10,19 @@ import './datesBlock.css'
 const DatesBlock = ({ dates: { start, end }, className }) => {
   if (!start && !end) return null
   return (
-    <IconCard icon="fa fa-calendar" className={className}>
-      {isEqual(start, end) ? (
-        <span>{lgf(start)}</span>
-      ) : (
-        <span className="dates-block-range">
-          {mdf(start)} <i className="fa fa-caret-right" /> {mdf(end)}
-        </span>
-      )}
-    </IconCard>
+    <IconLabel
+      icon="fa fa-calendar fa-2x"
+      className={className}
+      label={
+        isEqual(start, end) ? (
+          <span>{lgf(start)}</span>
+        ) : (
+          <span className="dates-block-range">
+            {mdf(start)} <i className="fa fa-caret-right" /> {mdf(end)}
+          </span>
+        )
+      }
+    />
   )
 }
 
