@@ -27,30 +27,35 @@ const Event = ({
   website,
   categories,
   formats,
-}) => (
-  <div className="event-page">
-    <Titlebar icon="fa fa-calendar-check-o" title={name} className="event-page-header">
-      {!isPublic && <CopyInput title="Share link" />}
-      {!isPublic && (
-        <Link href={`/organizer/event/${id}/edit`} className="btn btn-primary">
-          <IconLabel icon="fa fa-pencil" label="Edit" />
-        </Link>
-      )}
-    </Titlebar>
-    <div className="event-page-content card">
-      <Cfp className="event-cfp" />
-      <Description className="event-content" description={description} />
-      <List className="event-categories" title="Talk categories" list={categories} />
-      <List className="event-formats" title="Talk formats" list={formats} />
+}) => {
+  const url = window.location.href.split('/')
+  return (
+    <div className="event-page">
+      <Titlebar icon="fa fa-calendar-check-o" title={name} className="event-page-header">
+        {!isPublic && (
+          <CopyInput title="Share link" value={`${url[0]}/${url[2]}/public/event/${id}`} />
+        )}
+        {!isPublic && (
+          <Link href={`/organizer/event/${id}/edit`} className="btn btn-primary">
+            <IconLabel icon="fa fa-pencil" label="Edit" />
+          </Link>
+        )}
+      </Titlebar>
+      <div className="event-page-content card">
+        <Cfp className="event-cfp" />
+        <Description className="event-content" description={description} />
+        <List className="event-categories" title="Talk categories" list={categories} />
+        <List className="event-formats" title="Talk formats" list={formats} />
+      </div>
+      <div className="event-page-info card">
+        <Maps address={address} />
+        {type === 'conference' && <Dates className="event-date" dates={conferenceDates} />}
+        <Address className="event-address" address={address} />
+        <Website className="event-date" website={website} />
+      </div>
     </div>
-    <div className="event-page-info card">
-      <Maps address={address} />
-      {type === 'conference' && <Dates className="event-date" dates={conferenceDates} />}
-      <Address className="event-address" address={address} />
-      <Website className="event-date" website={website} />
-    </div>
-  </div>
-)
+  )
+}
 
 Event.propTypes = {
   isPublic: PropTypes.bool.isRequired,
