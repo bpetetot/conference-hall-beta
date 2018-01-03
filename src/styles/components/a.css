@@ -1,9 +1,10 @@
 a {
+  color: var(--primary-color);
   text-decoration: none;
-  transition: all 0.5s;
-  color: var(--secondary-color);
+  text-decoration-skip: ink;
+  transition: all 0.3s;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: var(--secondary-color);
 }

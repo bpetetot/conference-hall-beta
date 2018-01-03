@@ -1,15 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import IconCard from 'components/iconCard'
+import IconLink from 'components/iconLink'
 
 const WebsiteBlock = ({ website, className }) => {
   if (!website) return null
-  return (
-    <IconCard icon="fa fa-globe" className={className} href={website}>
-      {website}
-    </IconCard>
-  )
+  return <IconLink icon="fa fa-globe fa-2x" className={className} label={website} href={website} />
 }
 WebsiteBlock.propTypes = {
   website: PropTypes.string,

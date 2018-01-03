@@ -5,6 +5,8 @@ import { Link } from 'redux-little-router'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import CopyInput from 'components/copyInput'
+import Maps from 'components/maps'
+
 import Address from './addressBlock'
 import List from './listBlock'
 import Description from './descriptionBlock'
@@ -25,21 +27,24 @@ const EventPage = ({
   categories,
   formats,
 }) => (
-  <div>
-    <Titlebar icon="fa fa-calendar-check-o" title={name}>
+  <div className="event-page">
+    <Titlebar icon="fa fa-calendar-check-o" title={name} className="event-page-header">
       <CopyInput title="Share link" />
       <Link href={`/organizer/event/${id}/edit`} className="btn btn-primary">
         <IconLabel icon="fa fa-pencil" label="Edit" />
       </Link>
     </Titlebar>
-    <div className="event-page card">
+    <div className="event-page-content card">
       <Cfp className="event-cfp" />
-      <Address className="event-address" address={address} />
-      {type === 'meetup' && <Website className="event-date" website={website} />}
-      {type === 'conference' && <Dates className="event-date" dates={conferenceDates} />}
       <Description className="event-content" description={description} />
       <List className="event-categories" title="Talk categories" list={categories} />
       <List className="event-formats" title="Talk formats" list={formats} />
+    </div>
+    <div className="event-page-info card">
+      <Maps address={address} />
+      {type === 'conference' && <Dates className="event-date" dates={conferenceDates} />}
+      <Address className="event-address" address={address} />
+      <Website className="event-date" website={website} />
     </div>
   </div>
 )

@@ -1,11 +1,11 @@
 .default-theme {
   --font-size: 14px;
-  --background-color: #edf2f5;
+  --background-color: #2a3244;
 
-  --primary-color: #2a3244;
-  --primary-color-light: #373f51;
-  --primary-color-dark: #1f2022;
-  --primary-color-font: #fff;
+  --primary-color: #edf2f5;
+  --primary-color-light: #edf2f5;
+  --primary-color-dark: #edf2f5;
+  --primary-color-font: #2a3244;
 
   --secondary-color: #ffab00;
   --secondary-color-light: #ffdd4b;

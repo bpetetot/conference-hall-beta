@@ -1,6 +1,9 @@
 .icon-label {
   display: flex;
-  align-items: center;
+}
+
+.icon-label-label {
+  align-self: center;
 }
 
 button .icon-label {
