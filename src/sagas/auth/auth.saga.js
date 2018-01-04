@@ -23,6 +23,7 @@ function* signedIn({
   // set auth initialized and authenticated
   yield put({ type: 'FIREBASE_INITIALIZED' })
   yield put({ type: 'FIREBASE_AUTHENTICATED', payload: true })
+  yield put({ type: 'SET_AUTHENTICATED_USER', payload: uid })
 
   // check if user exists in database
   let user
@@ -36,7 +37,6 @@ function* signedIn({
   }
   // add user in store
   yield put(usersData.add(user))
-  yield put({ type: 'SET_AUTHENTICATED_USER', payload: uid })
 
   // go to the next url if exists
   const { next } = yield select(state => state.router.query)
