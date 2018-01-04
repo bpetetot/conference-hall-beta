@@ -17,7 +17,7 @@
 }
 
 .layout-main.layout-main-public {
-  margin: 0 3em;
+  padding: 0 3em;
 }
 
 .layout-main.layout-main-public > * {
@@ -51,7 +51,7 @@
     grid-template-areas: 'brand' 'main';
   }
   .layout-main.layout-main-public {
-    margin: 0;
+    padding: 0;
   }
   .layout-navbar {
     display: none;
