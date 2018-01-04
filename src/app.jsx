@@ -5,21 +5,17 @@ import cn from 'classnames'
 import withTheme from 'styles/themes/withTheme'
 import Toaster from 'components/toaster'
 import NotFound from './screens/components/notFound'
-import Home from './screens/home'
-import Login from './screens/login'
+import Conference from './screens/conference'
 import Organizer from './screens/organizer'
 import Speaker from './screens/speaker'
-import Public from './screens/public'
 
 import './styles'
 
 const App = ({ className }) => (
   <div className={cn('app', className)}>
-    <Home />
-    <Login />
+    <Conference />
     <Organizer />
     <Speaker />
-    <Public />
     <Toaster />
     <NotFound />
   </div>

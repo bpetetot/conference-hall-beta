@@ -8,28 +8,22 @@ import BrandMobile from './brandMobile'
 import './brand.css'
 
 const Brand = ({
-  title, app, opened, isMobile, goBack, className,
-}) =>
-  (isMobile ? (
-    <BrandMobile
-      title={title}
-      className={cn('brand', className)}
-      app={app}
-      goBack={goBack}
-      opened={opened}
-    />
-  ) : (
+  title, baseRoute, isMobile, className,
+}) => {
+  if (isMobile && baseRoute !== '/') {
+    return <BrandMobile className={cn('brand', className)} />
+  }
+  return (
     <div className={cn('brand', className)}>
-      <Link href={app === 'organizer' ? '/organizer' : '/speaker'}>{title}</Link>
+      <Link href={baseRoute}>{title}</Link>
     </div>
-  ))
+  )
+}
 
 Brand.propTypes = {
   title: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  app: PropTypes.string.isRequired,
-  opened: PropTypes.bool.isRequired,
-  goBack: PropTypes.func.isRequired,
+  baseRoute: PropTypes.string.isRequired,
   className: PropTypes.string,
 }
 

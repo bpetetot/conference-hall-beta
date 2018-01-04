@@ -16,6 +16,10 @@
   margin: 3em;
 }
 
+.layout-main.layout-main-public {
+  margin: 0 3em;
+}
+
 .layout-main.layout-main-public > * {
   margin-right: auto;
   margin-left: auto;
@@ -45,6 +49,9 @@
   }
   .layout-screen.layout-screen-public {
     grid-template-areas: 'brand' 'main';
+  }
+  .layout-main.layout-main-public {
+    margin: 0;
   }
   .layout-navbar {
     display: none;

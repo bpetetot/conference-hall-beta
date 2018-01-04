@@ -2,7 +2,19 @@ import { routerForBrowser } from 'redux-little-router'
 
 // application routes
 const routes = {
+  '/': {
+    app: 'conference',
+    appTitle: 'Conference Hall',
+    title: 'HOME',
+    '/login': { title: 'LOGIN' },
+    '/public': {
+      title: 'PUBLIC',
+      '/event/:id': { title: 'PUBLIC_EVENT' },
+    },
+  },
   '/organizer': {
+    app: 'organizer',
+    appTitle: 'Organizer Hall',
     title: 'HOME_ORGANIZER',
     '/menu': { title: 'MOBILE_MENU' },
     '/event/create': { title: 'CREATE_EVENT' },
@@ -19,6 +31,8 @@ const routes = {
     },
   },
   '/speaker': {
+    app: 'speaker',
+    appTitle: 'Speaker Hall',
     title: 'HOME_SPEAKER',
     '/menu': { title: 'MOBILE_MENU' },
     '/profile': { title: 'SPEAKER_PROFILE' },
@@ -31,31 +45,47 @@ const routes = {
       },
     },
   },
-  '/public': {
-    title: 'PUBLIC',
-    '/event/:id': { title: 'PUBLIC_EVENT' },
-  },
-  '/login': { title: 'LOGIN' },
-  '/': { title: 'HOME' },
 }
 
 // selectors
 export const getRouter = state => state.router
 export const getRouterResult = state => getRouter(state).result
 
+// get the given attribute value for the current route hierarchy
+const getRecursively = (result, attribute) => {
+  if (!result) return undefined
+  if (result[attribute]) return result[attribute]
+  return getRecursively(result.parent, attribute)
+}
+
 // check if given title match with the current route hierarchy
-export const matchRecursively = (result, title) => {
+const matchRoute = (result, title) => {
   if (!result) return false
   if (result.title === title) return true
-  return matchRecursively(result.parent, title)
+  return matchRoute(result.parent, title)
 }
 
 // route matching
 export const isRouteNotFound = state => !getRouterResult(state)
-export const isPublicRoute = state => matchRecursively(getRouterResult(state), 'PUBLIC')
-export const isOrganizerRoute = state => matchRecursively(getRouterResult(state), 'HOME_ORGANIZER')
-export const isSpeakerRoute = state => matchRecursively(getRouterResult(state), 'HOME_SPEAKER')
-export const isMobileMenuRoute = state => matchRecursively(getRouterResult(state), 'MOBILE_MENU')
+export const isPublicRoute = state => matchRoute(getRouterResult(state), 'PUBLIC')
+export const isOrganizerRoute = state => matchRoute(getRouterResult(state), 'HOME_ORGANIZER')
+export const isSpeakerRoute = state => matchRoute(getRouterResult(state), 'HOME_SPEAKER')
+export const isMobileMenuRoute = state => matchRoute(getRouterResult(state), 'MOBILE_MENU')
+
+// router attributes selectors
+export const getAppName = state => getRecursively(getRouterResult(state), 'app')
+export const getAppTitle = state => getRecursively(getRouterResult(state), 'appTitle')
+export const getBaseRoute = (state) => {
+  const app = getRecursively(getRouterResult(state), 'app')
+  switch (app) {
+    case 'speaker':
+      return '/speaker'
+    case 'organizer':
+      return '/organizer'
+    default:
+      return '/'
+  }
+}
 
 // redux-little-router configuration
 export const { reducer, middleware, enhancer } = routerForBrowser({ routes })

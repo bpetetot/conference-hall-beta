@@ -13,3 +13,8 @@
   margin: 0 0 1em 0;
   text-align: center;
 }
+
+.page-not-found > a {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}

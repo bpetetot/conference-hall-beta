@@ -1,4 +1,5 @@
 import React from 'react'
+import forRoute from 'hoc-little-router'
 
 import Brand from 'screens/components/brand'
 import Navbar from 'screens/components/navbar'
@@ -14,4 +15,4 @@ const Public = () => (
   </div>
 )
 
-export default Public
+export default forRoute('PUBLIC')(Public)
