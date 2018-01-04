@@ -1,20 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cn from 'classnames'
 import { Link } from 'redux-little-router'
 
 import './brandMobile.css'
 
 const Brand = ({
-  title, opened, className, app, goBack,
+  title, opened, className, baseRoute, goBack,
 }) => (
-  <div className={cn('brand', className)}>
+  <div className={className}>
     {opened ? (
       <a onClick={goBack} role="button" className="burger-link">
         <i className="fa fa-arrow-left" />
       </a>
     ) : (
-      <Link href={`/${app}/menu`} className="burger-link">
+      <Link href={`${baseRoute}/menu`} className="burger-link">
         <i className="fa fa-bars" />
       </Link>
     )}
@@ -26,7 +25,7 @@ Brand.propTypes = {
   title: PropTypes.string.isRequired,
   opened: PropTypes.bool.isRequired,
   goBack: PropTypes.func.isRequired,
-  app: PropTypes.string.isRequired,
+  baseRoute: PropTypes.string.isRequired,
   className: PropTypes.string,
 }
 

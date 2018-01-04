@@ -1,16 +1,16 @@
 .default-theme {
   --font-size: 14px;
-  --background-color: #2a3244;
+  --background-color: #edf2f5;
 
-  --primary-color: #edf2f5;
-  --primary-color-light: #edf2f5;
-  --primary-color-dark: #edf2f5;
-  --primary-color-font: #2a3244;
+  --primary-color: #2a3244;
+  --primary-color-light: #373f51;
+  --primary-color-dark: #1f2022;
+  --primary-color-font: #fff;
 
   --secondary-color: #ffab00;
   --secondary-color-light: #ffdd4b;
   --secondary-color-dark: #c67c00;
-  --secondary-color-font: #fff;
+  --secondary-color-font: #2a3244;
 
   --grey-color: #c4c9d6;
   --grey-color-dark: #95949b;
