@@ -22,12 +22,17 @@ class Modal extends Component {
   }
 
   render() {
-    const { opened, children, className } = this.props
+    const {
+      opened, onClose, children, className,
+    } = this.props
     if (!opened) return null
     return (
       <Portal className="modal">
         <div ref={e => (this.modal = e)} className={cn('modal-content', className)}>
           {children}
+          <div className="modal-close" onClick={onClose} role="button">
+            <i className="fa fa-times fa-fw fa-2x" />
+          </div>
         </div>
       </Portal>
     )
