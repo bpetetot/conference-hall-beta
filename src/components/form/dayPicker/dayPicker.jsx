@@ -37,6 +37,7 @@ class DayPicker extends React.Component {
         hideKeyboardShortcutsPanel
         readOnly
         displayFormat="MMMM Do YYYY"
+        isOutsideRange={() => false}
         customInputIcon={<i className="fa fa-calendar" />}
         navNext={<i className="fa fa-arrow-right" />}
         navPrev={<i className="fa fa-arrow-left" />}
