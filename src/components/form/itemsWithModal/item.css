@@ -1,8 +1,11 @@
-.item-box.btn {
+.item-box.btn.btn-link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   min-width: initial;
+  overflow: hidden;
+  white-space: normal;
+  text-align: left;
+  border: 1px solid var(--grey-color);
 }
 
 .item-box > a {

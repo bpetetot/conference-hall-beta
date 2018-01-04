@@ -1,10 +1,11 @@
 .DateRangePickerInput {
   background: none;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--grey-color);
   display: flex;
   align-items: center;
   background: #fff;
   border-radius: 3px;
+  z-index: 2;
 }
 
 .DateRangePickerInput .DateRangePickerInput_calendarIcon {
@@ -32,7 +33,7 @@
   color: #000;
   font-family: inherit;
   outline: none;
-  padding: 11px 0 9px 0;
+  padding: 0;
   transition: all 0.5s;
   width: 100%;
   box-shadow: none;
@@ -45,15 +46,15 @@
 
 .DateRangePickerInput .DateRangePickerInput_arrow {
   color: #000;
-  margin: 0 1em;
+  margin-right: 1em;
+}
+
+.DateRangePickerInput .DateInput .DateInput_fang {
+  display: none;
 }
 
 .DateRangePicker_picker {
-  z-index: 2;
-}
-
-.DateRangePicker_picker__openDown {
-  top: 50px;
+  top: 3em !important;
 }
 
 .DateRangePicker_picker .CalendarDay__selected {
