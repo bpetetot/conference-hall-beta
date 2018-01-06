@@ -44,6 +44,10 @@ const routes = {
         '/edit': { title: 'EDIT_TALK' },
       },
     },
+    '/event': {
+      title: 'HOME_EVENT',
+      '/:id': { title: 'EVENT_PAGE' },
+    },
   },
 }
 

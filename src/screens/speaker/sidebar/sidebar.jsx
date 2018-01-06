@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import IconLabel from 'components/iconLabel'
 import { SideBar, SideBarPanel, SideBarLink } from 'components/sidebar'
+import EventSidebar from './event'
 
 const SpeakerSideBar = ({ fullname, className }) => (
   <SideBar className={className}>
@@ -14,6 +15,7 @@ const SpeakerSideBar = ({ fullname, className }) => (
         <IconLabel icon="fa fa-microphone" label="My talks" />
       </SideBarLink>
     </SideBarPanel>
+    <EventSidebar />
   </SideBar>
 )
 

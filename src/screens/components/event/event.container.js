@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
 
 import { isPublicRoute } from 'redux/routes'
-import { getEventFromRouterParam } from 'redux/data/events'
+import { getEventFromRouterParam, getCfpState } from 'redux/data/events'
 import LoadingIndicator from 'components/loading'
 import Event from './event'
 
@@ -12,6 +12,7 @@ const mapState = (state) => {
   return {
     loaded: !!event,
     isPublic: isPublicRoute(state),
+    cfpState: getCfpState(event.id)(state),
     ...event,
   }
 }

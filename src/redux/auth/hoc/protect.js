@@ -41,7 +41,7 @@ export default (Component) => {
   const mapState = state => ({
     authenticated: isAuthenticated(state),
     initialized: isInitialized(state),
-    url: state.router.pathname,
+    url: `${state.router.pathname}${state.router.search}`,
   })
 
   const mapDispatch = dispatch => ({

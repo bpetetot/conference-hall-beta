@@ -10,6 +10,7 @@ import Talks from './talks'
 import TalkCreate from './talk/create'
 import TalkEdit from './talk/edit'
 import Talk from './talk/page'
+import Event from './event/page'
 
 const Speaker = () => (
   <div className="layout-screen">
@@ -23,6 +24,7 @@ const Speaker = () => (
       <TalkEdit />
       <Talk />
       <Talks />
+      <Event />
     </div>
   </div>
 )
