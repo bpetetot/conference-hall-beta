@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 import { call, put, takeLatest, select } from 'redux-saga/effects'
-import { push } from 'redux-little-router'
+import { push, replace } from 'redux-little-router'
 
 import usersData from 'redux/data/users'
 import userCrud from 'sagas/user/user.firebase'
@@ -41,7 +41,7 @@ function* signedIn({
   // go to the next url if exists
   const { next } = yield select(state => state.router.query)
   if (next) {
-    yield put(push(next))
+    yield put(replace(next))
   }
 }
 
