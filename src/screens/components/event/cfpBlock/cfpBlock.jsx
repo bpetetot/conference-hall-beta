@@ -23,7 +23,7 @@ class CfpBlock extends Component {
           !isEmpty(cfpDates) && <small>will open {lgf(cfpDates.start)}</small>}
         {cfpState === 'opened' && !isEmpty(cfpDates) && <small>until {lgf(cfpDates.end)}</small>}
         {cfpState === 'closed' &&
-          deliberationDate && <small>Deliberation date will be {deliberationDate}</small>}
+          deliberationDate && <small>Deliberation date will be {lgf(deliberationDate)}</small>}
       </div>
     )
   }
