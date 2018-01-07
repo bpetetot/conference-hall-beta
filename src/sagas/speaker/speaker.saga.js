@@ -7,12 +7,12 @@ import userCrud from 'sagas/user/user.firebase'
 
 function* initSpeakerApp() {
   // check if an event is in query params
-  const { event } = yield select(state => state.router.query)
-  if (event) {
+  const { eventId } = yield select(state => state.router.query)
+  if (eventId) {
     // set contextual event id
-    yield put(speakerApp.set({ currentEventId: event }))
+    yield put(speakerApp.set({ currentEventId: eventId }))
     // fetch the event
-    yield put({ type: 'FETCH_EVENT', payload: event })
+    yield put({ type: 'FETCH_EVENT', payload: eventId })
   }
 }
 
