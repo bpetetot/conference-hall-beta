@@ -14,9 +14,6 @@ const SpeakerSideBar = ({ fullname, className }) => (
       <SideBarLink to="/speaker">
         <IconLabel icon="fa fa-microphone" label="My talks" />
       </SideBarLink>
-      <SideBarLink to="/events">
-        <IconLabel icon="fa fa-calendar" label="Last events" />
-      </SideBarLink>
     </SideBarPanel>
     <EventSidebar />
   </SideBar>

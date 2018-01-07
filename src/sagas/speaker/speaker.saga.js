@@ -18,7 +18,6 @@ function* initSpeakerApp() {
       yield put(eventsData.add({ eventId, ...ref.data() }))
       // set contextual event id
       yield put(speakerApp.set({ currentEventId: eventId }))
-      // TODO add it to last events
     }
   }
 }
