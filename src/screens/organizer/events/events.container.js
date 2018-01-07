@@ -13,7 +13,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'MY_EVENTS_SEARCH' }),
+  load: () => dispatch({ type: 'FETCH_ORGANIZER_EVENTS' }),
 })
 
 export default compose(

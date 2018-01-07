@@ -1,11 +1,8 @@
 import { connect } from 'react-redux'
 
-import event from 'redux/data/event'
+import { getEventFromRouterParam } from 'redux/data/events'
 import EventSidebar from './eventSidebar'
 
-const mapState = (state) => {
-  const { id, name } = event.get()(state)
-  return { id, name }
-}
+const mapState = state => ({ ...getEventFromRouterParam(state) })
 
 export default connect(mapState)(EventSidebar)

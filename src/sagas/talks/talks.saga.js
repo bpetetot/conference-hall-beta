@@ -9,41 +9,41 @@ import speakerTalks from 'redux/ui/speaker/talks'
 import talkCrud, { fetchUserTalks } from './talks.firebase'
 
 function* createTalk(talk) {
-  const CREATE_FORM = 'talk-create'
+  const FORM = 'talk-create'
   try {
     // indicate start submitting form
-    yield put(startSubmit(CREATE_FORM))
+    yield put(startSubmit(FORM))
     // get user id
     const uid = yield select(getUserId)
     // create talk into database
     const ref = yield call(talkCrud.create, { ...talk, speakers: { [uid]: true } })
     // reset form
-    yield put(reset(CREATE_FORM))
+    yield put(reset(FORM))
     // set form submitted
-    yield put(stopSubmit(CREATE_FORM))
+    yield put(stopSubmit(FORM))
     // go to talk page
     yield put(push(`/speaker/talk/${ref.id}`))
   } catch (error) {
-    yield put(stopSubmit(CREATE_FORM, { _error: error.message }))
+    yield put(stopSubmit(FORM, { _error: error.message }))
     throw error
   }
 }
 
 function* updateTalk(talk) {
-  const UPDATE_FORM = 'talk-edit'
+  const FORM = 'talk-edit'
   try {
     // indicate start submitting form
-    yield put(startSubmit(UPDATE_FORM))
+    yield put(startSubmit(FORM))
     // update talk into database
     yield call(talkCrud.update, talk)
     // update talk into data store
     yield put(talksData.update(talk))
     // set form submitted
-    yield put(stopSubmit(UPDATE_FORM))
+    yield put(stopSubmit(FORM))
     // go to talk page
     yield put(push(`/speaker/talk/${talk.id}`))
   } catch (error) {
-    yield put(stopSubmit(UPDATE_FORM, { _error: error.message }))
+    yield put(stopSubmit(FORM, { _error: error.message }))
     throw error
   }
 }
@@ -52,7 +52,7 @@ function* fetchTalk(id) {
   // check if already in the store
   const current = yield select(talksData.get(id))
   if (current && current.id === id) return
-  // fetch event from id
+  // fetch talk from id
   const ref = yield call(talkCrud.read, id)
   if (ref.exists) {
     yield put(talksData.add({ id, ...ref.data() }))

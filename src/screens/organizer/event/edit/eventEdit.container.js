@@ -3,16 +3,17 @@ import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
-import event from 'redux/data/event'
+import { getEventFromRouterParam } from 'redux/data/events'
 import LoadingIndicator from 'components/loading'
 import EventEdit from './eventEdit'
 
-const mapState = state => ({
-  loaded: event.isInitialized(state),
-})
+const mapState = (state) => {
+  const event = getEventFromRouterParam(state)
+  return { loaded: !!event }
+}
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_EVENT' }),
+  load: () => dispatch({ type: 'FETCH_EVENT_FROM_ROUTER_PARAMS' }),
 })
 
 export default compose(

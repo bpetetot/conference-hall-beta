@@ -15,11 +15,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  onSubmit: data =>
-    dispatch({
-      type: 'SUBMIT_EVENT_FORM',
-      payload: { event: data, form: FORM_NAME },
-    }),
+  onSubmit: data => dispatch({ type: 'SUBMIT_CREATE_EVENT_FORM', payload: data }),
 })
 
 export default compose(

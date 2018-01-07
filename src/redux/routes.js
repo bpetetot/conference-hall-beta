@@ -50,6 +50,8 @@ const routes = {
 // selectors
 export const getRouter = state => state.router
 export const getRouterResult = state => getRouter(state).result
+export const getRouterParams = state => getRouter(state).params
+export const getRouterParam = key => state => getRouterParams(state)[key]
 
 // get the given attribute value for the current route hierarchy
 const getRecursively = (result, attribute) => {
