@@ -6,7 +6,6 @@ import eventSaga from './event'
 import eventsSaga from './events'
 import toasterSaga from './toaster'
 import userSaga from './user'
-import talkSaga from './talk'
 import talksSaga from './talks'
 
 export default function* sagas() {
@@ -18,7 +17,6 @@ export default function* sagas() {
       eventsSaga(),
       toasterSaga(),
       userSaga(),
-      talkSaga(),
       talksSaga(),
     ])
   } catch (error) {

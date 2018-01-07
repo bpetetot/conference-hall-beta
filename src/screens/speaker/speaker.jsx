@@ -6,9 +6,9 @@ import { protect } from 'redux/auth'
 import { Brand, Navbar } from 'screens/components'
 import { Sidebar, SidebarMobile } from './sidebar'
 import Profile from './profile'
+import MyTalks from './myTalks'
 import TalkCreate from './talk/create'
 import TalkEdit from './talk/edit'
-import MyTalks from './talk/myTalks'
 import Talk from './talk/page'
 
 const Speaker = () => (

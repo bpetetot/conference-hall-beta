@@ -4,16 +4,16 @@ import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
 import LoadingIndicator from 'components/loading'
-import talks from 'redux/data/talks'
+import myTalksData from 'redux/ui/speaker/myTalks'
 import Talks from './talks'
 
 const mapState = state => ({
-  loaded: talks.isInitialized(state),
-  talks: talks.getKeys(state),
+  loaded: myTalksData.isInitialized(state),
+  talks: myTalksData.getKeys(state),
 })
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'MY_TALKS_SEARCH' }),
+  load: () => dispatch({ type: 'FETCH_SPEAKER_TALKS' }),
 })
 
 export default compose(

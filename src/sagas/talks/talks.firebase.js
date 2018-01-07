@@ -1,5 +1,5 @@
-/* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app'
+import crud from 'sagas/firebase/crud'
 
 export const fetchUserTalks = uid =>
   firebase
@@ -7,3 +7,5 @@ export const fetchUserTalks = uid =>
     .collection('talks')
     .where(`speakers.${uid}`, '==', true)
     .get()
+
+export default crud('talks', 'id')
