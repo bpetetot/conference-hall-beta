@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import myTalks from './myTalks'
+import talks from './talks'
 
 export default combineReducers({
-  myTalks,
+  talks,
 })
