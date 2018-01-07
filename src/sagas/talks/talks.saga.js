@@ -76,6 +76,7 @@ function* fetchSpeakerTalks() {
   // set talks in the store
   yield put(talksData.set(talks))
   // set talks id to the speaker talk store
+  yield put(speakerTalks.reset())
   yield put(speakerTalks.set(talks.map(({ id }) => ({ id }))))
 }
 

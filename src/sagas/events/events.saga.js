@@ -72,6 +72,7 @@ function* fetchOrganizerEvents() {
   // set events in the store
   yield put(eventsData.set(events))
   // set events id to the organizer event store
+  yield put(organizerEvents.reset())
   yield put(organizerEvents.set(events.map(({ id }) => ({ id }))))
 }
 
