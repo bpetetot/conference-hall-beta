@@ -3,7 +3,7 @@ import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
 import { getUserId } from 'redux/auth'
-import eventsData from 'redux/data/events'
+import eventsData, { getEventIdFromRouterParam } from 'redux/data/events'
 import organizerEvents from 'redux/ui/organizer/events'
 import eventCrud, { fetchUserEvents } from './events.firebase'
 
@@ -59,7 +59,7 @@ function* fetchEvent(id) {
 
 function* fetchEventFromRouterParams() {
   // get event id from router
-  const { id } = yield select(state => state.router.params)
+  const id = yield select(getEventIdFromRouterParam)
   if (id) {
     yield fetchEvent(id)
   }

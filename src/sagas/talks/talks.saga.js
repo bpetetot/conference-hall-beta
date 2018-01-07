@@ -3,7 +3,7 @@ import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
 import { getUserId } from 'redux/auth'
-import talksData from 'redux/data/talks'
+import talksData, { getTalkIdFromRouterParam } from 'redux/data/talks'
 import speakerTalks from 'redux/ui/speaker/talks'
 
 import talkCrud, { fetchUserTalks } from './talks.firebase'
@@ -63,7 +63,7 @@ function* fetchTalk(id) {
 
 function* fetchTalkFromRouterParams() {
   // get talk id from router params
-  const { id } = yield select(state => state.router.params)
+  const id = yield select(getTalkIdFromRouterParam)
   if (id) {
     yield fetchTalk(id)
   }

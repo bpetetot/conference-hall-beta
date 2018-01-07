@@ -9,7 +9,7 @@ const routes = {
     '/login': { title: 'LOGIN' },
     '/public': {
       title: 'PUBLIC',
-      '/event/:id': { title: 'PUBLIC_EVENT' },
+      '/event/:eventId': { title: 'PUBLIC_EVENT' },
     },
   },
   '/organizer': {
@@ -20,7 +20,7 @@ const routes = {
     '/event/create': { title: 'CREATE_EVENT' },
     '/event': {
       title: 'HOME_EVENT',
-      '/:id': {
+      '/:eventId': {
         title: 'EVENT_PAGE',
         '/edit': {
           title: 'EDIT_EVENT',
@@ -39,7 +39,7 @@ const routes = {
     '/talk/create': { title: 'CREATE_TALK' },
     '/talk': {
       title: 'HOME_TALK',
-      '/:id': {
+      '/:talkId': {
         title: 'TALK_PAGE',
         '/edit': { title: 'EDIT_TALK' },
       },

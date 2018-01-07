@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import isAfter from 'date-fns/is_after'
 import isBefore from 'date-fns/is_before'
 import isEmpty from 'lodash/isEmpty'
@@ -7,11 +6,17 @@ import { getRouterParam } from 'redux/routes'
 import eventsData from './events'
 
 /**
- * Return the event with the id in the router params
+ * Return the event id from the router params
+ * @param {object} state the redux state
+ */
+export const getEventIdFromRouterParam = state => getRouterParam('eventId')(state)
+
+/**
+ * Return the event from the id in the router params
  * @param {object} state the redux state
  */
 export const getEventFromRouterParam = (state) => {
-  const id = getRouterParam('id')(state)
+  const id = getEventIdFromRouterParam(state)
   return eventsData.get(id)(state)
 }
 
