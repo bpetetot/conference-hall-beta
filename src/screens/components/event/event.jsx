@@ -37,12 +37,12 @@ const Event = ({
           <CopyInput title="Share link" value={`${url[0]}/${url[2]}/public/event/${id}`} />
         )}
         {cfpState === 'opened' && (
-          <Link href={`/speaker?eventId=${id}`} className="btn btn-primary">
+          <Link href={`/speaker?eventId=${id}`} className="btn">
             <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />
           </Link>
         )}
         {isOrganizer && (
-          <Link href={`/organizer/event/${id}/edit`} className="btn btn-primary">
+          <Link href={`/organizer/event/${id}/edit`} className="btn">
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}

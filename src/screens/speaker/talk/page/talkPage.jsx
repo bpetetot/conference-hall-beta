@@ -15,7 +15,10 @@ const TalkPage = ({
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
-      <Link href={`/speaker/talk/${id}/edit`} className="btn btn-primary">
+      <Link href={`/speaker/talk/${id}/submit`} className="btn btn-primary">
+        <IconLabel icon="fa fa-paper-plane" label="Submit to Devoxx france" />
+      </Link>
+      <Link href={`/speaker/talk/${id}/edit`} className="btn">
         <IconLabel icon="fa fa-pencil" label="Edit" />
       </Link>
     </Titlebar>

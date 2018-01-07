@@ -10,7 +10,7 @@ import './talks.css'
 const MyTalks = ({ talks }) => (
   <div className="talks-page">
     <Titlebar icon="fa fa-microphone" title="My talks">
-      <Link href="/speaker/talk/create" className="btn btn-primary btn-create-talk">
+      <Link href="/speaker/talk/create" className="btn">
         <IconLabel icon="fa fa-calendar-plus-o" label="Create talk" />
       </Link>
     </Titlebar>

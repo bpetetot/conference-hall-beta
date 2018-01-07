@@ -12,6 +12,16 @@
   text-transform: uppercase;
   transition: all 0.5s;
   white-space: nowrap;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color-font);
+}
+
+.btn:hover {
+  background: var(--primary-color-light);
+  border: 1px solid var(--primary-color-light);
+  color: var(--primary-color-font);
+  text-decoration: none;
 }
 
 .btn:active {
@@ -20,25 +30,26 @@
 
 /** Button primary */
 .btn.btn-primary {
-  background: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  color: var(--primary-color-font);
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color-font);
 }
 
 .btn.btn-primary:hover {
-  background: var(--primary-color-light);
-  border: 1px solid var(--primary-color-light);
+  background: var(--secondary-color-light);
+  border: 1px solid var(--secondary-color-light);
   text-decoration: none;
 }
 
-.btn.btn-primary:disabled {
+/** Button disabled */
+.btn:disabled {
   cursor: not-allowed;
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: rgba(0, 0, 0, 0.5);
 }
 
-.btn.btn-primary:disabled:hover {
+.btn:disabled:hover {
   background: rgba(255, 255, 255, 0.5);
   color: rgba(0, 0, 0, 0.5);
 }

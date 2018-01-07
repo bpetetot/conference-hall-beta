@@ -49,7 +49,7 @@ export default (name, Form) =>
               </Modal>
             </div>
           ))}
-          <button className="btn btn-primary" type="button" onClick={openModal(`add-${name}`)}>
+          <button className="btn" type="button" onClick={openModal(`add-${name}`)}>
             <i className="fa fa-plus" />
           </button>
           <Modal id={`add-${name}`}>
