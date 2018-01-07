@@ -4,15 +4,22 @@ import { startSubmit, stopSubmit } from 'redux-form'
 import speakerApp from 'redux/ui/speaker/app'
 import usersData from 'redux/data/users'
 import userCrud from 'sagas/user/user.firebase'
+import eventCrud from 'sagas/events/events.firebase'
+import eventsData from 'redux/data/events'
 
 function* initSpeakerApp() {
   // check if an event is in query params
   const { eventId } = yield select(state => state.router.query)
   if (eventId) {
-    // set contextual event id
-    yield put(speakerApp.set({ currentEventId: eventId }))
-    // fetch the event
-    yield put({ type: 'FETCH_EVENT', payload: eventId })
+    // fetch event
+    const ref = yield call(eventCrud.read, eventId)
+    if (ref.exists) {
+      // set event in store
+      yield put(eventsData.add({ eventId, ...ref.data() }))
+      // set contextual event id
+      yield put(speakerApp.set({ currentEventId: eventId }))
+      // TODO add it to last events
+    }
   }
 }
 
