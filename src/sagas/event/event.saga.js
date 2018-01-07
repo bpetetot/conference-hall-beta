@@ -33,22 +33,6 @@ function* createOrUpdateEvent(form, event) {
   }
 }
 
-function* getEventFromRouterParams() {
-  // get event id from router params
-  const { id } = yield select(state => state.router.params)
-  if (id) {
-    yield put({ type: 'FETCH_EVENT', payload: id })
-  }
-}
-
-function* getEventFromRouterQuery() {
-  // get event id from router params
-  const { event } = yield select(state => state.router.query)
-  if (event) {
-    yield put({ type: 'FETCH_EVENT', payload: event })
-  }
-}
-
 function* getEvent(id) {
   // check if already in the store
   const current = yield select(eventData.get())
@@ -64,10 +48,17 @@ function* getEvent(id) {
   }
 }
 
+function* getEventFromRouterParams() {
+  // get event id from router params
+  const { id } = yield select(state => state.router.params)
+  if (id) {
+    yield getEvent(id)
+  }
+}
+
 export default function* eventSagas() {
   yield takeLatest('SUBMIT_EVENT_FORM', ({ payload }) =>
     createOrUpdateEvent(payload.form, payload.event))
   yield takeLatest('FETCH_EVENT', ({ payload }) => getEvent(payload))
   yield takeLatest('FETCH_EVENT_FROM_ROUTER_PARAMS', getEventFromRouterParams)
-  yield takeLatest('FETCH_EVENT_FROM_ROUTER_QUERY', getEventFromRouterQuery)
 }

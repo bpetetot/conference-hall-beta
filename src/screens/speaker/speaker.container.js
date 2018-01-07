@@ -7,7 +7,7 @@ import { protect } from 'redux/auth'
 import Speaker from './speaker'
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_EVENT_FROM_ROUTER_QUERY' }),
+  load: () => dispatch({ type: 'INIT_SPEAKER_APP' }),
 })
 
 export default compose(
