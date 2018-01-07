@@ -1,11 +1,8 @@
 import { connect } from 'react-redux'
 
-import event from 'redux/data/event'
+import { getEventIdFromRouterParam } from 'redux/data/events'
 import EventTabs from './eventTabs'
 
-const mapState = (state) => {
-  const { id } = event.get()(state)
-  return { id }
-}
+const mapState = state => ({ id: getEventIdFromRouterParam(state) })
 
 export default connect(mapState)(EventTabs)

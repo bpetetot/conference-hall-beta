@@ -9,11 +9,7 @@ const FORM_NAME = 'talk-create'
 const mapState = () => ({ form: FORM_NAME })
 
 const mapDispatch = dispatch => ({
-  onSubmit: data =>
-    dispatch({
-      type: 'SUBMIT_TALK_FORM',
-      payload: { talk: data, form: FORM_NAME },
-    }),
+  onSubmit: data => dispatch({ type: 'SUBMIT_CREATE_TALK_FORM', payload: data }),
 })
 
 export default compose(

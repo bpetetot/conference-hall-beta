@@ -1,12 +1,14 @@
 import { connect } from 'react-redux'
 
-import event, { getCfpState } from 'redux/data/event'
+import { getEventFromRouterParam, getCfpState } from 'redux/data/events'
 import CfpBlock from './cfpBlock'
 
 const mapState = (state) => {
-  const { type, cfpDates, deliberationDate } = event.get()(state)
+  const {
+    id, type, cfpDates, deliberationDate,
+  } = getEventFromRouterParam(state)
   return {
-    cfpState: getCfpState(state),
+    cfpState: getCfpState(id)(state),
     type,
     cfpDates,
     deliberationDate,

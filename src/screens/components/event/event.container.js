@@ -3,18 +3,21 @@ import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
 
 import { isPublicRoute } from 'redux/routes'
-import event from 'redux/data/event'
+import { getEventFromRouterParam } from 'redux/data/events'
 import LoadingIndicator from 'components/loading'
 import Event from './event'
 
-const mapState = state => ({
-  loaded: event.isInitialized(state),
-  isPublic: isPublicRoute(state),
-  ...event.get()(state),
-})
+const mapState = (state) => {
+  const event = getEventFromRouterParam(state)
+  return {
+    loaded: !!event,
+    isPublic: isPublicRoute(state),
+    ...event,
+  }
+}
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_EVENT' }),
+  load: () => dispatch({ type: 'FETCH_EVENT_FROM_ROUTER_PARAMS' }),
 })
 
 export default compose(
