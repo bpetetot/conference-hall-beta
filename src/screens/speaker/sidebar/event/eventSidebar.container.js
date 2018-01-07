@@ -1,10 +1,12 @@
 import { connect } from 'react-redux'
 
-import event from 'redux/data/event'
+import speakerApp from 'redux/ui/speaker/app'
+import eventsData from 'redux/data/events'
 import EventSidebar from './eventSidebar'
 
 const mapState = (state) => {
-  const { id, name } = event.get()(state)
+  const { currentEventId } = speakerApp.get()(state)
+  const { id, name } = eventsData.get(currentEventId)(state) || {}
   return { id, name }
 }
 

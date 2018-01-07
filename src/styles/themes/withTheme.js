@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { isOrganizerRoute, isSpeakerRoute } from 'redux/routes'
+import { isOrganizerRoute, isSpeakerRoute } from 'redux/router'
 import classnames from 'classnames'
 
 const mapState = (state, { className }) => ({

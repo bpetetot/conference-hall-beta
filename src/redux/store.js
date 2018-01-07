@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 
 import sagas from 'sagas'
-import { middleware as routerMiddleware, enhancer } from './routes'
+import { middleware as routerMiddleware, enhancer } from './router'
 
 import reducers from './reducers'
 

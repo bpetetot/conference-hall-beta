@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { goBack } from 'redux-little-router'
-import { getBaseRoute, getAppTitle, isMobileMenuRoute } from 'redux/routes'
+import { getBaseRoute, getAppTitle, isMobileMenuRoute } from 'redux/router'
 
 import BrandMobile from './brandMobile'
 
