@@ -12,6 +12,6 @@ button .icon-label {
 
 .icon-label > span > i {
   width: 1em;
-  margin-right: 1em;
+  margin-right: 0.6em;
   text-align: center;
 }
