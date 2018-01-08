@@ -10,22 +10,28 @@
   color: var(--primary-color);
 }
 
-.toast .toast-default {
+.toast-default {
   color: var(--primary-color);
 }
 
-.toast .toast-info {
+.toast-info {
   color: var(--primary-color);
 }
 
-.toast .toast-warning {
+.toast-success {
+  border: none;
+  color: #fff;
+  background: var(--success-color);
+}
+
+.toast-warning {
   color: var(--warning-color);
 }
 
-.toast .toast-error {
+.toast-error {
   color: var(--error-color);
 }
 
-.toast .toast-question {
+.toast-question {
   color: var(--question-color);
 }
