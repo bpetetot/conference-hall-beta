@@ -7,15 +7,16 @@ import './toast.css'
 
 const Toast = ({ type, label }) => {
   const iconClass = cn('fa fa-2x', {
-    'fa-comment toast-default': type === 'default',
-    'fa-info-circle toast-info': type === 'info',
-    'fa-exclamation-triangle toast-warning': type === 'warning',
-    'fa-exclamation-circle toast-error': type === 'error',
-    'fa-question-circle toast-question': type === 'question',
+    'fa-comment': type === 'default',
+    'fa-info-circle': type === 'info',
+    'fa-exclamation-triangle': type === 'warning',
+    'fa-exclamation-circle': type === 'error',
+    'fa-question-circle': type === 'question',
+    'fa-check-circle': type === 'success',
   })
 
   return (
-    <div className="toast">
+    <div className={`toast toast-${type}`}>
       <IconLabel icon={iconClass} label={label} />
     </div>
   )

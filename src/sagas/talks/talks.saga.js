@@ -1,9 +1,11 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects'
 import { startSubmit, stopSubmit, reset } from 'redux-form'
-import { push } from 'redux-little-router'
+import { push, replace } from 'redux-little-router'
 
 import { getUserId } from 'redux/auth'
+import eventsData from 'redux/data/events'
 import talksData, { getTalkIdFromRouterParam } from 'redux/data/talks'
+import { toast } from 'redux/ui/toaster'
 import speakerTalks from 'redux/ui/speaker/talks'
 
 import talkCrud, { fetchUserTalks } from './talks.firebase'
@@ -80,10 +82,29 @@ function* fetchSpeakerTalks() {
   yield put(speakerTalks.set(talks.map(({ id }) => ({ id }))))
 }
 
+function* submitTalkToEvent({ data, talkId, eventId }) {
+  const FORM = 'submit-talk'
+  const event = yield select(eventsData.get(eventId))
+  try {
+    // indicate start submitting form
+    yield put(startSubmit(FORM))
+    // submit talk
+    yield call(console.log, data, talkId, eventId)
+    // set form submitted
+    yield put(stopSubmit(FORM))
+    yield put(replace(`/speaker/talk/${talkId}`))
+    yield put(toast(talkId, `Congrats! Your talk has been submitted to ${event.name}`, 'success'))
+  } catch (error) {
+    yield put(stopSubmit(FORM, { _error: error.message }))
+    throw error
+  }
+}
+
 export default function* talksSagas() {
   yield takeLatest('SUBMIT_CREATE_TALK_FORM', ({ payload }) => createTalk(payload))
   yield takeLatest('SUBMIT_UPDATE_TALK_FORM', ({ payload }) => updateTalk(payload))
   yield takeLatest('FETCH_TALK', ({ payload }) => fetchTalk(payload))
   yield takeLatest('FETCH_TALK_FROM_ROUTER_PARAMS', fetchTalkFromRouterParams)
   yield takeLatest('FETCH_SPEAKER_TALKS', fetchSpeakerTalks)
+  yield takeLatest('SUBMIT_TALK_TO_EVENT', ({ payload }) => submitTalkToEvent(payload))
 }
