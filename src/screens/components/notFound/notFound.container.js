@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { isRouteNotFound } from 'redux/routes'
+import { isRouteNotFound } from 'redux/router'
 import NotFound from './notFound'
 
 const mapState = state => ({

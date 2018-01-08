@@ -6,6 +6,8 @@
   white-space: normal;
   text-align: left;
   border: 1px solid var(--grey-color);
+  background: none;
+  color: var(--primary-color);
 }
 
 .item-box > a {

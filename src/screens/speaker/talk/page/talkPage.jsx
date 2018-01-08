@@ -6,6 +6,7 @@ import { Link } from 'redux-little-router'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Badge from 'components/badge'
+import SubmitTalkButton from './submitTalk'
 import Speaker from './speaker'
 
 import './talkPage.css'
@@ -15,7 +16,8 @@ const TalkPage = ({
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
-      <Link href={`/speaker/talk/${id}/edit`} className="btn btn-primary">
+      <SubmitTalkButton talkId={id} />
+      <Link href={`/speaker/talk/${id}/edit`} className="btn">
         <IconLabel icon="fa fa-pencil" label="Edit" />
       </Link>
     </Titlebar>

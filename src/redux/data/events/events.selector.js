@@ -2,7 +2,7 @@ import isAfter from 'date-fns/is_after'
 import isBefore from 'date-fns/is_before'
 import isEmpty from 'lodash/isEmpty'
 
-import { getRouterParam } from 'redux/routes'
+import { getRouterParam } from 'redux/router'
 import eventsData from './events'
 
 /**

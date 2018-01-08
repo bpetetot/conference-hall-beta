@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { reducer as form } from 'redux-form'
-import { reducer as router } from './routes'
+import { reducer as router } from './router'
 import auth from './auth'
 import data from './data'
 import ui from './ui'

@@ -10,7 +10,7 @@ import './events.css'
 const MyEvents = ({ events }) => (
   <div className="events-page">
     <Titlebar className="events-header" icon="fa fa-calendar-o" title="My events">
-      <Link href="/organizer/event/create" className="btn btn-primary btn-create-event">
+      <Link href="/organizer/event/create" className="btn">
         <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
       </Link>
     </Titlebar>

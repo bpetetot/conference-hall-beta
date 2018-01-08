@@ -17,11 +17,12 @@ import Website from './websiteBlock'
 import './event.css'
 
 const Event = ({
-  isPublic,
+  isOrganizer,
   id,
   name,
   type,
   address,
+  cfpState,
   conferenceDates,
   description,
   website,
@@ -32,11 +33,16 @@ const Event = ({
   return (
     <div className="event-page">
       <Titlebar icon="fa fa-calendar-check-o" title={name} className="event-page-header">
-        {!isPublic && (
+        {isOrganizer && (
           <CopyInput title="Share link" value={`${url[0]}/${url[2]}/public/event/${id}`} />
         )}
-        {!isPublic && (
-          <Link href={`/organizer/event/${id}/edit`} className="btn btn-primary">
+        {cfpState === 'opened' && (
+          <Link href={`/speaker?eventId=${id}`} className="btn">
+            <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />
+          </Link>
+        )}
+        {isOrganizer && (
+          <Link href={`/organizer/event/${id}/edit`} className="btn">
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}
@@ -58,11 +64,12 @@ const Event = ({
 }
 
 Event.propTypes = {
-  isPublic: PropTypes.bool.isRequired,
+  isOrganizer: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
   type: PropTypes.string,
   address: PropTypes.string,
+  cfpState: PropTypes.string,
   conferenceDates: PropTypes.objectOf(PropTypes.instanceOf(Date)),
   description: PropTypes.string,
   website: PropTypes.string,
@@ -74,6 +81,7 @@ Event.defaultProps = {
   name: undefined,
   type: undefined,
   address: undefined,
+  cfpState: undefined,
   conferenceDates: {},
   description: undefined,
   website: undefined,

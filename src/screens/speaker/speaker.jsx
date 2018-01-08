@@ -9,7 +9,9 @@ import Profile from './profile'
 import Talks from './talks'
 import TalkCreate from './talk/create'
 import TalkEdit from './talk/edit'
+import TalkSubmit from './talk/submit'
 import Talk from './talk/page'
+import Event from './event/page'
 
 const Speaker = () => (
   <div className="layout-screen">
@@ -21,8 +23,10 @@ const Speaker = () => (
       <Profile />
       <TalkCreate />
       <TalkEdit />
+      <TalkSubmit />
       <Talk />
       <Talks />
+      <Event />
     </div>
   </div>
 )

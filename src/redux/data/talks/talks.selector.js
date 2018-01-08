@@ -1,4 +1,4 @@
-import { getRouterParam } from 'redux/routes'
+import { getRouterParam } from 'redux/router'
 import talksData from './talks'
 
 /**
