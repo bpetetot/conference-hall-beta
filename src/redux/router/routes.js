@@ -39,6 +39,7 @@ export default {
       '/:talkId': {
         title: 'TALK_PAGE',
         '/edit': { title: 'EDIT_TALK' },
+        '/submit': { title: 'TALK_SUBMIT' },
       },
     },
     '/event': {
