@@ -8,8 +8,10 @@ import eventCrud from 'sagas/events/events.firebase'
 import eventsData from 'redux/data/events'
 
 function* initSpeakerApp() {
-  // check if an event is in query params
-  const { eventId } = yield select(state => state.router.query)
+  // check if an event id is in localstorage
+  const savedEventId = localStorage.getItem('currentEventId')
+  // check if an event id is in query params
+  const { eventId = savedEventId } = yield select(state => state.router.query)
   if (eventId) {
     // fetch event
     const ref = yield call(eventCrud.read, eventId)
@@ -18,6 +20,8 @@ function* initSpeakerApp() {
       yield put(eventsData.add({ eventId, ...ref.data() }))
       // set contextual event id
       yield put(speakerApp.set({ currentEventId: eventId }))
+      // set it in localstorage (it will be persisted later)
+      localStorage.setItem('currentEventId', eventId)
     }
   }
 }
