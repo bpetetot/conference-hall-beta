@@ -39,3 +39,9 @@ export const getCfpState = eventId => (state) => {
   }
   return 'closed'
 }
+
+/**
+ * Return true if CFP is opened
+ * @param {string} eventId event id
+ */
+export const isCfpOpened = eventId => state => getCfpState(eventId)(state) === 'opened'

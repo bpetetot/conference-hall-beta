@@ -6,7 +6,7 @@ import { Link } from 'redux-little-router'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Badge from 'components/badge'
-import SubmitTalkButton from './submitTalk'
+import SubmitTalkButton from './submitTalkButton'
 import Speaker from './speaker'
 
 import './talkPage.css'
