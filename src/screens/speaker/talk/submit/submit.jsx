@@ -1,15 +1,55 @@
 import React from 'react'
-import forRoute from 'hoc-little-router'
 
 import Titlebar from 'components/titlebar'
+import IconLabel from 'components/iconLabel'
+import { Field, reduxForm } from 'redux-form'
+import { textarea, radio, SubmitButton, RadioGroup } from 'components/form'
+import './submit.css'
 
-const TalkSubmit = () => (
-  <div>
-    <Titlebar icon="fa fa-paper-plane" title="Submit talk to..." />
-    <div>
-      <small>Not implemented yet !</small>
+const TalkSubmit = ({ talk, event, ...formProps }) => (
+  <div className="submit-talk">
+    <Titlebar
+      icon="fa fa-paper-plane"
+      title={
+        <span>
+          Submit to <span className="event-subtitle">{event.name}</span>
+        </span>
+      }
+    />
+    <div className="card">
+      <h2>
+        <IconLabel icon="fa fa-microphone" label={talk.title} />
+      </h2>
+      <form className="submit-talk-form">
+        <RadioGroup name="categories" label="Talk categories" inline>
+          {event.categories.map(c => (
+            <Field
+              key={c.id}
+              name="categories"
+              value={c.id}
+              label={c.name}
+              type="radio"
+              component={radio}
+            />
+          ))}
+        </RadioGroup>
+        <RadioGroup name="formats" label="Talk formats" inline>
+          {event.formats.map(f => (
+            <Field
+              key={f.id}
+              name="formats"
+              value={f.id}
+              label={f.name}
+              type="radio"
+              component={radio}
+            />
+          ))}
+        </RadioGroup>
+        <Field name="comments" label="Message to organizers" component={textarea} />
+        <SubmitButton {...formProps}>Submit to {event.name}</SubmitButton>
+      </form>
     </div>
   </div>
 )
 
-export default forRoute('TALK_SUBMIT')(TalkSubmit)
+export default reduxForm({ form: 'submit-talk' })(TalkSubmit)

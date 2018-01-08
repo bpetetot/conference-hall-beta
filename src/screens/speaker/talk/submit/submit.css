@@ -1,0 +1,17 @@
+.submit-talk .event-subtitle {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.submit-talk h2 {
+  margin-bottom: 2em;
+}
+
+.submit-talk-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-talk .submit-talk-form > button {
+  align-self: flex-end;
+}
