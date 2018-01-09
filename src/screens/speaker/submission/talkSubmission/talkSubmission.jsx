@@ -2,6 +2,7 @@ import React from 'react'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
+import { Stepper1 } from 'components/stepper'
 import { Field, reduxForm } from 'redux-form'
 import { textarea, radio, SubmitButton, RadioGroup } from 'components/form'
 import isEmpty from 'lodash/isEmpty'
@@ -18,7 +19,8 @@ const TalkSubmission = ({ talk, event, ...formProps }) => (
         </span>
       }
     />
-    <div className="card">
+    <Stepper1 />
+    <div className="card submit-talk-content">
       <h2>
         <IconLabel icon="fa fa-microphone" label={talk.title} />
       </h2>

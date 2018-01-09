@@ -1,3 +1,9 @@
+.submit-talk {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .submit-talk .event-subtitle {
   color: var(--secondary-color);
   font-weight: 600;
@@ -5,6 +11,10 @@
 
 .submit-talk h2 {
   margin-bottom: 2em;
+}
+
+.submit-talk-content {
+  width: 100%;
 }
 
 .submit-talk-form {

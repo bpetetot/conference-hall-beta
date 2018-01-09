@@ -3,9 +3,7 @@ import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push, replace } from 'redux-little-router'
 
 import { getUserId } from 'redux/auth'
-import eventsData from 'redux/data/events'
 import talksData, { getTalkIdFromRouterParam } from 'redux/data/talks'
-import { toast } from 'redux/ui/toaster'
 import speakerTalks from 'redux/ui/speaker/talks'
 
 import talkCrud, { fetchUserTalks, saveTalkSubmission } from './talks.firebase'
@@ -83,7 +81,6 @@ function* fetchSpeakerTalks() {
 
 function* submitTalkToEvent({ talkId, eventId, data }) {
   const FORM = 'submit-talk'
-  const event = yield select(eventsData.get(eventId))
   const talk = yield select(talksData.get(talkId))
   try {
     // indicate start submitting form
@@ -93,8 +90,7 @@ function* submitTalkToEvent({ talkId, eventId, data }) {
     yield put(talksData.update({ ...talk, submissions: { ...talk.submissions, [eventId]: data } }))
     // set form submitted
     yield put(stopSubmit(FORM))
-    yield put(replace(`/speaker/talk/${talkId}`))
-    yield put(toast(talkId, `Congrats! Your talk has been submitted to ${event.name}`, 'success'))
+    yield put(replace(`/speaker/talk/${talkId}/submitted`))
   } catch (error) {
     yield put(stopSubmit(FORM, { _error: error.message }))
     throw error

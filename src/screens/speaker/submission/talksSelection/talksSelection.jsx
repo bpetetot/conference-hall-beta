@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Titlebar from 'components/titlebar'
+import { Stepper0 } from 'components/stepper'
 import TalksSelectionTable from './talksSelectionTable.container'
 
 import './talksSelection.css'
@@ -12,10 +13,11 @@ const TalksSelection = ({ name }) => (
       icon="fa fa-paper-plane"
       title={
         <span>
-          Select a talk to submit to <span className="event-subtitle">{name}</span>
+          Submit to <span className="event-subtitle">{name}</span>
         </span>
       }
     />
+    <Stepper0 />
     <TalksSelectionTable />
   </div>
 )

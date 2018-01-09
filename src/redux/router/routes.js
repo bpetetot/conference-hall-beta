@@ -40,6 +40,7 @@ export default {
         title: 'TALK_PAGE',
         '/edit': { title: 'EDIT_TALK' },
         '/submit': { title: 'TALK_SUBMIT' },
+        '/submitted': { title: 'TALK_SUBMITTED' },
       },
     },
     '/talks/submit': { title: 'TALKS_SUBMISSION' },

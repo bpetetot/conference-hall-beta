@@ -11,6 +11,7 @@ import TalkCreate from './talk/create'
 import TalkEdit from './talk/edit'
 import TalksSelection from './submission/talksSelection'
 import TalkSubmission from './submission/talkSubmission'
+import TalkSubmitted from './submission/talkSubmitted'
 import Talk from './talk/page'
 import Event from './event/page'
 
@@ -24,10 +25,11 @@ const Speaker = () => (
       <Profile />
       <TalkCreate />
       <TalkEdit />
-      <TalkSubmission />
       <Talk />
       <MyTalks />
       <TalksSelection />
+      <TalkSubmission />
+      <TalkSubmitted />
       <Event />
     </div>
   </div>
