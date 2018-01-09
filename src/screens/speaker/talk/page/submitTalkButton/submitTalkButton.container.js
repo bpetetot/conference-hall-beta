@@ -1,14 +1,15 @@
 import { connect } from 'react-redux'
 
-import eventsData, { isCfpOpened } from 'redux/data/events'
-import speakerApp from 'redux/ui/speaker/app'
+import { isCfpOpened } from 'redux/data/events'
+import { isSubmitted } from 'redux/data/talks'
+import { getSpeakerAppEvent } from 'redux/ui/speaker'
 import SubmitTalkButton from './submitTalkButton'
 
-const mapState = (state) => {
-  const { currentEventId } = speakerApp.get()(state)
-  const { id, name } = eventsData.get(currentEventId)(state) || {}
-  const cfpOpened = isCfpOpened(currentEventId)(state)
-  return { eventId: id, eventName: name, cfpOpened }
+const mapState = (state, { talkId }) => {
+  const { id, name } = getSpeakerAppEvent(state)
+  const cfpOpened = isCfpOpened(id)(state)
+  const submitted = isSubmitted(talkId, id)(state)
+  return { eventName: name, displayed: id && cfpOpened, submitted }
 }
 
 export default connect(mapState)(SubmitTalkButton)

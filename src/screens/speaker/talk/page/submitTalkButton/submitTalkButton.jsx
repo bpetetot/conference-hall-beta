@@ -5,27 +5,28 @@ import { Link } from 'redux-little-router'
 import IconLabel from 'components/iconLabel'
 
 const SubmitTalkButton = ({
-  talkId, eventId, eventName, cfpOpened,
+  talkId, eventName, displayed, submitted,
 }) => {
-  if (!cfpOpened || !eventId) return null
+  if (!displayed) return null
+  const label = !submitted ? `Submit to ${eventName}` : `Update submission to ${eventName}`
   return (
     <Link href={`/speaker/talk/${talkId}/submit`} className="btn btn-primary">
-      <IconLabel icon="fa fa-paper-plane" label={`Submit to ${eventName}`} />
+      <IconLabel icon="fa fa-paper-plane" label={label} />
     </Link>
   )
 }
 
 SubmitTalkButton.propTypes = {
   talkId: PropTypes.string.isRequired,
-  eventId: PropTypes.string,
   eventName: PropTypes.string,
-  cfpOpened: PropTypes.bool,
+  displayed: PropTypes.bool,
+  submitted: PropTypes.bool,
 }
 
 SubmitTalkButton.defaultProps = {
-  eventId: undefined,
   eventName: undefined,
-  cfpOpened: false,
+  displayed: false,
+  submitted: false,
 }
 
 export default SubmitTalkButton

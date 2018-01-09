@@ -4,19 +4,27 @@ import PropTypes from 'prop-types'
 import Badge from 'components/badge'
 import './submission.css'
 
-const Submission = ({ name, onClick, status }) => (
+const Submission = ({
+  name, status, onClickEdit, onClickEvent,
+}) => (
   <div className="talk-submission-event">
-    <a onClick={onClick} role="button">
+    <a onClick={onClickEvent} role="button">
       {name}
     </a>
-    <Badge>{status}</Badge>
+    <div className="talk-submission-event-actions">
+      <Badge>{status}</Badge>
+      <a onClick={onClickEdit} role="button">
+        <i className="fa fa-pencil" />
+      </a>
+    </div>
   </div>
 )
 
 Submission.propTypes = {
   name: PropTypes.string,
   status: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClickEdit: PropTypes.func.isRequired,
+  onClickEvent: PropTypes.func.isRequired,
 }
 
 Submission.defaultProps = {

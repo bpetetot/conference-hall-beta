@@ -2,18 +2,23 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
+import isEmpty from 'lodash/isEmpty'
 
-import eventsData from 'redux/data/events'
+import { getSpeakerAppEvent } from 'redux/ui/speaker'
 import { getTalkFromRouterParam } from 'redux/data/talks'
-import speakerApp from 'redux/ui/speaker/app'
 import LoadingIndicator from 'components/loading'
 import SubmitTalk from './submit'
 
 const mapState = (state) => {
-  const { currentEventId } = speakerApp.get()(state)
-  const event = eventsData.get(currentEventId)(state)
+  const event = getSpeakerAppEvent(state)
   const talk = getTalkFromRouterParam(state)
-  return { loaded: !!talk && !!event, event, talk }
+  const initialValues = talk ? talk.submissions[event.id] : {}
+  return {
+    loaded: !isEmpty(talk) && !isEmpty(event),
+    event,
+    talk,
+    initialValues,
+  }
 }
 
 const mapDispatch = dispatch => ({

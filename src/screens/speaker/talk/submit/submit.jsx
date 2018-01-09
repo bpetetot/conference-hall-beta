@@ -4,6 +4,7 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import { Field, reduxForm } from 'redux-form'
 import { textarea, radio, SubmitButton, RadioGroup } from 'components/form'
+import isEmpty from 'lodash/isEmpty'
 import './submit.css'
 
 const TalkSubmit = ({ talk, event, ...formProps }) => (
@@ -21,30 +22,34 @@ const TalkSubmit = ({ talk, event, ...formProps }) => (
         <IconLabel icon="fa fa-microphone" label={talk.title} />
       </h2>
       <form className="submit-talk-form">
-        <RadioGroup name="categories" label="Talk categories" inline>
-          {event.categories.map(c => (
-            <Field
-              key={c.id}
-              name="categories"
-              value={c.id}
-              label={c.name}
-              type="radio"
-              component={radio}
-            />
-          ))}
-        </RadioGroup>
-        <RadioGroup name="formats" label="Talk formats" inline>
-          {event.formats.map(f => (
-            <Field
-              key={f.id}
-              name="formats"
-              value={f.id}
-              label={f.name}
-              type="radio"
-              component={radio}
-            />
-          ))}
-        </RadioGroup>
+        {!isEmpty(event.categories) && (
+          <RadioGroup name="categories" label="Talk categories" inline>
+            {event.categories.map(c => (
+              <Field
+                key={c.id}
+                name="categories"
+                value={c.id}
+                label={c.name}
+                type="radio"
+                component={radio}
+              />
+            ))}
+          </RadioGroup>
+        )}
+        {!isEmpty(event.formats) && (
+          <RadioGroup name="formats" label="Talk formats" inline>
+            {event.formats.map(f => (
+              <Field
+                key={f.id}
+                name="formats"
+                value={f.id}
+                label={f.name}
+                type="radio"
+                component={radio}
+              />
+            ))}
+          </RadioGroup>
+        )}
         <Field name="comments" label="Message to organizers" component={textarea} />
         <SubmitButton {...formProps}>Submit to {event.name}</SubmitButton>
       </form>
