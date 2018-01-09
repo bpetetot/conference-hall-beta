@@ -1,3 +1,10 @@
 .talk-submission-event {
-  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 0;
+}
+
+.talk-submission-event a {
+  cursor: pointer;
 }

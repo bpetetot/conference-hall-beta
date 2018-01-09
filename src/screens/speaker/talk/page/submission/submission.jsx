@@ -1,12 +1,27 @@
 import React from 'react'
-import { Link } from 'redux-little-router'
+import PropTypes from 'prop-types'
 
+import Badge from 'components/badge'
 import './submission.css'
 
-const Submission = ({ talkId, name }) => (
+const Submission = ({ name, onClick, status }) => (
   <div className="talk-submission-event">
-    <Link href={`/speaker/talk/${talkId}/submit`}>{name}</Link>
+    <a onClick={onClick} role="button">
+      {name}
+    </a>
+    <Badge>{status}</Badge>
   </div>
 )
+
+Submission.propTypes = {
+  name: PropTypes.string,
+  status: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+}
+
+Submission.defaultProps = {
+  name: undefined,
+  status: 'submitted',
+}
 
 export default Submission

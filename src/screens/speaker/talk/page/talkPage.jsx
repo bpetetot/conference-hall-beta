@@ -39,10 +39,13 @@ const TalkPage = ({
         <div className="card margin-gap">
           <h3>Submissions</h3>
           {isEmpty(submissions) && <small>Not submitted yet</small>}
-          {!isEmpty(submissions) &&
-            Object.keys(submissions).map(eventId => (
-              <Submission key={eventId} eventId={eventId} talkId={id} />
-            ))}
+          {!isEmpty(submissions) && (
+            <div className="talk-submissions">
+              {Object.keys(submissions).map(eventId => (
+                <Submission key={eventId} eventId={eventId} talkId={id} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

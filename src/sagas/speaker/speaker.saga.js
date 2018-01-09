@@ -1,4 +1,5 @@
 import { put, takeLatest, select, call } from 'redux-saga/effects'
+import { push } from 'redux-little-router'
 import { startSubmit, stopSubmit } from 'redux-form'
 
 import speakerApp from 'redux/ui/speaker/app'
@@ -7,11 +8,7 @@ import userCrud from 'sagas/user/user.firebase'
 import eventCrud from 'sagas/events/events.firebase'
 import eventsData from 'redux/data/events'
 
-function* initSpeakerApp() {
-  // check if an event id is in localstorage
-  const savedEventId = localStorage.getItem('currentEventId')
-  // check if an event id is in query params
-  const { eventId = savedEventId } = yield select(state => state.router.query)
+function* setCurrentEvent(eventId) {
   if (eventId) {
     // fetch event
     const ref = yield call(eventCrud.read, eventId)
@@ -24,6 +21,19 @@ function* initSpeakerApp() {
       localStorage.setItem('currentEventId', eventId)
     }
   }
+}
+
+function* initSpeakerApp() {
+  // check if an event id is in localstorage
+  const savedEventId = localStorage.getItem('currentEventId')
+  // check if an event id is in query params
+  const { eventId = savedEventId } = yield select(state => state.router.query)
+  yield setCurrentEvent(eventId)
+}
+
+function* clickSubmittedEventForTalk({ eventId, talkId }) {
+  yield setCurrentEvent(eventId)
+  yield put(push(`/speaker/talk/${talkId}/submit`))
 }
 
 function* saveSpeakerProfile(profile) {
@@ -46,4 +56,6 @@ function* saveSpeakerProfile(profile) {
 export default function* eventSagas() {
   yield takeLatest('INIT_SPEAKER_APP', initSpeakerApp)
   yield takeLatest('SUBMIT_PROFILE_FORM', ({ payload }) => saveSpeakerProfile(payload))
+  yield takeLatest('CLICK_SUBMITTED_EVENT_FOR_TALK', ({ payload }) =>
+    clickSubmittedEventForTalk(payload))
 }

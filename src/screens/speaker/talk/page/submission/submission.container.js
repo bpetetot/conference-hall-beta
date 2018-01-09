@@ -10,8 +10,9 @@ const mapState = (state, { eventId }) => {
   return { name: event ? event.name : undefined }
 }
 
-const mapDispatch = (dispatch, { eventId }) => ({
+const mapDispatch = (dispatch, { eventId, talkId }) => ({
   load: () => dispatch({ type: 'FETCH_EVENT', payload: eventId }),
+  onClick: () => dispatch({ type: 'CLICK_SUBMITTED_EVENT_FOR_TALK', payload: { eventId, talkId } }),
 })
 
 export default compose(connect(mapState, mapDispatch), loader())(Submission)
