@@ -51,7 +51,9 @@ const TalkSubmit = ({ talk, event, ...formProps }) => (
           </RadioGroup>
         )}
         <Field name="comments" label="Message to organizers" component={textarea} />
-        <SubmitButton {...formProps}>Submit to {event.name}</SubmitButton>
+        <SubmitButton {...formProps} noPristine>
+          Submit to {event.name}
+        </SubmitButton>
       </form>
     </div>
   </div>

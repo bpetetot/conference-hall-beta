@@ -12,7 +12,7 @@ import SubmitTalk from './submit'
 const mapState = (state) => {
   const event = getSpeakerAppEvent(state)
   const talk = getTalkFromRouterParam(state)
-  const initialValues = talk ? talk.submissions[event.id] : {}
+  const initialValues = talk && talk.submissions ? talk.submissions[event.id] : {}
   return {
     loaded: !isEmpty(talk) && !isEmpty(event),
     event,

@@ -13,12 +13,13 @@ const SubmitButton = ({
   loadingMessage,
   className,
   children,
+  noPristine,
 }) => (
   <button
     type="submit"
     className={cn('btn btn-primary', className)}
     onClick={handleSubmit}
-    disabled={pristine || submitting || invalid}
+    disabled={(!noPristine && pristine) || submitting || invalid}
   >
     {submitting && <IconLabel icon="fa fa-cog fa-spin fa-fw" label={loadingMessage} />}
     {!submitting && children}
@@ -30,11 +31,13 @@ SubmitButton.propTypes = {
   loadingMessage: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  noPristine: PropTypes.bool,
 }
 
 SubmitButton.defaultProps = {
   className: undefined,
   loadingMessage: 'Saving...',
+  noPristine: false,
 }
 
 export default SubmitButton
