@@ -5,9 +5,10 @@ import IconLabel from 'components/iconLabel'
 import { Field, reduxForm } from 'redux-form'
 import { textarea, radio, SubmitButton, RadioGroup } from 'components/form'
 import isEmpty from 'lodash/isEmpty'
-import './submit.css'
 
-const TalkSubmit = ({ talk, event, ...formProps }) => (
+import './talkSubmission.css'
+
+const TalkSubmission = ({ talk, event, ...formProps }) => (
   <div className="submit-talk">
     <Titlebar
       icon="fa fa-paper-plane"
@@ -59,4 +60,4 @@ const TalkSubmit = ({ talk, event, ...formProps }) => (
   </div>
 )
 
-export default reduxForm({ form: 'submit-talk' })(TalkSubmit)
+export default reduxForm({ form: 'submit-talk' })(TalkSubmission)

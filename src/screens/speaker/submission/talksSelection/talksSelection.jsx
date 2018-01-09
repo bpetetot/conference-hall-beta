@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Titlebar from 'components/titlebar'
-import TalksSubmissionTable from './talksSubmissionTable.container'
+import TalksSelectionTable from './talksSelectionTable.container'
 
-import './talksSubmission.css'
+import './talksSelection.css'
 
-const TalksSubmission = ({ name }) => (
-  <div className="talks-submission">
+const TalksSelection = ({ name }) => (
+  <div className="talks-selection">
     <Titlebar
       icon="fa fa-paper-plane"
       title={
@@ -16,16 +16,16 @@ const TalksSubmission = ({ name }) => (
         </span>
       }
     />
-    <TalksSubmissionTable />
+    <TalksSelectionTable />
   </div>
 )
 
-TalksSubmission.propTypes = {
+TalksSelection.propTypes = {
   name: PropTypes.string,
 }
 
-TalksSubmission.defaultProps = {
+TalksSelection.defaultProps = {
   name: '...',
 }
 
-export default TalksSubmission
+export default TalksSelection

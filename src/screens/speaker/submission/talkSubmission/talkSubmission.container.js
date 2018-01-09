@@ -7,7 +7,7 @@ import isEmpty from 'lodash/isEmpty'
 import { getSpeakerAppEvent } from 'redux/ui/speaker'
 import { getTalkFromRouterParam } from 'redux/data/talks'
 import LoadingIndicator from 'components/loading'
-import SubmitTalk from './submit'
+import TalkSubmission from './talkSubmission'
 
 const mapState = (state) => {
   const event = getSpeakerAppEvent(state)
@@ -35,4 +35,4 @@ export default compose(
   forRoute('TALK_SUBMIT', { absolute: true }),
   connect(mapState, mapDispatch),
   loader({ print: ['loaded'], LoadingIndicator }),
-)(SubmitTalk)
+)(TalkSubmission)
