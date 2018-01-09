@@ -1,12 +1,12 @@
-.talks-page .talks-content {
-  padding: 0em;
+div.talks-table {
+  padding: 0;
 }
 
-.talks-page .talks-content > div {
+.talks-table > div {
   border-bottom: 1px solid var(--grey-color);
 }
 
-.talks-page .talks-content > div:last-child {
+.talks-table > div:last-child {
   border-bottom: none;
 }
 
@@ -16,11 +16,11 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .talks-page .talks-content {
+  .talks-table {
     border-radius: 0;
     margin: 0;
   }
-  .talks-page .talks-header {
+  .talks-header {
     font-size: 0.8em;
   }
 }

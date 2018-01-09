@@ -6,7 +6,8 @@ import { protect } from 'redux/auth'
 import { Brand, Navbar } from 'screens/components'
 import { Sidebar, SidebarMobile } from './sidebar'
 import Profile from './profile'
-import Talks from './talks'
+import MyTalks from './talks/myTalks'
+import TalksSubmission from './talks/talksSubmission'
 import TalkCreate from './talk/create'
 import TalkEdit from './talk/edit'
 import TalkSubmit from './talk/submit'
@@ -25,7 +26,8 @@ const Speaker = () => (
       <TalkEdit />
       <TalkSubmit />
       <Talk />
-      <Talks />
+      <MyTalks />
+      <TalksSubmission />
       <Event />
     </div>
   </div>

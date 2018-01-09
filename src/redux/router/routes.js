@@ -42,6 +42,7 @@ export default {
         '/submit': { title: 'TALK_SUBMIT' },
       },
     },
+    '/talks/submit': { title: 'TALKS_SUBMISSION' },
     '/event': {
       title: 'HOME_EVENT',
       '/:eventId': { title: 'EVENT_PAGE' },
