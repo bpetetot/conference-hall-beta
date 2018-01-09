@@ -1,6 +1,6 @@
 a {
   color: var(--primary-color);
-  text-decoration: none;
+  text-decoration: underline;
   text-decoration-skip: ink;
   transition: all 0.3s;
 }

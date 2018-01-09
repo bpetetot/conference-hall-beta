@@ -1,4 +1,4 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
@@ -80,7 +80,7 @@ export default function* eventSagas() {
   yield takeLatest('SUBMIT_CREATE_EVENT_FORM', ({ payload }) => createEvent(payload))
   yield takeLatest('SUBMIT_UPDATE_EVENT_FORM', ({ payload }) => updateEvent('event-edit', payload))
   yield takeLatest('SUBMIT_UPDATE_CFP_FORM', ({ payload }) => updateEvent('cfp-edit', payload))
-  yield takeLatest('FETCH_EVENT', ({ payload }) => fetchEvent(payload))
+  yield takeEvery('FETCH_EVENT', ({ payload }) => fetchEvent(payload))
   yield takeLatest('FETCH_EVENT_FROM_ROUTER_PARAMS', fetchEventFromRouterParams)
   yield takeLatest('FETCH_ORGANIZER_EVENTS', fetchOrganizerEvents)
 }

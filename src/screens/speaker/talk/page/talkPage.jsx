@@ -2,17 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Markdown from 'react-markdown'
 import { Link } from 'redux-little-router'
+import isEmpty from 'lodash/isEmpty'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Badge from 'components/badge'
 import SubmitTalkButton from './submitTalkButton'
 import Speaker from './speaker'
+import Submission from './submission'
 
 import './talkPage.css'
 
 const TalkPage = ({
-  id, title, abstract, level, references, speakers,
+  id, title, abstract, level, references, speakers, submissions,
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
@@ -35,8 +37,12 @@ const TalkPage = ({
           <Badge>Level {level}</Badge>
         </div>
         <div className="card margin-gap">
-          <h3>Proposals</h3>
-          <small>No proposal yet</small>
+          <h3>Submissions</h3>
+          {isEmpty(submissions) && <small>Not submitted yet</small>}
+          {!isEmpty(submissions) &&
+            Object.keys(submissions).map(eventId => (
+              <Submission key={eventId} eventId={eventId} talkId={id} />
+            ))}
         </div>
       </div>
     </div>
@@ -50,6 +56,7 @@ TalkPage.propTypes = {
   level: PropTypes.string,
   references: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
+  submissions: PropTypes.objectOf(PropTypes.any),
 }
 
 TalkPage.defaultProps = {
@@ -57,6 +64,7 @@ TalkPage.defaultProps = {
   level: 'not defined',
   references: undefined,
   speakers: {},
+  submissions: {},
 }
 
 export default TalkPage

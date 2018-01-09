@@ -8,7 +8,7 @@ import talksData, { getTalkIdFromRouterParam } from 'redux/data/talks'
 import { toast } from 'redux/ui/toaster'
 import speakerTalks from 'redux/ui/speaker/talks'
 
-import talkCrud, { fetchUserTalks } from './talks.firebase'
+import talkCrud, { fetchUserTalks, saveTalkSubmission } from './talks.firebase'
 
 function* createTalk(talk) {
   const FORM = 'talk-create'
@@ -73,8 +73,7 @@ function* fetchTalkFromRouterParams() {
 
 function* fetchSpeakerTalks() {
   const uid = yield select(getUserId)
-  const result = yield fetchUserTalks(uid)
-  const talks = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  const talks = yield fetchUserTalks(uid)
   // set talks in the store
   yield put(talksData.set(talks))
   // set talks id to the speaker talk store
@@ -82,14 +81,16 @@ function* fetchSpeakerTalks() {
   yield put(speakerTalks.set(talks.map(({ id }) => ({ id }))))
 }
 
-function* submitTalkToEvent({ data, talkId, eventId }) {
+function* submitTalkToEvent({ talkId, eventId, data }) {
   const FORM = 'submit-talk'
   const event = yield select(eventsData.get(eventId))
+  const talk = yield select(talksData.get(talkId))
   try {
     // indicate start submitting form
     yield put(startSubmit(FORM))
     // submit talk
-    yield call(console.log, data, talkId, eventId)
+    yield call(saveTalkSubmission, talkId, eventId, data)
+    yield put(talksData.update({ ...talk, submissions: { ...talk.submissions, [eventId]: data } }))
     // set form submitted
     yield put(stopSubmit(FORM))
     yield put(replace(`/speaker/talk/${talkId}`))
