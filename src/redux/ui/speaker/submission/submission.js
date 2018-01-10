@@ -1,16 +1,23 @@
 const initialState = {
   talkId: undefined,
-  eventId: undefined,
-  submissionStep: 0,
+  update: false,
+  currentStep: 0,
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_SUBMITTED_EVENT':
-      return { ...state, ...action.payload, submissionStep: 0 }
-    case 'NEXT_SUBMISSION_STEP':
-      return { ...state, submissionStep: state.submissionStep + 1 }
-    case 'SUBMISSION_FINISHED':
+    case 'SET_TALK_TO_SUBMIT':
+      return { ...state, talkId: action.payload.talkId, currentStep: 1 }
+    case 'SET_TALK_TO_SUBMIT_UPDATE':
+      return {
+        ...state,
+        talkId: action.payload.talkId,
+        currentStep: 1,
+        update: true,
+      }
+    case 'SUBMISSION_NEXT_STEP':
+      return { ...state, currentStep: state.currentStep + 1 }
+    case 'RESET_SUBMISSION':
       return initialState
     default:
       return state

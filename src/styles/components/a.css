@@ -5,6 +5,10 @@ a {
   transition: all 0.3s;
 }
 
+a[role='button'] {
+  cursor: pointer;
+}
+
 a:hover {
   color: var(--secondary-color);
 }

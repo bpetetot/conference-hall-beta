@@ -1,16 +1,22 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import forRoute from 'hoc-little-router'
+import loader from 'hoc-react-loader/build/core'
 
-import { getSpeakerAppEvent } from 'redux/ui/speaker/app'
-import TalksSelection from './talksSelection'
+import speakerTalks from 'redux/ui/speaker/myTalks'
+import LoadingIndicator from 'components/loading'
+import TalksTable from '../../components/talksTable'
 
-const mapState = (state) => {
-  const { name } = getSpeakerAppEvent(state)
-  return { name }
-}
+const mapState = state => ({
+  loaded: speakerTalks.isInitialized(state),
+  talks: speakerTalks.getKeys(state),
+})
+
+const mapDispatch = dispatch => ({
+  load: () => dispatch({ type: 'FETCH_SPEAKER_TALKS' }),
+  onSelectTalk: talkId => dispatch({ type: 'SET_TALK_TO_SUBMIT', payload: { talkId } }),
+})
 
 export default compose(
-  forRoute('TALKS_SUBMISSION', { absolute: true }), //
-  connect(mapState), //
-)(TalksSelection)
+  connect(mapState, mapDispatch),
+  loader({ print: ['loaded'], LoadingIndicator }),
+)(TalksTable)

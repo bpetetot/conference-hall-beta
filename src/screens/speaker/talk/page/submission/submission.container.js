@@ -12,10 +12,11 @@ const mapState = (state, { eventId }) => {
 }
 
 const mapDispatch = (dispatch, { eventId, talkId }) => ({
-  load: () => dispatch({ type: 'FETCH_EVENT', payload: eventId }),
+  load: () => {
+    dispatch({ type: 'FETCH_EVENT', payload: eventId })
+  },
   onClickEdit: () => {
-    dispatch({ type: 'SET_CURRENT_EVENT', payload: eventId })
-    dispatch(push(`/speaker/talk/${talkId}/submit`))
+    dispatch({ type: 'OPEN_SUBMISSION_UPDATE_PAGE', payload: { eventId, talkId } })
   },
   onClickEvent: () => {
     dispatch({ type: 'SET_CURRENT_EVENT', payload: eventId })

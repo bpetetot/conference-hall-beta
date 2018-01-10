@@ -12,7 +12,7 @@ const EventSidebar = ({ id, name }) => {
       <SideBarLink to={`/speaker/event/${id}`}>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
-      <SubmitTalksLink className="sidebar-link" />
+      <SubmitTalksLink eventId={id} className="sidebar-link" />
     </SideBarPanel>
   )
 }

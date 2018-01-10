@@ -1,15 +1,24 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import './step.css'
 
-const Step = ({ label, icon, className }) => (
-  <div className={cn('step', className)}>
-    <div className="icon-label">{label}</div>
-    <div className="icon-step">
-      <i className={icon} />
+const Step = ({ icon, step, current }) => {
+  const stepIcon = (i, s, c) => cn({ [i]: s >= c, 'fa fa-check': s < c })
+  const stepClasses = (s, c) => cn('step-icon', { 'step-active': s === c, 'step-success': s < c })
+
+  return (
+    <div className={stepClasses(step, current)}>
+      <i className={stepIcon(icon, step, current)} />
     </div>
-  </div>
-)
+  )
+}
+
+Step.propTypes = {
+  icon: PropTypes.string.isRequired,
+  step: PropTypes.number.isRequired,
+  current: PropTypes.number.isRequired,
+}
 
 export default Step

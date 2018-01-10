@@ -1,23 +1,4 @@
-.step {
-  text-align: center;
-}
-
-.step > .icon-label {
-  position: absolute;
-  top: -2em;
-  color: var(--grey-color-dark);
-  font-weight: 600;
-}
-
-.step.step-first > .icon-label {
-  left: 0;
-}
-
-.step.step-last > .icon-label {
-  right: 0;
-}
-
-.step .icon-step {
+.step-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,22 +9,14 @@
   border: 2px solid var(--grey-color-dark);
 }
 
-.step.step-active > .icon-step {
+.step-active {
   color: var(--secondary-color-font);
   background: var(--secondary-color);
   border: 2px solid var(--secondary-color);
 }
 
-.step.step-active > .icon-label {
-  color: var(--secondary-color);
-}
-
-.step.step-success > .icon-step {
+.step-success {
   color: #fff;
   background: var(--success-color);
   border: 2px solid var(--success-color);
-}
-
-.step.step-success > .icon-label {
-  color: var(--success-color);
 }

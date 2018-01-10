@@ -1,25 +1,14 @@
-.talk-submitted {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.talk-submitted .event-subtitle {
-  color: var(---color);
-  font-weight: 600;
-}
-
-.talk-submitted .icon-submitted {
+.icon-submitted {
   text-align: center;
   color: var(--grey-color-dark);
 }
 
-.talk-submitted .icon-submitted > i {
+.icon-submitted > i {
   font-size: 12em;
   margin: 0.3em;
 }
 
-.talk-submitted .icon-submitted > h2 {
+.icon-submitted > h2 {
   margin: 2em 0;
   font-weight: 600;
   color: var(--success-color);

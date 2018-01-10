@@ -1,0 +1,7 @@
+.step-active-label {
+  color: var(--secondary-color);
+}
+
+.step-success-label {
+  color: var(--success-color);
+}

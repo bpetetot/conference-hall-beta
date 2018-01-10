@@ -36,7 +36,7 @@ const Event = ({
         {isOrganizer && (
           <CopyInput title="Share link" value={`${url[0]}/${url[2]}/public/event/${id}`} />
         )}
-        <SubmitTalkLink className="btn" />
+        <SubmitTalkLink className="btn" eventId={id} />
         {isOrganizer && (
           <Link href={`/organizer/event/${id}/edit`} className="btn">
             <IconLabel icon="fa fa-pencil" label="Edit" />

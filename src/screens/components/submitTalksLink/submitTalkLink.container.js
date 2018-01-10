@@ -1,13 +1,15 @@
 import { connect } from 'react-redux'
 
 import { isCfpOpened } from 'redux/data/events'
-import { getSpeakerAppEvent } from 'redux/ui/speaker/app'
 import SubmitTalkLink from './submitTalkLink'
 
-const mapState = (state) => {
-  const { id } = getSpeakerAppEvent(state)
-  const cfpOpened = isCfpOpened(id)(state)
-  return { eventId: id, displayed: id && cfpOpened }
+const mapState = (state, { eventId }) => {
+  const cfpOpened = isCfpOpened(eventId)(state)
+  return { eventId, displayed: eventId && cfpOpened }
 }
 
-export default connect(mapState)(SubmitTalkLink)
+const mapDispatch = (dispatch, { eventId }) => ({
+  onClick: () => dispatch({ type: 'OPEN_SUBMISSION_PAGE', payload: { eventId } }),
+})
+
+export default connect(mapState, mapDispatch)(SubmitTalkLink)

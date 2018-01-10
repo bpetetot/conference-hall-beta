@@ -39,11 +39,9 @@ export default {
       '/:talkId': {
         title: 'TALK_PAGE',
         '/edit': { title: 'EDIT_TALK' },
-        '/submit': { title: 'TALK_SUBMIT' },
-        '/submitted': { title: 'TALK_SUBMITTED' },
       },
     },
-    '/talks/submit': { title: 'TALKS_SUBMISSION' },
+    '/submission': { title: 'SUBMISSION' },
     '/event': {
       title: 'HOME_EVENT',
       '/:eventId': { title: 'EVENT_PAGE' },

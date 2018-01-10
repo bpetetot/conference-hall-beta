@@ -1,26 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
 
 import IconLabel from 'components/iconLabel'
 
-const SubmitTalkLink = ({ eventId, displayed, className }) => {
+const SubmitTalkLink = ({
+  label, displayed, onClick, className,
+}) => {
   if (!displayed) return null
   return (
-    <Link href={`/speaker/talks/submit?eventId=${eventId}`} className={className}>
-      <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />
-    </Link>
+    <a onClick={onClick} role="button" className={className}>
+      {label || <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />}
+    </a>
   )
 }
 
 SubmitTalkLink.propTypes = {
-  eventId: PropTypes.string,
+  label: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
   displayed: PropTypes.bool,
   className: PropTypes.string,
 }
 
 SubmitTalkLink.defaultProps = {
-  eventId: undefined,
+  label: undefined,
   displayed: false,
   className: undefined,
 }

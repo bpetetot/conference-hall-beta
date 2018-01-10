@@ -1,6 +1,6 @@
 .step-space {
   height: 2px;
-  flex-basis: 100%;
+  flex-grow: 2;
   background: var(--grey-color-dark);
 }
 
