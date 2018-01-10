@@ -1,0 +1,12 @@
+.submit-talk-content {
+  width: 100%;
+}
+
+.submit-talk-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-talk .submit-talk-form > button {
+  align-self: flex-end;
+}

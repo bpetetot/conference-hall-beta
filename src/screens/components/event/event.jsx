@@ -7,6 +7,7 @@ import IconLabel from 'components/iconLabel'
 import CopyInput from 'components/copyInput'
 import Maps from 'components/maps'
 
+import SubmitTalkLink from '../submitTalksLink'
 import Address from './addressBlock'
 import List from './listBlock'
 import Description from './descriptionBlock'
@@ -22,7 +23,6 @@ const Event = ({
   name,
   type,
   address,
-  cfpState,
   conferenceDates,
   description,
   website,
@@ -36,11 +36,7 @@ const Event = ({
         {isOrganizer && (
           <CopyInput title="Share link" value={`${url[0]}/${url[2]}/public/event/${id}`} />
         )}
-        {cfpState === 'opened' && (
-          <Link href={`/speaker?eventId=${id}`} className="btn">
-            <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />
-          </Link>
-        )}
+        <SubmitTalkLink className="btn" eventId={id} />
         {isOrganizer && (
           <Link href={`/organizer/event/${id}/edit`} className="btn">
             <IconLabel icon="fa fa-pencil" label="Edit" />
@@ -69,7 +65,6 @@ Event.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   address: PropTypes.string,
-  cfpState: PropTypes.string,
   conferenceDates: PropTypes.objectOf(PropTypes.instanceOf(Date)),
   description: PropTypes.string,
   website: PropTypes.string,
@@ -81,7 +76,6 @@ Event.defaultProps = {
   name: undefined,
   type: undefined,
   address: undefined,
-  cfpState: undefined,
   conferenceDates: {},
   description: undefined,
   website: undefined,

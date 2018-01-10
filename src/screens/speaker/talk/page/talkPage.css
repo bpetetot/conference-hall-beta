@@ -15,6 +15,10 @@
   align-self: start;
 }
 
+.talk-page .talk-info .talk-submissions > div:last-child {
+  padding-bottom: 0;
+}
+
 .margin-gap {
   margin-top: 2em;
 }

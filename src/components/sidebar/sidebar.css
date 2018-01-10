@@ -24,6 +24,7 @@
 
 .sidebar a.sidebar-link {
   color: var(--grey-color-light);
+  text-decoration: none;
   padding: 0.7em 1em;
 }
 

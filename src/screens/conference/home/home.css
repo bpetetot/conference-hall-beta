@@ -23,6 +23,7 @@
   min-width: 12em;
   position: relative;
   text-transform: uppercase;
+  text-decoration: none;
   transition: all 0.5s;
 }
 

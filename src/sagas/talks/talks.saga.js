@@ -4,7 +4,7 @@ import { push } from 'redux-little-router'
 
 import { getUserId } from 'redux/auth'
 import talksData, { getTalkIdFromRouterParam } from 'redux/data/talks'
-import speakerTalks from 'redux/ui/speaker/talks'
+import speakerTalks from 'redux/ui/speaker/myTalks'
 
 import talkCrud, { fetchUserTalks } from './talks.firebase'
 
@@ -71,8 +71,7 @@ function* fetchTalkFromRouterParams() {
 
 function* fetchSpeakerTalks() {
   const uid = yield select(getUserId)
-  const result = yield fetchUserTalks(uid)
-  const talks = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  const talks = yield fetchUserTalks(uid)
   // set talks in the store
   yield put(talksData.set(talks))
   // set talks id to the speaker talk store

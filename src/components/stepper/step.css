@@ -1,0 +1,22 @@
+.step-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  color: var(--grey-color-dark);
+  border: 2px solid var(--grey-color-dark);
+}
+
+.step-active {
+  color: var(--secondary-color-font);
+  background: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+}
+
+.step-success {
+  color: #fff;
+  background: var(--success-color);
+  border: 2px solid var(--success-color);
+}

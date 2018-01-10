@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import IconLabel from 'components/iconLabel'
 import { SideBarPanel, SideBarLink } from 'components/sidebar'
+import SubmitTalksLink from 'screens/components/submitTalksLink'
 
 const EventSidebar = ({ id, name }) => {
   if (!id) return null
@@ -11,6 +12,7 @@ const EventSidebar = ({ id, name }) => {
       <SideBarLink to={`/speaker/event/${id}`}>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
+      <SubmitTalksLink eventId={id} className="sidebar-link" />
     </SideBarPanel>
   )
 }

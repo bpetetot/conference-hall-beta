@@ -1,0 +1,27 @@
+div.talks-table {
+  padding: 0;
+  width: 100%;
+}
+
+.talks-table > div {
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.talks-table > div:last-child {
+  border-bottom: none;
+}
+
+.no-talks {
+  margin: 2em;
+  color: var(--grey-color);
+}
+
+@media only screen and (max-width: 480px) {
+  .talks-table {
+    border-radius: 0;
+    margin: 0;
+  }
+  .talks-header {
+    font-size: 0.8em;
+  }
+}

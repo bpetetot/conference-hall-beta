@@ -12,6 +12,7 @@
 }
 
 .brand > a {
+  text-decoration: none;
   color: var(--secondary-color-font);
 }
 

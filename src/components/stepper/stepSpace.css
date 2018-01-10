@@ -1,0 +1,17 @@
+.step-space {
+  height: 2px;
+  flex-grow: 2;
+  background: var(--grey-color-dark);
+}
+
+.step-space.space-success {
+  background: var(--success-color);
+}
+
+.step-space.space-active-to-default {
+  background: linear-gradient(to right, var(--secondary-color), var(--grey-color-dark));
+}
+
+.step-space.space-success-to-active {
+  background: linear-gradient(to right, var(--success-color), var(--secondary-color));
+}

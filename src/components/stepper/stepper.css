@@ -1,0 +1,30 @@
+.stepper {
+  margin: 3em 0 4em 0;
+  width: 70%;
+}
+
+.stepper .steps-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  font-weight: 600;
+  color: var(--grey-color-dark);
+}
+
+.stepper .steps-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 480px) {
+  .stepper {
+    margin: 1em 0 2em 0;
+    width: 100%;
+  }
+
+  .stepper .steps-labels {
+    display: none;
+  }
+}
