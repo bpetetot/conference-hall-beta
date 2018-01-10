@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import { isCfpOpened } from 'redux/data/events'
-import { getSpeakerAppEvent } from 'redux/ui/speaker'
+import { getSpeakerAppEvent } from 'redux/ui/speaker/app'
 import SubmitTalkLink from './submitTalkLink'
 
 const mapState = (state) => {

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { push } from 'redux-little-router'
 import loader from 'hoc-react-loader/build/core'
 
-import { getSpeakerAppEvent } from 'redux/ui/speaker'
-import speakerTalks from 'redux/ui/speaker/talks'
+import { getSpeakerAppEvent } from 'redux/ui/speaker/app'
+import speakerTalks from 'redux/ui/speaker/myTalks'
 import LoadingIndicator from 'components/loading'
 import TalksTable from '../../components/talksTable'
 

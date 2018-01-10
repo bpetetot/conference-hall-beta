@@ -4,7 +4,7 @@ import { push, replace } from 'redux-little-router'
 
 import { getUserId } from 'redux/auth'
 import talksData, { getTalkIdFromRouterParam } from 'redux/data/talks'
-import speakerTalks from 'redux/ui/speaker/talks'
+import speakerTalks from 'redux/ui/speaker/myTalks'
 
 import talkCrud, { fetchUserTalks, saveTalkSubmission } from './talks.firebase'
 

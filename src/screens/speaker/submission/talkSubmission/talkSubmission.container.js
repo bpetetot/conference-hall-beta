@@ -4,7 +4,7 @@ import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 import isEmpty from 'lodash/isEmpty'
 
-import { getSpeakerAppEvent } from 'redux/ui/speaker'
+import { getSpeakerAppEvent } from 'redux/ui/speaker/app'
 import { getTalkFromRouterParam } from 'redux/data/talks'
 import LoadingIndicator from 'components/loading'
 import TalkSubmission from './talkSubmission'
