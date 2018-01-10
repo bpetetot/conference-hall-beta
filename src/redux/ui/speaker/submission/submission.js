@@ -6,9 +6,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_TALK_TO_SUBMIT':
+    case 'SUBMISSION_SELECT_TALK':
       return { ...state, talkId: action.payload.talkId, currentStep: 1 }
-    case 'SET_TALK_TO_SUBMIT_UPDATE':
+    case 'SUBMISSION_SELECT_UPDATE_TALK':
       return {
         ...state,
         talkId: action.payload.talkId,
@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
       }
     case 'SUBMISSION_NEXT_STEP':
       return { ...state, currentStep: state.currentStep + 1 }
-    case 'RESET_SUBMISSION':
+    case 'SUBMISSION_RESET':
       return initialState
     default:
       return state

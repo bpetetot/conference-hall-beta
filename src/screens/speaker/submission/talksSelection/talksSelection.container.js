@@ -13,7 +13,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   load: () => dispatch({ type: 'FETCH_SPEAKER_TALKS' }),
-  onSelectTalk: talkId => dispatch({ type: 'SET_TALK_TO_SUBMIT', payload: { talkId } }),
+  onSelectTalk: talkId => dispatch({ type: 'SUBMISSION_SELECT_TALK', payload: { talkId } }),
 })
 
 export default compose(

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import IconLabel from 'components/iconLabel'
 import { Field, reduxForm } from 'redux-form'
@@ -48,5 +49,15 @@ const TalkSubmission = ({ talk, event, ...formProps }) => (
     </form>
   </div>
 )
+
+TalkSubmission.propTypes = {
+  talk: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  event: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+}
+
+TalkSubmission.defaultProps = {
+  talk: {},
+  event: {},
+}
 
 export default reduxForm({ form: 'submit-talk' })(TalkSubmission)

@@ -7,14 +7,14 @@ import { saveTalkSubmission } from './submission.firebase'
 
 function* openSubmissionPage({ eventId }) {
   yield put({ type: 'SET_CURRENT_EVENT', payload: eventId })
-  yield put({ type: 'RESET_SUBMISSION' })
+  yield put({ type: 'SUBMISSION_RESET' })
   yield put(push('/speaker/submission'))
 }
 
 function* openSubmissionUpdatePage({ eventId, talkId }) {
   yield put({ type: 'SET_CURRENT_EVENT', payload: eventId })
-  yield put({ type: 'RESET_SUBMISSION' })
-  yield put({ type: 'SET_TALK_TO_SUBMIT_UPDATE', payload: { talkId } })
+  yield put({ type: 'SUBMISSION_RESET' })
+  yield put({ type: 'SUBMISSION_SELECT_UPDATE_TALK', payload: { talkId } })
   yield put(push('/speaker/submission'))
 }
 
