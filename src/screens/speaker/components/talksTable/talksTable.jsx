@@ -1,17 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import NoTalks from '../noTalks'
 import TalkCard from '../talkCard'
 
 import './talksTable.css'
 
 const TalksTable = ({ talks, onSelectTalk }) => (
   <div className="talks-table card">
-    {talks.length === 0 && (
-      <div className="no-talks">
-        <h3>No talk yet !</h3>
-      </div>
-    )}
+    {talks.length === 0 && <NoTalks />}
     {talks.map(id => <TalkCard key={id} id={id} onSelect={onSelectTalk} />)}
   </div>
 )
