@@ -21,7 +21,7 @@ const Submission = ({ eventId, eventName, currentStep }) => {
     <div className="submission">
       <SubmissionTitle eventName={eventName} />
       <Stepper steps={steps} currentStep={currentStep} />
-      {currentStep === 0 && <Selection />}
+      {currentStep === 0 && <Selection eventId={eventId} eventName={eventName} />}
       {currentStep === 1 && <TalkSubmission eventId={eventId} eventName={eventName} />}
       {currentStep === 2 && <TalkSubmitted eventId={eventId} eventName={eventName} />}
     </div>
