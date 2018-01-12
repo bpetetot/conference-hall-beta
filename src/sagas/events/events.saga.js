@@ -4,7 +4,7 @@ import { push } from 'redux-little-router'
 
 import { getUserId } from 'redux/auth'
 import eventsData, { getEventIdFromRouterParam } from 'redux/data/events'
-import organizerEvents from 'redux/ui/organizer/events'
+import organizerEvents from 'redux/ui/organizer/myEvents'
 import eventCrud, { fetchUserEvents } from './events.firebase'
 
 function* createEvent(event) {

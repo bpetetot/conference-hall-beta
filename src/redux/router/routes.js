@@ -24,6 +24,7 @@ export default {
           '/cfp': { title: 'EDIT_EVENT_CFP' },
           '/members': { title: 'EDIT_EVENT_MEMBERS' },
         },
+        '/proposals': { title: 'PROPOSALS' },
       },
     },
   },

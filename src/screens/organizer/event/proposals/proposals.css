@@ -1,0 +1,19 @@
+div.event-proposals {
+  padding: 0;
+  width: 100%;
+}
+
+.event-proposals > div {
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.event-proposals > div:last-child {
+  border-bottom: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .event-proposals {
+    border-radius: 0;
+    margin: 0;
+  }
+}
