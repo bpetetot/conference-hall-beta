@@ -7,10 +7,14 @@ import speakerTalks from 'redux/ui/speaker/myTalks'
 import LoadingIndicator from 'components/loading'
 import TalksTable from '../components/talksTable'
 
-const mapState = state => ({
-  loaded: speakerTalks.isInitialized(state),
-  talks: speakerTalks.getKeys(state),
-})
+const mapState = (state) => {
+  const h = speakerTalks.getKeys(state)
+  console.log(h)
+  return {
+    loaded: speakerTalks.isInitialized(state),
+    talks: speakerTalks.getKeys(state),
+  }
+}
 
 const mapDispatch = dispatch => ({
   load: () => dispatch({ type: 'FETCH_SPEAKER_TALKS' }),
