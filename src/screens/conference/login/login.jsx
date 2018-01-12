@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
 
 import Loading from 'components/loading'
 import IconLabel from 'components/iconLabel'
@@ -20,9 +19,6 @@ const Login = ({ authenticated, signin }) => {
       <button className="btn btn-github" onClick={() => signin('github')}>
         <IconLabel icon="fa fa-github" label="With Github" />
       </button>
-      <Link className="login-back" href="/">
-        back to home
-      </Link>
     </div>
   )
 }
