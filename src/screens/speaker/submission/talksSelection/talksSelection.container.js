@@ -4,7 +4,7 @@ import loader from 'hoc-react-loader/build/core'
 
 import speakerTalks from 'redux/ui/speaker/myTalks'
 import LoadingIndicator from 'components/loading'
-import TalksTable from '../../components/talksTable'
+import TalksSelection from './talksSelection'
 
 const mapState = state => ({
   loaded: speakerTalks.isInitialized(state),
@@ -19,4 +19,4 @@ const mapDispatch = dispatch => ({
 export default compose(
   connect(mapState, mapDispatch),
   loader({ print: ['loaded'], LoadingIndicator }),
-)(TalksTable)
+)(TalksSelection)

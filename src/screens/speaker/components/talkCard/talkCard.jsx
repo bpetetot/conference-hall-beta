@@ -6,25 +6,28 @@ import IconLabel from 'components/iconLabel'
 
 import './talkCard.css'
 
-const TalkCard = ({
-  id, title, createTimestamp, onSelect,
-}) => {
-  const relativeDate = distanceInWordsToNow(createTimestamp, { addSuffix: true })
+const TalkCard = ({ onSelect, renderInfo, ...talk }) => {
+  const relativeDate = distanceInWordsToNow(talk.updateTimestamp, { addSuffix: true })
   return (
-    <div className="talk-card" onClick={() => onSelect(id)} role="button">
-      <span className="talk-card-title">{title}</span>
-      <small>
-        <IconLabel icon="fa fa-clock-o" label={relativeDate} />
-      </small>
+    <div className="talk-card" onClick={() => onSelect(talk.id)} role="button">
+      <div>
+        <div className="talk-card-title">{talk.title}</div>
+        <div className=" talk-card-subtitle">
+          <IconLabel icon="fa fa-clock-o" label={`updated ${relativeDate}`} />
+        </div>
+      </div>
+      <div className="talk-card-info">{renderInfo && renderInfo(talk)}</div>
     </div>
   )
 }
 
 TalkCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  createTimestamp: PropTypes.instanceOf(Date).isRequired,
+  renderInfo: PropTypes.func,
   onSelect: PropTypes.func.isRequired,
+}
+
+TalkCard.defaultProps = {
+  renderInfo: undefined,
 }
 
 export default TalkCard
