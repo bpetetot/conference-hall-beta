@@ -10,6 +10,7 @@ import EventCreate from './event/create'
 import EventEdit from './event/edit'
 import Event from './event/page'
 import Proposals from './event/proposals'
+import Proposal from './event/proposal'
 import MyEvents from './events'
 
 const Organizer = () => (
@@ -24,6 +25,7 @@ const Organizer = () => (
       <Event />
       <MyEvents />
       <Proposals />
+      <Proposal />
     </div>
   </div>
 )
