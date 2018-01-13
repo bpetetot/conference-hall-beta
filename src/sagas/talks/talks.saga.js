@@ -4,7 +4,8 @@ import { push } from 'redux-little-router'
 import compareDesc from 'date-fns/compare_desc'
 
 import { getUserId } from 'redux/auth'
-import talksData, { getTalkIdFromRouterParam } from 'redux/data/talks'
+import { getRouterParam } from 'redux/router'
+import talksData from 'redux/data/talks'
 import speakerTalks from 'redux/ui/speaker/myTalks'
 
 import talkCrud, { fetchUserTalks } from './talks.firebase'
@@ -64,7 +65,7 @@ function* fetchTalk(id) {
 
 function* fetchTalkFromRouterParams() {
   // get talk id from router params
-  const id = yield select(getTalkIdFromRouterParam)
+  const id = yield select(getRouterParam('talkId'))
   if (id) {
     yield fetchTalk(id)
   }

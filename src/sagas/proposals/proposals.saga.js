@@ -1,12 +1,12 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 
 import proposalsData from 'redux/data/proposals'
-import { getEventIdFromRouterParam } from 'redux/data/events'
+import { getRouterParam } from 'redux/router'
 import { fetchEventProposals } from './proposals.firebase'
 
 function* onLoadEventProposalsPage() {
   // get event id from router
-  const eventId = yield select(getEventIdFromRouterParam)
+  const eventId = yield select(getRouterParam('eventId'))
   // get event
   yield put({ type: 'FETCH_EVENT', payload: eventId })
   // fetch proposals

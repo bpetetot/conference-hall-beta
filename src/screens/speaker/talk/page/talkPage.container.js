@@ -3,12 +3,14 @@ import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
-import { getTalkFromRouterParam } from 'redux/data/talks'
+import { getRouterParam } from 'redux/router'
+import talksData from 'redux/data/talks'
 import LoadingIndicator from 'components/loading'
 import TalkPage from './talkPage'
 
 const mapState = (state) => {
-  const talk = getTalkFromRouterParam(state)
+  const talkId = getRouterParam('talkId')(state)
+  const talk = talksData.get(talkId)(state)
   return { loaded: !!talk, ...talk }
 }
 
