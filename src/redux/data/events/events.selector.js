@@ -40,6 +40,7 @@ export const getFormat = (eventId, formatId) => (state) => {
   if (formats) {
     return formats.find(f => f.id === formatId)
   }
+  return undefined
 }
 
 /**
@@ -52,4 +53,5 @@ export const getCategory = (eventId, categoryId) => (state) => {
   if (categories) {
     return categories.find(c => c.id === categoryId)
   }
+  return undefined
 }
