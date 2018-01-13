@@ -6,17 +6,11 @@ import { getRouterParam } from 'redux/router'
 import eventsData from './events'
 
 /**
- * Return the event id from the router params
- * @param {object} state the redux state
- */
-export const getEventIdFromRouterParam = state => getRouterParam('eventId')(state)
-
-/**
  * Return the event from the id in the router params
  * @param {object} state the redux state
  */
 export const getEventFromRouterParam = (state) => {
-  const id = getEventIdFromRouterParam(state)
+  const id = getRouterParam('eventId')(state)
   return eventsData.get(id)(state)
 }
 

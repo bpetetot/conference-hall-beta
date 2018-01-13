@@ -3,7 +3,8 @@ import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
 import { getUserId } from 'redux/auth'
-import eventsData, { getEventIdFromRouterParam } from 'redux/data/events'
+import { getRouterParam } from 'redux/router'
+import eventsData from 'redux/data/events'
 import organizerEvents from 'redux/ui/organizer/myEvents'
 import eventCrud, { fetchUserEvents } from './events.firebase'
 
@@ -44,24 +45,24 @@ function* updateEvent(form, event) {
   }
 }
 
-function* fetchEvent(id) {
+function* fetchEvent({ eventId }) {
   // check if already in the store
-  const current = yield select(eventsData.get(id))
-  if (current && current.id === id) return
+  const current = yield select(eventsData.get(eventId))
+  if (current && current.id === eventId) return
   // fetch event from id
-  const ref = yield call(eventCrud.read, id)
+  const ref = yield call(eventCrud.read, eventId)
   if (ref.exists) {
-    yield put(eventsData.add({ id, ...ref.data() }))
+    yield put(eventsData.add({ id: eventId, ...ref.data() }))
   } else {
-    yield put({ type: 'EVENT_NOT_FOUND', payload: id })
+    yield put({ type: 'EVENT_NOT_FOUND', payload: { eventId } })
   }
 }
 
 function* fetchEventFromRouterParams() {
   // get event id from router
-  const id = yield select(getEventIdFromRouterParam)
-  if (id) {
-    yield fetchEvent(id)
+  const eventId = yield select(getRouterParam('eventId'))
+  if (eventId) {
+    yield fetchEvent({ eventId })
   }
 }
 
