@@ -1,9 +1,8 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
-import LoadingIndicator from 'components/loading'
+import loader from 'components/loader'
 import { getRouterParam } from 'redux/router'
 import proposalsData from 'redux/data/proposals'
 import Proposal from './proposal'
@@ -21,5 +20,5 @@ const mapDispatch = dispatch => ({
 export default compose(
   forRoute('PROPOSAL', { absolute: true }),
   connect(mapState, mapDispatch),
-  loader({ print: ['loaded'], LoadingIndicator }),
+  loader,
 )(Proposal)
