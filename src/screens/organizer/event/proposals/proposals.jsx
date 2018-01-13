@@ -16,7 +16,7 @@ const Proposals = ({ eventId, proposals, onSelect }) => (
         <ListItem
           key={proposal.id}
           title={proposal.title}
-          subtitle={<ProposalSubtitle proposal={proposal} />}
+          subtitle={<ProposalSubtitle eventId={eventId} proposal={proposal} />}
           info={<ProposalInfo proposal={proposal} />}
           onSelect={() => onSelect(eventId, proposal.id)}
         />

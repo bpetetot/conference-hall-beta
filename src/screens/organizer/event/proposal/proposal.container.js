@@ -8,9 +8,10 @@ import proposalsData from 'redux/data/proposals'
 import Proposal from './proposal'
 
 const mapState = (state) => {
+  const eventId = getRouterParam('eventId')(state)
   const proposalId = getRouterParam('proposalId')(state)
   const proposal = proposalsData.get(proposalId)(state)
-  return { loaded: !!proposal, proposal }
+  return { loaded: !!proposal, proposal, eventId }
 }
 
 const mapDispatch = dispatch => ({
