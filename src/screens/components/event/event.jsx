@@ -6,11 +6,11 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import CopyInput from 'components/copyInput'
 import Maps from 'components/maps'
+import Markdown from 'components/markdown'
 
 import SubmitTalkLink from '../submitTalksLink'
 import Address from './addressBlock'
 import List from './listBlock'
-import Description from './descriptionBlock'
 import Cfp from './cfpBlock'
 import Dates from './datesBlock'
 import Website from './websiteBlock'
@@ -45,7 +45,7 @@ const Event = ({
       </Titlebar>
       <div className="event-page-content card">
         <Cfp eventId={id} className="event-cfp" />
-        <Description className="event-content" description={description} />
+        <Markdown className="event-content" source={description} />
         <List className="event-categories" title="Talk categories" list={categories} />
         <List className="event-formats" title="Talk formats" list={formats} />
       </div>

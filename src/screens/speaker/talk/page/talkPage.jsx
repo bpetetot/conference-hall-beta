@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Markdown from 'react-markdown'
 import { Link } from 'redux-little-router'
 import isEmpty from 'lodash/isEmpty'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Badge from 'components/badge'
+import Markdown from 'components/markdown'
 import Speaker from 'screens/components/speaker'
 import Submission from './submission'
 
@@ -24,9 +24,9 @@ const TalkPage = ({
     <div className="talk-page">
       <div className="talk-content card">
         <h3>Abstract</h3>
-        {abstract && <Markdown className="markdown" source={abstract} escapeHtml />}
+        <Markdown source={abstract} />
         <h3 className="margin-gap">References</h3>
-        {references && <Markdown className="markdown" source={references} escapeHtml />}
+        <Markdown source={references} />
       </div>
       <div className="talk-info">
         <div className="card">

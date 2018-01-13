@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import Markdown from 'components/markdown'
+
 const Talk = ({ proposal, className }) => (
   <div className={cn(className, 'card')}>
     <h3>{proposal.title}</h3>
@@ -9,11 +11,11 @@ const Talk = ({ proposal, className }) => (
     <p>{proposal.formats}</p>
     <p>{proposal.categories}</p>
     <h3>Abstract</h3>
-    <p>{proposal.abstract}</p>
+    <Markdown source={proposal.abstract} />
     <h3>References</h3>
-    <p>{proposal.references}</p>
+    <Markdown source={proposal.references} />
     <h3>Message to organizers</h3>
-    <p>{proposal.message}</p>
+    <Markdown source={proposal.message} />
   </div>
 )
 
