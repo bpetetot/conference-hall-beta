@@ -1,5 +1,6 @@
 .avatar-dropdown.avatar-image > img {
   border: 2px solid var(--primary-color-font);
+  font-size: 1.5em;
 }
 
 .avatar-dropdown.avatar-image > img:hover {

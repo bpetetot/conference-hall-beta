@@ -3,14 +3,12 @@
   display: flex;
   justify-content: center;
   border-radius: 50%;
-  height: 3em;
-  width: 3em;
 }
 
 .avatar-image > img {
   border-radius: 50%;
-  height: 3em;
-  width: 3em;
+  height: 2em;
+  width: 2em;
 }
 
 .avatar-initials {

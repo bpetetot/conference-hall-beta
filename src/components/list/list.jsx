@@ -6,21 +6,22 @@ import isEmpty from 'lodash/isEmpty'
 import './list.css'
 
 const List = ({
-  array, className, renderNoResult, renderRow,
+  array, className, noResult, renderRow,
 }) => {
-  if (isEmpty(array)) return renderNoResult()
+  if (isEmpty(array)) return noResult
   return <div className={cn('list', className)}>{array.map(renderRow)}</div>
 }
 
 List.propTypes = {
   array: PropTypes.arrayOf(PropTypes.any),
   className: PropTypes.string,
-  renderNoResult: PropTypes.func.isRequired,
+  noResult: PropTypes.node,
   renderRow: PropTypes.func.isRequired,
 }
 
 List.defaultProps = {
   array: [],
+  noResult: 'No results',
   className: undefined,
 }
 

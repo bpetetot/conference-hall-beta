@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import './listItem.css'
 
 const ListItem = ({
-  onSelect, info, title, subtitle, ...item
+  onSelect, info, title, subtitle,
 }) => (
-  <div className="list-item" onClick={() => onSelect(item)} role="button">
+  <div className="list-item" onClick={onSelect} role="button">
     <div>
       <div className="list-item-title">{title}</div>
       <div className=" list-item-subtitle">{subtitle}</div>

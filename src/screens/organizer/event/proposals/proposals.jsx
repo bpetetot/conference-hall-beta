@@ -1,9 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Titlebar from 'components/titlebar'
 import List from 'components/list'
 import ListItem from 'components/list/listItem'
 
+import ProposalSubtitle from './proposalSubtitle'
+import ProposalInfo from './proposalInfo'
 import './proposals.css'
 
 const Proposals = ({ proposals }) => (
@@ -15,14 +18,22 @@ const Proposals = ({ proposals }) => (
       renderRow={proposal => (
         <ListItem
           key={proposal.id}
-          title={proposal.id}
-          subtitle={proposal.id}
-          info={proposal.id}
-          onSelect={console.log}
+          title={proposal.title}
+          subtitle={<ProposalSubtitle proposal={proposal} />}
+          info={<ProposalInfo proposal={proposal} />}
+          onSelect={() => console.log(proposal)}
         />
       )}
     />
   </div>
 )
+
+Proposals.propTypes = {
+  proposals: PropTypes.arrayOf(PropTypes.object),
+}
+
+Proposals.defaultProps = {
+  proposals: [],
+}
 
 export default Proposals

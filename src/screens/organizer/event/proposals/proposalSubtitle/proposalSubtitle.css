@@ -1,0 +1,8 @@
+.proposal-subtitle {
+  display: flex;
+  align-items: center;
+}
+
+.proposal-subtitle > * {
+  margin-right: 1em;
+}
