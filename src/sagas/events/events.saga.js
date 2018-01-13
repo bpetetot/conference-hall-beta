@@ -46,6 +46,7 @@ function* updateEvent(form, event) {
 }
 
 function* fetchEvent({ eventId }) {
+  if (!eventId) return
   // check if already in the store
   const current = yield select(eventsData.get(eventId))
   if (current && current.id === eventId) return
@@ -61,9 +62,7 @@ function* fetchEvent({ eventId }) {
 function* onLoadEventPage() {
   // get event id from router
   const eventId = yield select(getRouterParam('eventId'))
-  if (eventId) {
-    yield put({ type: 'FETCH_EVENT', payload: { eventId } })
-  }
+  yield put({ type: 'FETCH_EVENT', payload: { eventId } })
 }
 
 function* onLoadOrganizerEventsPage() {

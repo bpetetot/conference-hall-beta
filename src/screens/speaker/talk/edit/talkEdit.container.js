@@ -21,7 +21,7 @@ const mapState = (state) => {
 }
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_TALK_FROM_ROUTER_PARAMS' }),
+  load: () => dispatch({ type: 'ON_LOAD_TALK_PAGE' }),
   onSubmit: data => dispatch({ type: 'SUBMIT_UPDATE_TALK_FORM', payload: data }),
 })
 

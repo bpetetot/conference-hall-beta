@@ -7,7 +7,6 @@ import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
 import talksData from 'redux/data/talks'
 import speakerTalks from 'redux/ui/speaker/myTalks'
-
 import talkCrud, { fetchUserTalks } from './talks.firebase'
 
 function* createTalk(talk) {
@@ -50,30 +49,29 @@ function* updateTalk(talk) {
   }
 }
 
-function* fetchTalk(id) {
+function* fetchTalk({ talkId }) {
+  if (!talkId) return
   // check if already in the store
-  const current = yield select(talksData.get(id))
-  if (current && current.id === id) return
+  const current = yield select(talksData.get(talkId))
+  if (current && current.id === talkId) return
   // fetch talk from id
-  const ref = yield call(talkCrud.read, id)
+  const ref = yield call(talkCrud.read, talkId)
   if (ref.exists) {
-    yield put(talksData.add({ id, ...ref.data() }))
+    yield put(talksData.add({ talkId, ...ref.data() }))
   } else {
-    yield put({ type: 'TALK_NOT_FOUND', payload: id })
+    yield put({ type: 'TALK_NOT_FOUND', payload: { talkId } })
   }
 }
 
-function* fetchTalkFromRouterParams() {
+function* onLoadTalkPage() {
   // get talk id from router params
-  const id = yield select(getRouterParam('talkId'))
-  if (id) {
-    yield fetchTalk(id)
-  }
+  const talkId = yield select(getRouterParam('talkId'))
+  yield put({ type: 'FETCH_TALK', payload: { talkId } })
 }
 
-function* fetchSpeakerTalks() {
+function* onLoadSpeakerTalks() {
   const uid = yield select(getUserId)
-  const talks = yield fetchUserTalks(uid)
+  const talks = yield call(fetchUserTalks, uid)
   // set talks in the store
   yield put(talksData.set(talks))
   // set talks id to the speaker talk store
@@ -85,7 +83,7 @@ function* fetchSpeakerTalks() {
 export default function* talksSagas() {
   yield takeLatest('SUBMIT_CREATE_TALK_FORM', ({ payload }) => createTalk(payload))
   yield takeLatest('SUBMIT_UPDATE_TALK_FORM', ({ payload }) => updateTalk(payload))
+  yield takeLatest('ON_LOAD_TALK_PAGE', onLoadTalkPage)
+  yield takeLatest('ON_LOAD_SPEAKER_TALK', onLoadSpeakerTalks)
   yield takeEvery('FETCH_TALK', ({ payload }) => fetchTalk(payload))
-  yield takeLatest('FETCH_TALK_FROM_ROUTER_PARAMS', fetchTalkFromRouterParams)
-  yield takeLatest('FETCH_SPEAKER_TALKS', fetchSpeakerTalks)
 }
