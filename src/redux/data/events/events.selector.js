@@ -2,17 +2,7 @@ import isAfter from 'date-fns/is_after'
 import isBefore from 'date-fns/is_before'
 import isEmpty from 'lodash/isEmpty'
 
-import { getRouterParam } from 'redux/router'
 import eventsData from './events'
-
-/**
- * Return the event from the id in the router params
- * @param {object} state the redux state
- */
-export const getEventFromRouterParam = (state) => {
-  const id = getRouterParam('eventId')(state)
-  return eventsData.get(id)(state)
-}
 
 /**
  * Return the opening state of the cfp for the given eventId.
@@ -50,6 +40,7 @@ export const getFormat = (eventId, formatId) => (state) => {
   if (formats) {
     return formats.find(f => f.id === formatId)
   }
+  return undefined
 }
 
 /**
@@ -62,4 +53,5 @@ export const getCategory = (eventId, categoryId) => (state) => {
   if (categories) {
     return categories.find(c => c.id === categoryId)
   }
+  return undefined
 }

@@ -46,6 +46,7 @@ function* updateEvent(form, event) {
 }
 
 function* fetchEvent({ eventId }) {
+  if (!eventId) return
   // check if already in the store
   const current = yield select(eventsData.get(eventId))
   if (current && current.id === eventId) return
@@ -58,17 +59,15 @@ function* fetchEvent({ eventId }) {
   }
 }
 
-function* fetchEventFromRouterParams() {
+function* onLoadEventPage() {
   // get event id from router
   const eventId = yield select(getRouterParam('eventId'))
-  if (eventId) {
-    yield fetchEvent({ eventId })
-  }
+  yield put({ type: 'FETCH_EVENT', payload: { eventId } })
 }
 
-function* fetchOrganizerEvents() {
+function* onLoadOrganizerEventsPage() {
   const uid = yield select(getUserId)
-  const result = yield fetchUserEvents(uid)
+  const result = yield call(fetchUserEvents, uid)
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
   // set events in the store
   yield put(eventsData.set(events))
@@ -81,7 +80,7 @@ export default function* eventSagas() {
   yield takeLatest('SUBMIT_CREATE_EVENT_FORM', ({ payload }) => createEvent(payload))
   yield takeLatest('SUBMIT_UPDATE_EVENT_FORM', ({ payload }) => updateEvent('event-edit', payload))
   yield takeLatest('SUBMIT_UPDATE_CFP_FORM', ({ payload }) => updateEvent('cfp-edit', payload))
+  yield takeLatest('ON_LOAD_EVENT_PAGE', onLoadEventPage)
+  yield takeLatest('ON_LOAD_ORGANIZER_EVENTS_PAGE', onLoadOrganizerEventsPage)
   yield takeEvery('FETCH_EVENT', ({ payload }) => fetchEvent(payload))
-  yield takeLatest('FETCH_EVENT_FROM_ROUTER_PARAMS', fetchEventFromRouterParams)
-  yield takeLatest('FETCH_ORGANIZER_EVENTS', fetchOrganizerEvents)
 }

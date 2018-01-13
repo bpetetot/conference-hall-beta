@@ -14,7 +14,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_ORGANIZER_EVENTS' }),
+  load: () => dispatch({ type: 'ON_LOAD_ORGANIZER_EVENTS_PAGE' }),
   onSelect: eventId => dispatch(push(`/organizer/event/${eventId}`)),
 })
 

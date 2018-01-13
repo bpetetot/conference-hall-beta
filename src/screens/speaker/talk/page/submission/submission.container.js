@@ -19,7 +19,7 @@ const mapDispatch = (dispatch, { eventId, talkId }) => ({
     dispatch({ type: 'OPEN_SUBMISSION_UPDATE_PAGE', payload: { eventId, talkId } })
   },
   onClickEvent: () => {
-    dispatch({ type: 'SET_CURRENT_EVENT', payload: eventId })
+    dispatch({ type: 'SET_CURRENT_EVENT', payload: { eventId } })
     dispatch(push(`/speaker/event/${eventId}`))
   },
 })

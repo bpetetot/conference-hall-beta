@@ -12,7 +12,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_SPEAKER_TALKS' }),
+  load: () => dispatch({ type: 'ON_LOAD_SPEAKER_TALK' }),
   onSelect: talkId => dispatch({ type: 'SUBMISSION_SELECT_TALK', payload: { talkId } }),
 })
 
