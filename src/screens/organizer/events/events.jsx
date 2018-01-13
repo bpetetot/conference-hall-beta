@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'redux-little-router'
-
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
-import List from 'components/list'
-import ListItem from 'components/list/listItem'
+import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
 import './events.css'
 
@@ -20,11 +18,11 @@ const MyEvents = ({ events, onSelect }) => (
       className="events-content"
       array={events}
       noResult="No event yet !"
-      renderRow={({ id, name, createTimestamp }) => (
+      renderRow={({ id, name, updateTimestamp }) => (
         <ListItem
           key={id}
           title={name}
-          subtitle={<RelativeDate date={createTimestamp} />}
+          subtitle={<RelativeDate date={updateTimestamp} />}
           onSelect={() => onSelect(id)}
         />
       )}

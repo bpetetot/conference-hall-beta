@@ -1,10 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import Titlebar from 'components/titlebar'
-import List from 'components/list'
-import ListItem from 'components/list/listItem'
-
+import { List, ListItem } from 'components/list'
 import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
 import './proposals.css'
