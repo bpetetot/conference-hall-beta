@@ -6,7 +6,7 @@ import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
 import './proposals.css'
 
-const Proposals = ({ proposals }) => (
+const Proposals = ({ eventId, proposals, onSelect }) => (
   <div>
     <Titlebar icon="fa fa-paper-plane" title="Proposals" />
     <List
@@ -18,7 +18,7 @@ const Proposals = ({ proposals }) => (
           title={proposal.title}
           subtitle={<ProposalSubtitle proposal={proposal} />}
           info={<ProposalInfo proposal={proposal} />}
-          onSelect={() => console.log(proposal)}
+          onSelect={() => onSelect(eventId, proposal.id)}
         />
       )}
     />
@@ -26,7 +26,9 @@ const Proposals = ({ proposals }) => (
 )
 
 Proposals.propTypes = {
+  eventId: PropTypes.string.isRequired,
   proposals: PropTypes.arrayOf(PropTypes.object),
+  onSelect: PropTypes.func.isRequired,
 }
 
 Proposals.defaultProps = {

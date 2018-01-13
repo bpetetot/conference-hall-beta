@@ -1,0 +1,23 @@
+.proposal {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'proposal-header proposal-header proposal-header' 'proposal-speakers proposal-talk proposal-votes';
+  grid-gap: 1em;
+}
+
+.proposal-header {
+  grid-area: proposal-header;
+}
+
+.proposal-talk {
+  grid-area: proposal-talk;
+}
+
+.proposal-speakers {
+  grid-area: proposal-speakers;
+}
+
+.proposal-votes {
+  grid-area: proposal-votes;
+}

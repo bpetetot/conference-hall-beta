@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   margin: 0;
   cursor: pointer;
-  padding: 0.8em 1em;
+  padding: 1em 1.2em;
 }
 
 .list-item:hover {
