@@ -1,9 +1,8 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import loader from 'hoc-react-loader/build/core'
 
 import speakerTalks from 'redux/ui/speaker/myTalks'
-import LoadingIndicator from 'components/loading'
+import loader from 'components/loader'
 import TalksSelection from './talksSelection'
 
 const mapState = state => ({
@@ -17,6 +16,6 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  connect(mapState, mapDispatch),
-  loader({ print: ['loaded'], LoadingIndicator }),
+  connect(mapState, mapDispatch), //
+  loader, //
 )(TalksSelection)

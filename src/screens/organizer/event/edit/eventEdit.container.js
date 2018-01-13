@@ -1,11 +1,10 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
 import { getRouterParam } from 'redux/router'
 import eventsData from 'redux/data/events'
-import LoadingIndicator from 'components/loading'
+import loader from 'components/loader'
 import EventEdit from './eventEdit'
 
 const mapState = (state) => {
@@ -19,7 +18,7 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('EDIT_EVENT'),
-  connect(mapState, mapDispatch),
-  loader({ print: ['loaded'], LoadingIndicator }),
+  forRoute('EDIT_EVENT'), //
+  connect(mapState, mapDispatch), //
+  loader, //
 )(EventEdit)
