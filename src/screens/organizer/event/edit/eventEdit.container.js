@@ -11,11 +11,11 @@ import EventEdit from './eventEdit'
 const mapState = (state) => {
   const eventId = getRouterParam('eventId')(state)
   const event = eventsData.get(eventId)(state)
-  return { loaded: !!event }
+  return { loaded: !!event, eventId }
 }
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_EVENT_FROM_ROUTER_PARAMS' }),
+  load: () => dispatch({ type: 'ON_LOAD_EVENT_PAGE' }),
 })
 
 export default compose(

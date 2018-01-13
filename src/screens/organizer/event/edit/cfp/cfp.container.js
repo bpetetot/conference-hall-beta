@@ -3,14 +3,12 @@ import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
-import { getRouterParam } from 'redux/router'
 import eventsData from 'redux/data/events'
 import CFPForm from './cfp'
 
 const FORM_NAME = 'cfp-edit'
 
-const mapState = (state) => {
-  const eventId = getRouterParam('eventId')(state)
+const mapState = (state, { eventId }) => {
   const {
     id,
     type,

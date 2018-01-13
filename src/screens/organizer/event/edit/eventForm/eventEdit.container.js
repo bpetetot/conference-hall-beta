@@ -2,15 +2,13 @@ import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
-import { getRouterParam } from 'redux/router'
 import eventsData from 'redux/data/events'
 import EventForm from '../../components/eventForm'
 
 const FORM_NAME = 'event-edit'
 const select = formValueSelector(FORM_NAME)
 
-const mapState = (state) => {
-  const eventId = getRouterParam('eventId')(state)
+const mapState = (state, { eventId }) => {
   const event = eventsData.get(eventId)(state)
   return {
     form: FORM_NAME,

@@ -18,7 +18,7 @@ const mapState = (state) => {
 }
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_EVENT_FROM_ROUTER_PARAMS' }),
+  load: () => dispatch({ type: 'ON_LOAD_EVENT_PAGE' }),
 })
 
 export default compose(

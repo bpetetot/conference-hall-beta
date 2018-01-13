@@ -1,1 +1,1 @@
-export { default } from './eventTabs.container'
+export { default } from './eventTabs'
