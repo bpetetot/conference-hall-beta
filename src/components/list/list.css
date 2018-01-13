@@ -1,0 +1,22 @@
+.list {
+  background: #fff;
+  border: 1px solid var(--grey-color);
+  border-radius: 3px;
+  padding: 0;
+  width: 100%;
+}
+
+.list > div {
+  border-bottom: 1px solid var(--grey-color);
+}
+
+.list > div:last-child {
+  border-bottom: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .list {
+    border-radius: 0;
+    margin: 0;
+  }
+}

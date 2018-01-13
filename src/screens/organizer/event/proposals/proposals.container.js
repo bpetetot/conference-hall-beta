@@ -9,7 +9,7 @@ import Proposals from './proposals'
 
 const mapState = state => ({
   loaded: proposalsData.isInitialized(state),
-  proposals: proposalsData.getKeys(state),
+  proposals: proposalsData.getAsArray(state),
 })
 
 const mapDispatch = dispatch => ({
