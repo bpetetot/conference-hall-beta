@@ -44,7 +44,7 @@ const Event = ({
         )}
       </Titlebar>
       <div className="event-page-content card">
-        <Cfp className="event-cfp" />
+        <Cfp eventId={id} className="event-cfp" />
         <Description className="event-content" description={description} />
         <List className="event-categories" title="Talk categories" list={categories} />
         <List className="event-formats" title="Talk formats" list={formats} />
