@@ -1,11 +1,10 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { push } from 'redux-little-router'
-import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
 import organizerEvents from 'redux/ui/organizer/myEvents'
-import LoadingIndicator from 'components/loading'
+import loader from 'components/loader'
 import Events from './events'
 
 const mapState = state => ({
@@ -19,7 +18,7 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('HOME_ORGANIZER', { absolute: true }),
-  connect(mapState, mapDispatch),
-  loader({ print: ['loaded'], LoadingIndicator }),
+  forRoute('HOME_ORGANIZER', { absolute: true }), //
+  connect(mapState, mapDispatch), //
+  loader, //
 )(Events)

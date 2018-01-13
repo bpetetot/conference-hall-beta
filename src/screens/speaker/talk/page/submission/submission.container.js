@@ -24,4 +24,7 @@ const mapDispatch = (dispatch, { eventId, talkId }) => ({
   },
 })
 
-export default compose(connect(mapState, mapDispatch), loader())(Submission)
+export default compose(
+  connect(mapState, mapDispatch), //
+  loader(), //
+)(Submission)

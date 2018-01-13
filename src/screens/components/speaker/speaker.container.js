@@ -14,4 +14,7 @@ const mapDispatch = (dispatch, { id }) => ({
   load: () => dispatch({ type: 'FETCH_USER', payload: id }),
 })
 
-export default compose(connect(mapState, mapDispatch), loader())(Speaker)
+export default compose(
+  connect(mapState, mapDispatch), //
+  loader(), //
+)(Speaker)

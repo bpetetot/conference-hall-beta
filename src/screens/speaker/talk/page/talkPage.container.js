@@ -1,11 +1,10 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
 import { getRouterParam } from 'redux/router'
 import talksData from 'redux/data/talks'
-import LoadingIndicator from 'components/loading'
+import loader from 'components/loader'
 import TalkPage from './talkPage'
 
 const mapState = (state) => {
@@ -19,7 +18,7 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('TALK_PAGE', { absolute: true }),
-  connect(mapState, mapDispatch),
-  loader({ print: ['loaded'], LoadingIndicator }),
+  forRoute('TALK_PAGE', { absolute: true }), //
+  connect(mapState, mapDispatch), //
+  loader, //
 )(TalkPage)
