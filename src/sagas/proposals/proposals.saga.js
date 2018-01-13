@@ -8,7 +8,7 @@ function* onLoadEventProposalsPage() {
   // get event id from router
   const eventId = yield select(getRouterParam('eventId'))
   // get event
-  yield put({ type: 'FETCH_EVENT', payload: eventId })
+  yield put({ type: 'FETCH_EVENT', payload: { eventId } })
   // fetch proposals
   const proposals = yield call(fetchEventProposals, eventId)
   // set proposals in the store

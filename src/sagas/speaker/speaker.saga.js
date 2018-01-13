@@ -7,7 +7,7 @@ import userCrud from 'sagas/user/user.firebase'
 import eventCrud from 'sagas/events/events.firebase'
 import eventsData from 'redux/data/events'
 
-function* setCurrentEvent(eventId) {
+function* setCurrentEvent({ eventId }) {
   if (eventId) {
     // fetch event
     const ref = yield call(eventCrud.read, eventId)
@@ -28,7 +28,7 @@ function* initSpeakerApp() {
   if (eventId) {
     const ref = yield call(eventCrud.read, eventId)
     if (ref.exists) {
-      yield put({ type: 'SET_CURRENT_EVENT', payload: eventId })
+      yield put({ type: 'SET_CURRENT_EVENT', payload: { eventId } })
     } else {
       localStorage.removeItem('currentEventId', eventId)
     }
