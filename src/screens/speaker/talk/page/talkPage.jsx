@@ -7,7 +7,7 @@ import isEmpty from 'lodash/isEmpty'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Badge from 'components/badge'
-import Speaker from './speaker'
+import Speaker from 'screens/components/speaker'
 import Submission from './submission'
 
 import './talkPage.css'
@@ -31,7 +31,9 @@ const TalkPage = ({
       <div className="talk-info">
         <div className="card">
           <h3>Speakers & Details</h3>
-          {Object.keys(speakers).map(key => <Speaker key={key} id={key} />)}
+          {Object.keys(speakers).map(key => (
+            <Speaker key={key} id={key} className="talk-info-speaker" />
+          ))}
           <Badge>Level {level}</Badge>
         </div>
         <div className="card margin-gap">

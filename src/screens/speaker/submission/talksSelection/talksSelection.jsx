@@ -1,18 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import TalksTable from '../../components/talksTable'
+import { List, ListItem } from 'components/list'
+import RelativeDate from 'components/relativeDate'
+import NoTalks from 'screens/speaker/components/noTalks'
 import TalkCardInfo from './talkCardInfo'
 
-const TalksSelection = ({ eventId, ...props }) => (
-  <TalksTable
-    {...props}
-    renderTalkInfo={talk => <TalkCardInfo eventId={eventId} talkId={talk.id} />}
+const TalksSelection = ({ eventId, talks, onSelect }) => (
+  <List
+    array={talks}
+    noResult={<NoTalks />}
+    renderRow={({ id, title, updateTimestamp }) => (
+      <ListItem
+        key={id}
+        title={title}
+        subtitle={<RelativeDate date={updateTimestamp} />}
+        info={<TalkCardInfo eventId={eventId} talkId={id} />}
+        onSelect={() => onSelect(id)}
+      />
+    )}
   />
 )
 
 TalksSelection.propTypes = {
   eventId: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  talks: PropTypes.arrayOf(PropTypes.object),
+}
+
+TalksSelection.defaultProps = {
+  talks: [],
 }
 
 export default TalksSelection

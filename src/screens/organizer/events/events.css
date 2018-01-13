@@ -14,11 +14,6 @@
   border-bottom: none;
 }
 
-.events-page .no-events {
-  margin: 2em;
-  color: var(--grey-color);
-}
-
 @media only screen and (max-width: 480px) {
   .organizer-events {
     padding: 0;

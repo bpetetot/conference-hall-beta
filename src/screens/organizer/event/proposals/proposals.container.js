@@ -1,22 +1,23 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
+import forRoute from 'hoc-little-router'
 
-import speakerTalks from 'redux/ui/speaker/myTalks'
+import proposalsData from 'redux/data/proposals'
 import LoadingIndicator from 'components/loading'
-import TalksSelection from './talksSelection'
+import Proposals from './proposals'
 
 const mapState = state => ({
-  loaded: speakerTalks.isInitialized(state),
-  talks: speakerTalks.getAsArray(state),
+  loaded: proposalsData.isInitialized(state),
+  proposals: proposalsData.getAsArray(state),
 })
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'FETCH_SPEAKER_TALKS' }),
-  onSelect: talkId => dispatch({ type: 'SUBMISSION_SELECT_TALK', payload: { talkId } }),
+  load: () => dispatch({ type: 'LOAD_EVENT_PROPOSALS_PAGE' }),
 })
 
 export default compose(
+  forRoute('PROPOSALS', { absolute: true }),
   connect(mapState, mapDispatch),
   loader({ print: ['loaded'], LoadingIndicator }),
-)(TalksSelection)
+)(Proposals)

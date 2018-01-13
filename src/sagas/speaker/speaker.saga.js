@@ -1,4 +1,4 @@
-import { put, takeLatest, select, call } from 'redux-saga/effects'
+import { put, takeLatest, call } from 'redux-saga/effects'
 import { startSubmit, stopSubmit } from 'redux-form'
 
 import speakerApp from 'redux/ui/speaker/app'
@@ -24,10 +24,15 @@ function* setCurrentEvent(eventId) {
 
 function* initSpeakerApp() {
   // check if an event id is in localstorage
-  const savedEventId = localStorage.getItem('currentEventId')
-  // check if an event id is in query params
-  const { eventId = savedEventId } = yield select(state => state.router.query)
-  yield put({ type: 'SET_CURRENT_EVENT', payload: eventId })
+  const eventId = localStorage.getItem('currentEventId')
+  if (eventId) {
+    const ref = yield call(eventCrud.read, eventId)
+    if (ref.exists) {
+      yield put({ type: 'SET_CURRENT_EVENT', payload: eventId })
+    } else {
+      localStorage.removeItem('currentEventId', eventId)
+    }
+  }
 }
 
 function* saveSpeakerProfile(profile) {

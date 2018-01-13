@@ -1,4 +1,4 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects'
+import { call, put, takeLatest, takeEvery, select } from 'redux-saga/effects'
 import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 import compareDesc from 'date-fns/compare_desc'
@@ -78,13 +78,13 @@ function* fetchSpeakerTalks() {
   // set talks id to the speaker talk store
   const sorted = talks.sort((t1, t2) => compareDesc(t1.updateTimestamp, t2.updateTimestamp))
   yield put(speakerTalks.reset())
-  yield put(speakerTalks.set(sorted.map(({ id }) => ({ id }))))
+  yield put(speakerTalks.set(sorted))
 }
 
 export default function* talksSagas() {
   yield takeLatest('SUBMIT_CREATE_TALK_FORM', ({ payload }) => createTalk(payload))
   yield takeLatest('SUBMIT_UPDATE_TALK_FORM', ({ payload }) => updateTalk(payload))
-  yield takeLatest('FETCH_TALK', ({ payload }) => fetchTalk(payload))
+  yield takeEvery('FETCH_TALK', ({ payload }) => fetchTalk(payload))
   yield takeLatest('FETCH_TALK_FROM_ROUTER_PARAMS', fetchTalkFromRouterParams)
   yield takeLatest('FETCH_SPEAKER_TALKS', fetchSpeakerTalks)
 }

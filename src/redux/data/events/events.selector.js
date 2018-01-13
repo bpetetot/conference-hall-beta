@@ -45,3 +45,27 @@ export const getCfpState = eventId => (state) => {
  * @param {string} eventId event id
  */
 export const isCfpOpened = eventId => state => getCfpState(eventId)(state) === 'opened'
+
+/**
+ * Return the format
+ * @param {string} eventId event id
+ * @param {string} formatId format id
+ */
+export const getFormat = (eventId, formatId) => (state) => {
+  const { formats } = eventsData.get(eventId)(state) || {}
+  if (formats) {
+    return formats.find(f => f.id === formatId)
+  }
+}
+
+/**
+ * Return the category
+ * @param {string} eventId event id
+ * @param {string} categoryId category id
+ */
+export const getCategory = (eventId, categoryId) => (state) => {
+  const { categories } = eventsData.get(eventId)(state) || {}
+  if (categories) {
+    return categories.find(c => c.id === categoryId)
+  }
+}

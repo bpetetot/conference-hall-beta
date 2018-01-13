@@ -25,8 +25,7 @@ function* submitTalkToEvent({ talkId, eventId, data }) {
     // indicate start submitting form
     yield put(startSubmit(FORM))
     // submit talk
-    yield call(saveTalkSubmission, talkId, eventId, data)
-    yield put(talksData.update({ ...talk, submissions: { ...talk.submissions, [eventId]: data } }))
+    yield call(saveTalkSubmission, talk, eventId, data)
     // set form submitted
     yield put(stopSubmit(FORM))
     yield put({ type: 'SUBMISSION_NEXT_STEP' })

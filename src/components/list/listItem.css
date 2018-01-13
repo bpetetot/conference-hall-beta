@@ -1,4 +1,4 @@
-.talk-card {
+.list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,41 +8,41 @@
   padding: 0.8em 1em;
 }
 
-.talk-card:hover {
+.list-item:hover {
   background: var(--background-color);
 }
 
-.talk-card .talk-card-title {
+.list-item .list-item-title {
   font-size: 1.2em;
   font-weight: 600;
   margin-bottom: 0.5em;
 }
 
-.talk-card .talk-card-subtitle {
+.list-item .list-item-subtitle {
   font-size: 0.9em;
   color: var(--grey-color-dark);
 }
 
-.talk-card .talk-card-info {
+.list-item .list-item-info {
   display: flex;
 }
 
-.talk-card .talk-card-info > * {
+.list-item .list-item-info > * {
   margin-left: 0.5em;
 }
 
 @media only screen and (max-width: 480px) {
-  .talk-card {
+  .list-item {
     font-size: 1.1em;
     padding: 0.8em;
   }
 
-  .talk-card .talk-card-info {
+  .list-item .list-item-info {
     width: 100%;
     align-items: flex-end;
   }
 
-  .talk-card .talk-card-info > * {
+  .list-item .list-item-info > * {
     margin-left: 0;
     margin-top: 0.8em;
     margin-right: 0.5em;
