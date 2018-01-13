@@ -78,7 +78,7 @@ function* fetchSpeakerTalks() {
   // set talks id to the speaker talk store
   const sorted = talks.sort((t1, t2) => compareDesc(t1.updateTimestamp, t2.updateTimestamp))
   yield put(speakerTalks.reset())
-  yield put(speakerTalks.set(sorted.map(({ id }) => ({ id }))))
+  yield put(speakerTalks.set(sorted))
 }
 
 export default function* talksSagas() {

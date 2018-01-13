@@ -8,12 +8,12 @@ import TalksSelection from './talksSelection'
 
 const mapState = state => ({
   loaded: speakerTalks.isInitialized(state),
-  talks: speakerTalks.getKeys(state),
+  talks: speakerTalks.getAsArray(state),
 })
 
 const mapDispatch = dispatch => ({
   load: () => dispatch({ type: 'FETCH_SPEAKER_TALKS' }),
-  onSelectTalk: talkId => dispatch({ type: 'SUBMISSION_SELECT_TALK', payload: { talkId } }),
+  onSelect: talkId => dispatch({ type: 'SUBMISSION_SELECT_TALK', payload: { talkId } }),
 })
 
 export default compose(
