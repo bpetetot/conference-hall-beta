@@ -1,5 +1,6 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { push } from 'redux-little-router'
 import loader from 'hoc-react-loader/build/core'
 import forRoute from 'hoc-little-router'
 
@@ -9,11 +10,12 @@ import Events from './events'
 
 const mapState = state => ({
   loaded: organizerEvents.isInitialized(state),
-  events: organizerEvents.getKeys(state),
+  events: organizerEvents.getAsArray(state),
 })
 
 const mapDispatch = dispatch => ({
   load: () => dispatch({ type: 'FETCH_ORGANIZER_EVENTS' }),
+  onSelect: eventId => dispatch(push(`/organizer/event/${eventId}`)),
 })
 
 export default compose(

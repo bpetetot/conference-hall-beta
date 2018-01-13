@@ -14,6 +14,11 @@
   border-bottom: none;
 }
 
+.list .no-result {
+  margin: 1em;
+  color: var(--grey-color-dark);
+}
+
 @media only screen and (max-width: 480px) {
   .list {
     border-radius: 0;

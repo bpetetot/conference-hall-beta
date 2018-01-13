@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import IconLabel from 'components/iconLabel'
+import RelativeDate from 'components/relativeDate'
 import Badge from 'components/badge'
 
 import './proposalSubtitle.css'
 
 const ProposalSubtitle = ({
-  submittedDate, formats, categories, state,
+  formats, categories, state, proposal: { updateTimestamp },
 }) => (
   <div className="proposal-subtitle">
-    {submittedDate && <IconLabel icon="fa fa-clock-o" label={submittedDate} />}
+    <RelativeDate date={updateTimestamp} />
     {formats && <Badge>{formats}</Badge>}
     {categories && <Badge>{categories}</Badge>}
     {state && <Badge>{state}</Badge>}
@@ -18,14 +18,14 @@ const ProposalSubtitle = ({
 )
 
 ProposalSubtitle.propTypes = {
-  submittedDate: PropTypes.string,
+  proposal: PropTypes.objectOf(PropTypes.any),
   formats: PropTypes.string,
   categories: PropTypes.string,
   state: PropTypes.string,
 }
 
 ProposalSubtitle.defaultProps = {
-  submittedDate: undefined,
+  proposal: {},
   formats: undefined,
   categories: undefined,
   state: undefined,

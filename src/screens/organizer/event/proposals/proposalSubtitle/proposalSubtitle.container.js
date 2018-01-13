@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 
 import { getFormat, getCategory } from 'redux/data/events'
 import { getRouterParam } from 'redux/router'
@@ -10,7 +9,6 @@ const mapState = (state, { proposal }) => {
   const format = getFormat(eventId, proposal.formats)(state) || {}
   const category = getCategory(eventId, proposal.categories)(state) || {}
   return {
-    submittedDate: distanceInWordsToNow(proposal.updateTimestamp, { addSuffix: true }),
     formats: format.name,
     categories: category.name,
     state: proposal.state,

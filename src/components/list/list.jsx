@@ -7,10 +7,11 @@ import './list.css'
 
 const List = ({
   array, className, noResult, renderRow,
-}) => {
-  if (isEmpty(array)) return noResult
-  return <div className={cn('list', className)}>{array.map(renderRow)}</div>
-}
+}) => (
+  <div className={cn('list', className)}>
+    {isEmpty(array) ? <div className="no-result">{noResult}</div> : array.map(renderRow)}
+  </div>
+)
 
 List.propTypes = {
   array: PropTypes.arrayOf(PropTypes.any),
@@ -21,7 +22,7 @@ List.propTypes = {
 
 List.defaultProps = {
   array: [],
-  noResult: 'No results',
+  noResult: 'No result',
   className: undefined,
 }
 
