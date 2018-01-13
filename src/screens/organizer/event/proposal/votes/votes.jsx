@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 const Votes = ({ className }) => (
   <div className={cn(className, 'card')}>
-    <p>votes</p>
+    <b>votes</b>
   </div>
 )
 

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import keys from 'lodash/keys'
 
-import Speaker from 'screens/components/speaker'
+import Speaker from './speaker'
 
 const Speakers = ({ proposal, className }) => (
   <div className={cn(className, 'card')}>
-    {keys(proposal.speakers).map(id => <Speaker key={id} id={id} />)}
+    {keys(proposal.speakers).map(id => <Speaker key={id} uid={id} />)}
   </div>
 )
 

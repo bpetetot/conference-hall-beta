@@ -5,21 +5,22 @@ import cn from 'classnames'
 import Badge from 'components/badge'
 import Markdown from 'components/markdown'
 import { FormatBadge, CategoryBadge } from 'screens/organizer/event/components/badges'
+import './talk.css'
 
 const Talk = ({ eventId, proposal, className }) => (
   <div className={cn(className, 'card')}>
-    <h3>{proposal.title}</h3>
-    <p>
+    <div className="proposal-talk-badges">
       <FormatBadge eventId={eventId} formatId={proposal.formats} />
       <CategoryBadge eventId={eventId} categoryId={proposal.categories} />
       <Badge>{proposal.level}</Badge>
-    </p>
-    <h3>Abstract</h3>
-    <Markdown source={proposal.abstract} />
-    <h3>References</h3>
-    <Markdown source={proposal.references} />
-    <h3>Message to organizers</h3>
-    <Markdown source={proposal.message} />
+    </div>
+    <div className="proposal-talk-info">
+      <Markdown source={proposal.abstract} />
+      {proposal.references && <h3>References</h3>}
+      <Markdown source={proposal.references} />
+      {proposal.comments && <h3>Message to organizers</h3>}
+      <Markdown source={proposal.comments} />
+    </div>
   </div>
 )
 

@@ -2,10 +2,6 @@
   display: flex;
 }
 
-.icon-label-label {
-  align-self: center;
-}
-
 button .icon-label {
   justify-content: center;
 }
