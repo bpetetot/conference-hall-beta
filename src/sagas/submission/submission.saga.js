@@ -1,8 +1,7 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 import { startSubmit, stopSubmit } from 'redux-form'
 import { push } from 'redux-little-router'
 
-import talksData from 'redux/data/talks'
 import { saveTalkSubmission } from './submission.firebase'
 
 function* openSubmissionPage({ eventId }) {
@@ -20,13 +19,11 @@ function* openSubmissionUpdatePage({ eventId, talkId }) {
 
 function* submitTalkToEvent({ talkId, eventId, data }) {
   const FORM = 'submit-talk'
-  const talk = yield select(talksData.get(talkId))
   try {
     // indicate start submitting form
     yield put(startSubmit(FORM))
     // submit talk
     yield call(saveTalkSubmission, talkId, eventId, data)
-    yield put(talksData.update({ ...talk, submissions: { ...talk.submissions, [eventId]: data } }))
     // set form submitted
     yield put(stopSubmit(FORM))
     yield put({ type: 'SUBMISSION_NEXT_STEP' })
