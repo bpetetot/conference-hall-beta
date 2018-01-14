@@ -1,10 +1,13 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { push } from 'redux-little-router'
+import { set } from 'immutadot'
+import values from 'lodash/values'
 
 import proposalsData from 'redux/data/proposals'
+import { getUserId } from 'redux/auth'
 import { getCurrentProposalIndex } from 'redux/ui/organizer/proposal'
 import { getRouterParam } from 'redux/router'
-import { fetchProposal, fetchEventProposals } from './proposals.firebase'
+import { fetchProposal, fetchEventProposals, updateRating } from './proposals.firebase'
 
 function* onLoadEventProposalsPage() {
   // get event id from router
@@ -72,6 +75,32 @@ function* onPreviousProposal() {
   }
 }
 
+function* saveRating({ rating }) {
+  const uid = yield select(getUserId)
+  const eventId = yield select(getRouterParam('eventId'))
+  const proposalId = yield select(getRouterParam('proposalId'))
+  const proposal = yield select(proposalsData.get(proposalId))
+  // compute total rating
+  const userRating = rating <= 5 ? rating : 5 // rating == 6 means love it
+  const ratings = [userRating]
+  if (proposal.ratings) {
+    ratings.push(...values(proposal.ratings).map(r => r.rating))
+  }
+  const totalRating = ratings.reduce((p, c) => p + c, 0) / ratings.length
+  // compute rate feeling
+  let feeling = 'voted'
+  if (rating === 0) feeling = 'hate'
+  if (rating === 6) feeling = 'love'
+  // build rating object
+  const ratingObject = { rating: userRating, feeling }
+  // save in database
+  yield call(updateRating, eventId, proposalId, uid, ratingObject, totalRating)
+  // update in the store
+  const updatedProposal = set(proposal, `ratings.${uid}`, ratingObject)
+  updatedProposal.rating = totalRating
+  yield put(proposalsData.update(updatedProposal))
+}
+
 export default function* eventSagas() {
   yield takeLatest('LOAD_EVENT_PROPOSALS_PAGE', onLoadEventProposalsPage)
   yield takeLatest('LOAD_PROPOSAL_PAGE', onLoadProposalPage)
@@ -79,4 +108,5 @@ export default function* eventSagas() {
   yield takeLatest('SELECT_PROPOSAL', ({ payload }) => onSelectProposal(payload))
   yield takeLatest('NEXT_PROPOSAL', onNextProposal)
   yield takeLatest('PREVIOUS_PROPOSAL', onPreviousProposal)
+  yield takeLatest('RATE_PROPOSAL', ({ payload }) => saveRating(payload))
 }

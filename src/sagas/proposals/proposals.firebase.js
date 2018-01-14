@@ -48,3 +48,16 @@ export const addProposal = (eventId, talk, talkDataForEvent) => {
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
 }
+
+export const updateRating = (eventId, talkId, uid, ratingObject, totalRating) => {
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(talkId)
+    .update({
+      rating: totalRating,
+      [`ratings.${uid}`]: ratingObject,
+    })
+}

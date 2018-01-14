@@ -6,7 +6,7 @@ import IconLabel from 'components/iconLabel'
 import Rating from 'components/rating'
 
 const Votes = ({
-  hasNext, hasPrevious, onNext, onPrevious, className,
+  rating, onRate, hasNext, hasPrevious, onNext, onPrevious, className,
 }) => (
   <div className={cn(className, 'card')}>
     <div>
@@ -14,7 +14,7 @@ const Votes = ({
         <IconLabel icon="fa fa-angle-left" label="Previous" />
       </button>
     </div>
-    <Rating onRate={console.log} />
+    <Rating onRate={onRate} rating={rating} />
     <div>
       <button className="btn btn-link" disabled={!hasNext} onClick={onNext}>
         <IconLabel icon="fa fa-angle-right" label="Next" right />
@@ -24,6 +24,8 @@ const Votes = ({
 )
 
 Votes.propTypes = {
+  rating: PropTypes.number,
+  onRate: PropTypes.func.isRequired,
   hasNext: PropTypes.bool,
   hasPrevious: PropTypes.bool,
   onNext: PropTypes.func.isRequired,
@@ -32,6 +34,7 @@ Votes.propTypes = {
 }
 
 Votes.defaultProps = {
+  rating: undefined,
   hasNext: false,
   hasPrevious: false,
   className: undefined,

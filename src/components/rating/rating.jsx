@@ -9,8 +9,14 @@ class Rating extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      rate: this.props.rate, // can be 0 (hate), 1 to 5 (rate), 6 (love)
-      validatedRate: this.props.rate,
+      rate: this.props.rating, // can be 0 (hate), 1 to 5 (rate), 6 (love)
+      validatedRate: this.props.rating,
+    }
+  }
+
+  componentWillReceiveProps({ rating }) {
+    if (this.props.rating !== rating) {
+      this.setState(() => ({ rate: rating, validatedRate: rating }))
     }
   }
 
@@ -133,13 +139,13 @@ class Rating extends Component {
 }
 
 Rating.propTypes = {
-  rate: PropTypes.number,
+  rating: PropTypes.number,
   onRate: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 
 Rating.defaultProps = {
-  rate: undefined,
+  rating: undefined,
   className: undefined,
 }
 
