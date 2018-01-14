@@ -76,28 +76,26 @@ function* onPreviousProposal() {
 }
 
 function* saveRating({ rating }) {
+  // select needed inputs in the state
   const uid = yield select(getUserId)
   const eventId = yield select(getRouterParam('eventId'))
   const proposalId = yield select(getRouterParam('proposalId'))
   const proposal = yield select(proposalsData.get(proposalId))
-  // compute total rating
+  // user rating
   const userRating = rating <= 5 ? rating : 5 // rating == 6 means love it
-  const ratings = [userRating]
-  if (proposal.ratings) {
-    ratings.push(...values(proposal.ratings).map(r => r.rating))
-  }
-  const totalRating = ratings.reduce((p, c) => p + c, 0) / ratings.length
   // compute rate feeling
   let feeling = 'voted'
   if (rating === 0) feeling = 'hate'
   if (rating === 6) feeling = 'love'
-  // build rating object
+  // compute average rating
   const ratingObject = { rating: userRating, feeling }
-  // save in database
-  yield call(updateRating, eventId, proposalId, uid, ratingObject, totalRating)
-  // update in the store
   const updatedProposal = set(proposal, `ratings.${uid}`, ratingObject)
-  updatedProposal.rating = totalRating
+  const ratings = values(updatedProposal.ratings).map(r => r.rating)
+  const avgRating = ratings.reduce((p, c) => p + c, 0) / ratings.length
+  // save in database
+  yield call(updateRating, eventId, proposalId, uid, ratingObject, avgRating)
+  // update in the store
+  updatedProposal.rating = avgRating
   yield put(proposalsData.update(updatedProposal))
 }
 
