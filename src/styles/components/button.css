@@ -58,10 +58,12 @@
 
 /** Button link */
 .btn.btn-link {
-  border: 1px solid var(--secondary-color);
+  border: 1px solid transparent;
+  color: initial;
+  background: initial;
 }
 
 .btn.btn-link:hover {
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--primary-color);
   text-decoration: none;
 }

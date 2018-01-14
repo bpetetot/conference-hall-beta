@@ -8,13 +8,13 @@ import Rating from 'components/rating'
 const Votes = ({ className }) => (
   <form className={cn(className, 'card')}>
     <div>
-      <button className="btn">
+      <button className="btn btn-link">
         <IconLabel icon="fa fa-angle-left" label="Previous" />
       </button>
     </div>
     <Rating onRate={console.log} />
     <div>
-      <button className="btn">
+      <button className="btn btn-link">
         <IconLabel icon="fa fa-angle-right" label="Next" right />
       </button>
     </div>
