@@ -1,0 +1,15 @@
+.proposal-speaker-avatar {
+  margin-bottom: 1.5em;
+  font-weight: 600;
+}
+
+.proposal-speaker-avatar img {
+  font-size: 1.5em;
+}
+
+.proposal-speaker-icons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 1em;
+}

@@ -57,7 +57,7 @@ function* fetchTalk({ talkId }) {
   // fetch talk from id
   const ref = yield call(talkCrud.read, talkId)
   if (ref.exists) {
-    yield put(talksData.add({ talkId, ...ref.data() }))
+    yield put(talksData.add({ id: talkId, ...ref.data() }))
   } else {
     yield put({ type: 'TALK_NOT_FOUND', payload: { talkId } })
   }

@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Loading from 'components/loading'
+import { LoadingIndicator } from 'components/loader'
 import IconLabel from 'components/iconLabel'
 import './login.css'
 
 const Login = ({ authenticated, signin }) => {
-  if (authenticated) return <Loading className="login-loading" />
+  if (authenticated) return <LoadingIndicator className="login-loading" />
   return (
     <div className="login">
       <h1 className="login-title">Connexion</h1>

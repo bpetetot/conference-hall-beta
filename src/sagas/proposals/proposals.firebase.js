@@ -2,6 +2,19 @@
 import firebase from 'firebase/app'
 
 /**
+ * Return the proposal with the given id
+ * @param {string} proposalId proposal id
+ */
+export const fetchProposal = (eventId, proposalId) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(proposalId)
+    .get()
+
+/**
  * Fetch all proposals of an event
  * @param {string} eventId event id
  */

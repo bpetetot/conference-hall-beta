@@ -25,6 +25,7 @@ export default {
           '/members': { title: 'EDIT_EVENT_MEMBERS' },
         },
         '/proposals': { title: 'PROPOSALS' },
+        '/proposal/:proposalId': { title: 'PROPOSAL' },
       },
     },
   },

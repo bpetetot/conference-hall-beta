@@ -1,0 +1,42 @@
+.proposal {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'proposal-votes proposal-votes' 'proposal-talk proposal-speakers';
+  grid-gap: 1em;
+}
+
+.proposal .card {
+  padding: 1.5em;
+}
+
+.proposal-header {
+  grid-area: proposal-header;
+}
+
+.proposal-talk {
+  grid-area: proposal-talk;
+}
+
+.proposal-speakers {
+  grid-area: proposal-speakers;
+  align-self: start;
+}
+
+.proposal-speakers > div {
+  border-bottom: 1px solid var(--grey-color-light);
+  padding-bottom: 1em;
+  margin-bottom: 2em;
+}
+
+.proposal-speakers > div:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.proposal-votes {
+  grid-area: proposal-votes;
+  align-self: start;
+  display: flex;
+  justify-content: space-between;
+}
