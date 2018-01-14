@@ -38,5 +38,6 @@
   grid-area: proposal-votes;
   align-self: start;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }

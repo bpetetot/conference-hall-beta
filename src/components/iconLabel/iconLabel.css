@@ -6,8 +6,13 @@ button .icon-label {
   justify-content: center;
 }
 
-.icon-label > span > i {
+.icon-label > i {
   width: 1em;
-  margin-right: 0.6em;
   text-align: center;
+  margin-right: 0.6em;
+}
+
+.icon-label-right > i {
+  margin-left: 0.6em;
+  margin-right: 0;
 }
