@@ -1,6 +1,5 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { push } from 'redux-little-router'
 import forRoute from 'hoc-little-router'
 
 import { getRouterParam } from 'redux/router'
@@ -15,8 +14,12 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'LOAD_EVENT_PROPOSALS_PAGE' }),
-  onSelect: (eventId, talkId) => dispatch(push(`/organizer/event/${eventId}/proposal/${talkId}`)),
+  load: () => {
+    dispatch({ type: 'LOAD_EVENT_PROPOSALS_PAGE' })
+  },
+  onSelect: (eventId, proposalId) => {
+    dispatch({ type: 'SELECT_PROPOSAL', payload: { eventId, proposalId } })
+  },
 })
 
 export default compose(

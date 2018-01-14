@@ -1,6 +1,8 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
+import { push } from 'redux-little-router'
 
 import proposalsData from 'redux/data/proposals'
+import { getCurrentProposalIndex } from 'redux/ui/organizer/proposal'
 import { getRouterParam } from 'redux/router'
 import { fetchProposal, fetchEventProposals } from './proposals.firebase'
 
@@ -39,8 +41,42 @@ function* getProposal({ eventId, proposalId }) {
   }
 }
 
+function* onSelectProposal({ eventId, proposalId }) {
+  const proposalKeys = yield select(proposalsData.getKeys)
+  const proposalIndex = proposalKeys.indexOf(proposalId)
+  if (proposalIndex !== -1) {
+    yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex } })
+    yield put(push(`/organizer/event/${eventId}/proposal/${proposalId}`))
+  }
+}
+
+function* onNextProposal() {
+  const eventId = yield select(getRouterParam('eventId'))
+  const proposalIndex = yield select(getCurrentProposalIndex)
+  const proposalKeys = yield select(proposalsData.getKeys)
+  const nextIndex = proposalIndex + 1
+  if (nextIndex < proposalKeys.length) {
+    yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex: nextIndex } })
+    yield put(push(`/organizer/event/${eventId}/proposal/${proposalKeys[nextIndex]}`))
+  }
+}
+
+function* onPreviousProposal() {
+  const eventId = yield select(getRouterParam('eventId'))
+  const proposalIndex = yield select(getCurrentProposalIndex)
+  const proposalKeys = yield select(proposalsData.getKeys)
+  const nextIndex = proposalIndex - 1
+  if (nextIndex >= 0) {
+    yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex: nextIndex } })
+    yield put(push(`/organizer/event/${eventId}/proposal/${proposalKeys[nextIndex]}`))
+  }
+}
+
 export default function* eventSagas() {
   yield takeLatest('LOAD_EVENT_PROPOSALS_PAGE', onLoadEventProposalsPage)
   yield takeLatest('LOAD_PROPOSAL_PAGE', onLoadProposalPage)
   yield takeLatest('FETCH_PROPOSAL', ({ payload }) => getProposal(payload))
+  yield takeLatest('SELECT_PROPOSAL', ({ payload }) => onSelectProposal(payload))
+  yield takeLatest('NEXT_PROPOSAL', onNextProposal)
+  yield takeLatest('PREVIOUS_PROPOSAL', onPreviousProposal)
 }

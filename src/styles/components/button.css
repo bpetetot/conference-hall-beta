@@ -42,6 +42,18 @@
   text-decoration: none;
 }
 
+/** Button link */
+.btn.btn-link {
+  border: 1px solid transparent;
+  color: initial;
+  background: initial;
+}
+
+.btn.btn-link:hover {
+  border: 1px solid var(--primary-color);
+  text-decoration: none;
+}
+
 /** Button disabled */
 .btn:disabled {
   cursor: not-allowed;
@@ -56,14 +68,7 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-/** Button link */
-.btn.btn-link {
-  border: 1px solid transparent;
-  color: initial;
-  background: initial;
-}
-
-.btn.btn-link:hover {
-  border: 1px solid var(--primary-color);
-  text-decoration: none;
+.btn.btn-link:disabled {
+  border: none;
+  color: var(--grey-color);
 }

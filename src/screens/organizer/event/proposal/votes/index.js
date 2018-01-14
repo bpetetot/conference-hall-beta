@@ -1,1 +1,1 @@
-export { default } from './votes'
+export { default } from './votes.container'
