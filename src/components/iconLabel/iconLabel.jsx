@@ -10,9 +10,17 @@ const IconLabel = ({
   if (!label) return null
   return (
     <span className={cn(className, 'icon-label', { 'icon-label-right': right })}>
-      {!right && <i className={icon} />}
+      {!right && (
+        <span>
+          <i className={icon} />
+        </span>
+      )}
       <span className="icon-label-label">{label}</span>
-      {right && <i className={icon} />}
+      {right && (
+        <span>
+          <i className={icon} />
+        </span>
+      )}
     </span>
   )
 }
