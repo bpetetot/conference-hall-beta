@@ -2,8 +2,12 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: 'proposal-header proposal-header' 'proposal-votes proposal-votes' 'proposal-talk proposal-speakers';
+  grid-template-areas: 'proposal-votes proposal-votes' 'proposal-talk proposal-speakers';
   grid-gap: 1em;
+}
+
+.proposal .card {
+  padding: 1.5em;
 }
 
 .proposal-header {
@@ -33,4 +37,6 @@
 .proposal-votes {
   grid-area: proposal-votes;
   align-self: start;
+  display: flex;
+  justify-content: space-between;
 }

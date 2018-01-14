@@ -9,6 +9,7 @@ import './talk.css'
 
 const Talk = ({ eventId, proposal, className }) => (
   <div className={cn(className, 'card')}>
+    <h2>{proposal.title} </h2>
     <div className="proposal-talk-badges">
       <FormatBadge eventId={eventId} formatId={proposal.formats} />
       <CategoryBadge eventId={eventId} categoryId={proposal.categories} />
