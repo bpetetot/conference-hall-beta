@@ -9,7 +9,7 @@ const mapState = (state, { eventId }) => {
 }
 
 const mapDispatch = (dispatch, { eventId }) => ({
-  onClick: () => dispatch({ type: 'OPEN_SUBMISSION_PAGE', payload: { eventId } }),
+  onClick: () => dispatch({ type: 'OPEN_SUBMISSION_SELECTION_PAGE', payload: { eventId } }),
 })
 
 export default connect(mapState, mapDispatch)(SubmitTalkLink)
