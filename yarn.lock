@@ -5756,9 +5756,9 @@ react-moment-proptypes@^1.5.0:
   dependencies:
     moment ">=1.6.0"
 
-react-places-autocomplete@^5.4.3:
-  version "5.4.3"
-  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-5.4.3.tgz#321166247a9279b93ff21ee59112836058dda0ba"
+react-places-autocomplete@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-6.0.2.tgz#041870b70a19086120286d5d223652d4a95e6405"
   dependencies:
     lodash.debounce "^4.0.8"
     prop-types "^15.5.8"

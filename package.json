@@ -23,7 +23,7 @@
     "react-dates": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-markdown": "^3.1.4",
-    "react-places-autocomplete": "^5.4.3",
+    "react-places-autocomplete": "^6.0.2",
     "react-redux": "^5.0.6",
     "react-sizes": "^1.0.0",
     "redux": "^3.7.2",
