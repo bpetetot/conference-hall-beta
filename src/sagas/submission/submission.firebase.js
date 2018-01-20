@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app'
-import { unset } from 'immutadot'
+import { chain } from 'immutadot'
 
 import talksCrud from '../talks/talks.firebase'
 import { updateProposal, addProposal, removeProposal } from '../proposals/proposals.firebase'
@@ -37,7 +37,10 @@ export const unsubmitTalk = async (talk, eventId) => {
   const batch = db.batch()
 
   // remove submissions
-  const updatedTalk = unset(talk, `submissions.${eventId}`)
+  const updatedTalk = chain(talk)
+    .unset(`submissions.${eventId}`)
+    .unset('state')
+    .value()
   talksCrud.update(updatedTalk)
 
   // remove proposal from event
