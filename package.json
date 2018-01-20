@@ -6,8 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "lint": "eslint --ext js,jsx src",
-    "ci": "CI=true yarn lint && yarn test"
+    "lint": "eslint --ext js,jsx src"
   },
   "dependencies": {
     "classnames": "^2.2.5",
