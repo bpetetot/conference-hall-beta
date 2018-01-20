@@ -19,7 +19,7 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('PROPOSAL', { absolute: true }),
-  connect(mapState, mapDispatch),
-  loader,
+  forRoute.absolute('PROPOSAL'), //
+  connect(mapState, mapDispatch), //
+  loader, //
 )(Proposal)

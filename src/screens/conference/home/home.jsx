@@ -17,4 +17,4 @@ const Home = () => (
   </div>
 )
 
-export default forRoute('HOME', { absolute: true })(Home)
+export default forRoute.absolute('HOME')(Home)
