@@ -1,10 +1,9 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { push } from 'redux-little-router'
-import { set } from 'immutadot'
-import values from 'lodash/values'
 
 import proposalsData from 'redux/data/proposals'
-import { getUserId } from 'redux/auth'
+import { getRatingsAverage } from 'redux/data/ratings'
+import { saveRating } from 'sagas/ratings'
 import { getCurrentProposalIndex } from 'redux/ui/organizer/proposal'
 import { getRouterParam } from 'redux/router'
 import { fetchProposal, fetchEventProposals, updateRating } from './proposals.firebase'
@@ -33,15 +32,18 @@ function* onLoadProposalPage() {
 
 function* getProposal({ eventId, proposalId }) {
   // check if already in the store
-  const current = yield select(proposalsData.get(proposalId))
-  if (current && current.id === proposalId) return
-  // fetch proposal from id
-  const ref = yield call(fetchProposal, eventId, proposalId)
-  if (ref.exists) {
-    yield put(proposalsData.add(ref.data()))
-  } else {
-    yield put({ type: 'PROPOSAL_NOT_FOUND', payload: { proposalId } })
+  const inStore = yield select(proposalsData.get(proposalId))
+  if (!inStore) {
+    // fetch proposal from id
+    const ref = yield call(fetchProposal, eventId, proposalId)
+    if (ref.exists) {
+      yield put(proposalsData.add(ref.data()))
+    } else {
+      yield put({ type: 'PROPOSAL_NOT_FOUND', payload: { proposalId } })
+    }
   }
+  // get associated ratings
+  yield put({ type: 'FETCH_PROPOSAL_RATINGS', payload: { eventId, proposalId } })
 }
 
 function* onSelectProposal({ eventId, proposalId }) {
@@ -75,28 +77,25 @@ function* onPreviousProposal() {
   }
 }
 
-function* saveRating({ rating }) {
+function* rateProposal({ ratingValue }) {
   // select needed inputs in the state
-  const uid = yield select(getUserId)
   const eventId = yield select(getRouterParam('eventId'))
   const proposalId = yield select(getRouterParam('proposalId'))
-  const proposal = yield select(proposalsData.get(proposalId))
   // user rating
-  const userRating = rating <= 5 ? rating : 5 // rating == 6 means love it
+  const userRating = ratingValue <= 5 ? ratingValue : 5 // rating == 6 means love it
   // compute rate feeling
   let feeling = 'voted'
-  if (rating === 0) feeling = 'hate'
-  if (rating === 6) feeling = 'love'
+  if (ratingValue === 0) feeling = 'hate'
+  if (ratingValue === 6) feeling = 'love'
+  // add the rating
+  const rating = { rating: userRating, feeling }
+  yield saveRating({ eventId, proposalId, rating })
   // compute average rating
-  const ratingObject = { rating: userRating, feeling }
-  const updatedProposal = set(proposal, `ratings.${uid}`, ratingObject)
-  const ratings = values(updatedProposal.ratings).map(r => r.rating)
-  const avgRating = ratings.reduce((p, c) => p + c, 0) / ratings.length
+  const avgRating = yield select(getRatingsAverage)
   // save in database
-  yield call(updateRating, eventId, proposalId, uid, ratingObject, avgRating)
+  yield call(updateRating, eventId, proposalId, avgRating)
   // update in the store
-  updatedProposal.rating = avgRating
-  yield put(proposalsData.update(updatedProposal))
+  yield put(proposalsData.update({ id: proposalId, rating: avgRating }))
 }
 
 export default function* eventSagas() {
@@ -106,5 +105,5 @@ export default function* eventSagas() {
   yield takeLatest('SELECT_PROPOSAL', ({ payload }) => onSelectProposal(payload))
   yield takeLatest('NEXT_PROPOSAL', onNextProposal)
   yield takeLatest('PREVIOUS_PROPOSAL', onPreviousProposal)
-  yield takeLatest('RATE_PROPOSAL', ({ payload }) => saveRating(payload))
+  yield takeLatest('RATE_PROPOSAL', ({ payload }) => rateProposal(payload))
 }

@@ -9,6 +9,7 @@ import talksSaga from './talks'
 import speakerSaga from './speaker'
 import submissionSaga from './submission'
 import proposalsSaga from './proposals'
+import ratingsSaga from './ratings'
 
 export default function* sagas() {
   try {
@@ -22,6 +23,7 @@ export default function* sagas() {
       speakerSaga(),
       submissionSaga(),
       proposalsSaga(),
+      ratingsSaga(),
     ])
   } catch (error) {
     // eslint-disable-next-line no-console

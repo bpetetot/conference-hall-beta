@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 
 /**
  * Return the proposal with the given id
+ * @param {string} eventId event id
  * @param {string} proposalId proposal id
  */
 export const fetchProposal = (eventId, proposalId) =>
@@ -64,15 +65,12 @@ export const updateProposal = (eventId, talk, talkDataForEvent) => {
     })
 }
 
-export const updateRating = (eventId, talkId, uid, ratingObject, totalRating) => {
+export const updateRating = (eventId, talkId, totalRating) => {
   firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('proposals')
     .doc(talkId)
-    .update({
-      rating: totalRating,
-      [`ratings.${uid}`]: ratingObject,
-    })
+    .update({ rating: totalRating })
 }

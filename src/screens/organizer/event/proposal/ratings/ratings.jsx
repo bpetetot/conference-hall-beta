@@ -5,7 +5,7 @@ import cn from 'classnames'
 import IconLabel from 'components/iconLabel'
 import Rating from 'components/rating'
 
-const Votes = ({
+const Ratings = ({
   rating, onRate, hasNext, hasPrevious, onNext, onPrevious, className,
 }) => (
   <div className={cn(className, 'card')}>
@@ -23,7 +23,7 @@ const Votes = ({
   </div>
 )
 
-Votes.propTypes = {
+Ratings.propTypes = {
   rating: PropTypes.number,
   onRate: PropTypes.func.isRequired,
   hasNext: PropTypes.bool,
@@ -33,11 +33,11 @@ Votes.propTypes = {
   className: PropTypes.string,
 }
 
-Votes.defaultProps = {
+Ratings.defaultProps = {
   rating: undefined,
   hasNext: false,
   hasPrevious: false,
   className: undefined,
 }
 
-export default Votes
+export default Ratings
