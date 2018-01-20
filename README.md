@@ -1,6 +1,6 @@
 # Conference Hall
 
-[![circleci](https://circleci.com/gh/bpetetot/conference-hall.svg?style=shield](https://circleci.com/gh/bpetetot/conference-hall)
+[![circleci](https://circleci.com/gh/bpetetot/conference-hall.svg?style=shield)](https://circleci.com/gh/bpetetot/conference-hall)
 
 ## Getting started
 
