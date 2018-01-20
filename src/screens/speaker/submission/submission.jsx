@@ -10,9 +10,9 @@ import TalkSubmitted from './talkSubmitted'
 import './submission.css'
 
 const steps = [
-  { label: 'Select a talk', icon: 'fa fa-microphone' },
-  { label: 'Talk classification', icon: 'fa fa-list' },
-  { label: 'Talk submitted', icon: 'fa fa-paper-plane' },
+  { label: 'Talk selection', icon: 'fa fa-microphone' },
+  { label: 'Talk information', icon: 'fa fa-list' },
+  { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
 const Submission = ({ eventId, eventName, currentStep }) => {

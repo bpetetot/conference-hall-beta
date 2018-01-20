@@ -8,7 +8,7 @@ const TalkSubmitted = ({ eventId, eventName }) => (
   <div className="icon-submitted">
     <i className="fa fa-paper-plane-o" />
     <h2>Congrats ! Talk successfully submitted to {eventName}</h2>
-    <SubmitTalksLink eventId={eventId} label="Want to submit an other talk ?" />
+    <SubmitTalksLink eventId={eventId} label="Want to submit or update an other talk ?" />
   </div>
 )
 
