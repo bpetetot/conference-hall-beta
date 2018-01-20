@@ -6,7 +6,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "lint": "eslint --ext js,jsx src"
+    "lint": "eslint --ext js,jsx src",
+    "ci": "CI=true yarn lint && yarn test"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -44,17 +45,12 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": [
-      "airbnb"
-    ],
+    "extends": ["airbnb"],
     "env": {
       "browser": true
     },
     "rules": {
-      "semi": [
-        2,
-        "never"
-      ],
+      "semi": [2, "never"],
       "import/no-extraneous-dependencies": 0,
       "import/no-unresolved": 0,
       "import/extensions": 0,
