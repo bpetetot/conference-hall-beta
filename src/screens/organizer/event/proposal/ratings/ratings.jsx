@@ -6,6 +6,7 @@ import IconLabel from 'components/iconLabel'
 import Rating from 'components/rating'
 
 const Ratings = ({
+  isLoaded,
   rating,
   feeling,
   onRating,
@@ -21,7 +22,7 @@ const Ratings = ({
         <IconLabel icon="fa fa-angle-left" label="Previous" />
       </button>
     </div>
-    <Rating onRating={onRating} rating={rating} feeling={feeling} />
+    {isLoaded && <Rating onRating={onRating} rating={rating} feeling={feeling} />}
     <div>
       <button className="btn btn-link" disabled={!hasNext} onClick={onNext}>
         <IconLabel icon="fa fa-angle-right" label="Next" right />
@@ -31,6 +32,7 @@ const Ratings = ({
 )
 
 Ratings.propTypes = {
+  isLoaded: PropTypes.bool,
   rating: PropTypes.number,
   feeling: PropTypes.string,
   onRating: PropTypes.func.isRequired,
@@ -42,6 +44,7 @@ Ratings.propTypes = {
 }
 
 Ratings.defaultProps = {
+  isLoaded: false,
   rating: undefined,
   feeling: undefined,
   hasNext: false,

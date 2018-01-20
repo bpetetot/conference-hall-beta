@@ -61,8 +61,10 @@ function* onNextProposal() {
   const proposalKeys = yield select(proposalsData.getKeys)
   const nextIndex = proposalIndex + 1
   if (nextIndex < proposalKeys.length) {
+    const proposalId = proposalKeys[nextIndex]
     yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex: nextIndex } })
-    yield put(push(`/organizer/event/${eventId}/proposal/${proposalKeys[nextIndex]}`))
+    yield put({ type: 'FETCH_PROPOSAL_RATINGS', payload: { eventId, proposalId } })
+    yield put(push(`/organizer/event/${eventId}/proposal/${proposalId}`))
   }
 }
 
@@ -70,10 +72,12 @@ function* onPreviousProposal() {
   const eventId = yield select(getRouterParam('eventId'))
   const proposalIndex = yield select(getCurrentProposalIndex)
   const proposalKeys = yield select(proposalsData.getKeys)
-  const nextIndex = proposalIndex - 1
-  if (nextIndex >= 0) {
-    yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex: nextIndex } })
-    yield put(push(`/organizer/event/${eventId}/proposal/${proposalKeys[nextIndex]}`))
+  const prevIndex = proposalIndex - 1
+  if (prevIndex >= 0) {
+    const proposalId = proposalKeys[prevIndex]
+    yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex: prevIndex } })
+    yield put({ type: 'FETCH_PROPOSAL_RATINGS', payload: { eventId, proposalId } })
+    yield put(push(`/organizer/event/${eventId}/proposal/${proposalId}`))
   }
 }
 

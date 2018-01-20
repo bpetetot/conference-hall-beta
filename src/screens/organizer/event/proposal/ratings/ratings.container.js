@@ -9,6 +9,7 @@ import Ratings from './ratings'
 const mapState = (state) => {
   const uid = getUserId(state)
   return {
+    isLoaded: ratingsData.isInitialized(state),
     ...ratingsData.get(uid)(state),
     hasNext: hasNext(state),
     hasPrevious: hasPrevious(state),
