@@ -1,8 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app'
+import { unset } from 'immutadot'
 
 import talksCrud from '../talks/talks.firebase'
-import { updateProposal, addProposal } from '../proposals/proposals.firebase'
+import { updateProposal, addProposal, removeProposal } from '../proposals/proposals.firebase'
 
 /**
  * Save all data needed when submitting to an event
@@ -24,4 +25,24 @@ export const saveTalkSubmission = async (talk, eventId, talkDataForEvent, isUpda
     addProposal(eventId, talk, talkDataForEvent)
   }
   await batch.commit()
+}
+
+/**
+ * Unsubmitting  talk from an event
+ * @param {object} talk talk data
+ * @param {string} eventId event id
+ */
+export const unsubmitTalk = async (talk, eventId) => {
+  const db = firebase.firestore()
+  const batch = db.batch()
+
+  // remove submissions
+  const updatedTalk = unset(talk, `submissions.${eventId}`)
+  talksCrud.update(updatedTalk)
+
+  // remove proposal from event
+  removeProposal(eventId, talk.id)
+
+  await batch.commit()
+  return updatedTalk
 }

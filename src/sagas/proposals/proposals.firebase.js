@@ -50,6 +50,21 @@ export const addProposal = (eventId, talk, talkDataForEvent) => {
     })
 }
 
+/**
+ * Remove a proposal from an event
+ * @param {string} eventId event id
+ * @param {string} talkId talk id
+ */
+export const removeProposal = async (eventId, talkId) => {
+  await firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(talkId)
+    .delete()
+}
+
 export const updateProposal = (eventId, talk, talkDataForEvent) => {
   const { submissions, ...copyTalk } = talk
   firebase

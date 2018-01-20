@@ -3474,6 +3474,10 @@ ignore@^3.3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
+immutadot@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/immutadot/-/immutadot-0.3.2.tgz#cb4dd2a2f3b8a00db95713a35739002e25830bfe"
+
 import-local@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/import-local/-/import-local-0.1.1.tgz#b1179572aacdc11c6a91009fb430dbcab5f668a8"

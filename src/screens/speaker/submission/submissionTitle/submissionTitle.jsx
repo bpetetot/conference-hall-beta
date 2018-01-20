@@ -1,18 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Titlebar from 'components/titlebar'
 
 import './submissionTitle.css'
 
 const SubmissionTitle = ({ eventName }) => (
-  <Titlebar
-    icon="fa fa-paper-plane"
-    title={
-      <span>
-        Submit to <span className="submission-subtitle">{eventName}</span>
-      </span>
-    }
-  />
+  <h1>
+    <span className="submission-subtitle">{eventName}</span> • Call for paper
+  </h1>
 )
 
 SubmissionTitle.propTypes = {

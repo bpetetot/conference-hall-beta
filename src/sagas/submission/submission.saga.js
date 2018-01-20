@@ -3,7 +3,7 @@ import { startSubmit, stopSubmit } from 'redux-form'
 import { push } from 'redux-little-router'
 
 import talksData, { isSubmitted } from 'redux/data/talks'
-import { saveTalkSubmission } from './submission.firebase'
+import { saveTalkSubmission, unsubmitTalk } from './submission.firebase'
 
 function* onOpenSelectionPage({ eventId }) {
   yield put({ type: 'SET_CURRENT_EVENT', payload: { eventId } })
@@ -37,8 +37,19 @@ function* submitTalkToEvent({ talkId, eventId, data }) {
   }
 }
 
+function* unsubmitTalkFromEvent({ talkId, eventId }) {
+  const alreadySubmitted = yield select(isSubmitted(talkId, eventId))
+  if (alreadySubmitted) {
+    const talk = yield select(talksData.get(talkId))
+    const updatedTalk = yield call(unsubmitTalk, talk, eventId)
+    yield put(talksData.update(updatedTalk))
+    yield put({ type: 'SUBMISSION_RESET' })
+  }
+}
+
 export default function* submissionSagas() {
   yield takeLatest('OPEN_SUBMISSION_SELECTION_PAGE', ({ payload }) => onOpenSelectionPage(payload))
   yield takeLatest('OPEN_SUBMISSION_EVENTINFO_PAGE', ({ payload }) => onOpenSubmitPage(payload))
   yield takeLatest('SUBMIT_TALK_TO_EVENT', ({ payload }) => submitTalkToEvent(payload))
+  yield takeLatest('UNSUBMIT_TALK_FROM_EVENT', ({ payload }) => unsubmitTalkFromEvent(payload))
 }
