@@ -8,7 +8,7 @@ import './proposal.css'
 
 const Proposal = ({ eventId, proposal }) => (
   <div className="proposal">
-    <Ratings className="proposal-votes" eventId={eventId} proposal={proposal} />
+    <Ratings className="proposal-ratings" eventId={eventId} proposal={proposal} />
     <Speakers className="proposal-speakers" eventId={eventId} proposal={proposal} />
     <Talk className="proposal-talk" eventId={eventId} proposal={proposal} />
   </div>

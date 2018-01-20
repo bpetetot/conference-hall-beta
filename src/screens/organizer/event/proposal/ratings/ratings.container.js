@@ -2,21 +2,21 @@
 import { connect } from 'react-redux'
 
 import { getUserId } from 'redux/auth'
-import { getUserRating } from 'redux/data/ratings'
+import ratingsData from 'redux/data/ratings'
 import { hasNext, hasPrevious } from 'redux/ui/organizer/proposal'
 import Ratings from './ratings'
 
 const mapState = (state) => {
   const uid = getUserId(state)
   return {
-    rating: getUserRating(uid)(state),
+    ...ratingsData.get(uid)(state),
     hasNext: hasNext(state),
     hasPrevious: hasPrevious(state),
   }
 }
 
 const mapDispatch = dispatch => ({
-  onRate: ratingValue => dispatch({ type: 'RATE_PROPOSAL', payload: { ratingValue } }),
+  onRating: (rating, feeling) => dispatch({ type: 'RATE_PROPOSAL', payload: { rating, feeling } }),
   onNext: () => dispatch({ type: 'NEXT_PROPOSAL' }),
   onPrevious: () => dispatch({ type: 'PREVIOUS_PROPOSAL' }),
 })

@@ -13,19 +13,19 @@
   transition: all 0.5s;
 }
 
-.rate-hate {
+.rating-hate {
   color: #000;
 }
 
-.rate-hate-disable {
+.rating-hate-disable {
   color: #ccc;
 }
 
-.rate-star {
+.rating-star {
   color: #ffc74c;
 }
 
-.rate-love {
+.rating-love {
   color: #ed4842;
 }
 

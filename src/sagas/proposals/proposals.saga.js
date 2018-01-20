@@ -77,18 +77,11 @@ function* onPreviousProposal() {
   }
 }
 
-function* rateProposal({ ratingValue }) {
+function* rateProposal(rating) {
   // select needed inputs in the state
   const eventId = yield select(getRouterParam('eventId'))
   const proposalId = yield select(getRouterParam('proposalId'))
-  // user rating
-  const userRating = ratingValue <= 5 ? ratingValue : 5 // rating == 6 means love it
-  // compute rate feeling
-  let feeling = 'voted'
-  if (ratingValue === 0) feeling = 'hate'
-  if (ratingValue === 6) feeling = 'love'
   // add the rating
-  const rating = { rating: userRating, feeling }
   yield saveRating({ eventId, proposalId, rating })
   // compute average rating
   const avgRating = yield select(getRatingsAverage)

@@ -5,50 +5,68 @@ import isNil from 'lodash/isNil'
 
 import './rating.css'
 
+const DEFAULT_FEELING = 'neutral'
+
 class Rating extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      rate: this.props.rating, // can be 0 (hate), 1 to 5 (rate), 6 (love)
-      validatedRate: this.props.rating,
+      rating: this.props.rating,
+      feeling: this.props.feeling,
+      validatedRating: this.props.rating,
+      validatedFeeling: this.props.feeling,
     }
   }
 
-  componentWillReceiveProps({ rating }) {
-    if (this.props.rating !== rating) {
-      this.setState(() => ({ rate: rating, validatedRate: rating }))
+  componentWillReceiveProps({ rating, feeling }) {
+    if (this.props.rating !== rating || this.props.feeling !== feeling) {
+      this.setState(() => ({
+        rating,
+        validatedRating: rating,
+        feeling,
+        validatedFeeling: feeling,
+      }))
     }
   }
 
   handleMouseLeaveRating = () => {
-    if (isNil(this.state.validatedRate)) {
-      this.setState(state => ({ ...state, rate: undefined }))
+    if (isNil(this.state.validatedRating)) {
+      this.setState(state => ({ ...state, rating: undefined, feeling: DEFAULT_FEELING }))
     } else {
-      this.setState(state => ({ ...state, rate: state.validatedRate }))
+      this.setState(state => ({
+        ...state,
+        rating: state.validatedRating,
+        feeling: state.validatedFeeling,
+      }))
     }
   }
 
   handleClick = () => {
     this.setState(
-      state => ({ ...state, validatedRate: state.rate }),
+      state => ({ ...state, validatedRating: state.rating, validatedFeeling: state.feeling }),
       () => {
-        this.props.onRate(this.state.validatedRate)
+        const { validatedRating, validatedFeeling } = this.state
+        this.props.onRating(validatedRating, validatedFeeling)
       },
     )
   }
 
-  handleMouseEnterStar = index => () => {
-    this.setState(() => ({ rate: index }))
+  handleMouseEnterStar = (rating, feeling = DEFAULT_FEELING) => () => {
+    this.setState(() => ({ rating, feeling }))
   }
 
   render() {
-    const { rate, validatedRate } = this.state
-    const { className } = this.props
+    const { stars, className } = this.props
+    const {
+      rating, feeling, validatedRating, validatedFeeling,
+    } = this.state
+
+    const starsArray = Array.from(Array(stars), (_, i) => i + 1)
     return (
       <div className={cn('rating', className)} onMouseLeave={this.handleMouseLeaveRating}>
         <small
-          className={cn('rating-label', { 'rate-hate': rate === 0 })}
-          onMouseEnter={this.handleMouseEnterStar(0)}
+          className={cn('rating-label', { 'rating-hate': feeling === 'hate' })}
+          onMouseEnter={this.handleMouseEnterStar(0, 'hate')}
           onClick={this.handleClick}
           role="button"
         >
@@ -56,78 +74,41 @@ class Rating extends Component {
         </small>
         <i
           className={cn('fa fa-2x', {
-            'fa-circle-thin': isNil(rate),
-            'fa-circle rate-hate': rate === 0,
-            'fa-circle rate-hate-disable': rate > 0,
-            bounce: validatedRate === 0,
+            'fa-circle-thin': isNil(rating),
+            'fa-circle rating-hate': feeling === 'hate',
+            'fa-circle rating-hate-disable': rating > 0,
+            bounce: validatedRating === 0,
           })}
-          onMouseEnter={this.handleMouseEnterStar(0)}
+          onMouseEnter={this.handleMouseEnterStar(0, 'hate')}
           onClick={this.handleClick}
           role="button"
         />
+        {starsArray.map(i => (
+          <i
+            key={i}
+            className={cn('fa fa-2x', {
+              'fa-star-o': isNil(rating) || rating <= i - 1,
+              'fa-star rating-star': rating >= i,
+              bounce: validatedRating === i && validatedFeeling === DEFAULT_FEELING,
+            })}
+            onMouseEnter={this.handleMouseEnterStar(i)}
+            onClick={this.handleClick}
+            role="button"
+          />
+        ))}
         <i
           className={cn('fa fa-2x', {
-            'fa-star-o': isNil(rate) || rate <= 0,
-            'fa-star rate-star': rate >= 1,
-            bounce: validatedRate === 1,
+            'fa-heart-o': isNil(rating) || feeling !== 'love',
+            'fa-heart rating-love': feeling === 'love',
+            bounce: validatedFeeling === 'love',
           })}
-          onMouseEnter={this.handleMouseEnterStar(1)}
-          onClick={this.handleClick}
-          role="button"
-        />
-        <i
-          className={cn('fa fa-2x', {
-            'fa-star-o': isNil(rate) || rate <= 1,
-            'fa-star rate-star': rate >= 2,
-            bounce: validatedRate === 2,
-          })}
-          onMouseEnter={this.handleMouseEnterStar(2)}
-          onClick={this.handleClick}
-          role="button"
-        />
-        <i
-          className={cn('fa fa-2x', {
-            'fa-star-o': isNil(rate) || rate <= 2,
-            'fa-star rate-star': rate >= 3,
-            bounce: validatedRate === 3,
-          })}
-          onMouseEnter={this.handleMouseEnterStar(3)}
-          onClick={this.handleClick}
-          role="button"
-        />
-        <i
-          className={cn('fa fa-2x', {
-            'fa-star-o': isNil(rate) || rate <= 3,
-            'fa-star rate-star': rate >= 4,
-            bounce: validatedRate === 4,
-          })}
-          onMouseEnter={this.handleMouseEnterStar(4)}
-          onClick={this.handleClick}
-          role="button"
-        />
-        <i
-          className={cn('fa fa-2x', {
-            'fa-star-o': isNil(rate) || rate <= 4,
-            'fa-star rate-star': rate >= 5,
-            bounce: validatedRate === 5,
-          })}
-          onMouseEnter={this.handleMouseEnterStar(5)}
-          onClick={this.handleClick}
-          role="button"
-        />
-        <i
-          className={cn('fa fa-2x', {
-            'fa-heart-o': isNil(rate) || rate <= 5,
-            'fa-heart rate-love': rate >= 6,
-            bounce: validatedRate === 6,
-          })}
-          onMouseEnter={this.handleMouseEnterStar(6)}
+          onMouseEnter={this.handleMouseEnterStar(5, 'love')}
           onClick={this.handleClick}
           role="button"
         />
         <small
-          className={cn('rating-label', { 'rate-love': rate >= 6 })}
-          onMouseEnter={this.handleMouseEnterStar(6)}
+          className={cn('rating-label', { 'rating-love': feeling === 'love' })}
+          onMouseEnter={this.handleMouseEnterStar(5, 'love')}
           onClick={this.handleClick}
           role="button"
         >
@@ -139,13 +120,17 @@ class Rating extends Component {
 }
 
 Rating.propTypes = {
+  stars: PropTypes.number,
   rating: PropTypes.number,
-  onRate: PropTypes.func.isRequired,
+  feeling: PropTypes.string,
+  onRating: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 
 Rating.defaultProps = {
+  stars: 5,
   rating: undefined,
+  feeling: DEFAULT_FEELING,
   className: undefined,
 }
 
