@@ -19,6 +19,6 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('CREATE_EVENT', { absolute: true }), //
+  forRoute.absolute('CREATE_EVENT'), //
   connect(mapState, mapDispatch), //
 )(EventForm)

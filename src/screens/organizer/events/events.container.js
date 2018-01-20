@@ -18,7 +18,7 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('HOME_ORGANIZER', { absolute: true }), //
+  forRoute.absolute('HOME_ORGANIZER'), //
   connect(mapState, mapDispatch), //
   loader, //
 )(Events)

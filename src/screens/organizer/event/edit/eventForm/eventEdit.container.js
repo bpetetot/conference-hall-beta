@@ -1,3 +1,4 @@
+import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
@@ -21,4 +22,7 @@ const mapDispatch = dispatch => ({
   onSubmit: data => dispatch({ type: 'SUBMIT_UPDATE_EVENT_FORM', payload: data }),
 })
 
-export default forRoute('EDIT_EVENT', { absolute: true })(connect(mapState, mapDispatch)(EventForm))
+export default compose(
+  forRoute.absolute('EDIT_EVENT'), //
+  connect(mapState, mapDispatch), //
+)(EventForm)

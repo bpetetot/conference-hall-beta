@@ -37,7 +37,7 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('EDIT_EVENT_CFP', { absolute: true }),
+  forRoute.absolute('EDIT_EVENT_CFP'),
   connect(mapState, mapDispatch),
   reduxForm({ form: FORM_NAME }),
 )(CFPForm)

@@ -13,4 +13,7 @@ const mapDispatch = dispatch => ({
   signin: provider => dispatch({ type: 'SIGN_IN', payload: provider }),
 })
 
-export default compose(forRoute('LOGIN', { absolute: true }), connect(mapState, mapDispatch))(Login)
+export default compose(
+  forRoute.absolute('LOGIN'), //
+  connect(mapState, mapDispatch), //
+)(Login)

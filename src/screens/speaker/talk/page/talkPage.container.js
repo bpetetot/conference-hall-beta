@@ -18,7 +18,7 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('TALK_PAGE', { absolute: true }), //
+  forRoute.absolute('TALK_PAGE'), //
   connect(mapState, mapDispatch), //
   loader, //
 )(TalkPage)

@@ -13,6 +13,6 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('CREATE_TALK', { absolute: true }), //
+  forRoute.absolute('CREATE_TALK'), //
   connect(mapState, mapDispatch), //
 )(TalkForm)

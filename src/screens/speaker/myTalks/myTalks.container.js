@@ -18,7 +18,7 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('HOME_SPEAKER', { absolute: true }), //
+  forRoute.absolute('HOME_SPEAKER'), //
   connect(mapState, mapDispatch), //
   loader, //
 )(MyTalks)

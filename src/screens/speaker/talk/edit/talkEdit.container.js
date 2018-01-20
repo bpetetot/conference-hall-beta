@@ -25,7 +25,7 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute('EDIT_TALK', { absolute: true }), //
+  forRoute.absolute('EDIT_TALK'), //
   connect(mapState, mapDispatch), //
   loader, //
 )(TalkForm)
