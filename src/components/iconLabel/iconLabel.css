@@ -1,13 +1,19 @@
 .icon-label {
   display: flex;
+  align-items: center;
 }
 
 button .icon-label {
   justify-content: center;
 }
 
-.icon-label > span > i {
+.icon-label .fa {
   width: 1em;
-  margin-right: 0.6em;
   text-align: center;
+  margin-right: 0.6em;
+}
+
+.icon-label-right .fa {
+  margin-left: 0.6em;
+  margin-right: 0;
 }

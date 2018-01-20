@@ -1,0 +1,55 @@
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.rating-label {
+  cursor: pointer;
+}
+
+.rating > i {
+  cursor: pointer;
+  padding: 0 0.5em;
+  transition: all 0.5s;
+}
+
+.rating-hate {
+  color: #000;
+}
+
+.rating-hate-disable {
+  color: #ccc;
+}
+
+.rating-star {
+  color: #ffc74c;
+}
+
+.rating-love {
+  color: #ed4842;
+}
+
+.bounce {
+  animation: bounce 0.8s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.7;
+  }
+  60% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

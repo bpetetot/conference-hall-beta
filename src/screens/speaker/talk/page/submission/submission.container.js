@@ -1,7 +1,6 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import loader from 'hoc-react-loader/build/core'
-import { push } from 'redux-little-router'
 
 import eventsData from 'redux/data/events'
 import Submission from './submission'
@@ -16,11 +15,10 @@ const mapDispatch = (dispatch, { eventId, talkId }) => ({
     dispatch({ type: 'FETCH_EVENT', payload: { eventId } })
   },
   onClickEdit: () => {
-    dispatch({ type: 'OPEN_SUBMISSION_UPDATE_PAGE', payload: { eventId, talkId } })
+    dispatch({ type: 'OPEN_SUBMISSION_EVENTINFO_PAGE', payload: { eventId, talkId } })
   },
   onClickEvent: () => {
-    dispatch({ type: 'SET_CURRENT_EVENT', payload: { eventId } })
-    dispatch(push(`/speaker/event/${eventId}`))
+    dispatch({ type: 'SPEAKER/OPEN_EVENT_PAGE', payload: { eventId } })
   },
 })
 

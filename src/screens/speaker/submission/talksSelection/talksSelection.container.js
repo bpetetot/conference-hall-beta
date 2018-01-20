@@ -10,9 +10,13 @@ const mapState = state => ({
   talks: speakerTalks.getAsArray(state),
 })
 
-const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'ON_LOAD_SPEAKER_TALK' }),
-  onSelect: talkId => dispatch({ type: 'SUBMISSION_SELECT_TALK', payload: { talkId } }),
+const mapDispatch = (dispatch, { eventId }) => ({
+  load: () => {
+    dispatch({ type: 'ON_LOAD_SPEAKER_TALK' })
+  },
+  onSelect: (talkId) => {
+    dispatch({ type: 'OPEN_SUBMISSION_EVENTINFO_PAGE', payload: { eventId, talkId } })
+  },
 })
 
 export default compose(

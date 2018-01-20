@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: 'proposal-votes proposal-votes' 'proposal-talk proposal-speakers';
+  grid-template-areas: 'proposal-ratings proposal-ratings' 'proposal-talk proposal-speakers';
   grid-gap: 1em;
 }
 
@@ -34,9 +34,10 @@
   margin-bottom: 0;
 }
 
-.proposal-votes {
-  grid-area: proposal-votes;
+.proposal-ratings {
+  grid-area: proposal-ratings;
   align-self: start;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }

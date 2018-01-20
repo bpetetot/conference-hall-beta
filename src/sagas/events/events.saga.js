@@ -76,11 +76,17 @@ function* onLoadOrganizerEventsPage() {
   yield put(organizerEvents.set(events))
 }
 
+function* onOpenSpeakerEventPage({ eventId }) {
+  yield put({ type: 'SET_CURRENT_EVENT', payload: { eventId } })
+  yield put(push(`/speaker/event/${eventId}`))
+}
+
 export default function* eventSagas() {
   yield takeLatest('SUBMIT_CREATE_EVENT_FORM', ({ payload }) => createEvent(payload))
   yield takeLatest('SUBMIT_UPDATE_EVENT_FORM', ({ payload }) => updateEvent('event-edit', payload))
   yield takeLatest('SUBMIT_UPDATE_CFP_FORM', ({ payload }) => updateEvent('cfp-edit', payload))
   yield takeLatest('ON_LOAD_EVENT_PAGE', onLoadEventPage)
   yield takeLatest('ON_LOAD_ORGANIZER_EVENTS_PAGE', onLoadOrganizerEventsPage)
+  yield takeLatest('SPEAKER/OPEN_EVENT_PAGE', ({ payload }) => onOpenSpeakerEventPage(payload))
   yield takeEvery('FETCH_EVENT', ({ payload }) => fetchEvent(payload))
 }

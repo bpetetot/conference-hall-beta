@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 
 /**
  * Return the proposal with the given id
+ * @param {string} eventId event id
  * @param {string} proposalId proposal id
  */
 export const fetchProposal = (eventId, proposalId) =>
@@ -47,4 +48,29 @@ export const addProposal = (eventId, talk, talkDataForEvent) => {
       ...talkDataForEvent,
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
+}
+
+export const updateProposal = (eventId, talk, talkDataForEvent) => {
+  const { submissions, ...copyTalk } = talk
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(talk.id)
+    .update({
+      ...copyTalk,
+      ...talkDataForEvent,
+      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+}
+
+export const updateRating = (eventId, talkId, totalRating) => {
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(talkId)
+    .update({ rating: totalRating })
 }
