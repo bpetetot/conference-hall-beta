@@ -1,5 +1,7 @@
 # Conference Hall
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bpetetot/conference-hall.svg)](https://greenkeeper.io/)
+
 ## Getting started
 
 1. Clone the Conference Hall app
