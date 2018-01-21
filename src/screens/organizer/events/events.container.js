@@ -1,6 +1,5 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { push } from 'redux-little-router'
 import forRoute from 'hoc-little-router'
 
 import organizerEvents from 'redux/ui/organizer/myEvents'
@@ -14,7 +13,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   load: () => dispatch({ type: 'ON_LOAD_ORGANIZER_EVENTS_PAGE' }),
-  onSelect: eventId => dispatch(push(`/organizer/event/${eventId}`)),
+  onSelect: eventId => dispatch({ type: 'ORGANIZER/OPEN_EVENT_PAGE', payload: { eventId } }),
 })
 
 export default compose(

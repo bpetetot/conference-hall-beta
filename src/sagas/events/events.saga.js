@@ -5,6 +5,7 @@ import { push } from 'redux-little-router'
 import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
 import eventsData from 'redux/data/events'
+import proposalsData from 'redux/data/proposals'
 import organizerEvents from 'redux/ui/organizer/myEvents'
 import eventCrud, { fetchUserEvents } from './events.firebase'
 
@@ -81,6 +82,11 @@ function* onOpenSpeakerEventPage({ eventId }) {
   yield put(push(`/speaker/event/${eventId}`))
 }
 
+function* onOpenOrganizerEventPage({ eventId }) {
+  yield put(proposalsData.reset())
+  yield put(push(`/organizer/event/${eventId}`))
+}
+
 export default function* eventSagas() {
   yield takeLatest('SUBMIT_CREATE_EVENT_FORM', ({ payload }) => createEvent(payload))
   yield takeLatest('SUBMIT_UPDATE_EVENT_FORM', ({ payload }) => updateEvent('event-edit', payload))
@@ -88,5 +94,6 @@ export default function* eventSagas() {
   yield takeLatest('ON_LOAD_EVENT_PAGE', onLoadEventPage)
   yield takeLatest('ON_LOAD_ORGANIZER_EVENTS_PAGE', onLoadOrganizerEventsPage)
   yield takeLatest('SPEAKER/OPEN_EVENT_PAGE', ({ payload }) => onOpenSpeakerEventPage(payload))
+  yield takeLatest('ORGANIZER/OPEN_EVENT_PAGE', ({ payload }) => onOpenOrganizerEventPage(payload))
   yield takeEvery('FETCH_EVENT', ({ payload }) => fetchEvent(payload))
 }

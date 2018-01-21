@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import values from 'lodash/values'
-
 import ratingsData from './ratings'
 
 export const getRatingsAverage = (state) => {

@@ -18,14 +18,36 @@ export const fetchProposal = (eventId, proposalId) =>
 /**
  * Fetch all proposals of an event
  * @param {string} eventId event id
+ * @param {object} options options with filters and sorting
  */
-export const fetchEventProposals = async (eventId) => {
-  const result = await firebase
+export const fetchEventProposals = async (eventId, uid, { categories, formats, sorting } = {}) => {
+  let query = firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('proposals')
-    .get()
+
+  // add filters
+  if (categories) {
+    query = query.where('categories', '==', categories)
+  }
+  if (formats) {
+    query = query.where('formats', '==', formats)
+  }
+  // add sorting
+  if (sorting) {
+    if (sorting === 'newest') {
+      query = query.orderBy('updateTimestamp', 'desc')
+    } else if (sorting === 'oldest') {
+      query = query.orderBy('updateTimestamp', 'asc')
+    } else if (sorting === 'highestRating') {
+      query = query.orderBy('rating', 'desc')
+    } else if (sorting === 'lowestRating') {
+      query = query.orderBy('rating', 'asc')
+    }
+  }
+
+  const result = await query.get()
   return result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
 }
 
@@ -46,6 +68,8 @@ export const addProposal = (eventId, talk, talkDataForEvent) => {
     .set({
       ...copyTalk,
       ...talkDataForEvent,
+      rating: null,
+      state: 'submitted',
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
 }
@@ -80,12 +104,12 @@ export const updateProposal = (eventId, talk, talkDataForEvent) => {
     })
 }
 
-export const updateRating = (eventId, talkId, totalRating) => {
+export const updateRating = (eventId, talkId, uid, rating) => {
   firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('proposals')
     .doc(talkId)
-    .update({ rating: totalRating })
+    .update({ rating, [`usersRatings.${uid}`]: true })
 }

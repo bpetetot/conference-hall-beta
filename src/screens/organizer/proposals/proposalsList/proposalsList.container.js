@@ -1,14 +1,11 @@
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import forRoute from 'hoc-little-router'
 
-import { getRouterParam } from 'redux/router'
 import proposalsData from 'redux/data/proposals'
 import loader from 'components/loader'
-import Proposals from './proposals'
+import ProposalsList from './proposalsList'
 
 const mapState = state => ({
-  eventId: getRouterParam('eventId')(state),
   loaded: proposalsData.isInitialized(state),
   proposals: proposalsData.getAsArray(state),
 })
@@ -23,7 +20,6 @@ const mapDispatch = dispatch => ({
 })
 
 export default compose(
-  forRoute.absolute('PROPOSALS'), //
   connect(mapState, mapDispatch), //
   loader, //
-)(Proposals)
+)(ProposalsList)

@@ -9,9 +9,9 @@ import { Sidebar, SidebarMobile } from './sidebar'
 import EventCreate from './event/create'
 import EventEdit from './event/edit'
 import Event from './event/page'
-import Proposals from './event/proposals'
-import Proposal from './event/proposal'
 import MyEvents from './events'
+import Proposals from './proposals'
+import Proposal from './proposal'
 
 const Organizer = () => (
   <div className="layout-screen">

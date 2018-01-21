@@ -1,14 +1,19 @@
-input {
+input,
+select {
   border-radius: 3px;
   border: 1px solid var(--grey-color);
+  background: #fff;
   color: #000;
   font-family: inherit;
   outline: none;
-  padding: 10px;
+  padding: 0 1em;
   transition: all 0.5s;
+  height: 2.7em;
+  line-height: 2.7em;
   width: 100%;
 }
 
-input:focus {
+input:focus,
+select:focus {
   border: 1px solid var(--primary-color);
 }

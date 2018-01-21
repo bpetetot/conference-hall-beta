@@ -1,8 +1,11 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 
+import ratingsData, { getRatingsAverage } from 'redux/data/ratings'
+import proposalsData from 'redux/data/proposals'
 import { getUserId } from 'redux/auth'
-import ratingsData from 'redux/data/ratings'
+import { getRouterParam } from 'redux/router'
 import { getRatings, addRating } from './ratings.firebase'
+import { updateRating } from '../proposals/proposals.firebase'
 
 function* fetchRatings({ eventId, proposalId }) {
   // wipe current ratings
@@ -13,15 +16,22 @@ function* fetchRatings({ eventId, proposalId }) {
   yield put(ratingsData.set(ratings))
 }
 
-export function* saveRating({ eventId, proposalId, rating }) {
-  // select user id in the state
+function* rateProposal(rating) {
+  // select needed inputs in the state
   const uid = yield select(getUserId)
-  // save in database
+  const eventId = yield select(getRouterParam('eventId'))
+  const proposalId = yield select(getRouterParam('proposalId'))
+  // add the rating in database and store
   yield call(addRating, eventId, proposalId, uid, rating)
-  // update in the store
   yield put(ratingsData.addOrUpdate({ uid, ...rating }))
+  // compute average rating
+  const avgRating = yield select(getRatingsAverage)
+  // save the rating average in database database and store
+  yield call(updateRating, eventId, proposalId, uid, avgRating)
+  yield put(proposalsData.update({ id: proposalId, rating: avgRating }))
 }
 
 export default function* eventSagas() {
   yield takeLatest('FETCH_PROPOSAL_RATINGS', ({ payload }) => fetchRatings(payload))
+  yield takeLatest('RATE_PROPOSAL', ({ payload }) => rateProposal(payload))
 }
