@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import Titlebar from 'components/titlebar'
 import { List, ListItem } from 'components/list'
+import ProposalFilters from './proposalFilters'
 import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
 import './proposals.css'
@@ -9,6 +11,7 @@ import './proposals.css'
 const Proposals = ({ eventId, proposals, onSelect }) => (
   <div>
     <Titlebar icon="fa fa-paper-plane" title="Proposals" />
+    <ProposalFilters />
     <List
       className="event-proposals"
       array={proposals}
