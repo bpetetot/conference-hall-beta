@@ -8,7 +8,7 @@ import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
 import { fetchProposal, fetchEventProposals } from './proposals.firebase'
 
-function* onLoadEventProposalsPage() {
+function* loadEventProposals() {
   // get needed inputs
   const eventId = yield select(getRouterParam('eventId'))
   const uid = yield select(getUserId)
@@ -22,6 +22,13 @@ function* onLoadEventProposalsPage() {
   const proposals = yield call(fetchEventProposals, eventId, uid, filters)
   // set proposals in the store
   yield put(proposalsData.set(proposals))
+}
+
+function* onLoadEventProposalsPage() {
+  const isInitialized = yield select(proposalsData.isInitialized)
+  if (!isInitialized) {
+    yield loadEventProposals()
+  }
 }
 
 function* onLoadProposalPage() {
@@ -87,10 +94,8 @@ function* onPreviousProposal() {
 }
 
 export default function* eventSagas() {
-  yield takeLatest(
-    ['LOAD_EVENT_PROPOSALS_PAGE', '@@krf/UPDATE_PROPOSALSFILTERS'],
-    onLoadEventProposalsPage,
-  )
+  yield takeLatest('LOAD_EVENT_PROPOSALS_PAGE', onLoadEventProposalsPage)
+  yield takeLatest('@@krf/UPDATE_PROPOSALSFILTERS', loadEventProposals)
   yield takeLatest('LOAD_PROPOSAL_PAGE', onLoadProposalPage)
   yield takeLatest('FETCH_PROPOSAL', ({ payload }) => getProposal(payload))
   yield takeLatest('SELECT_PROPOSAL', ({ payload }) => onSelectProposal(payload))
