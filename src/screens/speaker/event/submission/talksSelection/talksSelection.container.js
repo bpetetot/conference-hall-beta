@@ -12,7 +12,7 @@ const mapState = state => ({
 
 const mapDispatch = (dispatch, { eventId }) => ({
   load: () => {
-    dispatch({ type: 'ON_LOAD_SPEAKER_TALK' })
+    dispatch({ type: 'ON_LOAD_SPEAKER_TALKS' })
   },
   onSelect: (talkId) => {
     dispatch({ type: 'OPEN_SUBMISSION_EVENTINFO_PAGE', payload: { eventId, talkId } })

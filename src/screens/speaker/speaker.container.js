@@ -7,7 +7,7 @@ import { protect } from 'redux/auth'
 import Speaker from './speaker'
 
 const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'INIT_SPEAKER_APP' }),
+  load: () => dispatch({ type: 'SPEAKER/INIT_APP' }),
 })
 
 export default compose(

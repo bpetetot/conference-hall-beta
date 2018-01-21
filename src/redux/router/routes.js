@@ -43,10 +43,12 @@ export default {
         '/edit': { title: 'EDIT_TALK' },
       },
     },
-    '/submission': { title: 'SUBMISSION' },
     '/event': {
       title: 'HOME_EVENT',
-      '/:eventId': { title: 'EVENT_PAGE' },
+      '/:eventId': {
+        title: 'EVENT_PAGE',
+        '/submission': { title: 'SUBMISSION' },
+      },
     },
   },
 }

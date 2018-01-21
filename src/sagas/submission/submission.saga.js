@@ -6,16 +6,16 @@ import talksData, { isSubmitted } from 'redux/data/talks'
 import { saveTalkSubmission, unsubmitTalk } from './submission.firebase'
 
 function* onOpenSelectionPage({ eventId }) {
-  yield put({ type: 'SET_CURRENT_EVENT', payload: { eventId } })
+  yield put({ type: 'SPEAKER/SET_EVENT', payload: { eventId } })
   yield put({ type: 'SUBMISSION_RESET' })
-  yield put(push('/speaker/submission'))
+  yield put(push(`/speaker/event/${eventId}/submission`))
 }
 
 function* onOpenSubmitPage({ eventId, talkId }) {
-  yield put({ type: 'SET_CURRENT_EVENT', payload: { eventId } })
+  yield put({ type: 'SPEAKER/SET_EVENT', payload: { eventId } })
   yield put({ type: 'SUBMISSION_RESET' })
   yield put({ type: 'SUBMISSION_SELECT_TALK', payload: { talkId } })
-  yield put(push('/speaker/submission'))
+  yield put(push(`/speaker/event/${eventId}/submission`))
 }
 
 function* submitTalkToEvent({ talkId, eventId, data }) {
