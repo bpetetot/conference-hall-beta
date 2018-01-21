@@ -9,7 +9,7 @@ const mapState = (state) => {
 }
 
 const mapDispatch = dispatch => ({
-  signout: () => dispatch({ type: 'SIGN_OUT' }),
+  signout: () => dispatch({ type: 'AUTH/SIGN_OUT' }),
 })
 
 export default connect(mapState, mapDispatch)(AvatarDropdown)
