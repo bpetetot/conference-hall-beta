@@ -3,7 +3,7 @@ import { simpleObject } from 'k-redux-factory'
 const defaultData = {
   categories: '',
   formats: '',
-  sorting: '',
+  sorting: 'newest',
 }
 
 export default simpleObject({
