@@ -84,6 +84,6 @@ export default function* talksSagas() {
   yield takeLatest('SUBMIT_CREATE_TALK_FORM', ({ payload }) => createTalk(payload))
   yield takeLatest('SUBMIT_UPDATE_TALK_FORM', ({ payload }) => updateTalk(payload))
   yield takeLatest('ON_LOAD_TALK_PAGE', onLoadTalkPage)
-  yield takeLatest('ON_LOAD_SPEAKER_TALK', onLoadSpeakerTalks)
+  yield takeLatest('ON_LOAD_SPEAKER_TALKS', onLoadSpeakerTalks)
   yield takeEvery('FETCH_TALK', ({ payload }) => fetchTalk(payload))
 }
