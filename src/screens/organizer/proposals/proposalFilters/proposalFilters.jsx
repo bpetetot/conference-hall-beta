@@ -38,12 +38,14 @@ const ProposalFilters = ({
 ProposalFilters.propTypes = {
   formats: PropTypes.arrayOf(PropTypes.object),
   categories: PropTypes.arrayOf(PropTypes.object),
+  filters: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
 }
 
 ProposalFilters.defaultProps = {
   formats: [],
   categories: [],
+  filters: {},
 }
 
 export default ProposalFilters
