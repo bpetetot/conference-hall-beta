@@ -16,6 +16,6 @@ const store = createStore(
 
 sagaMiddleware.run(sagas)
 
-store.dispatch({ type: 'INITIALIZE_FIREBASE' })
+store.dispatch({ type: 'FIREBASE/INITIALIZE' })
 
 export default store

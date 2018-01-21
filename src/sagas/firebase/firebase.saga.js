@@ -21,7 +21,11 @@ function* initializeAuth() {
   })
   while (true) {
     const { user } = yield take(channel)
-    yield put({ type: 'ON_AUTH_STATE_CHANGED', payload: user })
+    if (!user) {
+      yield put({ type: 'AUTH/SIGNED_OUT' })
+    } else {
+      yield put({ type: 'AUTH/SIGNED_IN', payload: user })
+    }
   }
 }
 
@@ -39,5 +43,5 @@ function* initialize() {
 }
 
 export default function* firebaseSaga() {
-  yield takeLatest('INITIALIZE_FIREBASE', initialize)
+  yield takeLatest('FIREBASE/INITIALIZE', initialize)
 }

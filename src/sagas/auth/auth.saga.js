@@ -21,9 +21,9 @@ function* signedIn({
   const userInfo = { displayName, photoURL, email }
 
   // set auth initialized and authenticated
-  yield put({ type: 'FIREBASE_INITIALIZED' })
-  yield put({ type: 'FIREBASE_AUTHENTICATED', payload: true })
-  yield put({ type: 'SET_AUTHENTICATED_USER', payload: uid })
+  yield put({ type: 'FIREBASE/INITIALIZED' })
+  yield put({ type: 'FIREBASE/AUTHENTICATED', payload: true })
+  yield put({ type: 'FIREBASE/SET_AUTH_UID', payload: uid })
 
   // check if user exists in database
   let user
@@ -46,17 +46,14 @@ function* signedIn({
 }
 
 function* signedOut() {
-  yield put({ type: 'FIREBASE_INITIALIZED' })
-  yield put({ type: 'FIREBASE_AUTHENTICATED', payload: false })
+  yield put({ type: 'FIREBASE/INITIALIZED' })
+  yield put({ type: 'FIREBASE/AUTHENTICATED', payload: false })
   yield put(usersData.reset())
 }
 
 export default function* authSaga() {
-  yield takeLatest('SIGN_IN', action => signin(action.payload))
-  yield takeLatest('SIGN_OUT', signout)
-  yield takeLatest(({ type, payload }) => type === 'ON_AUTH_STATE_CHANGED' && !payload, signedOut)
-  yield takeLatest(
-    ({ type, payload }) => type === 'ON_AUTH_STATE_CHANGED' && payload,
-    action => signedIn(action.payload),
-  )
+  yield takeLatest('AUTH/SIGN_OUT', signout)
+  yield takeLatest('AUTH/SIGNED_OUT', signedOut)
+  yield takeLatest('AUTH/SIGN_IN', ({ payload }) => signin(payload))
+  yield takeLatest('AUTH/SIGNED_IN', ({ payload }) => signedIn(payload))
 }
