@@ -2,19 +2,24 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { push } from 'redux-little-router'
 
 import proposalsData from 'redux/data/proposals'
-import { getRatingsAverage } from 'redux/data/ratings'
-import { saveRating } from 'sagas/ratings'
+import proposalsFilters from 'redux/ui/organizer/proposals/filters'
 import { getCurrentProposalIndex } from 'redux/ui/organizer/proposal'
+import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
-import { fetchProposal, fetchEventProposals, updateRating } from './proposals.firebase'
+import { fetchProposal, fetchEventProposals } from './proposals.firebase'
 
 function* onLoadEventProposalsPage() {
-  // get event id from router
+  // get needed inputs
   const eventId = yield select(getRouterParam('eventId'))
+  const uid = yield select(getUserId)
+  // reset current proposals
+  yield put(proposalsData.reset())
   // get event
   yield put({ type: 'FETCH_EVENT', payload: { eventId } })
+  // get proposal filters
+  const filters = yield select(proposalsFilters.get())
   // fetch proposals
-  const proposals = yield call(fetchEventProposals, eventId)
+  const proposals = yield call(fetchEventProposals, eventId, uid, filters)
   // set proposals in the store
   yield put(proposalsData.set(proposals))
 }
@@ -81,26 +86,14 @@ function* onPreviousProposal() {
   }
 }
 
-function* rateProposal(rating) {
-  // select needed inputs in the state
-  const eventId = yield select(getRouterParam('eventId'))
-  const proposalId = yield select(getRouterParam('proposalId'))
-  // add the rating
-  yield saveRating({ eventId, proposalId, rating })
-  // compute average rating
-  const avgRating = yield select(getRatingsAverage)
-  // save in database
-  yield call(updateRating, eventId, proposalId, avgRating)
-  // update in the store
-  yield put(proposalsData.update({ id: proposalId, rating: avgRating }))
-}
-
 export default function* eventSagas() {
-  yield takeLatest('LOAD_EVENT_PROPOSALS_PAGE', onLoadEventProposalsPage)
+  yield takeLatest(
+    ['LOAD_EVENT_PROPOSALS_PAGE', '@@krf/UPDATE_PROPOSALSFILTERS'],
+    onLoadEventProposalsPage,
+  )
   yield takeLatest('LOAD_PROPOSAL_PAGE', onLoadProposalPage)
   yield takeLatest('FETCH_PROPOSAL', ({ payload }) => getProposal(payload))
   yield takeLatest('SELECT_PROPOSAL', ({ payload }) => onSelectProposal(payload))
   yield takeLatest('NEXT_PROPOSAL', onNextProposal)
   yield takeLatest('PREVIOUS_PROPOSAL', onPreviousProposal)
-  yield takeLatest('RATE_PROPOSAL', ({ payload }) => rateProposal(payload))
 }

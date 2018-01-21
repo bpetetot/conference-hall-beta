@@ -1,10 +1,14 @@
 .proposals-filters {
-  margin-bottom: 2em;
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .proposals-filters > * {
-  margin-right: 1em;
+  margin-left: 1em;
+  width: initial;
+  min-width: 10em;
+  max-width: 15em;
 }
 
 @media only screen and (max-width: 480px) {
@@ -14,7 +18,8 @@
   }
 
   .proposals-filters > * {
-    margin-right: none;
+    margin-left: 0;
     margin-bottom: 0.5em;
+    width: 100%;
   }
 }
