@@ -37,8 +37,8 @@ const ProposalFilters = ({ formats, categories }) => (
 )
 
 ProposalFilters.propTypes = {
-  formats: PropTypes.objectOf(PropTypes.string),
-  categories: PropTypes.objectOf(PropTypes.string),
+  formats: PropTypes.arrayOf(PropTypes.string),
+  categories: PropTypes.arrayOf(PropTypes.string),
 }
 
 ProposalFilters.defaultProps = {
