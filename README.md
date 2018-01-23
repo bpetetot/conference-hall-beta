@@ -55,6 +55,7 @@ Activate the following APIs in the [Google developer console](https://console.de
 
 * Google Places API Web Service
 * Google Maps Embed API
+* Google Maps JavaScript API
 
 ## Deploy with Firebase
 
