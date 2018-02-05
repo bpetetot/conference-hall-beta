@@ -29,7 +29,7 @@
     "react-sizes": "^1.0.0",
     "redux": "^3.7.2",
     "redux-form": "^7.2.1",
-    "redux-little-router": "^14.2.3",
+    "redux-little-router": "^15.0.0",
     "redux-saga": "^0.16.0",
     "uuid": "^3.2.1"
   },
