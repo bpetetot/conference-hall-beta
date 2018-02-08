@@ -15,7 +15,7 @@
     "font-awesome": "^4.7.0",
     "hoc-little-router": "^1.1.0",
     "hoc-react-loader": "^6.3.0",
-    "immutadot": "^0.3.2",
+    "immutadot": "^1.0.0",
     "k-redux-factory": "^4.1.1",
     "moment": "^2.20.1",
     "normalize.css": "^7.0.0",
