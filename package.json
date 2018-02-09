@@ -18,7 +18,7 @@
     "immutadot": "^0.3.2",
     "k-redux-factory": "^4.1.1",
     "moment": "^2.20.1",
-    "normalize.css": "^7.0.0",
+    "normalize.css": "^8.0.0",
     "react": "^16.2.0",
     "react-addons-shallow-compare": "^15.6.2",
     "react-dates": "^16.2.0",
