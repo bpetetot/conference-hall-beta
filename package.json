@@ -40,7 +40,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
     "prettier": "^1.10.2",
-    "react-scripts": "1.1.0",
+    "react-scripts": "1.1.1",
     "redux-devtools-extension": "^2.13.2"
   },
   "eslintConfig": {
