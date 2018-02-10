@@ -95,7 +95,7 @@ function* onPreviousProposal() {
 
 export default function* eventSagas() {
   yield takeLatest('LOAD_EVENT_PROPOSALS_PAGE', onLoadEventProposalsPage)
-  yield takeLatest('@@krf/UPDATE_PROPOSALSFILTERS', loadEventProposals)
+  yield takeLatest('@@krf/UPDATE>PROPOSALS>FILTERS', loadEventProposals)
   yield takeLatest('LOAD_PROPOSAL_PAGE', onLoadProposalPage)
   yield takeLatest('FETCH_PROPOSAL', ({ payload }) => getProposal(payload))
   yield takeLatest('SELECT_PROPOSAL', ({ payload }) => onSelectProposal(payload))
