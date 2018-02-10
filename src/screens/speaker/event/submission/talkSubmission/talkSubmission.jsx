@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import IconLabel from 'components/iconLabel'
+import Titlebar from 'components/titlebar'
 import { Field, reduxForm } from 'redux-form'
 import { textarea, radio, SubmitButton, RadioGroup } from 'components/form'
 import isEmpty from 'lodash/isEmpty'
@@ -11,40 +11,8 @@ import './talkSubmission.css'
 const TalkSubmission = ({
   talk, event, update, unsubmitTalk, ...formProps
 }) => (
-  <form className="submit-talk-form card">
-    <h2>
-      <IconLabel icon="fa fa-microphone" label={talk.title} />
-    </h2>
-    {!isEmpty(event.categories) && (
-      <RadioGroup name="categories" label="Talk categories" inline>
-        {event.categories.map(c => (
-          <Field
-            key={c.id}
-            name="categories"
-            value={c.id}
-            label={c.name}
-            type="radio"
-            component={radio}
-          />
-        ))}
-      </RadioGroup>
-    )}
-    {!isEmpty(event.formats) && (
-      <RadioGroup name="formats" label="Talk formats" inline>
-        {event.formats.map(f => (
-          <Field
-            key={f.id}
-            name="formats"
-            value={f.id}
-            label={f.name}
-            type="radio"
-            component={radio}
-          />
-        ))}
-      </RadioGroup>
-    )}
-    <Field name="comments" label="Message to organizers" component={textarea} />
-    <div className="submit-talk-buttons">
+  <form className="talk-submission">
+    <Titlebar icon="fa fa-microphone" title={talk.title}>
       {update && (
         <button onClick={() => unsubmitTalk(talk.id, event.id)} className="btn">
           Remove submission
@@ -53,6 +21,37 @@ const TalkSubmission = ({
       <SubmitButton {...formProps} noPristine>
         {update ? 'Update submission' : `Submit to ${event.name}`}
       </SubmitButton>
+    </Titlebar>
+    <div className="submit-talk-form card">
+      {!isEmpty(event.categories) && (
+        <RadioGroup name="categories" label="Talk categories" inline>
+          {event.categories.map(c => (
+            <Field
+              key={c.id}
+              name="categories"
+              value={c.id}
+              label={c.name}
+              type="radio"
+              component={radio}
+            />
+          ))}
+        </RadioGroup>
+      )}
+      {!isEmpty(event.formats) && (
+        <RadioGroup name="formats" label="Talk formats" inline>
+          {event.formats.map(f => (
+            <Field
+              key={f.id}
+              name="formats"
+              value={f.id}
+              label={f.name}
+              type="radio"
+              component={radio}
+            />
+          ))}
+        </RadioGroup>
+      )}
+      <Field name="comments" label="Message to organizers" component={textarea} />
     </div>
   </form>
 )

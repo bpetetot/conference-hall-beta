@@ -4,14 +4,16 @@ import PropTypes from 'prop-types'
 import Stepper from 'components/stepper'
 import SubmissionTitle from './submissionTitle'
 import Selection from './talksSelection'
+import TalkDetails from './talkDetails'
 import TalkSubmission from './talkSubmission'
 import TalkSubmitted from './talkSubmitted'
 
 import './submission.css'
 
 const steps = [
-  { label: 'Talk selection', icon: 'fa fa-microphone' },
-  { label: 'Talk information', icon: 'fa fa-list' },
+  { label: 'Talk selection', icon: 'fa fa-bars' },
+  { label: 'Talk details', icon: 'fa fa-microphone' },
+  { label: 'Event submission', icon: 'fa fa-calendar-check-o' },
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
@@ -22,8 +24,9 @@ const Submission = ({ eventId, eventName, currentStep }) => {
       <SubmissionTitle eventName={eventName} />
       <Stepper steps={steps} currentStep={currentStep} />
       {currentStep === 0 && <Selection eventId={eventId} eventName={eventName} />}
-      {currentStep === 1 && <TalkSubmission eventId={eventId} eventName={eventName} />}
-      {currentStep === 2 && <TalkSubmitted eventId={eventId} eventName={eventName} />}
+      {currentStep === 1 && <TalkDetails eventId={eventId} eventName={eventName} />}
+      {currentStep === 2 && <TalkSubmission eventId={eventId} eventName={eventName} />}
+      {currentStep === 3 && <TalkSubmitted eventId={eventId} eventName={eventName} />}
     </div>
   )
 }

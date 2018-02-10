@@ -1,3 +1,7 @@
+.talk-submission {
+  width: 100%;
+}
+
 .submit-talk-form {
   width: 100%;
   display: flex;
@@ -6,12 +10,4 @@
 
 .submit-talk-form > h2 {
   margin-bottom: 1.5em;
-}
-
-.submit-talk-form .submit-talk-buttons {
-  align-self: flex-end;
-}
-
-.submit-talk-form .submit-talk-buttons > button {
-  margin-left: 1em;
 }

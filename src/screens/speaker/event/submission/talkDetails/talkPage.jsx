@@ -4,25 +4,25 @@ import { Link } from 'redux-little-router'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
-import { TalkAbstract, TalkSpeakers, TalkSubmissions } from 'screens/components/talk'
+import { TalkAbstract, TalkSpeakers } from 'screens/components/talk'
 
 import './talkPage.css'
 
 const TalkPage = ({
-  id, title, abstract, level, references, speakers, submissions,
+  id, title, abstract, level, references, speakers, onNext,
 }) => (
-  <div>
+  <div className="talk-details">
     <Titlebar icon="fa fa-microphone" title={title}>
       <Link href={`/speaker/talk/${id}/edit`} className="btn">
         <IconLabel icon="fa fa-pencil" label="Edit" />
       </Link>
+      <button className="btn btn-primary" onClick={onNext}>
+        <IconLabel icon="fa fa-angle-right" label="Next" right />
+      </button>
     </Titlebar>
     <div className="talk-page">
       <TalkAbstract className="talk-content" abstract={abstract} references={references} />
-      <div className="talk-info">
-        <TalkSpeakers speakers={speakers} level={level} />
-        <TalkSubmissions id={id} submissions={submissions} />
-      </div>
+      <TalkSpeakers className="talk-info" speakers={speakers} level={level} />
     </div>
   </div>
 )
@@ -34,7 +34,7 @@ TalkPage.propTypes = {
   level: PropTypes.string,
   references: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
-  submissions: PropTypes.objectOf(PropTypes.any),
+  onNext: PropTypes.func.isRequired,
 }
 
 TalkPage.defaultProps = {
@@ -42,7 +42,6 @@ TalkPage.defaultProps = {
   level: 'not defined',
   references: undefined,
   speakers: {},
-  submissions: {},
 }
 
 export default TalkPage

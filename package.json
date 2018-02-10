@@ -17,6 +17,7 @@
     "hoc-react-loader": "^6.3.0",
     "immutadot": "^1.0.0",
     "k-redux-factory": "^5.0.1",
+    "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "normalize.css": "^8.0.0",
     "react": "^16.2.0",

@@ -1,0 +1,20 @@
+.talk-submission-event {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 0;
+}
+
+.talk-submission-event a {
+  cursor: pointer;
+}
+
+.talk-submission-event .talk-submission-event-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.talk-submission-event .talk-submission-event-actions > * {
+  margin-left: 1em;
+}

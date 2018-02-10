@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app'
 import { flow, unset } from 'immutadot'
+import pick from 'lodash/pick'
 
 import talksCrud from '../talks/talks.firebase'
 import { updateProposal, addProposal, removeProposal } from '../proposals/proposals.firebase'
@@ -15,8 +16,22 @@ export const saveTalkSubmission = async (talk, eventId, talkDataForEvent, isUpda
   const db = firebase.firestore()
   const batch = db.batch()
 
-  // add submission to talk
-  talksCrud.update({ id: talk.id, [`submissions.${eventId}`]: talkDataForEvent })
+  // add submission to talk and copy the submitted talk
+  talksCrud.update({
+    id: talk.id,
+    [`submissions.${eventId}`]: {
+      ...talkDataForEvent,
+      ...pick(talk, [
+        'title',
+        'description',
+        'abstract',
+        'references',
+        'level',
+        'speakers',
+        'updateTimestamp',
+      ]),
+    },
+  })
 
   // add or update proposal to event
   if (isUpdate) {
@@ -37,10 +52,7 @@ export const unsubmitTalk = async (talk, eventId) => {
   const batch = db.batch()
 
   // remove submissions
-  const updatedTalk = flow(
-    unset(`submissions.${eventId}`),
-    unset('state'),
-  )(talk)
+  const updatedTalk = flow(unset(`submissions.${eventId}`), unset('state'))(talk)
   talksCrud.update(updatedTalk)
 
   // remove proposal from event
