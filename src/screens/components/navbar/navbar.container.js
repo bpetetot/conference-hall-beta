@@ -1,9 +1,7 @@
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import Navbar from './navbar'
 
-const mapDispatch = dispatch => ({
+export default inject(({ dispatch }) => ({
   signout: () => dispatch({ type: 'SIGNOUT' }),
-})
-
-export default connect(undefined, mapDispatch)(Navbar)
+}))(Navbar)

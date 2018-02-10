@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import { getFormat } from 'redux/data/events'
 import Badge from 'components/badge'
 
-const mapState = (state, { eventId, formatId }) => {
-  const format = getFormat(eventId, formatId)(state) || {}
+const mapStore = (store, { eventId, formatId }) => {
+  const format = getFormat(eventId, formatId)(store.getState()) || {}
   return { children: format.name }
 }
 
-export default connect(mapState)(Badge)
+export default inject(mapStore)(Badge)

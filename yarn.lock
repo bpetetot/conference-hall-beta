@@ -4248,7 +4248,14 @@ jsx-ast-utils@^2.0.0, jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
-k-redux-factory@^5.0.1:
+k-ramel@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.6.1.tgz#3888b5b8a0ceac1935ecf046aea862a22476c40c"
+  dependencies:
+    k-redux-factory "^5.0.0"
+    redux "^3.7.2"
+
+k-redux-factory@^5.0.0, k-redux-factory@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-5.0.1.tgz#1507e0e23570cffa38f358206eb4f83bdf531080"
 

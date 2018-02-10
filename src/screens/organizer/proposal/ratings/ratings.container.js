@@ -1,25 +1,23 @@
 /* eslint-disable prefer-destructuring */
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import { getUserId } from 'redux/auth'
 import ratingsData from 'redux/data/ratings'
 import { hasNext, hasPrevious } from 'redux/ui/organizer/proposal'
 import Ratings from './ratings'
 
-const mapState = (state) => {
-  const uid = getUserId(state)
+const mapStore = (store) => {
+  const uid = getUserId(store.getState())
   return {
-    isLoaded: ratingsData.isInitialized(state),
-    ...ratingsData.get(uid)(state),
-    hasNext: hasNext(state),
-    hasPrevious: hasPrevious(state),
+    isLoaded: ratingsData.isInitialized(store.getState()),
+    ...ratingsData.get(uid)(store.getState()),
+    hasNext: hasNext(store.getState()),
+    hasPrevious: hasPrevious(store.getState()),
+    onRating: (rating, feeling) =>
+      store.dispatch({ type: 'RATE_PROPOSAL', payload: { rating, feeling } }),
+    onNext: () => store.dispatch({ type: 'NEXT_PROPOSAL' }),
+    onPrevious: () => store.dispatch({ type: 'PREVIOUS_PROPOSAL' }),
   }
 }
 
-const mapDispatch = dispatch => ({
-  onRating: (rating, feeling) => dispatch({ type: 'RATE_PROPOSAL', payload: { rating, feeling } }),
-  onNext: () => dispatch({ type: 'NEXT_PROPOSAL' }),
-  onPrevious: () => dispatch({ type: 'PREVIOUS_PROPOSAL' }),
-})
-
-export default connect(mapState, mapDispatch)(Ratings)
+export default inject(mapStore)(Ratings)

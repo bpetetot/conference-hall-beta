@@ -1,35 +1,32 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import { getSubmission } from 'redux/ui/speaker/submission'
 import talksData, { isSubmitted } from 'redux/data/talks'
 import eventsData from 'redux/data/events'
 import TalkSubmission from './talkSubmission'
 
-const mapState = (state, { eventId }) => {
-  const { talkId } = getSubmission(state)
-  const event = eventsData.get(eventId)(state)
-  const talk = talksData.get(talkId)(state)
-  const update = isSubmitted(talkId, eventId)(state)
+const mapStore = (store, { eventId }) => {
+  const { talkId } = getSubmission(store.getState())
+  const event = eventsData.get(eventId)(store.getState())
+  const talk = talksData.get(talkId)(store.getState())
+  const update = isSubmitted(talkId, eventId)(store.getState())
   const initialValues = talk && talk.submissions ? talk.submissions[event.id] : {}
   return {
     event,
     talk,
     update,
     initialValues,
+    onSubmit: (data) => {
+      store.dispatchdispatch({
+        type: 'SUBMIT_TALK_TO_EVENT',
+        payload: { data, talkId, eventId },
+      })
+    },
+    unsubmitTalk: () => {
+      store.dispatch({ type: 'UNSUBMIT_TALK_FROM_EVENT', payload: { talkId, eventId } })
+    },
   }
 }
 
-const mapDispatch = dispatch => ({
-  onSubmit: (data, _, { talk, event }) => {
-    dispatch({
-      type: 'SUBMIT_TALK_TO_EVENT',
-      payload: { data, talkId: talk.id, eventId: event.id },
-    })
-  },
-  unsubmitTalk: (talkId, eventId) => {
-    dispatch({ type: 'UNSUBMIT_TALK_FROM_EVENT', payload: { talkId, eventId } })
-  },
-})
-
-export default compose(connect(mapState, mapDispatch))(TalkSubmission)
+export default compose(inject(mapStore))(TalkSubmission)

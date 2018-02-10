@@ -1,25 +1,22 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import speakerTalks from 'redux/ui/speaker/myTalks'
 import loader from 'components/loader'
 import TalksSelection from './talksSelection'
 
-const mapState = state => ({
-  loaded: speakerTalks.isInitialized(state),
-  talks: speakerTalks.getAsArray(state),
-})
-
-const mapDispatch = (dispatch, { eventId }) => ({
+const mapStore = (store, { eventId }) => ({
+  loaded: speakerTalks.isInitialized(store.getState()),
+  talks: speakerTalks.getAsArray(store.getState()),
   load: () => {
-    dispatch({ type: 'ON_LOAD_SPEAKER_TALKS' })
+    store.dispatch({ type: 'ON_LOAD_SPEAKER_TALKS' })
   },
   onSelect: (talkId) => {
-    dispatch({ type: 'OPEN_SUBMISSION_EVENTINFO_PAGE', payload: { eventId, talkId } })
+    store.dispatch({ type: 'OPEN_SUBMISSION_EVENTINFO_PAGE', payload: { eventId, talkId } })
   },
 })
 
 export default compose(
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
   loader, //
 )(TalksSelection)

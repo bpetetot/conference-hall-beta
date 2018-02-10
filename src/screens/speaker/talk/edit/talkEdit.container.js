@@ -1,5 +1,5 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import { getRouterParam } from 'redux/router'
@@ -9,23 +9,20 @@ import TalkForm from '../components/talkForm'
 
 const FORM_NAME = 'talk-edit'
 
-const mapState = (state) => {
-  const talkId = getRouterParam('talkId')(state)
-  const talk = talksData.get(talkId)(state)
+const mapStore = (store) => {
+  const talkId = getRouterParam('talkId')(store.getState())
+  const talk = talksData.get(talkId)(store.getState())
   return {
     loaded: !!talk,
     form: FORM_NAME,
     initialValues: { ...talk },
+    load: () => store.dispatch({ type: 'ON_LOAD_TALK_PAGE' }),
+    onSubmit: data => store.dispatch({ type: 'SUBMIT_UPDATE_TALK_FORM', payload: data }),
   }
 }
 
-const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'ON_LOAD_TALK_PAGE' }),
-  onSubmit: data => dispatch({ type: 'SUBMIT_UPDATE_TALK_FORM', payload: data }),
-})
-
 export default compose(
   forRoute.absolute('EDIT_TALK'), //
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
   loader, //
 )(TalkForm)

@@ -1,18 +1,16 @@
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import createSagaMiddleware from 'redux-saga'
+import { createStore } from 'k-ramel'
+import { compose, applyMiddleware } from 'redux'
 
 import sagas from 'sagas'
-import { middleware as routerMiddleware, enhancer } from './router'
+import createSagaMiddleware from 'redux-saga'
+import { middleware as routerMiddleware, enhancer as routerEnhancer } from './router'
 
 import reducers from './reducers'
 
 const sagaMiddleware = createSagaMiddleware()
+const enhancer = compose(applyMiddleware(routerMiddleware, sagaMiddleware), routerEnhancer)
 
-const store = createStore(
-  reducers,
-  composeWithDevTools(applyMiddleware(routerMiddleware, sagaMiddleware), enhancer),
-)
+const store = createStore({ ...reducers }, { devtools: true, enhancer, hideRedux: false })
 
 sagaMiddleware.run(sagas)
 

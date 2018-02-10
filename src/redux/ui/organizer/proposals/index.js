@@ -1,6 +1,5 @@
-import { combineReducers } from 'redux'
 import filters from './filters'
 
-export default combineReducers({
+export default {
   filters,
-})
+}

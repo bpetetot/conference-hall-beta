@@ -1,5 +1,5 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 import { reduxForm } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
@@ -8,7 +8,7 @@ import CFPForm from './cfp'
 
 const FORM_NAME = 'cfp-edit'
 
-const mapState = (state, { eventId }) => {
+const mapStore = (store, { eventId }) => {
   const {
     id,
     type,
@@ -18,7 +18,7 @@ const mapState = (state, { eventId }) => {
     categories = [],
     formats = [],
   } =
-    eventsData.get(eventId)(state) || {}
+    eventsData.get(eventId)(store.getState()) || {}
   return {
     type,
     initialValues: {
@@ -29,15 +29,12 @@ const mapState = (state, { eventId }) => {
       categories,
       formats,
     },
+    onSubmit: data => store.dispatch({ type: 'SUBMIT_UPDATE_CFP_FORM', payload: data }),
   }
 }
 
-const mapDispatch = dispatch => ({
-  onSubmit: data => dispatch({ type: 'SUBMIT_UPDATE_CFP_FORM', payload: data }),
-})
-
 export default compose(
   forRoute.absolute('EDIT_EVENT_CFP'),
-  connect(mapState, mapDispatch),
+  inject(mapStore),
   reduxForm({ form: FORM_NAME }),
 )(CFPForm)

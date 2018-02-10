@@ -1,16 +1,16 @@
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import eventsData, { getCfpState } from 'redux/data/events'
 import CfpBlock from './cfpBlock'
 
-const mapState = (state, { eventId }) => {
-  const { type, cfpDates, deliberationDate } = eventsData.get(eventId)(state)
+const mapStore = (store, { eventId }) => {
+  const { type, cfpDates, deliberationDate } = eventsData.get(eventId)(store.getState())
   return {
-    cfpState: getCfpState(eventId)(state),
+    cfpState: getCfpState(eventId)(store.getState()),
     type,
     cfpDates,
     deliberationDate,
   }
 }
 
-export default connect(mapState)(CfpBlock)
+export default inject(mapStore)(CfpBlock)

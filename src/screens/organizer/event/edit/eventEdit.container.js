@@ -1,5 +1,5 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import { getRouterParam } from 'redux/router'
@@ -7,18 +7,18 @@ import eventsData from 'redux/data/events'
 import loader from 'components/loader'
 import EventEdit from './eventEdit'
 
-const mapState = (state) => {
-  const eventId = getRouterParam('eventId')(state)
-  const event = eventsData.get(eventId)(state)
-  return { loaded: !!event, eventId }
+const mapStore = (store) => {
+  const eventId = getRouterParam('eventId')(store.getState())
+  const event = eventsData.get(eventId)(store.getState())
+  return {
+    loaded: !!event,
+    eventId,
+    load: () => store.dispatch({ type: 'ON_LOAD_EVENT_PAGE' }),
+  }
 }
-
-const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'ON_LOAD_EVENT_PAGE' }),
-})
 
 export default compose(
   forRoute('EDIT_EVENT'), //
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
   loader, //
 )(EventEdit)

@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { replace } from 'redux-little-router'
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import { isAuthenticated, isInitialized } from '../auth.selectors'
 
@@ -38,15 +38,10 @@ export default (Component) => {
     }
   }
 
-  const mapState = state => ({
-    authenticated: isAuthenticated(state),
-    initialized: isInitialized(state),
-    url: `${state.router.pathname}${state.router.search}`,
-  })
-
-  const mapDispatch = dispatch => ({
-    redirectLogin: url => dispatch(replace(`/login?next=${url}`)),
-  })
-
-  return connect(mapState, mapDispatch)(ProtectedComponent)
+  return inject(store => ({
+    authenticated: isAuthenticated(store.getState()),
+    initialized: isInitialized(store.getState()),
+    url: `${store.getState().router.pathname}${store.getState().router.search}`,
+    redirectLogin: url => store.dispatch(replace(`/login?next=${url}`)),
+  }))(ProtectedComponent)
 }

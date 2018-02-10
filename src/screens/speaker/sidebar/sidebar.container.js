@@ -1,10 +1,10 @@
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import { getUser } from 'redux/auth'
 import Sidebar from './sidebar'
 
-const mapState = state => ({
-  fullname: getUser(state).displayName,
+const mapStore = store => ({
+  fullname: getUser(store.getState()).displayName,
 })
 
-export default connect(mapState)(Sidebar)
+export default inject(mapStore)(Sidebar)

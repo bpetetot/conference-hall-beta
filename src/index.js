@@ -1,19 +1,12 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
 
 import 'normalize.css'
 import 'font-awesome/css/font-awesome.min.css'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 
-import store from './redux'
 import App from './app'
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root'),
-)
+ReactDOM.render(<App />, document.getElementById('root'))

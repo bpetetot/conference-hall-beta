@@ -1,10 +1,8 @@
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import { getToasts } from 'redux/ui/toaster'
 import Toaster from './toaster'
 
-const mapState = state => ({
-  toasts: getToasts(state),
-})
-
-export default connect(mapState)(Toaster)
+export default inject(store => ({
+  toasts: getToasts(store.getState()),
+}))(Toaster)

@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 
 import { getCategory } from 'redux/data/events'
 import Badge from 'components/badge'
 
-const mapState = (state, { eventId, categoryId }) => {
-  const category = getCategory(eventId, categoryId)(state) || {}
+const mapStore = (store, { eventId, categoryId }) => {
+  const category = getCategory(eventId, categoryId)(store.getState()) || {}
   return { children: category.name }
 }
 
-export default connect(mapState)(Badge)
+export default inject(mapStore)(Badge)

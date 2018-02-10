@@ -1,24 +1,21 @@
-import { connect } from 'react-redux'
+import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import { getUser } from 'redux/auth'
 import Profile from './profile'
 
-const mapState = (state) => {
+const mapStore = (store) => {
   const {
     displayName, photoURL, email, ...profile
-  } = getUser(state)
+  } = getUser(store.getState())
   return {
     displayName,
     photoURL,
     email,
     form: 'user-profile',
     initialValues: profile,
+    onSubmit: data => store.dispatch({ type: 'SUBMIT_PROFILE_FORM', payload: data }),
   }
 }
 
-const mapDispatch = dispatch => ({
-  onSubmit: data => dispatch({ type: 'SUBMIT_PROFILE_FORM', payload: data }),
-})
-
-export default forRoute('SPEAKER_PROFILE')(connect(mapState, mapDispatch)(Profile))
+export default forRoute('SPEAKER_PROFILE')(inject(mapStore)(Profile))
