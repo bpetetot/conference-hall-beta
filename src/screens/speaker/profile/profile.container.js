@@ -14,7 +14,7 @@ const mapStore = (store) => {
     email,
     form: 'user-profile',
     initialValues: profile,
-    onSubmit: data => store.dispatch({ type: 'SUBMIT_PROFILE_FORM', payload: data }),
+    onSubmit: data => store.dispatch({ type: 'SUBMIT_PROFILE_FORM', payload: { uid, ...data } }),
   }
 }
 

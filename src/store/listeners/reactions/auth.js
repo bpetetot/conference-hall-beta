@@ -15,19 +15,19 @@ export const signout = reaction((action, store) => {
   store.dispatch(push('/'))
 })
 
-export const signedIn = reaction((action, store) => {
+export const signedIn = reaction(async (action, store) => {
   let user = pick(action.payload, ['uid', 'displayName', 'photoURL', 'email'])
 
   // set auth initialized and authenticated
   store.auth.set({ initialized: true, authenticated: true, uid: user.uid })
 
   // check if user exists in database
-  const ref = userCrud.read(user.uid)
-  if (ref.exists) {
-    user = { ...ref.data(), ...user }
+  const userRef = await userCrud.read(user.uid)
+  if (userRef.exists) {
+    user = { ...userRef.data(), ...user }
   } else {
     // first connexion, add user in database
-    userCrud.create(user)
+    await userCrud.create(user)
   }
   // add user in store
   store.data.users.add(user)

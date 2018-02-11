@@ -1,7 +1,6 @@
 import { all } from 'redux-saga/effects'
 
 import eventsSaga from './events.saga'
-import userSaga from './user.saga'
 import talksSaga from './talks.saga'
 import speakerSaga from './speaker.saga'
 import submissionSaga from './submission.saga'
@@ -12,7 +11,6 @@ export default function* sagas() {
   try {
     yield all([
       eventsSaga(),
-      userSaga(),
       talksSaga(),
       speakerSaga(),
       submissionSaga(),
