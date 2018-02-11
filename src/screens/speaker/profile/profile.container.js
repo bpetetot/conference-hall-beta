@@ -1,13 +1,13 @@
 import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
-import { getUser } from 'redux/auth'
 import Profile from './profile'
 
 const mapStore = (store) => {
+  const { uid } = store.auth.get()
   const {
     displayName, photoURL, email, ...profile
-  } = getUser(store)
+  } = store.data.users.get(uid) || {}
   return {
     displayName,
     photoURL,

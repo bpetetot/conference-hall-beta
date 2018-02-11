@@ -5,7 +5,7 @@ import userCrud from 'sagas/user/user.firebase'
 
 function* fetchUser(uid) {
   // check if user exists in the store
-  const userExists = store.data.users.get(uid)
+  const userExists = store.data.users.get(uid) || {}
   if (userExists) return
   // fetch user in database
   const ref = yield call(userCrud.read, uid)

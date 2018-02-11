@@ -1,10 +1,10 @@
 import { inject } from 'k-ramel/react'
 
-import { getUser } from 'redux/auth'
 import AvatarDropdown from './avatarDropdown'
 
 const mapStore = (store) => {
-  const { displayName, photoURL } = getUser(store)
+  const { uid } = store.auth.get()
+  const { displayName, photoURL } = store.data.users.get(uid) || {}
   return {
     displayName,
     photoURL,

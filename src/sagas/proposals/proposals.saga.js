@@ -3,14 +3,13 @@ import { push } from 'redux-little-router'
 
 import store from 'redux/store'
 import { getCurrentProposalIndex } from 'redux/ui/organizer/proposal'
-import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
 import { fetchProposal, fetchEventProposals } from './proposals.firebase'
 
 function* loadEventProposals() {
   // get needed inputs
   const eventId = yield select(getRouterParam('eventId'))
-  const uid = yield select(getUserId)
+  const { uid } = store.auth.get()
   // reset current proposals
   store.data.proposals.reset()
   // get event

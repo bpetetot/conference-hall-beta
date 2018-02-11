@@ -2,7 +2,6 @@ import { call, select, takeLatest } from 'redux-saga/effects'
 
 import store from 'redux/store'
 import { getRatingsAverage } from 'redux/data/ratings.selectors'
-import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
 import { getRatings, addRating } from './ratings.firebase'
 import { updateRating } from '../proposals/proposals.firebase'
@@ -18,7 +17,7 @@ function* fetchRatings({ eventId, proposalId }) {
 
 function* rateProposal(rating) {
   // select needed inputs in the state
-  const uid = yield select(getUserId)
+  const { uid } = store.auth.get()
   const eventId = yield select(getRouterParam('eventId'))
   const proposalId = yield select(getRouterParam('proposalId'))
   // add the rating in database and store

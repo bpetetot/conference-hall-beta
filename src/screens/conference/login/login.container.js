@@ -2,11 +2,10 @@ import { compose } from 'redux'
 import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
-import { isAuthenticated } from 'redux/auth'
 import Login from './login'
 
 const mapStore = store => ({
-  authenticated: isAuthenticated(store.getState()),
+  authenticated: store.auth.authenticated,
   signin: provider => store.dispatch({ type: 'AUTH/SIGN_IN', payload: provider }),
 })
 

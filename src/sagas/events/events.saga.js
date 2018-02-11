@@ -3,7 +3,6 @@ import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
 import store from 'redux/store'
-import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
 import eventCrud, { fetchUserEvents } from './events.firebase'
 
@@ -13,7 +12,7 @@ function* createEvent(event) {
     // indicate start submitting form
     yield put(startSubmit(FORM))
     // get user id
-    const uid = yield select(getUserId)
+    const { uid } = store.auth.get()
     // create event into database
     const ref = yield call(eventCrud.create, { ...event, owner: uid })
     // reset form
@@ -65,7 +64,7 @@ function* onLoadEventPage() {
 }
 
 function* onLoadOrganizerEventsPage() {
-  const uid = yield select(getUserId)
+  const { uid } = store.auth.get()
   const result = yield call(fetchUserEvents, uid)
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
   // set events in the store

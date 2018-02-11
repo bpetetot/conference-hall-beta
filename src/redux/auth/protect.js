@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 import { replace } from 'redux-little-router'
 import { inject } from 'k-ramel/react'
 
-import { isAuthenticated, isInitialized } from '../auth.selectors'
-
 export default (Component) => {
   class ProtectedComponent extends React.Component {
     static propTypes = {
@@ -39,8 +37,7 @@ export default (Component) => {
   }
 
   return inject(store => ({
-    authenticated: isAuthenticated(store.getState()),
-    initialized: isInitialized(store.getState()),
+    ...store.auth.get(),
     url: `${store.getState().router.pathname}${store.getState().router.search}`,
     redirectLogin: url => store.dispatch(replace(`/login?next=${url}`)),
   }))(ProtectedComponent)

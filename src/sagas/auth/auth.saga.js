@@ -21,9 +21,7 @@ function* signedIn({
   const userInfo = { displayName, photoURL, email }
 
   // set auth initialized and authenticated
-  yield put({ type: 'FIREBASE/INITIALIZED' })
-  yield put({ type: 'FIREBASE/AUTHENTICATED', payload: true })
-  yield put({ type: 'FIREBASE/SET_AUTH_UID', payload: uid })
+  store.auth.set({ initialized: true, authenticated: true, uid })
 
   // check if user exists in database
   let user
@@ -45,9 +43,8 @@ function* signedIn({
   }
 }
 
-function* signedOut() {
-  yield put({ type: 'FIREBASE/INITIALIZED' })
-  yield put({ type: 'FIREBASE/AUTHENTICATED', payload: false })
+function signedOut() {
+  store.auth.set({ initialized: true, authenticated: false, uid: undefined })
   store.data.users.reset()
 }
 

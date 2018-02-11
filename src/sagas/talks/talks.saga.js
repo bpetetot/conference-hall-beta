@@ -4,7 +4,6 @@ import { push } from 'redux-little-router'
 import compareDesc from 'date-fns/compare_desc'
 
 import store from 'redux/store'
-import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
 import talkCrud, { fetchUserTalks } from './talks.firebase'
 
@@ -14,7 +13,7 @@ function* createTalk(talk) {
     // indicate start submitting form
     yield put(startSubmit(FORM))
     // get user id
-    const uid = yield select(getUserId)
+    const { uid } = store.auth.get()
     // create talk into database
     const ref = yield call(talkCrud.create, { ...talk, speakers: { [uid]: true } })
     // reset form
@@ -69,7 +68,7 @@ function* onLoadTalkPage() {
 }
 
 function* onLoadSpeakerTalks() {
-  const uid = yield select(getUserId)
+  const { uid } = store.auth.get()
   const talks = yield call(fetchUserTalks, uid)
   // set talks in the store
   store.data.talks.set(talks)

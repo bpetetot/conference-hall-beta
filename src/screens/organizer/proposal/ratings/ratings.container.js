@@ -1,12 +1,11 @@
 /* eslint-disable prefer-destructuring */
 import { inject } from 'k-ramel/react'
 
-import { getUserId } from 'redux/auth'
 import { hasNext, hasPrevious } from 'redux/ui/organizer/proposal'
 import Ratings from './ratings'
 
 const mapStore = (store) => {
-  const uid = getUserId(store.getState())
+  const { uid } = store.auth.get()
   return {
     isLoaded: store.data.ratings.isInitialized(),
     ...store.data.ratings.get(uid),
