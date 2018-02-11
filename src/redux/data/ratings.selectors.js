@@ -1,9 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import values from 'lodash/values'
-import ratingsData from './ratings'
 
-export const getRatingsAverage = () => {
-  const ratings = ratingsData.getAsArray()
+export const getRatingsAverage = (store) => {
+  const ratings = store.data.ratings.getAsArray()
   return (
     values(ratings)
       .map(r => r.rating)

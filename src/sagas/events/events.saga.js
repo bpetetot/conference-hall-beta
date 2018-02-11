@@ -2,11 +2,9 @@ import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
+import store from 'redux/store'
 import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
-import eventsData from 'redux/data/events'
-import proposalsData from 'redux/data/proposals'
-import organizerEvents from 'redux/ui/organizer/myEvents'
 import eventCrud, { fetchUserEvents } from './events.firebase'
 
 function* createEvent(event) {
@@ -37,7 +35,7 @@ function* updateEvent(form, event) {
     // update event into database
     yield call(eventCrud.update, event)
     // update event in store
-    eventsData.update(event)
+    store.data.events.update(event)
     // set form submitted
     yield put(stopSubmit(form))
   } catch (error) {
@@ -49,12 +47,12 @@ function* updateEvent(form, event) {
 function* fetchEvent({ eventId }) {
   if (!eventId) return
   // check if already in the store
-  const current = eventsData.get(eventId)
+  const current = store.data.events.get(eventId)
   if (current && current.id === eventId) return
   // fetch event from id
   const ref = yield call(eventCrud.read, eventId)
   if (ref.exists) {
-    eventsData.add({ id: eventId, ...ref.data() })
+    store.data.events.add({ id: eventId, ...ref.data() })
   } else {
     yield put({ type: 'EVENT_NOT_FOUND', payload: { eventId } })
   }
@@ -71,10 +69,10 @@ function* onLoadOrganizerEventsPage() {
   const result = yield call(fetchUserEvents, uid)
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
   // set events in the store
-  eventsData.set(events)
+  store.data.events.set(events)
   // set events id to the organizer event store
-  organizerEvents.reset()
-  organizerEvents.set(events)
+  store.ui.organizer.myEvents.reset()
+  store.ui.organizer.myEvents.set(events)
 }
 
 function* onOpenSpeakerEventPage({ eventId }) {
@@ -83,7 +81,7 @@ function* onOpenSpeakerEventPage({ eventId }) {
 }
 
 function* onOpenOrganizerEventPage({ eventId }) {
-  proposalsData.reset()
+  store.data.proposals.reset()
   yield put(push(`/organizer/event/${eventId}`))
 }
 

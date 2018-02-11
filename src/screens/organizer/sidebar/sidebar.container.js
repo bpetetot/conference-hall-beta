@@ -4,7 +4,7 @@ import { getUser } from 'redux/auth'
 import Sidebar from './sidebar'
 
 const mapStore = store => ({
-  fullname: getUser(store.getState()).displayName,
+  fullname: getUser(store).displayName,
 })
 
 export default inject(mapStore)(Sidebar)

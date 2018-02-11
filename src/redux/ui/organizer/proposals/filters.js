@@ -1,4 +1,4 @@
-import { simpleObject } from 'k-redux-factory'
+import { simpleObject } from 'k-ramel'
 
 const defaultData = {
   categories: '',

@@ -3,10 +3,9 @@ import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 import compareDesc from 'date-fns/compare_desc'
 
+import store from 'redux/store'
 import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
-import talksData from 'redux/data/talks'
-import speakerTalks from 'redux/ui/speaker/myTalks'
 import talkCrud, { fetchUserTalks } from './talks.firebase'
 
 function* createTalk(talk) {
@@ -38,7 +37,7 @@ function* updateTalk(talk) {
     // update talk into database
     yield call(talkCrud.update, talk)
     // update talk into data store
-    talksData.update(talk)
+    store.data.talks.update(talk)
     // set form submitted
     yield put(stopSubmit(FORM))
     // go to talk page
@@ -52,12 +51,12 @@ function* updateTalk(talk) {
 function* fetchTalk({ talkId }) {
   if (!talkId) return
   // check if already in the store
-  const current = talksData.get(talkId)
+  const current = store.data.talks.get(talkId)
   if (current && current.id === talkId) return
   // fetch talk from id
   const ref = yield call(talkCrud.read, talkId)
   if (ref.exists) {
-    talksData.add({ id: talkId, ...ref.data() })
+    store.data.talks.add({ id: talkId, ...ref.data() })
   } else {
     yield put({ type: 'TALK_NOT_FOUND', payload: { talkId } })
   }
@@ -73,11 +72,11 @@ function* onLoadSpeakerTalks() {
   const uid = yield select(getUserId)
   const talks = yield call(fetchUserTalks, uid)
   // set talks in the store
-  talksData.set(talks)
+  store.data.talks.set(talks)
   // set talks id to the speaker talk store
   const sorted = talks.sort((t1, t2) => compareDesc(t1.updateTimestamp, t2.updateTimestamp))
-  speakerTalks.reset()
-  speakerTalks.set(sorted)
+  store.ui.speaker.myTalks.reset()
+  store.ui.speaker.myTalks.set(sorted)
 }
 
 export default function* talksSagas() {

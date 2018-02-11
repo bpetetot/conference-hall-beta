@@ -1,8 +1,9 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 import { startSubmit, stopSubmit } from 'redux-form'
 import { push } from 'redux-little-router'
 
-import talksData, { isSubmitted } from 'redux/data/talks'
+import store from 'redux/store'
+import { isSubmitted } from 'redux/data/talks.selector'
 import { saveTalkSubmission, unsubmitTalk } from './submission.firebase'
 
 function* onOpenSelectionPage({ eventId }) {
@@ -20,12 +21,12 @@ function* onOpenSubmitPage({ eventId, talkId }) {
 
 function* submitTalkToEvent({ talkId, eventId, data }) {
   const FORM = 'submit-talk'
-  const talk = talksData.get(talkId)
+  const talk = store.data.talks.get(talkId)
   try {
     // indicate start submitting form
     yield put(startSubmit(FORM))
     // check if it's already submitted
-    const alreadySubmitted = yield select(isSubmitted(talkId, eventId))
+    const alreadySubmitted = isSubmitted(talkId, eventId)(store)
     // submit talk
     yield call(saveTalkSubmission, talk, eventId, data, alreadySubmitted)
     // set form submitted
@@ -38,11 +39,11 @@ function* submitTalkToEvent({ talkId, eventId, data }) {
 }
 
 function* unsubmitTalkFromEvent({ talkId, eventId }) {
-  const alreadySubmitted = yield select(isSubmitted(talkId, eventId))
+  const alreadySubmitted = isSubmitted(talkId, eventId)(store)
   if (alreadySubmitted) {
-    const talk = talksData.get(talkId)
+    const talk = store.data.talks.get(talkId)
     const updatedTalk = yield call(unsubmitTalk, talk, eventId)
-    talksData.update(updatedTalk)
+    store.data.talks.update(updatedTalk)
     yield put({ type: 'SUBMISSION_RESET' })
   }
 }

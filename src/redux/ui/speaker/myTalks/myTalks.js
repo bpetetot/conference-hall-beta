@@ -1,4 +1,4 @@
-import { keyValue } from 'k-redux-factory'
+import { keyValue } from 'k-ramel'
 
 export default keyValue({
   key: 'id',

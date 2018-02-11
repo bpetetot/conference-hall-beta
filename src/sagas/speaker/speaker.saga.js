@@ -1,11 +1,9 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects'
 import { startSubmit, stopSubmit } from 'redux-form'
 
-import speakerApp from 'redux/ui/speaker/app'
-import usersData from 'redux/data/users'
+import store from 'redux/store'
 import userCrud from 'sagas/user/user.firebase'
 import eventCrud from 'sagas/events/events.firebase'
-import eventsData from 'redux/data/events'
 import { getRouterParam } from 'redux/router'
 
 /**
@@ -15,18 +13,18 @@ import { getRouterParam } from 'redux/router'
 function* setCurrentEvent({ eventId }) {
   if (!eventId) return
   // check if its already in the store else fetch it
-  let event = eventsData.get(eventId)
+  let event = store.data.events.get(eventId)
   if (!event) {
     const ref = yield call(eventCrud.read, eventId)
     if (ref.exists) {
       event = ref.data()
-      eventsData.add(event)
+      store.data.events.add(event)
     }
   }
   // fetch event
   if (event) {
     // set contextual event id
-    speakerApp.set({ currentEventId: eventId })
+    store.ui.speaker.app.set({ currentEventId: eventId })
     // set it in localstorage (it will be persisted later)
     localStorage.setItem('currentEventId', eventId)
   } else {
@@ -54,7 +52,7 @@ function* saveSpeakerProfile(profile) {
     // update user data in database
     yield call(userCrud.update, profile)
     // update user data in the store
-    usersData.update(profile)
+    store.data.users.update(profile)
     // set form submitted
     yield put(stopSubmit(FORM))
   } catch (error) {

@@ -10,7 +10,7 @@ import reducers from './reducers'
 const sagaMiddleware = createSagaMiddleware()
 const enhancer = compose(applyMiddleware(routerMiddleware, sagaMiddleware), routerEnhancer)
 
-const store = createStore({ ...reducers }, { devtools: true, enhancer })
+const store = createStore(reducers, { devtools: true, enhancer })
 
 sagaMiddleware.run(sagas)
 

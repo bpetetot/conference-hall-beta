@@ -1,12 +1,10 @@
-import proposalsData from 'redux/data/proposals'
-
 export const getProposal = state => state.ui.organizer.proposal
 
 export const getCurrentProposalIndex = state => getProposal(state).currentProposalIndex
 
-export const hasNext = (state) => {
-  const proposals = proposalsData.getKeys()
-  const currentIndex = getCurrentProposalIndex(state)
+export const hasNext = (store) => {
+  const proposals = store.data.proposals.getKeys()
+  const currentIndex = getCurrentProposalIndex(store.getState())
   return currentIndex + 1 < proposals.length
 }
 

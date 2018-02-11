@@ -10,7 +10,7 @@ const mapStore = (store) => {
   return {
     isLoaded: store.data.ratings.isInitialized(),
     ...store.data.ratings.get(uid),
-    hasNext: hasNext(store.getState()),
+    hasNext: hasNext(store),
     hasPrevious: hasPrevious(store.getState()),
     onRating: (rating, feeling) =>
       store.dispatch({ type: 'RATE_PROPOSAL', payload: { rating, feeling } }),

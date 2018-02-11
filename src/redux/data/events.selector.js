@@ -1,16 +1,13 @@
 import isAfter from 'date-fns/is_after'
 import isBefore from 'date-fns/is_before'
 import isEmpty from 'lodash/isEmpty'
-
-import eventsData from './events'
-
 /**
  * Return the opening state of the cfp for the given eventId.
  * Values can be : not-started, opened, closed
  * @param {String} eventId event Id
  */
-export const getCfpState = eventId => () => {
-  const event = eventsData.get(eventId) || {}
+export const getCfpState = eventId => (store) => {
+  const event = store.data.events.get(eventId) || {}
   if (event.type === 'meetup') {
     return event.cfpOpened ? 'opened' : 'closed'
   } else if (event.type === 'conference') {
@@ -28,15 +25,15 @@ export const getCfpState = eventId => () => {
  * Return true if CFP is opened
  * @param {string} eventId event id
  */
-export const isCfpOpened = eventId => state => getCfpState(eventId)(state) === 'opened'
+export const isCfpOpened = eventId => store => getCfpState(eventId)(store) === 'opened'
 
 /**
  * Return the format
  * @param {string} eventId event id
  * @param {string} formatId format id
  */
-export const getFormat = (eventId, formatId) => () => {
-  const { formats } = eventsData.get(eventId) || {}
+export const getFormat = (eventId, formatId) => (store) => {
+  const { formats } = store.data.events.get(eventId) || {}
   if (formats) {
     return formats.find(f => f.id === formatId)
   }
@@ -48,8 +45,8 @@ export const getFormat = (eventId, formatId) => () => {
  * @param {string} eventId event id
  * @param {string} categoryId category id
  */
-export const getCategory = (eventId, categoryId) => () => {
-  const { categories } = eventsData.get(eventId) || {}
+export const getCategory = (eventId, categoryId) => (store) => {
+  const { categories } = store.data.events.get(eventId) || {}
   if (categories) {
     return categories.find(c => c.id === categoryId)
   }

@@ -7,7 +7,7 @@ import Profile from './profile'
 const mapStore = (store) => {
   const {
     displayName, photoURL, email, ...profile
-  } = getUser(store.getState())
+  } = getUser(store)
   return {
     displayName,
     photoURL,

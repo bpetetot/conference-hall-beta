@@ -1,8 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { push } from 'redux-little-router'
 
-import proposalsData from 'redux/data/proposals'
-import proposalsFilters from 'redux/ui/organizer/proposals/filters'
+import store from 'redux/store'
 import { getCurrentProposalIndex } from 'redux/ui/organizer/proposal'
 import { getUserId } from 'redux/auth'
 import { getRouterParam } from 'redux/router'
@@ -13,22 +12,15 @@ function* loadEventProposals() {
   const eventId = yield select(getRouterParam('eventId'))
   const uid = yield select(getUserId)
   // reset current proposals
-  proposalsData.reset()
+  store.data.proposals.reset()
   // get event
   yield put({ type: 'FETCH_EVENT', payload: { eventId } })
   // get proposal filters
-  const filters = proposalsFilters.get()
+  const filters = store.ui.organizer.proposals.filters.get()
   // fetch proposals
   const proposals = yield call(fetchEventProposals, eventId, uid, filters)
   // set proposals in the store
-  proposalsData.set(proposals)
-}
-
-function* onLoadEventProposalsPage() {
-  const isInitialized = proposalsData.isInitialized()
-  if (!isInitialized) {
-    yield loadEventProposals()
-  }
+  store.data.proposals.set(proposals)
 }
 
 function* onLoadProposalPage() {
@@ -44,12 +36,12 @@ function* onLoadProposalPage() {
 
 function* getProposal({ eventId, proposalId }) {
   // check if already in the store
-  const inStore = proposalsData.get(proposalId)
+  const inStore = store.data.proposals.get(proposalId)
   if (!inStore) {
     // fetch proposal from id
     const ref = yield call(fetchProposal, eventId, proposalId)
     if (ref.exists) {
-      proposalsData.add(ref.data())
+      store.data.proposals.add(ref.data())
     } else {
       yield put({ type: 'PROPOSAL_NOT_FOUND', payload: { proposalId } })
     }
@@ -59,7 +51,7 @@ function* getProposal({ eventId, proposalId }) {
 }
 
 function* onSelectProposal({ eventId, proposalId }) {
-  const proposalKeys = proposalsData.getKeys()
+  const proposalKeys = store.data.proposals.getKeys()
   const proposalIndex = proposalKeys.indexOf(proposalId)
   if (proposalIndex !== -1) {
     yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex } })
@@ -70,7 +62,7 @@ function* onSelectProposal({ eventId, proposalId }) {
 function* onNextProposal() {
   const eventId = yield select(getRouterParam('eventId'))
   const proposalIndex = yield select(getCurrentProposalIndex)
-  const proposalKeys = proposalsData.getKeys()
+  const proposalKeys = store.data.proposals.getKeys()
   const nextIndex = proposalIndex + 1
   if (nextIndex < proposalKeys.length) {
     const proposalId = proposalKeys[nextIndex]
@@ -83,7 +75,7 @@ function* onNextProposal() {
 function* onPreviousProposal() {
   const eventId = yield select(getRouterParam('eventId'))
   const proposalIndex = yield select(getCurrentProposalIndex)
-  const proposalKeys = proposalsData.getKeys()
+  const proposalKeys = store.data.proposals.getKeys()
   const prevIndex = proposalIndex - 1
   if (prevIndex >= 0) {
     const proposalId = proposalKeys[prevIndex]
@@ -94,7 +86,7 @@ function* onPreviousProposal() {
 }
 
 export default function* eventSagas() {
-  yield takeLatest('LOAD_EVENT_PROPOSALS_PAGE', onLoadEventProposalsPage)
+  yield takeLatest('LOAD_EVENT_PROPOSALS_PAGE', loadEventProposals)
   yield takeLatest('@@krf/UPDATE>PROPOSALS>FILTERS', loadEventProposals)
   yield takeLatest('LOAD_PROPOSAL_PAGE', onLoadProposalPage)
   yield takeLatest('FETCH_PROPOSAL', ({ payload }) => getProposal(payload))
