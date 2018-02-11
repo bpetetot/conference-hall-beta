@@ -1,5 +1,5 @@
 import firebase from 'firebase/app'
-import crud from 'sagas/firebase/crud'
+import crud from './crud'
 
 const talksCrud = crud('talks', 'id')
 

@@ -3,7 +3,7 @@ import { call, put, takeLatest, select } from 'redux-saga/effects'
 import { push, replace } from 'redux-little-router'
 
 import store from 'redux/store'
-import userCrud from 'sagas/user/user.firebase'
+import userCrud from 'firebase/user'
 
 function* signin() {
   const provider = yield new firebase.auth.GoogleAuthProvider()

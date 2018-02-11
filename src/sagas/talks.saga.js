@@ -5,7 +5,7 @@ import compareDesc from 'date-fns/compare_desc'
 
 import store from 'redux/store'
 import { getRouterParam } from 'redux/router'
-import talkCrud, { fetchUserTalks } from './talks.firebase'
+import talkCrud, { fetchUserTalks } from 'firebase/talks'
 
 function* createTalk(talk) {
   const FORM = 'talk-create'

@@ -2,8 +2,8 @@ import { put, takeLatest, call, select } from 'redux-saga/effects'
 import { startSubmit, stopSubmit } from 'redux-form'
 
 import store from 'redux/store'
-import userCrud from 'sagas/user/user.firebase'
-import eventCrud from 'sagas/events/events.firebase'
+import userCrud from 'firebase/user'
+import eventCrud from 'firebase/events'
 import { getRouterParam } from 'redux/router'
 
 /**

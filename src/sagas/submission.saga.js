@@ -4,7 +4,7 @@ import { push } from 'redux-little-router'
 
 import store from 'redux/store'
 import { isSubmitted } from 'redux/data/talks.selector'
-import { saveTalkSubmission, unsubmitTalk } from './submission.firebase'
+import { saveTalkSubmission, unsubmitTalk } from 'firebase/submission'
 
 function* onOpenSelectionPage({ eventId }) {
   yield put({ type: 'SPEAKER/SET_EVENT', payload: { eventId } })

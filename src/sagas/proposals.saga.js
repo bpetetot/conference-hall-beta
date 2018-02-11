@@ -3,7 +3,7 @@ import { push } from 'redux-little-router'
 
 import store from 'redux/store'
 import { getRouterParam } from 'redux/router'
-import { fetchProposal, fetchEventProposals } from './proposals.firebase'
+import { fetchProposal, fetchEventProposals } from 'firebase/proposals'
 
 function* loadEventProposals() {
   // get needed inputs

@@ -4,7 +4,7 @@ import { push } from 'redux-little-router'
 
 import store from 'redux/store'
 import { getRouterParam } from 'redux/router'
-import eventCrud, { fetchUserEvents } from './events.firebase'
+import eventCrud, { fetchUserEvents } from 'firebase/events'
 
 function* createEvent(event) {
   const FORM = 'event-create'

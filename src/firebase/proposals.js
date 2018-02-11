@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app'
 
 /**

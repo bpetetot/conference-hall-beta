@@ -1,10 +1,9 @@
-/* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app'
 import { flow, unset } from 'immutadot'
 import pick from 'lodash/pick'
 
-import talksCrud from '../talks/talks.firebase'
-import { updateProposal, addProposal, removeProposal } from '../proposals/proposals.firebase'
+import talksCrud from './talks'
+import { updateProposal, addProposal, removeProposal } from './proposals'
 
 /**
  * Save all data needed when submitting to an event

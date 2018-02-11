@@ -1,7 +1,7 @@
 import { takeEvery, call } from 'redux-saga/effects'
 
 import store from 'redux/store'
-import userCrud from 'sagas/user/user.firebase'
+import userCrud from 'firebase/user'
 
 function* fetchUser(uid) {
   // check if user exists in the store
