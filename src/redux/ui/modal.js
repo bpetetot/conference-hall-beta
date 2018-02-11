@@ -1,3 +1,12 @@
+import { simpleObject } from 'k-ramel'
+
+const defaultData = {
+  openedModal: undefined,
+}
+
+export default simpleObject({ defaultData })
+
+/*
 const initialState = {
   openedModal: undefined,
 }
@@ -16,3 +25,4 @@ export default (state = initialState, action) => {
       return state
   }
 }
+*/

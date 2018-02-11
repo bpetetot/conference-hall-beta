@@ -4,7 +4,6 @@ import cn from 'classnames'
 import { provider } from 'k-ramel/react'
 
 import withTheme from 'styles/themes/withTheme'
-import Toaster from 'components/toaster'
 import NotFound from './screens/components/notFound'
 import Conference from './screens/conference'
 import Organizer from './screens/organizer'
@@ -19,7 +18,6 @@ const App = ({ className }) => (
     <Conference />
     <Organizer />
     <Speaker />
-    <Toaster />
     <NotFound />
   </div>
 )

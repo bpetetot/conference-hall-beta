@@ -4,7 +4,6 @@ import 'firebase/firestore'
 
 import { eventChannel } from 'redux-saga'
 import { call, put, takeLatest, take } from 'redux-saga/effects'
-import { toast } from 'redux/ui/toaster'
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -35,7 +34,8 @@ function* initialize() {
   try {
     yield call(() => firebase.firestore().enablePersistence())
   } catch (error) {
-    yield put(toast(error.code, error.message, 'warning'))
+    // eslint-disable-next-line no-console
+    console.warn(error.code, error.message)
   }
   yield call(() => firebase.firestore())
 

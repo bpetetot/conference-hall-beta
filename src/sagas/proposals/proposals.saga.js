@@ -2,7 +2,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { push } from 'redux-little-router'
 
 import store from 'redux/store'
-import { getCurrentProposalIndex } from 'redux/ui/organizer/proposal'
+import { getCurrentProposalIndex } from 'redux/ui/organizer/proposal.selectors'
 import { getRouterParam } from 'redux/router'
 import { fetchProposal, fetchEventProposals } from './proposals.firebase'
 
@@ -15,7 +15,7 @@ function* loadEventProposals() {
   // get event
   yield put({ type: 'FETCH_EVENT', payload: { eventId } })
   // get proposal filters
-  const filters = store.ui.organizer.proposals.filters.get()
+  const filters = store.ui.organizer.proposals.get()
   // fetch proposals
   const proposals = yield call(fetchEventProposals, eventId, uid, filters)
   // set proposals in the store
@@ -86,7 +86,7 @@ function* onPreviousProposal() {
 
 export default function* eventSagas() {
   yield takeLatest('LOAD_EVENT_PROPOSALS_PAGE', loadEventProposals)
-  yield takeLatest('@@krf/UPDATE>PROPOSALS>FILTERS', loadEventProposals)
+  yield takeLatest('@@krf/UPDATE>UI_ORGANIZER>PROPOSALS', loadEventProposals)
   yield takeLatest('LOAD_PROPOSAL_PAGE', onLoadProposalPage)
   yield takeLatest('FETCH_PROPOSAL', ({ payload }) => getProposal(payload))
   yield takeLatest('SELECT_PROPOSAL', ({ payload }) => onSelectProposal(payload))

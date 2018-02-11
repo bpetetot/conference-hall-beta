@@ -1,7 +1,7 @@
 /* eslint-disable prefer-destructuring */
 import { inject } from 'k-ramel/react'
 
-import { hasNext, hasPrevious } from 'redux/ui/organizer/proposal'
+import { hasNext, hasPrevious } from 'redux/ui/organizer/proposal.selectors'
 import Ratings from './ratings'
 
 const mapStore = (store) => {
