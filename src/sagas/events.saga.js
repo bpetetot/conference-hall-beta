@@ -75,7 +75,7 @@ function* onLoadOrganizerEventsPage() {
 }
 
 function* onOpenSpeakerEventPage({ eventId }) {
-  yield put({ type: 'SPEAKER/SET_EVENT', payload: { eventId } })
+  yield put({ type: '@@ui/ON_CHANGE_SPEAKER_APP_EVENT', payload: { eventId } })
   yield put(push(`/speaker/event/${eventId}`))
 }
 

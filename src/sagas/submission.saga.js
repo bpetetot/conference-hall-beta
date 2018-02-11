@@ -7,13 +7,13 @@ import { isSubmitted } from 'store/reducers/data/talks.selector'
 import { saveTalkSubmission, unsubmitTalk } from 'firebase/submission'
 
 function* onOpenSelectionPage({ eventId }) {
-  yield put({ type: 'SPEAKER/SET_EVENT', payload: { eventId } })
+  yield put({ type: '@@ui/ON_CHANGE_SPEAKER_APP_EVENT', payload: { eventId } })
   store.ui.speaker.submission.reset()
   yield put(push(`/speaker/event/${eventId}/submission`))
 }
 
 function* onOpenSubmitPage({ eventId, talkId }) {
-  yield put({ type: 'SPEAKER/SET_EVENT', payload: { eventId } })
+  yield put({ type: '@@ui/ON_CHANGE_SPEAKER_APP_EVENT', payload: { eventId } })
   store.ui.speaker.submission.set({ talkId, currentStep: 1 })
   yield put(push(`/speaker/event/${eventId}/submission`))
 }

@@ -7,7 +7,7 @@ import { protect } from 'store/reducers/auth'
 import Speaker from './speaker'
 
 const mapStore = ({ dispatch }) => ({
-  load: () => dispatch({ type: 'SPEAKER/INIT_APP' }),
+  load: () => dispatch({ type: '@@ui/ON_LOAD_SPEAKER_APP' }),
 })
 
 export default compose(forRoute('HOME_SPEAKER'), protect, inject(mapStore), loader())(Speaker)
