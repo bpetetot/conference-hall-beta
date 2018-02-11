@@ -2,7 +2,6 @@ import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { push } from 'redux-little-router'
 
 import store from 'redux/store'
-import { getCurrentProposalIndex } from 'redux/ui/organizer/proposal.selectors'
 import { getRouterParam } from 'redux/router'
 import { fetchProposal, fetchEventProposals } from './proposals.firebase'
 
@@ -53,19 +52,19 @@ function* onSelectProposal({ eventId, proposalId }) {
   const proposalKeys = store.data.proposals.getKeys()
   const proposalIndex = proposalKeys.indexOf(proposalId)
   if (proposalIndex !== -1) {
-    yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex } })
+    store.ui.organizer.proposal.set({ proposalIndex })
     yield put(push(`/organizer/event/${eventId}/proposal/${proposalId}`))
   }
 }
 
 function* onNextProposal() {
   const eventId = yield select(getRouterParam('eventId'))
-  const proposalIndex = yield select(getCurrentProposalIndex)
+  const { proposalIndex } = store.ui.organizer.proposal.get()
   const proposalKeys = store.data.proposals.getKeys()
   const nextIndex = proposalIndex + 1
   if (nextIndex < proposalKeys.length) {
     const proposalId = proposalKeys[nextIndex]
-    yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex: nextIndex } })
+    store.ui.organizer.proposal.set({ proposalIndex: nextIndex })
     yield put({ type: 'FETCH_PROPOSAL_RATINGS', payload: { eventId, proposalId } })
     yield put(push(`/organizer/event/${eventId}/proposal/${proposalId}`))
   }
@@ -73,12 +72,12 @@ function* onNextProposal() {
 
 function* onPreviousProposal() {
   const eventId = yield select(getRouterParam('eventId'))
-  const proposalIndex = yield select(getCurrentProposalIndex)
+  const { proposalIndex } = store.ui.organizer.proposal.get()
   const proposalKeys = store.data.proposals.getKeys()
   const prevIndex = proposalIndex - 1
   if (prevIndex >= 0) {
     const proposalId = proposalKeys[prevIndex]
-    yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex: prevIndex } })
+    store.ui.organizer.proposal.set({ proposalIndex: prevIndex })
     yield put({ type: 'FETCH_PROPOSAL_RATINGS', payload: { eventId, proposalId } })
     yield put(push(`/organizer/event/${eventId}/proposal/${proposalId}`))
   }

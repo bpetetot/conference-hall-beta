@@ -1,12 +1,5 @@
-const initialState = {
-  currentProposalIndex: undefined,
-}
+import { simpleObject } from 'k-ramel'
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case 'SET_CURRENT_PROPOSAL_INDEX':
-      return { currentProposalIndex: action.payload.proposalIndex }
-    default:
-      return state
-  }
-}
+const defaultData = { proposalIndex: undefined }
+
+export default simpleObject({ defaultData })
