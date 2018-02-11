@@ -1,6 +1,6 @@
 import { inject } from 'k-ramel/react'
 
-import { getFormat } from 'store/data/events.selector'
+import { getFormat } from 'store/reducers/data/events.selector'
 import Badge from 'components/badge'
 
 const mapStore = (store, { eventId, formatId }) => {

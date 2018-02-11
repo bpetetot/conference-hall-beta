@@ -2,7 +2,7 @@ import { inject } from 'k-ramel/react'
 import { compose } from 'redux'
 
 import loader from 'components/loader'
-import { getRouterParam, isOrganizerRoute } from 'store/router'
+import { getRouterParam, isOrganizerRoute } from 'store/reducers/router'
 import Event from './event'
 
 const mapStore = (store) => {

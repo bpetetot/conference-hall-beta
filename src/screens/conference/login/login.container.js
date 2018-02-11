@@ -6,7 +6,7 @@ import Login from './login'
 
 const mapStore = store => ({
   authenticated: store.auth.authenticated,
-  signin: provider => store.dispatch({ type: 'AUTH/SIGN_IN', payload: provider }),
+  signin: provider => store.dispatch({ type: '@@ui/SIGN_IN', payload: provider }),
 })
 
 export default compose(

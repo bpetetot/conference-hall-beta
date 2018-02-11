@@ -3,7 +3,7 @@ import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
-import { getRouterParam } from 'store/router'
+import { getRouterParam } from 'store/reducers/router'
 import Submission from './submission'
 
 const mapStore = (store) => {

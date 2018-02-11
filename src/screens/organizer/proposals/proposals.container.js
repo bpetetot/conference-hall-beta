@@ -2,7 +2,7 @@ import { compose } from 'redux'
 import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
-import { getRouterParam } from 'store/router'
+import { getRouterParam } from 'store/reducers/router'
 import Proposals from './proposals'
 
 const mapStore = store => ({ eventId: getRouterParam('eventId')(store.getState()) })

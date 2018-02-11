@@ -1,6 +1,6 @@
 import { takeEvery, call } from 'redux-saga/effects'
 
-import store from 'store/store'
+import store from 'store'
 import userCrud from 'firebase/user'
 
 function* fetchUser(uid) {

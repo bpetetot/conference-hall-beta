@@ -2,8 +2,8 @@ import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
-import store from 'store/store'
-import { getRouterParam } from 'store/router'
+import store from 'store'
+import { getRouterParam } from 'store/reducers/router'
 import eventCrud, { fetchUserEvents } from 'firebase/events'
 
 function* createEvent(event) {

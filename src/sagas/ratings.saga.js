@@ -1,8 +1,8 @@
 import { call, select, takeLatest } from 'redux-saga/effects'
 
-import store from 'store/store'
-import { getRatingsAverage } from 'store/data/ratings.selectors'
-import { getRouterParam } from 'store/router'
+import store from 'store'
+import { getRatingsAverage } from 'store/reducers/data/ratings.selectors'
+import { getRouterParam } from 'store/reducers/router'
 import { getRatings, addRating } from 'firebase/ratings'
 import { updateRating } from 'firebase/proposals'
 

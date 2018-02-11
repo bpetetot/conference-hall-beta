@@ -1,10 +1,10 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects'
 import { startSubmit, stopSubmit } from 'redux-form'
 
-import store from 'store/store'
+import store from 'store'
 import userCrud from 'firebase/user'
 import eventCrud from 'firebase/events'
-import { getRouterParam } from 'store/router'
+import { getRouterParam } from 'store/reducers/router'
 
 /**
  * Set the contextual event for the speaker app
