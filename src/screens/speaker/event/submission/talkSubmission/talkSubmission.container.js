@@ -1,7 +1,7 @@
 import { compose } from 'redux'
 import { inject } from 'k-ramel/react'
 
-import { isSubmitted } from 'redux/data/talks.selector'
+import { isSubmitted } from 'store/data/talks.selector'
 import TalkSubmission from './talkSubmission'
 
 const mapStore = (store, { eventId }) => {

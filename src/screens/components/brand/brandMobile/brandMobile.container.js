@@ -1,6 +1,6 @@
 import { inject } from 'k-ramel/react'
 import { goBack } from 'redux-little-router'
-import { getBaseRoute, getAppTitle, isMobileMenuRoute } from 'redux/router'
+import { getBaseRoute, getAppTitle, isMobileMenuRoute } from 'store/router'
 
 import BrandMobile from './brandMobile'
 

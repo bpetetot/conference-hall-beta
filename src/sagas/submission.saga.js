@@ -2,8 +2,8 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import { startSubmit, stopSubmit } from 'redux-form'
 import { push } from 'redux-little-router'
 
-import store from 'redux/store'
-import { isSubmitted } from 'redux/data/talks.selector'
+import store from 'store/store'
+import { isSubmitted } from 'store/data/talks.selector'
 import { saveTalkSubmission, unsubmitTalk } from 'firebase/submission'
 
 function* onOpenSelectionPage({ eventId }) {

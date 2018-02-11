@@ -1,5 +1,5 @@
 import { inject } from 'k-ramel/react'
-import { isOrganizerRoute, isSpeakerRoute } from 'redux/router'
+import { isOrganizerRoute, isSpeakerRoute } from 'store/router'
 import classnames from 'classnames'
 
 const mapStore = (store, { className }) => ({

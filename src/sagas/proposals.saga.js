@@ -1,8 +1,8 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { push } from 'redux-little-router'
 
-import store from 'redux/store'
-import { getRouterParam } from 'redux/router'
+import store from 'store/store'
+import { getRouterParam } from 'store/router'
 import { fetchProposal, fetchEventProposals } from 'firebase/proposals'
 
 function* loadEventProposals() {

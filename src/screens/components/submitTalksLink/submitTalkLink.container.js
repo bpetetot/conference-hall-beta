@@ -1,6 +1,6 @@
 import { inject } from 'k-ramel/react'
 
-import { isCfpOpened } from 'redux/data/events.selector'
+import { isCfpOpened } from 'store/data/events.selector'
 import SubmitTalkLink from './submitTalkLink'
 
 const mapStore = (store, { eventId }) => {

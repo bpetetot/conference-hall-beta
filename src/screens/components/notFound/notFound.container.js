@@ -1,6 +1,6 @@
 import { inject } from 'k-ramel/react'
 
-import { isRouteNotFound } from 'redux/router'
+import { isRouteNotFound } from 'store/router'
 import NotFound from './notFound'
 
 export default inject(store => ({

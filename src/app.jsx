@@ -9,7 +9,7 @@ import Conference from './screens/conference'
 import Organizer from './screens/organizer'
 import Speaker from './screens/speaker'
 
-import store from './redux'
+import store from './store'
 
 import './styles'
 

@@ -1,6 +1,6 @@
 import { inject } from 'k-ramel/react'
 
-import { getRouterParam } from 'redux/router'
+import { getRouterParam } from 'store/router'
 import EventSidebar from './eventSidebar'
 
 const mapStore = (store) => {

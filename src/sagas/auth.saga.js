@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import { call, put, takeLatest, select } from 'redux-saga/effects'
 import { push, replace } from 'redux-little-router'
 
-import store from 'redux/store'
+import store from 'store/store'
 import userCrud from 'firebase/user'
 
 function* signin() {
