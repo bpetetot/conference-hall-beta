@@ -38,7 +38,7 @@ function* updateTalk(talk) {
     // update talk into database
     yield call(talkCrud.update, talk)
     // update talk into data store
-    yield put(talksData.update(talk))
+    talksData.update(talk)
     // set form submitted
     yield put(stopSubmit(FORM))
     // go to talk page
@@ -52,12 +52,12 @@ function* updateTalk(talk) {
 function* fetchTalk({ talkId }) {
   if (!talkId) return
   // check if already in the store
-  const current = yield select(talksData.get(talkId))
+  const current = talksData.get(talkId)
   if (current && current.id === talkId) return
   // fetch talk from id
   const ref = yield call(talkCrud.read, talkId)
   if (ref.exists) {
-    yield put(talksData.add({ id: talkId, ...ref.data() }))
+    talksData.add({ id: talkId, ...ref.data() })
   } else {
     yield put({ type: 'TALK_NOT_FOUND', payload: { talkId } })
   }
@@ -73,11 +73,11 @@ function* onLoadSpeakerTalks() {
   const uid = yield select(getUserId)
   const talks = yield call(fetchUserTalks, uid)
   // set talks in the store
-  yield put(talksData.set(talks))
+  talksData.set(talks)
   // set talks id to the speaker talk store
   const sorted = talks.sort((t1, t2) => compareDesc(t1.updateTimestamp, t2.updateTimestamp))
-  yield put(speakerTalks.reset())
-  yield put(speakerTalks.set(sorted))
+  speakerTalks.reset()
+  speakerTalks.set(sorted)
 }
 
 export default function* talksSagas() {

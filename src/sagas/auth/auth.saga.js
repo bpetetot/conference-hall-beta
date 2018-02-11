@@ -36,7 +36,7 @@ function* signedIn({
     yield call(userCrud.create, user)
   }
   // add user in store
-  yield put(usersData.add(user))
+  usersData.add(user)
 
   // go to the next url if exists
   const { next } = yield select(state => state.router.query)
@@ -48,7 +48,7 @@ function* signedIn({
 function* signedOut() {
   yield put({ type: 'FIREBASE/INITIALIZED' })
   yield put({ type: 'FIREBASE/AUTHENTICATED', payload: false })
-  yield put(usersData.reset())
+  usersData.reset()
 }
 
 export default function* authSaga() {

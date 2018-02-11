@@ -9,8 +9,8 @@ import eventsData from './events'
  * Values can be : not-started, opened, closed
  * @param {String} eventId event Id
  */
-export const getCfpState = eventId => (state) => {
-  const event = eventsData.get(eventId)(state) || {}
+export const getCfpState = eventId => () => {
+  const event = eventsData.get(eventId) || {}
   if (event.type === 'meetup') {
     return event.cfpOpened ? 'opened' : 'closed'
   } else if (event.type === 'conference') {
@@ -35,8 +35,8 @@ export const isCfpOpened = eventId => state => getCfpState(eventId)(state) === '
  * @param {string} eventId event id
  * @param {string} formatId format id
  */
-export const getFormat = (eventId, formatId) => (state) => {
-  const { formats } = eventsData.get(eventId)(state) || {}
+export const getFormat = (eventId, formatId) => () => {
+  const { formats } = eventsData.get(eventId) || {}
   if (formats) {
     return formats.find(f => f.id === formatId)
   }
@@ -48,8 +48,8 @@ export const getFormat = (eventId, formatId) => (state) => {
  * @param {string} eventId event id
  * @param {string} categoryId category id
  */
-export const getCategory = (eventId, categoryId) => (state) => {
-  const { categories } = eventsData.get(eventId)(state) || {}
+export const getCategory = (eventId, categoryId) => () => {
+  const { categories } = eventsData.get(eventId) || {}
   if (categories) {
     return categories.find(c => c.id === categoryId)
   }

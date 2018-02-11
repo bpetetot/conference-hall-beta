@@ -4,13 +4,12 @@ import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
 import { getRouterParam } from 'redux/router'
-import eventsData from 'redux/data/events'
 import { getSubmission } from 'redux/ui/speaker/submission'
 import Submission from './submission'
 
 const mapStore = (store) => {
   const eventId = getRouterParam('eventId')(store.getState())
-  const event = eventsData.get(eventId)(store.getState()) || {}
+  const event = store.data.events.get(eventId) || {}
   const { currentStep } = getSubmission(store.getState())
   return {
     loaded: !!event,

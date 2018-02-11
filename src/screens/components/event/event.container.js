@@ -3,12 +3,11 @@ import { compose } from 'redux'
 
 import loader from 'components/loader'
 import { getRouterParam, isOrganizerRoute } from 'redux/router'
-import eventsData from 'redux/data/events'
 import Event from './event'
 
 const mapStore = (store) => {
   const eventId = getRouterParam('eventId')(store.getState())
-  const event = eventsData.get(eventId)(store.getState())
+  const event = store.data.events.get(eventId)
   return {
     loaded: !!event,
     isOrganizer: isOrganizerRoute(store.getState()),

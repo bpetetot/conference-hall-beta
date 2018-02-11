@@ -2,11 +2,10 @@ import { compose } from 'redux'
 import { inject } from 'k-ramel/react'
 import loader from 'hoc-react-loader/build/core'
 
-import eventsData from 'redux/data/events'
 import Submission from './submission'
 
 const mapStore = (store, { eventId, talkId }) => {
-  const { id, name } = eventsData.get(eventId)(store.getState) || {}
+  const { id, name } = store.data.events.get(eventId) || {}
   return {
     id,
     name,

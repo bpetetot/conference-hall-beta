@@ -3,13 +3,12 @@ import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import { getRouterParam } from 'redux/router'
-import eventsData from 'redux/data/events'
 import loader from 'components/loader'
 import EventEdit from './eventEdit'
 
 const mapStore = (store) => {
   const eventId = getRouterParam('eventId')(store.getState())
-  const event = eventsData.get(eventId)(store.getState())
+  const event = store.data.events.get(eventId)
   return {
     loaded: !!event,
     eventId,

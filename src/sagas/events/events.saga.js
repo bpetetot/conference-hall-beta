@@ -37,7 +37,7 @@ function* updateEvent(form, event) {
     // update event into database
     yield call(eventCrud.update, event)
     // update event in store
-    yield put(eventsData.update(event))
+    eventsData.update(event)
     // set form submitted
     yield put(stopSubmit(form))
   } catch (error) {
@@ -49,12 +49,12 @@ function* updateEvent(form, event) {
 function* fetchEvent({ eventId }) {
   if (!eventId) return
   // check if already in the store
-  const current = yield select(eventsData.get(eventId))
+  const current = eventsData.get(eventId)
   if (current && current.id === eventId) return
   // fetch event from id
   const ref = yield call(eventCrud.read, eventId)
   if (ref.exists) {
-    yield put(eventsData.add({ id: eventId, ...ref.data() }))
+    eventsData.add({ id: eventId, ...ref.data() })
   } else {
     yield put({ type: 'EVENT_NOT_FOUND', payload: { eventId } })
   }
@@ -71,10 +71,10 @@ function* onLoadOrganizerEventsPage() {
   const result = yield call(fetchUserEvents, uid)
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
   // set events in the store
-  yield put(eventsData.set(events))
+  eventsData.set(events)
   // set events id to the organizer event store
-  yield put(organizerEvents.reset())
-  yield put(organizerEvents.set(events))
+  organizerEvents.reset()
+  organizerEvents.set(events)
 }
 
 function* onOpenSpeakerEventPage({ eventId }) {
@@ -83,7 +83,7 @@ function* onOpenSpeakerEventPage({ eventId }) {
 }
 
 function* onOpenOrganizerEventPage({ eventId }) {
-  yield put(proposalsData.reset())
+  proposalsData.reset()
   yield put(push(`/organizer/event/${eventId}`))
 }
 

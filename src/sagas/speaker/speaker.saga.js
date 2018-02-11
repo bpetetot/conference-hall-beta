@@ -15,18 +15,18 @@ import { getRouterParam } from 'redux/router'
 function* setCurrentEvent({ eventId }) {
   if (!eventId) return
   // check if its already in the store else fetch it
-  let event = yield select(eventsData.get(eventId))
+  let event = eventsData.get(eventId)
   if (!event) {
     const ref = yield call(eventCrud.read, eventId)
     if (ref.exists) {
       event = ref.data()
-      yield put(eventsData.add(event))
+      eventsData.add(event)
     }
   }
   // fetch event
   if (event) {
     // set contextual event id
-    yield put(speakerApp.set({ currentEventId: eventId }))
+    speakerApp.set({ currentEventId: eventId })
     // set it in localstorage (it will be persisted later)
     localStorage.setItem('currentEventId', eventId)
   } else {
@@ -54,7 +54,7 @@ function* saveSpeakerProfile(profile) {
     // update user data in database
     yield call(userCrud.update, profile)
     // update user data in the store
-    yield put(usersData.update(profile))
+    usersData.update(profile)
     // set form submitted
     yield put(stopSubmit(FORM))
   } catch (error) {

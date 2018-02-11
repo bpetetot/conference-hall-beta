@@ -3,7 +3,6 @@ import { inject } from 'k-ramel/react'
 import { reduxForm } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
-import eventsData from 'redux/data/events'
 import CFPForm from './cfp'
 
 const FORM_NAME = 'cfp-edit'
@@ -18,7 +17,7 @@ const mapStore = (store, { eventId }) => {
     categories = [],
     formats = [],
   } =
-    eventsData.get(eventId)(store.getState()) || {}
+    store.data.events.get(eventId) || {}
   return {
     type,
     initialValues: {

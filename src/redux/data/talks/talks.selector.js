@@ -6,8 +6,8 @@ import talksData from './talks'
  * @param {string} talkId talk id
  * @param {string} eventId event id
  */
-export const isSubmitted = (talkId, eventId) => (state) => {
-  const talk = talksData.get(talkId)(state)
+export const isSubmitted = (talkId, eventId) => () => {
+  const talk = talksData.get(talkId)
   if (talk && talk.submissions) {
     return !!talk.submissions[eventId]
   }

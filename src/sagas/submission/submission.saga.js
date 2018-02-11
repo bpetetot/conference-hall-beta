@@ -20,7 +20,7 @@ function* onOpenSubmitPage({ eventId, talkId }) {
 
 function* submitTalkToEvent({ talkId, eventId, data }) {
   const FORM = 'submit-talk'
-  const talk = yield select(talksData.get(talkId))
+  const talk = talksData.get(talkId)
   try {
     // indicate start submitting form
     yield put(startSubmit(FORM))
@@ -40,9 +40,9 @@ function* submitTalkToEvent({ talkId, eventId, data }) {
 function* unsubmitTalkFromEvent({ talkId, eventId }) {
   const alreadySubmitted = yield select(isSubmitted(talkId, eventId))
   if (alreadySubmitted) {
-    const talk = yield select(talksData.get(talkId))
+    const talk = talksData.get(talkId)
     const updatedTalk = yield call(unsubmitTalk, talk, eventId)
-    yield put(talksData.update(updatedTalk))
+    talksData.update(updatedTalk)
     yield put({ type: 'SUBMISSION_RESET' })
   }
 }

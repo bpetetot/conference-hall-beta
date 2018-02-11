@@ -1,13 +1,12 @@
 import { compose } from 'redux'
 import { inject } from 'k-ramel/react'
 
-import proposalsData from 'redux/data/proposals'
 import loader from 'components/loader'
 import ProposalsList from './proposalsList'
 
 const mapStore = store => ({
-  loaded: proposalsData.isInitialized(store.getState()),
-  proposals: proposalsData.getAsArray(store.getState()),
+  loaded: store.data.proposals.isInitialized(),
+  proposals: store.data.proposals.getAsArray(),
   load: () => {
     store.dispatch({ type: 'LOAD_EVENT_PROPOSALS_PAGE' })
   },

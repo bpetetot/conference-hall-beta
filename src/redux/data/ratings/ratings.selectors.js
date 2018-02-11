@@ -2,8 +2,8 @@
 import values from 'lodash/values'
 import ratingsData from './ratings'
 
-export const getRatingsAverage = (state) => {
-  const ratings = ratingsData.getAsArray(state)
+export const getRatingsAverage = () => {
+  const ratings = ratingsData.getAsArray()
   return (
     values(ratings)
       .map(r => r.rating)

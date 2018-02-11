@@ -8,4 +8,4 @@ export const isAuthenticated = state => getAuth(state).authenticated
 
 export const getUserId = state => getAuth(state).uid
 
-export const getUser = state => usersData.get(getUserId(state))(state) || {}
+export const getUser = state => usersData.get(getUserId(state)) || {}

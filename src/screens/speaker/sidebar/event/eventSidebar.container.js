@@ -1,12 +1,10 @@
 import { inject } from 'k-ramel/react'
 
-import speakerApp from 'redux/ui/speaker/app'
-import eventsData from 'redux/data/events'
 import EventSidebar from './eventSidebar'
 
 const mapStore = (store) => {
-  const { currentEventId } = speakerApp.get()(store.getState())
-  const { id, name } = eventsData.get(currentEventId)(store.getState()) || {}
+  const { currentEventId } = store.ui.speaker.app.get()
+  const { id, name } = store.data.events.get(currentEventId) || {}
   return { id, name }
 }
 

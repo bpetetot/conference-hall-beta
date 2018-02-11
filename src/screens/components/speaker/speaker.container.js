@@ -2,11 +2,10 @@ import { compose } from 'redux'
 import { inject } from 'k-ramel/react'
 import loader from 'hoc-react-loader/build/core'
 
-import usersData from 'redux/data/users'
 import Speaker from './speaker'
 
 const mapStore = (store, { id }) => {
-  const { displayName, photoURL } = usersData.get(id)(store.getState()) || {}
+  const { displayName, photoURL } = store.data.users.get(id) || {}
   return {
     displayName,
     photoURL,

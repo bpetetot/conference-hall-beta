@@ -2,15 +2,14 @@
 import { inject } from 'k-ramel/react'
 
 import { getUserId } from 'redux/auth'
-import ratingsData from 'redux/data/ratings'
 import { hasNext, hasPrevious } from 'redux/ui/organizer/proposal'
 import Ratings from './ratings'
 
 const mapStore = (store) => {
   const uid = getUserId(store.getState())
   return {
-    isLoaded: ratingsData.isInitialized(store.getState()),
-    ...ratingsData.get(uid)(store.getState()),
+    isLoaded: store.data.ratings.isInitialized(),
+    ...store.data.ratings.get(uid),
     hasNext: hasNext(store.getState()),
     hasPrevious: hasPrevious(store.getState()),
     onRating: (rating, feeling) =>

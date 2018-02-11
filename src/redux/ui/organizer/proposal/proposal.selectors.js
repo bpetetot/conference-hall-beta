@@ -5,7 +5,7 @@ export const getProposal = state => state.ui.organizer.proposal
 export const getCurrentProposalIndex = state => getProposal(state).currentProposalIndex
 
 export const hasNext = (state) => {
-  const proposals = proposalsData.getKeys(state)
+  const proposals = proposalsData.getKeys()
   const currentIndex = getCurrentProposalIndex(state)
   return currentIndex + 1 < proposals.length
 }

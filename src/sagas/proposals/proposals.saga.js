@@ -13,19 +13,19 @@ function* loadEventProposals() {
   const eventId = yield select(getRouterParam('eventId'))
   const uid = yield select(getUserId)
   // reset current proposals
-  yield put(proposalsData.reset())
+  proposalsData.reset()
   // get event
   yield put({ type: 'FETCH_EVENT', payload: { eventId } })
   // get proposal filters
-  const filters = yield select(proposalsFilters.get())
+  const filters = proposalsFilters.get()
   // fetch proposals
   const proposals = yield call(fetchEventProposals, eventId, uid, filters)
   // set proposals in the store
-  yield put(proposalsData.set(proposals))
+  proposalsData.set(proposals)
 }
 
 function* onLoadEventProposalsPage() {
-  const isInitialized = yield select(proposalsData.isInitialized)
+  const isInitialized = proposalsData.isInitialized()
   if (!isInitialized) {
     yield loadEventProposals()
   }
@@ -44,12 +44,12 @@ function* onLoadProposalPage() {
 
 function* getProposal({ eventId, proposalId }) {
   // check if already in the store
-  const inStore = yield select(proposalsData.get(proposalId))
+  const inStore = proposalsData.get(proposalId)
   if (!inStore) {
     // fetch proposal from id
     const ref = yield call(fetchProposal, eventId, proposalId)
     if (ref.exists) {
-      yield put(proposalsData.add(ref.data()))
+      proposalsData.add(ref.data())
     } else {
       yield put({ type: 'PROPOSAL_NOT_FOUND', payload: { proposalId } })
     }
@@ -59,7 +59,7 @@ function* getProposal({ eventId, proposalId }) {
 }
 
 function* onSelectProposal({ eventId, proposalId }) {
-  const proposalKeys = yield select(proposalsData.getKeys)
+  const proposalKeys = proposalsData.getKeys()
   const proposalIndex = proposalKeys.indexOf(proposalId)
   if (proposalIndex !== -1) {
     yield put({ type: 'SET_CURRENT_PROPOSAL_INDEX', payload: { proposalIndex } })
@@ -70,7 +70,7 @@ function* onSelectProposal({ eventId, proposalId }) {
 function* onNextProposal() {
   const eventId = yield select(getRouterParam('eventId'))
   const proposalIndex = yield select(getCurrentProposalIndex)
-  const proposalKeys = yield select(proposalsData.getKeys)
+  const proposalKeys = proposalsData.getKeys()
   const nextIndex = proposalIndex + 1
   if (nextIndex < proposalKeys.length) {
     const proposalId = proposalKeys[nextIndex]
@@ -83,7 +83,7 @@ function* onNextProposal() {
 function* onPreviousProposal() {
   const eventId = yield select(getRouterParam('eventId'))
   const proposalIndex = yield select(getCurrentProposalIndex)
-  const proposalKeys = yield select(proposalsData.getKeys)
+  const proposalKeys = proposalsData.getKeys()
   const prevIndex = proposalIndex - 1
   if (prevIndex >= 0) {
     const proposalId = proposalKeys[prevIndex]

@@ -1,4 +1,4 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects'
+import { call, select, takeLatest } from 'redux-saga/effects'
 
 import ratingsData, { getRatingsAverage } from 'redux/data/ratings'
 import proposalsData from 'redux/data/proposals'
@@ -9,11 +9,11 @@ import { updateRating } from '../proposals/proposals.firebase'
 
 function* fetchRatings({ eventId, proposalId }) {
   // wipe current ratings
-  yield put(ratingsData.reset())
+  ratingsData.reset()
   // save in database
   const ratings = yield call(getRatings, eventId, proposalId)
   // update in the store
-  yield put(ratingsData.set(ratings))
+  ratingsData.set(ratings)
 }
 
 function* rateProposal(rating) {
@@ -23,12 +23,12 @@ function* rateProposal(rating) {
   const proposalId = yield select(getRouterParam('proposalId'))
   // add the rating in database and store
   yield call(addRating, eventId, proposalId, uid, rating)
-  yield put(ratingsData.addOrUpdate({ uid, ...rating }))
+  ratingsData.addOrUpdate({ uid, ...rating })
   // compute average rating
   const avgRating = yield select(getRatingsAverage)
   // save the rating average in database database and store
   yield call(updateRating, eventId, proposalId, uid, avgRating)
-  yield put(proposalsData.update({ id: proposalId, rating: avgRating }))
+  proposalsData.update({ id: proposalId, rating: avgRating })
 }
 
 export default function* eventSagas() {

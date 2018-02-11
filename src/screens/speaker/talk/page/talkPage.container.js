@@ -3,13 +3,12 @@ import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import { getRouterParam } from 'redux/router'
-import talksData from 'redux/data/talks'
 import loader from 'components/loader'
 import TalkPage from './talkPage'
 
 const mapStore = (store) => {
   const talkId = getRouterParam('talkId')(store.getState())
-  const talk = talksData.get(talkId)(store.getState())
+  const talk = store.data.talks.get(talkId)
   return {
     loaded: !!talk,
     ...talk,

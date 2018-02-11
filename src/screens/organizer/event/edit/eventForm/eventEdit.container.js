@@ -3,14 +3,13 @@ import { inject } from 'k-ramel/react'
 import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
-import eventsData from 'redux/data/events'
 import EventForm from '../../components/eventForm'
 
 const FORM_NAME = 'event-edit'
 const select = formValueSelector(FORM_NAME)
 
 const mapStore = (store, { eventId }) => {
-  const event = eventsData.get(eventId)(store.getState())
+  const event = store.data.events.get(eventId)
   return {
     form: FORM_NAME,
     type: select(store.getState(), 'type'),
