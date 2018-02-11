@@ -8,14 +8,13 @@ import { saveTalkSubmission, unsubmitTalk } from './submission.firebase'
 
 function* onOpenSelectionPage({ eventId }) {
   yield put({ type: 'SPEAKER/SET_EVENT', payload: { eventId } })
-  yield put({ type: 'SUBMISSION_RESET' })
+  store.ui.speaker.submission.reset()
   yield put(push(`/speaker/event/${eventId}/submission`))
 }
 
 function* onOpenSubmitPage({ eventId, talkId }) {
   yield put({ type: 'SPEAKER/SET_EVENT', payload: { eventId } })
-  yield put({ type: 'SUBMISSION_RESET' })
-  yield put({ type: 'SUBMISSION_SELECT_TALK', payload: { talkId } })
+  store.ui.speaker.submission.set({ talkId, currentStep: 1 })
   yield put(push(`/speaker/event/${eventId}/submission`))
 }
 
@@ -31,7 +30,8 @@ function* submitTalkToEvent({ talkId, eventId, data }) {
     yield call(saveTalkSubmission, talk, eventId, data, alreadySubmitted)
     // set form submitted
     yield put(stopSubmit(FORM))
-    yield put({ type: 'SUBMISSION_NEXT_STEP' })
+    const { currentStep } = store.ui.speaker.submission.get()
+    store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
   } catch (error) {
     yield put(stopSubmit(FORM, { _error: error.message }))
     throw error
@@ -44,7 +44,7 @@ function* unsubmitTalkFromEvent({ talkId, eventId }) {
     const talk = store.data.talks.get(talkId)
     const updatedTalk = yield call(unsubmitTalk, talk, eventId)
     store.data.talks.update(updatedTalk)
-    yield put({ type: 'SUBMISSION_RESET' })
+    store.ui.speaker.submission.reset()
   }
 }
 

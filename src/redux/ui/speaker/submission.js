@@ -1,5 +1,8 @@
 import { simpleObject } from 'k-ramel'
 
-const defaultData = { openedModal: undefined }
+const defaultData = {
+  talkId: undefined,
+  currentStep: 0,
+}
 
 export default simpleObject({ defaultData })
