@@ -12,7 +12,7 @@ const mapStore = (store) => {
   return {
     loaded: !!talk,
     ...talk,
-    load: () => store.dispatch({ type: '@@ui/ON_LOAD_TALK' }),
+    load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
   }
 }
 

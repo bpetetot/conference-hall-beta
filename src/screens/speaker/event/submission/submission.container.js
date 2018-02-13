@@ -15,7 +15,7 @@ const mapStore = (store) => {
     eventId: event.id,
     eventName: event.name,
     currentStep,
-    load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT' }),
+    load: () => store.dispatch('@@ui/ON_LOAD_EVENT'),
   }
 }
 

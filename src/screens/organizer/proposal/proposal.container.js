@@ -14,7 +14,7 @@ const mapStore = (store) => {
     loaded: !!proposal,
     proposal,
     eventId,
-    load: () => store.dispatch({ type: 'LOAD_PROPOSAL_PAGE' }),
+    load: () => store.dispatch('LOAD_PROPOSAL_PAGE'),
   }
 }
 

@@ -8,7 +8,7 @@ const mapStore = (store) => {
   return {
     displayName,
     photoURL,
-    signout: () => store.dispatch({ type: '@@ui/SIGN_OUT' }),
+    signout: () => store.dispatch('@@ui/SIGN_OUT'),
   }
 }
 

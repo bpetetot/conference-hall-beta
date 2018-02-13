@@ -15,8 +15,8 @@ const mapStore = (store) => {
     hasPrevious: proposalIndex - 1 >= 0,
     onRating: (rating, feeling) =>
       store.dispatch({ type: 'RATE_PROPOSAL', payload: { rating, feeling } }),
-    onNext: () => store.dispatch({ type: 'NEXT_PROPOSAL' }),
-    onPrevious: () => store.dispatch({ type: 'PREVIOUS_PROPOSAL' }),
+    onNext: () => store.dispatch('NEXT_PROPOSAL'),
+    onPrevious: () => store.dispatch('PREVIOUS_PROPOSAL'),
   }
 }
 

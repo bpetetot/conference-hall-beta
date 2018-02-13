@@ -9,7 +9,7 @@ import MyTalks from './myTalks'
 const mapStore = store => ({
   loaded: store.ui.speaker.myTalks.isInitialized(),
   talks: store.ui.speaker.myTalks.getAsArray(),
-  load: () => store.dispatch({ type: '@@ui/ON_LOAD_SPEAKER_TALKS' }),
+  load: () => store.dispatch('@@ui/ON_LOAD_SPEAKER_TALKS'),
   onSelect: id => store.dispatch(push(`/speaker/talk/${id}`)),
 })
 

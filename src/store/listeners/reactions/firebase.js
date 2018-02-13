@@ -21,7 +21,7 @@ export const init = reaction((action, store) => {
 
   firebase.auth().onAuthStateChanged((user) => {
     if (!user) {
-      store.dispatch({ type: '@@firebase/SIGNED_OUT' })
+      store.dispatch('@@firebase/SIGNED_OUT')
     } else {
       store.dispatch({ type: '@@firebase/SIGNED_IN', payload: user })
     }
