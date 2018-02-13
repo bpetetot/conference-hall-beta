@@ -1,3 +1,4 @@
+import { compose } from 'redux'
 import { inject } from 'k-ramel/react'
 import forRoute from 'hoc-little-router'
 
@@ -5,17 +6,17 @@ import Profile from './profile'
 
 const mapStore = (store) => {
   const { uid } = store.auth.get()
-  const {
-    displayName, photoURL, email, ...profile
-  } = store.data.users.get(uid) || {}
+  const user = store.data.users.get(uid)
   return {
-    displayName,
-    photoURL,
-    email,
+    ...user,
     form: 'user-profile',
-    initialValues: profile,
+    initialValues: user,
     onSubmit: data => store.dispatch({ type: '@@ui/SAVE_PROFILE', payload: { uid, ...data } }),
+    load: () => {},
   }
 }
 
-export default forRoute('SPEAKER_PROFILE')(inject(mapStore)(Profile))
+export default compose(
+  forRoute('SPEAKER_PROFILE'), //
+  inject(mapStore), //
+)(Profile)
