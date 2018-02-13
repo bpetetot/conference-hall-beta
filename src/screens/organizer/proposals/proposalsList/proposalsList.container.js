@@ -7,9 +7,9 @@ import ProposalsList from './proposalsList'
 const mapStore = store => ({
   loaded: store.data.proposals.isInitialized(),
   proposals: store.data.proposals.getAsArray(),
-  load: () => store.dispatch('LOAD_EVENT_PROPOSALS_PAGE'),
+  load: () => store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS'),
   onSelect: (eventId, proposalId) => {
-    store.dispatch({ type: 'SELECT_PROPOSAL', payload: { eventId, proposalId } })
+    store.dispatch({ type: '@@ui/ON_SELECT_PROPOSAL', payload: { eventId, proposalId } })
   },
 })
 

@@ -7,6 +7,8 @@ import * as talks from './reactions/talks'
 import * as events from './reactions/events'
 import * as speakerApp from './reactions/speakerApp'
 import * as submissions from './reactions/submissions'
+import * as proposals from './reactions/proposals'
+import * as ratings from './reactions/ratings'
 
 export default [
   /* app loaded */
@@ -39,4 +41,14 @@ export default [
   when('@@ui/GO_TO_SELECT_SUBMISSION')(submissions.openSelectSubmission),
   when('@@ui/ON_SUBMIT_TALK_TO_EVENT')(submissions.submitTalkToEvent),
   when('@@ui/ON_REMOVE_TALK_FROM_EVENT')(submissions.removeTalkFromEvent),
+  /* proposals */
+  when('@@ui/ON_LOAD_PROPOSAL')(proposals.getProposal),
+  when('@@ui/ON_LOAD_EVENT_PROPOSALS')(proposals.loadEventProposals),
+  when('@@krf/UPDATE>UI_ORGANIZER>PROPOSALS')(proposals.loadEventProposals),
+  when('@@ui/ON_SELECT_PROPOSAL')(proposals.selectProposal),
+  when('@@ui/ON_NEXT_PROPOSAL')(proposals.nextProposal),
+  when('@@ui/ON_PREVIOUS_PROPOSAL')(proposals.previousProposal),
+  /* ratings */
+  when('@@ui/ON_LOAD_RATINGS')(ratings.fetchRatings),
+  when('@@ui/RATE_PROPOSAL')(ratings.rateProposal),
 ]
