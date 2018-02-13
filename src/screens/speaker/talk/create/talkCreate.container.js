@@ -8,7 +8,7 @@ const FORM_NAME = 'talk-create'
 
 const mapStore = store => ({
   form: FORM_NAME,
-  onSubmit: data => store.dispatch({ type: 'SUBMIT_CREATE_TALK_FORM', payload: data }),
+  onSubmit: data => store.dispatch({ type: '@@ui/ON_CREATE_TALK', payload: data }),
 })
 
 export default compose(

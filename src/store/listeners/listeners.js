@@ -3,6 +3,7 @@ import { when } from 'k-ramel'
 import * as auth from './reactions/auth'
 import * as firebase from './reactions/firebase'
 import * as user from './reactions/user'
+import * as talks from './reactions/talks'
 import * as speakerApp from './reactions/speakerApp'
 
 export default [
@@ -20,4 +21,9 @@ export default [
   /* speaker app */
   when('@@ui/ON_LOAD_SPEAKER_APP')(speakerApp.init),
   when('@@ui/ON_CHANGE_SPEAKER_APP_EVENT')(speakerApp.setCurrentEvent),
+  /* talks */
+  when('@@ui/ON_CREATE_TALK')(talks.createTalk),
+  when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
+  when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
+  when('@@ui/ON_LOAD_SPEAKER_TALKS')(talks.fetchSpeakerTalks),
 ]
