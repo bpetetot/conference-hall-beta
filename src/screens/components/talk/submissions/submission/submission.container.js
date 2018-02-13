@@ -14,7 +14,7 @@ const mapStore = (store, { eventId, talkId }) => {
       store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
     },
     onClickEdit: () => {
-      store.dispatch({ type: 'OPEN_SUBMISSION_EVENTINFO_PAGE', payload: { eventId, talkId } })
+      store.dispatch({ type: '@@ui/GO_TO_EVENT_SUBMISSION', payload: { eventId, talkId } })
     },
     onClickEvent: () => {
       store.dispatch(push(`/speaker/event/${eventId}`))

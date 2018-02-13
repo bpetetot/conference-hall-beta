@@ -8,7 +8,7 @@ const mapStore = (store, { eventId }) => {
   return {
     eventId,
     displayed: eventId && cfpOpened,
-    onClick: () => store.dispatch({ type: 'OPEN_SUBMISSION_SELECTION_PAGE', payload: { eventId } }),
+    onClick: () => store.dispatch({ type: '@@ui/GO_TO_SELECT_SUBMISSION', payload: { eventId } }),
   }
 }
 

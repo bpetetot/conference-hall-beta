@@ -8,7 +8,7 @@ const mapStore = (store, { eventId }) => ({
   talks: store.ui.speaker.myTalks.getAsArray(),
   load: () => store.dispatch('@@ui/ON_LOAD_SPEAKER_TALKS'),
   onSelect: (talkId) => {
-    store.dispatch({ type: 'OPEN_SUBMISSION_EVENTINFO_PAGE', payload: { eventId, talkId } })
+    store.dispatch({ type: '@@ui/GO_TO_EVENT_SUBMISSION', payload: { eventId, talkId } })
   },
 })
 

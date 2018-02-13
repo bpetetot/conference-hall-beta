@@ -17,12 +17,12 @@ const mapStore = (store, { eventId }) => {
     initialValues,
     onSubmit: (data) => {
       store.dispatch({
-        type: 'SUBMIT_TALK_TO_EVENT',
+        type: '@@ui/ON_SUBMIT_TALK_TO_EVENT',
         payload: { data, talkId, eventId },
       })
     },
     unsubmitTalk: () => {
-      store.dispatch({ type: 'UNSUBMIT_TALK_FROM_EVENT', payload: { talkId, eventId } })
+      store.dispatch({ type: '@@ui/ON_REMOVE_TALK_FROM_EVENT', payload: { talkId, eventId } })
     },
   }
 }

@@ -6,6 +6,7 @@ import * as user from './reactions/user'
 import * as talks from './reactions/talks'
 import * as events from './reactions/events'
 import * as speakerApp from './reactions/speakerApp'
+import * as submissions from './reactions/submissions'
 
 export default [
   /* app loaded */
@@ -33,4 +34,9 @@ export default [
   when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEvent('cfp-edit')),
   when('@@ui/ON_LOAD_EVENT')(events.fetchEvent),
   when('@@ui/ON_LOAD_ORGANIZER_EVENTS')(events.fetchOrganizerEvents),
+  /* submissions */
+  when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),
+  when('@@ui/GO_TO_SELECT_SUBMISSION')(submissions.openSelectSubmission),
+  when('@@ui/ON_SUBMIT_TALK_TO_EVENT')(submissions.submitTalkToEvent),
+  when('@@ui/ON_REMOVE_TALK_FROM_EVENT')(submissions.removeTalkFromEvent),
 ]
