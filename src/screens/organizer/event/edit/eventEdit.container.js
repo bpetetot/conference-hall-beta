@@ -12,7 +12,7 @@ const mapStore = (store) => {
   return {
     loaded: !!event,
     eventId,
-    load: () => store.dispatch({ type: 'ON_LOAD_EVENT_PAGE' }),
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT' }),
   }
 }
 

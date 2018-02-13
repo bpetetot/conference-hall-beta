@@ -28,7 +28,7 @@ const mapStore = (store, { eventId }) => {
       categories,
       formats,
     },
-    onSubmit: data => store.dispatch({ type: 'SUBMIT_UPDATE_CFP_FORM', payload: data }),
+    onSubmit: data => store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_CFP', payload: data }),
   }
 }
 

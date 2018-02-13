@@ -12,7 +12,7 @@ function* loadEventProposals() {
   // reset current proposals
   store.data.proposals.reset()
   // get event
-  yield put({ type: 'FETCH_EVENT', payload: { eventId } })
+  yield put({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
   // get proposal filters
   const filters = store.ui.organizer.proposals.get()
   // fetch proposals
@@ -25,7 +25,7 @@ function* onLoadProposalPage() {
   // get event id from router
   const eventId = yield select(getRouterParam('eventId'))
   // get event
-  yield put({ type: 'FETCH_EVENT', payload: { eventId } })
+  yield put({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
   // get proposal id from router
   const proposalId = yield select(getRouterParam('proposalId'))
   // get proposal

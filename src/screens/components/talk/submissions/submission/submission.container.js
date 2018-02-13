@@ -1,5 +1,6 @@
 import { compose } from 'redux'
 import { inject } from 'k-ramel/react'
+import { push } from 'redux-little-router'
 import loader from 'hoc-react-loader/build/core'
 
 import Submission from './submission'
@@ -10,13 +11,13 @@ const mapStore = (store, { eventId, talkId }) => {
     id,
     name,
     load: () => {
-      store.dispatch({ type: 'FETCH_EVENT', payload: { eventId } })
+      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
     },
     onClickEdit: () => {
       store.dispatch({ type: 'OPEN_SUBMISSION_EVENTINFO_PAGE', payload: { eventId, talkId } })
     },
     onClickEvent: () => {
-      store.dispatch({ type: 'SPEAKER/OPEN_EVENT_PAGE', payload: { eventId } })
+      store.dispatch(push(`/speaker/event/${eventId}`))
     },
   }
 }

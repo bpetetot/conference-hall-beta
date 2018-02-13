@@ -12,7 +12,7 @@ const mapStore = (store) => {
     loaded: !!event,
     isOrganizer: isOrganizerRoute(store.getState()),
     ...event,
-    load: () => store.dispatch({ type: 'ON_LOAD_EVENT_PAGE' }),
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT' }),
   }
 }
 

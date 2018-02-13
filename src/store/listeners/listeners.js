@@ -4,6 +4,7 @@ import * as auth from './reactions/auth'
 import * as firebase from './reactions/firebase'
 import * as user from './reactions/user'
 import * as talks from './reactions/talks'
+import * as events from './reactions/events'
 import * as speakerApp from './reactions/speakerApp'
 
 export default [
@@ -26,4 +27,10 @@ export default [
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
   when('@@ui/ON_LOAD_SPEAKER_TALKS')(talks.fetchSpeakerTalks),
+  /* events */
+  when('@@ui/ON_CREATE_EVENT')(events.createEvent),
+  when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEvent('event-edit')),
+  when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEvent('cfp-edit')),
+  when('@@ui/ON_LOAD_EVENT')(events.fetchEvent),
+  when('@@ui/ON_LOAD_ORGANIZER_EVENTS')(events.fetchOrganizerEvents),
 ]
