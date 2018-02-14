@@ -1,0 +1,13 @@
+.talk-title {
+  display: flex;
+  align-items: center;
+}
+
+.talk-title .talk-status {
+  margin-left: 1em;
+  align-items: center;
+  font-size: 0.7em;
+  letter-spacing: normal;
+  font-weight: normal;
+  text-transform: none;
+}

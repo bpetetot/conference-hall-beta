@@ -2,15 +2,6 @@
   width: 100%;
 }
 
-.talk-details .talk-title {
-  margin-bottom: 0;
-}
-
-.talk-details .talk-status {
-  margin-bottom: 1em;
-  margin-left: 2.5em;
-}
-
 .talk-page {
   display: grid;
   grid-template-columns: auto 30%;
