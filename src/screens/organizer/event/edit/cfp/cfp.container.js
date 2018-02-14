@@ -8,27 +8,11 @@ import CFPForm from './cfp'
 const FORM_NAME = 'cfp-edit'
 
 const mapStore = (store, { eventId }) => {
-  const {
-    id,
-    type,
-    cfpOpened = false,
-    deliberationDate = null,
-    cfpDates = {},
-    categories = [],
-    formats = [],
-  } =
-    store.data.events.get(eventId) || {}
+  const event = store.data.events.get(eventId)
   return {
-    type,
-    initialValues: {
-      id,
-      cfpOpened,
-      deliberationDate,
-      cfpDates,
-      categories,
-      formats,
-    },
-    onSubmit: data => store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_CFP', payload: data }),
+    type: event && event.type,
+    initialValues: event,
+    onSubmit: () => store.dispatch('@@ui/ON_UPDATE_EVENT_CFP'),
   }
 }
 

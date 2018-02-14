@@ -14,7 +14,7 @@ const mapStore = (store, { eventId }) => {
     form: FORM_NAME,
     type: select(store.getState(), 'type'),
     initialValues: event,
-    onSubmit: data => store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_DETAILS', payload: data }),
+    onSubmit: () => store.dispatch('@@ui/ON_UPDATE_EVENT_DETAILS'),
   }
 }
 

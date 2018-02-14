@@ -4,11 +4,9 @@ import forRoute from 'hoc-little-router'
 
 import TalkForm from '../components/talkForm'
 
-const FORM_NAME = 'talk-create'
-
 const mapStore = store => ({
-  form: FORM_NAME,
-  onSubmit: data => store.dispatch({ type: '@@ui/ON_CREATE_TALK', payload: data }),
+  form: 'talk-create',
+  onSubmit: () => store.dispatch('@@ui/ON_CREATE_TALK'),
 })
 
 export default compose(

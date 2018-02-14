@@ -5,7 +5,7 @@ import withTheme from 'styles/themes/withTheme'
 import Modal from './modal'
 
 const mapStore = (store, { id }) => ({
-  opened: store.ui.modal.openedModal === id,
+  opened: store.ui.modal.get().openedModal === id,
   onClose: () => store.ui.modal.set({ openedModal: undefined }),
 })
 

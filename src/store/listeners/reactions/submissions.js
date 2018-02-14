@@ -1,5 +1,4 @@
 import { reaction } from 'k-ramel'
-import { startSubmit, stopSubmit } from 'redux-form'
 import { push } from 'redux-little-router'
 
 import { isSubmitted } from 'store/reducers/data/talks.selector'
@@ -17,25 +16,19 @@ export const openEventSubmission = reaction((action, store) => {
   store.dispatch(push(`/speaker/event/${eventId}/submission`))
 })
 
-export const submitTalkToEvent = reaction(async (action, store) => {
-  const { talkId, eventId, data } = action.payload
-  const FORM = 'submit-talk'
+export const submitTalkToEvent = reaction((action, store, { form }) => {
+  const { talkId, eventId } = action.payload
+  const submitForm = form('submit-talk')
+  const data = submitForm.getFormValues()
+  // get talk
   const talk = store.data.talks.get(talkId)
-  try {
-    // indicate start submitting form
-    store.dispatch(startSubmit(FORM))
-    // check if it's already submitted
-    const alreadySubmitted = isSubmitted(talkId, eventId)(store)
-    // submit talk
-    await saveTalkSubmission(talk, eventId, data, alreadySubmitted)
-    // set form submitted
-    store.dispatch(stopSubmit(FORM))
-    const { currentStep } = store.ui.speaker.submission.get()
-    store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
-  } catch (error) {
-    store.dispatch(stopSubmit(FORM, { _error: error.message }))
-    throw error
-  }
+  // check if already submitted
+  const alreadySubmitted = isSubmitted(talkId, eventId)(store)
+  // submit or update submission
+  submitForm.asyncSubmit(saveTalkSubmission, talk, eventId, data, alreadySubmitted)
+  // go to next step
+  const { currentStep } = store.ui.speaker.submission.get()
+  store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
 })
 
 export const removeTalkFromEvent = reaction(async (action, store) => {

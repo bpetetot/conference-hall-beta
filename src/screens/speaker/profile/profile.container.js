@@ -11,8 +11,7 @@ const mapStore = (store) => {
     ...user,
     form: 'user-profile',
     initialValues: user,
-    onSubmit: data => store.dispatch({ type: '@@ui/SAVE_PROFILE', payload: { uid, ...data } }),
-    load: () => {},
+    onSubmit: () => store.dispatch('@@ui/SAVE_PROFILE'),
   }
 }
 

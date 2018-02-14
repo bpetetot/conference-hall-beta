@@ -1,48 +1,28 @@
 import { reaction } from 'k-ramel'
-import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 
 import { getRouterParam } from 'store/reducers/router'
 import eventCrud, { fetchUserEvents } from 'firebase/events'
 
-export const createEvent = reaction(async (action, store) => {
-  const FORM = 'event-create'
-  const event = action.payload
-  try {
-    // indicate start submitting form
-    store.dispatch(startSubmit(FORM))
-    // get user id
-    const { uid } = store.auth.get()
-    // create event into database
-    const ref = await eventCrud.create({ ...event, owner: uid })
-    // reset form
-    store.dispatch(reset(FORM))
-    // set form submitted
-    store.dispatch(stopSubmit(FORM))
-    // go to event page
-    store.dispatch(push(`/organizer/event/${ref.id}`))
-  } catch (error) {
-    store.dispatch(stopSubmit(FORM, { _error: error.message }))
-    throw error
-  }
+export const createEvent = reaction(async (action, store, { form }) => {
+  const createForm = form('event-create')
+  const event = createForm.getFormValues()
+  // get user id
+  const { uid } = store.auth.get()
+  // create event into database
+  const ref = await createForm.asyncSubmit(eventCrud.create, { ...event, owner: uid })
+  // go to event page
+  store.dispatch(push(`/organizer/event/${ref.id}`))
 })
 
-export const updateEvent = form =>
-  reaction(async (action, store) => {
-    const event = action.payload
-    try {
-      // indicate start submitting form
-      store.dispatch(startSubmit(form))
-      // update event into database
-      await eventCrud.update(event)
-      // update event in store
-      store.data.events.update(event)
-      // set form submitted
-      store.dispatch(stopSubmit(form))
-    } catch (error) {
-      store.dispatch(stopSubmit(form, { _error: error.message }))
-      throw error
-    }
+export const updateEvent = formName =>
+  reaction((action, store, { form }) => {
+    const updateForm = form(formName)
+    const event = updateForm.getFormValues()
+    // update event into database
+    updateForm.asyncSubmit(eventCrud.update, event)
+    // update event in store
+    store.data.events.update(event)
   })
 
 export const fetchEvent = reaction(async (action, store) => {

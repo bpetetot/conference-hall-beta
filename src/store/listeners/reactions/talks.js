@@ -1,51 +1,30 @@
 import { reaction } from 'k-ramel'
-import { startSubmit, stopSubmit, reset } from 'redux-form'
 import { push } from 'redux-little-router'
 import compareDesc from 'date-fns/compare_desc'
 
 import { getRouterParam } from 'store/reducers/router'
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 
-export const createTalk = reaction(async (action, store) => {
-  const FORM = 'talk-create'
-  const talk = action.payload
-  try {
-    // indicate start submitting form
-    store.dispatch(startSubmit(FORM))
-    // get user id
-    const { uid } = store.auth.get()
-    // create talk into database
-    const ref = await talkCrud.create({ ...talk, speakers: { [uid]: true } })
-    // reset form
-    store.dispatch(reset(FORM))
-    // set form submitted
-    store.dispatch(stopSubmit(FORM))
-    // go to talk page
-    store.dispatch(push(`/speaker/talk/${ref.id}`))
-  } catch (error) {
-    store.dispatch(stopSubmit(FORM, { _error: error.message }))
-    throw error
-  }
+export const createTalk = reaction(async (action, store, { form }) => {
+  const createForm = form('talk-create')
+  const talk = createForm.getFormValues()
+  // get user id
+  const { uid } = store.auth.get()
+  // create talk into database
+  const ref = await createForm.asyncSubmit(talkCrud.create, { ...talk, speakers: { [uid]: true } })
+  // go to talk page
+  store.dispatch(push(`/speaker/talk/${ref.id}`))
 })
 
-export const updateTalk = reaction(async (action, store) => {
-  const FORM = 'talk-edit'
-  const talk = action.payload
-  try {
-    // indicate start submitting form
-    store.dispatch(startSubmit(FORM))
-    // update talk into database
-    await talkCrud.update(talk)
-    // update talk into data store
-    store.data.talks.update(talk)
-    // set form submitted
-    store.dispatch(stopSubmit(FORM))
-    // go to talk page
-    store.dispatch(push(`/speaker/talk/${talk.id}`))
-  } catch (error) {
-    store.dispatch(stopSubmit(FORM, { _error: error.message }))
-    throw error
-  }
+export const updateTalk = reaction((action, store, { form }) => {
+  const updateForm = form('talk-edit')
+  const talk = updateForm.getFormValues()
+  // create talk into database
+  updateForm.asyncSubmit(talkCrud.update, talk)
+  // update talk into data store
+  store.data.talks.update(talk)
+  // go to talk page
+  store.dispatch(push(`/speaker/talk/${talk.id}`))
 })
 
 export const fetchTalk = reaction(async (action, store) => {

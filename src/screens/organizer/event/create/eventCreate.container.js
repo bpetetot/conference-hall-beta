@@ -12,7 +12,7 @@ const mapStore = store => ({
   form: FORM_NAME,
   type: select(store.getState(), 'type'),
   initialValues: { type: 'conference', conferenceDates: {} },
-  onSubmit: data => store.dispatch({ type: '@@ui/ON_CREATE_EVENT', payload: data }),
+  onSubmit: () => store.dispatch('@@ui/ON_CREATE_EVENT'),
 })
 
 export default compose(
