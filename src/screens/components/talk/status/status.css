@@ -15,3 +15,8 @@
 .submission-status .status-warning {
   background: var(--warning-color);
 }
+
+.submission-status .status-warning > a {
+  color: #fff;
+  text-decoration: none;
+}

@@ -5,9 +5,17 @@ import cn from 'classnames'
 import Badge from 'components/badge'
 import './status.css'
 
-const Status = ({ submitted, outOfDate, className }) => (
+const Status = ({
+  submitted, outOfDate, onClickEdit, className,
+}) => (
   <div className={cn('submission-status', className)}>
-    {outOfDate && <Badge className="status-warning">Out of date</Badge>}
+    {outOfDate && (
+      <Badge className="status-warning">
+        <a role="button" onClick={onClickEdit}>
+          Out of date
+        </a>
+      </Badge>
+    )}
     {submitted && <Badge>Submitted</Badge>}
   </div>
 )
@@ -15,6 +23,7 @@ const Status = ({ submitted, outOfDate, className }) => (
 Status.propTypes = {
   submitted: PropTypes.bool,
   outOfDate: PropTypes.bool,
+  onClickEdit: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 

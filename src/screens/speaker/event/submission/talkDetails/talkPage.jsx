@@ -16,9 +16,9 @@ const TalkPage = ({
         <IconLabel icon="fa fa-angle-right" label="Next" right />
       </button>
     </Titlebar>
+    <TalkStatus className="talk-status" talkId={id} eventId={eventId} />
     <div className="talk-page">
       <TalkAbstract className="talk-content" abstract={abstract} references={references} />
-      <TalkStatus talkId={id} eventId={eventId} />
       <TalkSpeakers className="talk-info" speakers={speakers} level={level} />
     </div>
   </div>
