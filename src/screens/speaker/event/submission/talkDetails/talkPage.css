@@ -2,16 +2,24 @@
   width: 100%;
 }
 
+.talk-details .talk-title {
+  margin-bottom: 1em;
+}
+
 .talk-page {
   display: grid;
   grid-template-columns: auto 30%;
   grid-template-rows: auto;
-  grid-template-areas: 'talk-content talk-info';
+  grid-template-areas: 'talk-status talk-status' 'talk-content talk-info';
   grid-gap: 2em;
 }
 
 .talk-page .talk-content {
   grid-area: talk-content;
+}
+
+.talk-page .talk-status {
+  grid-area: talk-status;
 }
 
 .talk-page .talk-info {

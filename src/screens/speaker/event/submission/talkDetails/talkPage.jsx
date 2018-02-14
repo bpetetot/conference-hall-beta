@@ -1,27 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
-import { TalkAbstract, TalkSpeakers } from 'screens/components/talk'
+import { TalkAbstract, TalkSpeakers, TalkStatus } from 'screens/components/talk'
 
 import './talkPage.css'
 
 const TalkPage = ({
-  id, title, abstract, level, references, speakers, onNext,
+  id, eventId, title, abstract, level, references, speakers, onNext,
 }) => (
   <div className="talk-details">
-    <Titlebar icon="fa fa-microphone" title={title}>
-      <Link href={`/speaker/talk/${id}/edit`} className="btn">
-        <IconLabel icon="fa fa-pencil" label="Edit" />
-      </Link>
+    <Titlebar icon="fa fa-microphone" title={title} className="talk-title">
       <button className="btn btn-primary" onClick={onNext}>
         <IconLabel icon="fa fa-angle-right" label="Next" right />
       </button>
     </Titlebar>
     <div className="talk-page">
       <TalkAbstract className="talk-content" abstract={abstract} references={references} />
+      <TalkStatus talkId={id} eventId={eventId} />
       <TalkSpeakers className="talk-info" speakers={speakers} level={level} />
     </div>
   </div>
@@ -29,6 +26,7 @@ const TalkPage = ({
 
 TalkPage.propTypes = {
   id: PropTypes.string.isRequired,
+  eventId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   abstract: PropTypes.string,
   level: PropTypes.string,

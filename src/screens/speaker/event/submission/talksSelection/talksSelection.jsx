@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
 import NoTalks from 'screens/speaker/components/noTalks'
-import TalkCardInfo from './talkCardInfo'
+import Status from 'screens/components/talk/status'
 
 const TalksSelection = ({ eventId, talks, onSelect }) => (
   <List
@@ -14,7 +14,7 @@ const TalksSelection = ({ eventId, talks, onSelect }) => (
         key={id}
         title={title}
         subtitle={<RelativeDate date={updateTimestamp} />}
-        info={<TalkCardInfo eventId={eventId} talkId={id} />}
+        info={<Status eventId={eventId} talkId={id} />}
         onSelect={() => onSelect(id)}
       />
     )}

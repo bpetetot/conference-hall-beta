@@ -1,0 +1,17 @@
+.submission-status {
+  display: flex;
+  align-items: center;
+  justify-self: flex-start;
+}
+
+.submission-status > * {
+  margin-left: 1em;
+}
+
+.submission-status > *:first-child {
+  margin-left: 0;
+}
+
+.submission-status .status-warning {
+  background: var(--warning-color);
+}

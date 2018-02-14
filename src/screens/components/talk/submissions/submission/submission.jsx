@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Badge from 'components/badge'
+import Status from '../../status'
 import './submission.css'
 
 const Submission = ({
-  name, status, onClickEdit, onClickEvent,
+  talkId, eventId, name, onClickEdit, onClickEvent,
 }) => (
   <div className="talk-submission-event">
     <a onClick={onClickEvent} role="button">
       {name}
     </a>
     <div className="talk-submission-event-actions">
-      <Badge>{status}</Badge>
+      <Status talkId={talkId} eventId={eventId} />
       <a onClick={onClickEdit} role="button">
         <i className="fa fa-pencil" />
       </a>
@@ -21,15 +21,15 @@ const Submission = ({
 )
 
 Submission.propTypes = {
+  talkId: PropTypes.string.isRequired,
+  eventId: PropTypes.string.isRequired,
   name: PropTypes.string,
-  status: PropTypes.string,
   onClickEdit: PropTypes.func.isRequired,
   onClickEvent: PropTypes.func.isRequired,
 }
 
 Submission.defaultProps = {
   name: undefined,
-  status: 'submitted',
 }
 
 export default Submission
