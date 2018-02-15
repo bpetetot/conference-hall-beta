@@ -14,7 +14,7 @@ const mapStore = (store) => {
   return {
     loaded: !!talk,
     form: FORM_NAME,
-    initialValues: { ...talk },
+    initialValues: talk,
     load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
     onSubmit: () => store.dispatch('@@ui/ON_UPDATE_TALK'),
   }
