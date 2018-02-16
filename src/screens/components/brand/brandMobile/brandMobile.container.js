@@ -1,4 +1,4 @@
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 import { goBack } from 'redux-little-router'
 import { getBaseRoute, getAppTitle, isMobileMenuRoute } from 'store/reducers/router'
 

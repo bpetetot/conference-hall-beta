@@ -1,4 +1,4 @@
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 
 import { isRouteNotFound } from 'store/reducers/router'
 import NotFound from './notFound'

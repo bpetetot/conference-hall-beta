@@ -1,4 +1,4 @@
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 
 import { getRouterParam } from 'store/reducers/router'
 import ProposalFilters from './proposalFilters'

@@ -1,4 +1,4 @@
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 
 import ItemsWithModal from './itemsWithModal'
 

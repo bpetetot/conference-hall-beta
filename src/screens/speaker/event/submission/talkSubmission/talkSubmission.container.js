@@ -1,5 +1,5 @@
 import { compose } from 'redux'
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 
 import { isSubmitted } from 'store/reducers/data/talks.selector'
 import TalkSubmission from './talkSubmission'

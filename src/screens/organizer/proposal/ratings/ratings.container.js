@@ -1,5 +1,5 @@
 /* eslint-disable prefer-destructuring */
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 
 import Ratings from './ratings'
 

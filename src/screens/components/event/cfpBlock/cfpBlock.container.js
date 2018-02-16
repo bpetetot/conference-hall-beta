@@ -1,4 +1,4 @@
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 
 import { getCfpState } from 'store/reducers/data/events.selector'
 import CfpBlock from './cfpBlock'

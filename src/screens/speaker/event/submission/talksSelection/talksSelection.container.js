@@ -1,5 +1,5 @@
 import { compose } from 'redux'
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 import loader from 'components/loader'
 import TalksSelection from './talksSelection'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import { provider } from 'k-ramel/react'
+import { provider } from '@k-ramel/react'
 
 import withTheme from 'styles/themes/withTheme'
 import NotFound from './screens/components/notFound'

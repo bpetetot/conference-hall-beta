@@ -1,5 +1,5 @@
 import { compose } from 'redux'
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
 

@@ -1,4 +1,4 @@
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 import { compose } from 'redux'
 
 import loader from 'components/loader'

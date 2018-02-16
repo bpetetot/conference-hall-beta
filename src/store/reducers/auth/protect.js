@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { replace } from 'redux-little-router'
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 
 export default (Component) => {
   class ProtectedComponent extends React.Component {
