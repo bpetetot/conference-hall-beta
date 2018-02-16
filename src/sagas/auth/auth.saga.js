@@ -5,8 +5,19 @@ import { push, replace } from 'redux-little-router'
 import usersData from 'redux/data/users'
 import userCrud from 'sagas/user/user.firebase'
 
-function* signin() {
-  const provider = yield new firebase.auth.GoogleAuthProvider()
+function* signin(providerId) {
+  let provider
+  switch (providerId) {
+  case 'google':
+    provider = yield new firebase.auth.GoogleAuthProvider()
+    break
+  case 'twitter':
+    provider = yield new firebase.auth.TwitterAuthProvider()
+    break
+  case 'github':
+    provider = yield new firebase.auth.GithubAuthProvider()
+    break
+  }
   yield call(() => firebase.auth().signInWithPopup(provider))
 }
 
