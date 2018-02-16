@@ -6,7 +6,7 @@ import EventSidebar from './eventSidebar'
 const mapStore = (store) => {
   const eventId = getRouterParam('eventId')(store.getState())
   const event = store.data.events.get(eventId)
-  return event
+  return { ...event }
 }
 
 export default inject(mapStore)(EventSidebar)

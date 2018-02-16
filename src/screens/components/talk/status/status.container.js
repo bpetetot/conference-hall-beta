@@ -1,4 +1,4 @@
-import { inject } from 'k-ramel/react'
+import { inject } from '@k-ramel/react'
 
 import { isSubmitted, isOutOfDateForEvent } from 'store/reducers/data/talks.selector'
 import Status from './status'
