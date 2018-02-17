@@ -5,7 +5,7 @@ import forRoute from 'hoc-little-router'
 import Login from './login'
 
 const mapStore = store => ({
-  authenticated: store.auth.authenticated,
+  ...store.auth.get(),
   signin: provider => store.dispatch({ type: '@@ui/SIGN_IN', payload: provider }),
 })
 

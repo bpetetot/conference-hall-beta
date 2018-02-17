@@ -5,8 +5,25 @@ import { push, replace } from 'redux-little-router'
 
 import userCrud from 'firebase/user'
 
-export const signin = reaction(() => {
-  const provider = new firebase.auth.GoogleAuthProvider()
+export const signin = reaction((action) => {
+  const providerId = action.payload
+  let provider
+  switch (providerId) {
+    case 'google':
+      provider = new firebase.auth.GoogleAuthProvider()
+      break
+    case 'twitter':
+      provider = new firebase.auth.TwitterAuthProvider()
+      break
+    case 'github':
+      provider = new firebase.auth.GithubAuthProvider()
+      break
+    case 'facebook':
+      provider = new firebase.auth.FacebookAuthProvider()
+      break
+    default:
+      return
+  }
   firebase.auth().signInWithPopup(provider)
 })
 
@@ -19,7 +36,7 @@ export const signedIn = reaction(async (action, store) => {
   let user = pick(action.payload, ['uid', 'displayName', 'photoURL', 'email'])
 
   // set auth initialized and authenticated
-  store.auth.set({ initialized: true, authenticated: true, uid: user.uid })
+  store.auth.update({ initialized: true, authenticated: true, uid: user.uid })
 
   // check if user exists in database
   const userRef = await userCrud.read(user.uid)
@@ -40,6 +57,6 @@ export const signedIn = reaction(async (action, store) => {
 })
 
 export const signedOut = reaction((action, store) => {
-  store.auth.set({ initialized: true, authenticated: false, uid: undefined })
+  store.auth.update({ initialized: true, authenticated: false, uid: undefined })
   store.data.users.reset()
 })
