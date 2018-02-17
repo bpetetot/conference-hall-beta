@@ -1,28 +1,28 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
+import { push } from 'redux-little-router'
 import loader from 'hoc-react-loader/build/core'
 
-import eventsData from 'redux/data/events'
 import Submission from './submission'
 
-const mapState = (state, { eventId }) => {
-  const { id, name } = eventsData.get(eventId)(state) || {}
-  return { id, name }
+const mapStore = (store, { eventId, talkId }) => {
+  const { id, name } = store.data.events.get(eventId) || {}
+  return {
+    id,
+    name,
+    load: () => {
+      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
+    },
+    onClickEdit: () => {
+      store.dispatch({ type: '@@ui/GO_TO_EVENT_SUBMISSION', payload: { eventId, talkId } })
+    },
+    onClickEvent: () => {
+      store.dispatch(push(`/speaker/event/${eventId}`))
+    },
+  }
 }
 
-const mapDispatch = (dispatch, { eventId, talkId }) => ({
-  load: () => {
-    dispatch({ type: 'FETCH_EVENT', payload: { eventId } })
-  },
-  onClickEdit: () => {
-    dispatch({ type: 'OPEN_SUBMISSION_EVENTINFO_PAGE', payload: { eventId, talkId } })
-  },
-  onClickEvent: () => {
-    dispatch({ type: 'SPEAKER/OPEN_EVENT_PAGE', payload: { eventId } })
-  },
-})
-
 export default compose(
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
   loader(), //
 )(Submission)

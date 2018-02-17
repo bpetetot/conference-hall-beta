@@ -1,15 +1,15 @@
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 
-import { isCfpOpened } from 'redux/data/events'
+import { isCfpOpened } from 'store/reducers/data/events.selector'
 import SubmitTalkLink from './submitTalkLink'
 
-const mapState = (state, { eventId }) => {
-  const cfpOpened = isCfpOpened(eventId)(state)
-  return { eventId, displayed: eventId && cfpOpened }
+const mapStore = (store, { eventId }) => {
+  const cfpOpened = isCfpOpened(eventId)(store)
+  return {
+    eventId,
+    displayed: eventId && cfpOpened,
+    onClick: () => store.dispatch({ type: '@@ui/GO_TO_SELECT_SUBMISSION', payload: { eventId } }),
+  }
 }
 
-const mapDispatch = (dispatch, { eventId }) => ({
-  onClick: () => dispatch({ type: 'OPEN_SUBMISSION_SELECTION_PAGE', payload: { eventId } }),
-})
-
-export default connect(mapState, mapDispatch)(SubmitTalkLink)
+export default inject(mapStore)(SubmitTalkLink)

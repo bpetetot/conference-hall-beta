@@ -2,7 +2,7 @@ import React from 'react'
 import { compose } from 'redux'
 import forRoute from 'hoc-little-router'
 
-import { protect } from 'redux/auth'
+import { protect } from 'store/reducers/auth'
 import { Brand, Navbar } from 'screens/components'
 import { Sidebar, SidebarMobile } from './sidebar'
 

@@ -1,10 +1,8 @@
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 
-import { isRouteNotFound } from 'redux/router'
+import { isRouteNotFound } from 'store/reducers/router'
 import NotFound from './notFound'
 
-const mapState = state => ({
-  isRouteNotFound: isRouteNotFound(state),
-})
-
-export default connect(mapState)(NotFound)
+export default inject(store => ({
+  isRouteNotFound: isRouteNotFound(store.getState()),
+}))(NotFound)

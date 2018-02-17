@@ -1,19 +1,15 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
-import { isAuthenticated } from 'redux/auth'
 import Login from './login'
 
-const mapState = state => ({
-  authenticated: isAuthenticated(state),
-})
-
-const mapDispatch = dispatch => ({
-  signin: provider => dispatch({ type: 'AUTH/SIGN_IN', payload: provider }),
+const mapStore = store => ({
+  authenticated: store.auth.authenticated,
+  signin: provider => store.dispatch({ type: '@@ui/SIGN_IN', payload: provider }),
 })
 
 export default compose(
   forRoute.absolute('LOGIN'), //
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
 )(Login)

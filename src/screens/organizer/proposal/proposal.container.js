@@ -1,25 +1,25 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
-import { getRouterParam } from 'redux/router'
-import proposalsData from 'redux/data/proposals'
+import { getRouterParam } from 'store/reducers/router'
 import Proposal from './proposal'
 
-const mapState = (state) => {
-  const eventId = getRouterParam('eventId')(state)
-  const proposalId = getRouterParam('proposalId')(state)
-  const proposal = proposalsData.get(proposalId)(state)
-  return { loaded: !!proposal, proposal, eventId }
+const mapStore = (store) => {
+  const eventId = getRouterParam('eventId')(store.getState())
+  const proposalId = getRouterParam('proposalId')(store.getState())
+  const proposal = store.data.proposals.get(proposalId)
+  return {
+    loaded: !!proposal,
+    proposal,
+    eventId,
+    load: () => store.dispatch('@@ui/ON_LOAD_PROPOSAL'),
+  }
 }
-
-const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'LOAD_PROPOSAL_PAGE' }),
-})
 
 export default compose(
   forRoute.absolute('PROPOSAL'), //
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
   loader, //
 )(Proposal)

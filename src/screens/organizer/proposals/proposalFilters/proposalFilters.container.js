@@ -1,19 +1,20 @@
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 
-import { getRouterParam } from 'redux/router'
-import eventsData from 'redux/data/events'
-import filtersUI from 'redux/ui/organizer/proposals/filters'
+import { getRouterParam } from 'store/reducers/router'
 import ProposalFilters from './proposalFilters'
 
-const mapState = (state) => {
-  const eventId = getRouterParam('eventId')(state)
-  const filters = filtersUI.get()(state)
-  const { formats, categories } = eventsData.get(eventId)(state) || {}
-  return { formats, categories, filters }
+const mapStore = (store) => {
+  const eventId = getRouterParam('eventId')(store.getState())
+  const filters = store.ui.organizer.proposals.get()
+  const { formats, categories } = store.data.events.get(eventId) || {}
+  return {
+    formats,
+    categories,
+    filters,
+    onChange: ({ target }) => {
+      store.ui.organizer.proposals.update({ [target.id]: target.value })
+    },
+  }
 }
 
-const mapDispatch = dispatch => ({
-  onChange: ({ target }) => dispatch(filtersUI.update({ [target.id]: target.value })),
-})
-
-export default connect(mapState, mapDispatch)(ProposalFilters)
+export default inject(mapStore)(ProposalFilters)

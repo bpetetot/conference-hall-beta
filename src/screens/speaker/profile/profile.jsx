@@ -35,7 +35,7 @@ Profile.propTypes = {
 }
 
 Profile.defaultProps = {
-  displayName: 'noname',
+  displayName: undefined,
   email: undefined,
   photoURL: undefined, // TODO add a default avatar (if not given)
 }

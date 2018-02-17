@@ -8,7 +8,9 @@ import Speaker from '../../speaker'
 const TalkSpeakers = ({ speakers, level, className }) => (
   <div className={cn('card', className)}>
     <h3>Speakers & Details</h3>
-    {Object.keys(speakers).map(key => <Speaker key={key} id={key} className="talk-info-speaker" />)}
+    {Object.keys(speakers).map(key => (
+      <Speaker key={key} id={key} className="talk-info-speaker" />
+      ))}
     <Badge>Level {level}</Badge>
   </div>
 )

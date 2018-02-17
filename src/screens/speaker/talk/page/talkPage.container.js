@@ -1,24 +1,23 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
-import { getRouterParam } from 'redux/router'
-import talksData from 'redux/data/talks'
+import { getRouterParam } from 'store/reducers/router'
 import loader from 'components/loader'
 import TalkPage from './talkPage'
 
-const mapState = (state) => {
-  const talkId = getRouterParam('talkId')(state)
-  const talk = talksData.get(talkId)(state)
-  return { loaded: !!talk, ...talk }
+const mapStore = (store) => {
+  const talkId = getRouterParam('talkId')(store.getState())
+  const talk = store.data.talks.get(talkId)
+  return {
+    loaded: !!talk,
+    ...talk,
+    load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
+  }
 }
-
-const mapDispatch = dispatch => ({
-  load: () => dispatch({ type: 'ON_LOAD_TALK_PAGE' }),
-})
 
 export default compose(
   forRoute.absolute('TALK_PAGE'), //
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
   loader, //
 )(TalkPage)

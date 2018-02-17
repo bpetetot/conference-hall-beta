@@ -1,25 +1,19 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 
-import proposalsData from 'redux/data/proposals'
 import loader from 'components/loader'
 import ProposalsList from './proposalsList'
 
-const mapState = state => ({
-  loaded: proposalsData.isInitialized(state),
-  proposals: proposalsData.getAsArray(state),
-})
-
-const mapDispatch = dispatch => ({
-  load: () => {
-    dispatch({ type: 'LOAD_EVENT_PROPOSALS_PAGE' })
-  },
+const mapStore = store => ({
+  loaded: store.data.proposals.isInitialized(),
+  proposals: store.data.proposals.getAsArray(),
+  load: () => store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS'),
   onSelect: (eventId, proposalId) => {
-    dispatch({ type: 'SELECT_PROPOSAL', payload: { eventId, proposalId } })
+    store.dispatch({ type: '@@ui/ON_SELECT_PROPOSAL', payload: { eventId, proposalId } })
   },
 })
 
 export default compose(
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
   loader, //
 )(ProposalsList)

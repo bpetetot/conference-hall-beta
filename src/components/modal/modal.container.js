@@ -1,16 +1,12 @@
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 
 import withTheme from 'styles/themes/withTheme'
-import { isModalOpened, closeModal } from 'redux/ui/modal'
 
 import Modal from './modal'
 
-const mapState = (state, { id }) => ({
-  opened: isModalOpened(state)(id),
+const mapStore = (store, { id }) => ({
+  opened: store.ui.modal.get().openedModal === id,
+  onClose: () => store.ui.modal.set({ openedModal: undefined }),
 })
 
-const mapDispatch = dispatch => ({
-  onClose: () => dispatch(closeModal()),
-})
-
-export default connect(mapState, mapDispatch)(withTheme(Modal))
+export default inject(mapStore)(withTheme(Modal))

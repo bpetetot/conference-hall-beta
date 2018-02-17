@@ -1,28 +1,24 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
-import eventsData from 'redux/data/events'
 import EventForm from '../../components/eventForm'
 
 const FORM_NAME = 'event-edit'
 const select = formValueSelector(FORM_NAME)
 
-const mapState = (state, { eventId }) => {
-  const event = eventsData.get(eventId)(state)
+const mapStore = (store, { eventId }) => {
+  const event = store.data.events.get(eventId)
   return {
     form: FORM_NAME,
-    type: select(state, 'type'),
+    type: select(store.getState(), 'type'),
     initialValues: event,
+    onSubmit: () => store.dispatch('@@ui/ON_UPDATE_EVENT_DETAILS'),
   }
 }
 
-const mapDispatch = dispatch => ({
-  onSubmit: data => dispatch({ type: 'SUBMIT_UPDATE_EVENT_FORM', payload: data }),
-})
-
 export default compose(
   forRoute.absolute('EDIT_EVENT'), //
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
 )(EventForm)

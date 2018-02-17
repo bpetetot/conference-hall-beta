@@ -1,20 +1,15 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 import loader from 'hoc-react-loader/build/core'
 
-import usersData from 'redux/data/users'
 import Speaker from './speaker'
 
-const mapState = (state, { uid }) => {
-  const user = usersData.get(uid)(state)
-  return { ...user }
-}
-
-const mapDispatch = (dispatch, { id }) => ({
-  load: () => dispatch({ type: 'FETCH_USER', payload: id }),
+const mapStore = (store, { uid }) => ({
+  ...store.data.users.get(uid),
+  load: () => store.dispatch({ type: '@@ui/FETCH_USER', payload: uid }),
 })
 
 export default compose(
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
   loader(), //
 )(Speaker)

@@ -1,15 +1,15 @@
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 
-import { getUser } from 'redux/auth'
 import AvatarDropdown from './avatarDropdown'
 
-const mapState = (state) => {
-  const { displayName, photoURL } = getUser(state)
-  return { displayName, photoURL }
+const mapStore = (store) => {
+  const { uid } = store.auth.get()
+  const { displayName, photoURL } = store.data.users.get(uid) || {}
+  return {
+    displayName,
+    photoURL,
+    signout: () => store.dispatch('@@ui/SIGN_OUT'),
+  }
 }
 
-const mapDispatch = dispatch => ({
-  signout: () => dispatch({ type: 'AUTH/SIGN_OUT' }),
-})
-
-export default connect(mapState, mapDispatch)(AvatarDropdown)
+export default inject(mapStore)(AvatarDropdown)

@@ -1,5 +1,5 @@
 import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { inject } from '@k-ramel/react'
 import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
@@ -8,17 +8,14 @@ import EventForm from '../components/eventForm'
 const FORM_NAME = 'event-create'
 const select = formValueSelector(FORM_NAME)
 
-const mapState = state => ({
+const mapStore = store => ({
   form: FORM_NAME,
-  type: select(state, 'type'),
+  type: select(store.getState(), 'type'),
   initialValues: { type: 'conference', conferenceDates: {} },
-})
-
-const mapDispatch = dispatch => ({
-  onSubmit: data => dispatch({ type: 'SUBMIT_CREATE_EVENT_FORM', payload: data }),
+  onSubmit: () => store.dispatch('@@ui/ON_CREATE_EVENT'),
 })
 
 export default compose(
   forRoute.absolute('CREATE_EVENT'), //
-  connect(mapState, mapDispatch), //
+  inject(mapStore), //
 )(EventForm)

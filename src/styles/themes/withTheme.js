@@ -1,12 +1,12 @@
-import { connect } from 'react-redux'
-import { isOrganizerRoute, isSpeakerRoute } from 'redux/router'
+import { inject } from '@k-ramel/react'
+import { isOrganizerRoute, isSpeakerRoute } from 'store/reducers/router'
 import classnames from 'classnames'
 
-const mapState = (state, { className }) => ({
+const mapStore = (store, { className }) => ({
   className: classnames('default-theme', className, {
-    'red-theme': isOrganizerRoute(state),
-    'blue-theme': isSpeakerRoute(state),
+    'red-theme': isOrganizerRoute(store.getState()),
+    'blue-theme': isSpeakerRoute(store.getState()),
   }),
 })
 
-export default connect(mapState)
+export default inject(mapStore)
