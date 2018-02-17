@@ -6,13 +6,15 @@ import { getRouterParam } from 'store/reducers/router'
 import loader from 'components/loader'
 import TalkForm from '../components/talkForm'
 
+const FORM_NAME = 'talk-edit'
+
 const mapStore = (store) => {
   const talkId = getRouterParam('talkId')(store.getState())
   const talk = store.data.talks.get(talkId)
   return {
     loaded: !!talk,
-    form: 'talk-edit',
-    initialValues: { ...talk },
+    form: FORM_NAME,
+    initialValues: talk,
     load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
     onSubmit: () => store.dispatch('@@ui/ON_UPDATE_TALK'),
   }
