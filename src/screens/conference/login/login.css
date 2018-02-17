@@ -53,3 +53,13 @@
   background: #fff;
   color: #000;
 }
+
+.login button.btn-facebook {
+  background: #3b5998;
+  color: #fff;
+}
+
+.login button.btn-facebook:hover {
+  background: #fff;
+  color: #3b5998;
+}
