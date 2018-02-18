@@ -5,6 +5,7 @@ import cn from 'classnames'
 import IconLabel from 'components/iconLabel'
 import { LoadingIndicator } from 'components/loader'
 import Rating from 'components/rating'
+import './ratings.css'
 
 const Ratings = ({
   isLoaded,
@@ -17,19 +18,17 @@ const Ratings = ({
   onPrevious,
   className,
 }) => (
-  <div className={cn(className, 'card')}>
-    <div>
-      <button className="btn btn-link" disabled={!hasPrevious} onClick={onPrevious}>
-        <IconLabel icon="fa fa-angle-left" label="Previous" />
-      </button>
+  <div className={cn(className, 'proposal-ratings-layout card')}>
+    <button className="btn btn-link btn-previous" disabled={!hasPrevious} onClick={onPrevious}>
+      <IconLabel icon="fa fa-angle-left" label="Previous" />
+    </button>
+    <div className="btn-ratings">
+      {!isLoaded && <LoadingIndicator />}
+      {isLoaded && <Rating onRating={onRating} rating={rating} feeling={feeling} />}
     </div>
-    {!isLoaded && <LoadingIndicator />}
-    {isLoaded && <Rating onRating={onRating} rating={rating} feeling={feeling} />}
-    <div>
-      <button className="btn btn-link" disabled={!hasNext} onClick={onNext}>
-        <IconLabel icon="fa fa-angle-right" label="Next" right />
-      </button>
-    </div>
+    <button className="btn btn-link btn-next" disabled={!hasNext} onClick={onNext}>
+      <IconLabel icon="fa fa-angle-right" label="Next" right />
+    </button>
   </div>
 )
 

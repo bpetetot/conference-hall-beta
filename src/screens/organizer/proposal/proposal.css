@@ -37,7 +37,19 @@
 .proposal-ratings {
   grid-area: proposal-ratings;
   align-self: start;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+}
+
+
+@media only screen and (max-width: 480px) {
+  .proposal {
+    grid-template-columns: 100%;
+    grid-template-areas:
+      'proposal-ratings'
+      'proposal-talk'
+      'proposal-speakers';
+  }
+
+  .proposal .card {
+    padding: 1em;
+  }
 }
