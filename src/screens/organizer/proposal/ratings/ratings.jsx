@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import IconLabel from 'components/iconLabel'
+import { LoadingIndicator } from 'components/loader'
 import Rating from 'components/rating'
 
 const Ratings = ({
@@ -22,6 +23,7 @@ const Ratings = ({
         <IconLabel icon="fa fa-angle-left" label="Previous" />
       </button>
     </div>
+    {!isLoaded && <LoadingIndicator />}
     {isLoaded && <Rating onRating={onRating} rating={rating} feeling={feeling} />}
     <div>
       <button className="btn btn-link" disabled={!hasNext} onClick={onNext}>
