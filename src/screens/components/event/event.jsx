@@ -1,14 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
 
-import Titlebar from 'components/titlebar'
-import IconLabel from 'components/iconLabel'
-import CopyInput from 'components/copyInput'
 import Maps from 'components/maps'
 import Markdown from 'components/markdown'
-
-import SubmitTalkLink from '../submitTalksLink'
+import EventTitle from './eventTitle'
+import EventActions from './eventActions'
 import Address from './addressBlock'
 import List from './listBlock'
 import Cfp from './cfpBlock'
@@ -28,36 +24,26 @@ const Event = ({
   website,
   categories,
   formats,
-}) => {
-  const url = window.location.href.split('/')
-  return (
-    <div className="event-page">
-      <Titlebar icon="fa fa-calendar-check-o" title={name} className="event-page-header">
-        {isOrganizer && (
-          <CopyInput title="Share link" value={`${url[0]}//${url[2]}/public/event/${id}`} />
-        )}
-        <SubmitTalkLink className="btn" eventId={id} />
-        {isOrganizer && (
-          <Link href={`/organizer/event/${id}/edit`} className="btn">
-            <IconLabel icon="fa fa-pencil" label="Edit" />
-          </Link>
-        )}
-      </Titlebar>
-      <div className="event-page-content card">
-        <Cfp eventId={id} className="event-cfp" />
-        <Markdown className="event-content" source={description} />
-        <List className="event-categories" title="Talk categories" list={categories} />
-        <List className="event-formats" title="Talk formats" list={formats} />
-      </div>
-      <div className="event-page-info card">
-        <Maps address={address} />
+}) => (
+  <div className="event-page">
+    <EventTitle name={name} className="event-page-header" />
+    <Cfp eventId={id} className="event-page-cfp" />
+    <EventActions className="event-page-actions" eventId={id} isOrganizer={isOrganizer} />
+    <div className="event-page-content card">
+      <Markdown className="event-content" source={description} />
+      <List className="event-categories" title="Talk categories" list={categories} />
+      <List className="event-formats" title="Talk formats" list={formats} />
+    </div>
+    <div className="event-page-info card">
+      <Maps address={address} />
+      <div className="event-page-info-detail">
         {type === 'conference' && <Dates className="event-date" dates={conferenceDates} />}
         <Address className="event-address" address={address} />
         <Website className="event-date" website={website} />
       </div>
     </div>
-  )
-}
+  </div>
+)
 
 Event.propTypes = {
   isOrganizer: PropTypes.bool.isRequired,
