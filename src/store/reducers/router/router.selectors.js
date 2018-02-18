@@ -20,10 +20,11 @@ const matchRoute = (result, title) => {
 
 // route matching
 export const isRouteNotFound = state => !getRouterResult(state)
-export const isPublicRoute = state => matchRoute(getRouterResult(state), 'PUBLIC')
-export const isOrganizerRoute = state => matchRoute(getRouterResult(state), 'HOME_ORGANIZER')
-export const isSpeakerRoute = state => matchRoute(getRouterResult(state), 'HOME_SPEAKER')
-export const isMobileMenuRoute = state => matchRoute(getRouterResult(state), 'MOBILE_MENU')
+export const isRoute = title => state => matchRoute(getRouterResult(state), title)
+export const isPublicRoute = state => isRoute('PUBLIC')(state)
+export const isOrganizerRoute = state => isRoute('HOME_ORGANIZER')(state)
+export const isSpeakerRoute = state => isRoute('HOME_SPEAKER')(state)
+export const isMobileMenuRoute = state => isRoute('MOBILE_MENU')(state)
 
 // router attributes selectors
 export const getAppName = state => getRecursively(getRouterResult(state), 'app')

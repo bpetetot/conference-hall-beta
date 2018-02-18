@@ -5,6 +5,7 @@ import { isSubmitted, isOutOfDateForEvent } from 'store/reducers/data/talks.sele
 import Status from './status'
 
 const mapStore = (store, { talkId, eventId }) => ({
+  loaded: !!store.data.events.get(eventId),
   cfpOpened: isCfpOpened(eventId)(store),
   submitted: isSubmitted(talkId, eventId)(store),
   outOfDate: isOutOfDateForEvent(talkId, eventId)(store),

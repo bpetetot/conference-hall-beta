@@ -1,11 +1,12 @@
 import { when } from 'k-ramel'
 
+import * as app from './reactions/app'
+import * as router from './reactions/router'
 import * as auth from './reactions/auth'
 import * as firebase from './reactions/firebase'
 import * as user from './reactions/user'
 import * as talks from './reactions/talks'
 import * as events from './reactions/events'
-import * as speakerApp from './reactions/speakerApp'
 import * as submissions from './reactions/submissions'
 import * as proposals from './reactions/proposals'
 import * as ratings from './reactions/ratings'
@@ -13,6 +14,10 @@ import * as ratings from './reactions/ratings'
 export default [
   /* app loaded */
   when('@@krml/INIT')(firebase.init),
+  when('@@krml/INIT')(app.init),
+  when('@@krml/INIT')(router.init),
+  /* router */
+  when('ROUTER_LOCATION_CHANGED')(router.onRouteChanged),
   /* firebase actions */
   when('@@firebase/SIGNED_IN')(auth.signedIn),
   when('@@firebase/SIGNED_OUT')(auth.signedOut),
@@ -22,9 +27,6 @@ export default [
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   when('@@ui/SAVE_PROFILE')(user.saveProfile),
-  /* speaker app */
-  when('@@ui/ON_LOAD_SPEAKER_APP')(speakerApp.init),
-  when('@@ui/ON_CHANGE_SPEAKER_APP_EVENT')(speakerApp.setCurrentEvent),
   /* talks */
   when('@@ui/ON_CREATE_TALK')(talks.createTalk),
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
