@@ -34,7 +34,7 @@ const Event = ({
     <div className="event-page">
       <Titlebar icon="fa fa-calendar-check-o" title={name} className="event-page-header">
         {isOrganizer && (
-          <CopyInput title="Share link" value={`${url[0]}/${url[2]}/public/event/${id}`} />
+          <CopyInput title="Share link" value={`${url[0]}//${url[2]}/public/event/${id}`} />
         )}
         <SubmitTalkLink className="btn" eventId={id} />
         {isOrganizer && (
