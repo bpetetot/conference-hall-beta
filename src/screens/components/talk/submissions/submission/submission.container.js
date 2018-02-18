@@ -5,16 +5,13 @@ import loader from 'hoc-react-loader/build/core'
 
 import Submission from './submission'
 
-const mapStore = (store, { eventId, talkId }) => {
+const mapStore = (store, { eventId }) => {
   const { id, name } = store.data.events.get(eventId) || {}
   return {
     id,
     name,
     load: () => {
       store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
-    },
-    onClickEdit: () => {
-      store.dispatch({ type: '@@ui/GO_TO_EVENT_SUBMISSION', payload: { eventId, talkId } })
     },
     onClickEvent: () => {
       store.dispatch(push(`/speaker/event/${eventId}`))
