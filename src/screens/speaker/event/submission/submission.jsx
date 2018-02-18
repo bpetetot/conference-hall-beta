@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Stepper from 'components/stepper'
-import SubmissionTitle from './submissionTitle'
+import EventTitle from 'screens/components/event/eventTitle'
 import Selection from './talksSelection'
 import TalkDetails from './talkDetails'
 import TalkSubmission from './talkSubmission'
@@ -23,7 +23,7 @@ const Submission = ({
   if (!eventId || !cfpOpened) return null
   return (
     <div className="submission">
-      <SubmissionTitle eventName={eventName} />
+      <EventTitle name={eventName} />
       <Stepper steps={steps} currentStep={currentStep} />
       {currentStep === 0 && <Selection eventId={eventId} eventName={eventName} />}
       {currentStep === 1 && <TalkDetails eventId={eventId} eventName={eventName} />}

@@ -4,26 +4,25 @@ import cn from 'classnames'
 import isEmpty from 'lodash/isEmpty'
 
 import { lgf } from 'helpers/date'
-import IconCard from 'components/iconCard'
 import './cfpBlock.css'
 
 class CfpBlock extends Component {
   renderCfpLabel = () => {
     const { cfpState } = this.props
-    if (cfpState === 'not-started') return <b>is not open yet</b>
-    if (cfpState === 'opened') return <b>is opened</b>
-    return <b>is closed</b>
+    if (cfpState === 'not-started') return 'is not open yet'
+    if (cfpState === 'opened') return 'is opened'
+    return 'is closed'
   }
 
   renderConferenceDates = () => {
     const { cfpState, cfpDates, deliberationDate } = this.props
     return (
       <div>
-        {cfpState === 'not-started' &&
-          !isEmpty(cfpDates) && <small>will open {lgf(cfpDates.start)}</small>}
-        {cfpState === 'opened' && !isEmpty(cfpDates) && <small>until {lgf(cfpDates.end)}</small>}
+        {cfpState === 'not-started' && !isEmpty(cfpDates) && `will open ${lgf(cfpDates.start)}`}
+        {cfpState === 'opened' && !isEmpty(cfpDates) && `until ${lgf(cfpDates.end)}`}
         {cfpState === 'closed' &&
-          deliberationDate && <small>Deliberation date will be {lgf(deliberationDate)}</small>}
+          deliberationDate &&
+          `Deliberation date will be ${lgf(deliberationDate)}`}
       </div>
     )
   }
@@ -31,13 +30,14 @@ class CfpBlock extends Component {
   render() {
     const { type, cfpState, className } = this.props
     return (
-      <IconCard
-        icon="fa fa-paper-plane-o"
-        className={cn('cfp-block', className, `cfp-block-${cfpState}`)}
-      >
-        <h3>Call for paper {this.renderCfpLabel()}</h3>
-        {type === 'conference' && this.renderConferenceDates()}
-      </IconCard>
+      <div className={cn('cfp-block', className, `cfp-block-${cfpState}`)}>
+        <h2>
+          <div className="cfp-block-title">Call for paper {this.renderCfpLabel()}</div>
+          <div className="cfp-block-subtitle">
+            {type === 'conference' && this.renderConferenceDates()}
+          </div>
+        </h2>
+      </div>
     )
   }
 }
