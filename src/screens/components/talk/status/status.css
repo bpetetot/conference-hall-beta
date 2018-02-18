@@ -20,3 +20,7 @@
   color: #fff;
   text-decoration: none;
 }
+
+.submission-status .status-closed {
+  background: var(--error-color);
+}

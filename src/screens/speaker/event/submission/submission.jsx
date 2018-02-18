@@ -17,8 +17,10 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const Submission = ({ eventId, eventName, currentStep }) => {
-  if (!eventId) return null
+const Submission = ({
+  eventId, cfpOpened, eventName, currentStep,
+}) => {
+  if (!eventId || !cfpOpened) return null
   return (
     <div className="submission">
       <SubmissionTitle eventName={eventName} />
@@ -33,12 +35,14 @@ const Submission = ({ eventId, eventName, currentStep }) => {
 
 Submission.propTypes = {
   eventId: PropTypes.string,
+  cfpOpened: PropTypes.bool,
   eventName: PropTypes.string,
   currentStep: PropTypes.number,
 }
 
 Submission.defaultProps = {
   eventId: undefined,
+  cfpOpened: false,
   eventName: undefined,
   currentStep: 0,
 }

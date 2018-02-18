@@ -5,7 +5,7 @@ import Status from '../../status'
 import './submission.css'
 
 const Submission = ({
-  talkId, eventId, name, onClickEdit, onClickEvent,
+  talkId, eventId, name, onClickEvent,
 }) => (
   <div className="talk-submission-event">
     <a onClick={onClickEvent} role="button">
@@ -13,9 +13,6 @@ const Submission = ({
     </a>
     <div className="talk-submission-event-actions">
       <Status talkId={talkId} eventId={eventId} />
-      <a onClick={onClickEdit} role="button">
-        <i className="fa fa-pencil" />
-      </a>
     </div>
   </div>
 )
@@ -24,7 +21,6 @@ Submission.propTypes = {
   talkId: PropTypes.string.isRequired,
   eventId: PropTypes.string.isRequired,
   name: PropTypes.string,
-  onClickEdit: PropTypes.func.isRequired,
   onClickEvent: PropTypes.func.isRequired,
 }
 
