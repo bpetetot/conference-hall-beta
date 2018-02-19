@@ -9,7 +9,7 @@
     "lint": "eslint --ext js,jsx src"
   },
   "dependencies": {
-    "@k-ramel/react": "^0.8.0",
+    "@k-ramel/react": "^0.9.0",
     "classnames": "^2.2.5",
     "date-fns": "^1.29.0",
     "firebase": "^4.9.1",
