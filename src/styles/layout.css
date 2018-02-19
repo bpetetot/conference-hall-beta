@@ -4,12 +4,12 @@
 
 .layout-sidebar {
   grid-area: sidebar;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .layout-main {
   grid-area: main;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .layout-main > * {

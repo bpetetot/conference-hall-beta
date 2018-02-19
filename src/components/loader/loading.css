@@ -2,12 +2,14 @@
  * Spinner by @tobiasahlin
  * http://tobiasahlin.com/spinkit/
  */
-.spinner {
+ div.spinner {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+  margin: 0;
 }
 
 .spinner > div {
