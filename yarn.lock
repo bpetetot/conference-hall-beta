@@ -83,13 +83,13 @@
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.6.tgz#a4b81ca8cdeb1acbc7923289a4a514f61b59db86"
 
-"@k-ramel/driver-http@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.8.0.tgz#8f7129009a82244587c0602f6d053fbcebd9344d"
+"@k-ramel/driver-http@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.9.0.tgz#9f4e762fa44256f34c8d1f7128c8682c7f3818fd"
 
-"@k-ramel/react@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-0.8.0.tgz#dbca5e3b08347af764a820b2920ec2220e143d23"
+"@k-ramel/react@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-0.9.0.tgz#9cd1fdc26f9674ed60587ba19c51f5d0c6eaf26e"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -4348,11 +4348,11 @@ jsx-ast-utils@^2.0.0, jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
-k-ramel@0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.8.0.tgz#e14722342e46607cf398a2e6e89fbcc46a2b6f8f"
+k-ramel@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.9.0.tgz#4c455d8feecc0fbece303e9706a686de5d958bf1"
   dependencies:
-    "@k-ramel/driver-http" "^0.8.0"
+    "@k-ramel/driver-http" "^0.9.0"
     k-redux-factory "5.0.1"
     redux "3.7.2"
 
