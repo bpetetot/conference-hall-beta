@@ -5,7 +5,6 @@ import { getRouterParam } from 'store/reducers/router'
 import { getRatings, addRating } from 'firebase/ratings'
 import { updateRating } from 'firebase/proposals'
 
-// FIXME : only used in proposals
 export const fetchRatings = reaction(async (action, store) => {
   const { eventId, proposalId } = action.payload
   // wipe current ratings

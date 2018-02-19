@@ -5,6 +5,7 @@ import { getRouterParam } from 'store/reducers/router'
 import { fetchProposal, fetchEventProposals } from 'firebase/proposals'
 
 export const loadEventProposals = reaction(async (action, store) => {
+  store.data.proposals.reset()
   // get needed inputs
   const eventId = getRouterParam('eventId')(store.getState())
   const { uid } = store.auth.get()
@@ -17,9 +18,8 @@ export const loadEventProposals = reaction(async (action, store) => {
 })
 
 export const getProposal = reaction(async (action, store) => {
-  // get event id from router
+  // get event & proposal id from router
   const eventId = getRouterParam('eventId')(store.getState())
-  // get proposal id from router
   const proposalId = getRouterParam('proposalId')(store.getState())
   // check if already in the store
   const inStore = store.data.proposals.get(proposalId)
