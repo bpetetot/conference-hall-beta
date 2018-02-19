@@ -6,23 +6,27 @@ import Badge from 'components/badge'
 import './status.css'
 
 const Status = ({
-  submitted, cfpOpened, outOfDate, onClickEdit, className,
-}) => (
-  <div className={cn('submission-status', className)}>
-    {outOfDate &&
-      cfpOpened && (
-        <Badge className="status-warning">
-          <a role="button" onClick={onClickEdit}>
-            Out of date
-          </a>
-        </Badge>
-      )}
-    {!cfpOpened && <Badge className="status-closed">CFP closed</Badge>}
-    {submitted && <Badge>Submitted</Badge>}
-  </div>
-)
+  loaded, submitted, cfpOpened, outOfDate, onClickEdit, className,
+}) => {
+  if (!loaded) return null
+  return (
+    <div className={cn('submission-status', className)}>
+      {outOfDate &&
+        cfpOpened && (
+          <Badge className="status-warning">
+            <a role="button" onClick={onClickEdit}>
+              Out of date
+            </a>
+          </Badge>
+        )}
+      {!cfpOpened && <Badge className="status-closed">CFP closed</Badge>}
+      {submitted && <Badge>Submitted</Badge>}
+    </div>
+  )
+}
 
 Status.propTypes = {
+  loaded: PropTypes.bool,
   submitted: PropTypes.bool,
   outOfDate: PropTypes.bool,
   cfpOpened: PropTypes.bool,
@@ -31,6 +35,7 @@ Status.propTypes = {
 }
 
 Status.defaultProps = {
+  loaded: false,
   submitted: false,
   outOfDate: false,
   cfpOpened: true,

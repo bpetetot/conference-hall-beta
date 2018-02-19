@@ -1,1 +1,1 @@
-export { default } from './speaker.container'
+export { default } from './speaker'

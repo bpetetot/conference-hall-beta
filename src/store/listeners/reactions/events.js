@@ -28,9 +28,6 @@ export const updateEvent = formName =>
 export const fetchEvent = reaction(async (action, store) => {
   const eventId = action.payload || getRouterParam('eventId')(store.getState())
   if (!eventId) return
-  // reset and update
-  store.dispatch({ type: '@@ui/ON_CHANGE_SPEAKER_APP_EVENT', payload: { eventId } })
-  store.data.proposals.reset()
   // check if already in the store
   const current = store.data.events.get(eventId)
   if (current && current.id === eventId) return
