@@ -1,3 +1,22 @@
 .talk-speakers {
   margin-bottom: 2em;
 }
+
+.talk-speakers > h3 {
+  margin-bottom: 2em;
+}
+
+.talk-speaker-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.talk-speaker-row img {
+  font-size: 1.4em;
+}
+
+.talk-speaker-row a {
+  color: var(--grey-color-dark);
+}

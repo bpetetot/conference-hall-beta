@@ -11,7 +11,11 @@ export const createTalk = reaction(async (action, store, { form }) => {
   // get user id
   const { uid } = store.auth.get()
   // create talk into database
-  const ref = await createForm.asyncSubmit(talkCrud.create, { ...talk, speakers: { [uid]: true } })
+  const ref = await createForm.asyncSubmit(talkCrud.create, {
+    ...talk,
+    owner: uid,
+    speakers: { [uid]: true },
+  })
   // go to talk page
   store.dispatch(push(`/speaker/talk/${ref.id}`))
 })
