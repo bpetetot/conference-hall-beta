@@ -19,14 +19,6 @@
   align-self: start;
 }
 
-.talk-page .talk-info .talk-info-speaker {
-  margin-bottom: 1em;
-}
-
-.talk-page .talk-info .talk-info-speaker img {
-  font-size: 1.4em;
-}
-
 .talk-page .talk-info .talk-submissions > div:last-child {
   padding-bottom: 0;
 }

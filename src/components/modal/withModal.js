@@ -1,9 +1,6 @@
-/* eslint-disable react/jsx-filename-extension, react/prop-types */
-import React from 'react'
-import Modal from './modal.container'
+import { inject } from '@k-ramel/react'
 
-export default id => Component => ({ modalId, children, ...rest }) => (
-  <Modal id={id || modalId}>
-    <Component {...rest} />
-  </Modal>
-)
+export default id => Component => inject(store => ({
+  openModal: () => store.ui.modal.set({ openedModal: id }),
+  closeModal: () => store.ui.modal.set({ openedModal: undefined }),
+}))(Component)

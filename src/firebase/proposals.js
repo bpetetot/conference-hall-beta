@@ -53,20 +53,18 @@ export const fetchEventProposals = async (eventId, uid, { categories, formats, s
 /**
  * Add a proposal to an event
  * @param {string} eventId event id
- * @param {object} talk talk data to copy
- * @param {object} talkDataForEvent talk data for event
+ * @param {object} submittedTalk submittedTalk data
  */
-export const addProposal = (eventId, talk, talkDataForEvent) => {
-  const { submissions, ...copyTalk } = talk
+export const addProposal = (eventId, submittedTalk) => {
+  const { submissions, ...copyTalk } = submittedTalk
   firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('proposals')
-    .doc(talk.id)
+    .doc(submittedTalk.id)
     .set({
       ...copyTalk,
-      ...talkDataForEvent,
       rating: null,
       state: 'submitted',
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -88,17 +86,16 @@ export const removeProposal = async (eventId, talkId) => {
     .delete()
 }
 
-export const updateProposal = (eventId, talk, talkDataForEvent) => {
-  const { submissions, ...copyTalk } = talk
+export const updateProposal = (eventId, submittedTalk) => {
+  const { submissions, ...copyTalk } = submittedTalk
   firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('proposals')
-    .doc(talk.id)
+    .doc(submittedTalk.id)
     .update({
       ...copyTalk,
-      ...talkDataForEvent,
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
 }

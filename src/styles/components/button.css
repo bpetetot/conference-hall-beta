@@ -29,6 +29,20 @@
   top: 1px;
 }
 
+/** Button default */
+.btn.btn-default {
+  background: var(--primary-color-font);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn.btn-default:hover {
+  background: var(--primary-color);
+  color: var(--primary-color-font);
+  border: 1px solid var(--primary-color);
+  text-decoration: none;
+}
+
 /** Button primary */
 .btn.btn-primary {
   background: var(--secondary-color);
@@ -57,15 +71,15 @@
 /** Button disabled */
 .btn:disabled {
   cursor: not-allowed;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  color: rgba(0, 0, 0, 0.5);
+  background: none;
+  border: 1px solid var(--grey-color);
+  color: var(--grey-color);
 }
 
 .btn:disabled:hover {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  color: rgba(0, 0, 0, 0.5);
+  background: none;
+  border: 1px solid var(--grey-color);
+  color: var(--grey-color);
 }
 
 .btn.btn-link:disabled {

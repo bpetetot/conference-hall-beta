@@ -9,7 +9,7 @@ import TalkTitle from './talkTitle'
 import './talkPage.css'
 
 const TalkPage = ({
-  id, eventId, title, abstract, level, references, speakers, onNext,
+  id, eventId, title, abstract, level, owner, references, speakers, onNext,
 }) => {
   const titleComponent = <TalkTitle talkId={id} eventId={eventId} title={title} />
   return (
@@ -20,8 +20,13 @@ const TalkPage = ({
         </button>
       </Titlebar>
       <div className="talk-page">
-        <TalkAbstract className="talk-content" abstract={abstract} references={references} />
-        <TalkSpeakers className="talk-info" speakers={speakers} level={level} />
+        <TalkAbstract
+          className="talk-content"
+          abstract={abstract}
+          references={references}
+          level={level}
+        />
+        <TalkSpeakers className="talk-info" owner={owner} speakers={speakers} />
       </div>
     </div>
   )
@@ -33,6 +38,7 @@ TalkPage.propTypes = {
   title: PropTypes.string.isRequired,
   abstract: PropTypes.string,
   level: PropTypes.string,
+  owner: PropTypes.string,
   references: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
   onNext: PropTypes.func.isRequired,
@@ -41,6 +47,7 @@ TalkPage.propTypes = {
 TalkPage.defaultProps = {
   abstract: undefined,
   level: 'not defined',
+  owner: undefined,
   references: undefined,
   speakers: {},
 }

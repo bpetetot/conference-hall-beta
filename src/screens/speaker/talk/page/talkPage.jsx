@@ -9,7 +9,7 @@ import { TalkAbstract, TalkSpeakers, TalkSubmissions } from 'screens/components/
 import './talkPage.css'
 
 const TalkPage = ({
-  id, title, abstract, level, references, speakers, submissions,
+  id, title, abstract, level, owner, references, speakers, submissions,
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
@@ -18,9 +18,14 @@ const TalkPage = ({
       </Link>
     </Titlebar>
     <div className="talk-page">
-      <TalkAbstract className="talk-content" abstract={abstract} references={references} />
+      <TalkAbstract
+        className="talk-content"
+        abstract={abstract}
+        references={references}
+        level={level}
+      />
       <div className="talk-info">
-        <TalkSpeakers speakers={speakers} level={level} />
+        <TalkSpeakers speakers={speakers} owner={owner} edit />
         <TalkSubmissions id={id} submissions={submissions} />
       </div>
     </div>
@@ -32,6 +37,7 @@ TalkPage.propTypes = {
   title: PropTypes.string.isRequired,
   abstract: PropTypes.string,
   level: PropTypes.string,
+  owner: PropTypes.string,
   references: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
   submissions: PropTypes.objectOf(PropTypes.any),
@@ -40,6 +46,7 @@ TalkPage.propTypes = {
 TalkPage.defaultProps = {
   abstract: undefined,
   level: 'not defined',
+  owner: undefined,
   references: undefined,
   speakers: {},
   submissions: {},

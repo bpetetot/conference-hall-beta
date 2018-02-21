@@ -1,9 +1,12 @@
 import { reaction } from 'k-ramel'
 import { push } from 'redux-little-router'
+import isEmpty from 'lodash/isEmpty'
 import compareDesc from 'date-fns/compare_desc'
+import { set, unset } from 'immutadot'
 
 import { getRouterParam } from 'store/reducers/router'
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
+import { fetchUsersByEmail } from 'firebase/user'
 
 export const createTalk = reaction(async (action, store, { form }) => {
   const createForm = form('talk-create')
@@ -11,7 +14,11 @@ export const createTalk = reaction(async (action, store, { form }) => {
   // get user id
   const { uid } = store.auth.get()
   // create talk into database
-  const ref = await createForm.asyncSubmit(talkCrud.create, { ...talk, speakers: { [uid]: true } })
+  const ref = await createForm.asyncSubmit(talkCrud.create, {
+    ...talk,
+    owner: uid,
+    speakers: { [uid]: true },
+  })
   // go to talk page
   store.dispatch(push(`/speaker/talk/${ref.id}`))
 })
@@ -49,4 +56,36 @@ export const fetchSpeakerTalks = reaction(async (action, store) => {
   const sorted = talks.sort((t1, t2) => compareDesc(t1.updateTimestamp, t2.updateTimestamp))
   store.ui.speaker.myTalks.reset()
   store.ui.speaker.myTalks.set(sorted)
+})
+
+export const searchSpeakerByEmail = reaction(async (action, store) => {
+  const email = action.payload
+  store.ui.speaker.speakerAddModal.set({ searching: true, email, speakers: [] })
+  const users = await fetchUsersByEmail(email)
+  if (!isEmpty(users)) {
+    users.forEach(user => store.data.users.addOrUpdate(user))
+    store.ui.speaker.speakerAddModal.update({
+      searching: false,
+      speakers: users.map(user => user.uid),
+    })
+  } else {
+    store.ui.speaker.speakerAddModal.update({ searching: false })
+  }
+})
+
+export const updateSpeakerToTalk = reaction(async (action, store) => {
+  const { uid, talkId } = action.payload
+  const talk = store.data.talks.get(talkId)
+  if (talk) {
+    let updated
+    if (action.type === '@@ui/ADD_SPEAKER_TO_TALK') {
+      updated = set(talk, `speakers.${uid}`, true)
+    } else if (action.type === '@@ui/REMOVE_SPEAKER_TO_TALK') {
+      updated = unset(talk, `speakers.${uid}`)
+    }
+    if (updated && Object.keys(updated.speakers).length > 0) {
+      await talkCrud.update(updated)
+      store.data.talks.update(updated)
+    }
+  }
 })

@@ -1,0 +1,14 @@
+.input-button {
+  display: flex;
+}
+
+.input-button > input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: transparent;
+}
+
+.input-button > button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
