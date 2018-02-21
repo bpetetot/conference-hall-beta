@@ -19,9 +19,11 @@ class CopyInput extends PureComponent {
     const { title, value } = this.props
     return (
       <div className="copy-input">
-        <label htmlFor="copy-input" className="copy-title">
-          {title}
-        </label>
+        {title && (
+          <label htmlFor="copy-input" className="copy-title">
+            {title}
+          </label>
+        )}
         <input
           id="copy-input"
           type="text"

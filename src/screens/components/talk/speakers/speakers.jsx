@@ -2,25 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import AddSpeakerButton from './addSpeakerButton'
+import AddSpeaker from './addSpeaker'
+import RemoveSpeaker from './removeSpeaker'
 import Speaker from '../../speaker'
-import './speaker.css'
+import './speakers.css'
 
 const TalkSpeakers = ({ speakers, owner, className }) => (
   <div className={cn('talk-speakers card', className)}>
     <h3>Speakers</h3>
     {Object.keys(speakers).map(key => (
-      <div className="talk-speaker-row">
-        <Speaker key={key} id={key} />
+      <div key={key} className="talk-speaker-row">
+        <Speaker id={key} />
         {owner === key && <small>owner</small>}
-        {owner !== key && (
-          <a role="button" onClick="#">
-            <i className="fa fa-trash fa-lg" />
-          </a>
-        )}
+        {owner !== key && <RemoveSpeaker uid={key} />}
       </div>
     ))}
-    <AddSpeakerButton />
+    <AddSpeaker />
   </div>
 )
 

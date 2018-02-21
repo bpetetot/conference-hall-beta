@@ -1,0 +1,36 @@
+.speakers-result {
+  display: flex;
+  flex-direction: column;
+}
+
+.speakers-result > h3 {
+  margin-top: 1em;
+}
+
+.speakers-result > div {
+  padding: 1em;
+  cursor: pointer;
+  border: 1px solid  var(--grey-color);
+  border-bottom: none;
+}
+
+.speakers-result > div:last-child {
+  border: 1px solid  var(--grey-color);
+}
+
+.speakers-result > div:hover {
+  background: var(--grey-color-light)
+}
+
+.speakers-result > div img {
+  font-size: 1.5em;
+}
+
+.speakers-no-result {
+  margin-top: 1em;
+  color: var(--error-color);
+}
+
+.speakers-no-result > div {
+  margin-top: .5em;
+}
