@@ -25,7 +25,7 @@ const TalkPage = ({
         level={level}
       />
       <div className="talk-info">
-        <TalkSpeakers speakers={speakers} owner={owner} />
+        <TalkSpeakers speakers={speakers} owner={owner} edit />
         <TalkSubmissions id={id} submissions={submissions} />
       </div>
     </div>

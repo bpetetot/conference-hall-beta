@@ -14,8 +14,8 @@ const AddSpeakerModal = ({
   <Modal id={modalId} className="add-speaker-modal">
     <h1>Add a co-speaker</h1>
     <p>
-      Search and add a co-speaker to your talk, he/she will be also able to update it and submit it to
-      any event.<br />Your co-speaker must already have a Speaker Hall account.
+      Search and add a co-speaker to your talk, he/she will be also able to update it and submit it
+      to any event.<br />Your co-speaker must already have a Speaker Hall account.
     </p>
     <p>
       For security and privacy reasons, you can search a speaker only by his/her registered email
