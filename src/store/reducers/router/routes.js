@@ -43,6 +43,7 @@ export default {
         '/edit': { title: 'EDIT_TALK' },
       },
     },
+    '/invite/talk/:talkId/:uid': { title: 'INVITE_SPEAKER' },
     '/event': {
       title: 'HOME_EVENT',
       '/:eventId': {

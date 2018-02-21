@@ -13,7 +13,7 @@ const AddSpeakerButton = ({ openModal }) => (
       <span className="add-speaker-button-icon">
         <i className="fa fa-user fa-lg" />
       </span>
-      <span className="add-speaker-button-label">Add a speaker</span>
+      <span className="add-speaker-button-label">Add a co-speaker</span>
     </a>
     <AddSpeakerModal modalId={ADD_SPEAKER_MODAL} />
   </Fragment>

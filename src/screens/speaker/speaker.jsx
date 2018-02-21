@@ -12,6 +12,7 @@ import TalkEdit from './talk/edit'
 import Talk from './talk/page'
 import EventPage from './event/page'
 import EventSubmission from './event/submission'
+import InviteSpeaker from './inviteSpeaker'
 
 const Speaker = () => (
   <div className="layout-screen">
@@ -27,6 +28,7 @@ const Speaker = () => (
       <MyTalks />
       <EventPage />
       <EventSubmission />
+      <InviteSpeaker />
     </div>
   </div>
 )

@@ -3,19 +3,19 @@ import PropTypes from 'prop-types'
 
 import Modal from 'components/modal'
 import InputButton from 'components/form/inputButton'
-import CopyInput from 'components/copyInput'
 import { LoadingIndicator } from 'components/loader'
 import SpeakerResults from './speakerResults'
+import InviteSpeaker from './inviteSpeaker'
 import './addSpeakerModal.css'
 
 const AddSpeakerModal = ({
   modalId, initialized, email, searching, speakers, onSearch,
 }) => (
   <Modal id={modalId} className="add-speaker-modal">
-    <h1>Add a speaker</h1>
+    <h1>Add a co-speaker</h1>
     <p>
-      Search and add a speaker to your talk, he/she will be also able to update and submit it to any
-      event. The speaker must already have a Speaker Hall account.
+      Search and add a co-speaker to your talk, he/she will be also able to update it and submit it to
+      any event.<br />Your co-speaker must already have a Speaker Hall account.
     </p>
     <p>
       For security and privacy reasons, you can search a speaker only by his/her registered email
@@ -24,7 +24,7 @@ const AddSpeakerModal = ({
     {!searching && (
       <InputButton
         type="search"
-        placeholder="Search a speaker by email"
+        placeholder="Search a co-speaker by email"
         btnLabel="Search"
         autoFocus
         defaultValue={email}
@@ -36,7 +36,7 @@ const AddSpeakerModal = ({
     <div className="speaker-search-separator">
       <small>or send him/her an invite link to your talk</small>
     </div>
-    <CopyInput title="Invite link" value="http://localhost/speaker/invite/talk/id" />
+    <InviteSpeaker />
   </Modal>
 )
 

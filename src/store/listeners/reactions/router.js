@@ -20,4 +20,10 @@ export const onRouteChanged = reaction((action, store) => {
       store.ui.app.update({ currentEventId: eventId })
     }
   }
+  if (isRoute('INVITE_SPEAKER')(state)) {
+    const talkId = getRouterParam('talkId')(state)
+    const uid = getRouterParam('uid')(state)
+    store.dispatch({ type: '@@ui/ON_LOAD_TALK', payload: talkId })
+    store.dispatch({ type: '@@ui/FETCH_USER', payload: uid })
+  }
 })
