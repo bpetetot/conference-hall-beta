@@ -1,7 +1,50 @@
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write;
+
+  	function authenticated() { return request.auth.uid != null; }
+    function itsMine() { return resource.id == request.auth.uid }
+    function myTalk() { return resource.data.speakers[request.auth.uid] == true }
+    function myEvent() { return resource.data.owner == request.auth.uid }
+    function myRating() { return resource.id == request.auth.uid }
+    function validInviteTalk(database, uid) {
+    	return resource.data.inviteCode == get(/databases/$(database)/documents/users/$(uid)).data.inviteCode
+    }
+    function fromMyTalk(database, talk) {
+    	return get(/databases/$(database)/documents/talks/$(talk)).data.speakers[request.auth.uid] == true
+    }
+    function fromMyEvent(database, event) {
+    	return get(/databases/$(database)/documents/events/$(event)).data.owner == request.auth.uid
+    }
+
+    // USERS
+  	match /users/{user} {
+    	allow get: if authenticated();
+    	allow list: if authenticated();
+      allow write: if authenticated() && itsMine();
+    }
+
+    // TALKS
+    match /talks/{talk} {
+      allow read, write: if authenticated(); // && (myTalk() || validInviteTalk(database, request.auth.uid))
+    }
+
+    // EVENTS
+    match /events/{event} {
+      allow get: if true;
+      allow list: if authenticated();
+      allow write: if authenticated() && myEvent();
+    }
+
+    // PROPOSALS
+    match /events/{event}/proposals/{proposal} {
+      allow read: if authenticated() && fromMyEvent(database, event);
+      allow write: if authenticated() && (fromMyEvent(database, event) || fromMyTalk(database, resource.id))
+    }
+
+    // RATINGS
+    match /events/{event}/proposals/{proposal}/ratings/{rating} {
+      allow read: if authenticated() && fromMyEvent(database, event);
+      allow write: if authenticated() && fromMyEvent(database, event) && myRating()
     }
   }
 }
