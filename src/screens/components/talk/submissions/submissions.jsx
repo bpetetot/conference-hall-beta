@@ -6,6 +6,7 @@ import { Link } from 'redux-little-router'
 import IconLabel from 'components/iconLabel'
 
 import Submission from './submission'
+import './submissions.css'
 
 const TalkSubmissions = ({ id, submissions, className }) => (
   <div className={cn('card', className)}>
@@ -18,9 +19,11 @@ const TalkSubmissions = ({ id, submissions, className }) => (
         ))}
       </div>
     )}
-    <Link href={`/speaker/talk/${id}/submission`} className="btn">
-      <IconLabel icon="fa fa-paper-plane" label="Submit" />
-    </Link>
+    <div className="talk-submit">
+      <Link href={`/speaker/talk/${id}/submission`} className="btn">
+        <IconLabel icon="fa fa-paper-plane" label="Submit" />
+      </Link>
+    </div>
   </div>
 )
 
