@@ -21,8 +21,8 @@ const Profile = ({
       <Field name="company" label="Company" type="text" component={input} />
       <Field name="phone" label="Phone" type="text" component={input} />
       <Field name="language" label="Favorite language" type="text" component={input} />
-      <Field name="twitter" label="Twitter" type="text" component={input} />
-      <Field name="github" label="Github" type="text" component={input} />
+      <Field name="twitter" label="Twitter" type="text" component={input} placeholder="@username" />
+      <Field name="github" label="Github" type="text" component={input} placeholder="username" />
       <Field name="city" label="City" type="text" component={address} />
       <Field name="bio" label="Biography" component={textarea} />
       <SubmitButton {...formProps}>Save profile</SubmitButton>
