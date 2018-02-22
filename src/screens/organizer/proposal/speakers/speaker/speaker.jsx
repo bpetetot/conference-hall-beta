@@ -7,12 +7,14 @@ import Markdown from 'components/markdown'
 import './speaker.css'
 
 const Speaker = ({
-  uid, email, company, language, city, bio,
+  uid, email, github, twitter, company, language, city, bio,
 }) => (
   <div>
     <Avatar id={uid} className="proposal-speaker-avatar" />
     <div className="proposal-speaker-icons">
       <IconLabel icon="fa fa-envelope-o" label={email} />
+      <IconLabel icon="fa fa-github" label={github} />
+      <IconLabel icon="fa fa-twitter" label={twitter} />
       <IconLabel icon="fa fa-building-o" label={company} />
       <IconLabel icon="fa fa-map-marker" label={city} />
       <IconLabel icon="fa fa-language" label={language} />
@@ -24,6 +26,8 @@ const Speaker = ({
 Speaker.propTypes = {
   uid: PropTypes.string.isRequired,
   email: PropTypes.string,
+  github: PropTypes.string,
+  twitter: PropTypes.string,
   company: PropTypes.string,
   language: PropTypes.string,
   city: PropTypes.string,
@@ -32,6 +36,8 @@ Speaker.propTypes = {
 
 Speaker.defaultProps = {
   email: undefined,
+  github: undefined,
+  twitter: undefined,
   company: undefined,
   language: undefined,
   city: undefined,
