@@ -28,6 +28,7 @@ export default {
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },
     },
+    '/organizations': { title: 'HOME_ORGANIZATION' },
   },
   '/speaker': {
     app: 'speaker',
