@@ -3,11 +3,10 @@ import { inject } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
-import { getRouterParam } from 'store/reducers/router'
 import Proposals from './proposals'
 
-const mapStore = (store) => {
-  const eventId = getRouterParam('eventId')(store.getState())
+const mapStore = (store, props, { router }) => {
+  const eventId = router.getRouteParam('eventId')
   const event = store.data.events.get(eventId)
   const nbProposals = store.data.proposals.getLength()
   return {

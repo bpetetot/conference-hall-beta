@@ -4,11 +4,10 @@ import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
 import { isCfpOpened } from 'store/reducers/data/events.selector'
-import { getRouterParam } from 'store/reducers/router'
 import Submission from './submission'
 
-const mapStore = (store) => {
-  const eventId = getRouterParam('eventId')(store.getState())
+const mapStore = (store, props, { router }) => {
+  const eventId = router.getRouteParam('eventId')
   const event = store.data.events.get(eventId) || {}
   const { currentStep } = store.ui.speaker.submission.get()
   return {

@@ -1,10 +1,9 @@
 import { inject } from '@k-ramel/react'
 
-import { getRouterParam } from 'store/reducers/router'
 import RemoveSpeaker from './removeSpeaker'
 
-const mapStore = (store, { uid }) => {
-  const talkId = getRouterParam('talkId')(store.getState())
+const mapStore = (store, { uid }, { router }) => {
+  const talkId = router.getRouteParam('talkId')
   return {
     onRemoveSpeaker: () => {
       store.dispatch({ type: '@@ui/REMOVE_SPEAKER_TO_TALK', payload: { uid, talkId } })

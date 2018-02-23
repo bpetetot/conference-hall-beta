@@ -1,5 +1,5 @@
 import { inject } from '@k-ramel/react'
-import { getBaseRoute, getAppTitle } from 'store/reducers/router'
+import { getBaseRoute, getAppTitle } from 'store/drivers/redux-little-router'
 
 import Brand from './brand'
 

@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { reaction } from 'k-ramel'
 
-import { isRoute } from 'store/reducers/router'
+import { isRoute } from 'store/drivers/redux-little-router'
 
 export const init = reaction((action, store) => {
   if (isRoute('HOME_SPEAKER')(store.getState())) {

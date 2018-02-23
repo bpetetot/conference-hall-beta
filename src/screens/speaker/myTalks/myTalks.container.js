@@ -1,16 +1,15 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { push } from 'redux-little-router'
 import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
 import MyTalks from './myTalks'
 
-const mapStore = store => ({
+const mapStore = (store, props, { router }) => ({
   loaded: store.ui.speaker.myTalks.isInitialized(),
   talks: store.ui.speaker.myTalks.getAsArray(),
   load: () => store.dispatch('@@ui/ON_LOAD_SPEAKER_TALKS'),
-  onSelect: id => store.dispatch(push(`/speaker/talk/${id}`)),
+  onSelect: id => router.push(`/speaker/talk/${id}`),
 })
 
 export default compose(
