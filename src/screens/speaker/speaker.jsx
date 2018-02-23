@@ -9,6 +9,7 @@ import Profile from './profile'
 import MyTalks from './myTalks'
 import TalkCreate from './talk/create'
 import TalkEdit from './talk/edit'
+import TalkSubmission from './talk/submission'
 import Talk from './talk/page'
 import EventPage from './event/page'
 import EventSubmission from './event/submission'
@@ -24,6 +25,7 @@ const Speaker = () => (
       <Profile />
       <TalkCreate />
       <TalkEdit />
+      <TalkSubmission />
       <Talk />
       <MyTalks />
       <EventPage />
