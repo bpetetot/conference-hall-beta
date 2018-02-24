@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import { PreviewMarkdown } from 'components/markdown'
+import PreviewMarkdown from './preview'
 import './markdownInput.css'
 
 class MarkdownInput extends Component {
@@ -27,9 +27,10 @@ class MarkdownInput extends Component {
         >
           {value}
         </textarea>
-        <div className={cn('markdown-input-info', { 'markdown-input-focus': focus })}>
-          Markdown support <PreviewMarkdown markdown={this.props.value} />
-        </div>
+        <PreviewMarkdown
+          markdown={this.props.value}
+          className={cn({ 'markdown-input-focus': focus })}
+        />
       </div>
     )
   }

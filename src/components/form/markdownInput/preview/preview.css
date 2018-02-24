@@ -1,0 +1,28 @@
+.preview-markdown {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid var(--grey-color);
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  transition: all 0.5s;
+  background: #fff;
+  overflow: hidden;
+}
+
+.preview-markdown-link {
+  padding: 0.5em;
+  border-bottom: 1px dotted var(--grey-color);
+}
+
+.preview-markdown-display {
+  height: calc(100% - 5px);
+}
+
+.preview-markdown-display > .preview-markdown-content {
+  height: calc(100% - var(--md-header-size));
+  padding: 0 0.5em;
+  overflow: auto;
+}
