@@ -23,6 +23,10 @@
   padding: 2em;
 }
 
+.profile .profile-form > * {
+  margin-bottom: 0.7em;
+}
+
 .profile .profile-form > button {
   align-self: flex-end;
 }

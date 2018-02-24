@@ -1,0 +1,34 @@
+.markdown-input {
+  position: relative;
+  padding-bottom: 1.5em;
+}
+
+.markdown-input > textarea {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.markdown-input > textarea:focus {
+  border-bottom: none;
+}
+
+.markdown-input .markdown-input-info {
+  position: absolute;
+  font-size: 0.9em;
+  font-weight: 100;
+  padding: 0.3em;
+  bottom: 1px;
+  width: 100%;
+  color: var(--grey-color);
+  border: 1px solid var(--grey-color);
+  border-top: 1px dotted var(--grey-color);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  transition: all 0.5s;
+}
+
+.markdown-input .markdown-input-focus {
+  border-color: var(--primary-color);
+  border-top-color: var(--grey-color);
+}
