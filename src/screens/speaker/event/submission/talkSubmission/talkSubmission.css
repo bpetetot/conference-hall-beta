@@ -8,6 +8,6 @@
   flex-direction: column;
 }
 
-.submit-talk-form > h2 {
-  margin-bottom: 1.5em;
+.submit-talk-form > * {
+  margin-bottom: 0.7em;
 }
