@@ -8,9 +8,7 @@ import './markdownInput.css'
 class MarkdownInput extends Component {
   state = { focus: false }
 
-  toggleFocus = focus => () => {
-    this.setState({ focus })
-  }
+  toggleFocus = focus => () => this.setState({ focus })
 
   handlePreview = preview => !preview && this.textarea.focus()
 
@@ -21,7 +19,9 @@ class MarkdownInput extends Component {
       <div className="markdown-input">
         <textarea
           id={name}
-          ref={(e) => { this.textarea = e }}
+          ref={(e) => {
+            this.textarea = e
+          }}
           {...this.props}
           onFocus={this.toggleFocus(true)}
           onBlur={this.toggleFocus(false)}
@@ -29,7 +29,7 @@ class MarkdownInput extends Component {
           {value}
         </textarea>
         <PreviewMarkdown
-          markdown={this.props.value}
+          markdown={value}
           onDisplay={this.handlePreview}
           className={cn({ 'markdown-input-focus': focus })}
         />
@@ -41,16 +41,10 @@ class MarkdownInput extends Component {
 MarkdownInput.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
-  onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
 }
 
 MarkdownInput.defaultProps = {
   value: undefined,
-  onChange: undefined,
-  onFocus: undefined,
-  onBlur: undefined,
 }
 
 export default MarkdownInput
