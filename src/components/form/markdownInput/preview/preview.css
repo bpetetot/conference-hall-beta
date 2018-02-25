@@ -1,15 +1,14 @@
 .preview-markdown {
   position: absolute;
-  top: 0;
+  bottom: 0;
   width: 100%;
-  border-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
   border: 1px solid var(--grey-color);
-  border-bottom: none;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  transition: all 0.5s;
+  border-top: none;
   background: #fff;
   overflow: hidden;
+  transition: all 0.5s;
 }
 
 .preview-markdown-bar {
@@ -17,7 +16,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5em 0.7em;
-  border-bottom: 1px dotted var(--grey-color);
+  border-top: 1px dotted var(--grey-color);
 }
 
 .preview-markdown-bar > a {
@@ -44,11 +43,15 @@
 }
 
 .preview-markdown-display {
-  height: calc(100% - 5px);
+  height: 100%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .preview-markdown-display > .preview-markdown-content {
-  height: calc(100% - var(--md-header-size));
+  height: calc(100% - 31px);
   padding: 0.7em;
   overflow: auto;
+  border-top: 1px solid var(--grey-color);
+  border-radius: 3px;
 }

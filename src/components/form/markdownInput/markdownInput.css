@@ -1,20 +1,20 @@
 .markdown-input {
-  --md-header-size: 32px;
+  --md-header-size: 29px;
   position: relative;
-  padding-top: var(--md-header-size);
+  padding-bottom: var(--md-header-size);
 }
 
 .markdown-input > textarea {
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .markdown-input > textarea:focus {
-  border-top: none;
+  border-bottom: none;
 }
 
 .markdown-input .markdown-input-focus {
   border-color: var(--primary-color);
-  border-bottom-color: var(--grey-color);
+  border-top-color: var(--grey-color);
 }

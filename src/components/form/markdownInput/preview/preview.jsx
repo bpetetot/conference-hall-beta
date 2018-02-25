@@ -21,6 +21,7 @@ class PreviewMarkdown extends Component {
     const { display } = this.state
     return (
       <div className={cn('preview-markdown', { 'preview-markdown-display': display }, className)}>
+        {display && <Markdown source={markdown} className="preview-markdown-content" />}
         <div className="preview-markdown-bar">
           <div className="preview-markdown-icon">
             <MarkdownIcon />
@@ -34,7 +35,6 @@ class PreviewMarkdown extends Component {
             )}
           </a>
         </div>
-        {display && <Markdown source={markdown} className="preview-markdown-content" />}
       </div>
     )
   }
