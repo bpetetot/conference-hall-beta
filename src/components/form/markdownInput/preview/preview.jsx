@@ -2,28 +2,39 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import Markdown from 'components/markdown'
+import IconLabel from 'components/iconLabel'
+import Markdown, { MarkdownIcon } from 'components/markdown'
 import './preview.css'
 
 class PreviewMarkdown extends Component {
-  state = {
-    display: false,
+  state = { display: false }
+
+  handleDisplay = () => {
+    this.setState(
+      state => ({ display: !state.display }),
+      () => this.props.onDisplay(this.state.display),
+    )
   }
 
   render() {
     const { markdown, className } = this.props
     const { display } = this.state
     return (
-      <div className={cn('preview-markdown', className, { 'preview-markdown-display': display })}>
-        <div className="preview-markdown-link">
-          <a
-            onClick={() => this.setState({ display: !this.state.display })}
-            role="button"
-          >
-            {this.state.display ? 'Back to edit' : 'preview'}
+      <div className={cn('preview-markdown', { 'preview-markdown-display': display }, className)}>
+        <div className="preview-markdown-bar">
+          <div className="preview-markdown-icon">
+            <MarkdownIcon />
+            <span>&nbsp;markdown is supported</span>
+          </div>
+          <a onClick={this.handleDisplay} role="button">
+            {display ? (
+              <IconLabel icon="fa fa-pencil" label="write" />
+            ) : (
+              <IconLabel icon="fa fa-eye" label="preview" />
+            )}
           </a>
         </div>
-        {this.state.display && <Markdown source={markdown} className="preview-markdown-content" />}
+        {display && <Markdown source={markdown} className="preview-markdown-content" />}
       </div>
     )
   }
@@ -31,6 +42,7 @@ class PreviewMarkdown extends Component {
 
 PreviewMarkdown.propTypes = {
   markdown: PropTypes.string,
+  onDisplay: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 
