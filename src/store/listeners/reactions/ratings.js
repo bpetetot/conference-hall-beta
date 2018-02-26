@@ -22,7 +22,8 @@ export const rateProposal = reaction(async (action, store) => {
   const eventId = getRouterParam('eventId')(store.getState())
   const proposalId = getRouterParam('proposalId')(store.getState())
   // add or remove the rating in database and store
-  if (!rating.rating && !rating.feeling) {
+  const isRemoved = !rating.rating && !rating.feeling
+  if (isRemoved) {
     await deleteRating(eventId, proposalId, uid)
     store.data.ratings.remove([uid])
   } else {
@@ -35,6 +36,6 @@ export const rateProposal = reaction(async (action, store) => {
   const hates = getFeelingsCount('hate')(store)
   const ratingUpdated = { rating: avgRating, loves, hates }
   // save the rating average in database database and store
-  updateRating(eventId, proposalId, uid, ratingUpdated)
+  updateRating(eventId, proposalId, uid, ratingUpdated, isRemoved)
   store.data.proposals.update({ id: proposalId, ...ratingUpdated })
 })

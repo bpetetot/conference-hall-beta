@@ -100,12 +100,12 @@ export const updateProposal = (eventId, submittedTalk) => {
     })
 }
 
-export const updateRating = (eventId, talkId, uid, ratingUpdated) => {
+export const updateRating = (eventId, talkId, uid, ratingUpdated, isRemoved) => {
   firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('proposals')
     .doc(talkId)
-    .update({ ...ratingUpdated, [`usersRatings.${uid}`]: true })
+    .update({ ...ratingUpdated, [`usersRatings.${uid}`]: !isRemoved })
 }
