@@ -13,8 +13,9 @@ const mapStore = (store) => {
     ...store.data.ratings.get(uid),
     hasNext: proposalIndex + 1 < proposals.length,
     hasPrevious: proposalIndex - 1 >= 0,
-    onRating: (rating, feeling) =>
-      store.dispatch({ type: '@@ui/RATE_PROPOSAL', payload: { rating, feeling } }),
+    onRating: (rating, feeling) => {
+      store.dispatch({ type: '@@ui/RATE_PROPOSAL', payload: { rating, feeling } })
+    },
     onNext: () => store.dispatch('@@ui/ON_NEXT_PROPOSAL'),
     onPrevious: () => store.dispatch('@@ui/ON_PREVIOUS_PROPOSAL'),
   }

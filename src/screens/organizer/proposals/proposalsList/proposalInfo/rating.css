@@ -1,0 +1,38 @@
+.rating-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 7em;
+  margin-right: 0.5em;
+}
+
+.rating-display-rate {
+  font-size: 1.7em;
+  margin-left: 0.4em;
+}
+
+.rating-display-feelings {
+  display: flex;
+  font-size: 0.7em;
+}
+
+.rating-display-feelings .icon-label-right .fa {
+  margin-left: 0.3em;
+}
+
+.rating-display-feelings .votes {
+  color: var(--grey-color-dark);
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+
+.rating-display-feelings .loves {
+  color: #ed4842;
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
+
+.rating-display-feelings .hates {
+  color: #000;
+  margin-top: 0.5em;
+}
