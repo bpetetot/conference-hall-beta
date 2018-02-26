@@ -8,6 +8,8 @@ import Speaker from 'screens/components/speaker'
 import './proposalInfo.css'
 import Rating from './rating'
 
+const getNumberOfVotes = ratings => keys(filter(ratings, v => v)).length
+
 const ProposalInfo = ({ proposal }) => {
   const {
     speakers = {}, rating, loves, hates, usersRatings = {},
@@ -21,7 +23,7 @@ const ProposalInfo = ({ proposal }) => {
         rating={rating}
         loves={loves}
         hates={hates}
-        nbvotes={keys(filter(usersRatings, v => v)).length}
+        nbvotes={getNumberOfVotes(usersRatings)}
       />
     </div>
   )
