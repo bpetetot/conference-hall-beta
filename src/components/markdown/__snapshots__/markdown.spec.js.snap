@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/mardown should not render if no source 1`] = `null`;
+
+exports[`components/mardown should render 1`] = `
+<react-markdown
+  className="markdown"
+  escapeHtml={true}
+  source="source"
+/>
+`;

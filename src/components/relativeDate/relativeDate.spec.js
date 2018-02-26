@@ -1,13 +1,13 @@
 /* eslint-env jest */
 import snap from 'tests/snapshot'
-import Titlebar from './index.js'
+import RelativeDate from './index.js'
 
 jest.mock('date-fns/distance_in_words_to_now', () => () => '2 days ago')
 jest.mock('../iconLabel', () => 'IconLabel')
 
-const snapshot = props => snap(Titlebar)({ ...props })
+const snapshot = props => snap(RelativeDate)({ ...props })
 
-describe('components/titlebar', () => {
+describe('components/relativeDate', () => {
   it('should not render if no date', snapshot({}))
-  it('should not render if no date', snapshot({ date: new Date() }))
+  it('should render if date', snapshot({ date: new Date() }))
 })

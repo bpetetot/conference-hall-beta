@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/titlebar should not render if no date 1`] = `null`;
+exports[`components/relativeDate should not render if no date 1`] = `null`;
 
-exports[`components/titlebar should not render if no date 2`] = `
+exports[`components/relativeDate should render if date 1`] = `
 <IconLabel
   icon="fa fa-clock-o"
   label="2 days ago"
