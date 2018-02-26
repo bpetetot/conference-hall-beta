@@ -20,6 +20,9 @@ export const createOrganization = reaction(async (action, store, { form }) => {
   store.data.organizations.add(organization)
   store.data.users.addOrUpdate(user)
 
+  // Add organization id in owner organizations property
+  store.dispatch({ type: '@@ui/ADD_ORGANIZATION_TO_USER', payload: { uid, organizationId: ref.id } })
+
   // FIXME: Go to newly created organization page
   // go to organization page
   store.dispatch(push('/organizer/organizations'))
