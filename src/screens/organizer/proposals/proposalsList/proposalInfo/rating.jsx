@@ -15,11 +15,11 @@ const displayRating = (rating) => {
 
 const Rating = ({ rating, loves, hates }) => (
   <div className="rating-display">
+    <div className="rating-display-rate">{displayRating(rating)}</div>
     <div className="rating-display-feelings">
       <IconLabel icon="fa fa-circle" label={hates} right className="hates" />
       <IconLabel icon="fa fa-heart" label={loves} right className="loves" />
     </div>
-    <div className="rating-display-rate">{displayRating(rating)}</div>
   </div>
 )
 

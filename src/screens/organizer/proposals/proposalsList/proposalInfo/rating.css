@@ -1,7 +1,7 @@
 .rating-display {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
   width: 6em;
   margin-right: 0.5em;
 }
@@ -13,15 +13,20 @@
 
 .rating-display-feelings {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   font-size: 0.7em;
+}
+
+.rating-display-feelings .icon-label-right .fa {
+  margin-left: 0.3em;
 }
 
 .rating-display-feelings .loves {
   color: #ed4842;
+  margin-left: 1em;
+  margin-top: 0.5em;
 }
 
 .rating-display-feelings .hates {
   color: #000;
+  margin-top: 0.5em;
 }
