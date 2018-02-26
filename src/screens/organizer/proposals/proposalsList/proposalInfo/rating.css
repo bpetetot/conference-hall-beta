@@ -1,0 +1,27 @@
+.rating-display {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 6em;
+  margin-right: 0.5em;
+}
+
+.rating-display-rate {
+  font-size: 1.7em;
+  margin-left: 0.4em;
+}
+
+.rating-display-feelings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7em;
+}
+
+.rating-display-feelings .loves {
+  color: #ed4842;
+}
+
+.rating-display-feelings .hates {
+  color: #000;
+}

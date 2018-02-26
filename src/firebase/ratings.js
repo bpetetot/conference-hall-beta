@@ -39,3 +39,20 @@ export const addRating = (eventId, proposalId, userId, ratingObject) => {
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
 }
+
+/**
+ * Delete user rating for a proposal
+ * @param {String} eventId event id
+ * @param {String} proposalId proposal id
+ * @param {String} userId rating id (uid)
+ */
+export const deleteRating = (eventId, proposalId, userId) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(proposalId)
+    .collection('ratings')
+    .doc(userId)
+    .delete()

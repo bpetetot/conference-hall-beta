@@ -1,8 +1,8 @@
 import { reaction } from 'k-ramel'
 
-import { getRatingsAverage } from 'store/reducers/data/ratings.selectors'
+import { getRatingsAverage, getFeelingsCount } from 'store/reducers/data/ratings.selectors'
 import { getRouterParam } from 'store/reducers/router'
-import { getRatings, addRating } from 'firebase/ratings'
+import { getRatings, addRating, deleteRating } from 'firebase/ratings'
 import { updateRating } from 'firebase/proposals'
 
 export const fetchRatings = reaction(async (action, store) => {
@@ -21,12 +21,20 @@ export const rateProposal = reaction(async (action, store) => {
   const { uid } = store.auth.get()
   const eventId = getRouterParam('eventId')(store.getState())
   const proposalId = getRouterParam('proposalId')(store.getState())
-  // add the rating in database and store
-  await addRating(eventId, proposalId, uid, rating)
-  store.data.ratings.addOrUpdate({ uid, ...rating })
+  // add or remove the rating in database and store
+  if (!rating.rating && !rating.feeling) {
+    await deleteRating(eventId, proposalId, uid)
+    store.data.ratings.remove([uid])
+  } else {
+    await addRating(eventId, proposalId, uid, rating)
+    store.data.ratings.addOrUpdate({ uid, ...rating })
+  }
   // compute average rating
   const avgRating = getRatingsAverage(store)
+  const loves = getFeelingsCount('love')(store)
+  const hates = getFeelingsCount('hate')(store)
+  const ratingUpdated = { rating: avgRating, loves, hates }
   // save the rating average in database database and store
-  updateRating(eventId, proposalId, uid, avgRating)
-  store.data.proposals.update({ id: proposalId, rating: avgRating })
+  updateRating(eventId, proposalId, uid, ratingUpdated)
+  store.data.proposals.update({ id: proposalId, ...ratingUpdated })
 })

@@ -1,27 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import isNil from 'lodash/isNil'
 
 import Speaker from 'screens/components/speaker'
 
 import './proposalInfo.css'
-
-const displayRating = (rating) => {
-  if (isNil(rating)) return '-'
-  if (rating.toString().indexOf('.') !== -1) {
-    return rating.toFixed(1)
-  }
-  return rating
-}
+import Rating from './rating'
 
 const ProposalInfo = ({ proposal }) => {
-  const { speakers = {}, rating } = proposal
+  const {
+    speakers = {}, rating, loves, hates,
+  } = proposal
   return (
     <div className="proposal-item-info">
       {Object.keys(speakers).map(id => (
         <Speaker key={id} id={id} className="proposal-item-info-speaker" small />
       ))}
-      <div className="proposal-item-info-rating">{displayRating(rating)}</div>
+      <Rating rating={rating} loves={loves} hates={hates} />
     </div>
   )
 }
