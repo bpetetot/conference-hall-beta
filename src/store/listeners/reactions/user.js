@@ -28,8 +28,11 @@ export const saveProfile = reaction((action, store, { form }) => {
 export const updateOrganizationToUser = reaction(async (action, store) => {
   const { uid, organizationId } = action.payload
 
-  const ref = await userCrud.read(uid)
-  const user = ref.data()
+  let user = store.data.users.get(uid)
+  if (!user) {
+    const ref = await userCrud.read(uid)
+    user = ref.data()
+  }
 
   let updated
   if (action.type === '@@ui/ADD_ORGANIZATION_TO_USER') {
