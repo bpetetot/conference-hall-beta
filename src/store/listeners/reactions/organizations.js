@@ -11,7 +11,15 @@ export const createOrganization = reaction(async (action, store, { form }) => {
   // get user id
   const { uid } = store.auth.get()
   // create organization into database
-  await createForm.asyncSubmit(organizationCrud.create, { ...organization, owner: uid })
+  const { id } = await createForm.asyncSubmit(
+    organizationCrud.create,
+    { ...organization, owner: uid },
+  )
+
+  // FIXME: https://github.com/bpetetot/conference-hall/issues/167
+  const ref = await organizationCrud.read(id)
+  organizationCrud.update({ id: ref.id, ...ref.data() })
+
   // FIXME: Go to newly created organization page
   // go to organization page
   store.dispatch(push('/organizer/organizations'))
