@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import isNil from 'lodash/isNil'
 
 import IconLabel from 'components/iconLabel'
@@ -21,5 +22,17 @@ const Rating = ({ rating, loves, hates }) => (
     <div className="rating-display-rate">{displayRating(rating)}</div>
   </div>
 )
+
+Rating.propTypes = {
+  rating: PropTypes.number,
+  loves: PropTypes.number,
+  hates: PropTypes.number,
+}
+
+Rating.defaultProps = {
+  rating: undefined,
+  loves: undefined,
+  hates: undefined,
+}
 
 export default Rating
