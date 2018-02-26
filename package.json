@@ -67,8 +67,5 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "all"
-  },
-  "jest": {
-    "collectCoverageFrom": ["!src/index.js"]
   }
 }
