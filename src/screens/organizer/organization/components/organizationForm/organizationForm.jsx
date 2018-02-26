@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Field, reduxForm, propTypes } from 'redux-form'
 
 import {
@@ -9,7 +8,7 @@ import {
 import { required } from 'components/form/validators'
 import './organizationForm.css'
 
-const OrganizationForm = ({ type, ...formProps }) => (
+const OrganizationForm = ({ ...formProps }) => (
   <form className="organization-form card">
     <Field name="name" label="Name" type="text" component={input} validate={required} />
     <SubmitButton {...formProps}>
@@ -20,11 +19,6 @@ const OrganizationForm = ({ type, ...formProps }) => (
 
 OrganizationForm.propTypes = {
   ...propTypes,
-  type: PropTypes.string,
-}
-
-OrganizationForm.defaultProps = {
-  type: undefined,
 }
 
 export default reduxForm()(OrganizationForm)
