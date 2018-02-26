@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Titlebar from 'components/titlebar'
 import { Field, reduxForm } from 'redux-form'
-import { textarea, radio, SubmitButton, RadioGroup } from 'components/form'
+import { markdownInput, radio, SubmitButton, RadioGroup } from 'components/form'
 import isEmpty from 'lodash/isEmpty'
 
 import './talkSubmission.css'
@@ -51,7 +51,7 @@ const TalkSubmission = ({
           ))}
         </RadioGroup>
       )}
-      <Field name="comments" label="Message to organizers" component={textarea} />
+      <Field name="comments" label="Message to organizers" component={markdownInput} />
     </div>
   </form>
 )

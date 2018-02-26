@@ -1,0 +1,20 @@
+.markdown-input {
+  --md-header-size: 29px;
+  position: relative;
+  padding-bottom: var(--md-header-size);
+}
+
+.markdown-input > textarea {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.markdown-input > textarea:focus {
+  border-bottom: none;
+}
+
+.markdown-input .markdown-input-focus {
+  border-color: var(--primary-color);
+  border-top-color: var(--grey-color);
+}

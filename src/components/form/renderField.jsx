@@ -3,6 +3,7 @@ import React from 'react'
 import PlacesAutocomplete from 'react-places-autocomplete'
 
 import Toggle from './toggle'
+import MarkdownInput from './markdownInput'
 import { DayPicker, DayRangePicker } from './dayPicker'
 
 import Label from './label'
@@ -23,6 +24,7 @@ const renderField = component => ({
         {input.value}
       </textarea>
     )}
+    {component === 'markdown-input' && <MarkdownInput {...input} />}
     {component === 'dayPicker' && <DayPicker id={input.name} {...input} />}
     {component === 'dayRangePicker' && <DayRangePicker id={input.name} {...input} />}
     {component === 'toggle' && <Toggle {...input} name={input.name} />}
