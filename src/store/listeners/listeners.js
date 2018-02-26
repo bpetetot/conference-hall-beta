@@ -28,6 +28,7 @@ export default [
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   when('@@ui/SAVE_PROFILE')(user.saveProfile),
+  when(/@@ui\/(.*)_ORGANIZATION_TO_USER/g)(user.updateOrganizationToUser),
   /* talks */
   when('@@ui/ON_CREATE_TALK')(talks.createTalk),
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),

@@ -1,4 +1,5 @@
 import { reaction } from 'k-ramel'
+import { set, unset } from 'immutadot'
 
 import userCrud from 'firebase/user'
 
@@ -22,4 +23,21 @@ export const saveProfile = reaction((action, store, { form }) => {
   profileForm.asyncSubmit(userCrud.update, profile)
   // update user data in the store
   store.data.users.update(profile)
+})
+
+export const updateOrganizationToUser = reaction(async (action, store) => {
+  const { uid, organizationId } = action.payload
+
+  const ref = await userCrud.read(uid)
+  const user = ref.data()
+
+  let updated
+  if (action.type === '@@ui/ADD_ORGANIZATION_TO_USER') {
+    updated = set(user, `organizations.${organizationId}`, true)
+  } else if (action.type === '@@ui/REMOVE_ORGANIZATION_TO_USER') {
+    updated = unset(user, `organizations.${organizationId}`)
+  }
+
+  await userCrud.update(updated)
+  store.data.users.update(updated)
 })
