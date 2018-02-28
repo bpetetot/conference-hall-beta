@@ -29,6 +29,7 @@ export default {
       },
     },
     '/organizations': { title: 'HOME_ORGANIZATION' },
+    '/organization/create': { title: 'CREATE_ORGANIZATION' },
   },
   '/speaker': {
     app: 'speaker',
