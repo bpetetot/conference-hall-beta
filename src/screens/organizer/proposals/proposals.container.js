@@ -9,8 +9,10 @@ import Proposals from './proposals'
 const mapStore = (store) => {
   const eventId = getRouterParam('eventId')(store.getState())
   const event = store.data.events.get(eventId)
+  const nbProposals = store.data.proposals.getLength()
   return {
     loaded: !!event,
+    nbProposals,
     eventId,
     load: () => store.dispatch('@@ui/ON_LOAD_EVENT'),
   }
