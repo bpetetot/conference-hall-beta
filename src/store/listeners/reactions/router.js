@@ -63,13 +63,13 @@ export const onRouteChanged = reaction((action, store) => {
         newValue: validValues[0],
       }
     }
-    const availablesortOrders = getRouterResult(store.getState()).sortOrders
+    const availableSortOrders = getRouterResult(store.getState()).sortOrders
     const sortOrderFromRouterState = getRouterQuery(store.getState()).sortOrder
     const sortOrderFromAppState = store.ui.organizer.proposals.get().sortOrder
     const { shouldUpdateAppState, shouldUpdateRouterState, newValue: sortOrder } = reconcile(
       sortOrderFromAppState,
       sortOrderFromRouterState,
-      availablesortOrders,
+      availableSortOrders,
     )
     if (shouldUpdateAppState) {
       store.dispatch(store.ui.organizer.proposals.update({ sortOrder }))
