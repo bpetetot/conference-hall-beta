@@ -2,6 +2,7 @@ import { reaction } from 'k-ramel'
 import { initializeCurrentLocation } from 'redux-little-router'
 
 import { isRoute, isSpeakerRoute, getRouterParam } from 'store/reducers/router'
+import { getRouterQueryParam } from '../../reducers/router/index'
 
 export const init = reaction((action, store) => {
   const initialLocation = store.getState().router
@@ -37,5 +38,11 @@ export const onRouteChanged = reaction((action, store) => {
     const uid = getRouterParam('uid')(state)
     store.dispatch({ type: '@@ui/ON_LOAD_TALK', payload: talkId })
     store.dispatch({ type: '@@ui/FETCH_USER', payload: uid })
+  }
+
+  // when Proposal route, restore sorting from route query
+  if (isRoute('PROPOSALS')(state)) {
+    const sorting = getRouterQueryParam('sorting')(state)
+    store.dispatch(store.ui.organizer.proposals.update({ sorting }))
   }
 })
