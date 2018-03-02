@@ -1,8 +1,13 @@
 import { reaction } from 'k-ramel'
 import { initializeCurrentLocation, replace } from 'redux-little-router'
 
-import { isRoute, isSpeakerRoute, getRouterParam } from 'store/reducers/router'
-import { getRouterQuery } from '../../reducers/router/index'
+import {
+  isRoute,
+  isSpeakerRoute,
+  getRouterParam,
+  getRouterResult,
+  getRouterQuery,
+} from 'store/reducers/router'
 
 export const init = reaction((action, store) => {
   const initialLocation = store.getState().router
@@ -43,12 +48,34 @@ export const onRouteChanged = reaction((action, store) => {
   // when Proposal route, restore sorting from route query
   // (or the other way around as a fallback)
   if (isRoute('PROPOSALS')(state)) {
-    const query = getRouterQuery(store.getState())
-    if (query.sorting) {
-      store.dispatch(store.ui.organizer.proposals.update({ sorting: query.sorting }))
-    } else {
-      const { sorting } = store.ui.organizer.proposals.get(state)
-      if (!sorting) return
+    const reconcile = (appState, routerState, validValues) => {
+      if (validValues.includes(routerState)) {
+        if (appState !== routerState) {
+          return { shouldUpdateAppState: true, newValue: routerState }
+        }
+        return {}
+      } else if (!routerState && validValues.includes(appState)) {
+        return { shouldUpdateRouterState: true, newValue: appState }
+      }
+      return {
+        shouldUpdateAppState: true,
+        shouldUpdateRouterState: true,
+        newValue: validValues[0],
+      }
+    }
+    const availableSortings = getRouterResult(store.getState()).sortings
+    const sortingFromRouterState = getRouterQuery(store.getState()).sorting
+    const sortingFromAppState = store.ui.organizer.proposals.get().sorting
+    const { shouldUpdateAppState, shouldUpdateRouterState, newValue: sorting } = reconcile(
+      sortingFromAppState,
+      sortingFromRouterState,
+      availableSortings,
+    )
+    if (shouldUpdateAppState) {
+      store.dispatch(store.ui.organizer.proposals.update({ sorting }))
+    }
+    if (shouldUpdateRouterState) {
+      const query = getRouterQuery(store.getState())
       store.dispatch(replace({ query: { ...query, sorting } }))
     }
   }

@@ -3,9 +3,15 @@ import PropTypes from 'prop-types'
 
 import './proposalFilters.css'
 
-const ProposalFilters = ({
-  formats, categories, filters, onChange,
-}) => (
+const sortingLabel = sorting =>
+  ({
+    newest: 'Newest',
+    oldest: 'Oldest',
+    highestRating: 'Highest Ratings',
+    lowestRating: 'Lowest Ratings',
+  }[sorting])
+
+const ProposalFilters = ({ formats, categories, sortings, filters, onChange }) => (
   <div className="proposals-filters">
     <select id="formats" onChange={onChange} defaultValue={filters.formats}>
       <option value="">All formats</option>
@@ -27,10 +33,11 @@ const ProposalFilters = ({
 
     <select id="sorting" onChange={onChange} defaultValue={filters.sorting}>
       <option value="">Sort</option>
-      <option value="newest">Newest</option>
-      <option value="oldest">Oldest</option>
-      <option value="highestRating">Highest ratings</option>
-      <option value="lowestRating">Lowest ratings</option>
+      {sortings.map(sorting => (
+        <option key={sorting} value={sorting}>
+          {sortingLabel(sorting)}
+        </option>
+      ))}
     </select>
   </div>
 )
@@ -38,6 +45,7 @@ const ProposalFilters = ({
 ProposalFilters.propTypes = {
   formats: PropTypes.arrayOf(PropTypes.object),
   categories: PropTypes.arrayOf(PropTypes.object),
+  sortings: PropTypes.arrayOf(PropTypes.string),
   filters: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
 }
@@ -45,6 +53,7 @@ ProposalFilters.propTypes = {
 ProposalFilters.defaultProps = {
   formats: [],
   categories: [],
+  sortings: [],
   filters: {},
 }
 
