@@ -18,9 +18,10 @@
 }
 
 .dropdown .dropdown-menu > * {
-  display: block;
-  height: 3em;
-  line-height: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 3em;
   padding: 0 1em;
 }
 
