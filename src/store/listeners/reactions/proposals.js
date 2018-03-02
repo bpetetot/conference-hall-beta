@@ -70,10 +70,10 @@ export const previousProposal = reaction(async (action, store) => {
   }
 })
 
-export const saveSortingToRoute = reaction(async (action, store) => {
-  const { sorting } = action.payload
-  if (!sorting) return
+export const savesortOrderToRoute = reaction(async (action, store) => {
+  const { sortOrder } = action.payload
+  if (!sortOrder) return
   const query = getRouterQuery(store.getState())
-  if (sorting === query.sorting) return
-  store.dispatch(replace({ query: { ...query, sorting } }))
+  if (sortOrder === query.sortOrder) return
+  store.dispatch(replace({ query: { ...query, sortOrder } }))
 })

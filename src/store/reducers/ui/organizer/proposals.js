@@ -3,7 +3,7 @@ import { simpleObject } from 'k-ramel'
 const defaultData = {
   categories: '',
   formats: '',
-  sorting: 'newest',
+  sortOrder: 'newest',
 }
 
 export default simpleObject({ defaultData })

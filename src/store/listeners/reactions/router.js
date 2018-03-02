@@ -45,7 +45,7 @@ export const onRouteChanged = reaction((action, store) => {
     store.dispatch({ type: '@@ui/FETCH_USER', payload: uid })
   }
 
-  // when Proposal route, restore sorting from route query
+  // when Proposal route, restore sortOrder from route query
   // (or the other way around as a fallback)
   if (isRoute('PROPOSALS')(state)) {
     const reconcile = (appState, routerState, validValues) => {
@@ -63,20 +63,20 @@ export const onRouteChanged = reaction((action, store) => {
         newValue: validValues[0],
       }
     }
-    const availableSortings = getRouterResult(store.getState()).sortings
-    const sortingFromRouterState = getRouterQuery(store.getState()).sorting
-    const sortingFromAppState = store.ui.organizer.proposals.get().sorting
-    const { shouldUpdateAppState, shouldUpdateRouterState, newValue: sorting } = reconcile(
-      sortingFromAppState,
-      sortingFromRouterState,
-      availableSortings,
+    const availablesortOrders = getRouterResult(store.getState()).sortOrders
+    const sortOrderFromRouterState = getRouterQuery(store.getState()).sortOrder
+    const sortOrderFromAppState = store.ui.organizer.proposals.get().sortOrder
+    const { shouldUpdateAppState, shouldUpdateRouterState, newValue: sortOrder } = reconcile(
+      sortOrderFromAppState,
+      sortOrderFromRouterState,
+      availablesortOrders,
     )
     if (shouldUpdateAppState) {
-      store.dispatch(store.ui.organizer.proposals.update({ sorting }))
+      store.dispatch(store.ui.organizer.proposals.update({ sortOrder }))
     }
     if (shouldUpdateRouterState) {
       const query = getRouterQuery(store.getState())
-      store.dispatch(replace({ query: { ...query, sorting } }))
+      store.dispatch(replace({ query: { ...query, sortOrder } }))
     }
   }
 })

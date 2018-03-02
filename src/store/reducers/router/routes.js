@@ -26,7 +26,7 @@ export default {
         },
         '/proposals': {
           title: 'PROPOSALS',
-          sortings: ['newest', 'oldest', 'highestRating', 'lowestRating'],
+          sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],
         },
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },
