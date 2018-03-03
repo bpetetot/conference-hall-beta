@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Field, reduxForm } from 'redux-form'
-import { input, address, textarea, SubmitButton } from 'components/form'
+import { input, address, markdownInput, SubmitButton } from 'components/form'
 
 import './profile.css'
 
@@ -21,8 +21,10 @@ const Profile = ({
       <Field name="company" label="Company" type="text" component={input} />
       <Field name="phone" label="Phone" type="text" component={input} />
       <Field name="language" label="Favorite language" type="text" component={input} />
+      <Field name="twitter" label="Twitter" type="text" component={input} placeholder="@username" />
+      <Field name="github" label="Github" type="text" component={input} placeholder="username" />
       <Field name="city" label="City" type="text" component={address} />
-      <Field name="bio" label="Biography" component={textarea} />
+      <Field name="bio" label="Biography" component={markdownInput} />
       <SubmitButton {...formProps}>Save profile</SubmitButton>
     </form>
   </div>

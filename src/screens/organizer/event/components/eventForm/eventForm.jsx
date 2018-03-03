@@ -5,7 +5,7 @@ import { Field, reduxForm, propTypes } from 'redux-form'
 import {
   input,
   address,
-  textarea,
+  markdownInput,
   radio,
   SubmitButton,
   RadioGroup,
@@ -23,7 +23,7 @@ const EventForm = ({ type, ...formProps }) => (
       </RadioGroup>
     )}
     <Field name="name" label="Name" type="text" component={input} validate={required} />
-    <Field name="description" label="description" component={textarea} validate={required} />
+    <Field name="description" label="description" component={markdownInput} validate={required} />
     <Field
       name="address"
       label={type === 'conference' ? 'Venue address' : 'City'}

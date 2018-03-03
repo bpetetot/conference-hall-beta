@@ -27,6 +27,7 @@
   margin: 1em;
   color: var(--grey-color-dark);
   cursor: pointer;
+  max-height: 100vh;
 }
 
 .modal-content .modal-close:hover {

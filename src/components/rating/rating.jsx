@@ -42,13 +42,17 @@ class Rating extends Component {
   }
 
   handleClick = () => {
-    this.setState(
-      state => ({ ...state, validatedRating: state.rating, validatedFeeling: state.feeling }),
-      () => {
-        const { validatedRating, validatedFeeling } = this.state
-        this.props.onRating(validatedRating, validatedFeeling)
-      },
-    )
+    const {
+      rating, validatedRating, feeling, validatedFeeling,
+    } = this.state
+    let newRating = rating
+    let newFeeling = feeling
+    if (rating === validatedRating && feeling === validatedFeeling) {
+      newRating = undefined
+      newFeeling = undefined
+    }
+    this.setState({ validatedRating: newRating, validatedFeeling: newFeeling }, () =>
+      this.props.onRating(this.state.validatedRating, this.state.validatedFeeling))
   }
 
   handleMouseEnterStar = (rating, feeling = DEFAULT_FEELING) => () => {
