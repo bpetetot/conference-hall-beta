@@ -1,27 +1,29 @@
 import { reaction } from 'k-ramel'
 import { push } from 'redux-little-router'
 
-import organizationCrud from 'firebase/organizations'
+import organizationCrud, { createOrganization as firebaseCreateOrganization } from 'firebase/organizations'
 
 // FIXME: change it when other operations will be implemented
 // eslint-disable-next-line import/prefer-default-export
 export const createOrganization = reaction(async (action, store, { form }) => {
   const createForm = form('organization-create')
-  const organization = createForm.getFormValues()
+  const organizationValues = createForm.getFormValues()
   // get user id
   const { uid } = store.auth.get()
   // create organization into database
-  const { id } = await createForm.asyncSubmit(
-    organizationCrud.create,
-    { ...organization, owner: uid },
+  const [organization, user] = await createForm.asyncSubmit(
+    firebaseCreateOrganization,
+    { ...organizationValues, owner: uid },
   )
 
-  // FIXME: https://github.com/bpetetot/conference-hall/issues/167
-  const ref = await organizationCrud.read(id)
-  organizationCrud.update({ id: ref.id, ...ref.data() })
+  store.data.organizations.add(organization)
 
-  // Add organization id in owner organizations property
-  store.dispatch({ type: '@@ui/ADD_ORGANIZATION_TO_USER', payload: { uid, organizationId: ref.id } })
+  const userFromStore = store.data.users.get(uid)
+  if (!userFromStore) {
+    store.data.users.add(user)
+  } else {
+    store.data.users.update(user)
+  }
 
   // FIXME: Go to newly created organization page
   // go to organization page
