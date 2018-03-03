@@ -1,7 +1,7 @@
 import { reaction } from 'k-ramel'
 import { push } from 'redux-little-router'
 
-import organizationCrud, { createOrganization as firebaseCreateOrganization } from 'firebase/organizations'
+import { createOrganization as firebaseCreateOrganization } from 'firebase/organizations'
 
 // FIXME: change it when other operations will be implemented
 // eslint-disable-next-line import/prefer-default-export
