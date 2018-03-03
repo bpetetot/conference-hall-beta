@@ -13,7 +13,8 @@ export const createOrganization = reaction(async (action, store, { form }) => {
   // create organization into database
   const [organization, user] = await createForm.asyncSubmit(
     firebaseCreateOrganization,
-    { ...organizationValues, owner: uid },
+    organizationValues,
+    uid,
   )
 
   store.data.organizations.add(organization)

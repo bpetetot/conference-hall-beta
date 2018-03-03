@@ -10,11 +10,15 @@ export const createOrganization = async (organization, uid) => {
   const db = firebase.firestore()
   const batch = db.batch()
 
-  const { organizationId } = await organizationCrud.create(organization)
+  const { id: organizationId } = await organizationCrud.create(organization)
 
   // FIXME: https://github.com/bpetetot/conference-hall/issues/167
   const organizationRef = await organizationCrud.read(organizationId)
-  const updatedOrganization = { id: organizationRef.id, ...organizationRef.data() }
+  const updatedOrganization = {
+    id: organizationRef.id,
+    owner: uid,
+    ...organizationRef.data(),
+  }
   organizationCrud.update(updatedOrganization)
 
   const userRef = await userCrud.read(uid)

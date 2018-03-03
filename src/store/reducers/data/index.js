@@ -5,5 +5,6 @@ export default {
   events: keyValue({ key: 'id' }),
   talks: keyValue({ key: 'id' }),
   proposals: keyValue({ key: 'id' }),
+  organizations: keyValue({ key: 'id' }),
   ratings: keyValue({ key: 'uid' }),
 }
