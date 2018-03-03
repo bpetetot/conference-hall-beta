@@ -25,22 +25,32 @@ export const saveProfile = reaction((action, store, { form }) => {
   store.data.users.update(profile)
 })
 
-export const updateOrganizationToUser = reaction(async (action, store) => {
-  const { uid, organizationId } = action.payload
-
+const getUser = uid => async (store) => {
   let user = store.data.users.get(uid)
   if (!user) {
     const ref = await userCrud.read(uid)
     user = ref.data()
+    store.data.users.add(user)
   }
+  return user
+}
 
-  let updated
-  if (action.type === '@@ui/ADD_ORGANIZATION_TO_USER') {
-    updated = set(user, `organizations.${organizationId}`, true)
-  } else if (action.type === '@@ui/REMOVE_ORGANIZATION_TO_USER') {
-    updated = unset(user, `organizations.${organizationId}`)
-  }
+export const addOrganizationToUser = reaction(async (action, store) => {
+  const { uid, organizationId } = action.payload
+  const user = getUser(uid)(store)
 
-  await userCrud.update(updated)
+  const updated = set(user, `organizations.${organizationId}`, true)
+
   store.data.users.update(updated)
+  await userCrud.update(updated)
+})
+
+export const removeOrganizationToUser = reaction(async (action, store) => {
+  const { uid, organizationId } = action.payload
+  const user = getUser(uid)(store)
+
+  const updated = unset(user, `organizations.${organizationId}`)
+
+  store.data.users.update(updated)
+  await userCrud.update(updated)
 })
