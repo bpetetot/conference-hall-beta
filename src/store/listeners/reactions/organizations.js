@@ -2,11 +2,10 @@ import { reaction } from 'k-ramel'
 import { push } from 'redux-little-router'
 import map from 'lodash/map'
 
+import { getRouterParam } from 'store/reducers/router'
 import organizationCrud, { createOrganization as firebaseCreateOrganization } from 'firebase/organizations'
 import userCrud from 'firebase/user'
 
-// FIXME: change it when other operations will be implemented
-// eslint-disable-next-line import/prefer-default-export
 export const createOrganization = reaction(async (action, store, { form }) => {
   const createForm = form('organization-create')
   const organizationValues = createForm.getFormValues()
@@ -54,4 +53,18 @@ export const fetchOrganizerOrganizations = reaction(async (action, store) => {
 
   store.ui.organizer.myOrganizations.reset()
   store.ui.organizer.myOrganizations.set(organizerOrganizations)
+})
+
+
+export const fetchOrganization = reaction(async (action, store) => {
+  const organizationId = action.payload || getRouterParam('organizationId')(store.getState())
+  if (!organizationId) return
+  // check if already in the store
+  const current = store.data.organizations.get(organizationId)
+  if (current && current.id === organizationId) return
+  // fetch event from id
+  const ref = await organizationCrud.read(organizationId)
+  if (ref.exists) {
+    store.data.organizations.add({ id: organizationId, ...ref.data() })
+  }
 })
