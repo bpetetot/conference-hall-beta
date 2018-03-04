@@ -14,7 +14,6 @@ const mapStore = (store) => {
   return {
     loaded: !!organization && !!organization.users,
     ...organization,
-    onSelect: () => {},
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),
   }
 }

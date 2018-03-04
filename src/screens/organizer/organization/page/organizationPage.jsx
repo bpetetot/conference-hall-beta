@@ -4,7 +4,7 @@ import Titlebar from 'components/titlebar'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
 
-const OrganizationPage = ({ name, users, onSelect }) => (
+const OrganizationPage = ({ name, users }) => (
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name} />
     <List
@@ -16,7 +16,6 @@ const OrganizationPage = ({ name, users, onSelect }) => (
           key={id}
           title={displayName}
           subtitle={<RelativeDate date={updateTimestamp} />}
-          onSelect={() => onSelect(id)}
         />
       )}
     />
@@ -26,7 +25,6 @@ const OrganizationPage = ({ name, users, onSelect }) => (
 OrganizationPage.propTypes = {
   name: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(PropTypes.object),
-  onSelect: PropTypes.func.isRequired,
 }
 
 OrganizationPage.defaultProps = {
