@@ -12,7 +12,7 @@ const mapStore = (store) => {
   const organization = store.data.organizations.get(organizationId)
 
   return {
-    loaded: !!organization,
+    loaded: !!organization && !!organization.users,
     ...organization,
     onSelect: () => {},
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),

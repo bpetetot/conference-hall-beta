@@ -11,10 +11,10 @@ const OrganizationPage = ({ name, users, onSelect }) => (
       className="organization-content"
       array={users}
       noResult="No users yet !"
-      renderRow={({ id, updateTimestamp }) => (
+      renderRow={({ id, displayName, updateTimestamp }) => (
         <ListItem
           key={id}
-          title=""
+          title={displayName}
           subtitle={<RelativeDate date={updateTimestamp} />}
           onSelect={() => onSelect(id)}
         />
