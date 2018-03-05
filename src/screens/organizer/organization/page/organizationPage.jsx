@@ -8,7 +8,9 @@ import AddUserButton from 'components/addUser'
 
 import './organizationPage.css'
 
-const OrganizationPage = ({ name, users, onSelectUser, inviteLink }) => (
+const OrganizationPage = ({
+  name, users, onSelectUser, inviteLink,
+}) => (
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name} >
       <AddUserButton
