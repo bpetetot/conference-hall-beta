@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
+import Avatar from 'components/avatar'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
+
+import './organizationPage.css'
 
 const OrganizationPage = ({ name, users }) => (
   <div className="organization-page">
@@ -11,10 +14,20 @@ const OrganizationPage = ({ name, users }) => (
       className="organization-content"
       array={users}
       noResult="No users yet !"
-      renderRow={({ id, displayName, updateTimestamp }) => (
+      renderRow={({
+        id,
+        displayName,
+        photoURL,
+        updateTimestamp,
+      }) => (
         <ListItem
           key={id}
-          title={displayName}
+          title={(
+            <div className="member">
+              <Avatar displayName={displayName} photoURL={photoURL} />
+              <span>{displayName}</span>
+            </div>
+          )}
           subtitle={<RelativeDate date={updateTimestamp} />}
         />
       )}

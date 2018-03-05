@@ -77,7 +77,14 @@ export const fetchOrganization = reaction(async (action, store) => {
   }
 
   const result = await fetchOrganizationUsers(organizationId)
-  const users = result.docs.map(userRef => ({ id: userRef.id, ...userRef.data() }))
+  const users = result.docs.map((userRef) => {
+    const user = { id: userRef.id, ...userRef.data() }
+
+    // Store user for caching purpose
+    store.data.users.addOrUpdate(user)
+
+    return user
+  })
 
   store.data.organizations.update(set(organization, 'users', users))
 })
