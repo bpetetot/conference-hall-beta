@@ -30,4 +30,11 @@ export const createOrganization = async (organization, uid) => {
   return [updatedOrganization, updatedUser]
 }
 
+export const fetchOrganizationUsers = organizationId =>
+  firebase
+    .firestore()
+    .collection('users')
+    .where(`organizations.${organizationId}`, '==', true)
+    .get()
+
 export default organizationCrud

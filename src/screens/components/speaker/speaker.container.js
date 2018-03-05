@@ -2,7 +2,7 @@ import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import loader from 'hoc-react-loader/build/core'
 
-import Speaker from './speaker'
+import AvatarLabel from 'components/avatar/avatarLabel'
 
 const mapStore = (store, { id }) => ({
   ...store.data.users.get(id),
@@ -12,4 +12,4 @@ const mapStore = (store, { id }) => ({
 export default compose(
   inject(mapStore), //
   loader(), //
-)(Speaker)
+)(AvatarLabel)

@@ -1,12 +1,15 @@
 import { reaction } from 'k-ramel'
 import { push } from 'redux-little-router'
 import map from 'lodash/map'
+import { set } from 'immutadot'
 
-import organizationCrud, { createOrganization as firebaseCreateOrganization } from 'firebase/organizations'
+import { getRouterParam } from 'store/reducers/router'
+import organizationCrud, {
+  createOrganization as firebaseCreateOrganization,
+  fetchOrganizationUsers,
+} from 'firebase/organizations'
 import userCrud from 'firebase/user'
 
-// FIXME: change it when other operations will be implemented
-// eslint-disable-next-line import/prefer-default-export
 export const createOrganization = reaction(async (action, store, { form }) => {
   const createForm = form('organization-create')
   const organizationValues = createForm.getFormValues()
@@ -54,4 +57,34 @@ export const fetchOrganizerOrganizations = reaction(async (action, store) => {
 
   store.ui.organizer.myOrganizations.reset()
   store.ui.organizer.myOrganizations.set(organizerOrganizations)
+})
+
+
+export const fetchOrganization = reaction(async (action, store) => {
+  const organizationId = action.payload || getRouterParam('organizationId')(store.getState())
+  if (!organizationId) return
+  // check if already in the store
+  let organization = store.data.organizations.get(organizationId)
+  const isAlreadyInStore = organization && organization.id === organizationId
+
+  if (!isAlreadyInStore) {
+    // fetch event from id
+    const ref = await organizationCrud.read(organizationId)
+    organization = { id: organizationId, ...ref.data() }
+    if (ref.exists) {
+      await store.data.organizations.add(organization)
+    }
+  }
+
+  const result = await fetchOrganizationUsers(organizationId)
+  const users = result.docs.map((userRef) => {
+    const user = { id: userRef.id, ...userRef.data() }
+
+    // Store user for caching purpose
+    store.data.users.addOrUpdate(user)
+
+    return user
+  })
+
+  store.data.organizations.update(set(organization, 'users', users))
 })

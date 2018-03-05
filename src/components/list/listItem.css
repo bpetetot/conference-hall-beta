@@ -4,11 +4,14 @@
   justify-content: space-between;
   flex-wrap: wrap;
   margin: 0;
-  cursor: pointer;
   padding: 1em 1.2em;
 }
 
-.list-item:hover {
+.list-item.clickable {
+  cursor: pointer;
+}
+
+.list-item.clickable:hover {
   background: var(--background-color);
 }
 

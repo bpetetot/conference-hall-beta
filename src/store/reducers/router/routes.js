@@ -28,7 +28,10 @@ export default {
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },
     },
-    '/organizations': { title: 'HOME_ORGANIZATION' },
+    '/organizations': {
+      title: 'HOME_ORGANIZATION',
+      '/:organizationId': { title: 'ORGANIZATION_PAGE' },
+    },
     '/organization/create': { title: 'CREATE_ORGANIZATION' },
   },
   '/speaker': {

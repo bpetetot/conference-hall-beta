@@ -11,6 +11,7 @@ import EventEdit from './event/edit'
 import Event from './event/page'
 import MyEvents from './events'
 import OrganizationCreate from './organization/create'
+import OrganizationPage from './organization/page'
 import MyOrganizations from './organizations'
 import Proposals from './proposals'
 import Proposal from './proposal'
@@ -27,6 +28,7 @@ const Organizer = () => (
       <Event />
       <MyEvents />
       <OrganizationCreate />
+      <OrganizationPage />
       <MyOrganizations />
       <Proposals />
       <Proposal />
