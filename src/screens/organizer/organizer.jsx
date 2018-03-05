@@ -13,6 +13,7 @@ import MyEvents from './events'
 import OrganizationCreate from './organization/create'
 import OrganizationPage from './organization/page'
 import MyOrganizations from './organizations'
+import InviteOrganizer from './inviteOrganizer'
 import Proposals from './proposals'
 import Proposal from './proposal'
 
@@ -30,6 +31,7 @@ const Organizer = () => (
       <OrganizationCreate />
       <OrganizationPage />
       <MyOrganizations />
+      <InviteOrganizer />
       <Proposals />
       <Proposal />
     </div>

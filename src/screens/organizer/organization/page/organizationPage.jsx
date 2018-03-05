@@ -8,7 +8,7 @@ import AddUserButton from 'components/addUser'
 
 import './organizationPage.css'
 
-const OrganizationPage = ({ name, users, onSelectUser }) => (
+const OrganizationPage = ({ name, users, onSelectUser, inviteLink }) => (
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name} >
       <AddUserButton
@@ -17,7 +17,7 @@ const OrganizationPage = ({ name, users, onSelectUser }) => (
           message: 'Some message',
           resultsMessage: 'Some message result',
           onSelectUser,
-          inviteLink: 'http://localhost:3000',
+          inviteLink,
         }}
       />
     </Titlebar>
@@ -45,6 +45,7 @@ const OrganizationPage = ({ name, users, onSelectUser }) => (
 
 OrganizationPage.propTypes = {
   name: PropTypes.string.isRequired,
+  inviteLink: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(PropTypes.object),
   onSelectUser: PropTypes.func.isRequired,
 }

@@ -11,9 +11,12 @@ const mapStore = (store) => {
   const organizationId = getRouterParam('organizationId')(store.getState())
   const organization = store.data.organizations.get(organizationId)
 
+  const { uid: userId } = store.auth.get()
+  const url = window.location.href.split('/')
   return {
     loaded: !!organization && !!organization.users,
     ...organization,
+    inviteLink: `${url[0]}//${url[2]}/organizer/invite/organization/${organizationId}/${userId}`,
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),
     onSelectUser: (uid) => {
       store.dispatch({ type: '@@ui/ADD_ORGANIZATION_TO_USER', payload: { uid, organizationId } })
