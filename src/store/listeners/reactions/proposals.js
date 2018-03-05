@@ -1,7 +1,7 @@
 import { reaction } from 'k-ramel'
-import { push } from 'redux-little-router'
+import { push, replace } from 'redux-little-router'
 
-import { getRouterParam } from 'store/reducers/router'
+import { getRouterParam, getRouterQuery } from 'store/reducers/router'
 import { fetchProposal, fetchEventProposals } from 'firebase/proposals'
 
 export const loadEventProposals = reaction(async (action, store) => {
@@ -68,4 +68,12 @@ export const previousProposal = reaction(async (action, store) => {
     store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
     store.dispatch(push(`/organizer/event/${eventId}/proposal/${proposalId}`))
   }
+})
+
+export const saveSortOrderToRoute = reaction(async (action, store) => {
+  const { sortOrder } = action.payload
+  if (!sortOrder) return
+  const query = getRouterQuery(store.getState())
+  if (sortOrder === query.sortOrder) return
+  store.dispatch(replace({ query: { ...query, sortOrder } }))
 })
