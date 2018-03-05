@@ -46,6 +46,7 @@ const OrganizationPage = ({ name, users, onSelectUser }) => (
 OrganizationPage.propTypes = {
   name: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(PropTypes.object),
+  onSelectUser: PropTypes.func.isRequired,
 }
 
 OrganizationPage.defaultProps = {
