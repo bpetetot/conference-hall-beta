@@ -11,7 +11,9 @@ const sortOrderLabel = sortOrder =>
     lowestRating: 'Lowest Ratings',
   }[sortOrder])
 
-const ProposalFilters = ({ formats, categories, sortOrders, filters, onChange }) => (
+const ProposalFilters = ({
+  formats, categories, sortOrders, filters, onChange,
+}) => (
   <div className="proposals-filters">
     <select id="formats" onChange={onChange} defaultValue={filters.formats}>
       <option value="">All formats</option>
