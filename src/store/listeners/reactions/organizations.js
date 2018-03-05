@@ -1,6 +1,6 @@
 import { reaction } from 'k-ramel'
 import { push } from 'redux-little-router'
-import { map } from 'lodash'
+import map from 'lodash/map'
 
 import organizationCrud, { createOrganization as firebaseCreateOrganization } from 'firebase/organizations'
 import userCrud from 'firebase/user'
