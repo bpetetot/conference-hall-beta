@@ -72,7 +72,7 @@ export const onRouteChanged = reaction((action, store) => {
       availableSortOrders,
     )
     if (shouldUpdateAppState) {
-      store.dispatch(store.ui.organizer.proposals.update({ sortOrder }))
+      store.ui.organizer.proposals.update({ sortOrder })
     }
     if (shouldUpdateRouterState) {
       const query = getRouterQuery(store.getState())
