@@ -35,6 +35,7 @@ AddUserButton.propTypes = {
   modalOptions: PropTypes.shape({
     title: PropTypes.string,
     message: PropTypes.string.isRequired,
+    resultsMessage: PropTypes.string.isRequired,
     inviteLink: PropTypes.string.isRequired,
     onSelectUser: PropTypes.func.isRequired,
   }).isRequired,

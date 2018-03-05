@@ -1,5 +1,5 @@
 import { reaction } from 'k-ramel'
-import { set, unset } from 'immutadot'
+import { set, unset, push, splice } from 'immutadot'
 import isEmpty from 'lodash/isEmpty'
 
 import userCrud, { fetchUsersByEmail } from 'firebase/user'
@@ -38,22 +38,30 @@ const getUser = uid => async (store) => {
 
 export const addOrganizationToUser = reaction(async (action, store) => {
   const { uid, organizationId } = action.payload
-  const user = getUser(uid)(store)
+  const user = await getUser(uid)(store)
 
   const updated = set(user, `organizations.${organizationId}`, true)
 
   store.data.users.update(updated)
   await userCrud.update(updated)
+
+  const organization = store.data.organizations.get(organizationId)
+  store.data.organizations.update(push(organization, 'users', updated))
 })
 
 export const removeOrganizationToUser = reaction(async (action, store) => {
   const { uid, organizationId } = action.payload
-  const user = getUser(uid)(store)
+  const user = await getUser(uid)(store)
 
   const updated = unset(user, `organizations.${organizationId}`)
 
   store.data.users.update(updated)
   await userCrud.update(updated)
+
+
+  const organization = store.data.organizations.get(organizationId)
+  const userIndex = organization.users.findIndex(u => u.uid === uid)
+  store.data.organizations.update(splice(organization, 'users', userIndex, 1))
 })
 
 export const searchUserByEmail = reaction(async (action, store) => {

@@ -4,12 +4,23 @@ import Titlebar from 'components/titlebar'
 import AvatarLabel from 'components/avatar/avatarLabel'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
+import AddUserButton from 'components/addUser'
 
 import './organizationPage.css'
 
-const OrganizationPage = ({ name, users }) => (
+const OrganizationPage = ({ name, users, onSelectUser }) => (
   <div className="organization-page">
-    <Titlebar className="organization-header" icon="fa fa-users" title={name} />
+    <Titlebar className="organization-header" icon="fa fa-users" title={name} >
+      <AddUserButton
+        modalId="add-user-to-organization"
+        modalOptions={{
+          message: 'Some message',
+          resultsMessage: 'Some message result',
+          onSelectUser,
+          inviteLink: 'http://localhost:3000',
+        }}
+      />
+    </Titlebar>
     <List
       className="organization-content"
       array={users}

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import User from 'screens/components/user'
+import User from 'screens/components/speaker'
 import './userResults.css'
 
 const UserResults = ({ users, message, onSelectUser }) => {

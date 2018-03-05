@@ -15,6 +15,10 @@ const mapStore = (store) => {
     loaded: !!organization && !!organization.users,
     ...organization,
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),
+    onSelectUser: (uid) => {
+      store.dispatch({ type: '@@ui/ADD_ORGANIZATION_TO_USER', payload: { uid, organizationId } })
+      store.ui.modal.set({ openedModal: undefined })
+    },
   }
 }
 
