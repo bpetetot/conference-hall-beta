@@ -18,13 +18,7 @@ export const createOrganization = reaction(async (action, store, { form }) => {
   )
 
   store.data.organizations.add(organization)
-
-  const userFromStore = store.data.users.get(uid)
-  if (!userFromStore) {
-    store.data.users.add(user)
-  } else {
-    store.data.users.update(user)
-  }
+  store.data.users.addOrUpdate(user)
 
   // FIXME: Go to newly created organization page
   // go to organization page
