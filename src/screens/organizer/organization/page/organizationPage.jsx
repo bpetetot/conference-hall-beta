@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
-import Avatar from 'components/avatar'
+import AvatarLabel from 'components/avatar/avatarLabel'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
 
@@ -23,10 +23,7 @@ const OrganizationPage = ({ name, users }) => (
         <ListItem
           key={id}
           title={(
-            <div className="member">
-              <Avatar displayName={displayName} photoURL={photoURL} />
-              <span>{displayName}</span>
-            </div>
+            <AvatarLabel displayName={displayName} photoURL={photoURL} />
           )}
           subtitle={<RelativeDate date={updateTimestamp} />}
         />
