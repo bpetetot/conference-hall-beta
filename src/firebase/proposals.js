@@ -19,7 +19,11 @@ export const fetchProposal = (eventId, proposalId) =>
  * @param {string} eventId event id
  * @param {object} options options with filters and sortOrder
  */
-export const fetchEventProposals = async (eventId, uid, { categories, formats, sortOrder } = {}) => {
+export const fetchEventProposals = async (
+  eventId,
+  uid,
+  { categories, formats, sortOrder } = {},
+) => {
   let query = firebase
     .firestore()
     .collection('events')
