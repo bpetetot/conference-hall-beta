@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/dropdown should remove listener after unmounting 1`] = `
+Object {
+  "mousedown": [Function],
+}
+`;
+
+exports[`components/dropdown should remove listener after unmounting 2`] = `Object {}`;
+
+exports[`components/dropdown should render with props 1`] = `
+<div
+  className="dropdown"
+  onClick={[Function]}
+  role="button"
+  tabIndex="0"
+>
+  a
+</div>
+`;

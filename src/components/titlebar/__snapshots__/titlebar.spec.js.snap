@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/titlebar should render 1`] = `
+<div
+  className="titlebar cn"
+>
+  <span
+    className="titlebar-title"
+  >
+    <IconLabel
+      icon="i"
+      label="t"
+    />
+  </span>
+  <div
+    className="titlebar-actions"
+  >
+    c
+  </div>
+</div>
+`;

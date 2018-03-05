@@ -29,12 +29,15 @@
     "react-places-autocomplete": "^6.1.0",
     "react-redux": "^5.0.7",
     "react-sizes": "^1.0.3",
+    "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
     "redux-form": "^7.2.3",
     "redux-little-router": "^15.0.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.18.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.7.0",
