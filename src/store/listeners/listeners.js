@@ -45,6 +45,7 @@ export default [
   when('@@ui/ON_LOAD_ORGANIZER_EVENTS')(events.fetchOrganizerEvents),
   /* organizations */
   when('@@ui/ON_CREATE_ORGANIZATION')(organizations.createOrganization),
+  when('@@ui/ON_LOAD_ORGANIZER_ORGANIZATIONS')(organizations.fetchOrganizerOrganizations),
   /* submissions */
   when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),
   when('@@ui/GO_TO_SELECT_SUBMISSION')(submissions.openSelectSubmission),

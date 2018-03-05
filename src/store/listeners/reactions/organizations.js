@@ -1,7 +1,9 @@
 import { reaction } from 'k-ramel'
 import { push } from 'redux-little-router'
+import map from 'lodash/map'
 
-import { createOrganization as firebaseCreateOrganization } from 'firebase/organizations'
+import organizationCrud, { createOrganization as firebaseCreateOrganization } from 'firebase/organizations'
+import userCrud from 'firebase/user'
 
 // FIXME: change it when other operations will be implemented
 // eslint-disable-next-line import/prefer-default-export
@@ -25,3 +27,31 @@ export const createOrganization = reaction(async (action, store, { form }) => {
   store.dispatch(push('/organizer/organizations'))
 })
 
+export const fetchOrganizerOrganizations = reaction(async (action, store) => {
+  const { uid } = store.auth.get()
+
+  let user = store.data.users.get(uid)
+  if (!user) {
+    const ref = await userCrud.read(uid)
+    user = { id: ref.id, ...ref.data() }
+    store.data.users.add(user)
+  }
+
+  const organizerOrganizations = await Promise.all(map(
+    user.organizations,
+    async (value, organizationId) => {
+      let organization = store.data.organizations.get(organizationId)
+
+      if (!organization) {
+        const ref = await organizationCrud.read(organizationId)
+        organization = { id: organizationId, ...ref.data() }
+        store.data.organizations.add(organization)
+      }
+
+      return organization
+    },
+  ))
+
+  store.ui.organizer.myOrganizations.reset()
+  store.ui.organizer.myOrganizations.set(organizerOrganizations)
+})
