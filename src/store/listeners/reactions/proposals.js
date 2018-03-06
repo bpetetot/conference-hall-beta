@@ -1,5 +1,6 @@
 import { reaction } from 'k-ramel'
 import { push, replace } from 'redux-little-router'
+import { flow, isEqual, omit, over, pickBy } from 'lodash/fp'
 
 import { getRouterParam, getRouterQuery } from 'store/reducers/router'
 import { fetchProposal, fetchEventProposals } from 'firebase/proposals'
@@ -71,9 +72,16 @@ export const previousProposal = reaction(async (action, store) => {
 })
 
 export const saveSortOrderToRoute = reaction(async (action, store) => {
-  const { sortOrder } = action.payload
-  if (!sortOrder) return
+  const [removedFilters, addedOrModifiedFilters] = over([
+    flow(pickBy(filter => !filter), Object.keys),
+    pickBy(filter => filter),
+  ])(action.payload)
   const query = getRouterQuery(store.getState())
-  if (sortOrder === query.sortOrder) return
-  store.dispatch(replace({ query: { ...query, sortOrder } }))
+  const updatedQuery = flow(
+    omit(removedFilters),
+    filters => Object.assign(filters, addedOrModifiedFilters),
+  )(query)
+  if (!isEqual(query, updatedQuery)) {
+    store.dispatch(replace({ query: updatedQuery }))
+  }
 })
