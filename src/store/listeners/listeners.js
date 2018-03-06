@@ -36,7 +36,6 @@ export default [
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
   when('@@ui/ON_LOAD_SPEAKER_TALKS')(talks.fetchSpeakerTalks),
-  when('@@ui/ON_SEARCH_CO_SPEAKER')(talks.searchSpeakerByEmail),
   when(/@@ui\/(.*)_SPEAKER_TO_TALK/g)(talks.updateSpeakerToTalk),
   /* events */
   when('@@ui/ON_CREATE_EVENT')(events.createEvent),
