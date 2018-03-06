@@ -2,19 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
-import NoTalks from 'screens/speaker/components/noTalks'
+import NoEvents from 'screens/speaker/components/noEvents'
 import Status from 'screens/components/talk/status'
 
-const TalksSelection = ({ eventId, talks, onSelect }) => (
+const TalksSelection = ({ talkId, events, onSelect }) => (
   <List
-    array={talks}
-    noResult={<NoTalks />}
-    renderRow={({ id, title, updateTimestamp }) => (
+    array={events}
+    noResult={<NoEvents />}
+    renderRow={({ id, name, updateTimestamp }) => (
       <ListItem
         key={id}
-        title={title}
+        title={name}
         subtitle={<RelativeDate date={updateTimestamp} />}
-        info={<Status eventId={eventId} talkId={id} />}
+        info={<Status eventId={id} talkId={talkId} />}
         onSelect={() => onSelect(id)}
       />
     )}
@@ -22,13 +22,13 @@ const TalksSelection = ({ eventId, talks, onSelect }) => (
 )
 
 TalksSelection.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  talkId: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
-  talks: PropTypes.arrayOf(PropTypes.object),
+  events: PropTypes.arrayOf(PropTypes.object),
 }
 
 TalksSelection.defaultProps = {
-  talks: [],
+  events: [],
 }
 
 export default TalksSelection

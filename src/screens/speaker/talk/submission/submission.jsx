@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Stepper from 'components/stepper'
 import { TalkTitle } from 'screens/components/talk'
+import EventsSelection from './eventsSelection'
 
 import './submission.css'
 
@@ -21,7 +22,7 @@ const Submission = ({
     <div className="submission">
       <TalkTitle name={talkTitle} />
       <Stepper steps={steps} currentStep={0} />
-      IN CONSTRUCTION
+      <EventsSelection talkId={talkId} />
     </div>
   )
 }

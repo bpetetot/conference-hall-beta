@@ -2,7 +2,7 @@ import { reaction } from 'k-ramel'
 import { push } from 'redux-little-router'
 
 import { getRouterParam } from 'store/reducers/router'
-import eventCrud, { fetchUserEvents } from 'firebase/events'
+import eventCrud, { fetchEvents, fetchUserEvents } from 'firebase/events'
 
 export const createEvent = reaction(async (action, store, { form }) => {
   const createForm = form('event-create')
@@ -47,4 +47,14 @@ export const fetchOrganizerEvents = reaction(async (action, store) => {
   // set events id to the organizer event store
   store.ui.organizer.myEvents.reset()
   store.ui.organizer.myEvents.set(events)
+})
+
+export const fetchSpeakerEvents = reaction(async (action, store) => {
+  const result = await fetchEvents()
+  const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  // set events in the store
+  store.data.allEvents.set(events)
+  // set events id to the organizer event store
+  store.ui.speaker.myEvents.reset()
+  store.ui.speaker.myEvents.set(events)
 })
