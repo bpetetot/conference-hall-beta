@@ -29,6 +29,7 @@
     "react-places-autocomplete": "^6.1.0",
     "react-redux": "^5.0.7",
     "react-sizes": "^1.0.3",
+    "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-form": "^7.2.3",
     "redux-little-router": "^15.0.0",

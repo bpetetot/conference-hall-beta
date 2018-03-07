@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { compose, withProps } from 'recompose'
 
+import IconLabel from 'components/iconLabel'
 import { withModal } from 'components/modal'
 import AddUserModal from './addUserModal.container'
 import './addUserButton.css'
@@ -11,16 +13,13 @@ const AddUserButton = ({
   icon,
   label,
   modalOptions,
-  children,
+  renderButton,
 }) => (
   <Fragment>
-    {children ? children({ openModal }) : (
-      <a onClick={openModal} role="button" className="add-user-button">
-        <span className="add-user-button-icon">
-          <i className={`fa ${icon} fa-lg`} />
-        </span>
-        <span className="add-user-button-label">{label}</span>
-      </a>
+    {renderButton ? renderButton({ openModal }) : (
+      <button className="btn" onClick={openModal}>
+        <IconLabel icon={`fa ${icon} fa-lg`} label={label} />
+      </button>
     )}
     <AddUserModal modalId={modalId} {...modalOptions} />
   </Fragment>
@@ -29,7 +28,7 @@ const AddUserButton = ({
 AddUserButton.propTypes = {
   modalId: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
-  children: PropTypes.func,
+  renderButton: PropTypes.func,
   icon: PropTypes.string,
   label: PropTypes.string,
   modalOptions: PropTypes.shape({
@@ -42,9 +41,12 @@ AddUserButton.propTypes = {
 }
 
 AddUserButton.defaultProps = {
-  children: undefined,
-  icon: 'fa-users',
+  renderButton: undefined,
+  icon: 'fa-user',
   label: 'Add a user',
 }
 
-export default withModal()(AddUserButton)
+export default compose(
+  withProps(ownProps => ({ modalId: ownProps.modalOptions.id })),
+  withModal(),
+)(AddUserButton)

@@ -20,9 +20,16 @@ const modalMessage = (
 
 const AddSpeakerButton = ({ onSelectUser, inviteLink }) => (
   <AddUserButton
-    modalId={ADD_SPEAKER_MODAL}
-    label="Add a co-speaker"
+    renderButton={({ openModal }) => (
+      <a onClick={openModal} role="button" className="add-user-button">
+        <span className="add-user-button-icon">
+          <i className="fa fa-user fa-lg" />
+        </span>
+        <span className="add-user-button-label">Add a co-speaker</span>
+      </a>
+    )}
     modalOptions={{
+      id: ADD_SPEAKER_MODAL,
       message: modalMessage,
       resultsMessage: 'Select a speaker for your talk',
       onSelectUser,

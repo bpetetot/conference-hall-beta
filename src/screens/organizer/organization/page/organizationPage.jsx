@@ -14,8 +14,8 @@ const OrganizationPage = ({
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name} >
       <AddUserButton
-        modalId="add-user-to-organization"
         modalOptions={{
+          id: 'add-user-to-organization',
           message: 'Some message',
           resultsMessage: 'Some message result',
           onSelectUser,
