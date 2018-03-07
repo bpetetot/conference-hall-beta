@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
 import AvatarLabel from 'components/avatar/avatarLabel'
@@ -8,6 +8,20 @@ import AddUserButton from 'components/addUser'
 
 import './organizationPage.css'
 
+const modalMessage = (
+  <Fragment>
+    <p>
+      Search and add a organizer to your organization, he/she will be also able to update it,
+      invite other organizers and create events for your organization.<br />
+      The organizer must already have a Organizer Hall account.
+    </p>
+    <p>
+      For security and privacy reasons, you can search a organizer only by his/her registered email
+      address.
+    </p>
+  </Fragment>
+)
+
 const OrganizationPage = ({
   name, users, onSelectUser, inviteLink,
 }) => (
@@ -16,8 +30,8 @@ const OrganizationPage = ({
       <AddUserButton
         modalOptions={{
           id: 'add-user-to-organization',
-          message: 'Some message',
-          resultsMessage: 'Some message result',
+          message: modalMessage,
+          resultsMessage: 'Select an organizer to add to your organization',
           onSelectUser,
           inviteLink,
         }}
