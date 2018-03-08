@@ -8,12 +8,12 @@ import Submission from './submission'
 
 const mapStore = (store) => {
   const talkId = getRouterParam('talkId')(store.getState())
-  const talk = store.ui.speaker.myTalks.get(talkId) || {}
+  const talk = store.data.talks.get(talkId) || {}
   return {
     loaded: !!talk,
     talkId: talk.id,
     talkTitle: talk.title,
-    load: () => store.dispatch('@@ui/ON_LOAD_SPEAKER_TALKS'),
+    load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
   }
 }
 
