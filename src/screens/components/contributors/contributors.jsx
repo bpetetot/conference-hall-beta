@@ -32,10 +32,13 @@ class Contributors extends Component {
         </div>
         <small className="contributors-message">
           If you want to contribute, feel free to{' '}
-          <a href="https://github.com/bpetetot/conference-hall" target="_blank" rel="noopener noreferrer">
-            check it out
-          </a>{' '}
-          ;)
+          <a
+            href="https://github.com/bpetetot/conference-hall"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            check it out.
+          </a>
         </small>
       </div>
     )
