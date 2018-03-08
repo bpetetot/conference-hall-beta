@@ -79,7 +79,7 @@ export const saveSortOrderToRoute = reaction(async (action, store) => {
   const query = getRouterQuery(store.getState())
   const updatedQuery = flow(
     omit(removedFilters),
-    filters => Object.assign(filters, addedOrModifiedFilters),
+    filters => ({ ...filters, ...addedOrModifiedFilters }),
   )(query)
   if (!isEqual(query, updatedQuery)) {
     store.dispatch(replace({ query: updatedQuery }))
