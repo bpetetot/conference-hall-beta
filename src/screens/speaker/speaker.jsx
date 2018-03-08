@@ -4,6 +4,7 @@ import forRoute from 'hoc-little-router'
 
 import { protect } from 'store/reducers/auth'
 import { Brand, Navbar } from 'screens/components'
+import Contributors from 'screens/components/contributors'
 import { Sidebar, SidebarMobile } from './sidebar'
 import Profile from './profile'
 import MyTalks from './myTalks'
@@ -29,6 +30,7 @@ const Speaker = () => (
       <EventPage />
       <EventSubmission />
       <InviteSpeaker />
+      <Contributors />
     </div>
   </div>
 )
