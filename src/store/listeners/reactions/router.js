@@ -57,7 +57,7 @@ export const onRouteChanged = reaction((action, store) => {
 
     const filtersFromRouterState = pickFilterKeys(query)
     const filtersFromUiState = pickTruthyValues(pickFilterKeys(store.ui.organizer.proposals.get()))
-    const filtersFromBothStates = Object.assign({}, filtersFromUiState, filtersFromRouterState)
+    const filtersFromBothStates = { ...filtersFromUiState, ...filtersFromRouterState }
     const availableSortOrders = getRouterResult(store.getState()).sortOrders
     const validFilters = update('sortOrder', ensureIncludedIn(availableSortOrders), filtersFromBothStates)
     if (!isEqual(validFilters, filtersFromRouterState)) {
