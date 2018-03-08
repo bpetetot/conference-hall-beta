@@ -53,7 +53,7 @@ export const fetchSpeakerEvents = reaction(async (action, store) => {
   const result = await fetchEvents()
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
   // set events in the store
-  store.data.allEvents.set(events)
+  store.data.events.set(events)
   // set events id to the organizer event store
   store.ui.speaker.myEvents.reset()
   store.ui.speaker.myEvents.set(events)
