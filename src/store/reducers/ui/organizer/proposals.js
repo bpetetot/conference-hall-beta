@@ -1,9 +1,5 @@
 import { simpleObject } from 'k-ramel'
 
-const defaultData = {
-  categories: '',
-  formats: '',
-  sortOrder: 'newest',
-}
+const defaultData = {}
 
 export default simpleObject({ defaultData })

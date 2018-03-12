@@ -1,5 +1,6 @@
 import { reaction } from 'k-ramel'
 import { initializeCurrentLocation, replace } from 'redux-little-router'
+import { isEqual, pick, pickBy, update } from 'lodash/fp'
 
 import {
   isRoute,
@@ -48,35 +49,22 @@ export const onRouteChanged = reaction((action, store) => {
   // when Proposal route, restore sortOrder from route query
   // (or the other way around as a fallback)
   if (isRoute('PROPOSALS')(state)) {
-    const reconcile = (appState, routerState, validValues) => {
-      if (validValues.includes(routerState)) {
-        if (appState !== routerState) {
-          return { shouldUpdateAppState: true, newValue: routerState }
-        }
-        return {}
-      } else if (!routerState && validValues.includes(appState)) {
-        return { shouldUpdateRouterState: true, newValue: appState }
-      }
-      return {
-        shouldUpdateAppState: true,
-        shouldUpdateRouterState: true,
-        newValue: validValues[0],
-      }
-    }
+    const query = getRouterQuery(store.getState())
+
+    const pickTruthyValues = pickBy(Boolean)
+    const pickFilterKeys = pick(['categories', 'formats', 'sortOrder'])
+    const ensureIncludedIn = values => value => (values.includes(value) ? value : values[0])
+
+    const filtersFromRouterState = pickFilterKeys(query)
+    const filtersFromUiState = pickTruthyValues(pickFilterKeys(store.ui.organizer.proposals.get()))
+    const filtersFromBothStates = { ...filtersFromUiState, ...filtersFromRouterState }
     const availableSortOrders = getRouterResult(store.getState()).sortOrders
-    const sortOrderFromRouterState = getRouterQuery(store.getState()).sortOrder
-    const sortOrderFromAppState = store.ui.organizer.proposals.get().sortOrder
-    const { shouldUpdateAppState, shouldUpdateRouterState, newValue: sortOrder } = reconcile(
-      sortOrderFromAppState,
-      sortOrderFromRouterState,
-      availableSortOrders,
-    )
-    if (shouldUpdateAppState) {
-      store.ui.organizer.proposals.update({ sortOrder })
+    const validFilters = update('sortOrder', ensureIncludedIn(availableSortOrders), filtersFromBothStates)
+    if (!isEqual(validFilters, filtersFromRouterState)) {
+      store.dispatch(replace({ query: { ...query, ...validFilters } }))
     }
-    if (shouldUpdateRouterState) {
-      const query = getRouterQuery(store.getState())
-      store.dispatch(replace({ query: { ...query, sortOrder } }))
+    if (!isEqual(validFilters, filtersFromUiState)) {
+      store.ui.organizer.proposals.update(validFilters)
     }
   }
 })
