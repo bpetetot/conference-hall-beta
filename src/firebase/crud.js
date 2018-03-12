@@ -56,8 +56,20 @@ const update = (collection, idAttr) => data =>
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
+/**
+ * delete document in the collection
+ * @param {String} collection collection name
+ */
+const deleteDoc = collection => id =>
+  firebase
+    .firestore()
+    .collection(collection)
+    .doc(id)
+    .delete()
+
 export default (collection, idAttr) => ({
   create: create(collection, idAttr),
   read: read(collection),
   update: update(collection, idAttr),
+  delete: deleteDoc(collection, idAttr),
 })

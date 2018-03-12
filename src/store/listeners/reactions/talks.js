@@ -87,3 +87,13 @@ export const updateSpeakerToTalk = reaction(async (action, store) => {
     }
   }
 })
+
+export const deleteTalk = reaction(async (action, store) => {
+  const { talkId } = action.payload
+  // go to default page
+  store.dispatch(push('/speaker'))
+  // delete the talk
+  await talkCrud.delete(talkId)
+  store.data.talks.remove([talkId])
+  store.ui.speaker.myTalks.remove([talkId])
+})

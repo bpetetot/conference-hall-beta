@@ -1,5 +1,15 @@
 import pick from 'lodash/pick'
 import isEqual from 'lodash/isEqual'
+import isEmpty from 'lodash/isEmpty'
+
+/**
+ * Check if the talk can be deleted
+ * @param {String} talkId talk id
+ */
+export const canBeDeleted = talkId => (store) => {
+  const talk = store.data.talks.get(talkId)
+  return !!talk && (!talk.submissions || isEmpty(Object.keys(talk.submissions)))
+}
 
 /**
  * Returns true if the talk has been submitted to the event
