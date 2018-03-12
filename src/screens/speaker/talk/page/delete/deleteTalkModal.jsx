@@ -19,7 +19,7 @@ class DeleteTalkModal extends Component {
     return (
       <Modal id={modalId} className="delete-talk-modal">
         <h1>Danger!</h1>
-        <p>Becareful, you are going to delete your talk. It&apos;s a definitive action!</p>
+        <p>Be careful, you are going to delete your talk. It&apos;s a definitive action!</p>
         {!canDelete && (
           <p>
             You&apos;re talk has been already submitted to events, organizer will still have a copy

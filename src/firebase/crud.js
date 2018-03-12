@@ -71,5 +71,5 @@ export default (collection, idAttr) => ({
   create: create(collection, idAttr),
   read: read(collection),
   update: update(collection, idAttr),
-  delete: deleteDoc(collection, idAttr),
+  delete: deleteDoc(collection),
 })
