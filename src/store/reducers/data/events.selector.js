@@ -1,13 +1,8 @@
 import isAfter from 'date-fns/is_after'
 import isBefore from 'date-fns/is_before'
 import isEmpty from 'lodash/isEmpty'
-/**
- * Return the opening state of the cfp for the given eventId.
- * Values can be : not-started, opened, closed
- * @param {String} eventId event Id
- */
-export const getCfpState = eventId => (store) => {
-  const event = store.data.events.get(eventId) || {}
+
+export const getEventCfpState = (event) => {
   if (event.type === 'meetup') {
     return event.cfpOpened ? 'opened' : 'closed'
   } else if (event.type === 'conference') {
@@ -19,6 +14,16 @@ export const getCfpState = eventId => (store) => {
     return 'opened'
   }
   return 'closed'
+}
+
+/**
+ * Return the opening state of the cfp for the given eventId.
+ * Values can be : not-started, opened, closed
+ * @param {String} eventId event Id
+ */
+export const getCfpState = eventId => (store) => {
+  const event = store.data.events.get(eventId) || {}
+  return getEventCfpState(event)
 }
 
 /**
