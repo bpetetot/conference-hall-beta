@@ -1,0 +1,8 @@
+.talk-title {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.talk-title > i {
+  margin-right: 15px;
+}

@@ -22,7 +22,7 @@ const mapStore = (store) => {
 }
 
 export default compose(
-  forRoute('SUBMISSION'), //
+  forRoute('EVENT_SUBMISSION'), //
   inject(mapStore), //
   loader, //
 )(Submission)

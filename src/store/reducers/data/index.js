@@ -1,9 +1,9 @@
 import { keyValue } from 'k-ramel'
 
 export default {
-  users: keyValue({ key: 'uid' }),
   events: keyValue({ key: 'id' }),
-  talks: keyValue({ key: 'id' }),
   proposals: keyValue({ key: 'id' }),
   ratings: keyValue({ key: 'uid' }),
+  talks: keyValue({ key: 'id' }),
+  users: keyValue({ key: 'uid' }),
 }
