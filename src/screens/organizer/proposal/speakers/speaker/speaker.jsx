@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { getGitHubUserRepo } from 'helpers/github'
 import Avatar from 'screens/components/speaker'
 import IconLabel from 'components/iconLabel'
 import IconLink from 'components/iconLink'
@@ -20,7 +21,7 @@ const Speaker = ({
       <Avatar id={uid} className="proposal-speaker-avatar" />
       <div className="proposal-speaker-icons">
         <IconLink icon="fa fa-envelope-o" label={email} href={`mailto:${email}`} />
-        <IconLink icon="fa fa-github" label={github} href={`https://github.com/${github}`} />
+        <IconLink icon="fa fa-github" label={github} href={getGitHubUserRepo(github)} />
         <IconLink icon="fa fa-twitter" label={twitter} href={`https://twitter.com/${twitterUrl}`} />
         <IconLabel icon="fa fa-building-o" label={company} />
         <IconLabel icon="fa fa-map-marker" label={city} />
