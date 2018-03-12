@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import forRoute from 'hoc-little-router'
 
+import { GITHUB_REPO, CONTRIBUTORS_API } from 'helpers/github'
 import IconLabel from 'components/iconLabel'
 import Contributor from './contributor'
 
@@ -12,7 +13,7 @@ class Contributors extends Component {
   }
 
   async componentWillMount() {
-    const response = await fetch('https://api.github.com/repos/bpetetot/conference-hall/contributors')
+    const response = await fetch(CONTRIBUTORS_API)
     const contributors = await response.json()
     this.setState({ contributors })
   }
@@ -32,11 +33,7 @@ class Contributors extends Component {
         </div>
         <small className="contributors-message">
           If you want to contribute, feel free to{' '}
-          <a
-            href="https://github.com/bpetetot/conference-hall"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={GITHUB_REPO} target="_blank" rel="noopener noreferrer">
             check it out.
           </a>
         </small>
