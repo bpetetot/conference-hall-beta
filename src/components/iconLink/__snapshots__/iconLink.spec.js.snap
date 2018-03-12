@@ -8,7 +8,8 @@ exports[`components/iconLink should render icon link 1`] = `
 <a
   className="icon-link"
   href="h"
-  target="NEW"
+  rel="noopener noreferrer"
+  target="_blank"
 >
   <IconLabel
     icon="i"

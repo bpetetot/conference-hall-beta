@@ -1,0 +1,16 @@
+.contributor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contributor-avatar {
+  width: 6em;
+  border-radius: 3em;
+  margin-bottom: 1em;
+}
+
+.contributor-name {
+  font-weight: 600;
+}

@@ -2,6 +2,8 @@
   "name": "conference-hall",
   "version": "0.1.0",
   "private": true,
+  "bugs": "https://github.com/bpetetot/conference-hall/issues",
+  "repository": "github:bpetetot/conference-hall",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -17,7 +19,7 @@
     "hoc-little-router": "^1.2.0",
     "hoc-react-loader": "^6.3.0",
     "immutadot": "^1.0.0",
-    "k-ramel": "0.10.0",
+    "k-ramel": "0.10.2",
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "normalize.css": "^8.0.0",
@@ -49,17 +51,12 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": [
-      "airbnb"
-    ],
+    "extends": ["airbnb"],
     "env": {
       "browser": true
     },
     "rules": {
-      "semi": [
-        2,
-        "never"
-      ],
+      "semi": [2, "never"],
       "import/no-extraneous-dependencies": 0,
       "import/no-unresolved": 0,
       "import/extensions": 0,

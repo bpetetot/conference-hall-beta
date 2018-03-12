@@ -31,6 +31,7 @@ export default {
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },
     },
+    '/contributors': { title: 'CONTRIBUTORS' },
   },
   '/speaker': {
     app: 'speaker',
@@ -55,5 +56,6 @@ export default {
         '/submission': { title: 'EVENT_SUBMISSION' },
       },
     },
+    '/contributors': { title: 'CONTRIBUTORS' },
   },
 }

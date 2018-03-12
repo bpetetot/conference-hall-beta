@@ -4462,9 +4462,9 @@ jsx-ast-utils@^2.0.0, jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
-k-ramel@0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.10.0.tgz#a17d6bd9103d4ef32a8d286d6979e7932f7c199b"
+k-ramel@0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.10.2.tgz#413a36babd78d78f526f00a4df807dcdb9af92b1"
   dependencies:
     "@k-ramel/driver-http" "^0.10.0"
     k-redux-factory "5.0.1"
