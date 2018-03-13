@@ -8,7 +8,7 @@ import isEmpty from 'lodash/isEmpty'
  */
 export const canBeDeleted = talkId => (store) => {
   const talk = store.data.talks.get(talkId)
-  return !!talk && (!talk.submissions || isEmpty(Object.keys(talk.submissions)))
+  return !!talk && isEmpty(talk.submissions)
 }
 
 /**
