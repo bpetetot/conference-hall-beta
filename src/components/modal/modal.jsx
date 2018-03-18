@@ -42,7 +42,7 @@ class Modal extends Component {
 Modal.propTypes = {
   opened: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
   className: PropTypes.string,
 }
 
