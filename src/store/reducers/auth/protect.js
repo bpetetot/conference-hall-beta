@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { replace } from 'redux-little-router'
 import { inject } from '@k-ramel/react'
 
 export default (Component) => {
@@ -36,9 +35,9 @@ export default (Component) => {
     }
   }
 
-  return inject(store => ({
+  return inject((store, props, { router }) => ({
     ...store.auth.get(),
     url: `${store.getState().router.pathname}${store.getState().router.search}`,
-    redirectLogin: url => store.dispatch(replace(`/login?next=${url}`)),
+    redirectLogin: url => router.replace(`/login?next=${url}`),
   }))(ProtectedComponent)
 }

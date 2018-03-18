@@ -1,14 +1,12 @@
 import { reaction } from 'k-ramel'
-import { push } from 'redux-little-router'
 import isEmpty from 'lodash/isEmpty'
 import compareDesc from 'date-fns/compare_desc'
 import { set, unset } from 'immutadot'
 
-import { getRouterParam } from 'store/reducers/router'
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 import { fetchUsersByEmail } from 'firebase/user'
 
-export const createTalk = reaction(async (action, store, { form }) => {
+export const createTalk = reaction(async (action, store, { form, router }) => {
   const createForm = form('talk-create')
   const talk = createForm.getFormValues()
   // get user id
@@ -20,10 +18,10 @@ export const createTalk = reaction(async (action, store, { form }) => {
     speakers: { [uid]: true },
   })
   // go to talk page
-  store.dispatch(push(`/speaker/talk/${ref.id}`))
+  router.push(`/speaker/talk/${ref.id}`)
 })
 
-export const updateTalk = reaction((action, store, { form }) => {
+export const updateTalk = reaction((action, store, { form, router }) => {
   const updateForm = form('talk-edit')
   const talk = updateForm.getFormValues()
   // create talk into database
@@ -31,11 +29,11 @@ export const updateTalk = reaction((action, store, { form }) => {
   // update talk into data store
   store.data.talks.update(talk)
   // go to talk page
-  store.dispatch(push(`/speaker/talk/${talk.id}`))
+  router.push(`/speaker/talk/${talk.id}`)
 })
 
-export const fetchTalk = reaction(async (action, store) => {
-  const talkId = action.payload || getRouterParam('talkId')(store.getState())
+export const fetchTalk = reaction(async (action, store, { router }) => {
+  const talkId = action.payload || router.getRouteParam('talkId')
   if (!talkId) return
   // check if already in the store
   const current = store.data.talks.get(talkId)
