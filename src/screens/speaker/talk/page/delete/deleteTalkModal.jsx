@@ -22,9 +22,9 @@ class DeleteTalkModal extends Component {
         <p>Be careful, you are going to delete your talk. It&apos;s a definitive action!</p>
         {canDelete || (
           <p>
-            You&apos;re talk has been already submitted to events, organizer will still have a copy
-            of the submitted talk. You should unsubmit it if the call for paper is still open else
-            you should contact organizer to remove the talk from the event.
+            Your talk has been already submitted to events, organizer will still have a copy of the
+            submitted talk. You should unsubmit it if the call for paper is still open else you
+            should contact organizer to remove the talk from the event.
           </p>
         )}
         <InputButton
