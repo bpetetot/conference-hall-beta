@@ -1,6 +1,6 @@
 import { inject } from '@k-ramel/react'
 
-import { getBaseRoute } from 'store/reducers/router'
+import { getBaseRoute } from 'store/drivers/redux-little-router'
 import AvatarDropdown from './avatarDropdown'
 
 const mapStore = (store) => {
