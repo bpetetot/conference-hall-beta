@@ -42,9 +42,7 @@ export const selectProposal = reaction(async (action, store, { router }) => {
     const filters = store.ui.organizer.proposals.get()
     router.push({
       pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
-      query: {
-        ...filters,
-      },
+      query: filters,
     })
   }
 })
@@ -61,9 +59,7 @@ export const nextProposal = reaction(async (action, store, { router }) => {
     const filters = store.ui.organizer.proposals.get()
     router.push({
       pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
-      query: {
-        ...filters,
-      },
+      query: filters,
     })
   }
 })
@@ -80,9 +76,7 @@ export const previousProposal = reaction(async (action, store, { router }) => {
     const filters = store.ui.organizer.proposals.get()
     router.push({
       pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
-      query: {
-        ...filters,
-      },
+      query: filters,
     })
   }
 })
