@@ -7,7 +7,10 @@ import './inputButton.css'
 class InputButton extends Component {
   state = { value: this.props.defaultValue }
 
-  handleChange = e => this.setState({ value: e.target.value })
+  handleChange = (e) => {
+    this.setState({ value: e.target.value })
+    if (this.props.onChange) this.props.onChange(e)
+  }
 
   handleClick = () => this.props.onClick(this.state.value)
 
@@ -19,7 +22,13 @@ class InputButton extends Component {
 
   render() {
     const {
-      btnLabel, className, btnClassName, defaultValue, onClick, ...inputProps
+      btnLabel,
+      className,
+      btnClassName,
+      defaultValue,
+      onClick,
+      disabled,
+      ...inputProps
     } = this.props
 
     return (
@@ -33,7 +42,7 @@ class InputButton extends Component {
         <button
           onClick={this.handleClick}
           className={cn('btn', btnClassName)}
-          disabled={!this.state.value}
+          disabled={!this.state.value || disabled}
         >
           {btnLabel}
         </button>
@@ -44,15 +53,19 @@ class InputButton extends Component {
 
 InputButton.propTypes = {
   onClick: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   btnLabel: PropTypes.node.isRequired,
   defaultValue: PropTypes.string,
   className: PropTypes.string,
+  disabled: PropTypes.bool,
   btnClassName: PropTypes.string,
 }
 
 InputButton.defaultProps = {
+  onChange: undefined,
   className: undefined,
   defaultValue: undefined,
+  disabled: false,
   btnClassName: undefined,
 }
 

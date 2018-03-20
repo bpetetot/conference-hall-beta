@@ -10,7 +10,13 @@ const IconLink = ({
 }) => {
   if (!label || !href) return null
   return (
-    <a href={href} target={target} className={cn('icon-link', className)} {...rest}>
+    <a
+      href={href}
+      target={target}
+      rel="noopener noreferrer"
+      className={cn('icon-link', className)}
+      {...rest}
+    >
       <IconLabel icon={icon} label={label} />
     </a>
   )
@@ -28,7 +34,7 @@ IconLink.defaultProps = {
   href: undefined,
   className: undefined,
   label: undefined,
-  target: 'NEW',
+  target: '_blank',
 }
 
 export default IconLink

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/iconLabel should not render if no label 1`] = `null`;
+
+exports[`components/iconLabel should render icon label 1`] = `
+<span
+  className="icon-label"
+>
+  <span>
+    <i
+      className="i"
+    />
+  </span>
+  <span
+    className="icon-label-label"
+  >
+    l
+  </span>
+</span>
+`;
+
+exports[`components/iconLabel should render icon label on right 1`] = `
+<span
+  className="icon-label icon-label-right"
+>
+  <span
+    className="icon-label-label"
+  >
+    l
+  </span>
+  <span>
+    <i
+      className="i"
+    />
+  </span>
+</span>
+`;
+
+exports[`components/iconLabel should render icon label with class 1`] = `
+<span
+  className="c icon-label"
+>
+  <span>
+    <i
+      className="i"
+    />
+  </span>
+  <span
+    className="icon-label-label"
+  >
+    l
+  </span>
+</span>
+`;

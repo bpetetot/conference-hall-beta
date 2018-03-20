@@ -1,11 +1,10 @@
 import { inject } from '@k-ramel/react'
 
-import { getRouterParam } from 'store/reducers/router'
 import CopyInput from 'components/copyInput'
 
-const mapStore = (store) => {
+const mapStore = (store, props, { router }) => {
   const { uid } = store.auth.get()
-  const talkId = getRouterParam('talkId')(store.getState())
+  const talkId = router.getRouteParam('talkId')
   const url = window.location.href.split('/')
   return {
     title: 'Invite link',

@@ -41,11 +41,12 @@ class CopyInput extends PureComponent {
 }
 
 CopyInput.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   value: PropTypes.string,
 }
 
 CopyInput.defaultProps = {
+  title: undefined,
   value: undefined,
 }
 

@@ -3,7 +3,6 @@ import { push } from 'redux-little-router'
 import map from 'lodash/map'
 import { set } from 'immutadot'
 
-import { getRouterParam } from 'store/reducers/router'
 import organizationCrud, {
   createOrganization as firebaseCreateOrganization,
   fetchOrganizationUsers,
@@ -60,8 +59,8 @@ export const fetchOrganizerOrganizations = reaction(async (action, store) => {
 })
 
 
-export const fetchOrganization = reaction(async (action, store) => {
-  const organizationId = action.payload || getRouterParam('organizationId')(store.getState())
+export const fetchOrganization = reaction(async (action, store, { router }) => {
+  const organizationId = action.payload || router.getRouteParam('organizationId')
   if (!organizationId) return
   // check if already in the store
   let organization = store.data.organizations.get(organizationId)

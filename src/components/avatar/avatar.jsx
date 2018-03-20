@@ -6,7 +6,7 @@ import cn from 'classnames'
 import './avatar.css'
 
 const Avatar = ({ displayName, photoURL, className }) => {
-  if (!photoURL && !displayName) return null
+  if (!displayName) return null
   const classes = cn(
     'avatar',
     { 'avatar-initials': !photoURL, 'avatar-image': photoURL },

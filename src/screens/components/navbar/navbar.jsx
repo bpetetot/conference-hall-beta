@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { GITHUB_ISSUES } from 'helpers/github'
 import Navbar from 'components/navbar'
 import IconLink from 'components/iconLink'
 import AvatarDropdown from './avatarDropdown'
@@ -13,7 +14,7 @@ const SpeakerNavbar = ({ className }) => (
       icon="fa fa-github"
       label="report a bug"
       className="navbar-link"
-      href="https://github.com/bpetetot/conference-hall/issues/new"
+      href={GITHUB_ISSUES}
     />
     <AvatarDropdown />
   </Navbar>

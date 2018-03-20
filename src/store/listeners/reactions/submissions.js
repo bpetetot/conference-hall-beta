@@ -1,19 +1,18 @@
 import { reaction } from 'k-ramel'
-import { push } from 'redux-little-router'
 
 import { isSubmitted } from 'store/reducers/data/talks.selector'
 import { saveTalkSubmission, unsubmitTalk } from 'firebase/submission'
 
-export const openSelectSubmission = reaction((action, store) => {
+export const openSelectSubmission = reaction((action, store, { router }) => {
   const { eventId } = action.payload
   store.ui.speaker.submission.reset()
-  store.dispatch(push(`/speaker/event/${eventId}/submission`))
+  router.push(`/speaker/event/${eventId}/submission`)
 })
 
-export const openEventSubmission = reaction((action, store) => {
+export const openEventSubmission = reaction((action, store, { router }) => {
   const { talkId, eventId } = action.payload
   store.ui.speaker.submission.set({ talkId, currentStep: 1 })
-  store.dispatch(push(`/speaker/event/${eventId}/submission`))
+  router.push(`/speaker/event/${eventId}/submission`)
 })
 
 export const submitTalkToEvent = reaction((action, store, { form }) => {

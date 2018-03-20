@@ -2,8 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import isEmpty from 'lodash/isEmpty'
+import { Link } from 'redux-little-router'
+import IconLabel from 'components/iconLabel'
 
 import Submission from './submission'
+import './submissions.css'
 
 const TalkSubmissions = ({ id, submissions, className }) => (
   <div className={cn('card', className)}>
@@ -16,6 +19,11 @@ const TalkSubmissions = ({ id, submissions, className }) => (
         ))}
       </div>
     )}
+    <div className="talk-submit">
+      <Link href={`/speaker/talk/${id}/submission`} className="btn">
+        <IconLabel icon="fa fa-paper-plane" label="Submit" />
+      </Link>
+    </div>
   </div>
 )
 

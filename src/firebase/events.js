@@ -9,4 +9,10 @@ export const fetchUserEvents = uid =>
     .where('owner', '==', uid)
     .get()
 
+export const fetchEvents = () =>
+  firebase
+    .firestore()
+    .collection('events')
+    .get()
+
 export default crud('events', 'id')

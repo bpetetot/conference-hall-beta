@@ -24,7 +24,10 @@ export default {
           '/cfp': { title: 'EDIT_EVENT_CFP' },
           '/members': { title: 'EDIT_EVENT_MEMBERS' },
         },
-        '/proposals': { title: 'PROPOSALS' },
+        '/proposals': {
+          title: 'PROPOSALS',
+          sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],
+        },
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },
     },
@@ -33,6 +36,7 @@ export default {
       '/:organizationId': { title: 'ORGANIZATION_PAGE' },
     },
     '/organization/create': { title: 'CREATE_ORGANIZATION' },
+    '/contributors': { title: 'CONTRIBUTORS' },
   },
   '/speaker': {
     app: 'speaker',
@@ -46,6 +50,7 @@ export default {
       '/:talkId': {
         title: 'TALK_PAGE',
         '/edit': { title: 'EDIT_TALK' },
+        '/submission': { title: 'TALK_SUBMISSION' },
       },
     },
     '/invite/talk/:talkId/:uid': { title: 'INVITE_SPEAKER' },
@@ -53,8 +58,9 @@ export default {
       title: 'HOME_EVENT',
       '/:eventId': {
         title: 'EVENT_PAGE',
-        '/submission': { title: 'SUBMISSION' },
+        '/submission': { title: 'EVENT_SUBMISSION' },
       },
     },
+    '/contributors': { title: 'CONTRIBUTORS' },
   },
 }
