@@ -42,7 +42,7 @@ export const addOrganizationToUser = reaction(async (action, store) => {
   const updated = set(user, `organizations.${organizationId}`, true)
 
   store.data.users.update(updated)
-  await userCrud.update(updated)
+  userCrud.update(updated)
 })
 
 export const removeOrganizationToUser = reaction(async (action, store) => {
@@ -52,5 +52,5 @@ export const removeOrganizationToUser = reaction(async (action, store) => {
   const updated = unset(user, `organizations.${organizationId}`)
 
   store.data.users.update(updated)
-  await userCrud.update(updated)
+  userCrud.update(updated)
 })
