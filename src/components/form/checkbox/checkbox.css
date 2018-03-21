@@ -1,0 +1,12 @@
+.form-checkbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form-checkbox > input {
+  width: initial;
+  height: initial;
+  line-height: initial;
+  margin-right: 1em;
+}
