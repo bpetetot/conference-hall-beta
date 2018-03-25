@@ -1,7 +1,7 @@
 .form-checkbox {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .form-checkbox > input {
@@ -9,4 +9,5 @@
   height: initial;
   line-height: initial;
   margin-right: 1em;
+  margin-top: 2px;
 }

@@ -11,33 +11,33 @@ const SurveyForm = ({ surveyActive, ...formProps }) => (
     <Field name="surveyActive" label="Activate Speaker Survey" component={toggle} />
     <p className="survey-label">Select questions that you want to ask to speakers :</p>
     <Field
-      name="gender"
+      name="survey.gender"
       label="What's your gender?"
       info="(male, female, no gender)"
       component={checkbox}
       disabled={!surveyActive}
     />
     <Field
-      name="tshirt"
+      name="survey.tshirt"
       label="What's your Tshirt size?"
       info="(men&apos;s S, M, L, XL, XXL, women&apos;s S, M, L, LX, XXL )"
       component={checkbox}
       disabled={!surveyActive}
     />
     <Field
-      name="accomodation"
+      name="survey.accomodation"
       label="Do you need accommodation funding?"
       component={checkbox}
       disabled={!surveyActive}
     />
     <Field
-      name="transports"
+      name="survey.transports"
       label="Do you need transports funding?"
       component={checkbox}
       disabled={!surveyActive}
     />
     <Field
-      name="diet"
+      name="survey.diet"
       label="Do you have any special diet restrictions?"
       info="(vegetarian, vegan, halal, gluten-free, nut allergy)"
       component={checkbox}

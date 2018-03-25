@@ -1,14 +1,12 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import Checkbox from './checkbox'
 
-const renderCheckbox = ({
-  input, disabled, label, info,
-}) => (
-  <Checkbox {...input} disabled={disabled} value={input.value}>
-    {label}
-    {info && <small style={{ marginLeft: '1em' }}>{info}</small>}
-  </Checkbox>
-)
+const ReduxFormCheckbox = ({ input, ...rest }) => <Checkbox {...input} {...rest} />
 
-export default renderCheckbox
+ReduxFormCheckbox.propTypes = {
+  input: PropTypes.objectOf(PropTypes.any).isRequired,
+}
+
+export default ReduxFormCheckbox
