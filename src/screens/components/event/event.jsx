@@ -26,7 +26,7 @@ const Event = ({
   formats,
 }) => (
   <div className="event-page">
-    <EventTitle name={name} className="event-page-header" />
+    <EventTitle name={name} subtitle="Call for paper" className="event-page-header" />
     <Cfp eventId={id} className="event-page-cfp" />
     <EventActions className="event-page-actions" eventId={id} isOrganizer={isOrganizer} />
     <div className="event-page-content card">

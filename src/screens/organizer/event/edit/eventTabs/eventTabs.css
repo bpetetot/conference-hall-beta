@@ -4,12 +4,25 @@ ul.event-tabs {
   justify-content: flex-start;
 }
 
+ul.event-tabs a {
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 480px) {
   .event-tabs {
-    padding: 1em;
-    margin-bottom: 1em;
+    flex-direction: column;
+    padding: 0;
+    margin-bottom: 0;
     font-size: 0.9em;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
+  }
+
+  ul.event-tabs.tabs > li {
+    margin: 0;
+    padding-top: 1em;
+  }
+  ul.event-tabs.tabs > li:first-child {
+    padding-top: 0;
   }
 }

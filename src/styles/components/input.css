@@ -1,4 +1,4 @@
-input,
+input[type='text'],
 select {
   border-radius: 3px;
   border: 1px solid var(--grey-color);

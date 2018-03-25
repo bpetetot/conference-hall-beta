@@ -22,7 +22,7 @@ export default {
         '/edit': {
           title: 'EDIT_EVENT',
           '/cfp': { title: 'EDIT_EVENT_CFP' },
-          '/members': { title: 'EDIT_EVENT_MEMBERS' },
+          '/survey': { title: 'EDIT_EVENT_SURVEY' },
         },
         '/proposals': {
           title: 'PROPOSALS',
@@ -54,6 +54,7 @@ export default {
       '/:eventId': {
         title: 'EVENT_PAGE',
         '/submission': { title: 'EVENT_SUBMISSION' },
+        '/survey': { title: 'EVENT_SURVEY' },
       },
     },
     '/contributors': { title: 'CONTRIBUTORS' },

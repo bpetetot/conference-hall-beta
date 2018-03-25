@@ -6,4 +6,5 @@ export default {
   ratings: keyValue({ key: 'uid' }),
   talks: keyValue({ key: 'id' }),
   users: keyValue({ key: 'uid' }),
+  surveys: keyValue({ key: 'uid' }),
 }
