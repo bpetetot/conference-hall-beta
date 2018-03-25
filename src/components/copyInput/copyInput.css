@@ -11,13 +11,13 @@
   padding: 0 1em;
 }
 
-.copy-input > input {
+.copy-input > input[type='text'] {
   border: none;
   border-left: 1px solid var(--grey-color);
   border-radius: 0;
 }
 
-.copy-input > input:focus {
+.copy-input > input[type='text']:focus {
   border: none;
   border-left: 1px solid var(--grey-color);
 }
