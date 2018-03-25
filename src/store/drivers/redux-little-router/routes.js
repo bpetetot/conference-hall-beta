@@ -54,6 +54,7 @@ export default {
       '/:eventId': {
         title: 'EVENT_PAGE',
         '/submission': { title: 'EVENT_SUBMISSION' },
+        '/survey': { title: 'EVENT_SURVEY' },
       },
     },
     '/contributors': { title: 'CONTRIBUTORS' },

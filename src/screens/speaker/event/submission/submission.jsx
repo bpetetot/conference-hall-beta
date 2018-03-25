@@ -23,7 +23,7 @@ const Submission = ({
   if (!eventId || !cfpOpened) return null
   return (
     <div className="submission">
-      <EventTitle name={eventName} />
+      <EventTitle name={eventName} subtitle="Talk submission" />
       <Stepper steps={steps} currentStep={currentStep} />
       {currentStep === 0 && <Selection eventId={eventId} eventName={eventName} />}
       {currentStep === 1 && <TalkDetails eventId={eventId} eventName={eventName} />}

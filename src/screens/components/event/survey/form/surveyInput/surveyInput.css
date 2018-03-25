@@ -1,0 +1,17 @@
+.survey-input {
+  margin-bottom: 1em;
+}
+
+.survey-input > label {
+  display: block;
+  font-weight: bold;
+  padding-bottom: 0.5em;
+}
+
+.survey-input > div {
+  padding-bottom: 0.5em;
+}
+
+.survey-input > div input {
+  margin-right: 0.5em;
+}

@@ -1,0 +1,8 @@
+.speaker-survey > h1 {
+  margin-bottom: 2em;
+}
+
+.speaker-survey .card > p {
+  color: var(--grey-color-dark);
+  margin-bottom: 2em;
+}
