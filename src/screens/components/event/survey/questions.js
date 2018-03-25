@@ -5,9 +5,9 @@ export default [
     organizerInfo: '(male, female, no gender)',
     type: 'radio',
     answers: [
-      { name: 'male', label: 'male' },
-      { name: 'female', label: 'female' },
-      { name: 'nogender', label: 'no gender' },
+      { name: 'male', label: 'Male' },
+      { name: 'female', label: 'Female' },
+      { name: 'nogender', label: 'No gender' },
     ],
   },
   {
@@ -35,9 +35,9 @@ export default [
     label: 'Do you need transports funding?',
     type: 'checkbox',
     answers: [
-      { name: 'taxi', label: 'taxi' },
-      { name: 'train', label: 'train' },
-      { name: 'plane', label: 'plane' },
+      { name: 'taxi', label: 'Taxi' },
+      { name: 'train', label: 'Train' },
+      { name: 'plane', label: 'Plane' },
     ],
   },
   {
