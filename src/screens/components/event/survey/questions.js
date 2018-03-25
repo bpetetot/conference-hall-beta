@@ -2,12 +2,12 @@ export default [
   {
     name: 'gender',
     label: "What's your gender?",
-    organizerInfo: '(male, female, no gender)',
+    organizerInfo: '(male, female, genderless)',
     type: 'radio',
     answers: [
       { name: 'male', label: 'Male' },
       { name: 'female', label: 'Female' },
-      { name: 'nogender', label: 'No gender' },
+      { name: 'genderless', label: 'Genderless' },
     ],
   },
   {
@@ -55,7 +55,7 @@ export default [
   },
   {
     name: 'info',
-    label: 'Do you have particular information to share?',
+    label: 'Do you have specific information to share?',
     type: 'text',
   },
 ]
