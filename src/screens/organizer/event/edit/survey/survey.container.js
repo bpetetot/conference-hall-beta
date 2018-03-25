@@ -9,9 +9,9 @@ const FORM_NAME = 'survey-edit'
 
 const mapStore = (store, { eventId }, { form }) => {
   const event = store.data.events.get(eventId)
-  const values = form(FORM_NAME).getFormValues() || {}
+  const { surveyActive } = form(FORM_NAME).getFormValues() || {}
   return {
-    surveyActive: values.surveyActive,
+    surveyActive,
     initialValues: event,
     onSubmit: () => store.dispatch('@@ui/ON_UPDATE_EVENT_SURVEY'),
   }

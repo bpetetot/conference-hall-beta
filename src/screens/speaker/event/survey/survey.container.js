@@ -17,7 +17,7 @@ const mapState = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute('EVENT_SURVEY'), //
+  forRoute.absolute('EVENT_SURVEY'), //
   inject(mapState), //
   loader, //
 )(SpeakerSurvey)
