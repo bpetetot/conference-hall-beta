@@ -1,5 +1,4 @@
 import { reaction } from 'k-ramel'
-import { push } from 'redux-little-router'
 import map from 'lodash/map'
 import { set } from 'immutadot'
 
@@ -9,7 +8,7 @@ import organizationCrud, {
 } from 'firebase/organizations'
 import userCrud from 'firebase/user'
 
-export const createOrganization = reaction(async (action, store, { form }) => {
+export const createOrganization = reaction(async (action, store, { form, router }) => {
   const createForm = form('organization-create')
   const organizationValues = createForm.getFormValues()
   // get user id
@@ -26,7 +25,7 @@ export const createOrganization = reaction(async (action, store, { form }) => {
 
   // FIXME: Go to newly created organization page
   // go to organization page
-  store.dispatch(push('/organizer/organizations'))
+  router.push('/organizer/organizations')
 })
 
 export const fetchOrganizerOrganizations = reaction(async (action, store) => {
