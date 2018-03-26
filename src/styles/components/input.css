@@ -1,4 +1,5 @@
-input,
+input[type='text'],
+input[type='search'],
 select {
   border-radius: 3px;
   border: 1px solid var(--grey-color);

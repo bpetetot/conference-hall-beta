@@ -14,6 +14,7 @@ import TalkSubmission from './talk/submission'
 import Talk from './talk/page'
 import EventPage from './event/page'
 import EventSubmission from './event/submission'
+import EventSurvey from './event/survey'
 import InviteSpeaker from './inviteSpeaker'
 
 const Speaker = () => (
@@ -31,6 +32,7 @@ const Speaker = () => (
       <MyTalks />
       <EventPage />
       <EventSubmission />
+      <EventSurvey />
       <InviteSpeaker />
       <Contributors />
     </div>
