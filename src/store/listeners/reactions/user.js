@@ -58,7 +58,6 @@ export const removeOrganizationToUser = reaction(async (action, store) => {
   store.data.users.update(updated)
   await userCrud.update(updated)
 
-
   const organization = store.data.organizations.get(organizationId)
   store.data.organizations.update(filter(organization, 'users', u => u.uid !== uid))
 })

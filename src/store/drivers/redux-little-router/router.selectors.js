@@ -3,6 +3,8 @@ export const getRouter = state => state.router
 export const getRouterResult = state => getRouter(state).result
 export const getRouterParams = state => getRouter(state).params
 export const getRouterParam = key => state => getRouterParams(state)[key]
+export const getRouterQuery = state => getRouter(state).query
+export const getRouterQueryParam = key => state => getRouterQuery(state)[key]
 
 // get the given attribute value for the current route hierarchy
 const getRecursively = (result, attribute) => {

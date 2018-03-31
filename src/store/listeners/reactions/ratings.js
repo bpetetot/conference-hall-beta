@@ -1,7 +1,6 @@
 import { reaction } from 'k-ramel'
 
 import { getRatingsAverage, getFeelingsCount } from 'store/reducers/data/ratings.selectors'
-import { getRouterParam } from 'store/reducers/router'
 import { getRatings, addRating, deleteRating } from 'firebase/ratings'
 import { updateRating } from 'firebase/proposals'
 
@@ -15,12 +14,12 @@ export const fetchRatings = reaction(async (action, store) => {
   store.data.ratings.set(ratings)
 })
 
-export const rateProposal = reaction(async (action, store) => {
+export const rateProposal = reaction(async (action, store, { router }) => {
   const rating = action.payload
   // select needed inputs in the state
   const { uid } = store.auth.get()
-  const eventId = getRouterParam('eventId')(store.getState())
-  const proposalId = getRouterParam('proposalId')(store.getState())
+  const eventId = router.getRouteParam('eventId')
+  const proposalId = router.getRouteParam('proposalId')
   // add or remove the rating in database and store
   const rated = !!rating.rating || !!rating.feeling
   if (rated) {

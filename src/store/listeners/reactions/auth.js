@@ -1,7 +1,6 @@
 import { reaction } from 'k-ramel'
 import firebase from 'firebase/app'
 import pick from 'lodash/pick'
-import { push, replace } from 'redux-little-router'
 
 import userCrud from 'firebase/user'
 
@@ -27,12 +26,12 @@ export const signin = reaction((action) => {
   firebase.auth().signInWithPopup(provider)
 })
 
-export const signout = reaction((action, store) => {
+export const signout = reaction((action, store, { router }) => {
   firebase.auth().signOut()
-  store.dispatch(push('/'))
+  router.push('/')
 })
 
-export const signedIn = reaction(async (action, store) => {
+export const signedIn = reaction(async (action, store, { router }) => {
   let user = pick(action.payload, ['uid', 'displayName', 'photoURL', 'email'])
 
   // set auth initialized and authenticated
@@ -50,9 +49,9 @@ export const signedIn = reaction(async (action, store) => {
   store.data.users.add(user)
 
   // go to the next url if exists
-  const { next } = store.getState().router.query
+  const next = router.getQueryParam('next')
   if (next) {
-    store.dispatch(replace(next))
+    router.replace(next)
   }
 })
 

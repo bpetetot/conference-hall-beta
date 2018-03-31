@@ -1,16 +1,14 @@
 import { reaction } from 'k-ramel'
-import { push } from 'redux-little-router'
 import map from 'lodash/map'
 import { set } from 'immutadot'
 
-import { getRouterParam } from 'store/reducers/router'
 import organizationCrud, {
   createOrganization as firebaseCreateOrganization,
   fetchOrganizationUsers,
 } from 'firebase/organizations'
 import userCrud from 'firebase/user'
 
-export const createOrganization = reaction(async (action, store, { form }) => {
+export const createOrganization = reaction(async (action, store, { form, router }) => {
   const createForm = form('organization-create')
   const organizationValues = createForm.getFormValues()
   // get user id
@@ -27,7 +25,7 @@ export const createOrganization = reaction(async (action, store, { form }) => {
 
   // FIXME: Go to newly created organization page
   // go to organization page
-  store.dispatch(push('/organizer/organizations'))
+  router.push('/organizer/organizations')
 })
 
 export const fetchOrganizerOrganizations = reaction(async (action, store) => {
@@ -60,8 +58,8 @@ export const fetchOrganizerOrganizations = reaction(async (action, store) => {
 })
 
 
-export const fetchOrganization = reaction(async (action, store) => {
-  const organizationId = action.payload || getRouterParam('organizationId')(store.getState())
+export const fetchOrganization = reaction(async (action, store, { router }) => {
+  const organizationId = action.payload || router.getRouteParam('organizationId')
   if (!organizationId) return
   // check if already in the store
   let organization = store.data.organizations.get(organizationId)

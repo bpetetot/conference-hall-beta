@@ -2,11 +2,11 @@ import { inject } from '@k-ramel/react'
 import { compose } from 'redux'
 
 import loader from 'components/loader'
-import { getRouterParam, isOrganizerRoute } from 'store/reducers/router'
+import { isOrganizerRoute } from 'store/drivers/redux-little-router'
 import Event from './event'
 
-const mapStore = (store) => {
-  const eventId = getRouterParam('eventId')(store.getState())
+const mapStore = (store, props, { router }) => {
+  const eventId = router.getRouteParam('eventId')
   const event = store.data.events.get(eventId)
   return {
     loaded: !!event,

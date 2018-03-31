@@ -1,15 +1,13 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { push } from 'redux-little-router'
 import forRoute from 'hoc-little-router'
 
-import { getRouterParam } from 'store/reducers/router'
 import loader from 'components/loader'
 import InviteOrganizer from './inviteOrganizer'
 
-const mapStore = (store) => {
-  const organizationId = getRouterParam('organizationId')(store.getState())
-  const uidInvite = getRouterParam('uid')(store.getState())
+const mapStore = (store, ownProps, { router }) => {
+  const organizationId = router.getRouterParam('organizationId')(store.getState())
+  const uidInvite = router.getRouterParam('uid')(store.getState())
   const { uid } = store.auth.get()
   const { displayName, photoURL } = store.data.users.get(uid) || {}
   const { name } = store.data.organizations.get(organizationId) || {}
@@ -27,9 +25,9 @@ const mapStore = (store) => {
     },
     join: () => {
       store.dispatch({ type: '@@ui/ADD_ORGANIZATION_TO_USER', payload: { uid, organizationId } })
-      store.dispatch(push(`/organizer/organizations/${organizationId}`))
+      router.push(`/organizer/organizations/${organizationId}`)
     },
-    cancel: () => store.dispatch(push('/organizer')),
+    cancel: () => router.push('/organizer'),
   }
 }
 

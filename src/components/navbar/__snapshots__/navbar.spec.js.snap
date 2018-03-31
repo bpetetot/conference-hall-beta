@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/navbar should render 1`] = `
+<nav
+  className="navbar c"
+>
+  children
+</nav>
+`;

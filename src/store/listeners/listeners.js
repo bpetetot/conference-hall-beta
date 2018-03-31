@@ -11,6 +11,7 @@ import * as organizations from './reactions/organizations'
 import * as submissions from './reactions/submissions'
 import * as proposals from './reactions/proposals'
 import * as ratings from './reactions/ratings'
+import * as survey from './reactions/survey'
 
 export default [
   /* app loaded */
@@ -37,12 +38,15 @@ export default [
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
   when('@@ui/ON_LOAD_SPEAKER_TALKS')(talks.fetchSpeakerTalks),
   when(/@@ui\/(.*)_SPEAKER_TO_TALK/g)(talks.updateSpeakerToTalk),
+  when('@@ui/DELETE_TALK')(talks.deleteTalk),
   /* events */
   when('@@ui/ON_CREATE_EVENT')(events.createEvent),
   when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEvent('event-edit')),
   when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEvent('cfp-edit')),
+  when('@@ui/ON_UPDATE_EVENT_SURVEY')(events.updateEvent('survey-edit')),
   when('@@ui/ON_LOAD_EVENT')(events.fetchEvent),
   when('@@ui/ON_LOAD_ORGANIZER_EVENTS')(events.fetchOrganizerEvents),
+  when('@@ui/ON_LOAD_SPEAKER_EVENTS')(events.fetchSpeakerEvents),
   /* organizations */
   when('@@ui/ON_CREATE_ORGANIZATION')(organizations.createOrganization),
   when('@@ui/ON_LOAD_ORGANIZER_ORGANIZATIONS')(organizations.fetchOrganizerOrganizations),
@@ -59,7 +63,11 @@ export default [
   when('@@ui/ON_SELECT_PROPOSAL')(proposals.selectProposal),
   when('@@ui/ON_NEXT_PROPOSAL')(proposals.nextProposal),
   when('@@ui/ON_PREVIOUS_PROPOSAL')(proposals.previousProposal),
+  when('@@krf/UPDATE>UI_ORGANIZER>PROPOSALS')(proposals.saveSortOrderToRoute),
   /* ratings */
   when('@@ui/ON_LOAD_RATINGS')(ratings.fetchRatings),
   when('@@ui/RATE_PROPOSAL')(ratings.rateProposal),
+  /* survey */
+  when('@@ui/ON_LOAD_SURVEY')(survey.fetch),
+  when('@@ui/SAVE_SPEAKER_SURVEY')(survey.save),
 ]

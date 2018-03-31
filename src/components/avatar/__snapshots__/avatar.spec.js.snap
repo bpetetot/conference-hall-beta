@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/avatar should not render when no props 1`] = `null`;
+
+exports[`components/avatar should render with initial when no photo 1`] = `
+<div
+  className="avatar avatar-initials"
+>
+  <span>
+    B
+  </span>
+</div>
+`;
+
+exports[`components/avatar should render with photo 1`] = `
+<div
+  className="avatar avatar-image"
+>
+  <img
+    alt="avatar"
+    src="https://p.url"
+  />
+</div>
+`;

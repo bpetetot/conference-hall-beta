@@ -17,9 +17,13 @@ export const fetchProposal = (eventId, proposalId) =>
 /**
  * Fetch all proposals of an event
  * @param {string} eventId event id
- * @param {object} options options with filters and sorting
+ * @param {object} options options with filters and sortOrder
  */
-export const fetchEventProposals = async (eventId, uid, { categories, formats, sorting } = {}) => {
+export const fetchEventProposals = async (
+  eventId,
+  uid,
+  { categories, formats, sortOrder } = {},
+) => {
   let query = firebase
     .firestore()
     .collection('events')
@@ -33,15 +37,15 @@ export const fetchEventProposals = async (eventId, uid, { categories, formats, s
   if (formats) {
     query = query.where('formats', '==', formats)
   }
-  // add sorting
-  if (sorting) {
-    if (sorting === 'newest') {
+  // add sortOrder
+  if (sortOrder) {
+    if (sortOrder === 'newest') {
       query = query.orderBy('updateTimestamp', 'desc')
-    } else if (sorting === 'oldest') {
+    } else if (sortOrder === 'oldest') {
       query = query.orderBy('updateTimestamp', 'asc')
-    } else if (sorting === 'highestRating') {
+    } else if (sortOrder === 'highestRating') {
       query = query.orderBy('rating', 'desc')
-    } else if (sorting === 'lowestRating') {
+    } else if (sortOrder === 'lowestRating') {
       query = query.orderBy('rating', 'asc')
     }
   }

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/iconLink should not render if no href 1`] = `null`;
+
+exports[`components/iconLink should not render if no label 1`] = `null`;
+
+exports[`components/iconLink should render icon link 1`] = `
+<a
+  className="icon-link"
+  href="h"
+  rel="noopener noreferrer"
+  target="_blank"
+>
+  <IconLabel
+    icon="i"
+    label="l"
+  />
+</a>
+`;

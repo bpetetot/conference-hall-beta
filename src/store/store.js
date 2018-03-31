@@ -1,14 +1,18 @@
-import { createStore, compose, applyMiddleware } from 'k-ramel'
-import { middleware, enhancer } from './reducers/router'
+import { createStore } from 'k-ramel'
 
 import reducers from './reducers'
 import listeners from './listeners'
-import drivers from './drivers'
+import router from './drivers/redux-little-router'
+import form from './drivers/reduxForm'
 
-const store = createStore(reducers, {
+const store = createStore({
+  ...reducers,
+  router: router.getReducer(),
+  form: form.getReducer(),
+}, {
   listeners,
-  drivers,
-  enhancer: compose(enhancer, applyMiddleware(middleware)),
+  drivers: { form, router },
+  enhancer: router.getEnhancer(),
   devtools: true,
 })
 

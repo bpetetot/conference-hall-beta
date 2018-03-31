@@ -2,13 +2,12 @@ import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
-import { getRouterParam } from 'store/reducers/router'
 import loader from 'components/loader'
 
 import OrganizationPage from './organizationPage'
 
-const mapStore = (store) => {
-  const organizationId = getRouterParam('organizationId')(store.getState())
+const mapStore = (store, _, { router }) => {
+  const organizationId = router.getRouteParam('organizationId')
   const organization = store.data.organizations.get(organizationId)
 
   const { uid: userId } = store.auth.get()

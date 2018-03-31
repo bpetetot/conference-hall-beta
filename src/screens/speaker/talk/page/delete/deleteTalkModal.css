@@ -1,0 +1,12 @@
+.delete-talk-modal {
+  padding: 2em;
+}
+
+.delete-talk-modal > h1 {
+  color: var(--error-color);
+  margin-bottom: 1.5em;
+}
+
+.delete-talk-modal .input-button {
+  margin-top: 2em;
+}
