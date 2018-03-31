@@ -1,6 +1,7 @@
 import renderField from './renderField'
 
 export const input = renderField('input')
+export const select = renderField('select')
 export const textarea = renderField('textarea')
 export const address = renderField('address')
 export const dayPicker = renderField('dayPicker')

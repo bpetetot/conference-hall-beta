@@ -4,6 +4,7 @@ import { Field, reduxForm, propTypes } from 'redux-form'
 
 import {
   input,
+  select,
   address,
   markdownInput,
   radio,
@@ -14,7 +15,7 @@ import {
 import { required } from 'components/form/validators'
 import './eventForm.css'
 
-const EventForm = ({ type, ...formProps }) => (
+const EventForm = ({ type, organizations, ...formProps }) => (
   <form className="event-form card">
     {formProps.form === 'event-create' && (
       <RadioGroup name="type" label="Event type" inline>
@@ -24,6 +25,14 @@ const EventForm = ({ type, ...formProps }) => (
     )}
     <Field name="name" label="Name" type="text" component={input} validate={required} />
     <Field name="description" label="description" component={markdownInput} validate={required} />
+    {organizations.length && (
+      <Field label="Organization" name="organization" component={select}>
+        <option>Select an organization</option>
+        {organizations.map(organization => (
+          <option value={organization.id}>{organization.name}</option>
+        ))}
+      </Field>
+    )}
     <Field
       name="address"
       label={type === 'conference' ? 'Venue address' : 'City'}
@@ -43,10 +52,12 @@ const EventForm = ({ type, ...formProps }) => (
 EventForm.propTypes = {
   ...propTypes,
   type: PropTypes.string,
+  organizations: PropTypes.arrayOf(PropTypes.object),
 }
 
 EventForm.defaultProps = {
   type: undefined,
+  organizations: [],
 }
 
 export default reduxForm()(EventForm)
