@@ -37,4 +37,11 @@ export const fetchOrganizationUsers = organizationId =>
     .where(`organizations.${organizationId}`, '==', true)
     .get()
 
+export const fetchOrganizationEvents = organizationId =>
+  firebase
+    .firestore()
+    .collection('events')
+    .where('organization', '==', organizationId)
+    .get()
+
 export default organizationCrud
