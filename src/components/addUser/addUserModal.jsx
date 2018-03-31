@@ -24,7 +24,9 @@ const AddUserModal = ({
   <Modal id={modalId} className="add-user-modal">
     <h1>{title}</h1>
     {message}
-    {!searching && (
+    {searching ? (
+      <LoadingIndicator />
+    ) : (
       <InputButton
         type="search"
         placeholder="Search a user by email"
@@ -35,7 +37,6 @@ const AddUserModal = ({
         onClick={onSearch}
       />
     )}
-    {searching && <LoadingIndicator />}
     {initialized && !searching && (
       <UserResults message={resultsMessage} users={users} onSelectUser={onSelectUser} />
     )}

@@ -13,7 +13,6 @@ const mapStore = (store, _, { router }) => {
   const { uid: userId } = store.auth.get()
   const url = window.location.href.split('/')
   return {
-    loaded: !!organization && !!organization.users,
     ...organization,
     inviteLink: `${url[0]}//${url[2]}/organizer/invite/organization/${organizationId}/${userId}`,
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),
@@ -27,5 +26,5 @@ const mapStore = (store, _, { router }) => {
 export default compose(
   forRoute.absolute('ORGANIZATION_PAGE'),
   inject(mapStore),
-  loader,
+  loader({ print: ['users'] }),
 )(OrganizationPage)
