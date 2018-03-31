@@ -62,7 +62,7 @@ AddUserModal.propTypes = {
 
 
 AddUserModal.defaultProps = {
-  title: 'Add a user',
+  title: 'Add a member',
   email: undefined,
   searching: false,
   initialized: false,

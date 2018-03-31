@@ -11,12 +11,12 @@ import './organizationPage.css'
 const modalMessage = (
   <Fragment>
     <p>
-      Search and add a organizer to your organization, he/she will be also able to update it,
-      invite other organizers and create events for your organization.<br />
-      The organizer must already have a Organizer Hall account.
+      Search and add a member to your organization, he/she will be also able to update it,
+      invite other members and create events for your organization.<br />
+      The member must already have a member Hall account.
     </p>
     <p>
-      For security and privacy reasons, you can search a organizer only by his/her registered email
+      For security and privacy reasons, you can search a member only by his/her registered email
       address.
     </p>
   </Fragment>

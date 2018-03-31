@@ -43,7 +43,7 @@ AddUserButton.propTypes = {
 AddUserButton.defaultProps = {
   renderButton: undefined,
   icon: 'fa-user',
-  label: 'Add a user',
+  label: 'Add a member',
 }
 
 export default compose(
