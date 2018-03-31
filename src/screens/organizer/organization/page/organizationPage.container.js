@@ -2,7 +2,8 @@ import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
-import loader from 'components/loader'
+import loader from 'hoc-react-loader/build/core'
+import { LoadingIndicator } from 'components/loader'
 
 import OrganizationPage from './organizationPage'
 
@@ -26,5 +27,5 @@ const mapStore = (store, _, { router }) => {
 export default compose(
   forRoute.absolute('ORGANIZATION_PAGE'),
   inject(mapStore),
-  loader({ print: ['users'] }),
+  loader({ print: ['users'], LoadingIndicator }),
 )(OrganizationPage)
