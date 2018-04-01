@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
 import AvatarLabel from 'components/avatar/avatarLabel'
 import { List, ListItem } from 'components/list'
+import IconLabel from 'components/iconLabel'
 import RelativeDate from 'components/relativeDate'
 import AddUserButton from 'components/addUser'
 
@@ -23,7 +24,7 @@ const modalMessage = (
 )
 
 const OrganizationPage = ({
-  name, users, onSelectUser, inviteLink,
+  name, users, onSelectUser, inviteLink, owner,
 }) => (
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name} >
@@ -53,6 +54,11 @@ const OrganizationPage = ({
             <AvatarLabel displayName={displayName} photoURL={photoURL} />
           )}
           subtitle={<RelativeDate date={updateTimestamp} />}
+          renderActions={() => owner === id || (
+            <a role="button" className="btn btn-default">
+              <IconLabel icon="fa fa-trash" label="Remove from organization" />
+            </a>
+          )}
         />
       )}
     />
@@ -63,11 +69,13 @@ OrganizationPage.propTypes = {
   name: PropTypes.string.isRequired,
   inviteLink: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(PropTypes.object),
+  owner: PropTypes.bool,
   onSelectUser: PropTypes.func.isRequired,
 }
 
 OrganizationPage.defaultProps = {
   users: [],
+  owner: false,
 }
 
 export default OrganizationPage
