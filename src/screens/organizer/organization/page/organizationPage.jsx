@@ -42,6 +42,7 @@ const OrganizationPage = ({
       noResult="No users yet !"
       renderRow={rowProps => (
         <MemberRow
+          key={rowProps.id}
           {...rowProps}
           owner={owner}
         />
@@ -54,13 +55,12 @@ OrganizationPage.propTypes = {
   name: PropTypes.string.isRequired,
   inviteLink: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(PropTypes.object),
-  owner: PropTypes.bool,
+  owner: PropTypes.string.isRequired,
   onSelectUser: PropTypes.func.isRequired,
 }
 
 OrganizationPage.defaultProps = {
   users: [],
-  owner: false,
 }
 
 export default OrganizationPage

@@ -1,0 +1,12 @@
+.remove-member-modal {
+  padding: 2em;
+}
+
+.remove-member-modal > h1 {
+  color: var(--error-color);
+  margin-bottom: 1.5em;
+}
+
+.remove-member-modal a {
+  margin-top: 2em;
+}
