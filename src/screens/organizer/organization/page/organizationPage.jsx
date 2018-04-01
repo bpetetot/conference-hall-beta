@@ -22,7 +22,7 @@ const modalMessage = (
 )
 
 const OrganizationPage = ({
-  name, users, onSelectUser, inviteLink, owner, removeMember,
+  name, users, onSelectUser, inviteLink, owner, removeMember, isOwner,
 }) => (
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name} >
@@ -44,7 +44,7 @@ const OrganizationPage = ({
         <MemberRow
           key={rowProps.id}
           {...rowProps}
-          removeMember={() => removeMember(rowProps.id)}
+          removeMember={isOwner && (() => removeMember(rowProps.id))}
           owner={owner}
         />
       )}
@@ -57,6 +57,7 @@ OrganizationPage.propTypes = {
   inviteLink: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(PropTypes.object),
   owner: PropTypes.string.isRequired,
+  isOwner: PropTypes.bool.isRequired,
   onSelectUser: PropTypes.func.isRequired,
   removeMember: PropTypes.func.isRequired,
 }

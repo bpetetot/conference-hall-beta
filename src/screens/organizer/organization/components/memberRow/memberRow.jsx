@@ -22,7 +22,7 @@ const MemberRow = ({
         <AvatarLabel displayName={displayName} photoURL={photoURL} />
       )}
       subtitle={<RelativeDate date={updateTimestamp} />}
-      renderActions={() => owner === id || (
+      renderActions={() => (owner !== id && removeMember) && (
         <a onClick={openModal} role="button" className="btn btn-default">
           <IconLabel icon="fa fa-trash" label="Remove from organization" />
         </a>
