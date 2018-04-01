@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { compose, withProps } from 'recompose'
 
 import IconLabel from 'components/iconLabel'
 import RelativeDate from 'components/relativeDate'
@@ -12,7 +13,7 @@ import './memberRow.css'
 const REMOVE_MEMBER_FROM_ORGANIZATION = 'remove-member-from-organization'
 
 const MemberRow = ({
-  id, displayName, photoURL, updateTimestamp, owner, openModal, closeModal,
+  id, displayName, photoURL, updateTimestamp, owner, openModal, closeModal, removeMember,
 }) => (
   <Fragment>
     <ListItem
@@ -27,10 +28,17 @@ const MemberRow = ({
         </a>
       )}
     />
-    <Modal id={REMOVE_MEMBER_FROM_ORGANIZATION} className="remove-member-modal">
+    <Modal id={`${REMOVE_MEMBER_FROM_ORGANIZATION}-${id}`} className="remove-member-modal">
       <h1>Remove member from organization</h1>
       <p>Are you sure you want to remove {displayName} from organization ?</p>
-      <a onClick={() => { closeModal() }} role="button" className="btn btn-default">
+      <a
+        onClick={() => {
+          removeMember()
+          closeModal()
+        }}
+        role="button"
+        className="btn btn-default"
+      >
         <IconLabel icon="fa fa-trash" label="Remove from organization" />
       </a>
     </Modal>
@@ -45,6 +53,10 @@ MemberRow.propTypes = {
   owner: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
+  removeMember: PropTypes.func.isRequired,
 }
 
-export default withModal(REMOVE_MEMBER_FROM_ORGANIZATION)(MemberRow)
+export default compose(
+  withProps(ownProps => ({ modalId: `${REMOVE_MEMBER_FROM_ORGANIZATION}-${ownProps.id}` })),
+  withModal(),
+)(MemberRow)

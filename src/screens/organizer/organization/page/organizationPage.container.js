@@ -21,6 +21,7 @@ const mapStore = (store, _, { router }) => {
       store.dispatch({ type: '@@ui/ADD_ORGANIZATION_TO_USER', payload: { uid, organizationId } })
       store.ui.modal.set({ openedModal: undefined })
     },
+    removeMember: uid => store.dispatch({ type: '@@ui/REMOVE_ORGANIZATION_TO_USER', payload: { uid, organizationId } }),
   }
 }
 

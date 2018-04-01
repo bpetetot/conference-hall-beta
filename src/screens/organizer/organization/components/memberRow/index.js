@@ -1,1 +1,1 @@
-export { default } from './memberRow.container'
+export { default } from './memberRow'
