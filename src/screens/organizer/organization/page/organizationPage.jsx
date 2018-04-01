@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
-import AvatarLabel from 'components/avatar/avatarLabel'
-import { List, ListItem } from 'components/list'
-import IconLabel from 'components/iconLabel'
-import RelativeDate from 'components/relativeDate'
+import { List } from 'components/list'
 import AddUserButton from 'components/addUser'
+import MemberRow from '../components/memberRow'
 
 import './organizationPage.css'
 
@@ -42,23 +40,10 @@ const OrganizationPage = ({
       className="organization-content"
       array={users}
       noResult="No users yet !"
-      renderRow={({
-        id,
-        displayName,
-        photoURL,
-        updateTimestamp,
-      }) => (
-        <ListItem
-          key={id}
-          title={(
-            <AvatarLabel displayName={displayName} photoURL={photoURL} />
-          )}
-          subtitle={<RelativeDate date={updateTimestamp} />}
-          renderActions={() => owner === id || (
-            <a role="button" className="btn btn-default">
-              <IconLabel icon="fa fa-trash" label="Remove from organization" />
-            </a>
-          )}
+      renderRow={rowProps => (
+        <MemberRow
+          {...rowProps}
+          owner={owner}
         />
       )}
     />
