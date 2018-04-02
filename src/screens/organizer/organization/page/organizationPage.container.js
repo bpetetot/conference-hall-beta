@@ -17,7 +17,6 @@ const mapStore = (store, _, { router }) => {
   return {
     ...organization,
     authUserId: userId,
-    isOwner: organization && userId === organization.owner,
     inviteLink: `${url[0]}//${url[2]}/organizer/invite/organization/${organizationId}/${userId}`,
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),
     onSelectUser: (uid) => {
