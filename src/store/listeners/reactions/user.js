@@ -49,7 +49,7 @@ export const addOrganizationToUser = reaction(async (action, store) => {
   store.data.organizations.update(push(organization, 'users', updated))
 })
 
-export const removeOrganizationToUser = reaction(async (action, store) => {
+export const removeOrganizationToUser = reaction(async (action, store, { router }) => {
   const { uid, organizationId } = action.payload
   const user = await getUser(uid)(store)
 
@@ -60,6 +60,9 @@ export const removeOrganizationToUser = reaction(async (action, store) => {
 
   const organization = store.data.organizations.get(organizationId)
   store.data.organizations.update(filter(organization, 'users', u => u.uid !== uid))
+
+  const { uid: authUserId } = store.auth.get()
+  if (uid === authUserId) router.push('/organizer/organizations')
 })
 
 export const searchUserByEmail = reaction(async (action, store) => {
