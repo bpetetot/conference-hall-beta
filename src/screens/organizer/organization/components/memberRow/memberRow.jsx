@@ -51,7 +51,7 @@ const MemberRow = ({
       />
       <Modal id={`${REMOVE_MEMBER_FROM_ORGANIZATION}-${id}`} className="remove-member-modal">
         <h1>{canRemove ? 'Remove member from' : 'Leave'} organization</h1>
-        <p>Are you sure you want to {canRemove ? 'remove {displayName} from' : 'leave'} organization ?</p>
+        <p>Are you sure you want to {canRemove ? `remove ${displayName} from` : 'leave'} organization ?</p>
         <a
           onClick={() => {
             removeMember()
