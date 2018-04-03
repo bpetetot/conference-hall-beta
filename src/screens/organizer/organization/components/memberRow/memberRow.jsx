@@ -13,37 +13,59 @@ import './memberRow.css'
 const REMOVE_MEMBER_FROM_ORGANIZATION = 'remove-member-from-organization'
 
 const MemberRow = ({
-  id, displayName, photoURL, updateTimestamp, owner, openModal, closeModal, removeMember,
-}) => (
-  <Fragment>
-    <ListItem
-      key={id}
-      title={(
-        <AvatarLabel displayName={displayName} photoURL={photoURL} />
-      )}
-      subtitle={<RelativeDate date={updateTimestamp} />}
-      renderActions={() => (owner !== id && removeMember) && (
-        <a onClick={openModal} role="button" className="btn btn-default">
-          <IconLabel icon="fa fa-trash" label="Remove" />
+  id,
+  displayName,
+  photoURL,
+  updateTimestamp,
+  owner,
+  openModal,
+  closeModal,
+  removeMember,
+  authUserId,
+}) => {
+  const canRemove = owner === authUserId && owner !== id
+  const canLeave = owner !== authUserId && authUserId === id
+
+  return (
+    <Fragment>
+      <ListItem
+        key={id}
+        title={(
+          <AvatarLabel displayName={displayName} photoURL={photoURL} />
+        )}
+        subtitle={<RelativeDate date={updateTimestamp} />}
+        renderActions={() => (
+          <Fragment>
+            {canRemove && (
+              <a onClick={openModal} role="button" className="btn btn-default">
+                <IconLabel icon="fa fa-trash" label="Remove" />
+              </a>
+            )}
+            {canLeave && (
+              <a onClick={openModal} role="button" className="btn btn-default">
+                <IconLabel icon="fa fa-sign-out" label="Leave" />
+              </a>
+            )}
+          </Fragment>
+        )}
+      />
+      <Modal id={`${REMOVE_MEMBER_FROM_ORGANIZATION}-${id}`} className="remove-member-modal">
+        <h1>{canRemove ? 'Remove member from' : 'Leave'} organization</h1>
+        <p>Are you sure you want to {canRemove ? `remove ${displayName} from` : 'leave'} organization ?</p>
+        <a
+          onClick={() => {
+            removeMember()
+            closeModal()
+          }}
+          role="button"
+          className="btn btn-default"
+        >
+          Yes
         </a>
-      )}
-    />
-    <Modal id={`${REMOVE_MEMBER_FROM_ORGANIZATION}-${id}`} className="remove-member-modal">
-      <h1>Remove member from organization</h1>
-      <p>Are you sure you want to remove {displayName} from organization ?</p>
-      <a
-        onClick={() => {
-          removeMember()
-          closeModal()
-        }}
-        role="button"
-        className="btn btn-default"
-      >
-        Yes
-      </a>
-    </Modal>
-  </Fragment>
-)
+      </Modal>
+    </Fragment>
+  )
+}
 
 MemberRow.propTypes = {
   id: PropTypes.string.isRequired,
@@ -54,6 +76,7 @@ MemberRow.propTypes = {
   openModal: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
   removeMember: PropTypes.func.isRequired,
+  authUserId: PropTypes.string.isRequired,
 }
 
 export default compose(
