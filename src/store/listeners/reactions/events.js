@@ -1,6 +1,11 @@
 import { reaction } from 'k-ramel'
+import flatten from 'lodash/flatten'
+import map from 'lodash/map'
+import uniqBy from 'lodash/uniqBy'
 
+import { fetchOrganizationEvents } from 'firebase/organizations'
 import eventCrud, { fetchEvents, fetchUserEvents } from 'firebase/events'
+import userCrud from 'firebase/user'
 
 export const createEvent = reaction(async (action, store, { form, router }) => {
   const createForm = form('event-create')
@@ -38,13 +43,21 @@ export const fetchEvent = reaction(async (action, store, { router }) => {
 
 export const fetchOrganizerEvents = reaction(async (action, store) => {
   const { uid } = store.auth.get()
+  const userRef = await userCrud.read(uid)
+  const { organizations } = userRef.data()
+
   const result = await fetchUserEvents(uid)
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  const organizationsEvents = await Promise.all(map(organizations, async (_, organizationId) => {
+    const organizationEvents = await fetchOrganizationEvents(organizationId)
+    return organizationEvents.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  }))
+  const aggregatedEvents = uniqBy(events.concat(flatten(organizationsEvents)), 'id')
   // set events in the store
-  store.data.events.set(events)
+  store.data.events.set(aggregatedEvents)
   // set events id to the organizer event store
   store.ui.organizer.myEvents.reset()
-  store.ui.organizer.myEvents.set(events)
+  store.ui.organizer.myEvents.set(aggregatedEvents)
 })
 
 export const fetchSpeakerEvents = reaction(async (action, store) => {
