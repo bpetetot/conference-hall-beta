@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
 import AddUserButton from 'components/addUser'
-import MemberRow from '../components/memberRow'
 import { Link } from 'redux-little-router'
 import IconLabel from 'components/iconLabel'
+import MemberRow from '../components/memberRow'
 
 import './organizationPage.css'
 
