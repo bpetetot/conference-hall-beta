@@ -49,6 +49,7 @@ export default [
   when('@@ui/ON_LOAD_SPEAKER_EVENTS')(events.fetchSpeakerEvents),
   /* organizations */
   when('@@ui/ON_CREATE_ORGANIZATION')(organizations.createOrganization),
+  when('@@ui/ON_UPDATE_ORGANIZATION')(organizations.updateOrganization),
   when('@@ui/ON_LOAD_ORGANIZER_ORGANIZATIONS')(organizations.fetchOrganizerOrganizations),
   when('@@ui/ON_LOAD_ORGANIZATION')(organizations.fetchOrganization),
   /* submissions */

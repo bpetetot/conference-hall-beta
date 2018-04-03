@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
 import AddUserButton from 'components/addUser'
+import { Link } from 'redux-little-router'
+import IconLabel from 'components/iconLabel'
 import MemberRow from '../components/memberRow'
 
 import './organizationPage.css'
@@ -22,10 +24,20 @@ const modalMessage = (
 )
 
 const OrganizationPage = ({
-  name, users, onSelectUser, inviteLink, owner, removeMember, authUserId,
+  id: organizationId,
+  name,
+  users,
+  onSelectUser,
+  inviteLink,
+  removeMember,
+  owner,
+  authUserId,
 }) => (
   <div className="organization-page">
-    <Titlebar className="organization-header" icon="fa fa-users" title={name} >
+    <Titlebar className="organization-header" icon="fa fa-users" title={name}>
+      <Link href={`/organizer/organizations/${organizationId}/edit`} className="btn">
+        <IconLabel icon="fa fa-pencil" label="Edit" />
+      </Link>
       <AddUserButton
         modalOptions={{
           id: 'add-user-to-organization',
@@ -54,6 +66,7 @@ const OrganizationPage = ({
 )
 
 OrganizationPage.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   inviteLink: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(PropTypes.object),

@@ -28,6 +28,17 @@ export const createOrganization = reaction(async (action, store, { form, router 
   router.push('/organizer/organizations')
 })
 
+export const updateOrganization = reaction((action, store, { form, router }) => {
+  const updateForm = form('organization-edit')
+  const organization = updateForm.getFormValues()
+  // create organization into database
+  updateForm.asyncSubmit(organizationCrud.update, organization)
+  // update organization into data store
+  store.data.organizations.update(organization)
+  // go to organization page
+  router.push(`/organizer/organizations/${organization.id}`)
+})
+
 export const fetchOrganizerOrganizations = reaction(async (action, store) => {
   const { uid } = store.auth.get()
 

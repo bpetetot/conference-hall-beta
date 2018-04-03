@@ -12,6 +12,7 @@ import EventEdit from './event/edit'
 import Event from './event/page'
 import MyEvents from './events'
 import OrganizationCreate from './organization/create'
+import OrganizationEdit from './organization/edit'
 import OrganizationPage from './organization/page'
 import MyOrganizations from './organizations'
 import InviteOrganizer from './inviteOrganizer'
@@ -30,6 +31,7 @@ const Organizer = () => (
       <Event />
       <MyEvents />
       <OrganizationCreate />
+      <OrganizationEdit />
       <OrganizationPage />
       <MyOrganizations />
       <InviteOrganizer />
