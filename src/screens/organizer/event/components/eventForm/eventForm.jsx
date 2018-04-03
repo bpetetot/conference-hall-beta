@@ -27,9 +27,9 @@ const EventForm = ({ type, organizations, ...formProps }) => (
     <Field name="description" label="description" component={markdownInput} validate={required} />
     {organizations.length && (
       <Field label="Organization" name="organization" component={select}>
-        <option>Select an organization</option>
-        {organizations.map(organization => (
-          <option value={organization.id}>{organization.name}</option>
+        <option />
+        {organizations.map(({ id, name }) => (
+          <option key={id} value={id}>{name}</option>
         ))}
       </Field>
     )}
