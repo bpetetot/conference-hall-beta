@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
-import AvatarLabel from 'components/avatar/avatarLabel'
-import { List, ListItem } from 'components/list'
-import RelativeDate from 'components/relativeDate'
+import { List } from 'components/list'
 import AddUserButton from 'components/addUser'
+import MemberRow from '../components/memberRow'
 
 import './organizationPage.css'
 
@@ -23,7 +22,7 @@ const modalMessage = (
 )
 
 const OrganizationPage = ({
-  name, users, onSelectUser, inviteLink,
+  name, users, onSelectUser, inviteLink, owner, removeMember, isOwner,
 }) => (
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name} >
@@ -41,18 +40,12 @@ const OrganizationPage = ({
       className="organization-content"
       array={users}
       noResult="No users yet !"
-      renderRow={({
-        id,
-        displayName,
-        photoURL,
-        updateTimestamp,
-      }) => (
-        <ListItem
-          key={id}
-          title={(
-            <AvatarLabel displayName={displayName} photoURL={photoURL} />
-          )}
-          subtitle={<RelativeDate date={updateTimestamp} />}
+      renderRow={rowProps => (
+        <MemberRow
+          key={rowProps.id}
+          {...rowProps}
+          removeMember={isOwner && (() => removeMember(rowProps.id))}
+          owner={owner}
         />
       )}
     />
@@ -63,7 +56,10 @@ OrganizationPage.propTypes = {
   name: PropTypes.string.isRequired,
   inviteLink: PropTypes.string.isRequired,
   users: PropTypes.arrayOf(PropTypes.object),
+  owner: PropTypes.string.isRequired,
+  isOwner: PropTypes.bool.isRequired,
   onSelectUser: PropTypes.func.isRequired,
+  removeMember: PropTypes.func.isRequired,
 }
 
 OrganizationPage.defaultProps = {
