@@ -38,12 +38,12 @@ const MemberRow = ({
           <Fragment>
             {canRemove && (
               <a onClick={openModal} role="button" className="btn btn-default">
-                <IconLabel icon="fa fa-trash" label="Remove from organization" />
+                <IconLabel icon="fa fa-trash" label="Remove" />
               </a>
             )}
             {canLeave && (
               <a onClick={openModal} role="button" className="btn btn-default">
-                <IconLabel icon="fa fa-sign-out" label="Leave organization" />
+                <IconLabel icon="fa fa-sign-out" label="Leave" />
               </a>
             )}
           </Fragment>
@@ -60,7 +60,7 @@ const MemberRow = ({
           role="button"
           className="btn btn-default"
         >
-          <IconLabel icon={`fa fa-${canRemove ? 'trash' : 'sign-out'}`} label={`${canRemove ? 'Remove from' : 'Leave'} organization`} />
+          Yes
         </a>
       </Modal>
     </Fragment>
