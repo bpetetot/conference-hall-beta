@@ -43,6 +43,7 @@ const EventForm = ({ type, organizations, ...formProps }) => (
       <Field name="conferenceDates" label="Conference date" component={dayRangePicker} />
     )}
     <Field name="website" label="Website" type="text" component={input} />
+    <Field name="contact" label="Email contact" type="email" component={input} />
     <SubmitButton {...formProps}>
       {formProps.form === 'event-create' ? 'Create event' : 'Save event'}
     </SubmitButton>
