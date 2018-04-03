@@ -24,7 +24,7 @@ const MemberRow = ({
       subtitle={<RelativeDate date={updateTimestamp} />}
       renderActions={() => (owner !== id && removeMember) && (
         <a onClick={openModal} role="button" className="btn btn-default">
-          <IconLabel icon="fa fa-trash" label="Remove from organization" />
+          <IconLabel icon="fa fa-trash" label="Remove" />
         </a>
       )}
     />
@@ -39,7 +39,7 @@ const MemberRow = ({
         role="button"
         className="btn btn-default"
       >
-        <IconLabel icon="fa fa-trash" label="Remove from organization" />
+        Yes
       </a>
     </Modal>
   </Fragment>
