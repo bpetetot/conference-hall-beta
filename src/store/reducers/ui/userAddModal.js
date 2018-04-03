@@ -3,7 +3,7 @@ import { simpleObject } from 'k-ramel'
 const defaultData = {
   email: undefined,
   state: 'no-search',
-  speakers: [],
+  users: [],
 }
 
 export default simpleObject({ defaultData })

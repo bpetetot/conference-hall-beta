@@ -1,10 +1,8 @@
 import { reaction } from 'k-ramel'
-import isEmpty from 'lodash/isEmpty'
 import compareDesc from 'date-fns/compare_desc'
 import { set, unset } from 'immutadot'
 
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
-import { fetchUsersByEmail } from 'firebase/user'
 
 export const createTalk = reaction(async (action, store, { form, router }) => {
   const createForm = form('talk-create')
@@ -54,21 +52,6 @@ export const fetchSpeakerTalks = reaction(async (action, store) => {
   const sorted = talks.sort((t1, t2) => compareDesc(t1.updateTimestamp, t2.updateTimestamp))
   store.ui.speaker.myTalks.reset()
   store.ui.speaker.myTalks.set(sorted)
-})
-
-export const searchSpeakerByEmail = reaction(async (action, store) => {
-  const email = action.payload
-  store.ui.speaker.speakerAddModal.set({ searching: true, email, speakers: [] })
-  const users = await fetchUsersByEmail(email)
-  if (!isEmpty(users)) {
-    users.forEach(user => store.data.users.addOrUpdate(user))
-    store.ui.speaker.speakerAddModal.update({
-      searching: false,
-      speakers: users.map(user => user.uid),
-    })
-  } else {
-    store.ui.speaker.speakerAddModal.update({ searching: false })
-  }
 })
 
 export const updateSpeakerToTalk = reaction(async (action, store) => {

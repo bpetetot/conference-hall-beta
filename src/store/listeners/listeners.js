@@ -31,12 +31,12 @@ export default [
   when('@@ui/SAVE_PROFILE')(user.saveProfile),
   when('@@ui/ADD_ORGANIZATION_TO_USER')(user.addOrganizationToUser),
   when('@@ui/REMOVE_ORGANIZATION_TO_USER')(user.removeOrganizationToUser),
+  when('@@ui/ON_SEARCH_USER')(user.searchUserByEmail),
   /* talks */
   when('@@ui/ON_CREATE_TALK')(talks.createTalk),
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
   when('@@ui/ON_LOAD_SPEAKER_TALKS')(talks.fetchSpeakerTalks),
-  when('@@ui/ON_SEARCH_CO_SPEAKER')(talks.searchSpeakerByEmail),
   when(/@@ui\/(.*)_SPEAKER_TO_TALK/g)(talks.updateSpeakerToTalk),
   when('@@ui/DELETE_TALK')(talks.deleteTalk),
   /* events */

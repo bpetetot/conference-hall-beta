@@ -1,7 +1,8 @@
 import { reaction } from 'k-ramel'
-import { set, unset } from 'immutadot'
+import { set, unset, push, filter } from 'immutadot'
+import isEmpty from 'lodash/isEmpty'
 
-import userCrud from 'firebase/user'
+import userCrud, { fetchUsersByEmail } from 'firebase/user'
 
 export const fetchUser = reaction(async (action, store) => {
   // check if user exists in the store
@@ -37,20 +38,41 @@ const getUser = uid => async (store) => {
 
 export const addOrganizationToUser = reaction(async (action, store) => {
   const { uid, organizationId } = action.payload
-  const user = getUser(uid)(store)
+  const user = await getUser(uid)(store)
 
   const updated = set(user, `organizations.${organizationId}`, true)
 
   store.data.users.update(updated)
-  userCrud.update(updated)
+  await userCrud.update(updated)
+
+  const organization = store.data.organizations.get(organizationId)
+  store.data.organizations.update(push(organization, 'users', updated))
 })
 
 export const removeOrganizationToUser = reaction(async (action, store) => {
   const { uid, organizationId } = action.payload
-  const user = getUser(uid)(store)
+  const user = await getUser(uid)(store)
 
   const updated = unset(user, `organizations.${organizationId}`)
 
   store.data.users.update(updated)
-  userCrud.update(updated)
+  await userCrud.update(updated)
+
+  const organization = store.data.organizations.get(organizationId)
+  store.data.organizations.update(filter(organization, 'users', u => u.uid !== uid))
+})
+
+export const searchUserByEmail = reaction(async (action, store) => {
+  const email = action.payload
+  store.ui.userAddModal.set({ searching: true, email, users: [] })
+  const users = await fetchUsersByEmail(email)
+  if (!isEmpty(users)) {
+    users.forEach(user => store.data.users.addOrUpdate(user))
+    store.ui.userAddModal.update({
+      searching: false,
+      users: users.map(user => user.uid),
+    })
+  } else {
+    store.ui.userAddModal.update({ searching: false })
+  }
 })

@@ -36,6 +36,7 @@ export default {
       '/:organizationId': { title: 'ORGANIZATION_PAGE' },
     },
     '/organization/create': { title: 'CREATE_ORGANIZATION' },
+    '/invite/organization/:organizationId/:uid': { title: 'INVITE_ORGANIZER' },
     '/contributors': { title: 'CONTRIBUTORS' },
   },
   '/speaker': {
