@@ -9,7 +9,7 @@ const mapStore = (store, ownProps, { router }) => {
   const organizationId = router.getRouteParam('organizationId')
   const uidInvite = router.getRouteParam('uid')
   const { uid } = store.auth.get()
-  const { displayName, photoURL } = store.data.users.get(uid) || {}
+  const { displayName, photoURL } = store.data.users.get(uidInvite) || {}
   const { name } = store.data.organizations.get(organizationId) || {}
 
   return {
