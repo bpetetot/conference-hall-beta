@@ -30,6 +30,7 @@ export const onRouteChanged = reaction((action, store, { router }) => {
     if (eventId !== store.ui.app.get().currentEventId) {
       localStorage.setItem('currentEventId', eventId)
       store.ui.app.update({ currentEventId: eventId })
+      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
     }
   }
 

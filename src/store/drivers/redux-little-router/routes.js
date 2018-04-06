@@ -22,7 +22,7 @@ export default {
         '/edit': {
           title: 'EDIT_EVENT',
           '/cfp': { title: 'EDIT_EVENT_CFP' },
-          '/members': { title: 'EDIT_EVENT_MEMBERS' },
+          '/survey': { title: 'EDIT_EVENT_SURVEY' },
         },
         '/proposals': {
           title: 'PROPOSALS',
@@ -31,6 +31,15 @@ export default {
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },
     },
+    '/organizations': {
+      title: 'HOME_ORGANIZATION',
+      '/:organizationId': {
+        title: 'ORGANIZATION_PAGE',
+        '/edit': { title: 'EDIT_ORGANIZATION' },
+      },
+    },
+    '/organization/create': { title: 'CREATE_ORGANIZATION' },
+    '/invite/organization/:organizationId/:uid': { title: 'INVITE_ORGANIZER' },
     '/contributors': { title: 'CONTRIBUTORS' },
   },
   '/speaker': {
@@ -54,6 +63,7 @@ export default {
       '/:eventId': {
         title: 'EVENT_PAGE',
         '/submission': { title: 'EVENT_SUBMISSION' },
+        '/survey': { title: 'EVENT_SURVEY' },
       },
     },
     '/contributors': { title: 'CONTRIBUTORS' },

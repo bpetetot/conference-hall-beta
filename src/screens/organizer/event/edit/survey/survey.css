@@ -1,0 +1,26 @@
+.survey-form {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+.survey-form > * {
+  margin-bottom: 0.7em;
+}
+
+.survey-label {
+  color: var(--grey-color-dark);
+}
+
+.survey-form .form-checkbox {
+  margin: 1em 0;
+}
+
+.survey-form > button {
+  align-self: flex-end;
+}
+
+@media only screen and (max-width: 480px) {
+  .survey-form {
+    padding: 1em;
+  }
+}

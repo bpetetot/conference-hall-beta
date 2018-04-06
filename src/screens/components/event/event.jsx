@@ -10,6 +10,7 @@ import List from './listBlock'
 import Cfp from './cfpBlock'
 import Dates from './datesBlock'
 import Website from './websiteBlock'
+import Contact from './contactBlock'
 
 import './event.css'
 
@@ -22,11 +23,12 @@ const Event = ({
   conferenceDates,
   description,
   website,
+  contact,
   categories,
   formats,
 }) => (
   <div className="event-page">
-    <EventTitle name={name} className="event-page-header" />
+    <EventTitle name={name} subtitle="Call for paper" className="event-page-header" />
     <Cfp eventId={id} className="event-page-cfp" />
     <EventActions className="event-page-actions" eventId={id} isOrganizer={isOrganizer} />
     <div className="event-page-content card">
@@ -37,9 +39,10 @@ const Event = ({
     <div className="event-page-info card">
       <Maps address={address} />
       <div className="event-page-info-detail">
-        {type === 'conference' && <Dates className="event-date" dates={conferenceDates} />}
-        <Address className="event-address" address={address} />
-        <Website className="event-date" website={website} />
+        {type === 'conference' && <Dates dates={conferenceDates} />}
+        <Address address={address} />
+        <Website website={website} />
+        <Contact contact={contact} />
       </div>
     </div>
   </div>
@@ -54,6 +57,7 @@ Event.propTypes = {
   conferenceDates: PropTypes.objectOf(PropTypes.instanceOf(Date)),
   description: PropTypes.string,
   website: PropTypes.string,
+  contact: PropTypes.string,
   categories: PropTypes.arrayOf(PropTypes.object),
   formats: PropTypes.arrayOf(PropTypes.object),
 }
@@ -65,6 +69,7 @@ Event.defaultProps = {
   conferenceDates: {},
   description: undefined,
   website: undefined,
+  contact: undefined,
   categories: [],
   formats: [],
 }

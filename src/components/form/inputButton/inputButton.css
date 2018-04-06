@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.input-button > input {
+.input-button > input[type='search'] {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-right: transparent;

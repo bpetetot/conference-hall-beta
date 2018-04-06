@@ -1,0 +1,36 @@
+.users-result {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-result > h3 {
+  margin-top: 1em;
+}
+
+.users-result > div {
+  padding: 1em;
+  cursor: pointer;
+  border: 1px solid  var(--grey-color);
+  border-bottom: none;
+}
+
+.users-result > div:last-child {
+  border: 1px solid  var(--grey-color);
+}
+
+.users-result > div:hover {
+  background: var(--grey-color-light)
+}
+
+.users-result > div img {
+  font-size: 1.5em;
+}
+
+.users-no-result {
+  margin-top: 1em;
+  color: var(--error-color);
+}
+
+.users-no-result > div {
+  margin-top: .5em;
+}
