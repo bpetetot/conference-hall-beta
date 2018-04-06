@@ -39,7 +39,11 @@ export const selectProposal = reaction(async (action, store, { router }) => {
   const proposalIndex = proposalKeys.indexOf(proposalId)
   if (proposalIndex !== -1) {
     store.ui.organizer.proposal.set({ proposalIndex })
-    router.push(`/organizer/event/${eventId}/proposal/${proposalId}`)
+    const filters = store.ui.organizer.proposals.get()
+    router.push({
+      pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
+      query: filters,
+    })
   }
 })
 
@@ -52,7 +56,11 @@ export const nextProposal = reaction(async (action, store, { router }) => {
     const proposalId = proposalKeys[nextIndex]
     store.ui.organizer.proposal.set({ proposalIndex: nextIndex })
     store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
-    router.push(`/organizer/event/${eventId}/proposal/${proposalId}`)
+    const filters = store.ui.organizer.proposals.get()
+    router.push({
+      pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
+      query: filters,
+    })
   }
 })
 
@@ -65,7 +73,11 @@ export const previousProposal = reaction(async (action, store, { router }) => {
     const proposalId = proposalKeys[prevIndex]
     store.ui.organizer.proposal.set({ proposalIndex: prevIndex })
     store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
-    router.push(`/organizer/event/${eventId}/proposal/${proposalId}`)
+    const filters = store.ui.organizer.proposals.get()
+    router.push({
+      pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
+      query: filters,
+    })
   }
 })
 
