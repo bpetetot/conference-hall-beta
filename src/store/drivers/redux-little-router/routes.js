@@ -31,6 +31,15 @@ export default {
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },
     },
+    '/organizations': {
+      title: 'HOME_ORGANIZATION',
+      '/:organizationId': {
+        title: 'ORGANIZATION_PAGE',
+        '/edit': { title: 'EDIT_ORGANIZATION' },
+      },
+    },
+    '/organization/create': { title: 'CREATE_ORGANIZATION' },
+    '/invite/organization/:organizationId/:uid': { title: 'INVITE_ORGANIZER' },
     '/contributors': { title: 'CONTRIBUTORS' },
   },
   '/speaker': {

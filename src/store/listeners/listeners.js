@@ -7,6 +7,7 @@ import * as firebase from './reactions/firebase'
 import * as user from './reactions/user'
 import * as talks from './reactions/talks'
 import * as events from './reactions/events'
+import * as organizations from './reactions/organizations'
 import * as submissions from './reactions/submissions'
 import * as proposals from './reactions/proposals'
 import * as ratings from './reactions/ratings'
@@ -28,12 +29,14 @@ export default [
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   when('@@ui/SAVE_PROFILE')(user.saveProfile),
+  when('@@ui/ADD_ORGANIZATION_TO_USER')(user.addOrganizationToUser),
+  when('@@ui/REMOVE_ORGANIZATION_TO_USER')(user.removeOrganizationToUser),
+  when('@@ui/ON_SEARCH_USER')(user.searchUserByEmail),
   /* talks */
   when('@@ui/ON_CREATE_TALK')(talks.createTalk),
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
   when('@@ui/ON_LOAD_SPEAKER_TALKS')(talks.fetchSpeakerTalks),
-  when('@@ui/ON_SEARCH_CO_SPEAKER')(talks.searchSpeakerByEmail),
   when(/@@ui\/(.*)_SPEAKER_TO_TALK/g)(talks.updateSpeakerToTalk),
   when('@@ui/DELETE_TALK')(talks.deleteTalk),
   /* events */
@@ -44,6 +47,11 @@ export default [
   when('@@ui/ON_LOAD_EVENT')(events.fetchEvent),
   when('@@ui/ON_LOAD_ORGANIZER_EVENTS')(events.fetchOrganizerEvents),
   when('@@ui/ON_LOAD_SPEAKER_EVENTS')(events.fetchSpeakerEvents),
+  /* organizations */
+  when('@@ui/ON_CREATE_ORGANIZATION')(organizations.createOrganization),
+  when('@@ui/ON_UPDATE_ORGANIZATION')(organizations.updateOrganization),
+  when('@@ui/ON_LOAD_ORGANIZER_ORGANIZATIONS')(organizations.fetchOrganizerOrganizations),
+  when('@@ui/ON_LOAD_ORGANIZATION')(organizations.fetchOrganization),
   /* submissions */
   when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),
   when('@@ui/GO_TO_SELECT_SUBMISSION')(submissions.openSelectSubmission),

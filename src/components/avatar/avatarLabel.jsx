@@ -3,32 +3,32 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import Avatar from 'components/avatar'
 
-import './speaker.css'
+import './avatarLabel.css'
 
-const Speaker = ({
+const AvatarLabel = ({
   displayName, photoURL, suffix, className,
 }) => (
-  <div className={cn('speaker-avatar', className)}>
+  <div className={cn('avatar-label', className)}>
     <Avatar displayName={displayName} photoURL={photoURL} />
-    <span className="speaker-avatar-fullname">
+    <span className="avatar-label-fullname">
       {displayName}
       {suffix && <span>&nbsp;{suffix}</span>}
     </span>
   </div>
 )
 
-Speaker.propTypes = {
+AvatarLabel.propTypes = {
   displayName: PropTypes.string,
   photoURL: PropTypes.string,
   suffix: PropTypes.string,
   className: PropTypes.string,
 }
 
-Speaker.defaultProps = {
+AvatarLabel.defaultProps = {
   displayName: undefined,
   photoURL: undefined,
   suffix: undefined,
   className: undefined,
 }
 
-export default Speaker
+export default AvatarLabel

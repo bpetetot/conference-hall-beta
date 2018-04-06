@@ -1,0 +1,8 @@
+.member {
+  display: flex;
+  align-items: center;
+}
+
+.member > *:first-child {
+  margin-right: 10px;
+}

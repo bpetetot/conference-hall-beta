@@ -9,7 +9,7 @@ import { DayPicker, DayRangePicker } from './dayPicker'
 import Label from './label'
 
 const renderField = component => ({
-  input, label, type, meta, placeholder,
+  input, label, type, meta, placeholder, children,
 }) => (
   <Label name={input.name} label={label} error={meta.error}>
     {component === 'address' && (
@@ -19,6 +19,7 @@ const renderField = component => ({
       />
     )}
     {component === 'input' && <input {...input} id={input.name} type={type} placeholder={placeholder} />}
+    {component === 'select' && <select {...input} id={input.name}>{children}</select>}
     {component === 'textarea' && (
       <textarea id={input.name} {...input}>
         {input.value}
