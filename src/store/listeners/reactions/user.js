@@ -36,7 +36,7 @@ const getUser = uid => async (store) => {
   return user
 }
 
-export const addOrganizationToUser = reaction(async (action, store) => {
+export const addOrganizationToUser = reaction(async (action, store, { router }) => {
   const { uid, organizationId } = action.payload
   const user = await getUser(uid)(store)
 
@@ -47,6 +47,8 @@ export const addOrganizationToUser = reaction(async (action, store) => {
 
   const organization = store.data.organizations.get(organizationId)
   store.data.organizations.update(push(organization, 'users', updated))
+
+  router.push(`/organizer/organizations/${organizationId}`)
 })
 
 export const removeOrganizationToUser = reaction(async (action, store, { router }) => {

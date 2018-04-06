@@ -1,6 +1,6 @@
 import { reaction } from 'k-ramel'
 import map from 'lodash/map'
-import { set } from 'immutadot'
+import { set, unset } from 'immutadot'
 
 import organizationCrud, {
   createOrganization as firebaseCreateOrganization,
@@ -30,7 +30,7 @@ export const createOrganization = reaction(async (action, store, { form, router 
 
 export const updateOrganization = reaction((action, store, { form, router }) => {
   const updateForm = form('organization-edit')
-  const organization = updateForm.getFormValues()
+  const organization = unset(updateForm.getFormValues(), 'users')
   // create organization into database
   updateForm.asyncSubmit(organizationCrud.update, organization)
   // update organization into data store

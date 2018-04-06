@@ -6,10 +6,10 @@ import loader from 'components/loader'
 import InviteOrganizer from './inviteOrganizer'
 
 const mapStore = (store, ownProps, { router }) => {
-  const organizationId = router.getRouterParam('organizationId')(store.getState())
-  const uidInvite = router.getRouterParam('uid')(store.getState())
+  const organizationId = router.getRouteParam('organizationId')
+  const uidInvite = router.getRouteParam('uid')
   const { uid } = store.auth.get()
-  const { displayName, photoURL } = store.data.users.get(uid) || {}
+  const { displayName, photoURL } = store.data.users.get(uidInvite) || {}
   const { name } = store.data.organizations.get(organizationId) || {}
 
   return {
@@ -25,7 +25,6 @@ const mapStore = (store, ownProps, { router }) => {
     },
     join: () => {
       store.dispatch({ type: '@@ui/ADD_ORGANIZATION_TO_USER', payload: { uid, organizationId } })
-      router.push(`/organizer/organizations/${organizationId}`)
     },
     cancel: () => router.push('/organizer'),
   }
