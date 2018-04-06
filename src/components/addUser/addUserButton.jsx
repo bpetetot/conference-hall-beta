@@ -33,7 +33,7 @@ AddUserButton.propTypes = {
   label: PropTypes.string,
   modalOptions: PropTypes.shape({
     title: PropTypes.string,
-    message: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+    message: PropTypes.node.isRequired,
     resultsMessage: PropTypes.string.isRequired,
     inviteLink: PropTypes.string.isRequired,
     onSelectUser: PropTypes.func.isRequired,
