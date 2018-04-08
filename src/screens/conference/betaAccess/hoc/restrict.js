@@ -6,12 +6,12 @@ import { inject } from '@k-ramel/react'
 export default (Component) => {
   class BetaRestricted extends React.Component {
     static propTypes = {
-      organizerAccess: PropTypes.bool,
-      redirectInviteCode: PropTypes.func.isRequired,
+      betaAccess: PropTypes.bool,
+      redirectBetaAccessForm: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
-      organizerAccess: undefined,
+      betaAccess: undefined,
     }
 
     componentDidMount() {
@@ -23,24 +23,24 @@ export default (Component) => {
     }
 
     checkAccess = () => {
-      const { organizerAccess, redirectInviteCode } = this.props
-      if (!organizerAccess) {
-        redirectInviteCode()
+      const { betaAccess, redirectBetaAccessForm } = this.props
+      if (!betaAccess) {
+        redirectBetaAccessForm()
       }
     }
 
     render() {
-      const { organizerAccess, ...rest } = this.props
-      return !organizerAccess ? <Component {...rest} /> : null
+      const { betaAccess, ...rest } = this.props
+      return !betaAccess ? <Component {...rest} /> : null
     }
   }
 
   return inject((store, props, { router }) => {
     const { uid } = store.auth.get() || {}
-    const { organizerAccess } = store.data.users.get(uid) || {}
+    const { betaAccess } = store.data.users.get(uid) || {}
     return {
-      organizerAccess,
-      redirectInviteCode: () => router.replace('/beta-access'),
+      betaAccess,
+      redirectBetaAccessForm: () => router.replace('/beta-access'),
     }
   })(BetaRestricted)
 }
