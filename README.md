@@ -29,10 +29,14 @@ yarn start
 
 1. Create a firebase project with the [firebase console](https://console.firebase.google.com).
 
-   * activate "Cloud Firestore" for Database
-   * activate "Google Provider" for Authentication
+  * activate "Cloud Firestore" for Database
+  * activate "Google Provider" for Authentication
 
 2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables.
+
+  * REACT_APP_API_KEY=<API_KEY>
+  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>
+  * REACT_APP_PROJECT_ID=<PROJECT_ID>
 
 3. Install [firebase-cli](https://firebase.google.com/docs/cli/) :
 

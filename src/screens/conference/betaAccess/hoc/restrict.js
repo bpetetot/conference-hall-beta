@@ -41,7 +41,7 @@ export default (Component) => {
     const { betaAccess } = store.data.users.get(uid) || {}
     return {
       betaAccess,
-      skipBetaAccess: process.env.REACT_APP_SKIP_BETA_ACCESS === 'true',
+      skipBetaAccess: process.env.NODE_ENV === 'development',
       redirectBetaAccessForm: () => router.replace('/beta-access'),
     }
   })(BetaRestricted)
