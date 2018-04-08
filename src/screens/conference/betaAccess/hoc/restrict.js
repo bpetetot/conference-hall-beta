@@ -6,7 +6,8 @@ import { inject } from '@k-ramel/react'
 export default (Component) => {
   class BetaRestricted extends React.Component {
     static propTypes = {
-      betaAccess: PropTypes.bool,
+      betaAccess: PropTypes.string,
+      skipBetaAccess: PropTypes.bool.isRequired,
       redirectBetaAccessForm: PropTypes.func.isRequired,
     }
 
@@ -23,15 +24,15 @@ export default (Component) => {
     }
 
     checkAccess = () => {
-      const { betaAccess, redirectBetaAccessForm } = this.props
-      if (!betaAccess) {
+      const { betaAccess, skipBetaAccess, redirectBetaAccessForm } = this.props
+      if (!skipBetaAccess && !betaAccess) {
         redirectBetaAccessForm()
       }
     }
 
     render() {
-      const { betaAccess, ...rest } = this.props
-      return !betaAccess ? <Component {...rest} /> : null
+      const { betaAccess, skipBetaAccess, ...rest } = this.props
+      return (skipBetaAccess || betaAccess) ? <Component {...rest} /> : null
     }
   }
 
@@ -40,6 +41,7 @@ export default (Component) => {
     const { betaAccess } = store.data.users.get(uid) || {}
     return {
       betaAccess,
+      skipBetaAccess: process.env.REACT_APP_SKIP_BETA_ACCESS === 'true',
       redirectBetaAccessForm: () => router.replace('/beta-access'),
     }
   })(BetaRestricted)
