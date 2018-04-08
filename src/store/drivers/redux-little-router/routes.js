@@ -4,6 +4,7 @@ export default {
     appTitle: 'Conference Hall',
     title: 'HOME',
     '/login': { title: 'LOGIN' },
+    '/beta-access': { title: 'BETA_ACCESS' },
     '/public': {
       title: 'PUBLIC',
       '/event/:eventId': { title: 'PUBLIC_EVENT' },
