@@ -1,0 +1,42 @@
+.proposal-actions-layout {
+  display: grid;
+  grid-template-columns: auto 2fr auto;
+  grid-template-rows: auto;
+  grid-template-areas: 'btn-previous proposal-actions-nav btn-next';
+  grid-gap: 1em;
+  align-items: center;
+}
+
+.proposal-actions-nav {
+  grid-area: proposal-actions-nav;
+  justify-self: center;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.proposal-actions-nav > a {
+  display: block;
+}
+
+.btn-previous {
+  grid-area: btn-previous;
+  justify-self: flex-start;
+}
+
+.btn-next {
+  grid-area: btn-next;
+  justify-self: flex-end;
+}
+
+@media only screen and (max-width: 480px) {
+  .proposal-actions-layout {
+    grid-template-columns: auto auto;
+    grid-template-areas: 'btn-previous  btn-next' 'proposal-actions-nav proposal-actions-nav';
+  }
+
+  .proposal .card {
+    padding: 1em;
+  }
+}
+

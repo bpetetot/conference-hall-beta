@@ -4,10 +4,6 @@ ul.event-tabs {
   justify-content: flex-start;
 }
 
-ul.event-tabs a {
-  text-decoration: none;
-}
-
 @media only screen and (max-width: 480px) {
   .event-tabs {
     flex-direction: column;
