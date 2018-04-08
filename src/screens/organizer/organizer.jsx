@@ -7,6 +7,7 @@ import { Brand, Navbar } from 'screens/components'
 import Contributors from 'screens/components/contributors'
 import { Sidebar, SidebarMobile } from './sidebar'
 
+import { restrictBeta } from '../conference/betaAccess'
 import EventCreate from './event/create'
 import EventEdit from './event/edit'
 import Event from './event/page'
@@ -42,4 +43,4 @@ const Organizer = () => (
   </div>
 )
 
-export default compose(forRoute('HOME_ORGANIZER'), protect)(Organizer)
+export default compose(forRoute('HOME_ORGANIZER'), protect, restrictBeta)(Organizer)

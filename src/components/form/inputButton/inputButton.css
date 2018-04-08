@@ -2,10 +2,14 @@
   display: flex;
 }
 
-.input-button > input[type='search'] {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-right: transparent;
+.input-button > input[type='search'],input[type='text'] {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-right: transparent !important;
+}
+
+.input-button > input[type='search']:focus,input[type='text']:focus {
+  border-color: var(--grey-color);
 }
 
 .input-button > button {
