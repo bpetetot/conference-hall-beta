@@ -8,7 +8,11 @@
   border-right: transparent !important;
 }
 
+.input-button > input[type='search']:focus,input[type='text']:focus {
+  border-color: var(--grey-color);
+}
+
 .input-button > button {
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
