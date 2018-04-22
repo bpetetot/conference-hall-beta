@@ -2,13 +2,15 @@
   display: flex;
 }
 
-.input-button > input[type='search'],input[type='text'] {
+.input-button > input[type='search'],
+.input-button > input[type='text'] {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
   border-right: transparent !important;
 }
 
-.input-button > input[type='search']:focus,input[type='text']:focus {
+.input-button > input[type='search']:focus,
+.input-button > input[type='text']:focus {
   border-color: var(--grey-color);
 }
 
