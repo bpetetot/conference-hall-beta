@@ -1,7 +1,77 @@
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write;
+
+  	function authenticated() { return request.auth.uid != null }
+    function limitOne() { return request.query.limit <= 1 }
+    function userNotExists() { return !exists(/databases/$(database)/documents/users/$(request.auth.uid)) }
+    function itsMe() { return request.resource.data.uid == request.auth.uid }
+    function itsMyOrganizations() { return resource.data.members[request.auth.uid] }
+    function itsMyEvent() { return resource.data.owner == request.auth.uid || get(/databases/$(database)/documents/organizations/$(resource.data.organization)).data.members[request.auth.uid] == true }
+    function itsMyTalk() { return resource.data.speakers[request.auth.uid] == true }
+    function itsMyProposal() {
+    	return get(/databases/$(database)/documents/talks/$(request.path[6])).data.speakers[request.auth.uid] == true
+    }
+    function fromMyEvent(eventRes) {
+    	return eventRes.data.owner == request.auth.uid || get(/databases/$(database)/documents/organizations/$(eventRes.data.organization)).data.members[request.auth.uid] == true
+    }
+		function itsMySurvey() { return request.path[6] == request.auth.uid }
+    function hasInviteCode() { return request.resource.id == resource.id }
+
+  	// BETA ACCESS
+  	match /betaAccess/{key} {
+    	allow get: if authenticated();
+    }
+
+    // USERS
+  	match /users/{user} {
+    	allow get: if authenticated();
+      allow list: if authenticated() && limitOne();
+      allow create: if authenticated() && itsMe() && userNotExists();
+      allow update: if authenticated() && itsMe();
+    }
+
+    // ORGANIZATIONS
+    match /organizations/{organization} {
+    	allow get: if authenticated(); // invite ?
+    	allow list: if authenticated() && itsMyOrganizations();
+      allow create: if authenticated();
+      allow update: if authenticated() && (itsMyOrganizations() || hasInviteCode()); // invite ?
+    }
+
+    // EVENTS
+    match /events/{event} {
+    	allow get; // published or private ?
+    	allow list: if authenticated(); // published or private ?
+    	allow create: if authenticated();
+    	allow update: if authenticated() && itsMyEvent();
+
+      // SURVEYS
+      match /surveys/{survey} {
+        allow get: if authenticated() && itsMySurvey(); // || itsFromMyEvent();
+        allow create: if authenticated() && itsMySurvey();
+        allow update: if authenticated() && itsMySurvey();
+      }
+
+      // PROPOSALS
+      match /proposals/{proposal} {
+      	allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow write: if authenticated() && itsMyProposal();
+
+        // RATINGS
+        match /ratings/{rating} {
+          allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow write: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        }
+      }
+    }
+
+    // TALKS
+    match /talks/{talk} {
+    	allow get: if authenticated(); // invite ?
+    	allow list: if authenticated() && itsMyTalk();
+    	allow create: if authenticated();
+    	allow update: if authenticated() && (itsMyTalk() || hasInviteCode());
+    	allow delete: if authenticated() && itsMyTalk();
     }
   }
 }
