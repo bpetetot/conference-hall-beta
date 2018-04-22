@@ -1,5 +1,4 @@
 import { reaction } from 'k-ramel'
-import { set, unset, push, filter } from 'immutadot'
 import isEmpty from 'lodash/isEmpty'
 
 import userCrud, { fetchUsersByEmail } from 'firebase/user'
@@ -24,47 +23,6 @@ export const saveProfile = reaction((action, store, { form }) => {
   profileForm.asyncSubmit(userCrud.update, profile)
   // update user data in the store
   store.data.users.update(profile)
-})
-
-const getUser = uid => async (store) => {
-  let user = store.data.users.get(uid)
-  if (!user) {
-    const ref = await userCrud.read(uid)
-    user = ref.data()
-    store.data.users.add(user)
-  }
-  return user
-}
-
-export const addOrganizationToUser = reaction(async (action, store, { router }) => {
-  const { uid, organizationId } = action.payload
-  const user = await getUser(uid)(store)
-
-  const updated = set(user, `organizations.${organizationId}`, true)
-
-  store.data.users.update(updated)
-  await userCrud.update(updated)
-
-  const organization = store.data.organizations.get(organizationId)
-  store.data.organizations.update(push(organization, 'users', updated))
-
-  router.push(`/organizer/organizations/${organizationId}`)
-})
-
-export const removeOrganizationToUser = reaction(async (action, store, { router }) => {
-  const { uid, organizationId } = action.payload
-  const user = await getUser(uid)(store)
-
-  const updated = unset(user, `organizations.${organizationId}`)
-
-  store.data.users.update(updated)
-  await userCrud.update(updated)
-
-  const organization = store.data.organizations.get(organizationId)
-  store.data.organizations.update(filter(organization, 'users', u => u.uid !== uid))
-
-  const { uid: authUserId } = store.auth.get()
-  if (uid === authUserId) router.push('/organizer/organizations')
 })
 
 export const searchUserByEmail = reaction(async (action, store) => {

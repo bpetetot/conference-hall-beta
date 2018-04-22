@@ -5,7 +5,6 @@ import uniqBy from 'lodash/uniqBy'
 
 import { fetchOrganizationEvents } from 'firebase/organizations'
 import eventCrud, { fetchEvents, fetchUserEvents } from 'firebase/events'
-import userCrud from 'firebase/user'
 
 export const createEvent = reaction(async (action, store, { form, router }) => {
   const createForm = form('event-create')
@@ -43,12 +42,11 @@ export const fetchEvent = reaction(async (action, store, { router }) => {
 
 export const fetchOrganizerEvents = reaction(async (action, store) => {
   const { uid } = store.auth.get()
-  const userRef = await userCrud.read(uid)
-  const { organizations } = userRef.data()
+  const organizations = store.data.organizations.getKeys()
 
   const result = await fetchUserEvents(uid)
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
-  const organizationsEvents = await Promise.all(map(organizations, async (_, organizationId) => {
+  const organizationsEvents = await Promise.all(map(organizations, async (organizationId) => {
     const organizationEvents = await fetchOrganizationEvents(organizationId)
     return organizationEvents.docs.map(ref => ({ id: ref.id, ...ref.data() }))
   }))

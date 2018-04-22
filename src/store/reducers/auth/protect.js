@@ -2,12 +2,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { inject } from '@k-ramel/react'
+import LoadingIndicator from 'components/loader/loading'
 
 export default (Component) => {
   class ProtectedComponent extends React.Component {
     static propTypes = {
       authenticated: PropTypes.bool.isRequired,
       initialized: PropTypes.bool.isRequired,
+      userDataLoaded: PropTypes.bool.isRequired,
       redirectLogin: PropTypes.func.isRequired,
       url: PropTypes.string.isRequired,
     }
@@ -30,14 +32,22 @@ export default (Component) => {
     }
 
     render() {
-      const { authenticated, ...rest } = this.props
-      return authenticated ? <Component {...rest} /> : null
+      const { authenticated, userDataLoaded, ...rest } = this.props
+      if (!authenticated) return null
+      if (!userDataLoaded) return <LoadingIndicator />
+      return <Component {...rest} />
     }
   }
 
-  return inject((store, props, { router }) => ({
-    ...store.auth.get(),
-    url: `${store.getState().router.pathname}${store.getState().router.search}`,
-    redirectLogin: url => router.replace(`/login?next=${url}`),
-  }))(ProtectedComponent)
+  return inject((store, props, { router }) => {
+    const auth = store.auth.get()
+    const userLoaded = store.data.users.hasKey(auth.uid)
+    const orgaLoaded = store.data.organizations.isInitialized()
+    return {
+      ...auth,
+      userDataLoaded: userLoaded && orgaLoaded,
+      url: `${store.getState().router.pathname}${store.getState().router.search}`,
+      redirectLogin: url => router.replace(`/login?next=${url}`),
+    }
+  })(ProtectedComponent)
 }

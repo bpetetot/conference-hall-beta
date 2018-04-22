@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'redux-little-router'
+import keys from 'lodash/keys'
+
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
 import AddUserButton from 'components/addUser'
-import { Link } from 'redux-little-router'
 import IconLabel from 'components/iconLabel'
 import MemberRow from '../components/memberRow'
 
@@ -26,7 +28,7 @@ const modalMessage = (
 const OrganizationPage = ({
   id: organizationId,
   name,
-  users,
+  members,
   onSelectUser,
   inviteLink,
   removeMember,
@@ -50,14 +52,14 @@ const OrganizationPage = ({
     </Titlebar>
     <List
       className="organization-content"
-      array={users}
+      array={keys(members)}
       noResult="No users yet !"
-      renderRow={rowProps => (
+      renderRow={uid => (
         <MemberRow
-          key={rowProps.id}
-          {...rowProps}
+          key={uid}
+          uid={uid}
           authUserId={authUserId}
-          removeMember={() => removeMember(rowProps.id)}
+          removeMember={() => removeMember(uid)}
           owner={owner}
         />
       )}
@@ -69,7 +71,7 @@ OrganizationPage.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   inviteLink: PropTypes.string.isRequired,
-  users: PropTypes.arrayOf(PropTypes.object),
+  members: PropTypes.objectOf(PropTypes.bool),
   owner: PropTypes.string.isRequired,
   authUserId: PropTypes.string.isRequired,
   onSelectUser: PropTypes.func.isRequired,
@@ -77,7 +79,7 @@ OrganizationPage.propTypes = {
 }
 
 OrganizationPage.defaultProps = {
-  users: [],
+  members: [],
 }
 
 export default OrganizationPage

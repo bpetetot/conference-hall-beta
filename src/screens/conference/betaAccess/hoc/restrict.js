@@ -25,9 +25,8 @@ export default (Component) => {
 
     checkAccess = () => {
       const { betaAccess, skipBetaAccess, redirectBetaAccessForm } = this.props
-      if (!skipBetaAccess && !betaAccess) {
-        redirectBetaAccessForm()
-      }
+      if (skipBetaAccess) return
+      if (!betaAccess) redirectBetaAccessForm()
     }
 
     render() {

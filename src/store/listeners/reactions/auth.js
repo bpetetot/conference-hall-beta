@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import pick from 'lodash/pick'
 
 import userCrud from 'firebase/user'
+import { fetchUserOrganizations } from 'firebase/organizations'
 
 export const signin = reaction((action) => {
   const providerId = action.payload
@@ -47,6 +48,10 @@ export const signedIn = reaction(async (action, store, { router }) => {
   }
   // add user in store
   store.data.users.add(user)
+
+  // get users organizations
+  const organizations = await fetchUserOrganizations(user.uid)
+  store.data.organizations.set(organizations.docs.map(ref => ({ id: ref.id, ...ref.data() })))
 
   // go to the next url if exists
   const next = router.getQueryParam('next')
