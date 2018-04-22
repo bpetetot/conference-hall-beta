@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm, propTypes } from 'redux-form'
+import isEmpty from 'lodash/isEmpty'
 
 import {
   input,
@@ -25,7 +26,7 @@ const EventForm = ({ type, organizations, ...formProps }) => (
     )}
     <Field name="name" label="Name" type="text" component={input} validate={required} />
     <Field name="description" label="description" component={markdownInput} validate={required} />
-    {organizations.length && (
+    {!isEmpty(organizations) && (
       <Field label="Organization" name="organization" component={select}>
         <option />
         {organizations.map(({ id, name }) => (
