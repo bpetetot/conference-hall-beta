@@ -6,9 +6,9 @@ import loader from 'components/loader'
 import Organizations from './organizations'
 
 const mapStore = (store, ownProps, { router }) => ({
-  loaded: store.ui.organizer.myOrganizations.isInitialized(),
-  organizations: store.ui.organizer.myOrganizations.getAsArray(),
-  load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZER_ORGANIZATIONS'),
+  loaded: store.data.organizations.isInitialized(),
+  organizations: store.data.organizations.getAsArray(),
+  load: () => store.dispatch('@@ui/ON_LOAD_USER_ORGANIZATIONS'),
   onSelect: organizationId => router.push(`/organizer/organizations/${organizationId}`),
 })
 

@@ -24,7 +24,7 @@ const mapStore = (store, ownProps, { router }) => {
       store.dispatch({ type: '@@ui/FETCH_USER', payload: uid })
     },
     join: () => {
-      store.dispatch({ type: '@@ui/ADD_ORGANIZATION_TO_USER', payload: { uid, organizationId } })
+      store.dispatch({ type: '@@ui/ADD_ORGANIZATION_MEMBER', payload: { uid, organizationId } })
     },
     cancel: () => router.push('/organizer'),
   }

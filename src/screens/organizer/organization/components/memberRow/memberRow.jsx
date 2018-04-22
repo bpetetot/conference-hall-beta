@@ -13,7 +13,7 @@ import './memberRow.css'
 const REMOVE_MEMBER_FROM_ORGANIZATION = 'remove-member-from-organization'
 
 const MemberRow = ({
-  id,
+  uid,
   displayName,
   photoURL,
   updateTimestamp,
@@ -23,13 +23,15 @@ const MemberRow = ({
   removeMember,
   authUserId,
 }) => {
-  const canRemove = owner === authUserId && owner !== id
-  const canLeave = owner !== authUserId && authUserId === id
+  if (!displayName) return null
+
+  const canRemove = owner === authUserId && owner !== uid
+  const canLeave = owner !== authUserId && authUserId === uid
 
   return (
     <Fragment>
       <ListItem
-        key={id}
+        key={uid}
         title={(
           <AvatarLabel displayName={displayName} photoURL={photoURL} />
         )}
@@ -49,7 +51,7 @@ const MemberRow = ({
           </Fragment>
         )}
       />
-      <Modal id={`${REMOVE_MEMBER_FROM_ORGANIZATION}-${id}`} className="remove-member-modal">
+      <Modal id={`${REMOVE_MEMBER_FROM_ORGANIZATION}-${uid}`} className="remove-member-modal">
         <h1>{canRemove ? 'Remove member from' : 'Leave'} organization</h1>
         <p>Are you sure you want to {canRemove ? `remove ${displayName} from` : 'leave'} organization ?</p>
         <a
@@ -68,10 +70,10 @@ const MemberRow = ({
 }
 
 MemberRow.propTypes = {
-  id: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
-  photoURL: PropTypes.string.isRequired,
-  updateTimestamp: PropTypes.instanceOf(Date).isRequired,
+  uid: PropTypes.string.isRequired,
+  displayName: PropTypes.string,
+  photoURL: PropTypes.string,
+  updateTimestamp: PropTypes.instanceOf(Date),
   owner: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
@@ -79,7 +81,13 @@ MemberRow.propTypes = {
   authUserId: PropTypes.string.isRequired,
 }
 
+MemberRow.defaultProps = {
+  displayName: undefined,
+  photoURL: undefined,
+  updateTimestamp: undefined,
+}
+
 export default compose(
-  withProps(ownProps => ({ modalId: `${REMOVE_MEMBER_FROM_ORGANIZATION}-${ownProps.id}` })),
+  withProps(({ uid }) => ({ modalId: `${REMOVE_MEMBER_FROM_ORGANIZATION}-${uid}` })),
   withModal(),
 )(MemberRow)
