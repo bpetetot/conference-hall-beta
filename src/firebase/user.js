@@ -10,6 +10,7 @@ export const fetchUsersByEmail = async (email) => {
     .firestore()
     .collection('users')
     .where('email', '==', email)
+    .limit(1)
     .get()
   return result.docs.map(ref => ({ uid: ref.id, ...ref.data() }))
 }
