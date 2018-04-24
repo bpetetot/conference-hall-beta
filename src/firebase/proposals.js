@@ -22,7 +22,9 @@ export const fetchProposal = (eventId, proposalId) =>
 export const fetchEventProposals = async (
   eventId,
   uid,
-  { categories, formats, sortOrder } = {},
+  {
+    categories, formats, sortOrder, ratings,
+  } = {},
 ) => {
   let query = firebase
     .firestore()
@@ -51,7 +53,15 @@ export const fetchEventProposals = async (
   }
 
   const result = await query.get()
-  return result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  const proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+
+  // add ratings filter (client filter)
+  if (ratings === 'rated') {
+    return proposals.filter(proposal => proposal.usersRatings && !!proposal.usersRatings[uid])
+  } else if (ratings === 'notRated') {
+    return proposals.filter(proposal => !proposal.usersRatings || !proposal.usersRatings[uid])
+  }
+  return proposals
 }
 
 /**
