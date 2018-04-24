@@ -11,10 +11,25 @@ const sortOrderLabel = sortOrder =>
     lowestRating: 'Lowest Ratings',
   }[sortOrder])
 
+const ratingsLabel = rating =>
+  ({
+    all: 'All ratings',
+    rated: 'Rated',
+    notRated: 'Not rated',
+  }[rating])
+
 const ProposalFilters = ({
-  formats, categories, sortOrders, filters, onChange,
+  ratings, formats, categories, sortOrders, filters, onChange,
 }) => (
   <div className="proposals-filters">
+    <select id="ratings" onChange={onChange} defaultValue={filters.ratings}>
+      {ratings.map(rating => (
+        <option key={rating} value={rating}>
+          {ratingsLabel(rating)}
+        </option>
+      ))}
+    </select>
+
     <select id="formats" onChange={onChange} defaultValue={filters.formats}>
       <option value="">All formats</option>
       {formats.map(({ id, name }) => (
@@ -45,6 +60,7 @@ const ProposalFilters = ({
 )
 
 ProposalFilters.propTypes = {
+  ratings: PropTypes.arrayOf(PropTypes.string),
   formats: PropTypes.arrayOf(PropTypes.object),
   categories: PropTypes.arrayOf(PropTypes.object),
   sortOrders: PropTypes.arrayOf(PropTypes.string),
@@ -53,6 +69,7 @@ ProposalFilters.propTypes = {
 }
 
 ProposalFilters.defaultProps = {
+  ratings: [],
   formats: [],
   categories: [],
   sortOrders: [],

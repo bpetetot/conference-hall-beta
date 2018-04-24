@@ -48,18 +48,19 @@ export const onRouteChanged = reaction((action, store, { router }) => {
     const { query } = router.get()
 
     const pickTruthyValues = pickBy(Boolean)
-    const pickFilterKeys = pick(['categories', 'formats', 'sortOrder'])
+    const pickFilterKeys = pick(['ratings', 'categories', 'formats', 'sortOrder'])
     const ensureIncludedIn = values => value => (values.includes(value) ? value : values[0])
 
     const filtersFromRouterState = pickFilterKeys(query)
     const filtersFromUiState = pickTruthyValues(pickFilterKeys(store.ui.organizer.proposals.get()))
     const filtersFromBothStates = { ...filtersFromUiState, ...filtersFromRouterState }
+
     const availableSortOrders = router.getParentResultParam('sortOrders')
-    const validFilters = update(
-      'sortOrder',
-      ensureIncludedIn(availableSortOrders),
-      filtersFromBothStates,
-    )
+    let validFilters = update('sortOrder', ensureIncludedIn(availableSortOrders), filtersFromBothStates)
+
+    const availableRatings = router.getParentResultParam('ratings')
+    validFilters = update('ratings', ensureIncludedIn(availableRatings), validFilters)
+
     if (!isEqual(validFilters, filtersFromRouterState)) {
       store.dispatch(replace({ query: { ...query, ...validFilters } }))
     }
