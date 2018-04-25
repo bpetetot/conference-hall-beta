@@ -74,7 +74,7 @@ class Rating extends Component {
           onClick={this.handleClick}
           role="button"
         >
-          No way !
+          No way
         </small>
         <i
           className={cn('fa fa-2x', {
@@ -116,7 +116,7 @@ class Rating extends Component {
           onClick={this.handleClick}
           role="button"
         >
-          I love it !
+          I love it
         </small>
       </div>
     )

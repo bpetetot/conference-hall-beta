@@ -2,16 +2,8 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: 'proposal-ratings proposal-ratings' 'proposal-talk proposal-speakers';
+  grid-template-areas: 'proposal-actions proposal-actions' 'proposal-talk proposal-ratings' 'proposal-talk proposal-speakers';
   grid-gap: 1em;
-}
-
-.proposal .card {
-  padding: 1.5em;
-}
-
-.proposal-header {
-  grid-area: proposal-header;
 }
 
 .proposal-talk {
@@ -39,11 +31,20 @@
   align-self: start;
 }
 
+.proposal-actions {
+  grid-area: proposal-actions;
+  align-self: start;
+}
+
+.proposal-actions.card {
+  padding: 0.8em 1em;
+}
 
 @media only screen and (max-width: 480px) {
   .proposal {
     grid-template-columns: 100%;
     grid-template-areas:
+      'proposal-actions'
       'proposal-ratings'
       'proposal-talk'
       'proposal-speakers';

@@ -9,7 +9,7 @@
 
 .rating > i {
   cursor: pointer;
-  padding: 0 0.5em;
+  padding: 0 0.3em;
   transition: all 0.5s;
 }
 

@@ -14,6 +14,7 @@ ul.tabs > li {
 
 ul.tabs > li a {
   color: var(--font-color);
+  text-decoration: none;
 }
 
 ul.tabs > li a:hover {
