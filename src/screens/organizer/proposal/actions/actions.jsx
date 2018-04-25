@@ -4,9 +4,11 @@ import cn from 'classnames'
 
 import IconLabel from 'components/iconLabel'
 import Drawer from 'components/drawer'
+import TeamRatings from './teamRatings'
+
 import './actions.css'
 
-const Actions = ({ className }) => (
+const Actions = ({ proposal, className }) => (
   <div className={cn('proposal-actions-btn', className)}>
     <Drawer
       opener={open => (
@@ -15,8 +17,7 @@ const Actions = ({ className }) => (
         </button>
       )}
       title="Team ratings"
-      subtitle="All comments are stricly between organizers"
-      content="Lorem Ipsum"
+      content={<TeamRatings id={proposal.id} />}
     />
 
     <Drawer
@@ -33,10 +34,12 @@ const Actions = ({ className }) => (
 )
 
 Actions.propTypes = {
+  proposal: PropTypes.objectOf(PropTypes.any),
   className: PropTypes.string,
 }
 
 Actions.defaultProps = {
+  proposal: {},
   className: undefined,
 }
 

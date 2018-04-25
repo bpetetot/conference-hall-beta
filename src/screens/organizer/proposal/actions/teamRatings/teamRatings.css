@@ -1,0 +1,41 @@
+.team-ratings-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em 0;
+  font-weight: 200;
+  padding: 1em;
+  border: 1px solid var(--grey-color-light);
+  background: #FEFEFE;
+  color: var(--grey-color-dark);
+}
+
+.team-ratings-total-label {
+  font-size: 1.5em;
+}
+
+.team-ratings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2em 0;
+  font-weight: 200;
+}
+
+.team-ratings-rates {
+  margin-left: 2em;
+  font-size: 1.3em;
+}
+
+
+.team-ratings-rates .fa-star {
+  color: #ffc74c;
+}
+
+.team-ratings-rates .fa-heart {
+  color: #ed4842;
+}
+
+.team-ratings-rates .fa-circle {
+  color: #000;
+}

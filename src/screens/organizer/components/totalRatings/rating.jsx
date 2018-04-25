@@ -1,17 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import isNil from 'lodash/isNil'
 
+import { displayRating } from 'helpers/number'
 import IconLabel from 'components/iconLabel'
 import './rating.css'
-
-const displayRating = (rating) => {
-  if (isNil(rating)) return '-'
-  if (rating.toString().indexOf('.') !== -1) {
-    return rating.toFixed(1)
-  }
-  return rating
-}
 
 const Rating = ({
   rating, loves, hates, nbvotes,

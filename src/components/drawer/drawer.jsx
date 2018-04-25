@@ -2,6 +2,7 @@ import React, { Fragment, Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import withTheme from 'styles/themes/withTheme'
 import Portal from '../portal'
 
 import './drawer.css'
@@ -75,4 +76,4 @@ Drawer.defaultProps = {
   className: undefined,
 }
 
-export default Drawer
+export default withTheme(Drawer)

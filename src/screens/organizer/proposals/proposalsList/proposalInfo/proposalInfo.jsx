@@ -4,9 +4,9 @@ import keys from 'lodash/keys'
 import PropTypes from 'prop-types'
 
 import Speaker from 'screens/components/speaker'
+import TotalRatings from 'screens/organizer/components/totalRatings'
 
 import './proposalInfo.css'
-import Rating from './rating'
 
 const getNumberOfVotes = ratings => keys(filter(ratings, v => v)).length
 
@@ -19,7 +19,7 @@ const ProposalInfo = ({ proposal }) => {
       {Object.keys(speakers).map(id => (
         <Speaker key={id} id={id} className="proposal-item-info-speaker" small />
       ))}
-      <Rating
+      <TotalRatings
         rating={rating}
         loves={loves}
         hates={hates}
