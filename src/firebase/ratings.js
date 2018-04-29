@@ -24,7 +24,7 @@ export const getRatings = async (eventId, proposalId) => {
  * @param {string} userId user id
  * @param {object} ratingObject complete rating object
  */
-export const addRating = (eventId, proposalId, userId, ratingObject) => {
+export const addRating = (eventId, proposalId, userId, ratingObject) =>
   firebase
     .firestore()
     .collection('events')
@@ -38,7 +38,6 @@ export const addRating = (eventId, proposalId, userId, ratingObject) => {
       ...ratingObject,
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
-}
 
 /**
  * Delete user rating for a proposal

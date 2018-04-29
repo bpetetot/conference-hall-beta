@@ -1,8 +1,8 @@
 .proposal {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto;
-  grid-template-areas: 'proposal-ratings proposal-ratings' 'proposal-talk proposal-speakers';
+  grid-template-rows: auto 34px auto;
+  grid-template-areas: 'proposal-ratings proposal-ratings' 'proposal-talk proposal-actions' 'proposal-talk proposal-speakers';
   grid-gap: 1em;
 }
 
@@ -10,8 +10,8 @@
   padding: 1.5em;
 }
 
-.proposal-header {
-  grid-area: proposal-header;
+.proposal-actions {
+  grid-area: proposal-actions;
 }
 
 .proposal-talk {
@@ -43,8 +43,10 @@
 @media only screen and (max-width: 480px) {
   .proposal {
     grid-template-columns: 100%;
+    grid-template-rows: auto;
     grid-template-areas:
       'proposal-ratings'
+      'proposal-actions'
       'proposal-talk'
       'proposal-speakers';
   }

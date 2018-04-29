@@ -134,7 +134,7 @@ Rating.propTypes = {
 Rating.defaultProps = {
   stars: 5,
   rating: undefined,
-  feeling: DEFAULT_FEELING,
+  feeling: undefined,
   className: undefined,
 }
 
