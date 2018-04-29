@@ -4,12 +4,11 @@
 }
 
 .icon-submitted > i {
-  font-size: 12em;
+  font-size: 8em;
   margin: 0.3em;
 }
 
 .icon-submitted > h2 {
-  margin: 2em 0;
   font-weight: 600;
   color: var(--success-color);
 }
