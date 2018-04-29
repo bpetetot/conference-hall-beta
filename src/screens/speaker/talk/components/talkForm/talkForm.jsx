@@ -9,7 +9,7 @@ import './talkForm.css'
 const TalkForm = formProps => (
   <form className="talk-form card">
     <Field name="title" label="Title" type="text" component={input} validate={required} />
-    <Field name="abstract" label="Abstract" component={markdownInput} />
+    <Field name="abstract" label="Abstract" component={markdownInput} validate={required} />
     <RadioGroup name="level" label="Level" inline>
       <Field name="level" value="beginner" label="Beginner" type="radio" component={radio} />
       <Field
