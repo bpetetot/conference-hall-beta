@@ -26,7 +26,7 @@ export default [
   },
   {
     name: 'accomodation',
-    label: 'Do you need accommodation funding?',
+    label: 'Do you need accommodation funding? (Hotel, AirBnB...)',
     type: 'radio',
     answers: [{ name: 'yes', label: 'Yes' }, { name: 'no', label: 'No' }],
   },

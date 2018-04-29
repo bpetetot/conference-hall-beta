@@ -5,10 +5,22 @@ import { Link } from 'redux-little-router'
 import SubmitTalksLink from 'screens/components/submitTalksLink'
 import './talkSubmitted.css'
 
-const TalkSubmitted = ({ eventId, eventName }) => (
+const TalkSubmitted = ({ eventId, eventName, surveyActive }) => (
   <div className="icon-submitted">
     <h2>Congrats ! Talk successfully submitted to {eventName}</h2>
-    <h1><Link href={`/speaker/event/${eventId}/survey`}>Please fill the speaker survey</Link></h1>
+    <p>
+      In order to help organizers for the selection and the event management, please don&apos;t
+      forget to fill
+    </p>
+    <h2>
+      <Link href="/speaker/profile">Your profile</Link>
+    </h2>
+    {surveyActive && <p>and</p>}
+    {surveyActive && (
+      <h2>
+        <Link href={`/speaker/event/${eventId}/survey`}>The speaker survey</Link>
+      </h2>
+    )}
     <i className="fa fa-paper-plane-o" />
     <br />
     <SubmitTalksLink eventId={eventId} label="Want to submit or update an other talk ?" />
@@ -18,6 +30,11 @@ const TalkSubmitted = ({ eventId, eventName }) => (
 TalkSubmitted.propTypes = {
   eventId: PropTypes.string.isRequired,
   eventName: PropTypes.string.isRequired,
+  surveyActive: PropTypes.bool,
+}
+
+TalkSubmitted.defaultProps = {
+  surveyActive: false,
 }
 
 export default TalkSubmitted
