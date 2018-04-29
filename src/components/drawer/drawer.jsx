@@ -15,12 +15,12 @@ class Drawer extends Component {
   }
 
   open = () => {
-    document.removeEventListener('keydown', this.handleKeydown)
+    document.addEventListener('keydown', this.handleKeydown)
     this.setState({ isOpen: true })
   }
 
   close = () => {
-    document.addEventListener('keydown', this.handleKeydown)
+    document.removeEventListener('keydown', this.handleKeydown)
     this.setState({ isOpen: false })
   }
 
@@ -38,21 +38,19 @@ class Drawer extends Component {
         {opener(this.open)}
         {isOpen && (
           <Portal>
-            <div className="drawer-isMobile">
-              <div className="drawer-backdrop" onClick={this.close} role="button" />
-              <div className={cn('drawer-sidebar', className)}>
-                <div className="drawer-header">
-                  <div className="drawer-titles">
-                    <div className="drawer-title">{title}</div>
-                    {subtitle && <div className="drawer-subtitle">{subtitle}</div>}
-                  </div>
-                  <button className="drawer-icon" onClick={this.close}>
-                    <i className="fa fa-times" />
-                  </button>
+            <div className="drawer-backdrop" onClick={this.close} role="button" />
+            <div className={cn('drawer-sidebar', className)}>
+              <div className="drawer-header">
+                <div className="drawer-titles">
+                  <div className="drawer-title">{title}</div>
+                  {subtitle && <div className="drawer-subtitle">{subtitle}</div>}
                 </div>
-                <div className="drawer-content">{content}</div>
-                {actions && <div className="drawer-actions">{actions}</div>}
+                <button className="drawer-icon" onClick={this.close}>
+                  <i className="fa fa-times" />
+                </button>
               </div>
+              <div className="drawer-content">{content}</div>
+              {actions && <div className="drawer-actions">{actions}</div>}
             </div>
           </Portal>
         )}
