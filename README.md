@@ -61,6 +61,31 @@ Activate the following APIs in the [Google developer console](https://console.de
 * Google Maps Embed API
 * Google Maps JavaScript API
 
+### Configure Mailgun
+
+The application sends emails through the [Mailgun API](https://www.mailgun.com/)
+
+You have to create a Mailgun account if you want to send those emails, if not the app will still works perfectly but without sending any email.
+
+Mailgun API is used to send email through Cloud Functions, so you will have to add environment variables with firebase CLI :
+* The application URL: `app.url` (ex: `http://localhost:3000`)
+* The API key: `mailgun.key`
+* The domain name: `mailgun.domain`
+
+Here the command to register those variables:
+
+```
+firebase functions:config:set app.url="https://myserver.com" mailgun.key="MAILGUN API KEY" mailgun.domain="YOUR DOMAIN NAME"
+```
+
+To test cloud functions with Mailgun on local machine (with cloud function shell), you will need to generate `.runtimeconfig.json` file with environment variables :
+
+```
+firebase functions:config:get > .runtimeconfig.json
+```
+
+> **Important Note:** Mailgun is an external service from Firebase and Google, so to be able use it with you will need to activate Firebase pricing.
+
 ## Deploy with Firebase
 
 Build and deploy the app :
