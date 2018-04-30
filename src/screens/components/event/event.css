@@ -75,12 +75,12 @@
 
 .event-categories {
   grid-area: event-categories;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .event-formats {
   grid-area: event-formats;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 @media only screen and (max-width: 1024px) {
