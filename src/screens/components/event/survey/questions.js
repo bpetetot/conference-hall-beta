@@ -1,4 +1,5 @@
 import find from 'lodash/find'
+import omitBy from 'lodash/omitBy'
 
 const questions = [
   {
@@ -80,7 +81,9 @@ export const getAnswersLabel = (questionName, answer) => {
     return answer
   }
   if (question.type === 'checkbox') {
-    return Object.keys(answer).map(a => getAnswer(question, a).label).join(', ')
+    return Object.keys(omitBy(answer, value => !value))
+      .map(a => getAnswer(question, a).label)
+      .join(', ')
   }
   return getAnswer(question, answer).label
 }
