@@ -1,0 +1,29 @@
+.speaker-surveys {
+  margin: 2em 0;
+  max-width: 500px;
+}
+
+.speaker-surveys img {
+  font-size: 1.2em;
+}
+
+.speaker-surveys .questions {
+  margin-top: 1em;
+  font-weight: 200;
+}
+
+.speaker-surveys .questions .question {
+  padding: 0.5em 0;
+}
+
+.speaker-surveys .questions .question .answer {
+  margin-left: 1em;
+  color: var(--grey-color-dark);
+  font-weight: 700;
+}
+
+.speaker-surveys .not-answered {
+  margin-top: 1.5em;
+  font-style: italic;
+  font-weight: 200;
+}

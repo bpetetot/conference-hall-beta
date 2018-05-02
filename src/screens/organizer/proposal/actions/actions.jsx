@@ -5,41 +5,48 @@ import cn from 'classnames'
 import IconLabel from 'components/iconLabel'
 import Drawer from 'components/drawer'
 import TeamRatings from './teamRatings'
+import SpeakerSurveys from './speakerSurveys'
 
 import './actions.css'
 
-const Actions = ({ proposal, className }) => (
+const Actions = ({
+  eventId, proposal, surveyActive, className,
+}) => (
   <div className={cn('proposal-actions-btn', className)}>
     <Drawer
       opener={open => (
         <button className="btn btn-default" onClick={open}>
-          <IconLabel icon="fa fa-star-o" label="All ratings" />
+          <IconLabel icon="fa fa-star" label="All ratings" />
         </button>
       )}
       title="Team ratings"
       content={<TeamRatings id={proposal.id} />}
     />
 
-    <Drawer
-      opener={open => (
-        <button className="btn btn-default" onClick={open}>
-          <IconLabel icon="fa fa-comments" label="Team comments" />
-        </button>
-      )}
-      title="Team comments"
-      subtitle="All comments are stricly between organizers"
-      content="Not implemented yet"
-    />
+    {surveyActive && (
+      <Drawer
+        opener={open => (
+          <button className="btn btn-default" onClick={open}>
+            <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
+          </button>
+        )}
+        title="Speaker survey"
+        content={<SpeakerSurveys eventId={eventId} speakers={proposal.speakers} />}
+      />
+    )}
   </div>
 )
 
 Actions.propTypes = {
+  eventId: PropTypes.string.isRequired,
   proposal: PropTypes.objectOf(PropTypes.any),
+  surveyActive: PropTypes.bool,
   className: PropTypes.string,
 }
 
 Actions.defaultProps = {
   proposal: {},
+  surveyActive: false,
   className: undefined,
 }
 
