@@ -13,7 +13,6 @@ const config = {
 export const init = reaction((action, store) => {
   try {
     firebase.initializeApp(config)
-    firebase.firestore().enablePersistence()
     firebase.firestore()
   } catch (error) {
     console.warn(error.code, error.message)
