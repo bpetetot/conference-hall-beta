@@ -47,7 +47,7 @@ service cloud.firestore {
 
       // SURVEYS
       match /surveys/{survey} {
-        allow get: if authenticated() && itsMySurvey(); // || itsFromMyEvent();
+        allow get: if authenticated() && (itsMySurvey() || fromMyEvent(get(/databases/$(database)/documents/events/$(event))));
         allow create: if authenticated() && itsMySurvey();
         allow update: if authenticated() && itsMySurvey();
       }
