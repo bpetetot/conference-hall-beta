@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import isNil from 'lodash/isNil'
+import { Tooltip } from '../tooltip'
 
 import './rating.css'
 
@@ -68,17 +69,22 @@ class Rating extends Component {
     const starsArray = Array.from(Array(stars), (_, i) => i + 1)
     return (
       <div className={cn('rating', className)} onMouseLeave={this.handleMouseLeaveRating}>
-        <small
-          className={cn('rating-label', { 'rating-hate': feeling === 'hate' })}
-          onMouseEnter={this.handleMouseEnterStar(0, 'hate')}
-          onClick={this.handleClick}
-          role="button"
-        >
-          No way !
-        </small>
+        <Tooltip tooltip="Without opinion" placement="left">
+          <i
+            className={cn('fa fa-2x', {
+              'fa-ban': isNil(rating),
+              'fa-ban rating-noopinion': feeling === 'noopinion',
+              'fa-ban rating-noopinion-disable': feeling !== 'noopinion',
+              bounce: validatedFeeling === 'noopinion',
+            })}
+            onMouseEnter={this.handleMouseEnterStar(-1, 'noopinion')}
+            onClick={this.handleClick}
+            role="button"
+          />
+        </Tooltip>
         <i
           className={cn('fa fa-2x', {
-            'fa-circle-thin': isNil(rating),
+            'fa-circle-thin': isNil(rating) || rating < 0,
             'fa-circle rating-hate': feeling === 'hate',
             'fa-circle rating-hate-disable': rating > 0,
             bounce: validatedRating === 0,
@@ -100,24 +106,18 @@ class Rating extends Component {
             role="button"
           />
         ))}
-        <i
-          className={cn('fa fa-2x', {
-            'fa-heart-o': isNil(rating) || feeling !== 'love',
-            'fa-heart rating-love': feeling === 'love',
-            bounce: validatedFeeling === 'love',
-          })}
-          onMouseEnter={this.handleMouseEnterStar(5, 'love')}
-          onClick={this.handleClick}
-          role="button"
-        />
-        <small
-          className={cn('rating-label', { 'rating-love': feeling === 'love' })}
-          onMouseEnter={this.handleMouseEnterStar(5, 'love')}
-          onClick={this.handleClick}
-          role="button"
-        >
-          I love it !
-        </small>
+        <Tooltip tooltip="I love it!" placement="right">
+          <i
+            className={cn('fa fa-2x', {
+              'fa-heart-o': isNil(rating) || feeling !== 'love',
+              'fa-heart rating-love': feeling === 'love',
+              bounce: validatedFeeling === 'love',
+            })}
+            onMouseEnter={this.handleMouseEnterStar(5, 'love')}
+            onClick={this.handleClick}
+            role="button"
+          />
+        </Tooltip>
       </div>
     )
   }

@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tooltip should display tooltip inline 1`] = `
+<span
+  className={undefined}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "display": "inline",
+    }
+  }
+>
+  <div>
+    Wrapped
+  </div>
+  <div
+    className="cc-tooltip"
+    data-placement=""
+    role="tooltip"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      className="cc-tooltip-arrow"
+      style={Object {}}
+    />
+    <div
+      className="cc-tooltip-inner"
+    >
+      my content
+    </div>
+  </div>
+</span>
+`;
+
+exports[`tooltip should set placement "auto" 1`] = `
+<span
+  className={undefined}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div>
+    Wrapped
+  </div>
+  <div
+    className="cc-tooltip"
+    data-placement=""
+    role="tooltip"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      className="cc-tooltip-arrow"
+      style={Object {}}
+    />
+    <div
+      className="cc-tooltip-inner"
+    >
+      my content
+    </div>
+  </div>
+</span>
+`;
+
+exports[`tooltip should set placement "bottom" 1`] = `
+<span
+  className={undefined}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div>
+    Wrapped
+  </div>
+  <div
+    className="cc-tooltip"
+    data-placement=""
+    role="tooltip"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      className="cc-tooltip-arrow"
+      style={Object {}}
+    />
+    <div
+      className="cc-tooltip-inner"
+    >
+      my content
+    </div>
+  </div>
+</span>
+`;
+
+exports[`tooltip should set placement "left" 1`] = `
+<span
+  className={undefined}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div>
+    Wrapped
+  </div>
+  <div
+    className="cc-tooltip"
+    data-placement=""
+    role="tooltip"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      className="cc-tooltip-arrow"
+      style={Object {}}
+    />
+    <div
+      className="cc-tooltip-inner"
+    >
+      my content
+    </div>
+  </div>
+</span>
+`;
+
+exports[`tooltip should set placement "right" 1`] = `
+<span
+  className={undefined}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div>
+    Wrapped
+  </div>
+  <div
+    className="cc-tooltip"
+    data-placement=""
+    role="tooltip"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      className="cc-tooltip-arrow"
+      style={Object {}}
+    />
+    <div
+      className="cc-tooltip-inner"
+    >
+      my content
+    </div>
+  </div>
+</span>
+`;
+
+exports[`tooltip should set placement "top" 1`] = `
+<span
+  className={undefined}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div>
+    Wrapped
+  </div>
+  <div
+    className="cc-tooltip"
+    data-placement=""
+    role="tooltip"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      className="cc-tooltip-arrow"
+      style={Object {}}
+    />
+    <div
+      className="cc-tooltip-inner"
+    >
+      my content
+    </div>
+  </div>
+</span>
+`;
+
+exports[`tooltip should set tooltip content 1`] = `
+<span
+  className={undefined}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div>
+    Wrapped
+  </div>
+  <div
+    className="cc-tooltip"
+    data-placement=""
+    role="tooltip"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      className="cc-tooltip-arrow"
+      style={Object {}}
+    />
+    <div
+      className="cc-tooltip-inner"
+    >
+      my content
+    </div>
+  </div>
+</span>
+`;

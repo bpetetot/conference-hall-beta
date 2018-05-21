@@ -36,3 +36,9 @@
   color: #000;
   margin-top: 0.5em;
 }
+
+.rating-display-feelings .noopinion {
+  color: #ed4842;
+  margin-left: 1em;
+  margin-top: 0.5em;
+}
