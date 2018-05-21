@@ -12,7 +12,7 @@ const getNumberOfVotes = ratings => keys(filter(ratings, v => v)).length
 
 const ProposalInfo = ({ proposal }) => {
   const {
-    speakers = {}, rating, loves, hates, usersRatings = {},
+    speakers = {}, rating, loves, hates, noopinion, usersRatings = {},
   } = proposal
   return (
     <div className="proposal-item-info">
@@ -23,6 +23,7 @@ const ProposalInfo = ({ proposal }) => {
         rating={rating}
         loves={loves}
         hates={hates}
+        noopinion={noopinion}
         nbvotes={getNumberOfVotes(usersRatings)}
       />
     </div>

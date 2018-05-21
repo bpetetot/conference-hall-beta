@@ -7,10 +7,22 @@
   cursor: pointer;
 }
 
-.rating > i {
+.rating > span, .rating > i {
   cursor: pointer;
   padding: 0 0.5em;
   transition: all 0.5s;
+}
+
+.rating > span > i {
+  padding: 0 0.5em;
+}
+
+.rating-noopinion {
+  color: #ed4842;
+}
+
+.rating-noopinion-disable {
+  color: #ccc;
 }
 
 .rating-hate {
@@ -59,7 +71,11 @@
     display: none;
   }
 
-  .rating > i {
+  .rating > span, .rating > i {
     padding: 0 0.3em;
+  }
+
+  .rating > span > i {
+    padding: 0;
   }
 }

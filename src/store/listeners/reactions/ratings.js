@@ -33,7 +33,10 @@ export const rateProposal = reaction(async (action, store, { router }) => {
   const avgRating = getRatingsAverage(store)
   const loves = getFeelingsCount('love')(store)
   const hates = getFeelingsCount('hate')(store)
-  const ratingUpdated = { rating: avgRating, loves, hates }
+  const noopinion = getFeelingsCount('noopinion')(store)
+  const ratingUpdated = {
+    rating: avgRating, loves, hates, noopinion,
+  }
   // save the rating average in database and store
   updateRating(eventId, proposalId, uid, ratingUpdated, rated)
   store.data.proposals.update({ id: proposalId, ...ratingUpdated })
