@@ -10,7 +10,7 @@ const ListItem = ({
   <div className={cn('list-item', { clickable: onSelect })} onClick={onSelect} role="button">
     <div>
       <div className="list-item-title">{title}</div>
-      <div className=" list-item-subtitle">{subtitle}</div>
+      {subtitle && <div className=" list-item-subtitle">{subtitle}</div>}
     </div>
     <div className="list-item-info">{info}</div>
     {renderActions && <div className="list-item-actions">{renderActions()}</div>}
