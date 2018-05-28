@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   margin: 0;
   padding: 1em 1.2em;
 }
@@ -18,11 +17,11 @@
 .list-item .list-item-title {
   font-size: 1.2em;
   font-weight: 600;
-  margin-bottom: 0.5em;
 }
 
 .list-item .list-item-subtitle {
   font-size: 0.9em;
+  margin-top: 0.5em;
   color: var(--grey-color-dark);
 }
 
@@ -38,11 +37,6 @@
   .list-item {
     font-size: 1.1em;
     padding: 0.8em;
-  }
-
-  .list-item .list-item-info {
-    width: 100%;
-    align-items: flex-end;
   }
 
   .list-item .list-item-info > * {

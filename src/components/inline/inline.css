@@ -1,0 +1,9 @@
+.inline-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.inline-items-separator {
+  margin: 0 .8em;
+}

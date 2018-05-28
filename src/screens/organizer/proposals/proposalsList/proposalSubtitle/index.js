@@ -1,1 +1,1 @@
-export { default } from './proposalSubtitle'
+export { default } from './proposalSubtitle.container'
