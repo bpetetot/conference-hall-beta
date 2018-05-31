@@ -6,6 +6,7 @@ const defaultData = {
   initialized: false,
   authenticated: false,
   uid: undefined,
+  error: {},
 }
 
 export default simpleObject({ defaultData })
