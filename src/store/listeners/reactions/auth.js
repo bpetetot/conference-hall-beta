@@ -5,7 +5,7 @@ import pick from 'lodash/pick'
 import userCrud from 'firebase/user'
 import { fetchUserOrganizations } from 'firebase/organizations'
 
-export const signin = reaction((action) => {
+export const signin = reaction(async (action, store) => {
   const providerId = action.payload
   let provider
   switch (providerId) {
@@ -24,7 +24,13 @@ export const signin = reaction((action) => {
     default:
       return
   }
-  firebase.auth().signInWithPopup(provider)
+  try {
+    await firebase.auth().signInWithPopup(provider)
+  } catch (error) {
+    // eslint-disable-next-line
+    console.error('Authentication error', error)
+    store.auth.update({ authenticated: false, uid: undefined, error })
+  }
 })
 
 export const signout = reaction((action, store, { router }) => {

@@ -3,9 +3,12 @@ import PropTypes from 'prop-types'
 
 import { LoadingIndicator } from 'components/loader'
 import IconLabel from 'components/iconLabel'
+import AuthErrorModal from './authError'
 import './login.css'
 
-const Login = ({ authenticated, providers, signin }) => {
+const Login = ({
+  authenticated, providers, signin,
+}) => {
   if (authenticated) return <LoadingIndicator className="login-loading" />
   return (
     <div className="login">
@@ -15,6 +18,7 @@ const Login = ({ authenticated, providers, signin }) => {
           <IconLabel icon={`fa fa-${provider}`} label={`With ${provider}`} />
         </button>
       ))}
+      <AuthErrorModal />
     </div>
   )
 }
