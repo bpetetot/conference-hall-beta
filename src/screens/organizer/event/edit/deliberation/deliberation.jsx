@@ -8,7 +8,7 @@ import './deliberation.css'
 
 const DeliberationForm = ({ deliberationActive, ...formProps }) => (
   <form className="deliberation-form card">
-    <Field name="deliberationActive" label="Activate Deliberation" component={toggle} />
+    <Field name="deliberationActive" label="Enable Deliberation" component={toggle} />
     <SubmitButton {...formProps}>Save</SubmitButton>
   </form>
 )

@@ -9,7 +9,7 @@ import './survey.css'
 
 const SurveyForm = ({ surveyActive, ...formProps }) => (
   <form className="survey-form card">
-    <Field name="surveyActive" label="Activate Speaker Survey" component={toggle} />
+    <Field name="surveyActive" label="Enable Speaker Survey" component={toggle} />
     <p className="survey-label">Select questions that you want to ask to speakers :</p>
     {questions.map(question => (
       <Field
