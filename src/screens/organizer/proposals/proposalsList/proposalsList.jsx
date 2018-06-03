@@ -18,7 +18,7 @@ const Proposals = ({
         key={proposal.id}
         title={proposal.title}
         subtitle={!isMobile && <ProposalSubtitle eventId={eventId} proposal={proposal} />}
-        info={<ProposalInfo proposal={proposal} />}
+        info={<ProposalInfo proposal={proposal} isMobile={isMobile} />}
         onSelect={() => onSelect(eventId, proposal.id)}
       />
     )}

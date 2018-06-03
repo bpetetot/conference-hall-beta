@@ -1,7 +1,18 @@
 import { reaction } from 'k-ramel'
 
 import { flow, isEqual, omit, over, pickBy } from 'lodash/fp'
-import { fetchProposal, fetchEventProposals } from 'firebase/proposals'
+import * as firebase from 'firebase/proposals'
+
+export const updateProposal = reaction(async (action, store, { router }) => {
+  // get needed inputs
+  const eventId = router.getRouteParam('eventId')
+  const { proposal } = action.payload
+  // update proposal
+  await firebase.updateProposal(eventId, proposal)
+  // update proposal in the store
+  store.data.proposals.update(proposal)
+})
+
 
 export const loadEventProposals = reaction(async (action, store, { router }) => {
   store.data.proposals.reset()
@@ -11,7 +22,7 @@ export const loadEventProposals = reaction(async (action, store, { router }) => 
   // get proposal filters
   const filters = store.ui.organizer.proposals.get()
   // fetch proposals
-  const proposals = await fetchEventProposals(eventId, uid, filters)
+  const proposals = await firebase.fetchEventProposals(eventId, uid, filters)
   // set proposals in the store
   store.data.proposals.set(proposals)
 })
@@ -24,7 +35,7 @@ export const getProposal = reaction(async (action, store, { router }) => {
   const inStore = store.data.proposals.get(proposalId)
   if (!inStore) {
     // fetch proposal from id
-    const ref = await fetchProposal(eventId, proposalId)
+    const ref = await firebase.fetchProposal(eventId, proposalId)
     if (ref.exists) {
       store.data.proposals.add(ref.data())
     }

@@ -60,6 +60,7 @@ export default [
   /* proposals */
   when('@@ui/ON_LOAD_PROPOSAL')(proposals.getProposal),
   when('@@ui/ON_LOAD_EVENT_PROPOSALS')(proposals.loadEventProposals),
+  when('@@ui/ON_UPDATE_PROPOSAL')(proposals.updateProposal),
   when('@@krf/UPDATE>UI_ORGANIZER>PROPOSALS')(proposals.loadEventProposals),
   when('@@ui/ON_SELECT_PROPOSAL')(proposals.selectProposal),
   when('@@ui/ON_NEXT_PROPOSAL')(proposals.nextProposal),
