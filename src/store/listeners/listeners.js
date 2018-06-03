@@ -42,6 +42,7 @@ export default [
   when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEvent('event-edit')),
   when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEvent('cfp-edit')),
   when('@@ui/ON_UPDATE_EVENT_SURVEY')(events.updateEvent('survey-edit')),
+  when('@@ui/ON_UPDATE_EVENT_DELIBERATION')(events.updateEvent('deliberation-edit')),
   when('@@ui/ON_LOAD_EVENT')(events.fetchEvent),
   when('@@ui/ON_LOAD_ORGANIZER_EVENTS')(events.fetchOrganizerEvents),
   when('@@ui/ON_LOAD_SPEAKER_EVENTS')(events.fetchSpeakerEvents),
