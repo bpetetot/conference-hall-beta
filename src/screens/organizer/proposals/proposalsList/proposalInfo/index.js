@@ -1,1 +1,1 @@
-export { default } from './proposalInfo'
+export { default } from './proposalInfo.container'

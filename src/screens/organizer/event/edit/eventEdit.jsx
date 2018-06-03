@@ -5,6 +5,7 @@ import Tabs from './eventTabs'
 import EventForm from './eventForm'
 import CfpForm from './cfp'
 import SurveyForm from './survey'
+import DeliberationForm from './deliberation'
 
 const EventEdit = ({ eventId }) => (
   <div>
@@ -12,6 +13,7 @@ const EventEdit = ({ eventId }) => (
     <EventForm eventId={eventId} />
     <CfpForm eventId={eventId} />
     <SurveyForm eventId={eventId} />
+    <DeliberationForm eventId={eventId} />
   </div>
 )
 

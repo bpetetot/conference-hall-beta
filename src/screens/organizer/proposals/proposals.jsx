@@ -9,9 +9,8 @@ const Proposals = ({ eventId, nbProposals }) => {
   const title = nbProposals > 0 ? `Proposals (${nbProposals})` : 'Proposals'
   return (
     <div>
-      <Titlebar icon="fa fa-paper-plane" title={title}>
-        <ProposalFilters eventId={eventId} />
-      </Titlebar>
+      <Titlebar icon="fa fa-paper-plane" title={title} />
+      <ProposalFilters eventId={eventId} />
       <ProposalsList eventId={eventId} />
     </div>
   )

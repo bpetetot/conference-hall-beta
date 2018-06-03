@@ -13,16 +13,42 @@ const sortOrderLabel = sortOrder =>
 
 const ratingsLabel = rating =>
   ({
-    all: 'All ratings',
     rated: 'Rated',
     notRated: 'Not rated',
   }[rating])
 
+const statusLabel = status =>
+  ({
+    submitted: 'Not deliberated',
+    accepted: 'Accepted',
+    backup: 'Backup',
+    rejected: 'Rejected',
+  }[status])
+
 const ProposalFilters = ({
-  ratings, formats, categories, sortOrders, filters, onChange,
+  statuses,
+  ratings,
+  formats,
+  categories,
+  sortOrders,
+  filters,
+  onChange,
+  deliberationActive,
 }) => (
   <div className="proposals-filters">
+    {deliberationActive && (
+      <select id="state" onChange={onChange} defaultValue={filters.state}>
+        <option value="">All statuses</option>
+        {statuses.map(status => (
+          <option key={status} value={status}>
+            {statusLabel(status)}
+          </option>
+        ))}
+      </select>
+    )}
+
     <select id="ratings" onChange={onChange} defaultValue={filters.ratings}>
+      <option value="">All ratings</option>
       {ratings.map(rating => (
         <option key={rating} value={rating}>
           {ratingsLabel(rating)}
@@ -60,20 +86,24 @@ const ProposalFilters = ({
 )
 
 ProposalFilters.propTypes = {
+  statuses: PropTypes.arrayOf(PropTypes.string),
   ratings: PropTypes.arrayOf(PropTypes.string),
   formats: PropTypes.arrayOf(PropTypes.object),
   categories: PropTypes.arrayOf(PropTypes.object),
   sortOrders: PropTypes.arrayOf(PropTypes.string),
   filters: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
+  deliberationActive: PropTypes.bool,
 }
 
 ProposalFilters.defaultProps = {
+  statuses: [],
   ratings: [],
   formats: [],
   categories: [],
   sortOrders: [],
   filters: {},
+  deliberationActive: false,
 }
 
 export default ProposalFilters
