@@ -25,6 +25,7 @@ export default {
           '/cfp': { title: 'EDIT_EVENT_CFP' },
           '/survey': { title: 'EDIT_EVENT_SURVEY' },
           '/deliberation': { title: 'EDIT_EVENT_DELIBERATION' },
+          '/api': { title: 'EDIT_EVENT_API' },
         },
         '/proposals': {
           title: 'PROPOSALS',
