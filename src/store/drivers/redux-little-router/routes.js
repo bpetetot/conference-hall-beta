@@ -29,7 +29,8 @@ export default {
         '/proposals': {
           title: 'PROPOSALS',
           sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],
-          ratings: ['all', 'rated', 'notRated'],
+          ratings: ['rated', 'notRated'],
+          statuses: ['submitted', 'accepted', 'backup', 'rejected'],
         },
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },

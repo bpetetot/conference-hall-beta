@@ -1,11 +1,12 @@
 .proposals-filters {
   display: flex;
   align-items: center;
-  margin-bottom: 1em;
+  flex-wrap: wrap;
 }
 
 .proposals-filters > * {
   margin-right: 1em;
+  margin-bottom: 1em;
   width: initial;
   min-width: 10em;
   max-width: 15em;

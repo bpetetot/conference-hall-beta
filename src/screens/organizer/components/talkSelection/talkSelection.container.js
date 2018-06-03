@@ -15,6 +15,7 @@ const mapStore = (store, { proposalId }, { router }) => {
             id: currentProposalId,
             state: e.target.value,
           },
+          options: { updateTimestamp: false },
         },
       })
     },

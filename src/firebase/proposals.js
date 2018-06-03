@@ -1,4 +1,5 @@
 import firebase from 'firebase/app'
+import omit from 'lodash/omit'
 
 /**
  * Return the proposal with the given id
@@ -23,7 +24,7 @@ export const fetchEventProposals = async (
   eventId,
   uid,
   {
-    categories, formats, sortOrder, ratings,
+    categories, formats, state, sortOrder, ratings,
   } = {},
 ) => {
   let query = firebase
@@ -38,6 +39,9 @@ export const fetchEventProposals = async (
   }
   if (formats) {
     query = query.where('formats', '==', formats)
+  }
+  if (state) {
+    query = query.where('state', '==', state)
   }
   // add sortOrder
   if (sortOrder) {
@@ -100,18 +104,18 @@ export const removeProposal = async (eventId, talkId) => {
     .delete()
 }
 
-export const updateProposal = (eventId, submittedTalk) => {
-  const { submissions, ...copyTalk } = submittedTalk
+export const updateProposal = (eventId, proposal, options = {}) => {
+  const updated = omit(proposal, 'submissions')
+  if (options.updateTimestamp) {
+    updated.updateTimestamp = firebase.firestore.FieldValue.serverTimestamp()
+  }
   firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('proposals')
-    .doc(submittedTalk.id)
-    .update({
-      ...copyTalk,
-      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    })
+    .doc(proposal.id)
+    .update(updated)
 }
 
 export const updateRating = (eventId, talkId, uid, ratingUpdated, rated) => {

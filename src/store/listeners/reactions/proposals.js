@@ -6,9 +6,9 @@ import * as firebase from 'firebase/proposals'
 export const updateProposal = reaction(async (action, store, { router }) => {
   // get needed inputs
   const eventId = router.getRouteParam('eventId')
-  const { proposal } = action.payload
+  const { proposal, options } = action.payload
   // update proposal
-  await firebase.updateProposal(eventId, proposal)
+  await firebase.updateProposal(eventId, proposal, options)
   // update proposal in the store
   store.data.proposals.update(proposal)
 })
