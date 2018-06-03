@@ -1,4 +1,5 @@
 import { reaction } from 'k-ramel'
+import uuid from 'uuid/v4'
 import flatten from 'lodash/flatten'
 import map from 'lodash/map'
 import uniqBy from 'lodash/uniqBy'
@@ -17,7 +18,7 @@ export const createEvent = reaction(async (action, store, { form, router }) => {
   router.push(`/organizer/event/${ref.id}`)
 })
 
-export const updateEvent = formName =>
+export const updateEventForm = formName =>
   reaction((action, store, { form }) => {
     const updateForm = form(formName)
     const event = updateForm.getFormValues()
@@ -26,6 +27,28 @@ export const updateEvent = formName =>
     // update event in store
     store.data.events.update(event)
   })
+
+export const toggleApi = reaction((action, store) => {
+  const { event } = action.payload
+  const updated = { ...event }
+  if (event.apiActive && !event.apiKey) {
+    // generate api key
+    updated.apiKey = uuid()
+  }
+  // update event in store
+  store.data.events.update(updated)
+  // update event into database
+  eventCrud.update(updated)
+})
+
+export const generateNewApiKey = reaction((action, store) => {
+  const { eventId } = action.payload
+  const updated = { id: eventId, apiKey: uuid() }
+  // update event in store
+  store.data.events.update(updated)
+  // update event into database
+  eventCrud.update(updated)
+})
 
 export const fetchEvent = reaction(async (action, store, { router }) => {
   const eventId = action.payload || router.getRouteParam('eventId')

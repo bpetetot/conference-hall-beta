@@ -19,3 +19,8 @@ input:focus,
 select:focus {
   border: 1px solid var(--primary-color);
 }
+
+input:disabled,
+select:disabled {
+  color: var(--grey-color);
+}

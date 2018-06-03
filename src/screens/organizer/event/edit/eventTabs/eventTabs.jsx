@@ -33,6 +33,14 @@ const EventTabs = ({ eventId }) => (
         <IconLabel icon="fa fa-check-square-o" label="Deliberation" />
       </Link>
     </li>
+    <li>
+      <Link
+        href={`/organizer/event/${eventId}/edit/api`}
+        activeProps={{ className: 'tab-active' }}
+      >
+        <IconLabel icon="fa fa-rocket" label="API" />
+      </Link>
+    </li>
   </ul>
 )
 
