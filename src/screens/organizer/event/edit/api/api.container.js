@@ -1,24 +1,32 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { reduxForm } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
 import ApiForm from './api'
 
-const FORM_NAME = 'api-edit'
-
-const mapStore = (store, { eventId }, { form }) => {
-  const event = store.data.events.get(eventId)
-  const { apiActive } = form(FORM_NAME).getFormValues() || {}
+const mapStore = (store, { eventId }) => {
+  const event = store.data.events.get(eventId) || {}
+  const { apiActive, apiKey } = event
   return {
     apiActive,
-    initialValues: event,
-    onSubmit: () => store.dispatch('@@ui/ON_UPDATE_EVENT_API'),
+    apiKey,
+    onActiveApi: e =>
+      store.dispatch({
+        type: '@@ui/ON_TOGGLE_EVENT_API',
+        payload: {
+          event: {
+            id: eventId,
+            apiActive: e.target.checked,
+            apiKey,
+          },
+        },
+      }),
+    onGenerateKey: () =>
+      store.dispatch({
+        type: '@@ui/ON_GENERATE_EVENT_API_KEY',
+        payload: { eventId },
+      }),
   }
 }
 
-export default compose(
-  forRoute.absolute('EDIT_EVENT_API'),
-  inject(mapStore),
-  reduxForm({ form: FORM_NAME }),
-)(ApiForm)
+export default compose(forRoute.absolute('EDIT_EVENT_API'), inject(mapStore))(ApiForm)

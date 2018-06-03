@@ -7,6 +7,15 @@
   margin-bottom: 0.7em;
 }
 
+.api-form > .generate-key-input > div {
+  display: flex;
+}
+
+
+.api-form > .generate-key-input button {
+  margin-left: 1em;
+}
+
 .api-form > button {
   align-self: flex-end;
 }
