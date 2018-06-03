@@ -11,6 +11,10 @@
   display: flex;
 }
 
+.api-form .api-label {
+  color: var(--grey-color-dark);
+}
+
 
 .api-form > .generate-key-input button {
   margin-left: 1em;

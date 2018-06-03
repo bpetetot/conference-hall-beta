@@ -19,6 +19,10 @@ const ApiForm = ({
         Generate API Key
       </button>
     </Label>
+    <div>
+      <p className="api-label">All APIs must be called with a valid API Key:</p>
+      <small>No API available yet</small>
+    </div>
   </div>
 )
 
