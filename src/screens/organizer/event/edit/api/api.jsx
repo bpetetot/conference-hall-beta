@@ -10,7 +10,7 @@ const ApiForm = ({
   apiActive, apiKey, onActiveApi, onGenerateKey,
 }) => (
   <div className="api-form card">
-    <Label name="apiActive" label="Activate API">
+    <Label name="apiActive" label="Enable API">
       <Toggle name="apiActive" value={apiActive} onChange={onActiveApi} />
     </Label>
     <Label name="apiKey" label="API key" className="generate-key-input">
