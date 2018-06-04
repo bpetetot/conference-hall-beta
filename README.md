@@ -94,3 +94,27 @@ Build and deploy the app :
 yarn build
 firebase deploy
 ```
+
+## Frequent questions & issues
+
+### Generate Beta Access keys
+
+The application is still in beta mode for the organizer part, you will need to generate an access key in the database.
+
+**To do it:**
+- Go to the firebase console
+- Select your project
+- Go to the "Database" tab
+- Create a collection named "betaAccess"
+- Create an empty document with a generated ID
+- This generated ID will be your access key
+
+### Add a custom domain
+
+If you want to use a custom domain, you will have to [configure Firebase accordingly](https://firebase.google.com/docs/hosting/custom-domain)
+
+Then you will also need to configure Authentification providers to use your custom domain.
+
+**To do it:**
+- Change in your `.env.local` file, the `authDomain` property with your custom domain
+- Follow instruction in chapter ["Customizing the redirect domain for Google sign-in"](https://firebase.google.com/docs/auth/web/google-signin)
