@@ -1,6 +1,6 @@
 const admin = require('firebase-admin')
 
-const getUsersEmail = uids =>
+const getUsers = uids =>
   Promise.all(uids.map(uid =>
     new Promise((resolve) => {
       admin
@@ -10,10 +10,10 @@ const getUsersEmail = uids =>
         .get()
         .then((doc) => {
           if (!doc.exists) return resolve()
-          return resolve(doc.data().email)
+          return resolve(doc.data())
         })
     })))
 
 module.exports = {
-  getUsersEmail,
+  getUsers,
 }

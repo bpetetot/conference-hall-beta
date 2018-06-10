@@ -1,6 +1,6 @@
 const functions = require('firebase-functions')
 const { getEvent } = require('../firestore/event')
-const { getUsersEmail } = require('../firestore/user')
+const { getUsers } = require('../firestore/user')
 const sendEmail = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
 
@@ -14,9 +14,9 @@ module.exports = functions.firestore
     const { app, mailgun } = functions.config()
     if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
 
-    return Promise.all([getEvent(eventId), getUsersEmail(uids)]).then(([event, emails]) =>
+    return Promise.all([getEvent(eventId), getUsers(uids)]).then(([event, users]) =>
       sendEmail(mailgun, {
-        to: emails,
+        to: users.map(user => user.email),
         subject: `[${event.name}] Talk submitted`,
         html: talkConfirmed(event, talk, app.url),
       }))

@@ -1,19 +1,22 @@
 # APIs description
 
-## Get list of proposals for an event
+## Get event sessions & speakers
 
-`GET /event/{event_id}/proposals`
+`GET /event/{event_id}`
 
 ### Parameters
 
 | parameter | type     | description |
 | --------- | -------- | ----------- |
-| `apiKey`  | `string` | API key     |
+| `key`     | `string` | API key     |
 
 ### Example
 
 ```json
-{
-  "id": "XXX"
-}
+[
+  {
+    "id": "Event id",
+    "name": "Event name"
+  }
+]
 ```
