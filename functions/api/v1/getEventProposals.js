@@ -1,5 +1,4 @@
 module.exports = (req, res) => {
-  res.send({
-    eventId: req.params.eventId,
-  })
+  const { event } = res.locals
+  res.send(event)
 }
