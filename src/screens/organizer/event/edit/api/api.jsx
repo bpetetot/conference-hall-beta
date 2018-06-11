@@ -7,9 +7,11 @@ import Toggle from 'components/form/toggle'
 import './api.css'
 
 const ApiForm = ({
-  apiActive, apiKey, onActiveApi, onGenerateKey,
+  eventId, apiActive, apiKey, onActiveApi, onGenerateKey,
 }) => (
   <div className="api-form card">
+    <div className="api-label">Before enabling API, please read documentation available into the <a href="" target="_NEW">Github repository</a></div>
+    <br />
     <Label name="apiActive" label="Enable API">
       <Toggle name="apiActive" value={apiActive} onChange={onActiveApi} />
     </Label>
@@ -19,14 +21,24 @@ const ApiForm = ({
         Generate API Key
       </button>
     </Label>
-    <div>
-      <p className="api-label">All APIs must be called with a valid API Key:</p>
-      <small>No API available yet</small>
-    </div>
+    {apiActive && (
+      <div>
+        <br /><br />
+        <div><b><code>GET {'/api/v1/event/{id}'}</code></b></div>
+        <p>Expose formats, categories, accepted talks and speakers of the event</p>
+        <p>
+          <b>Try out: </b>
+          <a href={`http://conference-hall.firebaseapp.com/api/v1/event/${eventId}?key=${apiKey}`} target="_NEW">
+            {`https://conference-hall.firebaseapp.com/api/v1/event/${eventId}?key=${apiKey}`}
+          </a>
+        </p>
+      </div>
+    )}
   </div>
 )
 
 ApiForm.propTypes = {
+  eventId: PropTypes.string.isRequired,
   apiActive: PropTypes.bool,
   apiKey: PropTypes.string,
   onActiveApi: PropTypes.func.isRequired,
