@@ -8,9 +8,9 @@
 
 ### Parameters
 
-| parameter | type     | description | mandatory |
-| --------- | -------- | ----------- | --------- |
-| `key`     | `string` | API key     | Yes       |
+| parameter | type     | description | required |
+| --------- | -------- | ----------- | -------- |
+| `key`     | `string` | API key     | Yes      |
 
 ### Example
 

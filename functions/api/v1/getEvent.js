@@ -5,7 +5,8 @@ const {
   map,
   assign,
   flatMap,
-  uniq
+  uniq,
+  zipObject,
 } = require('lodash/fp')
 
 const { getEventProposals } = require('../../firestore/event')
@@ -25,19 +26,13 @@ const getUids = flow(flatMap('speakers'), uniq)
 module.exports = (req, res) => {
   const { eventId } = req.params
   const event = sanitizeEvent(res.locals.event)
+  const talks = getEventProposals(eventId).then(sanitizeProposals)
+  const speakers = talks.then(getUids).then(getUsers).then(sanitizeSpeakers)
 
-  getEventProposals(eventId)
-    // talks
-    .then(sanitizeProposals)
-    .then((talks) => { event.talks = talks })
-    // speakers
-    .then(() => getUids(event.talks))
-    .then(getUsers)
-    .then(sanitizeSpeakers)
-    .then((speakers) => { event.speakers = speakers })
-    // response
-    .then(() => res.send(event))
-    // error
+  Promise.all([talks, speakers])
+    .then(zipObject(['talks', 'speakers']))
+    .then(assign(event))
+    .then(result => res.send(result))
     .catch((error) => {
       console.error(error)
       res.status(500).end()
