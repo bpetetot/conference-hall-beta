@@ -17,6 +17,7 @@ module.exports = (req, res, next) => {
     } else if (data.apiKey !== key) {
       res.status(403).send({ error: 'Invalid API key' })
     } else {
+      res.locals.event = data
       next()
     }
   })
