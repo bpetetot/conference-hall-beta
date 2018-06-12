@@ -1,18 +1,26 @@
 /* eslint-disable comma-dangle,no-console */
-const _ = require('lodash/fp')
+const {
+  flow,
+  pick,
+  map,
+  assign,
+  flatMap,
+  uniq
+} = require('lodash/fp')
+
 const { getEventProposals } = require('../../firestore/event')
 const { getUsers } = require('../../firestore/user')
 
-const sanitizeEvent = _.pick(['id', 'name', 'categories', 'formats'])
+const sanitizeEvent = pick(['id', 'name', 'categories', 'formats'])
 
-const sanitizeProposals = _.flow(
-  _.map(_.pick(['id', 'title', 'level', 'abstract', 'categories', 'formats', 'speakers'])),
-  _.map(talk => _.assign(talk, { speakers: Object.keys(talk.speakers) }))
+const sanitizeProposals = flow(
+  map(pick(['id', 'title', 'level', 'abstract', 'categories', 'formats', 'speakers'])),
+  map(talk => assign(talk, { speakers: Object.keys(talk.speakers) }))
 )
 
-const sanitizeSpeakers = _.map(_.pick(['uid', 'displayName', 'bio', 'company', 'photoURL', 'twitter', 'github']))
+const sanitizeSpeakers = map(pick(['uid', 'displayName', 'bio', 'company', 'photoURL', 'twitter', 'github']))
 
-const getUids = _.flow(_.flatMap('speakers'), _.uniq)
+const getUids = flow(flatMap('speakers'), uniq)
 
 module.exports = (req, res) => {
   const { eventId } = req.params
