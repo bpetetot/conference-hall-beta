@@ -23,8 +23,6 @@ const ApiForm = ({
             Generate API Key
           </button>
         </Label>
-        <br />
-        <br />
         <div className="api-label">
           Before enabling API, read the documentation available into the{' '}
           <a href="" target="_NEW">

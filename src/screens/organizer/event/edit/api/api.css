@@ -12,6 +12,7 @@
 }
 
 .api-form .api-label {
+  margin-top: 2em;
   color: var(--grey-color-dark);
 }
 
