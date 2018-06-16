@@ -9,15 +9,14 @@ import OrganizationPage from './organizationPage'
 const mapStore = (store, _, { router }) => {
   const organizationId = router.getRouteParam('organizationId')
   const organization = store.data.organizations.get(organizationId)
-
   const { uid: userId } = store.auth.get()
-  const url = window.location.href.split('/')
+  const { origin } = window.location
 
   return {
     loaded: store.data.organizations.hasKey(organizationId),
     ...organization,
     authUserId: userId,
-    inviteLink: `${url[0]}//${url[2]}/organizer/invite/organization/${organizationId}/${userId}`,
+    inviteLink: `${origin}/organizer/invite/organization/${organizationId}/${userId}`,
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),
     onSelectUser: (uid) => {
       store.dispatch({ type: '@@ui/ADD_ORGANIZATION_MEMBER', payload: { uid, organizationId } })

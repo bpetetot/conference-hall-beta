@@ -24,6 +24,11 @@
   align-self: flex-end;
 }
 
+.api-title {
+  margin-top: 2em;
+  margin-left: 1em;
+}
+
 @media only screen and (max-width: 480px) {
   .api-form {
     padding: 1em;

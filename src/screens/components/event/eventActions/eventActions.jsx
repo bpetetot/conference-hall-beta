@@ -10,7 +10,7 @@ import SubmitTalkLink from '../../submitTalksLink'
 import './eventActions.css'
 
 const EventActions = ({ eventId, isOrganizer, className }) => {
-  const url = window.location.href.split('/')
+  const { origin } = window.location
   return (
     <div className={cn('event-actions', className)}>
       {isOrganizer && (
@@ -20,7 +20,7 @@ const EventActions = ({ eventId, isOrganizer, className }) => {
       )}
       <SubmitTalkLink className="btn" eventId={eventId} />
       {isOrganizer && (
-        <CopyInput title="Share link" value={`${url[0]}//${url[2]}/public/event/${eventId}`} />
+        <CopyInput title="Share link" value={`${origin}/public/event/${eventId}`} />
       )}
     </div>
   )
