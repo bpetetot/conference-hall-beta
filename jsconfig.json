@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "module": "es6",
-    "baseUrl": "./src"
+    "module": "es2015",
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "./src/*": ["./src/*"]
+    }
   }
 }
