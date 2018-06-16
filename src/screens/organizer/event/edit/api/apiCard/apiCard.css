@@ -1,0 +1,14 @@
+.api-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.api-card .api-name {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.api-card .api-description {
+  margin-top: 1em;
+}

@@ -12,6 +12,7 @@
 }
 
 .api-form .api-label {
+  margin-top: 2em;
   color: var(--grey-color-dark);
 }
 
@@ -22,6 +23,11 @@
 
 .api-form > button {
   align-self: flex-end;
+}
+
+.api-title {
+  margin-top: 2em;
+  margin-left: 1em;
 }
 
 @media only screen and (max-width: 480px) {
