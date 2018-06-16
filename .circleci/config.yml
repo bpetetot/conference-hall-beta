@@ -34,19 +34,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: CI=true yarn test
 
-  doc:
-    docker:
-      - image: circleci/node:8
-    steps:
-      - checkout
-      - yarn doc:build
-      - surge --project ./.docz/dist --domain conference-hall.surge.sh
-
 workflows:
   version: 2
   build:
     jobs:
       - lint
       - test
-      - doc
 

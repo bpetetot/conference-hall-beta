@@ -9,8 +9,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint --ext js,jsx src",
-    "doc:dev": "docz dev",
-    "doc:build": "docz build"
+    "doc": "docz dev"
   },
   "dependencies": {
     "@k-ramel/driver-redux-little-router": "^0.11.0",
