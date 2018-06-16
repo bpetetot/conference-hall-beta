@@ -27,4 +27,4 @@ firebase-debug.log*
 .runtimeconfig.json
 
 # docz
-.docz
+.docz/**/
