@@ -1,49 +1,51 @@
-.toggle input[type='checkbox'] {
-  display: none;
-}
-
-.toggle label {
-  display: block;
-  height: 38px;
+.toggle {
+  display: inline-block;
+  --toggle-height: 24px;
+  --toggle-width: 42px;
+  height: var(--toggle-height);
+  width: var(--toggle-width);
   position: relative;
   cursor: pointer;
 }
 
-.toggle input[type='checkbox'] + label::before {
-  content: ' ';
-  display: block;
-  height: 18px;
-  width: 50px;
-  border: 1px solid #ddd;
-  border-radius: 9px;
-  position: absolute;
-  top: 10px;
-  left: 1px;
-  background: #ddd;
+.toggle input[type='checkbox'] {
+  display: none;
+}
+
+.toggle-item {
+  display: inline-block;
+  height: var(--toggle-height);
+  width: var(--toggle-width);
+  border: 1px solid var(--grey-color);
+  border-radius: calc(var(--toggle-height) / 2);
   transition: all 0.3s ease-in;
 }
 
-.toggle input[type='checkbox'] + label::after {
+.toggle-item::before {
   content: ' ';
-  display: block;
-  height: 25px;
-  width: 25px;
-  border: 1px solid #aaa;
+  height: calc(var(--toggle-height) - 2px);
+  width: calc(var(--toggle-height) - 2px);
+  border: 1px solid var(--grey-color);
+  background: #fff;
   border-radius: 50%;
   position: absolute;
-  top: 6px;
+  top: 0px;
   left: 0px;
-  background: #aaa;
   transition: all 0.3s ease-in;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 0 1px 1px rgba(0, 0, 0, 0.08);
 }
 
-.toggle input[type='checkbox']:checked + label::before {
-  border: 1px solid var(--primary-color);
-  background: var(--primary-color);
+.toggle-item:hover::before{
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 0 1px 1px rgba(0, 0, 0, 0.08),
+    0 2px 2px 0 rgba(0, 0, 0, 0.08), 0 4px 9px 2px rgba(0, 0, 0, 0.08);
 }
 
-.toggle input[type='checkbox']:checked + label::after {
-  left: 27px;
-  background: var(--secondary-color);
+input[type='checkbox']:checked + .toggle-item  {
   border: 1px solid var(--secondary-color);
+  background: var(--secondary-color);
+}
+
+input[type='checkbox']:checked + .toggle-item::before {
+  border: 1px solid var(--secondary-color);
+  left: calc(var(--toggle-width) - var(--toggle-height));
 }

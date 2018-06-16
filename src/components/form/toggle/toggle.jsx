@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import './toggle.css'
 
 const Toggle = ({ name, ...rest }) => (
-  <div className="toggle">
+  <label className="toggle" htmlFor={name}>
     <input name={name} type="checkbox" id={name} {...rest} checked={rest.value} />
-    <label htmlFor={name} />
-  </div>
+    <span className="toggle-item" />
+  </label>
 )
 
 Toggle.propTypes = {
