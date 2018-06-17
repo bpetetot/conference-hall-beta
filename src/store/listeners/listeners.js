@@ -42,7 +42,7 @@ export default [
   when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEventForm('event-edit')),
   when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEventForm('cfp-edit')),
   when('@@ui/ON_UPDATE_EVENT_SURVEY')(events.updateEventForm('survey-edit')),
-  when('@@ui/ON_UPDATE_EVENT_DELIBERATION')(events.updateEventForm('deliberation-edit')),
+  when('@@ui/ON_TOGGLE_EVENT_DELIBERATION')(events.updateEvent),
   when('@@ui/ON_TOGGLE_EVENT_API')(events.toggleApi),
   when('@@ui/ON_GENERATE_EVENT_API_KEY')(events.generateNewApiKey),
   when('@@ui/ON_LOAD_EVENT')(events.fetchEvent),

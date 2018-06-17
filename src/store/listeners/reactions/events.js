@@ -28,6 +28,12 @@ export const updateEventForm = formName =>
     store.data.events.update(event)
   })
 
+export const updateEvent = reaction((action, store) => {
+  const { event } = action.payload
+  store.data.events.update(event)
+  eventCrud.update(event)
+})
+
 export const toggleApi = reaction((action, store) => {
   const { event } = action.payload
   const updated = { ...event }
