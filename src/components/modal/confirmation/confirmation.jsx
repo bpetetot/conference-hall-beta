@@ -68,12 +68,12 @@ class ConfirmationPopin extends Component {
 }
 
 ConfirmationPopin.propTypes = {
+  open: PropTypes.bool,
   question: PropTypes.node,
   renderTrigger: PropTypes.func,
-  className: PropTypes.string,
   onClickOk: PropTypes.func,
   onClickCancel: PropTypes.func,
-  open: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 ConfirmationPopin.defaultProps = {

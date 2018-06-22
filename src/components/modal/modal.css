@@ -16,7 +16,7 @@
   transform: translate(-50%, -50%);
   background-color: #fff;
   font-size: var(--font-size);
-  min-width: 400px;
+  min-width: 50%;
   overflow: auto;
   padding: 3em;
 }

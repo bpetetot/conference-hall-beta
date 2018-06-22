@@ -44,7 +44,7 @@ export default (name, Form) =>
                   />
                 )}
               />
-              <Modal id={`${name}-${index}`} className="items-with-modal">
+              <Modal id={`${name}-${index}`}>
                 <Form edit initialValues={fields.get(index)} onSubmit={this.onUpdateItem(index)} />
               </Modal>
             </div>
