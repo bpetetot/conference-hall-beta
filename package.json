@@ -8,7 +8,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "lint": "eslint --ext js,jsx src"
+    "lint": "eslint --ext js,jsx src",
+    "doc": "docz dev",
+    "doc:build": "docz build"
   },
   "dependencies": {
     "@k-ramel/driver-redux-little-router": "^0.11.0",
@@ -41,6 +43,8 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "docz": "^0.2.2",
+    "docz-theme-default": "^0.2.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
