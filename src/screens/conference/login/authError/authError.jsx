@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import { DumbModal } from 'components/modal'
 
-import './authError.css'
-
 const AuthErrorModal = ({ error, clearAuthError }) => (
   <DumbModal open={!!error.message} onClose={clearAuthError} className="auth-error">
     <h2>Sorry, an error occured during login</h2>
