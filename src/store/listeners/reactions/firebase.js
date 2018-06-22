@@ -3,6 +3,7 @@ import { reaction } from 'k-ramel'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/functions'
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -14,6 +15,7 @@ export const init = reaction((action, store) => {
   try {
     firebase.initializeApp(config)
     firebase.firestore()
+    firebase.functions()
   } catch (error) {
     console.warn(error.code, error.message)
   }

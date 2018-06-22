@@ -6,7 +6,7 @@ import Toggle from 'components/form/toggle'
 
 import './deliberation.css'
 
-const DeliberationForm = ({ deliberationActive, onActiveDeliberation }) => (
+const DeliberationForm = ({ deliberationActive, onActiveDeliberation, sendToAccepted }) => (
   <div className="deliberation-form card">
     <Label name="deliberationActive" label="Enable Deliberation">
       <Toggle
@@ -15,6 +15,9 @@ const DeliberationForm = ({ deliberationActive, onActiveDeliberation }) => (
         onChange={onActiveDeliberation}
       />
     </Label>
+    <button onClick={sendToAccepted} className="btn">
+      Send email to accepted
+    </button>
   </div>
 )
 

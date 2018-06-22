@@ -2,6 +2,8 @@ import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
+import firebase from 'firebase/app'
+
 import DeliberationForm from './deliberation'
 
 const mapStore = (store, { eventId }) => {
@@ -18,6 +20,10 @@ const mapStore = (store, { eventId }) => {
           },
         },
       }),
+    sendToAccepted: () => {
+      const sendToAccepted = firebase.functions().httpsCallable('sendToAccepted')
+      sendToAccepted({ hello: 'world' })
+    },
   }
 }
 
