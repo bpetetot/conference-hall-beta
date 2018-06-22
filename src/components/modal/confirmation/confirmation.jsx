@@ -4,6 +4,8 @@ import cn from 'classnames'
 
 import Modal from '../modal'
 
+import './confirmation.css'
+
 class ConfirmationPopin extends Component {
   state = { isOpen: this.props.open }
 
@@ -25,38 +27,37 @@ class ConfirmationPopin extends Component {
 
   render() {
     const {
-      className,
-      title,
-      subtitle,
-      children,
-      onClickOk,
-      onClickCancel,
-      renderTrigger,
+      className, question, onClickOk, onClickCancel, renderTrigger,
     } = this.props
     const { isOpen } = this.state
     const { show, hide, toggle } = this
 
     return (
       <Fragment>
-        {renderTrigger && renderTrigger({
-          isOpen,
-          show,
-          hide,
-          toggle,
-        })}
-        <Modal opened={isOpen} onClose={hide} className={cn('ConfirmationPopin', className)}>
-          {title && <h1>{title}</h1>}
-          {subtitle && <h2>{subtitle}</h2>}
-          {children && <div>{children}</div>}
-          <div>
-            {onClickOk && (
-              <button className="btn btn-primary" onClick={this.handleOk} type="button">
-                Ok
-              </button>
-            )}
+        {renderTrigger &&
+          renderTrigger({
+            isOpen,
+            show,
+            hide,
+            toggle,
+          })}
+        <Modal
+          open={isOpen}
+          onClose={this.handleCancel}
+          withCloseIcon={false}
+          withClickOutside={false}
+          className={cn('confirmation-popin', className)}
+        >
+          {question && <div className="confirmation-question">{question}</div>}
+          <div className="confirmation-actions">
             {onClickCancel && (
               <button className="btn btn-default" onClick={this.handleCancel} type="button">
                 Cancel
+              </button>
+            )}
+            {onClickOk && (
+              <button className="btn btn-primary" onClick={this.handleOk} type="button">
+                Ok
               </button>
             )}
           </div>
@@ -67,9 +68,7 @@ class ConfirmationPopin extends Component {
 }
 
 ConfirmationPopin.propTypes = {
-  title: PropTypes.node,
-  subtitle: PropTypes.node,
-  children: PropTypes.node,
+  question: PropTypes.node,
   renderTrigger: PropTypes.func,
   className: PropTypes.string,
   onClickOk: PropTypes.func,
@@ -78,9 +77,7 @@ ConfirmationPopin.propTypes = {
 }
 
 ConfirmationPopin.defaultProps = {
-  title: undefined,
-  subtitle: undefined,
-  children: undefined,
+  question: undefined,
   renderTrigger: undefined,
   className: undefined,
   onClickOk: undefined,

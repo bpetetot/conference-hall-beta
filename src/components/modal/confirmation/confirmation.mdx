@@ -1,0 +1,30 @@
+---
+name: Confirmation Popin
+route: /portals/confirmation
+menu: Portals
+---
+
+import { Playground, PropsTable } from 'docz'
+import ConfirmationPopin from './confirmation'
+
+# Confirmation Popin
+
+## Basic usage
+
+<Playground>
+  <ConfirmationPopin
+    question="You can confirm by clicking on OK, else click Cancel"
+    className="default-theme"
+    onClickOk={console.log}
+    onClickCancel={console.log}
+    renderTrigger={({ show }) => (
+      <button onClick={show} className="btn btn-primary">
+        Click to open
+      </button>
+    )}
+  />
+</Playground>
+
+## Properties
+
+<PropsTable of={ConfirmationPopin} />

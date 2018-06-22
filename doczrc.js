@@ -2,7 +2,7 @@ export default {
   title: 'Components',
   description: 'Components collection.',
 
-  source: './src',
+  src: './src',
   port: 3001,
   wrapper: '.docz/wrapper',
   dist: '.docz/build',
