@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import withTheme from 'styles/themes/withTheme'
 import Portal from 'components/portal'
 import './modal.css'
 
@@ -50,4 +51,4 @@ Modal.defaultProps = {
   className: undefined,
 }
 
-export default Modal
+export default withTheme(Modal)

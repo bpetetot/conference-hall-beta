@@ -1,7 +1,5 @@
 import { inject } from '@k-ramel/react'
 
-import withTheme from 'styles/themes/withTheme'
-
 import Modal from './modal'
 
 const mapStore = (store, { id }) => ({
@@ -9,4 +7,4 @@ const mapStore = (store, { id }) => ({
   onClose: () => store.ui.modal.set({ openedModal: undefined }),
 })
 
-export default inject(mapStore)(withTheme(Modal))
+export default inject(mapStore)(Modal)
