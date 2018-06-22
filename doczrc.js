@@ -1,10 +1,11 @@
 export default {
-  title: 'Doc',
-  description: 'Conference Hall components collection.',
+  title: 'Components',
+  description: 'Components collection.',
 
   source: './src',
   port: 3001,
-  wrapper: '.docz/docz',
+  wrapper: '.docz/wrapper',
+  dist: '.docz/build',
 
   modifyBundlerConfig: (config) => {
     config.module.rules.push({
