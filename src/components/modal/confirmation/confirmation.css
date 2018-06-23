@@ -16,3 +16,22 @@
 .confirmation-popin > .confirmation-actions > button {
   margin-left: 1em;
 }
+
+@media only screen and (max-width: 480px) {
+  .confirmation-popin {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .confirmation-popin > .confirmation-question {
+    flex-grow: 1;
+  }
+
+  .confirmation-popin > .confirmation-actions {
+    flex-grow: 0;
+  }
+
+  .confirmation-popin > .confirmation-actions > button {
+    width: 100%;
+  }
+}
