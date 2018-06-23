@@ -8,11 +8,15 @@ import './modal.css'
 
 class Modal extends Component {
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside)
+    if (this.props.withClickOutside) {
+      document.addEventListener('mousedown', this.handleClickOutside)
+    }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside)
+    if (this.props.withClickOutside) {
+      document.removeEventListener('mousedown', this.handleClickOutside)
+    }
   }
 
   handleClickOutside = (e) => {
@@ -23,16 +27,18 @@ class Modal extends Component {
 
   render() {
     const {
-      opened, onClose, children, className,
+      open, onClose, children, withCloseIcon, className,
     } = this.props
-    if (!opened) return null
+    if (!open) return null
     return (
       <Portal className="modal">
         <div ref={e => (this.modal = e)} className={cn('modal-content', className)}>
           {children}
-          <div className="modal-close" onClick={onClose} role="button">
-            <i className="fa fa-times fa-fw fa-2x" />
-          </div>
+          {withCloseIcon && (
+            <div className="modal-close" onClick={onClose} role="button">
+              <i className="fa fa-times fa-fw fa-2x" />
+            </div>
+          )}
         </div>
       </Portal>
     )
@@ -40,14 +46,20 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  opened: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
+  withCloseIcon: PropTypes.bool,
+  withClickOutside: PropTypes.bool,
   className: PropTypes.string,
 }
 
 Modal.defaultProps = {
+  open: false,
+  onClose: undefined,
   className: undefined,
+  withCloseIcon: true,
+  withClickOutside: true,
 }
 
 export default Modal

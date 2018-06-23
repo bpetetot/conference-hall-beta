@@ -3,10 +3,8 @@ import PropTypes from 'prop-types'
 
 import { DumbModal } from 'components/modal'
 
-import './authError.css'
-
 const AuthErrorModal = ({ error, clearAuthError }) => (
-  <DumbModal opened={!!error.message} onClose={clearAuthError} className="auth-error">
+  <DumbModal open={!!error.message} onClose={clearAuthError} className="auth-error">
     <h2>Sorry, an error occured during login</h2>
     {error.code === 'auth/web-storage-unsupported' ? (
       <div>
