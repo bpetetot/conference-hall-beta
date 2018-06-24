@@ -7,7 +7,7 @@
   flex-direction: column;
   min-width: 33vw;
   max-width: 66vw;
-  padding: 1.5em;
+  padding: 2em;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05) 0 10px 10px 0 rgba(0, 0, 0, 0.06);
   background: #fff;
