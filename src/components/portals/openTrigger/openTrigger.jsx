@@ -4,6 +4,20 @@ import PropTypes from 'prop-types'
 class OpenTrigger extends Component {
   state = { isOpen: this.props.open }
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeydown)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeydown)
+  }
+
+  handleKeydown = (e) => {
+    if (e.keyCode === 27) {
+      this.hide()
+    }
+  }
+
   show = () => this.setState({ isOpen: true })
 
   hide = () => this.setState({ isOpen: false })

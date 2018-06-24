@@ -1,0 +1,34 @@
+---
+name: Drawer
+route: /portals/drawer
+menu: Portals
+---
+
+import { Playground, PropsTable } from 'docz'
+import Drawer from './drawer'
+
+# Drawer
+
+## Basic usage
+
+<Playground>
+  <Drawer
+    title="title"
+    subtitle="subtitle"
+    content="This is a drawer"
+    actions={(
+      <button onClick={console.log} className="btn btn-primary">
+        Action
+      </button>
+    )}
+    renderTrigger={({ show }) => (
+      <button onClick={show} className="btn btn-primary">
+        Click to open
+      </button>
+    )}
+  />
+</Playground>
+
+## Properties
+
+<PropsTable of={Drawer} />

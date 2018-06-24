@@ -25,9 +25,8 @@ class ConfirmationPopin extends Component {
 
     return (
       <OpenTrigger open={open} renderTrigger={renderTrigger}>
-        {({ isOpen, hide }) => (
+        {({ hide }) => (
           <Modal
-            open={isOpen}
             onClose={this.handleCancel(hide)}
             withCloseIcon={false}
             withClickOutside={false}
