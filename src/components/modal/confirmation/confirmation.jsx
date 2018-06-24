@@ -1,68 +1,54 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import Modal from '../modal'
+import OpenTrigger from '../openTrigger'
 
 import './confirmation.css'
 
 class ConfirmationPopin extends Component {
-  state = { isOpen: this.props.open }
-
-  show = () => this.setState({ isOpen: true })
-
-  hide = () => this.setState({ isOpen: false })
-
-  toggle = () => this.setState(state => ({ isOpen: !state.isOpen }))
-
-  handleOk = (e) => {
-    this.hide()
+  handleOk = hide => (e) => {
+    hide()
     this.props.onClickOk(e)
   }
 
-  handleCancel = (e) => {
-    this.hide()
+  handleCancel = hide => (e) => {
+    hide()
     this.props.onClickCancel(e)
   }
 
   render() {
     const {
-      className, question, onClickOk, onClickCancel, renderTrigger,
+      className, question, onClickOk, onClickCancel, renderTrigger, open,
     } = this.props
-    const { isOpen } = this.state
-    const { show, hide, toggle } = this
 
     return (
-      <Fragment>
-        {renderTrigger &&
-          renderTrigger({
-            isOpen,
-            show,
-            hide,
-            toggle,
-          })}
-        <Modal
-          open={isOpen}
-          onClose={this.handleCancel}
-          withCloseIcon={false}
-          withClickOutside={false}
-          className={cn('confirmation-popin', className)}
-        >
-          {question && <div className="confirmation-question">{question}</div>}
-          <div className="confirmation-actions">
-            {onClickCancel && (
-              <button className="btn btn-default" onClick={this.handleCancel} type="button">
-                Cancel
-              </button>
-            )}
-            {onClickOk && (
-              <button className="btn btn-primary" onClick={this.handleOk} type="button">
-                Ok
-              </button>
-            )}
-          </div>
-        </Modal>
-      </Fragment>
+      <OpenTrigger open={open} renderTrigger={renderTrigger}>
+        {({ isOpen, hide }) => (
+          <Modal
+            open={isOpen}
+            onClose={this.handleCancel(hide)}
+            withCloseIcon={false}
+            withClickOutside={false}
+            className={cn('confirmation-popin', className)}
+          >
+            {question && <div className="confirmation-question">{question}</div>}
+            <div className="confirmation-actions">
+              {onClickCancel && (
+                <button className="btn btn-default" onClick={this.handleCancel(hide)} type="button">
+                  Cancel
+                </button>
+              )}
+              {onClickOk && (
+                <button className="btn btn-primary" onClick={this.handleOk(hide)} type="button">
+                  Ok
+                </button>
+              )}
+            </div>
+          </Modal>
+        )}
+      </OpenTrigger>
     )
   }
 }

@@ -21,7 +21,7 @@ class Modal extends Component {
 
   handleClickOutside = (e) => {
     if (this.modal && !this.modal.contains(e.target)) {
-      this.props.onClose()
+      this.props.onClose(e)
     }
   }
 
