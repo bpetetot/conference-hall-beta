@@ -1,1 +1,1 @@
-export { default } from './addSpeakerButton.container'
+export { default } from './addSpeaker.container'

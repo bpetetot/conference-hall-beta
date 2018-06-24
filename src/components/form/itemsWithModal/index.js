@@ -1,1 +1,1 @@
-export { default } from './itemsWithModal.container'
+export { default } from './itemsWithModal'

@@ -5,25 +5,11 @@ import keys from 'lodash/keys'
 
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
-import AddUserButton from 'components/addUser'
+import AddMember from 'components/addUser'
 import IconLabel from 'components/iconLabel'
 import MemberRow from '../components/memberRow'
 
 import './organizationPage.css'
-
-const modalMessage = (
-  <Fragment>
-    <p>
-      Search and add a member to your organization, he/she will be also able to update it,
-      invite other members and create events for your organization.<br />
-      The member must already have a member Hall account.
-    </p>
-    <p>
-      For security and privacy reasons, you can search a member only by his/her registered email
-      address.
-    </p>
-  </Fragment>
-)
 
 const OrganizationPage = ({
   id: organizationId,
@@ -40,14 +26,28 @@ const OrganizationPage = ({
       <Link href={`/organizer/organizations/${organizationId}/edit`} className="btn">
         <IconLabel icon="fa fa-pencil" label="Edit" />
       </Link>
-      <AddUserButton
-        modalOptions={{
-          id: 'add-user-to-organization',
-          message: modalMessage,
-          resultsMessage: 'Select an organizer to add to your organization',
-          onSelectUser,
-          inviteLink,
-        }}
+      <AddMember
+        onSelectUser={onSelectUser}
+        inviteLink={inviteLink}
+        resultsMessage="Select an organizer to add to your organization"
+        description={
+          <Fragment>
+            <p>
+              Search and add a member to your organization, he/she will be also able to update it,
+              invite other members and create events for your organization.<br />
+              The member must already have a member Hall account.
+            </p>
+            <p>
+              For security and privacy reasons, you can search a member only by his/her registered
+              email address.
+            </p>
+          </Fragment>
+        }
+        renderTrigger={({ show }) => (
+          <button onClick={show} className="btn">
+            <IconLabel icon="fa fa-user" label="Add a member" />
+          </button>
+        )}
       />
     </Titlebar>
     <List

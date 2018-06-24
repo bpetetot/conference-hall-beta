@@ -9,17 +9,28 @@ import './confirmation.css'
 class ConfirmationPopin extends Component {
   handleOk = hide => (e) => {
     hide()
-    this.props.onOk(e)
+    if (this.props.onOk) {
+      this.props.onOk(e)
+    }
   }
 
   handleCancel = hide => (e) => {
     hide()
-    this.props.onCancel(e)
+    if (this.props.onCancel) {
+      this.props.onCancel(e)
+    }
   }
 
   render() {
     const {
-      className, question, onOk, onCancel, renderTrigger, defaultOpen,
+      className,
+      question,
+      onOk,
+      withOk,
+      onCancel,
+      withCancel,
+      renderTrigger,
+      defaultOpen,
     } = this.props
 
     return (
@@ -36,12 +47,12 @@ class ConfirmationPopin extends Component {
           <Fragment>
             {question && <div className="confirmation-question">{question}</div>}
             <div className="confirmation-actions">
-              {onCancel && (
+              {(withCancel || onCancel) && (
                 <button className="btn btn-default" onClick={this.handleCancel(hide)} type="button">
                   Cancel
                 </button>
               )}
-              {onOk && (
+              {(withOk || onOk) && (
                 <button className="btn btn-primary" onClick={this.handleOk(hide)} type="button">
                   Ok
                 </button>
@@ -59,7 +70,9 @@ ConfirmationPopin.propTypes = {
   defaultOpen: PropTypes.bool,
   renderTrigger: PropTypes.func,
   onOk: PropTypes.func,
+  withOk: PropTypes.bool,
   onCancel: PropTypes.func,
+  withCancel: PropTypes.bool,
   className: PropTypes.string,
 }
 
@@ -68,7 +81,9 @@ ConfirmationPopin.defaultProps = {
   defaultOpen: false,
   renderTrigger: undefined,
   onOk: undefined,
+  withOk: false,
   onCancel: undefined,
+  withCancel: false,
   className: undefined,
 }
 

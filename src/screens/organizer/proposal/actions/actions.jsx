@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import { Drawer } from 'components/portals'
 import IconLabel from 'components/iconLabel'
-import Drawer from 'components/drawer'
 import TeamRatings from './teamRatings'
 import SpeakerSurveys from './speakerSurveys'
 
@@ -14,25 +14,27 @@ const Actions = ({
 }) => (
   <div className={cn('proposal-actions-btn', className)}>
     <Drawer
-      opener={open => (
-        <button className="btn btn-default" onClick={open}>
+      title="Team ratings"
+      renderTrigger={({ show }) => (
+        <button className="btn btn-default" onClick={show}>
           <IconLabel icon="fa fa-star" label="All ratings" />
         </button>
       )}
-      title="Team ratings"
-      content={<TeamRatings id={proposal.id} />}
-    />
+    >
+      <TeamRatings id={proposal.id} />
+    </Drawer>
 
     {surveyActive && (
       <Drawer
-        opener={open => (
-          <button className="btn btn-default" onClick={open}>
+        title="Speaker survey"
+        renderTrigger={({ show }) => (
+          <button className="btn btn-default" onClick={show}>
             <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
           </button>
         )}
-        title="Speaker survey"
-        content={<SpeakerSurveys eventId={eventId} speakers={proposal.speakers} />}
-      />
+      >
+        <SpeakerSurveys eventId={eventId} speakers={proposal.speakers} />
+      </Drawer>
     )}
   </div>
 )
