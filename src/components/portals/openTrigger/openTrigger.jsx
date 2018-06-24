@@ -47,8 +47,8 @@ class OpenTrigger extends Component {
 }
 
 OpenTrigger.propTypes = {
-  defaultOpen: PropTypes.bool,
   children: PropTypes.func.isRequired,
+  defaultOpen: PropTypes.bool,
   renderTrigger: PropTypes.func,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,

@@ -9,9 +9,9 @@ import Backdrop from 'components/portals/backdrop'
 import './drawer.css'
 
 const Drawer = ({
-  title, subtitle, className, actions, children, open, renderTrigger,
+  title, subtitle, className, actions, children, defaultOpen, renderTrigger,
 }) => (
-  <OpenTrigger defaultOpen={open} renderTrigger={renderTrigger}>
+  <OpenTrigger defaultOpen={defaultOpen} renderTrigger={renderTrigger}>
     {({ hide, show, isOpen }) => (
       <Portal>
         <Backdrop onClick={hide} />
@@ -38,17 +38,17 @@ Drawer.propTypes = {
   subtitle: PropTypes.string,
   children: PropTypes.node.isRequired,
   actions: PropTypes.node,
-  className: PropTypes.string,
-  open: PropTypes.bool,
+  defaultOpen: PropTypes.bool,
   renderTrigger: PropTypes.func,
+  className: PropTypes.string,
 }
 
 Drawer.defaultProps = {
   subtitle: undefined,
   actions: undefined,
-  className: undefined,
-  open: false,
+  defaultOpen: false,
   renderTrigger: undefined,
+  className: undefined,
 }
 
 export default Drawer

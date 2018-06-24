@@ -19,12 +19,12 @@ class ConfirmationPopin extends Component {
 
   render() {
     const {
-      className, question, onOk, onCancel, renderTrigger, open,
+      className, question, onOk, onCancel, renderTrigger, defaultOpen,
     } = this.props
 
     return (
       <Modal
-        defaultOpen={open}
+        defaultOpen={defaultOpen}
         renderTrigger={renderTrigger}
         onClose={this.handleCancel}
         withCloseIcon={false}
@@ -55,8 +55,8 @@ class ConfirmationPopin extends Component {
 }
 
 ConfirmationPopin.propTypes = {
-  open: PropTypes.bool,
   question: PropTypes.node,
+  defaultOpen: PropTypes.bool,
   renderTrigger: PropTypes.func,
   onOk: PropTypes.func,
   onCancel: PropTypes.func,
@@ -65,11 +65,11 @@ ConfirmationPopin.propTypes = {
 
 ConfirmationPopin.defaultProps = {
   question: undefined,
+  defaultOpen: false,
   renderTrigger: undefined,
-  className: undefined,
   onOk: undefined,
   onCancel: undefined,
-  open: false,
+  className: undefined,
 }
 
 export default ConfirmationPopin
