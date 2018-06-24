@@ -9,10 +9,10 @@ import Backdrop from 'components/portals/backdrop'
 import './drawer.css'
 
 const Drawer = ({
-  title, subtitle, className, actions, content, open, renderTrigger,
+  title, subtitle, className, actions, children, open, renderTrigger,
 }) => (
-  <OpenTrigger open={open} renderTrigger={renderTrigger}>
-    {({ hide }) => (
+  <OpenTrigger defaultOpen={open} renderTrigger={renderTrigger}>
+    {({ hide, show, isOpen }) => (
       <Portal>
         <Backdrop onClick={hide} />
         <div className={cn('drawer-sidebar', className)}>
@@ -25,8 +25,8 @@ const Drawer = ({
               <i className="fa fa-times" />
             </button>
           </div>
-          <div className="drawer-content">{content}</div>
-          {actions && <div className="drawer-actions">{actions}</div>}
+          <div className="drawer-content">{children}</div>
+          {actions && <div className="drawer-actions">{actions({ hide, show, isOpen })}</div>}
         </div>
       </Portal>
     )}
@@ -36,11 +36,11 @@ const Drawer = ({
 Drawer.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  content: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
   actions: PropTypes.node,
   className: PropTypes.string,
   open: PropTypes.bool,
-  renderTrigger: PropTypes.func.isRequired,
+  renderTrigger: PropTypes.func,
 }
 
 Drawer.defaultProps = {
@@ -48,6 +48,7 @@ Drawer.defaultProps = {
   actions: undefined,
   className: undefined,
   open: false,
+  renderTrigger: undefined,
 }
 
 export default Drawer

@@ -15,9 +15,8 @@ import Drawer from './drawer'
   <Drawer
     title="title"
     subtitle="subtitle"
-    content="This is a drawer"
-    actions={(
-      <button onClick={console.log} className="btn btn-primary">
+    actions={({ hide }) => (
+      <button onClick={hide} className="btn btn-primary">
         Action
       </button>
     )}
@@ -26,7 +25,9 @@ import Drawer from './drawer'
         Click to open
       </button>
     )}
-  />
+  >
+    This is a drawer!
+  </Drawer>
 </Playground>
 
 ## Properties

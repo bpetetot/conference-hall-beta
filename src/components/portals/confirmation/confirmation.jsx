@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import Modal from 'components/portals/modal'
-import OpenTrigger from 'components/portals/openTrigger'
 
 import './confirmation.css'
 
@@ -24,14 +23,17 @@ class ConfirmationPopin extends Component {
     } = this.props
 
     return (
-      <OpenTrigger defaultOpen={open} renderTrigger={renderTrigger} onClose={onCancel}>
+      <Modal
+        defaultOpen={open}
+        renderTrigger={renderTrigger}
+        onClose={this.handleCancel}
+        withCloseIcon={false}
+        withClickOutside={false}
+        withEscapeClose={false}
+        className={cn('confirmation-popin', className)}
+      >
         {({ hide }) => (
-          <Modal
-            onClose={this.handleCancel(hide)}
-            withCloseIcon={false}
-            withClickOutside={false}
-            className={cn('confirmation-popin', className)}
-          >
+          <Fragment>
             {question && <div className="confirmation-question">{question}</div>}
             <div className="confirmation-actions">
               {onCancel && (
@@ -45,9 +47,9 @@ class ConfirmationPopin extends Component {
                 </button>
               )}
             </div>
-          </Modal>
+          </Fragment>
         )}
-      </OpenTrigger>
+      </Modal>
     )
   }
 }
