@@ -10,21 +10,21 @@ import './confirmation.css'
 class ConfirmationPopin extends Component {
   handleOk = hide => (e) => {
     hide()
-    this.props.onClickOk(e)
+    this.props.onOk(e)
   }
 
   handleCancel = hide => (e) => {
     hide()
-    this.props.onClickCancel(e)
+    this.props.onCancel(e)
   }
 
   render() {
     const {
-      className, question, onClickOk, onClickCancel, renderTrigger, open,
+      className, question, onOk, onCancel, renderTrigger, open,
     } = this.props
 
     return (
-      <OpenTrigger open={open} renderTrigger={renderTrigger}>
+      <OpenTrigger defaultOpen={open} renderTrigger={renderTrigger} onClose={onCancel}>
         {({ hide }) => (
           <Modal
             onClose={this.handleCancel(hide)}
@@ -34,12 +34,12 @@ class ConfirmationPopin extends Component {
           >
             {question && <div className="confirmation-question">{question}</div>}
             <div className="confirmation-actions">
-              {onClickCancel && (
+              {onCancel && (
                 <button className="btn btn-default" onClick={this.handleCancel(hide)} type="button">
                   Cancel
                 </button>
               )}
-              {onClickOk && (
+              {onOk && (
                 <button className="btn btn-primary" onClick={this.handleOk(hide)} type="button">
                   Ok
                 </button>
@@ -56,8 +56,8 @@ ConfirmationPopin.propTypes = {
   open: PropTypes.bool,
   question: PropTypes.node,
   renderTrigger: PropTypes.func,
-  onClickOk: PropTypes.func,
-  onClickCancel: PropTypes.func,
+  onOk: PropTypes.func,
+  onCancel: PropTypes.func,
   className: PropTypes.string,
 }
 
@@ -65,8 +65,8 @@ ConfirmationPopin.defaultProps = {
   question: undefined,
   renderTrigger: undefined,
   className: undefined,
-  onClickOk: undefined,
-  onClickCancel: undefined,
+  onOk: undefined,
+  onCancel: undefined,
   open: false,
 }
 

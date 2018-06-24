@@ -8,10 +8,10 @@ import Backdrop from 'components/portals/backdrop'
 import './modal.css'
 
 const Modal = ({
-  onClose, children, withCloseIcon, className,
+  onClose, children, withClickOutside, withCloseIcon, className,
 }) => (
   <Portal>
-    <Backdrop onClick={onClose} />
+    <Backdrop onClick={onClose} withClickOutside={withClickOutside} />
     <div className={cn('modal', className)}>
       {children}
       {withCloseIcon && (
@@ -26,6 +26,7 @@ const Modal = ({
 Modal.propTypes = {
   onClose: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.node]).isRequired,
+  withClickOutside: PropTypes.bool,
   withCloseIcon: PropTypes.bool,
   className: PropTypes.string,
 }
@@ -33,6 +34,7 @@ Modal.propTypes = {
 Modal.defaultProps = {
   onClose: undefined,
   className: undefined,
+  withClickOutside: true,
   withCloseIcon: true,
 }
 
