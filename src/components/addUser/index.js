@@ -1,1 +1,1 @@
-export { default } from './addUserButton'
+export { default } from './addUserModal.container'

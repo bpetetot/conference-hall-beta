@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 
+import './portal.css'
+
 class Portal extends React.Component {
   componentWillUnmount() {
     if (this.defaultNode) {
@@ -13,7 +15,7 @@ class Portal extends React.Component {
   render() {
     if (!this.defaultNode) {
       this.defaultNode = document.createElement('div')
-      this.defaultNode.className = this.props.className
+      this.defaultNode.className = 'portal'
       document.body.appendChild(this.defaultNode)
     }
     return createPortal(this.props.children, this.defaultNode)
@@ -21,12 +23,7 @@ class Portal extends React.Component {
 }
 
 Portal.propTypes = {
-  className: PropTypes.string,
   children: PropTypes.node.isRequired,
-}
-
-Portal.defaultProps = {
-  className: undefined,
 }
 
 export default Portal

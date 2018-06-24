@@ -13,13 +13,13 @@ import ConfirmationPopin from './confirmation'
 
 <Playground>
   <ConfirmationPopin
-    question="You can confirm by clicking on OK, else click Cancel"
+    question="Can you confirm by clicking on OK, else click Cancel ?"
+    withOk
+    withCancel
     className="default-theme"
-    onClickOk={console.log}
-    onClickCancel={console.log}
     renderTrigger={({ show }) => (
       <button onClick={show} className="btn btn-primary">
-        Click to open
+        Open Confirmation Popin
       </button>
     )}
   />

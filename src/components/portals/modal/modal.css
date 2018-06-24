@@ -1,15 +1,4 @@
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.modal-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -19,9 +8,10 @@
   min-width: 50%;
   overflow: auto;
   padding: 3em;
+  z-index: 20;
 }
 
-.modal-content .modal-close {
+.modal .modal-close {
   position: absolute;
   right: 0;
   top: 0;
@@ -31,19 +21,19 @@
   max-height: 100vh;
 }
 
-.modal-content .modal-close:hover {
+.modal .modal-close:hover {
   color: var(--primary-color);
 }
 
 
 @media only screen and (max-width: 1024px) {
-  .modal-content {
+  .modal {
     width: 70%;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .modal-content {
+  .modal {
     height: 100%;
     width: 100%;
   }
