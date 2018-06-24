@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import Portal from 'components/portal'
+import Portal from 'components/portals/portal'
 import './modal.css'
 
 class Modal extends Component {

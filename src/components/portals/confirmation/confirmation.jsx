@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import Modal from '../modal'
-import OpenTrigger from '../openTrigger'
+import Modal from 'components/portals/modal'
+import OpenTrigger from 'components/portals/openTrigger'
 
 import './confirmation.css'
 
