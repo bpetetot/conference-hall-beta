@@ -2,8 +2,14 @@
   min-width: 400px;
 }
 
-.confirmation-popin > .confirmation-question {
+.confirmation-popin .confirmation-title {
   font-size: 1.5em;
+  font-weight: 700;
+  margin-bottom: 1em;
+}
+
+.confirmation-popin .confirmation-content {
+  font-size: 1.2em;
   font-weight: 200;
   margin-bottom: 2em;
 }
@@ -13,7 +19,7 @@
   justify-content: flex-end;
 }
 
-.confirmation-popin > .confirmation-actions > button {
+.confirmation-popin > .confirmation-actions > button:not(:first-child) {
   margin-left: 1em;
 }
 
@@ -23,7 +29,7 @@
     flex-direction: column;
   }
 
-  .confirmation-popin > .confirmation-question {
+  .confirmation-popin .confirmation-text {
     flex-grow: 1;
   }
 
