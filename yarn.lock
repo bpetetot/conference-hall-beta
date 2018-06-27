@@ -3770,9 +3770,9 @@ doctrine@^2.0.0, doctrine@^2.0.2, doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
-docz-core@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/docz-core/-/docz-core-0.3.3.tgz#8b31926b901b821acc9be82d5974a09bb27a9e21"
+docz-core@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/docz-core/-/docz-core-0.3.4.tgz#23938419b2a38b5361af1bf5f4427af7c8b70f49"
   dependencies:
     "@babel/core" "7.0.0-beta.51"
     "@babel/preset-typescript" "^7.0.0-beta.51"
@@ -3792,7 +3792,7 @@ docz-core@^0.3.3:
     cpy "^7.0.1"
     deepmerge "^2.1.1"
     detect-port "^1.2.3"
-    docz-theme-default "^0.3.3"
+    docz-theme-default "^0.3.4"
     express "^4.16.3"
     fast-glob "^2.2.2"
     file-loader "^1.1.11"
@@ -3805,7 +3805,7 @@ docz-core@^0.3.3:
     koa-connect "^2.0.1"
     koa-mount "^3.0.0"
     koa-static "^5.0.0"
-    load-cfg "^0.3.3"
+    load-cfg "^0.3.4"
     lodash.get "^4.4.2"
     prettier "^1.13.6"
     react-dev-utils "^5.0.1"
@@ -3837,11 +3837,11 @@ docz-core@^0.3.3:
     ws "^5.2.1"
     yargs "^11.0.0"
 
-docz-theme-default@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/docz-theme-default/-/docz-theme-default-0.3.3.tgz#4575de73ba38c4883c1f20ba1de2606ef439be37"
+docz-theme-default@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/docz-theme-default/-/docz-theme-default-0.3.4.tgz#8884688c74362f218edd54ed8669d2466ed6deec"
   dependencies:
-    docz "^0.3.3"
+    docz "^0.3.4"
     emotion "^9.2.4"
     emotion-theming "^9.2.4"
     facepaint "^1.2.1"
@@ -3859,14 +3859,15 @@ docz-theme-default@^0.3.3:
     react-spinners "^0.3.2"
     webfontloader "^1.6.28"
 
-docz@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/docz/-/docz-0.3.3.tgz#25c70008b1308a051ab16ad5dcf7ca1e65c74e06"
+docz@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/docz/-/docz-0.3.4.tgz#bfa0c5b29f5b80b8c3a921478cc9bdeb02865ced"
   dependencies:
     "@mdx-js/tag" "^0.11.0"
     "@sindresorhus/slugify" "^0.3.0"
     deepmerge "^2.1.1"
-    docz-core "^0.3.3"
+    docz-core "^0.3.4"
+    docz-theme-default "^0.3.4"
     invariant "^2.2.4"
     loadable-components "^2.2.2"
     pascalcase "^0.1.1"
@@ -6811,9 +6812,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-load-cfg@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/load-cfg/-/load-cfg-0.3.3.tgz#a22d570e6572ec516b6bbd3d89b8fc3b74150476"
+load-cfg@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/load-cfg/-/load-cfg-0.3.4.tgz#f4f61ac164fc131ab69bff319c8a6305064e3d47"
   dependencies:
     deepmerge "^2.1.1"
     esm "^3.0.55"
