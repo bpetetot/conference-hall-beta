@@ -15,9 +15,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  margin: 1em;
-  color: var(--grey-color-dark);
-  cursor: pointer;
+  margin: 2em;
   max-height: 100vh;
 }
 

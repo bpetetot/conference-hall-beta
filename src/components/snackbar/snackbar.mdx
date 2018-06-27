@@ -1,0 +1,57 @@
+---
+name: Snackbar
+route: /snackbar
+---
+
+import { Playground, PropsTable } from 'docz'
+import Snackbar from './snackbar'
+
+# Snackbar
+
+## Basic usage
+
+<Playground>
+  <Snackbar
+    defaultOpen
+    content="Default Snackbar"
+  />
+
+  <Snackbar
+    defaultOpen
+    content="Success Snackbar"
+    success
+  />
+
+  <Snackbar
+    defaultOpen
+    content="Warning Snackbar"
+    warning
+  />
+
+  <Snackbar
+    defaultOpen
+    content="Error Snackbar"
+    error
+  />
+</Playground>
+
+## Auto-close
+
+<Playground>
+  <Snackbar
+    autoClose
+    delay={2000}
+    content="Snackbar automatically closed after 2 seconds"
+    renderTrigger={({ show, isOpen }) => (
+      !isOpen && (
+        <button onClick={show} className="btn btn-primary">
+          Open auto-close Snackbar
+        </button>
+      )
+    )}
+  />
+</Playground>
+
+## Properties
+
+<PropsTable of={Snackbar} />

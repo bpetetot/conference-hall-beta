@@ -1,0 +1,31 @@
+.cc-button {
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 0.5s;
+  white-space: nowrap;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color-font);
+  text-decoration: none;
+}
+
+.cc-button-icon {
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--grey-color);
+  fill: var(--grey-color);
+}
+
+.cc-button-icon:hover {
+  color: var(--primary-color);
+  fill: var(--primary-color);
+}

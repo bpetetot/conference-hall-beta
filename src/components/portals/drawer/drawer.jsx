@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import Portal from 'components/portals/portal'
-import OpenTrigger from 'components/portals/openTrigger'
 import Backdrop from 'components/portals/backdrop'
+import OpenTrigger from 'components/helpers/openTrigger'
+import Button from 'components/button'
+import CloseIcon from 'components/icons/close'
 
 import './drawer.css'
 
@@ -21,9 +23,9 @@ const Drawer = ({
               <div className="drawer-title">{title}</div>
               {subtitle && <div className="drawer-subtitle">{subtitle}</div>}
             </div>
-            <button className="drawer-icon" onClick={hide}>
-              <i className="fa fa-times" />
-            </button>
+            <Button icon onClick={hide}>
+              <CloseIcon />
+            </Button>
           </div>
           <div className="drawer-content">{children}</div>
           {actions && <div className="drawer-actions">{actions({ hide, show, isOpen })}</div>}
