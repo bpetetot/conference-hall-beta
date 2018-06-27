@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import Portal from 'components/portals/portal'
-import OpenTrigger from 'components/portals/openTrigger'
 import Backdrop from 'components/portals/backdrop'
+import OpenTrigger from 'components/helpers/openTrigger'
 
 import './modal.css'
 

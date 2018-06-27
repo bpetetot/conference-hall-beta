@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import Timer from 'components/helpers/timer'
-import OpenTrigger from 'components/portals/openTrigger'
+import OpenTrigger from 'components/helpers/openTrigger'
 import Button from 'components/button'
 import CloseIcon from 'components/icons/close'
 
