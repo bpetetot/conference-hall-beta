@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 class OpenTrigger extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.defaultOpen && !prevState.isOpen) {
-      return { isOpen: true }
+      return { isOpen: false }
     }
     return null
   }

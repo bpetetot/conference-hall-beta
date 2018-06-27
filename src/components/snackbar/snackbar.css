@@ -1,0 +1,28 @@
+.cc-snackbar {
+  min-width: 2rem;
+  background-color: var(--question-color);
+  color: #fff;
+  fill: #fff;
+  padding: 0.5em 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cc-snackbar-success {
+  background-color: var(--success-color);
+}
+
+.cc-snackbar-warning {
+  background-color: var(--warning-color);
+}
+
+.cc-snackbar-error {
+  background-color: var(--error-color);
+}
+
+.cc-snackbar-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
