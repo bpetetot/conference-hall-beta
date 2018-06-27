@@ -21,5 +21,11 @@
   padding: 0;
   background: none;
   border: none;
+  color: var(--primary-color-font);
   fill: var(--primary-color-font);
+}
+
+.cc-button-icon:hover {
+  color: var(--primary-color);
+  fill: var(--primary-color);
 }
