@@ -12,13 +12,13 @@ import './snackbar.css'
 const Snackbar = ({
   content,
   defaultOpen,
-  closable,
   success,
   warning,
   error,
   onOpen,
   onClose,
   autoClose,
+  withCloseIcon,
   delay,
   renderTrigger,
   className,
@@ -45,7 +45,7 @@ const Snackbar = ({
         >
           <div className="cc-snackbar-content">{content}</div>
           <div className="cc-snackbar-actions">
-            {closable && (
+            {withCloseIcon && (
               <Button icon onClick={hide}>
                 <CloseIcon />
               </Button>
@@ -60,7 +60,6 @@ const Snackbar = ({
 Snackbar.propTypes = {
   content: PropTypes.node.isRequired,
   defaultOpen: PropTypes.bool,
-  closable: PropTypes.bool,
   success: PropTypes.bool,
   warning: PropTypes.bool,
   error: PropTypes.bool,
@@ -68,13 +67,13 @@ Snackbar.propTypes = {
   onClose: PropTypes.func,
   autoClose: PropTypes.bool,
   delay: PropTypes.number,
+  withCloseIcon: PropTypes.bool,
   renderTrigger: PropTypes.func,
   className: PropTypes.string,
 }
 
 Snackbar.defaultProps = {
   defaultOpen: false,
-  closable: true,
   success: false,
   warning: false,
   error: false,
@@ -82,6 +81,7 @@ Snackbar.defaultProps = {
   onClose: undefined,
   autoClose: false,
   delay: 10000,
+  withCloseIcon: true,
   renderTrigger: undefined,
   className: undefined,
 }
