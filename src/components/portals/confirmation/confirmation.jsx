@@ -24,7 +24,8 @@ class ConfirmationPopin extends Component {
   render() {
     const {
       className,
-      question,
+      title,
+      content,
       onOk,
       withOk,
       onCancel,
@@ -45,7 +46,10 @@ class ConfirmationPopin extends Component {
       >
         {({ hide }) => (
           <Fragment>
-            {question && <div className="confirmation-question">{question}</div>}
+            <div className="confirmation-text">
+              {title && <div className="confirmation-title">{title}</div>}
+              {content && <div className="confirmation-content">{content}</div>}
+            </div>
             <div className="confirmation-actions">
               {(withCancel || onCancel) && (
                 <button className="btn btn-default" onClick={this.handleCancel(hide)} type="button">
@@ -66,7 +70,8 @@ class ConfirmationPopin extends Component {
 }
 
 ConfirmationPopin.propTypes = {
-  question: PropTypes.node,
+  title: PropTypes.node,
+  content: PropTypes.node,
   defaultOpen: PropTypes.bool,
   renderTrigger: PropTypes.func,
   onOk: PropTypes.func,
@@ -77,7 +82,8 @@ ConfirmationPopin.propTypes = {
 }
 
 ConfirmationPopin.defaultProps = {
-  question: undefined,
+  title: undefined,
+  content: undefined,
   defaultOpen: false,
   renderTrigger: undefined,
   onOk: undefined,

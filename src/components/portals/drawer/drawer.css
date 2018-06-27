@@ -11,7 +11,7 @@
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05) 0 10px 10px 0 rgba(0, 0, 0, 0.06);
   background: #fff;
-  z-index: 20;
+  z-index: 120;
 }
 
 .drawer-header:before,
@@ -42,8 +42,8 @@
 }
 
 .drawer-title {
-  font-size: 1.6em;
-  font-weight: 200;
+  font-size: 1.5em;
+  font-weight: 700;
 }
 
 .drawer-subtitle {
@@ -89,5 +89,9 @@
 
   .drawer-actions {
     text-align: center;
+  }
+
+  .drawer-actions > * {
+    width: 100%;
   }
 }
