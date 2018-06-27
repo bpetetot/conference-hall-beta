@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import Timer from 'components/helpers/timer'
 import OpenTrigger from 'components/portals/openTrigger'
 import Button from 'components/button'
 import CloseIcon from 'components/icons/close'
@@ -17,6 +18,8 @@ const Snackbar = ({
   error,
   onOpen,
   onClose,
+  autoClose,
+  delay,
   renderTrigger,
   className,
 }) => (
@@ -28,26 +31,28 @@ const Snackbar = ({
     onClose={onClose}
   >
     {({ hide }) => (
-      <div
-        className={cn(
-          'cc-snackbar',
-          {
-            'cc-snackbar-success': success,
-            'cc-snackbar-warning': warning,
-            'cc-snackbar-error': error,
-          },
-          className,
-        )}
-      >
-        <div className="cc-snackbar-content">{content}</div>
-        <div className="cc-snackbar-actions">
-          {closable && (
-            <Button icon onClick={hide}>
-              <CloseIcon />
-            </Button>
+      <Timer enabled={autoClose} onFinish={hide} delay={delay}>
+        <div
+          className={cn(
+            'cc-snackbar',
+            {
+              'cc-snackbar-success': success,
+              'cc-snackbar-warning': warning,
+              'cc-snackbar-error': error,
+            },
+            className,
           )}
+        >
+          <div className="cc-snackbar-content">{content}</div>
+          <div className="cc-snackbar-actions">
+            {closable && (
+              <Button icon onClick={hide}>
+                <CloseIcon />
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
+      </Timer>
     )}
   </OpenTrigger>
 )
@@ -61,6 +66,8 @@ Snackbar.propTypes = {
   error: PropTypes.bool,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
+  autoClose: PropTypes.bool,
+  delay: PropTypes.number,
   renderTrigger: PropTypes.func,
   className: PropTypes.string,
 }
@@ -73,6 +80,8 @@ Snackbar.defaultProps = {
   error: false,
   onOpen: undefined,
   onClose: undefined,
+  autoClose: false,
+  delay: 10000,
   renderTrigger: undefined,
   className: undefined,
 }
