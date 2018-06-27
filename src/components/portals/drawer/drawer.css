@@ -52,17 +52,6 @@
   font-weight: 200;
 }
 
-.drawer-icon {
-  color: #ddd;
-  background: none;
-  border: none;
-}
-
-.drawer-icon:hover {
-  color: var(--primary-color);
-  cursor: pointer;
-}
-
 .drawer-content {
   overflow: auto;
   height: 100%;

@@ -26,3 +26,8 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+.cc-snackbar-actions > button {
+  color: #fff;
+  fill: #fff;
+}

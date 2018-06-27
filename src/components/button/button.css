@@ -21,8 +21,8 @@
   padding: 0;
   background: none;
   border: none;
-  color: var(--primary-color-font);
-  fill: var(--primary-color-font);
+  color: var(--grey-color);
+  fill: var(--grey-color);
 }
 
 .cc-button-icon:hover {

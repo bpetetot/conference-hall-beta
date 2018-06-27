@@ -5,6 +5,8 @@ import cn from 'classnames'
 import Portal from 'components/portals/portal'
 import Backdrop from 'components/portals/backdrop'
 import OpenTrigger from 'components/helpers/openTrigger'
+import Button from 'components/button'
+import CloseIcon from 'components/icons/close'
 
 import './modal.css'
 
@@ -30,9 +32,9 @@ const Modal = ({
         <div className={cn('modal', className)}>
           {children({ hide, show, isOpen })}
           {withCloseIcon && (
-            <div className="modal-close" onClick={hide} role="button">
-              <i className="fa fa-times fa-fw fa-2x" />
-            </div>
+            <Button className="modal-close" icon onClick={hide}>
+              <CloseIcon />
+            </Button>
           )}
         </div>
       </Portal>
