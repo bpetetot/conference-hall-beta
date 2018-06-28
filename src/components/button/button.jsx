@@ -6,13 +6,14 @@ import './button.css'
 
 const Button = ({
   className,
-  type,
+  primary,
+  secondary,
+  tertiary,
   size,
   accent,
   error,
   block,
-  icon,
-  loading,
+  href,
   simple,
   children,
   ...rest
@@ -20,21 +21,26 @@ const Button = ({
   const classes = cn(
     'cc-button',
     {
-      'cc-button-icon': icon,
       'cc-button-block': block,
       'cc-button-small': size === 'small',
       'cc-button-large': size === 'large',
       'cc-button-accent': accent,
       'cc-button-error': error,
-      'cc-button-primary': type === 'primary',
-      'cc-button-secondary': type === 'secondary',
-      'cc-button-tertiary': type === 'tertiary',
-      'cc-button-loading': loading,
+      'cc-button-primary': primary && !secondary && !tertiary,
+      'cc-button-secondary': secondary,
+      'cc-button-tertiary': tertiary,
       'cc-button-simple': simple,
     },
     className,
   )
 
+  if (href) {
+    return (
+      <a className={classes} {...rest}>
+        {children}
+      </a>
+    )
+  }
   return (
     <button className={classes} {...rest}>
       {children}
@@ -44,26 +50,28 @@ const Button = ({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  icon: PropTypes.bool,
   block: PropTypes.bool,
-  type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
+  primary: PropTypes.bool,
+  secondary: PropTypes.bool,
+  tertiary: PropTypes.bool,
   size: PropTypes.oneOf(['normal', 'small', 'large']),
   accent: PropTypes.bool,
   error: PropTypes.bool,
-  loading: PropTypes.bool,
   simple: PropTypes.bool,
+  href: PropTypes.string,
   className: PropTypes.string,
 }
 
 Button.defaultProps = {
-  icon: false,
-  block: false,
-  type: 'primary',
+  primary: true,
+  secondary: false,
+  tertiary: false,
   size: 'normal',
   accent: false,
   error: false,
-  loading: false,
   simple: false,
+  href: undefined,
+  block: false,
   className: undefined,
 }
 
