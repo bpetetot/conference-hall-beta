@@ -1,0 +1,66 @@
+---
+name: Button
+route: /button
+---
+
+import { Playground, PropsTable } from 'docz'
+import Button from './button'
+
+# Button
+
+## Default Button
+
+Define the hierarchy of the button, the default value is `type="primary"`
+<Playground>
+  <Button type="primary">Button</Button>
+  <Button type="secondary">Button</Button>
+  <Button type="tertiary">Button</Button>
+</Playground>
+
+## With accent color
+
+<Playground>
+  <Button accent type="primary">Button</Button>
+  <Button accent type="secondary">Button</Button>
+  <Button accent type="tertiary">Button</Button>
+</Playground>
+
+## With error state
+
+<Playground>
+  <Button error type="primary">Button</Button>
+  <Button error type="secondary">Button</Button>
+  <Button error type="tertiary">Button</Button>
+</Playground>
+
+## Disabled
+
+<Playground>
+  <Button disabled>Button</Button>
+</Playground>
+
+## Sizes
+
+<Playground>
+  <Button size="large">Button</Button>
+  <Button size="normal">Button</Button>
+  <Button size="small">Button</Button>
+</Playground>
+
+## Block
+
+<Playground>
+  <Button block>Button</Button>
+</Playground>
+
+## Simple
+
+Button without padding, border and background. The simpliest way to display it. Useful to display an icon button, like modals closing cross.
+
+<Playground>
+  <Button simple>Simple button</Button>
+</Playground>
+
+## Properties
+
+<PropsTable of={Button} />

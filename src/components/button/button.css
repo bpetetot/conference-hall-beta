@@ -8,24 +8,79 @@
   outline: none;
   padding: 10px 16px;
   position: relative;
-  text-transform: uppercase;
-  transition: all 0.5s;
+  transition: all 0.25s;
   white-space: nowrap;
   background: var(--primary-color);
   border: 1px solid var(--primary-color);
-  color: var(--primary-color-font);
+  color: var(--primary-color);
+  fill: var(--primary-dark);
   text-decoration: none;
 }
 
-.cc-button-icon {
-  padding: 0;
-  background: none;
-  border: none;
-  color: var(--grey-color);
-  fill: var(--grey-color);
+.cc-button:disabled {
+  background: var(--grey-color-light);
+  border: 1px solid var(--grey-color-light);
+  color: var(--grey-color-dark);
+  fill: var(--grey-color-dark);
+  cursor: not-allowed;
 }
 
-.cc-button-icon:hover {
+.cc-button-small {
+  padding: 8px 12px;
+  font-size: 0.7em;
+}
+
+.cc-button-large {
+  padding: 12px 18px;
+  font-size: 1.3em;
+}
+
+.cc-button-loading {
+  opacity: 0.50;
+  cursor: default;
+}
+
+.cc-button:hover:not(:disabled) {
+  opacity: 0.80;
+}
+
+.cc-button.cc-button-primary:not(:disabled) {
+  color: #fff;
+  fill: #fff;
+}
+
+.cc-button.cc-button-secondary:not(:disabled) {
+  background: #fff;
+}
+
+.cc-button.cc-button-tertiary:not(:disabled) {
+  background: #fff;
+  border: 1px solid transparent;
+}
+
+.cc-button-accent {
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  fill: var(--secondary-color);
+}
+
+.cc-button-error {
+  background: var(--error-color);
+  border: 1px solid var(--error-color);
+  color: var(--error-color);
+  fill: var(--error-color);
+}
+
+.cc-button-block {
+  display: block;
+  width: 100%;
+}
+
+.cc-button.cc-button-simple:not(:disabled) {
+  padding: 0;
+  border: none;
+  background: none;
   color: var(--primary-color);
-  fill: var(--primary-color);
+  fill: var(--primary-dark);
 }

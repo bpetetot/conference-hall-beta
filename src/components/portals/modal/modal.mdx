@@ -5,6 +5,7 @@ menu: Portals
 ---
 
 import { Playground, PropsTable } from 'docz'
+import Button from 'components/button'
 import Modal from './modal'
 
 # Modal
@@ -15,11 +16,10 @@ import Modal from './modal'
   <Modal
     onClose={() => console.log('close')}
     className="default-theme"
-    defaultOpen
     renderTrigger={({ show }) => (
-      <button onClick={show} className="btn btn-primary">
+      <Button onClick={show}>
         Open Modal
-      </button>
+      </Button>
     )}
   >
     {({ show, hide, isOpen }) => <div>Modal content</div>}
