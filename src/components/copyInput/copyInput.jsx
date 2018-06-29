@@ -33,7 +33,7 @@ class CopyInput extends PureComponent {
           placeholder="Just copy it"
           defaultValue={value}
         />
-        <Button secondary onClick={this.copy}>
+        <Button tertiary onClick={this.copy}>
           <i className="fa fa-clipboard" />
         </Button>
       </div>

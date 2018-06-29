@@ -12,7 +12,7 @@ import NoTalks from 'screens/speaker/components/noTalks'
 const MyTalks = ({ talks, onSelect }) => (
   <div className="talks-page">
     <Titlebar icon="fa fa-microphone" title="My talks">
-      <Button>
+      <Button accent>
         {btn => (
           <Link href="/speaker/talk/create" className={btn}>
             <IconLabel icon="fa fa-calendar-plus-o" label="Create a new talk" />

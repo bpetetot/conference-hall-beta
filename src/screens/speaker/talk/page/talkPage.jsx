@@ -16,10 +16,17 @@ const TalkPage = ({
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
       <DeleteTalkButton talkId={id} />
-      <Button>
+      <Button secondary small>
         {btn => (
           <Link href={`/speaker/talk/${id}/edit`} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
+          </Link>
+        )}
+      </Button>
+      <Button accent>
+        {btn => (
+          <Link href={`/speaker/talk/${id}/submission`} className={btn}>
+            <IconLabel icon="fa fa-paper-plane" label="Submit" />
           </Link>
         )}
       </Button>

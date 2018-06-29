@@ -17,7 +17,7 @@ const Actions = ({
     <Drawer
       title="Team ratings"
       renderTrigger={({ show }) => (
-        <Button secondary small onClick={show}>
+        <Button secondary onClick={show}>
           <IconLabel icon="fa fa-star" label="All ratings" />
         </Button>
       )}
@@ -29,7 +29,7 @@ const Actions = ({
       <Drawer
         title="Speaker survey"
         renderTrigger={({ show }) => (
-          <Button secondary small onClick={show}>
+          <Button secondary onClick={show}>
             <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
           </Button>
         )}

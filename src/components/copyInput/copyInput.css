@@ -7,7 +7,7 @@
 
 .copy-input .copy-title {
   white-space: nowrap;
-  color: var(--grey-color);
+  color: var(--grey-color-dark);
   padding: 0 1em;
 }
 

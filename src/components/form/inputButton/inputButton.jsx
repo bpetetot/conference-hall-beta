@@ -41,7 +41,6 @@ class InputButton extends Component {
           onKeyPress={this.handleKeyPress}
         />
         <Button
-          accent
           onClick={this.handleClick}
           className={btnClassName}
           disabled={!this.state.value || disabled}

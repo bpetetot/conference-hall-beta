@@ -15,7 +15,7 @@ const TalkSubmission = ({
   <form className="talk-submission">
     <Titlebar icon="fa fa-microphone" title={talk.title}>
       {update && (
-        <Button accent secondary onClick={() => unsubmitTalk(talk.id, event.id)}>
+        <Button secondary onClick={() => unsubmitTalk(talk.id, event.id)}>
           Remove submission
         </Button>
       )}

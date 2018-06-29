@@ -50,10 +50,10 @@
 }
 
 .cc-button-secondary:hover {
-  background: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  color: var(--primary-color-font);
-  fill: var(--primary-color-font);
+  background: #fff;
+  border: 1px solid var(--primary-color-dark);
+  color: var(--primary-color-dark);
+  fill: var(--primary-color-dark);
 }
 
 .cc-button-tertiary {
@@ -91,10 +91,9 @@
 }
 
 .cc-button-secondary.cc-button-accent:hover {
-  background: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-  color: var(--secondary-color-font);
-  fill: var(--secondary-color-font);
+  border: 1px solid var(--secondary-color-dark);
+  color: var(--secondary-color-dark);
+  fill: var(--secondary-color-dark);
 }
 
 .cc-button-tertiary.cc-button-accent {
@@ -132,10 +131,9 @@
 }
 
 .cc-button-secondary.cc-button-error:hover {
-  background: var(--error-color);
   border: 1px solid var(--error-color);
-  color: #fff;
-  fill: #fff;
+  color: var(--error-color);
+  fill: var(--error-color);
 }
 
 .cc-button-tertiary.cc-button-error {

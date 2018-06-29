@@ -9,7 +9,7 @@ const SubmitTalkLink = ({
 }) => {
   if (!displayed) return null
   return (
-    <Button primary>
+    <Button primary accent>
       {btn => (
         <a onClick={onClick} role="button" className={className || btn}>
           {label || <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />}
