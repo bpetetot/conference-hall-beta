@@ -52,7 +52,7 @@ const Button = ({
 }
 
 Button.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   block: PropTypes.bool,
   primary: PropTypes.bool,
   secondary: PropTypes.bool,

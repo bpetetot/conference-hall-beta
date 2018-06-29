@@ -8,7 +8,7 @@ import Button from './button'
 
 # Button
 
-## Default Button
+## Button hierarchy
 
 Define the hierarchy of the button, the default is `primary`
 <Playground>
@@ -33,7 +33,7 @@ Define the hierarchy of the button, the default is `primary`
   <Button error tertiary>Button</Button>
 </Playground>
 
-## Disabled
+## With disabled state
 
 <Playground>
   <Button disabled primary>Button</Button>
@@ -65,10 +65,20 @@ Button without padding, border and background. The simpliest way to display it. 
 
 ## Link
 
-A hyperlink with a button style, just by setting `href` prop.
+A hyperlink with a button style, just by setting `href` prop instead of `onClick`.
 
 <Playground>
   <Button href="https://www.google.fr" target="NEW">Link like a button</Button>
+</Playground>
+
+## Using Function As A Child
+
+Used to apply button style to any element.
+
+<Playground>
+  <Button secondary accent>
+    {btnClasses => <div className={btnClasses}>Apply button style to any element</div>}
+  </Button>
 </Playground>
 
 ## Properties
