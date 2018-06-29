@@ -24,6 +24,13 @@ const OrganizationPage = ({
 }) => (
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name}>
+      <Button secondary>
+        {btn => (
+          <Link href={`/organizer/organizations/${organizationId}/edit`} className={btn}>
+            <IconLabel icon="fa fa-pencil" label="Edit" />
+          </Link>
+        )}
+      </Button>
       <AddMember
         onSelectUser={onSelectUser}
         inviteLink={inviteLink}
@@ -47,13 +54,6 @@ const OrganizationPage = ({
           </Button>
         )}
       />
-      <Button>
-        {btn => (
-          <Link href={`/organizer/organizations/${organizationId}/edit`} className={btn}>
-            <IconLabel icon="fa fa-pencil" label="Edit" />
-          </Link>
-        )}
-      </Button>
     </Titlebar>
     <List
       className="organization-content"
