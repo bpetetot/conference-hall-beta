@@ -2,15 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconLabel from 'components/iconLabel'
+import Button from 'components/button'
 
 const SubmitTalkLink = ({
   label, displayed, onClick, className,
 }) => {
   if (!displayed) return null
   return (
-    <a onClick={onClick} role="button" className={className}>
-      {label || <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />}
-    </a>
+    <Button primary>
+      {btn => (
+        <a onClick={onClick} role="button" className={className || btn}>
+          {label || <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />}
+        </a>
+      )}
+    </Button>
   )
 }
 

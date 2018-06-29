@@ -23,7 +23,7 @@ const EventActions = ({ eventId, isOrganizer, className }) => {
           )}
         </Button>
       )}
-      <SubmitTalkLink className="btn" eventId={eventId} />
+      <SubmitTalkLink eventId={eventId} />
       {isOrganizer && <CopyInput title="Share link" value={`${origin}/public/event/${eventId}`} />}
     </div>
   )
