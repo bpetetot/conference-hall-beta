@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import IconLabel from 'components/iconLabel'
 import RelativeDate from 'components/relativeDate'
+import Button from 'components/button'
 import { ListItem } from 'components/list'
 import { ConfirmationPopin } from 'components/portals'
 import AvatarLabel from 'components/avatar/avatarLabel'
@@ -41,14 +42,14 @@ const MemberRow = ({
             renderTrigger={({ show }) => (
               <Fragment>
                 {canRemove && (
-                  <a onClick={show} role="button" className="btn btn-default">
+                  <Button onClick={show} tertiary>
                     <IconLabel icon="fa fa-trash" label="Remove" />
-                  </a>
+                  </Button>
                 )}
                 {canLeave && (
-                  <a onClick={show} role="button" className="btn btn-default">
+                  <Button onClick={show} tertiary>
                     <IconLabel icon="fa fa-sign-out" label="Leave" />
-                  </a>
+                  </Button>
                 )}
               </Fragment>
             )}

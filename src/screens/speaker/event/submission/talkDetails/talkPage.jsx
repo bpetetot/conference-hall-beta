@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
+import Button from 'components/button'
 import { TalkAbstract, TalkSpeakers } from 'screens/components/talk'
 import TalkTitle from './talkTitle'
 
@@ -15,9 +16,9 @@ const TalkPage = ({
   return (
     <div className="talk-details">
       <Titlebar icon="fa fa-microphone" title={titleComponent} className="talk-title">
-        <button className="btn btn-primary" onClick={onNext}>
+        <Button accent onClick={onNext}>
           <IconLabel icon="fa fa-angle-right" label="Next" right />
-        </button>
+        </Button>
       </Titlebar>
       <div className="talk-page">
         <TalkAbstract

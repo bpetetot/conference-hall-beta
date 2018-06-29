@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import { Drawer } from 'components/portals'
+import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import TeamRatings from './teamRatings'
 import SpeakerSurveys from './speakerSurveys'
@@ -16,9 +17,9 @@ const Actions = ({
     <Drawer
       title="Team ratings"
       renderTrigger={({ show }) => (
-        <button className="btn btn-default" onClick={show}>
+        <Button secondary small onClick={show}>
           <IconLabel icon="fa fa-star" label="All ratings" />
-        </button>
+        </Button>
       )}
     >
       <TeamRatings id={proposal.id} />
@@ -28,9 +29,9 @@ const Actions = ({
       <Drawer
         title="Speaker survey"
         renderTrigger={({ show }) => (
-          <button className="btn btn-default" onClick={show}>
+          <Button secondary small onClick={show}>
             <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
-          </button>
+          </Button>
         )}
       >
         <SpeakerSurveys eventId={eventId} speakers={proposal.speakers} />

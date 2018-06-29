@@ -7,6 +7,7 @@ import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
 import AddMember from 'components/addUser'
 import IconLabel from 'components/iconLabel'
+import Button from 'components/button'
 import MemberRow from '../components/memberRow'
 
 import './organizationPage.css'
@@ -23,9 +24,6 @@ const OrganizationPage = ({
 }) => (
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name}>
-      <Link href={`/organizer/organizations/${organizationId}/edit`} className="btn">
-        <IconLabel icon="fa fa-pencil" label="Edit" />
-      </Link>
       <AddMember
         onSelectUser={onSelectUser}
         inviteLink={inviteLink}
@@ -44,11 +42,18 @@ const OrganizationPage = ({
           </Fragment>
         }
         renderTrigger={({ show }) => (
-          <button onClick={show} className="btn">
+          <Button onClick={show} secondary>
             <IconLabel icon="fa fa-user" label="Add a member" />
-          </button>
+          </Button>
         )}
       />
+      <Button>
+        {btn => (
+          <Link href={`/organizer/organizations/${organizationId}/edit`} className={btn}>
+            <IconLabel icon="fa fa-pencil" label="Edit" />
+          </Link>
+        )}
+      </Button>
     </Titlebar>
     <List
       className="organization-content"

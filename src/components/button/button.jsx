@@ -16,6 +16,7 @@ const Button = ({
   href,
   simple,
   children,
+  onClick,
   ...rest
 }) => {
   const classes = cn(
@@ -34,15 +35,17 @@ const Button = ({
     className,
   )
 
-  if (href) {
+  if (typeof children === 'function') {
+    return children(classes)
+  } else if (href) {
     return (
-      <a className={classes} {...rest}>
+      <a className={classes} href={href} {...rest}>
         {children}
       </a>
     )
   }
   return (
-    <button className={classes} {...rest}>
+    <button className={classes} onClick={onClick} {...rest}>
       {children}
     </button>
   )
@@ -59,6 +62,7 @@ Button.propTypes = {
   error: PropTypes.bool,
   simple: PropTypes.bool,
   href: PropTypes.string,
+  onClick: PropTypes.func,
   className: PropTypes.string,
 }
 
@@ -71,6 +75,7 @@ Button.defaultProps = {
   error: false,
   simple: false,
   href: undefined,
+  onClick: undefined,
   block: false,
   className: undefined,
 }

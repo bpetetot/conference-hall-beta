@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Titlebar from 'components/titlebar'
+import Button from 'components/button'
 import { Field, reduxForm } from 'redux-form'
 import { markdownInput, radio, SubmitButton, RadioGroup } from 'components/form'
 import isEmpty from 'lodash/isEmpty'
@@ -14,9 +15,9 @@ const TalkSubmission = ({
   <form className="talk-submission">
     <Titlebar icon="fa fa-microphone" title={talk.title}>
       {update && (
-        <button onClick={() => unsubmitTalk(talk.id, event.id)} className="btn">
+        <Button accent secondary onClick={() => unsubmitTalk(talk.id, event.id)}>
           Remove submission
-        </button>
+        </Button>
       )}
       <SubmitButton {...formProps} noPristine>
         {update ? 'Update submission' : `Submit to ${event.name}`}

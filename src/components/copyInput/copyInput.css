@@ -23,8 +23,6 @@
 }
 
 .copy-input > button {
-  background: var(--background-color);
-  color: var(--primary-color);
   border: none;
   border-left: 1px solid var(--grey-color);
   border-top-left-radius: 0;
@@ -34,6 +32,4 @@
 .copy-input > button:hover {
   border: none;
   border-left: 1px solid var(--grey-color);
-  color: var(--primary-color);
-  background: var(--background-color);
 }

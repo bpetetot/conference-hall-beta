@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { LoadingIndicator } from 'components/loader'
 import IconLabel from 'components/iconLabel'
+import Button from 'components/button'
 import AuthErrorModal from './authError'
 import './login.css'
 
@@ -14,9 +15,9 @@ const Login = ({
     <div className="login">
       <h1 className="login-title">Connexion</h1>
       {providers.map(provider => (
-        <button key={provider} className={`btn btn-${provider}`} onClick={() => signin(provider)}>
-          <IconLabel icon={`fa fa-${provider}`} label={`With ${provider}`} />
-        </button>
+        <Button key={provider} className={`btn-${provider}`} onClick={() => signin(provider)}>
+          <IconLabel icon={`fa fa-${provider}`} label={`with ${provider}`} />
+        </Button>
       ))}
       <AuthErrorModal />
     </div>

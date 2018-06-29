@@ -4,6 +4,7 @@ import { Link } from 'redux-little-router'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
+import Button from 'components/button'
 import { TalkAbstract, TalkSpeakers, TalkSubmissions } from 'screens/components/talk'
 import DeleteTalkButton from './delete'
 
@@ -15,9 +16,13 @@ const TalkPage = ({
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
       <DeleteTalkButton talkId={id} />
-      <Link href={`/speaker/talk/${id}/edit`} className="btn">
-        <IconLabel icon="fa fa-pencil" label="Edit" />
-      </Link>
+      <Button>
+        {btn => (
+          <Link href={`/speaker/talk/${id}/edit`} className={btn}>
+            <IconLabel icon="fa fa-pencil" label="Edit" />
+          </Link>
+        )}
+      </Button>
     </Titlebar>
     <div className="talk-page">
       <TalkAbstract

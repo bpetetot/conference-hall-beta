@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'redux-little-router'
+
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
+import Button from 'components/button'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
 import './events.css'
@@ -10,9 +12,13 @@ import './events.css'
 const MyEvents = ({ events, onSelect }) => (
   <div className="events-page">
     <Titlebar className="events-header" icon="fa fa-calendar-o" title="My events">
-      <Link href="/organizer/event/create" className="btn">
-        <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
-      </Link>
+      <Button>
+        {btn => (
+          <Link href="/organizer/event/create" className={btn}>
+            <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
+          </Link>
+        )}
+      </Button>
     </Titlebar>
     <List
       className="events-content"

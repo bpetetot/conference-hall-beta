@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from 'components/button'
 import './copyInput.css'
 
 class CopyInput extends PureComponent {
@@ -32,9 +33,9 @@ class CopyInput extends PureComponent {
           placeholder="Just copy it"
           defaultValue={value}
         />
-        <button className="btn" onClick={this.copy}>
+        <Button secondary onClick={this.copy}>
           <i className="fa fa-clipboard" />
-        </button>
+        </Button>
       </div>
     )
   }

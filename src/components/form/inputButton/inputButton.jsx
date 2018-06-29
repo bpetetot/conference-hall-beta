@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import Button from 'components/button'
 import './inputButton.css'
 
 class InputButton extends Component {
@@ -39,13 +40,14 @@ class InputButton extends Component {
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
         />
-        <button
+        <Button
+          accent
           onClick={this.handleClick}
-          className={cn('btn', btnClassName)}
+          className={btnClassName}
           disabled={!this.state.value || disabled}
         >
           {btnLabel}
-        </button>
+        </Button>
       </div>
     )
   }
