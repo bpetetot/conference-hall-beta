@@ -5,6 +5,7 @@ menu: Portals
 ---
 
 import { Playground, PropsTable } from 'docz'
+import Button from 'components/button'
 import ConfirmationPopin from './confirmation'
 
 # Confirmation Popin
@@ -19,9 +20,9 @@ import ConfirmationPopin from './confirmation'
     withCancel
     className="default-theme"
     renderTrigger={({ show }) => (
-      <button onClick={show} className="btn btn-primary">
+      <Button onClick={show}>
         Open Confirmation Popin
-      </button>
+      </Button>
     )}
   />
 </Playground>

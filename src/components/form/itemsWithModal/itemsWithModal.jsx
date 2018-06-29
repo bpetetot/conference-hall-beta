@@ -4,6 +4,7 @@ import { Field } from 'redux-form'
 import uuid from 'uuid/v5'
 
 import { Modal } from 'components/portals'
+import Button from 'components/button'
 import Item from './item'
 
 import './itemsWithModal.css'
@@ -56,9 +57,9 @@ export default (name, Form) =>
           ))}
           <Modal
             renderTrigger={({ show }) => (
-              <button className="btn" type="button" onClick={show}>
+              <Button onClick={show}>
                 <i className="fa fa-plus" />
-              </button>
+              </Button>
             )}
           >
             {({ hide }) => <Form onSubmit={this.onAddItem(hide)} />}

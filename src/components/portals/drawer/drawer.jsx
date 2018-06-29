@@ -23,7 +23,7 @@ const Drawer = ({
               <div className="drawer-title">{title}</div>
               {subtitle && <div className="drawer-subtitle">{subtitle}</div>}
             </div>
-            <Button icon onClick={hide}>
+            <Button simple onClick={hide}>
               <CloseIcon />
             </Button>
           </div>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import Modal from 'components/portals/modal'
+import Button from 'components/button'
 
 import './confirmation.css'
 
@@ -52,14 +53,14 @@ class ConfirmationPopin extends Component {
             </div>
             <div className="confirmation-actions">
               {(withCancel || onCancel) && (
-                <button className="btn btn-default" onClick={this.handleCancel(hide)} type="button">
+                <Button secondary onClick={this.handleCancel(hide)}>
                   Cancel
-                </button>
+                </Button>
               )}
               {(withOk || onOk) && (
-                <button className="btn btn-primary" onClick={this.handleOk(hide)} type="button">
+                <Button accent onClick={this.handleOk(hide)}>
                   Ok
-                </button>
+                </Button>
               )}
             </div>
           </Fragment>

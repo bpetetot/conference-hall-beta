@@ -15,7 +15,6 @@ const BetaAccess = ({ validateAccessKey, error }) => (
       <InputButton
         btnLabel="Access beta"
         type="text"
-        btnClassName="btn-primary"
         placeholder="Please type your beta access key here"
         onClick={validateAccessKey}
       />

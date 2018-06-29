@@ -5,6 +5,7 @@ menu: Portals
 ---
 
 import { Playground, PropsTable } from 'docz'
+import Button from 'components/button'
 import Drawer from './drawer'
 
 # Drawer
@@ -17,14 +18,14 @@ import Drawer from './drawer'
     subtitle="Subtitle"
     className="default-theme"
     actions={({ hide }) => (
-      <button onClick={hide} className="btn btn-primary">
+      <Button onClick={hide}>
         Close
-      </button>
+      </Button>
     )}
     renderTrigger={({ show }) => (
-      <button onClick={show} className="btn btn-primary">
+      <Button onClick={show}>
         Open Drawer
-      </button>
+      </Button>
     )}
   >
     This is a drawer!

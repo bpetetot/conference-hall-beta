@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import upperCase from 'lodash/upperCase'
 
 import { Modal } from 'components/portals'
+import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import InputButton from 'components/form/inputButton'
 
@@ -26,9 +27,9 @@ class DeleteTalkModal extends Component {
       <Modal
         className="delete-talk-modal"
         renderTrigger={({ show }) => (
-          <a onClick={show} role="button" className="btn btn-default">
+          <Button onClick={show} secondary>
             <IconLabel icon="fa fa-trash" label="Delete" />
-          </a>
+          </Button>
         )}
       >
         {({ hide }) => (

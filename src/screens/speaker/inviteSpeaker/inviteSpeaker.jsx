@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Speaker from 'screens/components/speaker'
+import Button from 'components/button'
 import './inviteSpeaker.css'
 
 const InviteSpeaker = ({
@@ -11,17 +12,17 @@ const InviteSpeaker = ({
 }) => (
   <div className="invite-speaker">
     <Titlebar icon="fa fa-envelope-open" title="You're invite to be co-speaker">
-      <button onClick={cancel} className="btn btn-default">
+      <Button secondary onClick={cancel}>
         Cancel
-      </button>
+      </Button>
     </Titlebar>
     <div className="card">
       <Speaker id={uidInvite} suffix="invites you to join the talk :" className="invited-by" />
       <h2><IconLabel icon="fa fa-microphone" label={title} /></h2>
       <p>You&apos;re will be able to update it and submit to any event.</p>
-      <button onClick={join} className="btn btn-primary invite-join-btn">
+      <Button accent onClick={join} className="invite-join-btn">
         Join as co-speaker
-      </button>
+      </Button>
     </div>
   </div>
 )

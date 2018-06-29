@@ -46,7 +46,7 @@ const Snackbar = ({
           <div className="cc-snackbar-content">{content}</div>
           <div className="cc-snackbar-actions">
             {withCloseIcon && (
-              <Button icon onClick={hide}>
+              <Button simple onClick={hide}>
                 <CloseIcon />
               </Button>
             )}

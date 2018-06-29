@@ -32,7 +32,7 @@ const Modal = ({
         <div className={cn('modal', className)}>
           {children({ hide, show, isOpen })}
           {withCloseIcon && (
-            <Button className="modal-close" icon onClick={hide}>
+            <Button className="modal-close" simple onClick={hide}>
               <CloseIcon />
             </Button>
           )}

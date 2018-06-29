@@ -4,6 +4,7 @@ route: /snackbar
 ---
 
 import { Playground, PropsTable } from 'docz'
+import Button from 'components/button'
 import Snackbar from './snackbar'
 
 # Snackbar
@@ -44,9 +45,9 @@ import Snackbar from './snackbar'
     content="Snackbar automatically closed after 2 seconds"
     renderTrigger={({ show, isOpen }) => (
       !isOpen && (
-        <button onClick={show} className="btn btn-primary">
+        <Button onClick={show}>
           Open auto-close Snackbar
-        </button>
+        </Button>
       )
     )}
   />

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from 'components/button'
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import ApiCard from './apiCard'
@@ -19,9 +20,9 @@ const ApiForm = ({
         </Label>
         <Label name="apiKey" label="API key" className="generate-key-input">
           <input type="text" value={apiKey} disabled />
-          <button className="btn btn-default" onClick={onGenerateKey} disabled={!apiActive}>
+          <Button secondary onClick={onGenerateKey} disabled={!apiActive}>
             Generate API Key
-          </button>
+          </Button>
         </Label>
         <div className="api-label">
           Before enabling API, read the documentation available into the{' '}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'redux-little-router'
 import cn from 'classnames'
 
+import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import CopyInput from 'components/copyInput'
 import SubmitTalkLink from '../../submitTalksLink'
@@ -14,14 +15,16 @@ const EventActions = ({ eventId, isOrganizer, className }) => {
   return (
     <div className={cn('event-actions', className)}>
       {isOrganizer && (
-        <Link href={`/organizer/event/${eventId}/edit`} className="btn">
-          <IconLabel icon="fa fa-pencil" label="Edit" />
-        </Link>
+        <Button primary>
+          {btn => (
+            <Link href={`/organizer/event/${eventId}/edit`} className={btn}>
+              <IconLabel icon="fa fa-pencil" label="Edit" />
+            </Link>
+          )}
+        </Button>
       )}
-      <SubmitTalkLink className="btn" eventId={eventId} />
-      {isOrganizer && (
-        <CopyInput title="Share link" value={`${origin}/public/event/${eventId}`} />
-      )}
+      <SubmitTalkLink eventId={eventId} />
+      {isOrganizer && <CopyInput title="Share link" value={`${origin}/public/event/${eventId}`} />}
     </div>
   )
 }

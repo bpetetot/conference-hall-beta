@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Button from 'components/button'
 import './apiCard.css'
 
 const ApiCard = ({ name, description, endpoint }) => (
@@ -10,9 +11,9 @@ const ApiCard = ({ name, description, endpoint }) => (
       <div className="api-description">{description}</div>
     </div>
     <div>
-      <a href={endpoint} target="_NEW" className="btn">
+      <Button secondary href={endpoint} target="_NEW">
         Try out
-      </a>
+      </Button>
     </div>
   </div>
 )
