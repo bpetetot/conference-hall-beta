@@ -23,3 +23,25 @@ body {
   height: 100%;
   overflow: hidden;
 }
+
+@media print{
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .app {
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .no-print {
+    display: none;
+  }
+}

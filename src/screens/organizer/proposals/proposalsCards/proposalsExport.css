@@ -1,0 +1,4 @@
+.proposals-cards {
+  display: inline-flex;
+  flex-wrap: wrap;
+}

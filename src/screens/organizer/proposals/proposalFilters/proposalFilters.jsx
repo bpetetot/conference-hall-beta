@@ -35,7 +35,7 @@ const ProposalFilters = ({
   onChange,
   deliberationActive,
 }) => (
-  <div className="proposals-filters">
+  <div className="proposals-filters no-print">
     {deliberationActive && (
       <select id="state" onChange={onChange} defaultValue={filters.state}>
         <option value="">All statuses</option>
