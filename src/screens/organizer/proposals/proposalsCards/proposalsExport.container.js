@@ -3,7 +3,7 @@ import { inject } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
-import ProposalsList from './proposalsList'
+import ProposalsExport from './proposalsExport'
 
 const mapStore = store => ({
   loaded: store.data.proposals.isInitialized(),
@@ -15,7 +15,7 @@ const mapStore = store => ({
 })
 
 export default compose(
-  forRoute.absolute('PROPOSALS'), //
+  forRoute.absolute('PROPOSALS_CARDS'), //
   inject(mapStore), //
   loader, //
-)(ProposalsList)
+)(ProposalsExport)
