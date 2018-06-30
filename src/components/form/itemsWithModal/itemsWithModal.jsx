@@ -57,7 +57,7 @@ export default (name, Form) =>
           ))}
           <Modal
             renderTrigger={({ show }) => (
-              <Button onClick={show}>
+              <Button onClick={show} type="button">
                 <i className="fa fa-plus" />
               </Button>
             )}
