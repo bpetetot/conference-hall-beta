@@ -26,7 +26,7 @@ const getUids = flow(flatMap('speakers'), uniq)
 module.exports = (req, res) => {
   const { eventId } = req.params
   const event = sanitizeEvent(res.locals.event)
-  const talks = getEventProposals(eventId).then(sanitizeProposals)
+  const talks = getEventProposals(eventId, 'accepted').then(sanitizeProposals)
   const speakers = talks.then(getUids).then(getUsers).then(sanitizeSpeakers)
 
   Promise.all([talks, speakers])
