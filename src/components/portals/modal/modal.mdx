@@ -1,0 +1,31 @@
+---
+name: Modal
+route: /portals/modal
+menu: Portals
+---
+
+import { Playground, PropsTable } from 'docz'
+import Button from 'components/button'
+import Modal from './modal'
+
+# Modal
+
+## Basic usage
+
+<Playground>
+  <Modal
+    onClose={() => console.log('close')}
+    className="default-theme"
+    renderTrigger={({ show }) => (
+      <Button onClick={show}>
+        Open Modal
+      </Button>
+    )}
+  >
+    {({ show, hide, isOpen }) => <div>Modal content</div>}
+  </Modal>
+</Playground>
+
+## Properties
+
+<PropsTable of={Modal} />

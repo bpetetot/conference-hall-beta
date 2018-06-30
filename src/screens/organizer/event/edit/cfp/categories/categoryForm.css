@@ -1,11 +1,9 @@
 .category-form > h2 {
-  background: var(--background-color);
   margin: 0;
-  padding: 2em;
+  padding-bottom: 2em;
 }
 
 .category-form .category-form-content {
-  padding: 3em;
   display: flex;
   flex-direction: column;
 }

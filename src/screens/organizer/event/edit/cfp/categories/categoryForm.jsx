@@ -12,7 +12,7 @@ const CategoryForm = ({ edit, ...formProps }) => (
     <div className="category-form-content">
       <Field name="name" label="Name" type="text" component={input} validate={required} />
       <Field name="description" label="Description" type="text" component={textarea} />
-      <SubmitButton {...formProps} className="btn-save-category">
+      <SubmitButton {...formProps}>
         {edit ? 'Save category' : 'Add category'}
       </SubmitButton>
     </div>

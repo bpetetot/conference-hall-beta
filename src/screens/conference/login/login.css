@@ -32,6 +32,7 @@
 .login button.btn-google:hover {
   background: #fff;
   color: #ea2533;
+  opacity: 1;
 }
 
 .login button.btn-twitter {
@@ -42,6 +43,7 @@
 .login button.btn-twitter:hover {
   background: #fff;
   color: #34ccfe;
+  opacity: 1;
 }
 
 .login button.btn-github {
@@ -52,6 +54,7 @@
 .login button.btn-github:hover {
   background: #fff;
   color: #000;
+  opacity: 1;
 }
 
 .login button.btn-facebook {
@@ -62,4 +65,5 @@
 .login button.btn-facebook:hover {
   background: #fff;
   color: #3b5998;
+  opacity: 1;
 }

@@ -24,3 +24,7 @@ input:disabled,
 select:disabled {
   color: var(--grey-color);
 }
+
+input::placeholder {
+  color: var(--grey-color-dark);
+}

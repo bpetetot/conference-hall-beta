@@ -1,0 +1,209 @@
+.cc-button {
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  transition: all 0.25s;
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1em;
+}
+
+
+/* Button sizes */
+.cc-button-small {
+  padding: 8px 12px;
+  font-size: 0.7em;
+}
+
+.cc-button-large {
+  padding: 12px 18px;
+  font-size: 1.3em;
+}
+
+
+/* Button hierarchy */
+.cc-button-primary {
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color-font);
+  fill: var(--primary-color-font);
+}
+
+.cc-button-primary:hover {
+  background: var(--primary-color-dark);
+  border: 1px solid var(--primary-color-dark);
+  color: var(--primary-color-font);
+  fill: var(--primary-color-font);
+}
+
+.cc-button-secondary {
+  background: #fff;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  fill: var(--primary-color);
+}
+
+.cc-button-secondary:hover {
+  background: #fff;
+  border: 1px solid var(--primary-color-dark);
+  color: var(--primary-color-dark);
+  fill: var(--primary-color-dark);
+}
+
+.cc-button-tertiary {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--primary-color);
+  fill: var(--primary-color);
+}
+
+.cc-button-tertiary:hover {
+  color: var(--primary-color-dark);
+  fill: var(--primary-color-dark);
+}
+
+
+/* Accent button by hierarchy */
+.cc-button-primary.cc-button-accent {
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color-font);
+  fill: var(--secondary-color-font);
+}
+
+.cc-button-primary.cc-button-accent:hover {
+  background: var(--secondary-color-dark);
+  border: 1px solid var(--secondary-color-dark);
+  color: var(--secondary-color-font);
+  fill: var(--secondary-color-font);
+}
+
+.cc-button-secondary.cc-button-accent {
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  fill: var(--secondary-color);
+}
+
+.cc-button-secondary.cc-button-accent:hover {
+  border: 1px solid var(--secondary-color-dark);
+  color: var(--secondary-color-dark);
+  fill: var(--secondary-color-dark);
+}
+
+.cc-button-tertiary.cc-button-accent {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--secondary-color);
+  fill: var(--secondary-color);
+}
+
+.cc-button-tertiary.cc-button-accent:hover {
+  color: var(--secondary-color-dark);
+  fill: var(--secondary-color-dark);
+}
+
+
+/* Error button by hierarchy */
+.cc-button-primary.cc-button-error {
+  background: var(--error-color);
+  border: 1px solid var(--error-color);
+  color: #fff;
+  fill: #fff;
+}
+
+.cc-button-primary.cc-button-error:hover {
+  background: var(--error-color);
+  border: 1px solid var(--error-color);
+  color: #fff;
+  fill: #fff;
+}
+
+.cc-button-secondary.cc-button-error {
+  border: 1px solid var(--error-color);
+  color: var(--error-color);
+  fill: var(--error-color);
+}
+
+.cc-button-secondary.cc-button-error:hover {
+  border: 1px solid var(--error-color);
+  color: var(--error-color);
+  fill: var(--error-color);
+}
+
+.cc-button-tertiary.cc-button-error {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--error-color);
+  fill: var(--error-color);
+}
+
+.cc-button-tertiary.cc-button-error:hover {
+  color: var(--error-color);
+  fill: var(--error-color);
+}
+
+
+/* button disabled */
+.cc-button:disabled {
+  background: var(--grey-color-light);
+  border: 1px solid var(--grey-color-light);
+  color: var(--grey-color-dark);
+  fill: var(--grey-color-dark);
+  cursor: not-allowed;
+}
+
+.cc-button:disabled:hover {
+  background: var(--grey-color-light);
+  border: 1px solid var(--grey-color-light);
+  color: var(--grey-color-dark);
+  fill: var(--grey-color-dark);
+}
+
+.cc-button-secondary.cc-button:disabled {
+  background: none;
+}
+
+.cc-button-secondary.cc-button:disabled:hover {
+  background: none;
+}
+
+.cc-button-tertiary.cc-button:disabled {
+  background: none;
+  border: none;
+}
+
+.cc-button-tertiary.cc-button:disabled:hover {
+  background: none;
+  border: none;
+}
+
+
+/** block button */
+.cc-button-block {
+  display: block;
+  width: 100%;
+}
+
+
+/** simple button */
+.cc-button-simple {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--primary-color);
+  fill: var(--primary-color);
+}
+
+.cc-button-simple:hover {
+  border: none;
+  background: none;
+  color: var(--primary-color);
+  fill: var(--primary-color);
+  opacity: 0.7;
+}

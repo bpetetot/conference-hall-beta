@@ -1,0 +1,38 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  font-size: var(--font-size);
+  min-width: 50%;
+  overflow: auto;
+  padding: 3em;
+  z-index: 120;
+}
+
+.modal .modal-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 2em;
+  max-height: 100vh;
+}
+
+.modal .modal-close:hover {
+  color: var(--primary-color);
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .modal {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .modal {
+    height: 100%;
+    width: 100%;
+  }
+}

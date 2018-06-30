@@ -6,7 +6,6 @@ import './themes/red.css'
 import './themes/blue.css'
 
 import './components/a.css'
-import './components/button.css'
 import './components/card.css'
 import './components/input.css'
 import './components/small.css'

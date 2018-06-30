@@ -1,0 +1,37 @@
+---
+name: Drawer
+route: /portals/drawer
+menu: Portals
+---
+
+import { Playground, PropsTable } from 'docz'
+import Button from 'components/button'
+import Drawer from './drawer'
+
+# Drawer
+
+## Basic usage
+
+<Playground>
+  <Drawer
+    title="Title"
+    subtitle="Subtitle"
+    className="default-theme"
+    actions={({ hide }) => (
+      <Button onClick={hide}>
+        Close
+      </Button>
+    )}
+    renderTrigger={({ show }) => (
+      <Button onClick={show}>
+        Open Drawer
+      </Button>
+    )}
+  >
+    This is a drawer!
+  </Drawer>
+</Playground>
+
+## Properties
+
+<PropsTable of={Drawer} />

@@ -18,3 +18,11 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+.input-button > button:disabled {
+  border-color: var(--grey-color);
+}
+
+.input-button > button:disabled:hover {
+  border-color: var(--grey-color);
+}
