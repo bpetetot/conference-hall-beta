@@ -762,10 +762,6 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@emotion/babel-utils@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@emotion/babel-utils/-/babel-utils-0.5.3.tgz#6be6dd7a480fdbdfb6cbba7f4f6d9361744b8d6e"
-
 "@emotion/babel-utils@^0.6.4":
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/@emotion/babel-utils/-/babel-utils-0.6.4.tgz#2eac69eb31ae944fbe4a2a0e736a35db5f810866"
@@ -803,10 +799,6 @@
 "@emotion/stylis@^0.6.10":
   version "0.6.10"
   resolved "https://registry.yarnpkg.com/@emotion/stylis/-/stylis-0.6.10.tgz#7d321e639ebc8ba23ace5990c20e94dcebb8f3dd"
-
-"@emotion/stylis@^0.6.5":
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/@emotion/stylis/-/stylis-0.6.8.tgz#6ad4e8d32b19b440efa4481bbbcb98a8c12765bb"
 
 "@emotion/unitless@^0.6.2", "@emotion/unitless@^0.6.3":
   version "0.6.3"
@@ -935,15 +927,15 @@
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-0.11.0.tgz#8b4f90a122c0aa455c1e40282ddcbcc87fbb5694"
 
-"@mdx-js/loader@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-0.11.1.tgz#fe2a0238fddbc20a32df3d58f03250264d622fa4"
+"@mdx-js/loader@^0.13.0-0":
+  version "0.13.0-0"
+  resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-0.13.0-0.tgz#8240d06b46c8ac8d9006b501249ad40641940214"
   dependencies:
     "@mdx-js/tag" "^0.11.0"
 
-"@mdx-js/mdx@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-0.11.1.tgz#2ca1f2a4287cbc603a7bcb77667d5f099b1da66c"
+"@mdx-js/mdx@^0.13.0-0":
+  version "0.13.0-0"
+  resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-0.13.0-0.tgz#e754a069a5727259df7817548bd1005257613286"
   dependencies:
     "@mdx-js/mdxast" "^0.10.0"
     mdast-util-to-hast "^3.0.0"
@@ -1812,23 +1804,6 @@ babel-plugin-dynamic-import-node@1.1.0:
     babel-plugin-syntax-dynamic-import "^6.18.0"
     babel-template "^6.26.0"
     babel-types "^6.26.0"
-
-babel-plugin-emotion@^9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-emotion/-/babel-plugin-emotion-9.2.0.tgz#43543dd02c7b5cd89d464aeedef864edb754b852"
-  dependencies:
-    "@babel/helper-module-imports" "7.0.0-beta.40"
-    "@emotion/babel-utils" "^0.5.3"
-    "@emotion/hash" "^0.6.2"
-    "@emotion/memoize" "^0.6.1"
-    "@emotion/stylis" "^0.6.5"
-    babel-plugin-macros "^2.0.0"
-    babel-plugin-syntax-jsx "^6.18.0"
-    convert-source-map "^1.5.0"
-    find-root "^1.1.0"
-    mkdirp "^0.5.1"
-    source-map "^0.5.7"
-    touch "^1.0.0"
 
 babel-plugin-emotion@^9.2.4:
   version "9.2.4"
@@ -3299,18 +3274,6 @@ create-emotion-styled@^9.2.3:
   dependencies:
     "@emotion/is-prop-valid" "^0.6.1"
 
-create-emotion@^9.2.1:
-  version "9.2.1"
-  resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-9.2.1.tgz#1316189d53bf65cf191a59d3ac6ecb6f4e13e020"
-  dependencies:
-    "@emotion/hash" "^0.6.2"
-    "@emotion/memoize" "^0.6.1"
-    "@emotion/stylis" "^0.6.5"
-    "@emotion/unitless" "^0.6.2"
-    csstype "^2.5.2"
-    stylis "^3.5.0"
-    stylis-rule-sheet "^0.0.10"
-
 create-emotion@^9.2.4:
   version "9.2.4"
   resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-9.2.4.tgz#0a4379f6bf0708c54fe26bfcd6b6bd3592e8cf23"
@@ -3561,6 +3524,12 @@ decamelize@^1.0.0, decamelize@^1.1.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
+decamelize@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-2.0.0.tgz#656d7bbc8094c4c788ea53c5840908c9c7d063c7"
+  dependencies:
+    xregexp "4.0.0"
+
 decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
@@ -3770,15 +3739,15 @@ doctrine@^2.0.0, doctrine@^2.0.2, doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
-docz-core@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/docz-core/-/docz-core-0.4.0.tgz#9d286559c31c8830475884f09d106b33eff20faa"
+docz-core@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/docz-core/-/docz-core-0.5.0.tgz#838b38b1d8098e8a9b38830138ea4218670cdb76"
   dependencies:
     "@babel/core" "7.0.0-beta.51"
     "@babel/preset-typescript" "^7.0.0-beta.51"
     "@babel/runtime" "^7.0.0-beta.51"
-    "@mdx-js/loader" "^0.11.1"
-    "@mdx-js/mdx" "^0.11.1"
+    "@mdx-js/loader" "^0.13.0-0"
+    "@mdx-js/mdx" "^0.13.0-0"
     "@mdx-js/mdxast" "^0.10.0"
     "@sindresorhus/slugify" "^0.3.0"
     art-template "^4.12.2"
@@ -3792,7 +3761,6 @@ docz-core@^0.4.0:
     cpy "^7.0.1"
     deepmerge "^2.1.1"
     detect-port "^1.2.3"
-    docz-theme-default "^0.4.0"
     express "^4.16.3"
     fast-glob "^2.2.2"
     file-loader "^1.1.11"
@@ -3805,9 +3773,9 @@ docz-core@^0.4.0:
     koa-connect "^2.0.1"
     koa-mount "^3.0.0"
     koa-static "^5.0.0"
-    load-cfg "^0.3.4"
+    load-cfg "^0.5.0"
     lodash.get "^4.4.2"
-    prettier "^1.13.6"
+    prettier "^1.13.7"
     react-dev-utils "^5.0.1"
     react-docgen-typescript-loader "^2.1.1"
     react-hot-loader "4.3.3"
@@ -3820,6 +3788,7 @@ docz-core@^0.4.0:
     resolve "^1.8.1"
     signale "^1.2.1"
     strip-indent "^2.0.0"
+    titleize "^1.0.1"
     to-vfile "^5.0.0"
     uglifyjs-webpack-plugin "^1.2.7"
     ulid "^2.3.0"
@@ -3829,54 +3798,55 @@ docz-core@^0.4.0:
     unist-util-remove "^1.0.1"
     unist-util-visit "^1.3.1"
     url-loader "^1.0.1"
-    webpack "^4.12.1"
+    webpack "^4.14.0"
     webpack-chain "^4.8.0"
-    webpack-hot-client "^4.0.3"
+    webpack-hot-client "^4.0.4"
     webpack-manifest-plugin "^2.0.3"
     webpack-serve "^1.0.4"
     webpackbar "^2.6.1"
     ws "^5.2.1"
-    yargs "^11.0.0"
+    yargs "^12.0.1"
 
-docz-theme-default@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/docz-theme-default/-/docz-theme-default-0.4.0.tgz#04c3cb2cc8cd83312a6b7ca1e57a8532814ae290"
+docz-theme-default@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/docz-theme-default/-/docz-theme-default-0.5.0.tgz#2843155f724a3f244689b7220dc3f1a4c1841e6c"
   dependencies:
-    docz "^0.4.0"
+    docz "^0.5.0"
     emotion "^9.2.4"
     emotion-theming "^9.2.4"
     facepaint "^1.2.1"
     fast-deep-equal "^2.0.1"
+    fuse.js "^3.2.1"
     prismjs "^1.15.0"
     prop-types "15.6.2"
     react "^16.4.1"
     react-adopt "^0.6.0"
     react-breakpoints "^3.0.0"
+    react-content-loader "^3.1.2"
     react-dom "^16.4.1"
     react-emotion "^9.2.4"
     react-feather "^1.1.0"
     react-lightweight-tooltip "^1.0.0"
     react-powerplug "^0.1.6"
-    react-router-hash-link "^1.2.0"
-    react-spinners "^0.3.2"
     webfontloader "^1.6.28"
 
-docz@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/docz/-/docz-0.4.0.tgz#27b7ac412e958be52ee27a01e802ba161247b207"
+docz@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/docz/-/docz-0.5.0.tgz#7a490c2619ba47d214e3642baadd493853a45e97"
   dependencies:
     "@mdx-js/tag" "^0.11.0"
     "@sindresorhus/slugify" "^0.3.0"
     deepmerge "^2.1.1"
-    docz-core "^0.4.0"
-    docz-theme-default "^0.4.0"
+    docz-core "^0.5.0"
+    docz-theme-default "^0.5.0"
     invariant "^2.2.4"
     loadable-components "^2.2.2"
     pascalcase "^0.1.1"
     react "^16.4.1"
     react-dom "^16.4.1"
     react-router-dom "^4.3.1"
-    yargs "^11.0.0"
+    react-router-hash-link "^1.2.0"
+    yargs "^12.0.1"
 
 dom-converter@~0.1:
   version "0.1.4"
@@ -4028,13 +3998,6 @@ emotion-theming@^9.2.4:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-emotion@^9.1.1:
-  version "9.2.3"
-  resolved "https://registry.yarnpkg.com/emotion/-/emotion-9.2.3.tgz#c93b9a222df92e6281036afa02b3b5b8cfb9e049"
-  dependencies:
-    babel-plugin-emotion "^9.2.0"
-    create-emotion "^9.2.1"
-
 emotion@^9.2.4:
   version "9.2.4"
   resolved "https://registry.yarnpkg.com/emotion/-/emotion-9.2.4.tgz#0139e7cc154b2845f4b9afaa996dd4de13bb90e3"
@@ -4067,9 +4030,9 @@ enhanced-resolve@^3.4.0:
     object-assign "^4.0.1"
     tapable "^0.2.7"
 
-enhanced-resolve@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-4.0.0.tgz#e34a6eaa790f62fccd71d93959f56b2b432db10a"
+enhanced-resolve@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-4.1.0.tgz#41c7e0bfdfe74ac1ffe1e57ad6a5c6c9f3742a7f"
   dependencies:
     graceful-fs "^4.1.2"
     memory-fs "^0.4.0"
@@ -4488,9 +4451,9 @@ eslint@^4.19.1:
     table "4.0.2"
     text-table "~0.2.0"
 
-esm@^3.0.55:
-  version "3.0.55"
-  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.55.tgz#db784239760c60b919785953eb3c01cfbc9745d4"
+esm@^3.0.58:
+  version "3.0.61"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.61.tgz#671dfb8cf57fe63852c191b85d7762d0d0789e00"
 
 espree@^3.5.1, espree@^3.5.4:
   version "3.5.4"
@@ -5115,6 +5078,10 @@ function.prototype.name@^1.0.3, function.prototype.name@^1.1.0:
 functional-red-black-tree@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
+
+fuse.js@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.2.1.tgz#6320cb94ce56ec9755c89ade775bcdbb0358d425"
 
 gauge@~2.7.3:
   version "2.7.4"
@@ -6814,12 +6781,12 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-load-cfg@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/load-cfg/-/load-cfg-0.3.4.tgz#f4f61ac164fc131ab69bff319c8a6305064e3d47"
+load-cfg@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/load-cfg/-/load-cfg-0.5.0.tgz#d7dcef82217d14aaa142e046d7a1cf2b45ccb58a"
   dependencies:
     deepmerge "^2.1.1"
-    esm "^3.0.55"
+    esm "^3.0.58"
     find-up "^3.0.0"
 
 load-json-file@^1.0.0:
@@ -8483,6 +8450,10 @@ prettier@^1.13.6:
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.6.tgz#00ae0b777ad92f81a9e7a1df2f0470b6dab0cb44"
 
+prettier@^1.13.7:
+  version "1.13.7"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.7.tgz#850f3b8af784a49a6ea2d2eaa7ed1428a34b7281"
+
 pretty-bytes@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-4.0.2.tgz#b2bf82e7350d65c6c33aa95aaa5a4f6327f61cd9"
@@ -8771,6 +8742,10 @@ react-breakpoints@^3.0.0:
     hoist-non-react-statics "2.5.0"
     lodash.debounce "4.0.8"
 
+react-content-loader@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-content-loader/-/react-content-loader-3.1.2.tgz#98230b4604b4b744eaa2d3fc88917dd988df6766"
+
 react-dates@^16.6.1:
   version "16.6.1"
   resolved "https://registry.yarnpkg.com/react-dates/-/react-dates-16.6.1.tgz#23ac3b36603e35b6446e960eec0b0145a9d6c745"
@@ -8846,13 +8821,6 @@ react-dom@^16.4.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
-
-react-emotion@^9.1.1:
-  version "9.2.3"
-  resolved "https://registry.yarnpkg.com/react-emotion/-/react-emotion-9.2.3.tgz#03c3b9dc9ad282c2d50b8137f3a6f72eee5095f3"
-  dependencies:
-    babel-plugin-emotion "^9.2.0"
-    create-emotion-styled "^9.2.3"
 
 react-emotion@^9.2.4:
   version "9.2.4"
@@ -9034,15 +9002,6 @@ react-sizes@^1.0.4:
     lodash.throttle "^4.1.1"
     prop-types "^15.6.0"
 
-react-spinners@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.3.2.tgz#faf2ecfdd54b887fa3728bd15e48840b938c7736"
-  dependencies:
-    emotion "^9.1.1"
-    prop-types "^15.5.10"
-    react-emotion "^9.1.1"
-    recompose "0.26.0"
-
 react-test-renderer@^16.0.0-0:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.3.2.tgz#3d1ed74fda8db42521fdf03328e933312214749a"
@@ -9194,7 +9153,7 @@ recast@^0.12.6:
     private "~0.1.5"
     source-map "~0.6.1"
 
-recompose@0.26.0, recompose@^0.26.0:
+recompose@^0.26.0:
   version "0.26.0"
   resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.26.0.tgz#9babff039cb72ba5bd17366d55d7232fbdfb2d30"
   dependencies:
@@ -10504,6 +10463,10 @@ tiny-emitter@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.0.2.tgz#82d27468aca5ade8e5fd1e6d22b57dd43ebdfb7c"
 
+titleize@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/titleize/-/titleize-1.0.1.tgz#21bc24fcca658eadc6d3bd3c38f2bd173769b4c5"
+
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
@@ -11264,9 +11227,9 @@ webpack-hot-client@^3.0.0:
     webpack-log "^1.1.1"
     ws "^4.0.0"
 
-webpack-hot-client@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/webpack-hot-client/-/webpack-hot-client-4.0.3.tgz#d96cef0f199ded606fd7396e0a32e3d03bf79280"
+webpack-hot-client@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/webpack-hot-client/-/webpack-hot-client-4.0.4.tgz#e19aa9c4d503ba8132ebf45d3d38ce33f89ae315"
   dependencies:
     "@webpack-contrib/schema-utils" "^1.0.0-beta.0"
     json-stringify-safe "^5.0.1"
@@ -11364,9 +11327,9 @@ webpack@3.8.1:
     webpack-sources "^1.0.1"
     yargs "^8.0.2"
 
-webpack@^4.12.1:
-  version "4.12.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.12.1.tgz#9108078c67fdd72c2609cea22af87d7aed2acb08"
+webpack@^4.14.0:
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.14.0.tgz#bbcc40dbf9a34129491b431574189d3802972243"
   dependencies:
     "@webassemblyjs/ast" "1.5.12"
     "@webassemblyjs/helper-module-context" "1.5.12"
@@ -11378,7 +11341,7 @@ webpack@^4.12.1:
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
     chrome-trace-event "^1.0.0"
-    enhanced-resolve "^4.0.0"
+    enhanced-resolve "^4.1.0"
     eslint-scope "^3.7.1"
     json-parse-better-errors "^1.0.2"
     loader-runner "^2.3.0"
@@ -11562,6 +11525,10 @@ xmlhttprequest@1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
 
+xregexp@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/xregexp/-/xregexp-4.0.0.tgz#e698189de49dd2a18cc5687b05e17c8e43943020"
+
 xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
@@ -11570,7 +11537,7 @@ y18n@^3.2.0, y18n@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
 
-y18n@^4.0.0:
+"y18n@^3.2.1 || ^4.0.0", y18n@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/y18n/-/y18n-4.0.0.tgz#95ef94f85ecc81d007c264e190a120f0a3c8566b"
 
@@ -11585,6 +11552,12 @@ yallist@^3.0.0, yallist@^3.0.2:
 yargs-parser@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-10.0.0.tgz#c737c93de2567657750cb1f2c00be639fd19c994"
+  dependencies:
+    camelcase "^4.1.0"
+
+yargs-parser@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-10.1.0.tgz#7202265b89f7e9e9f2e5765e0fe735a905edbaa8"
   dependencies:
     camelcase "^4.1.0"
 
@@ -11606,19 +11579,13 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
-yargs-parser@^9.0.2:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-9.0.2.tgz#9ccf6a43460fe4ed40a9bb68f48d43b8a68cc077"
-  dependencies:
-    camelcase "^4.1.0"
-
-yargs@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-11.0.0.tgz#c052931006c5eee74610e5fc0354bedfd08a201b"
+yargs@^12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.1.tgz#6432e56123bb4e7c3562115401e98374060261c2"
   dependencies:
     cliui "^4.0.0"
-    decamelize "^1.1.1"
-    find-up "^2.1.0"
+    decamelize "^2.0.0"
+    find-up "^3.0.0"
     get-caller-file "^1.0.1"
     os-locale "^2.0.0"
     require-directory "^2.1.1"
@@ -11626,8 +11593,8 @@ yargs@^11.0.0:
     set-blocking "^2.0.0"
     string-width "^2.0.0"
     which-module "^2.0.0"
-    y18n "^3.2.1"
-    yargs-parser "^9.0.2"
+    y18n "^3.2.1 || ^4.0.0"
+    yargs-parser "^10.1.0"
 
 yargs@^3.10.0:
   version "3.32.0"
