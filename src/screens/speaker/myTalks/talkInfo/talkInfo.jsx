@@ -27,7 +27,7 @@ const TalkInfo = ({ id, submissions }) => {
 
 TalkInfo.propTypes = {
   id: PropTypes.string.isRequired,
-  submissions: PropTypes.objectOf(PropTypes.bool),
+  submissions: PropTypes.objectOf(PropTypes.any),
 }
 
 TalkInfo.defaultProps = {
