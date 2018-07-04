@@ -8,6 +8,7 @@ import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import RelativeDate from 'components/relativeDate'
 import NoTalks from 'screens/speaker/components/noTalks'
+import TalkInfo from './talkInfo'
 
 const MyTalks = ({ talks, onSelect }) => (
   <div className="talks-page">
@@ -23,11 +24,14 @@ const MyTalks = ({ talks, onSelect }) => (
     <List
       array={talks}
       noResult={<NoTalks />}
-      renderRow={({ id, title, updateTimestamp }) => (
+      renderRow={({
+        id, title, submissions, updateTimestamp,
+      }) => (
         <ListItem
           key={id}
           title={title}
           subtitle={<RelativeDate date={updateTimestamp} />}
+          info={<TalkInfo id={id} submissions={submissions} />}
           onSelect={() => onSelect(id)}
         />
       )}
