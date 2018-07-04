@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 const admin = require('firebase-admin')
 
 const addProposal = (eventId, proposal) => {
@@ -7,12 +8,14 @@ const addProposal = (eventId, proposal) => {
     .doc(eventId)
     .collection('proposals')
     .doc(proposal.id)
-    .set({
-      ...proposal,
-      rating: null,
-      state: 'submitted',
-      updateTimestamp: admin.firestore.FieldValue.serverTimestamp(),
-    })
+    .set(Object.assign(
+      proposal,
+      {
+        rating: null,
+        state: 'submitted',
+        updateTimestamp: admin.firestore.FieldValue.serverTimestamp()
+      }
+    ))
 }
 
 module.exports = {

@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 const admin = require('firebase-admin')
 
 const getTalk = talkId =>
@@ -13,10 +14,10 @@ const updateTalk = (talkId, data) =>
     .firestore()
     .collection('talks')
     .doc(talkId)
-    .update({
-      ...data,
-      updateTimestamp: admin.firestore.FieldValue.serverTimestamp(),
-    })
+    .update(Object.assign(
+      data,
+      { updateTimestamp: admin.firestore.FieldValue.serverTimestamp() }
+    ))
 
 const getAllTalks = () =>
   admin

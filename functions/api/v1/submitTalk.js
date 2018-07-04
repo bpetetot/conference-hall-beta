@@ -16,10 +16,7 @@ module.exports = (req, res) => {
     if (isSubmitted(talk, eventId)) {
       res.send({ message: 'talk already submitted' })
     } else {
-      const submittedTalk = {
-        id: talkId,
-        ...omit(talk, ['createTimestamp', 'submissions']),
-      }
+      const submittedTalk = Object.assign({ id: talkId }, omit(talk, ['createTimestamp', 'submissions']))
 
       updateTalk(talkId, { [`submissions.${eventId}`]: submittedTalk })
         .then(() => addProposal(eventId, submittedTalk))
