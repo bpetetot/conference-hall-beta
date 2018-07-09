@@ -8,6 +8,7 @@ export default {
     '/public': {
       title: 'PUBLIC',
       '/event/:eventId': { title: 'PUBLIC_EVENT' },
+      '/contributors': { title: 'CONTRIBUTORS' },
     },
   },
   '/organizer': {
@@ -48,7 +49,6 @@ export default {
     },
     '/organization/create': { title: 'CREATE_ORGANIZATION' },
     '/invite/organization/:organizationId/:uid': { title: 'INVITE_ORGANIZER' },
-    '/contributors': { title: 'CONTRIBUTORS' },
   },
   '/speaker': {
     app: 'speaker',
@@ -74,6 +74,5 @@ export default {
         '/survey': { title: 'EVENT_SURVEY' },
       },
     },
-    '/contributors': { title: 'CONTRIBUTORS' },
   },
 }
