@@ -923,9 +923,9 @@
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.8.tgz#38a936b60b898a1ad0f3719543ff1a1031f60f8b"
 
-"@k-ramel/driver-http@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.11.0.tgz#3121927e26eafe0350f668bf8314aadf4c48ccbf"
+"@k-ramel/driver-http@^0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.13.2.tgz#9f446715be249c6ef64ceb6ce639e20ca37aabb0"
 
 "@k-ramel/driver-redux-little-router@^0.11.0":
   version "0.11.0"
@@ -6754,17 +6754,17 @@ jsx-ast-utils@^2.0.0, jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
-k-ramel@0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.11.0.tgz#a051bb9718160f42d508f1197b14956eb3b30c68"
+k-ramel@0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.13.2.tgz#248d5bf27d8bc6023525428b474ac86ab69c4771"
   dependencies:
-    "@k-ramel/driver-http" "^0.11.0"
-    k-redux-factory "5.0.1"
-    redux "3.7.2"
+    "@k-ramel/driver-http" "^0.13.2"
+    k-redux-factory "6.0.0-rc5"
+    redux "4.0.0"
 
-k-redux-factory@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-5.0.1.tgz#1507e0e23570cffa38f358206eb4f83bdf531080"
+k-redux-factory@6.0.0-rc5:
+  version "6.0.0-rc5"
+  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.0-rc5.tgz#d6e9fdb7a5f7a526c6bf4a5c9b70eb796e112ddf"
 
 keygrip@~1.0.2:
   version "1.0.2"
@@ -7040,7 +7040,7 @@ lodash-es@^4.17.10:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
 
-lodash-es@^4.17.5, lodash-es@^4.2.1:
+lodash-es@^4.17.5:
   version "4.17.8"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.8.tgz#6fa8c8c5d337481df0bdf1c0d899d42473121e45"
 
@@ -7109,7 +7109,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-"lodash@>=3.5 <5", lodash@^4.1.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@^4.3.0:
+"lodash@>=3.5 <5", lodash@^4.1.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -9449,16 +9449,7 @@ redux-little-router@^15.1.1:
     recompose "^0.26.0"
     url-pattern "^1.0.3"
 
-redux@3.7.2:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
-  dependencies:
-    lodash "^4.2.1"
-    lodash-es "^4.2.1"
-    loose-envify "^1.1.0"
-    symbol-observable "^1.0.3"
-
-redux@^4.0.0:
+redux@4.0.0, redux@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.0.tgz#aa698a92b729315d22b34a0553d7e6533555cc03"
   dependencies:
@@ -10532,11 +10523,7 @@ sw-toolbox@^3.4.0:
     path-to-regexp "^1.0.1"
     serviceworker-cache-polyfill "^4.0.0"
 
-symbol-observable@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.1.tgz#8340fc4702c3122df5d22288f88283f513d3fdd4"
-
-symbol-observable@^1.0.3, symbol-observable@^1.0.4, symbol-observable@^1.2.0:
+symbol-observable@^1.0.4, symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 

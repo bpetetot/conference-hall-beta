@@ -1,5 +1,5 @@
-import { simpleObject } from 'k-ramel'
+import { types } from 'k-ramel'
 
 const defaultData = { error: undefined }
 
-export default simpleObject({ defaultData })
+export default types.object({ defaultData })

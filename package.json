@@ -22,7 +22,7 @@
     "hoc-little-router": "^1.2.0",
     "hoc-react-loader": "^6.3.0",
     "immutadot": "^1.0.0",
-    "k-ramel": "0.11.0",
+    "k-ramel": "0.13.2",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",

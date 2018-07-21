@@ -1,11 +1,11 @@
-import { keyValue } from 'k-ramel'
+import { types } from 'k-ramel'
 
 export default {
-  events: keyValue({ key: 'id' }),
-  organizations: keyValue({ key: 'id' }),
-  proposals: keyValue({ key: 'id' }),
-  ratings: keyValue({ key: 'uid' }),
-  talks: keyValue({ key: 'id' }),
-  users: keyValue({ key: 'uid' }),
-  surveys: keyValue({ key: 'uid' }),
+  events: types.keyValue({ key: 'id' }),
+  organizations: types.keyValue({ key: 'id' }),
+  proposals: types.keyValue({ key: 'id' }),
+  ratings: types.keyValue({ key: 'uid' }),
+  talks: types.keyValue({ key: 'id' }),
+  users: types.keyValue({ key: 'uid' }),
+  surveys: types.keyValue({ key: 'uid' }),
 }
