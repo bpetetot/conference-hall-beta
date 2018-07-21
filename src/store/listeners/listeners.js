@@ -17,7 +17,6 @@ export default [
   /* app loaded */
   when('@@krml/INIT')(firebase.init),
   when('@@krml/INIT')(app.init),
-  when('@@krml/INIT')(router.init),
   /* router */
   when('ROUTER_LOCATION_CHANGED')(router.onRouteChanged),
   /* firebase actions */
