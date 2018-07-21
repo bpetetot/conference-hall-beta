@@ -927,13 +927,17 @@
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.13.2.tgz#9f446715be249c6ef64ceb6ce639e20ca37aabb0"
 
-"@k-ramel/driver-redux-little-router@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-0.11.0.tgz#1f381a04c5e349410c19b476d0783f8519054f55"
+"@k-ramel/driver-redux-form@0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-form/-/driver-redux-form-0.13.2.tgz#80e086b1b0cbdd6acd9075f25e878f167d43bf86"
 
-"@k-ramel/react@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-0.11.0.tgz#8b4f90a122c0aa455c1e40282ddcbcc87fbb5694"
+"@k-ramel/driver-redux-little-router@0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-0.13.2.tgz#00614fef566d56182d1128d51fa9bbee85bc2ad5"
+
+"@k-ramel/react@0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-0.13.2.tgz#0126a00bd5808e2fc78268b4d9c37f30f47fe75d"
 
 "@mdx-js/loader@^0.14.0":
   version "0.14.0"
