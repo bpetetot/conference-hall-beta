@@ -12,11 +12,11 @@ const Toggle = ({ name, ...rest }) => (
 
 Toggle.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.bool,
 }
 
 Toggle.defaultProps = {
-  value: undefined,
+  value: false,
 }
 
 export default Toggle
