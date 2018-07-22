@@ -8,16 +8,15 @@ const mapStore = (store, { eventId }) => {
   const { deliberationActive } = store.data.events.get(eventId) || {}
   return {
     deliberationActive,
-    onActiveDeliberation: e =>
-      store.dispatch({
-        type: '@@ui/ON_TOGGLE_EVENT_DELIBERATION',
-        payload: {
-          event: {
-            id: eventId,
-            deliberationActive: e.target.checked,
-          },
+    onActiveDeliberation: e => store.dispatch({
+      type: '@@ui/ON_TOGGLE_EVENT_DELIBERATION',
+      payload: {
+        event: {
+          id: eventId,
+          deliberationActive: e.target.checked,
         },
-      }),
+      },
+    }),
   }
 }
 

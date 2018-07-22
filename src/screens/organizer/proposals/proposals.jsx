@@ -15,16 +15,15 @@ const Proposals = ({ eventId, nbProposals, route }) => {
     <div>
       <Titlebar icon="fa fa-paper-plane" title={title} className="no-print">
         <Button tertiary>
-          {btn =>
-            (route === 'PROPOSALS' ? (
-              <Link href={`/organizer/event/${eventId}/proposals/cards`} className={btn}>
-                <IconLabel icon="fa fa-th" label="Cards" />
-              </Link>
-            ) : (
-              <Link href={`/organizer/event/${eventId}/proposals`} className={btn}>
-                <IconLabel icon="fa fa-th-list" label="List" />
-              </Link>
-            ))
+          {btn => (route === 'PROPOSALS' ? (
+            <Link href={`/organizer/event/${eventId}/proposals/cards`} className={btn}>
+              <IconLabel icon="fa fa-th" label="Cards" />
+            </Link>
+          ) : (
+            <Link href={`/organizer/event/${eventId}/proposals`} className={btn}>
+              <IconLabel icon="fa fa-th-list" label="List" />
+            </Link>
+          ))
           }
         </Button>
       </Titlebar>

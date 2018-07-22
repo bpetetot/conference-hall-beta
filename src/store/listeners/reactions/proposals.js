@@ -1,6 +1,8 @@
 import { reaction } from 'k-ramel'
 
-import { flow, isEqual, omit, over, pickBy } from 'lodash/fp'
+import {
+  flow, isEqual, omit, over, pickBy,
+} from 'lodash/fp'
 import * as firebase from 'firebase/proposals'
 
 export const updateProposal = reaction(async (action, store, { router }) => {

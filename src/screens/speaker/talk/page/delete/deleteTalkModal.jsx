@@ -14,8 +14,10 @@ class DeleteTalkModal extends Component {
     disabled: true,
   }
 
-  handleChange = e =>
-    this.setState({ disabled: upperCase(this.props.talkTitle) !== upperCase(e.target.value) })
+  handleChange = (e) => {
+    const { talkTitle } = this.props
+    return this.setState({ disabled: upperCase(talkTitle) !== upperCase(e.target.value) })
+  }
 
   handleDelete = hide => () => {
     this.props.deleteTalk()

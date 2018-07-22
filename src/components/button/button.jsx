@@ -37,15 +37,18 @@ const Button = ({
 
   if (typeof children === 'function') {
     return children(classes)
-  } else if (href) {
+  }
+
+  if (href) {
     return (
       <a className={classes} href={href} {...rest}>
         {children}
       </a>
     )
   }
+
   return (
-    <button className={classes} onClick={onClick} {...rest}>
+    <button type="button" className={classes} onClick={onClick} {...rest}>
       {children}
     </button>
   )

@@ -35,7 +35,7 @@ const OrganizationPage = ({
         onSelectUser={onSelectUser}
         inviteLink={inviteLink}
         resultsMessage="Select an organizer to add to your organization"
-        description={
+        description={(
           <Fragment>
             <p>
               Search and add a member to your organization, he/she will be also able to update it,
@@ -47,7 +47,7 @@ const OrganizationPage = ({
               email address.
             </p>
           </Fragment>
-        }
+        )}
         renderTrigger={({ show }) => (
           <Button onClick={show} secondary>
             <IconLabel icon="fa fa-user" label="Add a member" />

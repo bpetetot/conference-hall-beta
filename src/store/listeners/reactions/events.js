@@ -18,15 +18,14 @@ export const createEvent = reaction(async (action, store, { form, router }) => {
   router.push(`/organizer/event/${ref.id}`)
 })
 
-export const updateEventForm = formName =>
-  reaction((action, store, { form }) => {
-    const updateForm = form(formName)
-    const event = updateForm.getFormValues()
-    // update event into database
-    updateForm.asyncSubmit(eventCrud.update, event)
-    // update event in store
-    store.data.events.update(event)
-  })
+export const updateEventForm = formName => reaction((action, store, { form }) => {
+  const updateForm = form(formName)
+  const event = updateForm.getFormValues()
+  // update event into database
+  updateForm.asyncSubmit(eventCrud.update, event)
+  // update event in store
+  store.data.events.update(event)
+})
 
 export const updateEvent = reaction((action, store) => {
   const { event } = action.payload

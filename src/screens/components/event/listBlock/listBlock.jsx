@@ -11,8 +11,8 @@ const ListBlock = ({ title, list, className }) => {
     <div className={cn('list-block', className)}>
       <h3>{title}</h3>
       <ul>
-        {list &&
-          list.map(({ id, name, description }) => (
+        {list
+          && list.map(({ id, name, description }) => (
             <li key={id}>
               <div className="list-item-name">{name}</div>
               {description && (

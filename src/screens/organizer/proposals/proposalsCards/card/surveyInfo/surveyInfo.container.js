@@ -10,8 +10,7 @@ const mapState = (store, { eventId, speakers }) => {
   return {
     responses,
     load: () => {
-      uids.forEach(uid =>
-        store.dispatch({ type: '@@ui/ON_LOAD_SURVEY', payload: { eventId, uid } }))
+      uids.forEach(uid => store.dispatch({ type: '@@ui/ON_LOAD_SURVEY', payload: { eventId, uid } }))
     },
   }
 }

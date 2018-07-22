@@ -1,6 +1,8 @@
 import { reaction } from 'k-ramel'
 import { initializeCurrentLocation, replace } from 'redux-little-router'
-import { isEqual, pick, pickBy, update } from 'lodash/fp'
+import {
+  isEqual, pick, pickBy, update,
+} from 'lodash/fp'
 
 import { isRoute, isSpeakerRoute } from 'store/drivers/redux-little-router'
 

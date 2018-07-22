@@ -6,14 +6,13 @@ import omit from 'lodash/omit'
  * @param {string} eventId event id
  * @param {string} proposalId proposal id
  */
-export const fetchProposal = (eventId, proposalId) =>
-  firebase
-    .firestore()
-    .collection('events')
-    .doc(eventId)
-    .collection('proposals')
-    .doc(proposalId)
-    .get()
+export const fetchProposal = (eventId, proposalId) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('proposals')
+  .doc(proposalId)
+  .get()
 
 /**
  * Fetch all proposals of an event
@@ -62,7 +61,8 @@ export const fetchEventProposals = async (
   // add ratings filter (client filter)
   if (ratings === 'rated') {
     return proposals.filter(proposal => proposal.usersRatings && !!proposal.usersRatings[uid])
-  } else if (ratings === 'notRated') {
+  }
+  if (ratings === 'notRated') {
     return proposals.filter(proposal => !proposal.usersRatings || !proposal.usersRatings[uid])
   }
   return proposals

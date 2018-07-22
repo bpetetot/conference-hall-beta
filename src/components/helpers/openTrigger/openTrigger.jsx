@@ -4,13 +4,6 @@ import PropTypes from 'prop-types'
 class OpenTrigger extends Component {
   state = { isOpen: this.props.defaultOpen }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.defaultOpen && !prevState.isOpen) {
-      return { isOpen: false }
-    }
-    return null
-  }
-
   componentDidMount() {
     if (this.props.withEscapeClose) {
       document.addEventListener('keydown', this.handleKeydown)
@@ -21,6 +14,13 @@ class OpenTrigger extends Component {
     if (this.props.withEscapeClose) {
       document.removeEventListener('keydown', this.handleKeydown)
     }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.defaultOpen && !prevState.isOpen) {
+      return { isOpen: false }
+    }
+    return null
   }
 
   handleKeydown = (e) => {

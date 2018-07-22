@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
 import Button from 'components/button'
 import { Field, reduxForm } from 'redux-form'
-import { markdownInput, radio, SubmitButton, RadioGroup } from 'components/form'
+import {
+  markdownInput, radio, SubmitButton, RadioGroup,
+} from 'components/form'
 import isEmpty from 'lodash/isEmpty'
 
 import './talkSubmission.css'

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   reducer,
   setSubmitSucceeded,
@@ -22,8 +23,7 @@ const reduxForm = (selector) => {
     setSubmitSucceeded: () => dispatch(setSubmitSucceeded(name)),
     startSubmit: () => dispatch(startSubmit(name)),
     stopSubmit: errors => dispatch(stopSubmit(name, errors)),
-    asyncSubmit: (callback, ...options) =>
-      asyncSubmit(name, dispatch, getState)(callback, ...options),
+    asyncSubmit: (callback, ...options) => asyncSubmit(name, dispatch, getState)(callback, ...options),
   })
 
   driver.getReducer = () => reducer

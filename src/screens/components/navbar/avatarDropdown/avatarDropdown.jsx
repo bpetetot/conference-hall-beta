@@ -23,7 +23,7 @@ const AvatarDropdown = ({
       <Link href={`${baseRoute}/contributors`}>
         <IconLabel icon="fa fa-github-alt" label="Contributors" />
       </Link>
-      <button onClick={signout}>
+      <button onClick={signout} type="button">
         <IconLabel icon="fa fa-sign-out" label="Sign out" />
       </button>
     </Dropdown>

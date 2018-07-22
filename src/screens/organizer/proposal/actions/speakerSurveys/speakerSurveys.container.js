@@ -12,8 +12,7 @@ const mapState = (store, { eventId, speakers }) => {
     survey,
     responses,
     load: () => {
-      uids.forEach(uid =>
-        store.dispatch({ type: '@@ui/ON_LOAD_SURVEY', payload: { eventId, uid } }))
+      uids.forEach(uid => store.dispatch({ type: '@@ui/ON_LOAD_SURVEY', payload: { eventId, uid } }))
     },
   }
 }

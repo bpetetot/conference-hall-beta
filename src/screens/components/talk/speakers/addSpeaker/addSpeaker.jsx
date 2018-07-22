@@ -18,7 +18,7 @@ const AddSpeaker = ({ onSelectUser, inviteLink }) => (
     resultsMessage="Select a speaker for your talk"
     onSelectUser={onSelectUser}
     inviteLink={inviteLink}
-    description={
+    description={(
       <Fragment>
         <p>
           Search and add a co-speaker to your talk, he/she will be also able to update it and submit
@@ -29,7 +29,7 @@ const AddSpeaker = ({ onSelectUser, inviteLink }) => (
           email address.
         </p>
       </Fragment>
-    }
+    )}
   />
 )
 

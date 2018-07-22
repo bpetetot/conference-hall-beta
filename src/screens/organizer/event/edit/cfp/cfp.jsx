@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, FieldArray, propTypes } from 'redux-form'
 
-import { dayPicker, dayRangePicker, Label, SubmitButton, toggle } from 'components/form'
+import {
+  dayPicker, dayRangePicker, Label, SubmitButton, toggle,
+} from 'components/form'
 import CategoriesForm from './categories'
 import FormatsForm from './formats'
 

@@ -9,29 +9,27 @@ const mapStore = (store, { eventId }) => {
   return {
     surveyActive,
     survey,
-    onActiveSurvey: e =>
-      store.dispatch({
-        type: '@@ui/ON_TOGGLE_EVENT_SURVEY',
-        payload: {
-          event: {
-            id: eventId,
-            surveyActive: e.target.checked,
+    onActiveSurvey: e => store.dispatch({
+      type: '@@ui/ON_TOGGLE_EVENT_SURVEY',
+      payload: {
+        event: {
+          id: eventId,
+          surveyActive: e.target.checked,
+        },
+      },
+    }),
+    onSelectQuestion: e => store.dispatch({
+      type: '@@ui/ON_SELECT_SURVEY_QUESTION',
+      payload: {
+        event: {
+          id: eventId,
+          survey: {
+            ...survey,
+            [e.target.name]: e.target.checked,
           },
         },
-      }),
-    onSelectQuestion: e =>
-      store.dispatch({
-        type: '@@ui/ON_SELECT_SURVEY_QUESTION',
-        payload: {
-          event: {
-            id: eventId,
-            survey: {
-              ...survey,
-              [e.target.name]: e.target.checked,
-            },
-          },
-        },
-      }),
+      },
+    }),
   }
 }
 

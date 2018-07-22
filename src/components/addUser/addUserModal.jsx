@@ -40,17 +40,16 @@ const AddUserModal = ({
             onClick={onSearch}
           />
         )}
-        {initialized &&
-          !searching && (
-            <UserResults
-              message={resultsMessage}
-              users={users}
-              onSelectUser={(uid) => {
-                onSelectUser(uid)
-                hide()
-              }}
-            />
-          )}
+        {initialized && !searching && (
+          <UserResults
+            message={resultsMessage}
+            users={users}
+            onSelectUser={(uid) => {
+              onSelectUser(uid)
+              hide()
+            }}
+          />
+        )}
         <div className="user-search-separator">
           <small>or send him/her an invitation link</small>
         </div>
