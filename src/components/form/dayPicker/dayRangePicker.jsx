@@ -63,8 +63,6 @@ class DayRangePicker extends React.Component {
           isOutsideRange={() => false}
           customInputIcon={<i className="fa fa-calendar" />}
           customArrowIcon={<i className="fa fa-arrow-right" />}
-          navNext={<i className="fa fa-arrow-right" />}
-          navPrev={<i className="fa fa-arrow-left" />}
         />
       </div>
     )

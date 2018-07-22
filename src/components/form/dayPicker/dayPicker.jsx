@@ -41,8 +41,6 @@ class DayPicker extends React.Component {
         displayFormat="MMMM Do YYYY"
         isOutsideRange={() => false}
         customInputIcon={<i className="fa fa-calendar" />}
-        navNext={<i className="fa fa-arrow-right" />}
-        navPrev={<i className="fa fa-arrow-left" />}
       />
     )
   }
