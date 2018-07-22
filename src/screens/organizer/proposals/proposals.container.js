@@ -1,8 +1,9 @@
 import { compose } from 'redux'
-import { inject } from '@k-ramel/react'
+import { inject, listen } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
+import listeners from './proposals.listeners'
 import Proposals from './proposals'
 
 const mapStore = (store, props, { router }) => {
@@ -20,7 +21,8 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute('PROPOSALS'), //
-  inject(mapStore), //
-  loader, //
+  forRoute('PROPOSALS'),
+  inject(mapStore),
+  listen(listeners, 'PROPOSALS'),
+  loader,
 )(Proposals)
