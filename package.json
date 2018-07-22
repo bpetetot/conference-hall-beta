@@ -17,7 +17,7 @@
     "@k-ramel/react": "^0.11.0",
     "classnames": "^2.2.6",
     "date-fns": "^1.29.0",
-    "firebase": "^4.13.1",
+    "firebase": "^5.0.2",
     "font-awesome": "^4.7.0",
     "hoc-little-router": "^1.2.0",
     "hoc-react-loader": "^6.3.0",
