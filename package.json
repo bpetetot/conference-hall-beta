@@ -40,7 +40,7 @@
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
     "redux-little-router": "^15.1.1",
-    "uuid": "^3.3.0"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "docz": "^0.6.2",
@@ -51,7 +51,7 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "prettier": "^1.13.6",
+    "prettier": "^1.13.7",
     "react-scripts": "1.1.4",
     "redux-devtools-extension": "^2.13.5"
   },
