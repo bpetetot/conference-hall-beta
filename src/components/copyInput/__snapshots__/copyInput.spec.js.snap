@@ -28,6 +28,7 @@ exports[`components/copyInput should render with all props 1`] = `
   <button
     className="cc-button cc-button-tertiary"
     onClick={[Function]}
+    type="button"
   >
     <i
       className="fa fa-clipboard"
@@ -50,6 +51,7 @@ exports[`components/copyInput should render without props 1`] = `
   <button
     className="cc-button cc-button-tertiary"
     onClick={[Function]}
+    type="button"
   >
     <i
       className="fa fa-clipboard"
@@ -72,6 +74,7 @@ exports[`components/copyInput should render without title 1`] = `
   <button
     className="cc-button cc-button-tertiary"
     onClick={[Function]}
+    type="button"
   >
     <i
       className="fa fa-clipboard"
