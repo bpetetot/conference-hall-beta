@@ -29,7 +29,7 @@
     "popper.js": "^1.14.3",
     "react": "^16.4.1",
     "react-addons-shallow-compare": "^15.6.2",
-    "react-dates": "^16.6.1",
+    "react-dates": "^17.1.1",
     "react-dom": "^16.4.1",
     "react-markdown": "^3.3.4",
     "react-places-autocomplete": "^6.1.3",
