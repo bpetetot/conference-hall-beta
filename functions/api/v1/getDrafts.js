@@ -22,10 +22,7 @@ const sanitizeSpeakers = map(pick(['uid', 'displayName', 'email', 'twitter', 'gi
 
 const getUids = flow(flatMap('speakers'), uniq)
 
-const getSpeakersById = (ids, speakers) => {
-  console.log(ids, speakers)
-  return speakers.filter(s => ids.includes(s.uid))
-}
+const getSpeakersById = (ids, speakers) => speakers.filter(s => ids.includes(s.uid))
 
 module.exports = (req, res) => {
   const { eventId } = req.params
