@@ -7,6 +7,8 @@ import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
+
+import { toDate } from 'helpers/firebase'
 import './events.css'
 
 const MyEvents = ({ events, onSelect }) => (
@@ -28,7 +30,7 @@ const MyEvents = ({ events, onSelect }) => (
         <ListItem
           key={id}
           title={name}
-          subtitle={<RelativeDate date={updateTimestamp} />}
+          subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
           onSelect={() => onSelect(id)}
         />
       )}

@@ -8,6 +8,8 @@ import Button from 'components/button'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
 
+import { toDate } from 'helpers/firebase'
+
 const MyOrganizations = ({ organizations, onSelect }) => (
   <div className="organizations-page">
     <Titlebar className="organizations-header" icon="fa fa-users" title="My organizations">
@@ -27,7 +29,7 @@ const MyOrganizations = ({ organizations, onSelect }) => (
         <ListItem
           key={id}
           title={name}
-          subtitle={<RelativeDate date={updateTimestamp} />}
+          subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
           onSelect={() => onSelect(id)}
         />
       )}

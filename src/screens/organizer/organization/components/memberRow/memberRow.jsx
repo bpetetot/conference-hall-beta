@@ -8,6 +8,8 @@ import { ListItem } from 'components/list'
 import { ConfirmationPopin } from 'components/portals'
 import AvatarLabel from 'components/avatar/avatarLabel'
 
+import { toDate } from 'helpers/firebase'
+
 import './memberRow.css'
 
 const MemberRow = ({
@@ -31,7 +33,7 @@ const MemberRow = ({
         title={(
           <AvatarLabel displayName={displayName} photoURL={photoURL} />
         )}
-        subtitle={<RelativeDate date={updateTimestamp} />}
+        subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
         renderActions={() => (
           <ConfirmationPopin
             title={canRemove ? 'Remove a member' : 'Leave organization'}
@@ -64,7 +66,7 @@ MemberRow.propTypes = {
   uid: PropTypes.string.isRequired,
   displayName: PropTypes.string,
   photoURL: PropTypes.string,
-  updateTimestamp: PropTypes.instanceOf(Date),
+  updateTimestamp: PropTypes.any,
   owner: PropTypes.string.isRequired,
   removeMember: PropTypes.func.isRequired,
   authUserId: PropTypes.string.isRequired,
