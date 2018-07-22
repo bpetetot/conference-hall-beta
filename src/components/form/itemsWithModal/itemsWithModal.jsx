@@ -9,7 +9,7 @@ import Item from './item'
 
 import './itemsWithModal.css'
 
-export default (name, Form) =>
+export default Form =>
   class extends React.Component {
     onAddItem = hide => (data) => {
       const id = uuid(data.name, uuid.URL)

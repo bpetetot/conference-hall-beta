@@ -1,4 +1,4 @@
 import { itemsWithModal } from 'components/form'
 import FormatForm from './formatForm'
 
-export default itemsWithModal('format', FormatForm)
+export default itemsWithModal(FormatForm)
