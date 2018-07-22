@@ -2,14 +2,14 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 class OpenTrigger extends Component {
+  state = { isOpen: this.props.defaultOpen }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.defaultOpen && !prevState.isOpen) {
       return { isOpen: false }
     }
     return null
   }
-
-  state = { isOpen: this.props.defaultOpen }
 
   componentDidMount() {
     if (this.props.withEscapeClose) {
