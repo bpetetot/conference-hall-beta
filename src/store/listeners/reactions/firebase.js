@@ -13,7 +13,8 @@ const config = {
 export const init = reaction((action, store) => {
   try {
     firebase.initializeApp(config)
-    firebase.firestore()
+    const firestore = firebase.firestore()
+    firestore.settings({ timestampsInSnapshots: true })
   } catch (error) {
     console.warn(error.code, error.message)
   }

@@ -54,7 +54,7 @@ Event.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   address: PropTypes.string,
-  conferenceDates: PropTypes.objectOf(PropTypes.instanceOf(Date)),
+  conferenceDates: PropTypes.objectOf(PropTypes.any),
   description: PropTypes.string,
   website: PropTypes.string,
   contact: PropTypes.string,

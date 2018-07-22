@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'redux-little-router'
 
+import { toDate } from 'helpers/firebase'
+
 import { List, ListItem } from 'components/list'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
@@ -9,6 +11,7 @@ import Button from 'components/button'
 import RelativeDate from 'components/relativeDate'
 import NoTalks from 'screens/speaker/components/noTalks'
 import TalkInfo from './talkInfo'
+
 
 const MyTalks = ({ talks, onSelect }) => (
   <div className="talks-page">
@@ -30,7 +33,7 @@ const MyTalks = ({ talks, onSelect }) => (
         <ListItem
           key={id}
           title={title}
-          subtitle={<RelativeDate date={updateTimestamp} />}
+          subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
           info={<TalkInfo id={id} submissions={submissions} />}
           onSelect={() => onSelect(id)}
         />

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { DateRangePicker } from 'react-dates'
+import { toDate } from 'helpers/firebase'
 
 import './dayRangePicker.css'
 
@@ -11,11 +12,14 @@ let END_DATE = 'END_DATE_ID'
 class DayRangePicker extends React.Component {
   constructor(props) {
     super(props)
-    const { value } = props
+    const { value = {} } = props
+    const initialStartDate = toDate(value.start)
+    const initialEndDate = toDate(value.end)
+
     this.state = {
       focusedInput: undefined,
-      start: value && value.start ? moment(value.start) : undefined,
-      end: value && value.end ? moment(value.end) : undefined,
+      start: initialStartDate ? moment(initialStartDate) : undefined,
+      end: initialEndDate ? moment(initialEndDate) : undefined,
     }
   }
 
