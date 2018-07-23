@@ -1,4 +1,4 @@
-import { simpleObject } from 'k-ramel'
+import { types } from 'k-ramel'
 import split from 'lodash/split'
 
 const defaultData = {
@@ -9,4 +9,4 @@ const defaultData = {
   error: {},
 }
 
-export default simpleObject({ defaultData })
+export default types.object({ defaultData })

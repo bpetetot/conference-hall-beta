@@ -1,4 +1,3 @@
-import { reaction } from 'k-ramel'
 import uuid from 'uuid/v4'
 import flatten from 'lodash/flatten'
 import map from 'lodash/map'
@@ -7,7 +6,7 @@ import uniqBy from 'lodash/uniqBy'
 import { fetchOrganizationEvents } from 'firebase/organizations'
 import eventCrud, { fetchEvents, fetchUserEvents } from 'firebase/events'
 
-export const createEvent = reaction(async (action, store, { form, router }) => {
+export const createEvent = async (action, store, { form, router }) => {
   const createForm = form('event-create')
   const event = createForm.getFormValues()
   // get user id
@@ -16,24 +15,24 @@ export const createEvent = reaction(async (action, store, { form, router }) => {
   const ref = await createForm.asyncSubmit(eventCrud.create, { ...event, owner: uid })
   // go to event page
   router.push(`/organizer/event/${ref.id}`)
-})
+}
 
-export const updateEventForm = formName => reaction((action, store, { form }) => {
+export const updateEventForm = formName => (action, store, { form }) => {
   const updateForm = form(formName)
   const event = updateForm.getFormValues()
   // update event into database
   updateForm.asyncSubmit(eventCrud.update, event)
   // update event in store
   store.data.events.update(event)
-})
+}
 
-export const updateEvent = reaction((action, store) => {
+export const updateEvent = (action, store) => {
   const { event } = action.payload
   store.data.events.update(event)
   eventCrud.update(event)
-})
+}
 
-export const toggleApi = reaction((action, store) => {
+export const toggleApi = (action, store) => {
   const { event } = action.payload
   const updated = { ...event }
   if (event.apiActive && !event.apiKey) {
@@ -44,18 +43,18 @@ export const toggleApi = reaction((action, store) => {
   store.data.events.update(updated)
   // update event into database
   eventCrud.update(updated)
-})
+}
 
-export const generateNewApiKey = reaction((action, store) => {
+export const generateNewApiKey = (action, store) => {
   const { eventId } = action.payload
   const updated = { id: eventId, apiKey: uuid() }
   // update event in store
   store.data.events.update(updated)
   // update event into database
   eventCrud.update(updated)
-})
+}
 
-export const fetchEvent = reaction(async (action, store, { router }) => {
+export const fetchEvent = async (action, store, { router }) => {
   const eventId = action.payload || router.getRouteParam('eventId')
   if (!eventId) return
   // check if already in the store
@@ -66,9 +65,9 @@ export const fetchEvent = reaction(async (action, store, { router }) => {
   if (ref.exists) {
     store.data.events.add({ id: eventId, ...ref.data() })
   }
-})
+}
 
-export const fetchOrganizerEvents = reaction(async (action, store) => {
+export const fetchOrganizerEvents = async (action, store) => {
   const { uid } = store.auth.get()
   const organizations = store.data.organizations.getKeys()
 
@@ -84,9 +83,9 @@ export const fetchOrganizerEvents = reaction(async (action, store) => {
   // set events id to the organizer event store
   store.ui.organizer.myEvents.reset()
   store.ui.organizer.myEvents.set(aggregatedEvents)
-})
+}
 
-export const fetchSpeakerEvents = reaction(async (action, store) => {
+export const fetchSpeakerEvents = async (action, store) => {
   const result = await fetchEvents()
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
   // set events in the store
@@ -94,4 +93,4 @@ export const fetchSpeakerEvents = reaction(async (action, store) => {
   // set events id to the organizer event store
   store.ui.speaker.myEvents.reset()
   store.ui.speaker.myEvents.set(events)
-})
+}

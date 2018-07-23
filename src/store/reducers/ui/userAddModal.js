@@ -1,4 +1,4 @@
-import { simpleObject } from 'k-ramel'
+import { types } from 'k-ramel'
 
 const defaultData = {
   email: undefined,
@@ -6,4 +6,4 @@ const defaultData = {
   users: [],
 }
 
-export default simpleObject({ defaultData })
+export default types.object({ defaultData })

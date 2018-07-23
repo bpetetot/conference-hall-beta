@@ -17,7 +17,6 @@ export default [
   /* app loaded */
   when('@@krml/INIT')(firebase.init),
   when('@@krml/INIT')(app.init),
-  when('@@krml/INIT')(router.init),
   /* router */
   when('ROUTER_LOCATION_CHANGED')(router.onRouteChanged),
   /* firebase actions */
@@ -63,13 +62,9 @@ export default [
   when('@@ui/ON_REMOVE_TALK_FROM_EVENT')(submissions.removeTalkFromEvent),
   /* proposals */
   when('@@ui/ON_LOAD_PROPOSAL')(proposals.getProposal),
-  when('@@ui/ON_LOAD_EVENT_PROPOSALS')(proposals.loadEventProposals),
   when('@@ui/ON_UPDATE_PROPOSAL')(proposals.updateProposal),
-  when('@@krf/UPDATE>UI_ORGANIZER>PROPOSALS')(proposals.loadEventProposals),
-  when('@@ui/ON_SELECT_PROPOSAL')(proposals.selectProposal),
   when('@@ui/ON_NEXT_PROPOSAL')(proposals.nextProposal),
   when('@@ui/ON_PREVIOUS_PROPOSAL')(proposals.previousProposal),
-  when('@@krf/UPDATE>UI_ORGANIZER>PROPOSALS')(proposals.saveSortOrderToRoute),
   /* ratings */
   when('@@ui/ON_LOAD_RATINGS')(ratings.fetchRatings),
   when('@@ui/RATE_PROPOSAL')(ratings.rateProposal),

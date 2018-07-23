@@ -1,10 +1,10 @@
-import { when, reaction } from 'k-ramel'
+import { when } from 'k-ramel'
 
 import betaAccess from 'firebase/betaAccess'
 import userCrud from 'firebase/user'
 
 export default [
-  when('@@ui/CHECK_BETA_ACCESS_KEY')(reaction(async (action, store, { router }) => {
+  when('@@ui/CHECK_BETA_ACCESS_KEY')(async (action, store, { router }) => {
     const key = action.payload
     const accessRef = await betaAccess.read(key)
 
@@ -17,5 +17,5 @@ export default [
     } else {
       store.ui.beta.set({ error: 'Sorry, invalid beta access key.' })
     }
-  })),
+  }),
 ]
