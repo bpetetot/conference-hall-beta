@@ -9,7 +9,7 @@ import Dropdown from 'components/dropdown'
 import './avatarDropdown.css'
 
 const AvatarDropdown = ({
-  displayName, photoURL, signout,
+  baseRoute, displayName, photoURL, signout,
 }) => {
   const avatar = (
     <Avatar photoURL={photoURL} displayName={displayName} className="avatar-dropdown" />
@@ -20,7 +20,7 @@ const AvatarDropdown = ({
       <Link href="/">
         <IconLabel icon="fa fa-home" label="Conference Hall" />
       </Link>
-      <Link href="/public/contributors">
+      <Link href={`${baseRoute}/contributors`}>
         <IconLabel icon="fa fa-github-alt" label="Contributors" />
       </Link>
       <button onClick={signout}>
@@ -31,12 +31,14 @@ const AvatarDropdown = ({
 }
 
 AvatarDropdown.propTypes = {
+  baseRoute: PropTypes.string,
   displayName: PropTypes.string,
   photoURL: PropTypes.string,
   signout: PropTypes.func.isRequired,
 }
 
 AvatarDropdown.defaultProps = {
+  baseRoute: undefined,
   displayName: undefined,
   photoURL: undefined,
 }
