@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 
 import 'normalize.css'
 import 'font-awesome/css/font-awesome.min.css'
+import 'regenerator-runtime/runtime'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 
