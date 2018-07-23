@@ -6,6 +6,7 @@ export default {
   port: 3001,
   wrapper: '.docz/wrapper',
   dist: '.docz/build',
+  ordering: 'ascending',
 
   modifyBundlerConfig: (config) => {
     config.module.rules.push({

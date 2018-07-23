@@ -5,7 +5,7 @@ import './toggle.css'
 
 const Toggle = ({ name, ...rest }) => (
   <label className="toggle" htmlFor={name}>
-    <input name={name} type="checkbox" id={name} {...rest} checked={rest.value} />
+    <input id={name} name={name} type="checkbox" {...rest} defaultChecked={rest.value} />
     <span className="toggle-item" />
   </label>
 )
@@ -16,7 +16,7 @@ Toggle.propTypes = {
 }
 
 Toggle.defaultProps = {
-  value: false,
+  value: undefined,
 }
 
 export default Toggle
