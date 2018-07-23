@@ -1,8 +1,6 @@
-import { reaction } from 'k-ramel'
-
 import * as firebase from 'firebase/proposals'
 
-export const updateProposal = reaction(async (action, store, { router }) => {
+export const updateProposal = async (action, store, { router }) => {
   // get needed inputs
   const eventId = router.getRouteParam('eventId')
   const { proposal, options } = action.payload
@@ -10,9 +8,9 @@ export const updateProposal = reaction(async (action, store, { router }) => {
   await firebase.updateProposal(eventId, proposal, options)
   // update proposal in the store
   store.data.proposals.update(proposal)
-})
+}
 
-export const getProposal = reaction(async (action, store, { router }) => {
+export const getProposal = async (action, store, { router }) => {
   // get event & proposal id from router
   const eventId = router.getRouteParam('eventId')
   const proposalId = router.getRouteParam('proposalId')
@@ -27,9 +25,9 @@ export const getProposal = reaction(async (action, store, { router }) => {
   }
   // get associated ratings
   store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
-})
+}
 
-export const nextProposal = reaction(async (action, store, { router }) => {
+export const nextProposal = async (action, store, { router }) => {
   const eventId = router.getRouteParam('eventId')
   const { proposalIndex } = store.ui.organizer.proposal.get()
   const proposalKeys = store.data.proposals.getKeys()
@@ -44,9 +42,9 @@ export const nextProposal = reaction(async (action, store, { router }) => {
       query: filters,
     })
   }
-})
+}
 
-export const previousProposal = reaction(async (action, store, { router }) => {
+export const previousProposal = async (action, store, { router }) => {
   const eventId = router.getRouteParam('eventId')
   const { proposalIndex } = store.ui.organizer.proposal.get()
   const proposalKeys = store.data.proposals.getKeys()
@@ -61,4 +59,4 @@ export const previousProposal = reaction(async (action, store, { router }) => {
       query: filters,
     })
   }
-})
+}

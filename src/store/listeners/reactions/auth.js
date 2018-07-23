@@ -1,11 +1,10 @@
-import { reaction } from 'k-ramel'
 import firebase from 'firebase/app'
 import pick from 'lodash/pick'
 
 import userCrud from 'firebase/user'
 import { fetchUserOrganizations } from 'firebase/organizations'
 
-export const signin = reaction(async (action, store) => {
+export const signin = async (action, store) => {
   const providerId = action.payload
   let provider
   switch (providerId) {
@@ -31,14 +30,14 @@ export const signin = reaction(async (action, store) => {
     console.error('Authentication error', error)
     store.auth.update({ authenticated: false, uid: undefined, error })
   }
-})
+}
 
-export const signout = reaction((action, store, { router }) => {
+export const signout = (action, store, { router }) => {
   firebase.auth().signOut()
   router.push('/')
-})
+}
 
-export const signedIn = reaction(async (action, store, { router }) => {
+export const signedIn = async (action, store, { router }) => {
   let user = pick(action.payload, ['uid', 'displayName', 'photoURL', 'email'])
 
   // set auth initialized and authenticated
@@ -64,9 +63,9 @@ export const signedIn = reaction(async (action, store, { router }) => {
   if (next) {
     router.replace(next)
   }
-})
+}
 
-export const signedOut = reaction((action, store) => {
+export const signedOut = (action, store) => {
   store.auth.update({ initialized: true, authenticated: false, uid: undefined })
   store.data.users.reset()
-})
+}

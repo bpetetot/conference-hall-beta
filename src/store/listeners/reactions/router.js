@@ -1,9 +1,7 @@
-import { reaction } from 'k-ramel'
-
 import { isRoute, isSpeakerRoute } from 'store/drivers/redux-little-router'
 
 // eslint-disable-next-line import/prefer-default-export
-export const onRouteChanged = reaction((action, store, { router }) => {
+export const onRouteChanged = (action, store, { router }) => {
   const state = store.getState()
 
   // when speaker route get last eventId in localstorage
@@ -23,4 +21,4 @@ export const onRouteChanged = reaction((action, store, { router }) => {
       store.ui.app.update({ currentEventId: eventId })
     }
   }
-})
+}

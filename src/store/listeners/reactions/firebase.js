@@ -1,5 +1,4 @@
 /* eslint-disable no-console, import/prefer-default-export */
-import { reaction } from 'k-ramel'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
@@ -10,7 +9,7 @@ const config = {
   projectId: process.env.REACT_APP_PROJECT_ID,
 }
 
-export const init = reaction((action, store) => {
+export const init = (action, store) => {
   try {
     firebase.initializeApp(config)
     const firestore = firebase.firestore()
@@ -26,4 +25,4 @@ export const init = reaction((action, store) => {
       store.dispatch({ type: '@@firebase/SIGNED_IN', payload: user })
     }
   })
-})
+}

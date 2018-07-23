@@ -1,11 +1,9 @@
-import { reaction } from 'k-ramel'
-
 import { flow, isEqual, omit, over, pick, update, pickBy } from 'lodash/fp'
 
 import * as firebase from 'firebase/proposals'
 
 /* set proposal filters from URL query params */
-export const setProposalFiltersFromRouter = reaction((action, store, { router }) => {
+export const setProposalFiltersFromRouter = (action, store, { router }) => {
   const { query } = router.get()
 
   const pickTruthyValues = pickBy(Boolean)
@@ -29,10 +27,10 @@ export const setProposalFiltersFromRouter = reaction((action, store, { router })
   if (!isEqual(validFilters, filtersFromUiState)) {
     store.ui.organizer.proposals.update(validFilters)
   }
-})
+}
 
 /* load proposals */
-export const loadProposals = reaction(async (action, store, { router }) => {
+export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()
 
   const eventId = router.getRouteParam('eventId')
@@ -41,10 +39,10 @@ export const loadProposals = reaction(async (action, store, { router }) => {
   const filters = store.ui.organizer.proposals.get()
   const proposals = await firebase.fetchEventProposals(eventId, uid, filters)
   store.data.proposals.set(proposals)
-})
+}
 
 /* select a proposal */
-export const selectProposal = reaction(async (action, store, { router }) => {
+export const selectProposal = async (action, store, { router }) => {
   const { eventId, proposalId } = action.payload
   const proposalKeys = store.data.proposals.getKeys()
   const proposalIndex = proposalKeys.indexOf(proposalId)
@@ -57,10 +55,10 @@ export const selectProposal = reaction(async (action, store, { router }) => {
       query: filters,
     })
   }
-})
+}
 
 /* when filters changes synchronize filters with url and load proposals */
-export const changeFilter = reaction(async (action, store, { router }) => {
+export const changeFilter = async (action, store, { router }) => {
   const [removedFilters, addedOrModifiedFilters] = over([
     flow(
       pickBy(filter => !filter),
@@ -82,4 +80,4 @@ export const changeFilter = reaction(async (action, store, { router }) => {
     router.replace({ query: updatedQuery })
     store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
   }
-})
+}
