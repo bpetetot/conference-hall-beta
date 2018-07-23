@@ -3,6 +3,8 @@ import forRoute from 'hoc-little-router'
 
 import Brand from 'screens/components/brand'
 import Navbar from 'screens/components/navbar'
+import Contributors from 'screens/components/contributors'
+
 import Event from './event'
 
 const Public = () => (
@@ -11,6 +13,7 @@ const Public = () => (
     <Navbar className="layout-navbar" />
     <div className="layout-main layout-main-public">
       <Event />
+      <Contributors />
     </div>
   </div>
 )
