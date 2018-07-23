@@ -1,3 +1,3 @@
 import { types } from 'k-ramel'
 
-export default types.keyValue({ key: 'id' })
+export default types.keyValue()
