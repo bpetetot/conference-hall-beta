@@ -29,7 +29,13 @@ const Avatar = ({
 }) => {
   if (!name && !src) return null
 
-  const colors = color ? { background: color } : generateColor(name)
+  let bgColor = { background: 'transparent' }
+  if (color) {
+    bgColor = color
+  } else if (!src) {
+    bgColor = generateColor(name)
+  }
+
   const classes = cn(
     'cc-avatar',
     {
@@ -43,7 +49,7 @@ const Avatar = ({
 
   return (
     <div className={cn('cc-avatar-wrapper', className)}>
-      <div className={classes} style={{ ...colors, ...style }}>
+      <div className={classes} style={{ ...bgColor, ...style }}>
         {src && <img src={src} alt={name || 'avatar'} />}
         {!src && name && <span>{name.charAt(0)}</span>}
       </div>

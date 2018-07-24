@@ -16,6 +16,7 @@ const Profile = ({
     <div className="profile-header card">
       <Avatar
         name={displayName}
+        src={photoURL}
         className="profile-avatar"
         square
       />
