@@ -1,7 +1,7 @@
 .cc-badge {
   display: inline-block;
-  padding: 0.25em 0.5em;
-  font-size: 75%;
+  padding: 0.35em 0.5em;
+  font-size: 85%;
   font-weight: 700;
   line-height: 1;
   border-radius: .25rem;
@@ -16,7 +16,50 @@
   border-radius: 10rem;
 }
 
-.cc-badge-default {
+.cc-badge-primary {
+  border: 1px solid var(--primary-color);
   background-color: var(--primary-color);
   color: var(--primary-color-font);
+}
+
+.cc-badge-secondary {
+  border: 1px solid var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: var(--secondary-color-font);
+}
+
+.cc-badge-success {
+  border: 1px solid var(--success-color);
+  background-color: var(--success-color);
+  color: #FFF;
+}
+
+.cc-badge-warning {
+  border: 1px solid var(--warning-color);
+  background-color: var(--warning-color);
+  color: #FFF;
+}
+
+.cc-badge-error {
+  border: 1px solid var(--error-color);
+  background-color: var(--error-color);
+  color: #FFF;
+}
+
+.cc-badge-info {
+  border: 1px solid var(--question-color);
+  background-color: var(--question-color);
+  color: #FFF;
+}
+
+.cc-badge-dark {
+  border: 1px solid #000;
+  background-color: #000;
+  color: #FFF;
+}
+
+.cc-badge-light {
+  border: 1px solid var(--grey-color-light);
+  background-color: var(--grey-color-light);
+  color: #000;
 }
