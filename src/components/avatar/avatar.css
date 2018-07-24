@@ -1,24 +1,40 @@
 .avatar {
+  --avatar-height: 32px;
+  --avatar-width: 32px;
+  --avatar-font-size: 1.3rem;
+
   align-items: center;
   display: inline-flex;
   justify-content: center;
   border-radius: 50%;
 }
 
+.avatar-small {
+  --avatar-height: 16px;
+  --avatar-width: 16px;
+  --avatar-font-size: 0.8rem;
+}
+
+.avatar-large {
+  --avatar-height: 64px;
+  --avatar-width: 64px;
+  --avatar-font-size: 2rem;
+}
+
 .avatar-image > img {
   border-radius: 50%;
-  height: 2em;
-  width: 2em;
+  height: var(--avatar-height);
+  width: var(--avatar-width);
 }
 
 .avatar-initials {
   background: var(--secondary-color);
   color: var(--secondary-color-font);
-  width: 2em;
-  height: 2em;
+  height: var(--avatar-height);
+  width: var(--avatar-width);
 }
 
 .avatar-initials > * {
-  font-size: 1.5em;
   font-weight: 300;
+  font-size: var(--avatar-font-size);
 }

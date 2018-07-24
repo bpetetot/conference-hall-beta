@@ -18,12 +18,17 @@ const generateColor = (seed) => {
 }
 
 const Avatar = ({
-  name, src, color, className, style,
+  name, src, color, size, className, style,
 }) => {
   if (!name && !src) return null
 
   const colors = color ? { background: color } : generateColor(name)
-  const classes = cn('avatar', { 'avatar-initials': !src, 'avatar-image': src }, className)
+  const classes = cn('avatar', {
+    'avatar-small': size === 'small',
+    'avatar-large': size === 'large',
+    'avatar-initials': !src,
+    'avatar-image': src,
+  }, className)
 
   return (
     <div className={classes} style={{ ...colors, ...style }}>
@@ -37,6 +42,7 @@ Avatar.propTypes = {
   name: PropTypes.string,
   src: PropTypes.string,
   color: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   className: PropTypes.string,
   style: PropTypes.objectOf(PropTypes.string),
 }
@@ -45,6 +51,7 @@ Avatar.defaultProps = {
   name: undefined,
   src: undefined,
   color: undefined,
+  size: 'medium',
   className: undefined,
   style: undefined,
 }
