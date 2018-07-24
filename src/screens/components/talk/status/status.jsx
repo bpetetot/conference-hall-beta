@@ -13,9 +13,11 @@ const Status = ({
     <div className={cn('submission-status', className)}>
       {outOfDate && cfpOpened && (
         <Badge warning>
-          <a role="button" onClick={onClickEdit}>
-            Out of date
-          </a>
+          {classes => (
+            <a role="button" onClick={onClickEdit} className={classes}>
+              Out of date
+            </a>
+          )}
         </Badge>
       )}
       {!cfpOpened && <Badge error>CFP closed</Badge>}

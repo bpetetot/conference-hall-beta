@@ -53,6 +53,20 @@ import Badge from './badge'
   <Badge pill>100</Badge>
 </Playground>
 
+## Using Function As A Child
+
+Used to apply badge style to any element.
+
+<Playground>
+  <Badge outline pill>
+    {classes => (
+      <button className={classes}>
+        Apply Badge style to any element
+      </button>
+    )}
+  </Badge>
+</Playground>
+
 ## Properties
 
 <PropsTable of={Badge} />

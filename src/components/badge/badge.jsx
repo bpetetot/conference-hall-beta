@@ -38,6 +38,10 @@ const Badge = ({
     className,
   )
 
+  if (typeof children === 'function') {
+    return children(classes)
+  }
+
   return (
     <span className={classes} style={style}>
       {children}
@@ -46,7 +50,11 @@ const Badge = ({
 }
 
 Badge.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.array,
+    PropTypes.func,
+  ]),
   pill: PropTypes.bool,
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
