@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import {
   input, address, markdownInput, SubmitButton,
 } from 'components/form'
+import Avatar from 'components/avatar'
 
 import './profile.css'
 
@@ -13,7 +14,11 @@ const Profile = ({
 }) => (
   <div className="profile">
     <div className="profile-header card">
-      <img src={photoURL} alt="profile avatar" />
+      <Avatar
+        name={displayName}
+        className="profile-avatar"
+        square
+      />
       <div>
         <h1>{displayName}</h1>
         <small>{email}</small>
