@@ -18,23 +18,37 @@ const generateColor = (seed) => {
 }
 
 const Avatar = ({
-  name, src, color, size, square, className, style,
+  name,
+  src,
+  color,
+  size,
+  square,
+  withLabel,
+  className,
+  style,
 }) => {
   if (!name && !src) return null
 
   const colors = color ? { background: color } : generateColor(name)
-  const classes = cn('avatar', {
-    'avatar-small': size === 'small',
-    'avatar-large': size === 'large',
-    'avatar-initials': !src,
-    'avatar-image': src,
-    'avatar-square': square,
-  }, className)
+  const classes = cn(
+    'cc-avatar',
+    {
+      'cc-avatar-small': size === 'small',
+      'cc-avatar-large': size === 'large',
+      'cc-avatar-initials': !src,
+      'cc-avatar-image': src,
+      'cc-avatar-square': square,
+    },
+    className,
+  )
 
   return (
-    <div className={classes} style={{ ...colors, ...style }}>
-      {src && <img src={src} alt={name || 'avatar'} />}
-      {!src && name && <span>{name.charAt(0)}</span>}
+    <div className="cc-avatar-wrapper">
+      <div className={classes} style={{ ...colors, ...style }}>
+        {src && <img src={src} alt={name || 'avatar'} />}
+        {!src && name && <span>{name.charAt(0)}</span>}
+      </div>
+      {withLabel && <span className="cc-avatar-label">{name}</span>}
     </div>
   )
 }
@@ -45,6 +59,7 @@ Avatar.propTypes = {
   color: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   square: PropTypes.bool,
+  withLabel: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.objectOf(PropTypes.string),
 }
@@ -55,6 +70,7 @@ Avatar.defaultProps = {
   color: undefined,
   size: 'medium',
   square: false,
+  withLabel: false,
   className: undefined,
   style: undefined,
 }
