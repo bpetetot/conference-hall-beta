@@ -9,13 +9,25 @@ import Avatar from './avatar'
 
 # Avatar
 
-## Avatar hierarchy
+## Basic usage
 
 <Playground className="horizontal-separator">
-  <Avatar name="Dark Vader" />
+  <Avatar name="Darth Vader" />
   <Avatar name="Luke Skywalker" />
   <Avatar name="Yoda" />
+  <Avatar name="C3PO" color="#DA8E03" />
 </Playground>
+
+## With image
+
+You can give images or SVG as `src` to `<Avatar>` component.
+
+<Playground className="horizontal-separator">
+  <Avatar src="https://upload.wikimedia.org/wikipedia/en/7/76/Darth_Vader.jpg" />
+  <Avatar src="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png" />
+  <Avatar src="https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png" />
+</Playground>
+
 
 ## Properties
 
