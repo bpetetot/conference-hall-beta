@@ -21,6 +21,14 @@
   --avatar-font-size: 2rem;
 }
 
+.avatar-square {
+  border-radius: 0;
+}
+
+.avatar-square.avatar-image > img {
+  border-radius: 0;
+}
+
 .avatar-image > img {
   border-radius: 50%;
   height: var(--avatar-height);

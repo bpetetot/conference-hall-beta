@@ -18,7 +18,7 @@ const generateColor = (seed) => {
 }
 
 const Avatar = ({
-  name, src, color, size, className, style,
+  name, src, color, size, square, className, style,
 }) => {
   if (!name && !src) return null
 
@@ -28,11 +28,12 @@ const Avatar = ({
     'avatar-large': size === 'large',
     'avatar-initials': !src,
     'avatar-image': src,
+    'avatar-square': square,
   }, className)
 
   return (
     <div className={classes} style={{ ...colors, ...style }}>
-      {src && <img src={src} alt="avatar" />}
+      {src && <img src={src} alt={name || 'avatar'} />}
       {!src && name && <span>{name.charAt(0)}</span>}
     </div>
   )
@@ -43,6 +44,7 @@ Avatar.propTypes = {
   src: PropTypes.string,
   color: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  square: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.objectOf(PropTypes.string),
 }
@@ -52,6 +54,7 @@ Avatar.defaultProps = {
   src: undefined,
   color: undefined,
   size: 'medium',
+  square: false,
   className: undefined,
   style: undefined,
 }
