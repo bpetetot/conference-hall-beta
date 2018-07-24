@@ -11,7 +11,12 @@ const ProposalSubtitle = ({ proposal, formatLabel, categoryLabel }) => {
   return (
     <Inline className="proposal-subtitle" classNameItem="proposal-subtitle-item">
       {Object.keys(speakers).map(id => (
-        <Speaker key={id} id={id} className="proposal-item-info-speaker" small />
+        <Speaker
+          key={id}
+          id={id}
+          className="proposal-item-info-speaker"
+          size="small"
+        />
       ))}
       {!!formatLabel && formatLabel}
       {!!categoryLabel && categoryLabel}

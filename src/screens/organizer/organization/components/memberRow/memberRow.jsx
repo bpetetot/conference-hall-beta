@@ -6,7 +6,7 @@ import RelativeDate from 'components/relativeDate'
 import Button from 'components/button'
 import { ListItem } from 'components/list'
 import { ConfirmationPopin } from 'components/portals'
-import AvatarLabel from 'components/avatar/avatarLabel'
+import Avatar from 'components/avatar/avatar'
 
 import { toDate } from 'helpers/firebase'
 
@@ -30,9 +30,7 @@ const MemberRow = ({
     <Fragment>
       <ListItem
         key={uid}
-        title={(
-          <AvatarLabel name={displayName} src={photoURL} />
-        )}
+        title={<Avatar name={displayName} src={photoURL} withLabel />}
         subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
         renderActions={() => (
           <ConfirmationPopin

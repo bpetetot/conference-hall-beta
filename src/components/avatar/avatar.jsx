@@ -39,11 +39,10 @@ const Avatar = ({
       'cc-avatar-image': src,
       'cc-avatar-square': square,
     },
-    className,
   )
 
   return (
-    <div className="cc-avatar-wrapper">
+    <div className={cn('cc-avatar-wrapper', className)}>
       <div className={classes} style={{ ...colors, ...style }}>
         {src && <img src={src} alt={name || 'avatar'} />}
         {!src && name && <span>{name.charAt(0)}</span>}
