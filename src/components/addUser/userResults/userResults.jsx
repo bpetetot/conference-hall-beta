@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import User from 'screens/components/speaker'
+import UserAvatar from 'screens/components/userAvatar'
 import './userResults.css'
 
 const UserResults = ({ users, message, onSelectUser }) => {
@@ -20,7 +20,7 @@ const UserResults = ({ users, message, onSelectUser }) => {
       <h3>{message}</h3>
       {users.map(uid => (
         <div key={uid} onClick={() => onSelectUser(uid)} role="button">
-          <User id={uid} />
+          <UserAvatar id={uid} />
         </div>
       ))}
     </div>

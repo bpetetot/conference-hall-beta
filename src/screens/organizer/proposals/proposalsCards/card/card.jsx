@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import first from 'lodash/first'
 import keys from 'lodash/keys'
 
-import Speaker from 'screens/components/speaker'
+import UserAvatar from 'screens/components/userAvatar'
 import TotalRatings from 'screens/organizer/components/totalRatings'
 import SurveyInfo from './surveyInfo'
 import './card.css'
@@ -29,7 +29,7 @@ const ProposalCard = ({
         <div className="proposal-card-title">{title}</div>
       </div>
       <div className="proposal-card-speakers">
-        <Speaker id={speakerId} small />
+        <UserAvatar id={speakerId} small />
         {nbSpeakers > 1 && <div>+{nbSpeakers - 1} speaker(s)</div>}
       </div>
       <div className="proposal-card-survey">

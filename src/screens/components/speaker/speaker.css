@@ -1,8 +1,0 @@
-.speaker-avatar {
-  display: flex;
-  align-items: center;
-}
-
-.speaker-avatar .speaker-avatar-fullname {
-  margin-left: 0.7em;
-}

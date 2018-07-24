@@ -2,7 +2,7 @@ import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import loader from 'hoc-react-loader/build/core'
 
-import Avatar from 'components/avatar/avatar'
+import Avatar from 'components/avatar'
 
 const mapStore = (store, { id }) => {
   const { photoURL, displayName } = store.data.users.get(id) || {}
