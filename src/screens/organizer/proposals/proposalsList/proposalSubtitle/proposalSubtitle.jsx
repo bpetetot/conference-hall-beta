@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Speaker from 'screens/components/speaker'
+import UserAvatar from 'screens/components/userAvatar'
 import Inline from 'components/inline'
 
 import './proposalSubtitle.css'
@@ -11,7 +11,12 @@ const ProposalSubtitle = ({ proposal, formatLabel, categoryLabel }) => {
   return (
     <Inline className="proposal-subtitle" classNameItem="proposal-subtitle-item">
       {Object.keys(speakers).map(id => (
-        <Speaker key={id} id={id} className="proposal-item-info-speaker" small />
+        <UserAvatar
+          key={id}
+          id={id}
+          className="proposal-item-info-speaker"
+          size="small"
+        />
       ))}
       {!!formatLabel && formatLabel}
       {!!categoryLabel && categoryLabel}

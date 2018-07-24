@@ -12,7 +12,7 @@ const AvatarDropdown = ({
   baseRoute, displayName, photoURL, signout,
 }) => {
   const avatar = (
-    <Avatar photoURL={photoURL} displayName={displayName} className="avatar-dropdown" />
+    <Avatar src={photoURL} name={displayName} className="avatar-dropdown" />
   )
   return (
     <Dropdown action={avatar}>

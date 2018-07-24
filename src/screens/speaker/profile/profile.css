@@ -5,11 +5,16 @@
   padding: 0;
 }
 
-.profile .profile-header > img {
-  margin-right: 2em;
+.profile .profile-avatar {
+  --cc-avatar-height: 100px;
+  --cc-avatar-width: 100px;
+  --cc-avatar-font-size: 70px;
+  margin-right: 1.5em;
+}
+
+.profile .profile-avatar img {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
-  height: 100px;
 }
 
 .profile .profile-header h1 {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import { displayRating } from 'helpers/number'
-import Avatar from 'screens/components/speaker'
+import UserAvatar from 'screens/components/userAvatar'
 import IconLabel from 'components/iconLabel/iconLabel'
 import TotalRatings from 'screens/organizer/components/totalRatings'
 
@@ -25,7 +25,7 @@ const TeamRatings = ({
     </div>
     {ratings.map(({ uid, feeling, rating }) => (
       <div key={uid} className="team-ratings">
-        <Avatar id={uid} />
+        <UserAvatar id={uid} />
         <div className="team-ratings-rates">
           <IconLabel
             icon={cn('fa', {

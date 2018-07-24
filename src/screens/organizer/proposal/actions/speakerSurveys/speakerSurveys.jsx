@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Avatar from 'screens/components/speaker'
+import UserAvatar from 'screens/components/userAvatar'
 
 import Answer from './answer'
 
@@ -8,7 +8,7 @@ import './speakerSurveys.css'
 
 const SpeakerSurveys = ({ survey, responses }) => responses.map(({ uid, response }) => (
   <div key={uid} className="speaker-surveys card">
-    <Avatar id={uid} />
+    <UserAvatar id={uid} />
     {response ? (
       <div className="questions">
         {survey.gender && <Answer question="gender" answer={response.gender} />}

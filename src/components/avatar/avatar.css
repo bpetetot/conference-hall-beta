@@ -1,22 +1,56 @@
-.avatar {
+.cc-avatar-wrapper {
+  --cc-avatar-height: 40px;
+  --cc-avatar-width: 40px;
+  --cc-avatar-font-size: 1.3rem;
   align-items: center;
-  display: flex;
+  display: inline-flex;
+}
+
+.cc-avatar {
+  align-items: center;
+  display: inline-flex;
   justify-content: center;
   border-radius: 50%;
 }
 
-.avatar-image > img {
-  border-radius: 50%;
-  height: 2em;
-  width: 2em;
+.cc-avatar-small {
+  --cc-avatar-height: 20px;
+  --cc-avatar-width: 20px;
+  --cc-avatar-font-size: 0.8rem;
 }
 
-.avatar-initials {
+.cc-avatar-large {
+  --cc-avatar-height: 60px;
+  --cc-avatar-width: 60px;
+  --cc-avatar-font-size: 2rem;
+}
+
+.cc-avatar-square {
+  border-radius: 0;
+}
+
+.cc-avatar-square.cc-avatar-image > img {
+  border-radius: 0;
+}
+
+.cc-avatar-image > img {
+  border-radius: 50%;
+  height: var(--cc-avatar-height);
+  width: var(--cc-avatar-width);
+}
+
+.cc-avatar-initials {
   background: var(--secondary-color);
   color: var(--secondary-color-font);
+  height: var(--cc-avatar-height);
+  width: var(--cc-avatar-width);
 }
 
-.avatar-initials > * {
-  font-size: 1.5em;
+.cc-avatar-initials > * {
   font-weight: 300;
+  font-size: var(--cc-avatar-font-size);
+}
+
+.cc-avatar-label {
+  margin-left: 0.5em;
 }

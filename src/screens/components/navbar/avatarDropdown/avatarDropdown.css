@@ -1,18 +1,18 @@
-.avatar-dropdown.avatar-image > img {
+.avatar-dropdown .cc-avatar-image > img {
   border: 2px solid var(--primary-color-font);
   font-size: 1.5em;
 }
 
-.avatar-dropdown.avatar-image > img:hover {
+.avatar-dropdown .cc-avatar-image > img:hover {
   border: 2px solid var(--secondary-color);
   cursor: pointer;
 }
 
-.avatar-dropdown.avatar-initials {
+.avatar-dropdown .cc-avatar-initials {
   border: 2px solid var(--secondary-color);
 }
 
-.avatar-dropdown.avatar-initials:hover {
+.avatar-dropdown .cc-avatar-initials:hover {
   border: 2px solid var(--secondary-color-font);
   cursor: pointer;
 }

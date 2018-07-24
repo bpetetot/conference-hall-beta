@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Titlebar from 'components/titlebar'
-import AvatarLabel from 'components/avatar/avatarLabel'
+import Avatar from 'components/avatar/avatar'
 import Button from 'components/button'
 import './inviteOrganizer.css'
 
@@ -16,7 +16,14 @@ const InviteOrganizer = ({
       </Button>
     </Titlebar>
     <div className="card">
-      <AvatarLabel displayName={displayName} photoURL={photoURL} suffix={`invites you to join the organization : ${name}`} className="invited-by" />
+      <div className="invited-by">
+        <Avatar
+          name={displayName}
+          src={photoURL}
+          withLabel
+        />
+        <div>&nbsp;{`invites you to join the organization : ${name}`}</div>
+      </div>
       <p>You&apos;re will be able to update the organization and invite members</p>
       <Button accent onClick={join} className="invite-join-btn">
         Join organization
