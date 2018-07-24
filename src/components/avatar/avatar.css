@@ -1,6 +1,6 @@
 .cc-avatar-wrapper {
-  --cc-avatar-height: 32px;
-  --cc-avatar-width: 32px;
+  --cc-avatar-height: 40px;
+  --cc-avatar-width: 40px;
   --cc-avatar-font-size: 1.3rem;
   align-items: center;
   display: inline-flex;
@@ -14,14 +14,14 @@
 }
 
 .cc-avatar-small {
-  --cc-avatar-height: 16px;
-  --cc-avatar-width: 16px;
+  --cc-avatar-height: 20px;
+  --cc-avatar-width: 20px;
   --cc-avatar-font-size: 0.8rem;
 }
 
 .cc-avatar-large {
-  --cc-avatar-height: 64px;
-  --cc-avatar-width: 64px;
+  --cc-avatar-height: 60px;
+  --cc-avatar-width: 60px;
   --cc-avatar-font-size: 2rem;
 }
 

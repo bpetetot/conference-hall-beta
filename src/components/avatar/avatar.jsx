@@ -25,13 +25,14 @@ const Avatar = ({
   square,
   withLabel,
   className,
+  labelClassName,
   style,
 }) => {
   if (!name && !src) return null
 
   let bgColor = { background: 'transparent' }
   if (color) {
-    bgColor = color
+    bgColor = { background: color }
   } else if (!src) {
     bgColor = generateColor(name)
   }
@@ -53,7 +54,7 @@ const Avatar = ({
         {src && <img src={src} alt={name || 'avatar'} />}
         {!src && name && <span>{name.charAt(0)}</span>}
       </div>
-      {withLabel && <span className="cc-avatar-label">{name}</span>}
+      {withLabel && <span className={cn('cc-avatar-label', labelClassName)}>{name}</span>}
     </div>
   )
 }
@@ -66,6 +67,7 @@ Avatar.propTypes = {
   square: PropTypes.bool,
   withLabel: PropTypes.bool,
   className: PropTypes.string,
+  labelClassName: PropTypes.string,
   style: PropTypes.objectOf(PropTypes.string),
 }
 
@@ -77,6 +79,7 @@ Avatar.defaultProps = {
   square: false,
   withLabel: false,
   className: undefined,
+  labelClassName: undefined,
   style: undefined,
 }
 
