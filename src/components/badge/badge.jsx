@@ -17,7 +17,7 @@ const Badge = ({
   light,
   outline,
   className,
-  style
+  style,
 }) => {
   if (!children) return null
 
@@ -35,13 +35,13 @@ const Badge = ({
       'cc-badge-light': light,
       'cc-badge-outline': outline,
     },
-    className
+    className,
   )
 
   return (
     <span className={classes} style={style}>
-      {children
-    }</span>
+      {children}
+    </span>
   )
 }
 

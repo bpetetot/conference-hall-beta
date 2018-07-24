@@ -16,6 +16,10 @@
   border-radius: 10rem;
 }
 
+.cc-badge-outline {
+  font-weight: 400;
+}
+
 .cc-badge-primary {
   border: 1px solid var(--primary-color);
   background-color: var(--primary-color);
