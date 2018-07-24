@@ -4,19 +4,85 @@ import cn from 'classnames'
 
 import './badge.css'
 
-const Badge = ({ children, className }) => {
+const Badge = ({
+  children,
+  pill,
+  primary,
+  secondary,
+  success,
+  warning,
+  error,
+  info,
+  dark,
+  light,
+  outline,
+  className,
+  style,
+}) => {
   if (!children) return null
-  return <span className={cn('badge', 'badge-default', className)}>{children}</span>
+
+  const classes = cn(
+    'cc-badge',
+    {
+      'cc-badge-pill': pill,
+      'cc-badge-primary': primary,
+      'cc-badge-secondary': secondary,
+      'cc-badge-success': success,
+      'cc-badge-warning': warning,
+      'cc-badge-error': error,
+      'cc-badge-info': info,
+      'cc-badge-dark': dark,
+      'cc-badge-light': light,
+      'cc-badge-outline': outline,
+    },
+    className,
+  )
+
+  if (typeof children === 'function') {
+    return children(classes)
+  }
+
+  return (
+    <span className={classes} style={style}>
+      {children}
+    </span>
+  )
 }
 
 Badge.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.array,
+    PropTypes.func,
+  ]),
+  pill: PropTypes.bool,
+  primary: PropTypes.bool,
+  secondary: PropTypes.bool,
+  success: PropTypes.bool,
+  warning: PropTypes.bool,
+  error: PropTypes.bool,
+  info: PropTypes.bool,
+  dark: PropTypes.bool,
+  light: PropTypes.bool,
+  outline: PropTypes.bool,
   className: PropTypes.string,
+  style: PropTypes.object,
 }
 
 Badge.defaultProps = {
   children: undefined,
+  pill: false,
+  primary: true,
+  secondary: false,
+  success: false,
+  warning: false,
+  error: false,
+  info: false,
+  dark: false,
+  light: false,
+  outline: false,
   className: undefined,
+  style: undefined,
 }
 
 export default Badge

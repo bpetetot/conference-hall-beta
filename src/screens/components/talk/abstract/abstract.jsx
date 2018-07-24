@@ -12,7 +12,7 @@ const TalkAbstract = ({
   <div className={cn('talk-abstract card', className)}>
     <div className="talk-abstract-title">
       <h3>Abstract</h3>
-      <Badge>Level {level}</Badge>
+      <Badge outline pill light>Level {level}</Badge>
     </div>
     <Markdown source={abstract} />
     <h3 className="talk-reference">References</h3>
