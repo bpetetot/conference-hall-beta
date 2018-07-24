@@ -4,21 +4,39 @@ exports[`components/avatar should not render when no props 1`] = `null`;
 
 exports[`components/avatar should render with initial when no photo 1`] = `
 <div
-  className="avatar avatar-initials"
+  className="cc-avatar-wrapper"
 >
-  <span>
-    B
-  </span>
+  <div
+    className="cc-avatar cc-avatar-initials"
+    style={
+      Object {
+        "background": "#42910e",
+      }
+    }
+  >
+    <span>
+      B
+    </span>
+  </div>
 </div>
 `;
 
 exports[`components/avatar should render with photo 1`] = `
 <div
-  className="avatar avatar-image"
+  className="cc-avatar-wrapper"
 >
-  <img
-    alt="avatar"
-    src="https://p.url"
-  />
+  <div
+    className="cc-avatar cc-avatar-image"
+    style={
+      Object {
+        "background": "transparent",
+      }
+    }
+  >
+    <img
+      alt="Benjamin"
+      src="https://p.url"
+    />
+  </div>
 </div>
 `;
