@@ -5,7 +5,7 @@ import keys from 'lodash/keys'
 
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
-import AddMember from 'components/addUser'
+import AddMember from 'screens/components/addUserModal'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import MemberRow from '../components/memberRow'

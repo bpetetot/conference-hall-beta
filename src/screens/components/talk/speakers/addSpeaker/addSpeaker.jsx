@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import AddUserModal from 'components/addUser'
+import AddUserModal from 'screens/components/addUserModal'
 
 import './addSpeaker.css'
 
