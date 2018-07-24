@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import UserAvatar from 'screens/components/userAvatar'
+
 import AddSpeaker from './addSpeaker'
 import RemoveSpeaker from './removeSpeaker'
 import './speakers.css'
