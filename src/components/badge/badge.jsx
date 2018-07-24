@@ -15,6 +15,7 @@ const Badge = ({
   info,
   dark,
   light,
+  outline,
   className,
   style
 }) => {
@@ -32,6 +33,7 @@ const Badge = ({
       'cc-badge-info': info,
       'cc-badge-dark': dark,
       'cc-badge-light': light,
+      'cc-badge-outline': outline,
     },
     className
   )
@@ -54,6 +56,7 @@ Badge.propTypes = {
   info: PropTypes.bool,
   dark: PropTypes.bool,
   light: PropTypes.bool,
+  outline: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
 }
@@ -69,6 +72,7 @@ Badge.defaultProps = {
   info: false,
   dark: false,
   light: false,
+  outline: false,
   className: undefined,
   style: undefined,
 }
