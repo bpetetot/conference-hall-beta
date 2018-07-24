@@ -16,7 +16,7 @@ const InviteOrganizer = ({
       </Button>
     </Titlebar>
     <div className="card">
-      <AvatarLabel displayName={displayName} photoURL={photoURL} suffix={`invites you to join the organization : ${name}`} className="invited-by" />
+      <AvatarLabel name={displayName} src={photoURL} suffix={`invites you to join the organization : ${name}`} className="invited-by" />
       <p>You&apos;re will be able to update the organization and invite members</p>
       <Button accent onClick={join} className="invite-join-btn">
         Join organization

@@ -31,7 +31,7 @@ const MemberRow = ({
       <ListItem
         key={uid}
         title={(
-          <AvatarLabel displayName={displayName} photoURL={photoURL} />
+          <AvatarLabel name={displayName} src={photoURL} />
         )}
         subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
         renderActions={() => (

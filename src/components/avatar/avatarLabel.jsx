@@ -6,27 +6,27 @@ import Avatar from 'components/avatar'
 import './avatarLabel.css'
 
 const AvatarLabel = ({
-  displayName, photoURL, suffix, className,
+  name, src, suffix, className,
 }) => (
   <div className={cn('avatar-label', className)}>
-    <Avatar displayName={displayName} photoURL={photoURL} />
+    <Avatar name={name} src={src} />
     <span className="avatar-label-fullname">
-      {displayName}
+      {name}
       {suffix && <span>&nbsp;{suffix}</span>}
     </span>
   </div>
 )
 
 AvatarLabel.propTypes = {
-  displayName: PropTypes.string,
-  photoURL: PropTypes.string,
+  name: PropTypes.string,
+  src: PropTypes.string,
   suffix: PropTypes.string,
   className: PropTypes.string,
 }
 
 AvatarLabel.defaultProps = {
-  displayName: undefined,
-  photoURL: undefined,
+  name: undefined,
+  src: undefined,
   suffix: undefined,
   className: undefined,
 }

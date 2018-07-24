@@ -1,10 +1,8 @@
 .avatar {
   align-items: center;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   border-radius: 50%;
-  width: 2em;
-  height: 2em;
 }
 
 .avatar-image > img {
@@ -16,6 +14,8 @@
 .avatar-initials {
   background: var(--secondary-color);
   color: var(--secondary-color-font);
+  width: 2em;
+  height: 2em;
 }
 
 .avatar-initials > * {
