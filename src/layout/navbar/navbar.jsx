@@ -6,18 +6,18 @@ import AvatarDropdown from './avatarDropdown'
 
 import './navbar.css'
 
-const SpeakerNavbar = ({ className }) => (
+const Navbar = ({ className }) => (
   <nav className={cn('navbar', className)}>
     <AvatarDropdown />
   </nav>
 )
 
-SpeakerNavbar.propTypes = {
+Navbar.propTypes = {
   className: PropTypes.string,
 }
 
-SpeakerNavbar.defaultProps = {
+Navbar.defaultProps = {
   className: undefined,
 }
 
-export default SpeakerNavbar
+export default Navbar
