@@ -8,10 +8,15 @@ import BrandMobile from './brandMobile'
 import './brand.css'
 
 const Brand = ({
-  title, baseRoute, isMobile, className,
+  title, baseRoute, isMobile, hasSidebar, className,
 }) => {
   if (isMobile && baseRoute !== '/') {
-    return <BrandMobile className={cn('brand', className)} />
+    return (
+      <BrandMobile
+        className={cn('brand', className)}
+        hasSidebar={hasSidebar}
+      />
+    )
   }
   return (
     <div className={cn('brand', className)}>
@@ -23,6 +28,7 @@ const Brand = ({
 Brand.propTypes = {
   title: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
+  hasSidebar: PropTypes.bool.isRequired,
   baseRoute: PropTypes.string.isRequired,
   className: PropTypes.string,
 }
