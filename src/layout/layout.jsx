@@ -9,7 +9,7 @@ import './layout.css'
 
 const AppLayout = ({ children, sidebar }) => (
   <div className={cn('layout-screen', { 'layout-screen-full-width': !sidebar })}>
-    <Brand className="layout-brand" />
+    <Brand className="layout-brand" hasSidebar={!!sidebar} />
     <Navbar className="layout-navbar" />
     {sidebar && <div className="layout-sidebar">{sidebar}</div>}
     <div className={cn('layout-main', { 'layout-main-full-width': !sidebar })}>
