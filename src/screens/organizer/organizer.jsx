@@ -3,7 +3,7 @@ import { compose } from 'redux'
 import forRoute from 'hoc-little-router'
 
 import { protect } from 'store/reducers/auth'
-import { Brand, Navbar } from 'screens/components'
+import AppLayout from 'layout'
 import Contributors from 'screens/components/contributors'
 import { Sidebar, SidebarMobile } from './sidebar'
 
@@ -21,26 +21,21 @@ import Proposals from './proposals'
 import Proposal from './proposal'
 
 const Organizer = () => (
-  <div className="layout-screen">
-    <Brand className="layout-brand" />
-    <Navbar className="layout-navbar" />
-    <Sidebar className="layout-sidebar" />
-    <div className="layout-main">
-      <SidebarMobile />
-      <EventCreate />
-      <EventEdit />
-      <Event />
-      <MyEvents />
-      <OrganizationCreate />
-      <OrganizationEdit />
-      <OrganizationPage />
-      <MyOrganizations />
-      <InviteOrganizer />
-      <Proposals />
-      <Proposal />
-      <Contributors />
-    </div>
-  </div>
+  <AppLayout sidebar={<Sidebar />}>
+    <SidebarMobile />
+    <EventCreate />
+    <EventEdit />
+    <Event />
+    <MyEvents />
+    <OrganizationCreate />
+    <OrganizationEdit />
+    <OrganizationPage />
+    <MyOrganizations />
+    <InviteOrganizer />
+    <Proposals />
+    <Proposal />
+    <Contributors />
+  </AppLayout>
 )
 
 export default compose(forRoute('HOME_ORGANIZER'), protect, restrictBeta)(Organizer)

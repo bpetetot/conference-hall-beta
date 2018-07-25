@@ -3,7 +3,7 @@ import { compose } from 'redux'
 import forRoute from 'hoc-little-router'
 
 import { protect } from 'store/reducers/auth'
-import { Brand, Navbar } from 'screens/components'
+import AppLayout from 'layout'
 import Contributors from 'screens/components/contributors'
 import { Sidebar, SidebarMobile } from './sidebar'
 import Profile from './profile'
@@ -18,25 +18,20 @@ import EventSurvey from './event/survey'
 import InviteSpeaker from './inviteSpeaker'
 
 const Speaker = () => (
-  <div className="layout-screen">
-    <Brand className="layout-brand" />
-    <Navbar className="layout-navbar" />
-    <Sidebar className="layout-sidebar" />
-    <div className="layout-main">
-      <SidebarMobile />
-      <Profile />
-      <TalkCreate />
-      <TalkEdit />
-      <TalkSubmission />
-      <Talk />
-      <MyTalks />
-      <EventPage />
-      <EventSubmission />
-      <EventSurvey />
-      <InviteSpeaker />
-      <Contributors />
-    </div>
-  </div>
+  <AppLayout sidebar={<Sidebar />}>
+    <SidebarMobile />
+    <Profile />
+    <TalkCreate />
+    <TalkEdit />
+    <TalkSubmission />
+    <Talk />
+    <MyTalks />
+    <EventPage />
+    <EventSubmission />
+    <EventSurvey />
+    <InviteSpeaker />
+    <Contributors />
+  </AppLayout>
 )
 
 export default compose(forRoute('HOME_SPEAKER'), protect)(Speaker)

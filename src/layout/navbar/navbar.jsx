@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
 
-import Navbar from 'components/navbar'
 import AvatarDropdown from './avatarDropdown'
 
 import './navbar.css'
 
 const SpeakerNavbar = ({ className }) => (
-  <Navbar className={className}>
+  <nav className={cn('navbar', className)}>
     <AvatarDropdown />
-  </Navbar>
+  </nav>
 )
 
 SpeakerNavbar.propTypes = {

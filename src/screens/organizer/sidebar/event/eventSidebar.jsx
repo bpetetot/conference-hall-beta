@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { SideBarPanel, SideBarLink } from 'layout/sidebar'
 import IconLabel from 'components/iconLabel'
-import { SideBarPanel, SideBarLink } from 'components/sidebar'
 
 const EventSidebar = ({ eventId, name }) => {
   if (!eventId) return null

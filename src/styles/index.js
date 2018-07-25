@@ -1,5 +1,4 @@
 import './global.css'
-import './layout.css'
 
 import './themes/default.css'
 import './themes/red.css'
