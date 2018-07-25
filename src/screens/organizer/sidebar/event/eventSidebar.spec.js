@@ -3,7 +3,7 @@ import snap from 'tests/snapshot'
 import EventSidebar from './eventSidebar'
 
 jest.mock('components/iconLabel', () => 'IconLabel')
-jest.mock('components/sidebar', () => ({
+jest.mock('layout/sidebar', () => ({
   SideBarLink: () => 'SideBarLink',
   SideBarPanel: () => 'SideBarPanel',
 }))

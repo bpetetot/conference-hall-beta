@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { SideBar, SideBarPanel, SideBarLink } from 'layout/sidebar'
 import IconLabel from 'components/iconLabel'
-import { SideBar, SideBarPanel, SideBarLink } from 'components/sidebar'
 import EventSideBar from './event'
 
 const OrganizerSideBar = ({ fullname, className }) => (
