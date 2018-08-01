@@ -38,7 +38,6 @@
     "react-redux": "^5.0.7",
     "react-sizes": "^1.0.4",
     "react-test-renderer": "^16.4.1",
-    "recompose": "^0.27.1",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
     "redux-little-router": "^15.1.1",
