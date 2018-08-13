@@ -44,7 +44,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "docz": "^0.9.5",
+    "docz": "^0.10.0",
     "docz-theme-default": "^0.9.5",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
