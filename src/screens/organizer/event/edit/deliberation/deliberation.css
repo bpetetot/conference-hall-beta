@@ -4,6 +4,14 @@
   flex-direction: column;
 }
 
+.deliberation-form > * {
+  margin-bottom: 1em;
+}
+
+.deliberation-form > *:last-child {
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width: 480px) {
   .deliberation-form {
     padding: 1em;
