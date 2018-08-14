@@ -11,19 +11,21 @@ import SpeakerSurveys from './speakerSurveys'
 import './actions.css'
 
 const Actions = ({
-  eventId, proposal, surveyActive, className,
+  eventId, proposal, surveyActive, displayOrganizersRatings, className,
 }) => (
   <div className={cn('proposal-actions-btn', className)}>
-    <Drawer
-      title="Team ratings"
-      renderTrigger={({ show }) => (
-        <Button secondary onClick={show}>
-          <IconLabel icon="fa fa-star" label="All ratings" />
-        </Button>
-      )}
-    >
-      <TeamRatings id={proposal.id} />
-    </Drawer>
+    {displayOrganizersRatings && (
+      <Drawer
+        title="Team ratings"
+        renderTrigger={({ show }) => (
+          <Button secondary onClick={show}>
+            <IconLabel icon="fa fa-star" label="All ratings" />
+          </Button>
+        )}
+      >
+        <TeamRatings id={proposal.id} />
+      </Drawer>
+    )}
 
     {surveyActive && (
       <Drawer
@@ -43,12 +45,14 @@ const Actions = ({
 Actions.propTypes = {
   eventId: PropTypes.string.isRequired,
   proposal: PropTypes.objectOf(PropTypes.any),
+  displayOrganizersRatings: PropTypes.bool,
   surveyActive: PropTypes.bool,
   className: PropTypes.string,
 }
 
 Actions.defaultProps = {
   proposal: {},
+  displayOrganizersRatings: false,
   surveyActive: false,
   className: undefined,
 }

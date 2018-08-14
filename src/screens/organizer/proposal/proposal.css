@@ -1,9 +1,9 @@
 .proposal {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto 34px auto;
-  grid-template-areas: 'proposal-ratings proposal-ratings' 'proposal-talk proposal-actions' 'proposal-talk proposal-speakers';
   grid-gap: 1em;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas: 'proposal-ratings proposal-ratings' 'proposal-talk proposal-sidebar';
 }
 
 .proposal .card {
@@ -11,22 +11,27 @@
 }
 
 .proposal-actions {
-  grid-area: proposal-actions;
+  margin-bottom: 1em;
+}
+
+.proposal-actions:empty {
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .proposal-talk {
   grid-area: proposal-talk;
 }
 
-.proposal-speakers {
-  grid-area: proposal-speakers;
+.proposal-sidebar {
+  grid-area: proposal-sidebar;
   align-self: start;
 }
 
 .proposal-speakers > div {
   border-bottom: 1px solid var(--grey-color-light);
   padding-bottom: 1em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 .proposal-speakers > div:last-child {
@@ -46,9 +51,8 @@
     grid-template-rows: auto;
     grid-template-areas:
       'proposal-ratings'
-      'proposal-actions'
-      'proposal-talk'
-      'proposal-speakers';
+      'proposal-sidebar'
+      'proposal-talk';
   }
 
   .proposal .card {

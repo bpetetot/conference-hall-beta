@@ -43,6 +43,7 @@ export default [
   when('@@ui/ON_TOGGLE_EVENT_SURVEY')(events.updateEvent),
   when('@@ui/ON_SELECT_SURVEY_QUESTION')(events.updateEvent),
   when('@@ui/ON_TOGGLE_EVENT_DELIBERATION')(events.updateEvent),
+  when('@@ui/ON_TOGGLE_EVENT_DISPLAY_ORGANIZERS_RATINGS')(events.updateEvent),
   when('@@ui/ON_TOGGLE_EVENT_API')(events.toggleApi),
   when('@@ui/ON_GENERATE_EVENT_API_KEY')(events.generateNewApiKey),
   when('@@ui/ON_LOAD_EVENT')(events.fetchEvent),
