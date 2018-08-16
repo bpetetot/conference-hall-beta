@@ -7,6 +7,7 @@ export default {
   wrapper: '.docz/wrapper',
   dist: '.docz/build',
   ordering: 'ascending',
+  protocol: 'http',
 
   modifyBundlerConfig: (config) => {
     config.module.rules.push({
