@@ -25,6 +25,7 @@ yarn-error.log*
 firebase-debug.log*
 .firebaserc
 .runtimeconfig.json
+.firebase/
 
 # docz
 .docz/**/
