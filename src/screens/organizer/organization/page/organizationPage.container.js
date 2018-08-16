@@ -18,10 +18,7 @@ const mapStore = (store, _, { router }) => {
     authUserId: userId,
     inviteLink: `${origin}/organizer/invite/organization/${organizationId}/${userId}`,
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),
-    onSelectUser: (uid) => {
-      store.dispatch({ type: '@@ui/ADD_ORGANIZATION_MEMBER', payload: { uid, organizationId } })
-      store.ui.modal.set({ openedModal: undefined })
-    },
+    onSelectUser: uid => store.dispatch({ type: '@@ui/ADD_ORGANIZATION_MEMBER', payload: { uid, organizationId } }),
     removeMember: uid => store.dispatch({ type: '@@ui/REMOVE_ORGANIZATION_MEMBER', payload: { uid, organizationId } }),
   }
 }

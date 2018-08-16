@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 
-import { input, markdownInput, radio, SubmitButton, RadioGroup } from 'components/form'
+import {
+  input, markdownInput, radio, SubmitButton, RadioGroup,
+} from 'components/form'
 import { required } from 'components/form/validators'
 import './talkForm.css'
 

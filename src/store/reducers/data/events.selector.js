@@ -5,7 +5,8 @@ import isEmpty from 'lodash/isEmpty'
 export const getEventCfpState = (event) => {
   if (event.type === 'meetup') {
     return event.cfpOpened ? 'opened' : 'closed'
-  } else if (event.type === 'conference') {
+  }
+  if (event.type === 'conference') {
     if (isEmpty(event.cfpDates)) return 'not-started'
     const { start, end } = event.cfpDates
     const today = new Date()

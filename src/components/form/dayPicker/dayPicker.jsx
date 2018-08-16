@@ -2,15 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
+import { toDate } from 'helpers/firebase'
 
 import './dayPicker.css'
 
 class DayPicker extends React.Component {
   constructor(props) {
     super(props)
+    const initialValue = toDate(props.value)
     this.state = {
       focused: false,
-      date: props.value ? moment(props.value) : undefined,
+      date: initialValue ? moment(initialValue) : undefined,
     }
   }
 
@@ -39,8 +41,6 @@ class DayPicker extends React.Component {
         displayFormat="MMMM Do YYYY"
         isOutsideRange={() => false}
         customInputIcon={<i className="fa fa-calendar" />}
-        navNext={<i className="fa fa-arrow-right" />}
-        navPrev={<i className="fa fa-arrow-left" />}
       />
     )
   }

@@ -11,16 +11,17 @@ const Status = ({
   if (!loaded) return null
   return (
     <div className={cn('submission-status', className)}>
-      {outOfDate &&
-        cfpOpened && (
-          <Badge className="status-warning">
-            <a role="button" onClick={onClickEdit}>
+      {outOfDate && cfpOpened && (
+        <Badge warning>
+          {classes => (
+            <a role="button" onClick={onClickEdit} className={classes}>
               Out of date
             </a>
-          </Badge>
-        )}
-      {!cfpOpened && <Badge className="status-closed">CFP closed</Badge>}
-      {submitted && <Badge>Submitted</Badge>}
+          )}
+        </Badge>
+      )}
+      {!cfpOpened && <Badge error>CFP closed</Badge>}
+      {submitted && <Badge outline>Submitted</Badge>}
     </div>
   )
 }

@@ -2,16 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
 import { Link } from 'redux-little-router'
+
 import IconLabel from 'components/iconLabel'
+import Button from 'components/button'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
+
+import { toDate } from 'helpers/firebase'
 
 const MyOrganizations = ({ organizations, onSelect }) => (
   <div className="organizations-page">
     <Titlebar className="organizations-header" icon="fa fa-users" title="My organizations">
-      <Link href="/organizer/organization/create" className="btn">
-        <IconLabel icon="fa fa-users" label="Create organization" />
-      </Link>
+      <Button>
+        {btn => (
+          <Link href="/organizer/organization/create" className={btn}>
+            <IconLabel icon="fa fa-users" label="Create organization" />
+          </Link>
+        )}
+      </Button>
     </Titlebar>
     <List
       className="organizations-content"
@@ -21,7 +29,7 @@ const MyOrganizations = ({ organizations, onSelect }) => (
         <ListItem
           key={id}
           title={name}
-          subtitle={<RelativeDate date={updateTimestamp} />}
+          subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
           onSelect={() => onSelect(id)}
         />
       )}

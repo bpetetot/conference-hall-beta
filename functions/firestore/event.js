@@ -8,15 +8,20 @@ const getEvent = eventId =>
     .get()
     .then(doc => doc.data())
 
-const getEventProposals = (eventId, state = 'accepted') =>
-  admin
+const getEventProposals = (eventId, state) => {
+  let query = admin
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('proposals')
-    .where('state', '==', state)
-    .get()
-    .then(result => result.docs.map(ref => ref.data()))
+
+  if (state) {
+    query = query.where('state', '==', state)
+  }
+
+  return query.get()
+    .then(result => result.docs.map(ref => Object.assign({ id: ref.id }, ref.data())))
+}
 
 module.exports = {
   getEvent,

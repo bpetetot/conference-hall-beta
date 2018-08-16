@@ -1,8 +1,9 @@
 import { compose } from 'redux'
-import { inject } from '@k-ramel/react'
+import { inject, listen } from '@k-ramel/react'
 import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
+import listeners from './inviteSpeaker.listeners'
 import InviteSpeaker from './inviteSpeaker'
 
 const mapStore = (store, props, { router }) => {
@@ -23,7 +24,8 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute.absolute('INVITE_SPEAKER'), //
-  inject(mapStore), //
-  loader, //
+  forRoute.absolute('INVITE_SPEAKER'),
+  inject(mapStore),
+  listen(listeners, 'INVITE_SPEAKER'),
+  loader,
 )(InviteSpeaker)

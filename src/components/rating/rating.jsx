@@ -52,8 +52,9 @@ class Rating extends Component {
       newRating = undefined
       newFeeling = undefined
     }
-    this.setState({ validatedRating: newRating, validatedFeeling: newFeeling }, () =>
-      this.props.onRating(this.state.validatedRating, this.state.validatedFeeling))
+    this.setState({ validatedRating: newRating, validatedFeeling: newFeeling }, () => {
+      this.props.onRating(this.state.validatedRating, this.state.validatedFeeling)
+    })
   }
 
   handleMouseEnterStar = (rating, feeling = DEFAULT_FEELING) => () => {

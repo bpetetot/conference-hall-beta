@@ -2,17 +2,11 @@ import { createStore } from 'k-ramel'
 
 import reducers from './reducers'
 import listeners from './listeners'
-import router from './drivers/redux-little-router'
-import form from './drivers/reduxForm'
+import drivers from './drivers'
 
-const store = createStore({
-  ...reducers,
-  router: router.getReducer(),
-  form: form.getReducer(),
-}, {
+const store = createStore(reducers, {
   listeners,
-  drivers: { form, router },
-  enhancer: router.getEnhancer(),
+  drivers,
   devtools: true,
 })
 

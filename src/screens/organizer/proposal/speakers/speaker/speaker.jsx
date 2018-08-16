@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { getGitHubUserRepo } from 'helpers/github'
-import Avatar from 'screens/components/speaker'
+import UserAvatar from 'screens/components/userAvatar'
 import IconLabel from 'components/iconLabel'
 import IconLink from 'components/iconLink'
 import Markdown from 'components/markdown'
@@ -18,7 +18,7 @@ const Speaker = ({
 
   return (
     <div>
-      <Avatar id={uid} className="proposal-speaker-avatar" />
+      <UserAvatar id={uid} className="proposal-speaker-avatar" />
       <div className="proposal-speaker-icons">
         <IconLink icon="fa fa-envelope-o" label={email} href={`mailto:${email}`} />
         <IconLink icon="fa fa-github" label={github} href={getGitHubUserRepo(github)} />

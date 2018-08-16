@@ -1,0 +1,17 @@
+.navbar {
+  align-items: center;
+  background: var(--primary-color);
+  color: var(--primary-color-font);
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1.5em;
+}
+
+.navbar > * {
+  margin-left: 1.5em;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: var(--grey-color);
+}

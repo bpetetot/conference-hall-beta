@@ -10,22 +10,20 @@ const mapStore = (store, { eventId }) => {
   return {
     apiActive,
     apiKey,
-    onActiveApi: e =>
-      store.dispatch({
-        type: '@@ui/ON_TOGGLE_EVENT_API',
-        payload: {
-          event: {
-            id: eventId,
-            apiActive: e.target.checked,
-            apiKey,
-          },
+    onActiveApi: e => store.dispatch({
+      type: '@@ui/ON_TOGGLE_EVENT_API',
+      payload: {
+        event: {
+          id: eventId,
+          apiActive: e.target.checked,
+          apiKey,
         },
-      }),
-    onGenerateKey: () =>
-      store.dispatch({
-        type: '@@ui/ON_GENERATE_EVENT_API_KEY',
-        payload: { eventId },
-      }),
+      },
+    }),
+    onGenerateKey: () => store.dispatch({
+      type: '@@ui/ON_GENERATE_EVENT_API_KEY',
+      payload: { eventId },
+    }),
   }
 }
 

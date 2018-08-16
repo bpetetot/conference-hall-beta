@@ -6,7 +6,6 @@
 .proposal-actions-btn > * {
   flex: 1;
   margin-right: 1em;
-  font-size: 0.8em;
 }
 
 .proposal-actions-btn > *:last-child {
@@ -26,6 +25,4 @@
   .proposal-actions-btn > *:last-child {
     margin-bottom: 0;
   }
-
-
 }

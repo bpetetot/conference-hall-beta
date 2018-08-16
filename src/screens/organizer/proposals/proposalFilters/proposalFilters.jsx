@@ -3,27 +3,24 @@ import PropTypes from 'prop-types'
 
 import './proposalFilters.css'
 
-const sortOrderLabel = sortOrder =>
-  ({
-    newest: 'Newest',
-    oldest: 'Oldest',
-    highestRating: 'Highest Ratings',
-    lowestRating: 'Lowest Ratings',
-  }[sortOrder])
+const sortOrderLabel = sortOrder => ({
+  newest: 'Newest',
+  oldest: 'Oldest',
+  highestRating: 'Highest Ratings',
+  lowestRating: 'Lowest Ratings',
+}[sortOrder])
 
-const ratingsLabel = rating =>
-  ({
-    rated: 'Rated',
-    notRated: 'Not rated',
-  }[rating])
+const ratingsLabel = rating => ({
+  rated: 'Rated',
+  notRated: 'Not rated',
+}[rating])
 
-const statusLabel = status =>
-  ({
-    submitted: 'Not deliberated',
-    accepted: 'Accepted',
-    backup: 'Backup',
-    rejected: 'Rejected',
-  }[status])
+const statusLabel = status => ({
+  submitted: 'Not deliberated',
+  accepted: 'Accepted',
+  backup: 'Backup',
+  rejected: 'Rejected',
+}[status])
 
 const ProposalFilters = ({
   statuses,
@@ -35,7 +32,7 @@ const ProposalFilters = ({
   onChange,
   deliberationActive,
 }) => (
-  <div className="proposals-filters">
+  <div className="proposals-filters no-print">
     {deliberationActive && (
       <select id="state" onChange={onChange} defaultValue={filters.state}>
         <option value="">All statuses</option>

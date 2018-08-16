@@ -23,8 +23,8 @@
 
 .toggle-item::before {
   content: ' ';
-  height: calc(var(--toggle-height) - 2px);
-  width: calc(var(--toggle-height) - 2px);
+  height: calc(var(--toggle-height));
+  width: calc(var(--toggle-height));
   border: 1px solid var(--grey-color);
   background: #fff;
   border-radius: 50%;

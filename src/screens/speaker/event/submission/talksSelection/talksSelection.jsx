@@ -5,6 +5,8 @@ import RelativeDate from 'components/relativeDate'
 import NoTalks from 'screens/speaker/components/noTalks'
 import Status from 'screens/components/talk/status'
 
+import { toDate } from 'helpers/firebase'
+
 const TalksSelection = ({ eventId, talks, onSelect }) => (
   <List
     array={talks}
@@ -13,7 +15,7 @@ const TalksSelection = ({ eventId, talks, onSelect }) => (
       <ListItem
         key={id}
         title={title}
-        subtitle={<RelativeDate date={updateTimestamp} />}
+        subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
         info={<Status eventId={eventId} talkId={id} />}
         onSelect={() => onSelect(id)}
       />

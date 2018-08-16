@@ -11,9 +11,23 @@ const Talk = ({ eventId, proposal, className }) => (
   <div className={cn(className, 'card')}>
     <h2>{proposal.title} </h2>
     <div className="proposal-talk-badges">
-      <FormatBadge eventId={eventId} formatId={proposal.formats} />
-      <CategoryBadge eventId={eventId} categoryId={proposal.categories} />
-      <Badge>{proposal.level}</Badge>
+      <FormatBadge
+        outline
+        pill
+        light
+        eventId={eventId}
+        formatId={proposal.formats}
+      />
+      <CategoryBadge
+        outline
+        pill
+        light
+        eventId={eventId}
+        categoryId={proposal.categories}
+      />
+      <Badge outline pill light>
+        {proposal.level}
+      </Badge>
     </div>
     <div className="proposal-talk-info">
       <Markdown source={proposal.abstract} />

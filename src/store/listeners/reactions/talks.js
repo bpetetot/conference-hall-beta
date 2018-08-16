@@ -1,10 +1,9 @@
-import { reaction } from 'k-ramel'
 import compareDesc from 'date-fns/compare_desc'
 import { set, unset } from 'immutadot'
 
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 
-export const createTalk = reaction(async (action, store, { form, router }) => {
+export const createTalk = async (action, store, { form, router }) => {
   const createForm = form('talk-create')
   const talk = createForm.getFormValues()
   // get user id
@@ -17,9 +16,9 @@ export const createTalk = reaction(async (action, store, { form, router }) => {
   })
   // go to talk page
   router.push(`/speaker/talk/${ref.id}`)
-})
+}
 
-export const updateTalk = reaction((action, store, { form, router }) => {
+export const updateTalk = (action, store, { form, router }) => {
   const updateForm = form('talk-edit')
   const talk = updateForm.getFormValues()
   // create talk into database
@@ -28,9 +27,9 @@ export const updateTalk = reaction((action, store, { form, router }) => {
   store.data.talks.update(talk)
   // go to talk page
   router.push(`/speaker/talk/${talk.id}`)
-})
+}
 
-export const fetchTalk = reaction(async (action, store, { router }) => {
+export const fetchTalk = async (action, store, { router }) => {
   const talkId = action.payload || router.getRouteParam('talkId')
   if (!talkId) return
   // check if already in the store
@@ -41,9 +40,9 @@ export const fetchTalk = reaction(async (action, store, { router }) => {
   if (ref.exists) {
     store.data.talks.add({ id: talkId, ...ref.data() })
   }
-})
+}
 
-export const fetchSpeakerTalks = reaction(async (action, store) => {
+export const fetchSpeakerTalks = async (action, store) => {
   const { uid } = store.auth.get()
   const talks = await fetchUserTalks(uid)
   // set talks in the store
@@ -52,9 +51,9 @@ export const fetchSpeakerTalks = reaction(async (action, store) => {
   const sorted = talks.sort((t1, t2) => compareDesc(t1.updateTimestamp, t2.updateTimestamp))
   store.ui.speaker.myTalks.reset()
   store.ui.speaker.myTalks.set(sorted)
-})
+}
 
-export const updateSpeakerToTalk = reaction(async (action, store) => {
+export const updateSpeakerToTalk = async (action, store) => {
   const { uid, talkId } = action.payload
   const talk = store.data.talks.get(talkId)
   if (talk) {
@@ -69,9 +68,9 @@ export const updateSpeakerToTalk = reaction(async (action, store) => {
       store.data.talks.update(updated)
     }
   }
-})
+}
 
-export const deleteTalk = reaction(async (action, store, { router }) => {
+export const deleteTalk = async (action, store, { router }) => {
   const { talkId } = action.payload
 
   await talkCrud.delete(talkId)
@@ -79,4 +78,4 @@ export const deleteTalk = reaction(async (action, store, { router }) => {
   store.ui.speaker.myTalks.remove([talkId])
 
   router.push('/speaker')
-})
+}

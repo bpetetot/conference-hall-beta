@@ -5,14 +5,14 @@ import cn from 'classnames'
 import './inline.css'
 
 class Inline extends React.Component {
-  join = children =>
-    children.reduce((result, child, index) => {
-      if (!child) return result
-      if (index === 0) return [...result, this.renderItem(child, index)]
-      return [...result, this.renderSeparator(`${index}-separator`), this.renderItem(child, index)]
-    }, [])
+  join = children => children.reduce((result, child, index) => {
+    if (!child) return result
+    if (index === 0) return [...result, this.renderItem(child, index)]
+    return [...result, this.renderSeparator(`${index}-separator`), this.renderItem(child, index)]
+  }, [])
 
   renderItem = (item, key) => <span key={key} className={this.props.classNameItem}>{item}</span>
+
   renderSeparator = key => (
     <span key={key} className="inline-items-separator">
       •

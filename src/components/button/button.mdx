@@ -1,0 +1,87 @@
+---
+name: Button
+route: /button
+order: 10
+---
+
+import { Playground, PropsTable } from 'docz'
+import Button from './button'
+
+# Button
+
+## Button hierarchy
+
+Define the hierarchy of the button, the default is `primary`
+<Playground className="horizontal-separator">
+  <Button primary>Button</Button>
+  <Button secondary>Button</Button>
+  <Button tertiary>Button</Button>
+</Playground>
+
+## With accent color
+
+<Playground className="horizontal-separator">
+  <Button accent primary>Button</Button>
+  <Button accent secondary>Button</Button>
+  <Button accent tertiary>Button</Button>
+</Playground>
+
+## With error state
+
+<Playground className="horizontal-separator">
+  <Button error primary>Button</Button>
+  <Button error secondary>Button</Button>
+  <Button error tertiary>Button</Button>
+</Playground>
+
+## With disabled state
+
+<Playground className="horizontal-separator">
+  <Button disabled primary>Button</Button>
+  <Button disabled secondary>Button</Button>
+  <Button disabled tertiary>Button</Button>
+</Playground>
+
+## Sizes
+
+<Playground className="horizontal-separator">
+  <Button size="large">Button</Button>
+  <Button size="normal">Button</Button>
+  <Button size="small">Button</Button>
+</Playground>
+
+## Block
+
+<Playground>
+  <Button block>Button</Button>
+</Playground>
+
+## Simple
+
+Button without padding, border and background. The simpliest way to display it. Useful to display an icon button, like modals closing cross.
+
+<Playground>
+  <Button simple>Simple button</Button>
+</Playground>
+
+## Link
+
+A hyperlink with a button style, just by setting `href` prop instead of `onClick`.
+
+<Playground>
+  <Button href="https://www.google.fr" target="NEW">Link like a button</Button>
+</Playground>
+
+## Using Function As A Child
+
+Used to apply button style to any element.
+
+<Playground>
+  <Button secondary accent>
+    {btnClasses => <div className={btnClasses}>Apply button style to any element</div>}
+  </Button>
+</Playground>
+
+## Properties
+
+<PropsTable of={Button} />

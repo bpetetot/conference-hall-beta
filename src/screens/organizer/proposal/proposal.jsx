@@ -9,9 +9,11 @@ import './proposal.css'
 
 const Proposal = ({ eventId, proposal }) => (
   <div className="proposal">
-    <Actions className="proposal-actions" eventId={eventId} proposal={proposal} />
     <Ratings className="proposal-ratings" eventId={eventId} proposal={proposal} />
-    <Speakers className="proposal-speakers" eventId={eventId} proposal={proposal} />
+    <div className="proposal-sidebar">
+      <Actions className="proposal-actions" eventId={eventId} proposal={proposal} />
+      <Speakers className="proposal-speakers" eventId={eventId} proposal={proposal} />
+    </div>
     <Talk className="proposal-talk" eventId={eventId} proposal={proposal} />
   </div>
 )

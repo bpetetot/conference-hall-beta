@@ -8,9 +8,10 @@
 
 ### Parameters
 
-| parameter | type     | description | required |
-| --------- | -------- | ----------- | -------- |
-| `key`     | `string` | API key     | Yes      |
+| parameter    | type      | description                                               | required |
+| ------------ | --------- | --------------------------------------------------------- | -------- |
+| `key`        | `string`  | API key                                                   | Yes      |
+| `state`      | `string`  | State of the talk (submitted, accepted, backup, rejected) | No       |
 
 ### Example
 
@@ -52,6 +53,8 @@
       "photoURL": "",       // photo URL
       "twitter": "",        // twitter username
       "github": "",         // github username
+      "email": "",          // email
+      "phone": "",          // phone
     }
   ]
 }

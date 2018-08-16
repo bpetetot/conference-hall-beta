@@ -1,0 +1,12 @@
+.add-user-modal > h1 {
+  margin-bottom: 1.5em;
+}
+
+.add-user-modal .input-button {
+  margin-top: 2em;
+}
+
+.user-search-separator {
+  margin: 2em 0;
+  text-align: center;
+}

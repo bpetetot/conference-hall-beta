@@ -38,6 +38,8 @@ export const getBaseRoute = (state) => {
       return '/speaker'
     case 'organizer':
       return '/organizer'
+    case 'public':
+      return '/public'
     default:
       return '/'
   }

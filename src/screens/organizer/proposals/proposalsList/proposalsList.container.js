@@ -1,5 +1,6 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
+import forRoute from 'hoc-little-router'
 
 import loader from 'components/loader'
 import ProposalsList from './proposalsList'
@@ -14,6 +15,7 @@ const mapStore = store => ({
 })
 
 export default compose(
+  forRoute.absolute('PROPOSALS'), //
   inject(mapStore), //
   loader, //
 )(ProposalsList)
