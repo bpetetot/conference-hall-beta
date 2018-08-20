@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import PlacesAutocomplete from 'react-places-autocomplete'
 
 import Toggle from './toggle'
+import Address from './address'
 import MarkdownInput from './markdownInput'
 import { DayPicker, DayRangePicker } from './dayPicker'
 
@@ -12,12 +12,7 @@ const renderField = component => ({
   input, label, type, meta, placeholder, children,
 }) => (
   <Label name={input.name} label={label} error={meta.error}>
-    {component === 'address' && (
-      <PlacesAutocomplete
-        inputProps={{ ...input, autoComplete: 'nope' }}
-        styles={{ autocompleteContainer: { zIndex: 1 } }}
-      />
-    )}
+    {component === 'address' && <Address {...input} autoComplete="nope" />}
     {component === 'input' && <input {...input} id={input.name} type={type} placeholder={placeholder} />}
     {component === 'select' && <select {...input} id={input.name}>{children}</select>}
     {component === 'textarea' && (
