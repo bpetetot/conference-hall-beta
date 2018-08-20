@@ -1,0 +1,35 @@
+.cc-address-input-wrapper {
+  position: relative;
+}
+
+.cc-address-input-suggestions {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--grey-color);
+  border-radius: 3px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  z-index: 1;
+}
+
+.cc-address-input-suggestions:empty {
+  border: none;
+}
+
+.cc-address-input-suggestion-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background: #fff;
+  height: 2.7em;
+  line-height: 2.7em;
+  padding: 0 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cc-address-input-suggestion-item-active {
+  background: var(--grey-color-light);
+}
