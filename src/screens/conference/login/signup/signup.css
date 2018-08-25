@@ -1,0 +1,39 @@
+.signup-backdrop {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  min-width: 20em;
+}
+
+.signup > h1 {
+  font-size: 2em;
+  font-weight: 700;
+  text-transform: none;
+  color: var(--primary-font-color);
+  margin: 1em 0 2em 0;
+  text-align: center;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-form > input {
+  margin-bottom: 1em;
+}
+
+.signup-btn {
+  margin-top: 1em;
+}
+
+.signup-error {
+  height: 1rem;
+  margin-top: 1em;
+  color: var(--error-color);
+}

@@ -19,6 +19,7 @@ const Modal = ({
   className,
   defaultOpen,
   renderTrigger,
+  backdropClassName,
 }) => (
   <OpenTrigger
     defaultOpen={defaultOpen}
@@ -28,7 +29,11 @@ const Modal = ({
   >
     {({ hide, show, isOpen }) => (
       <Portal>
-        <Backdrop onClick={hide} withClickOutside={withClickOutside} />
+        <Backdrop
+          onClick={hide}
+          withClickOutside={withClickOutside}
+          className={backdropClassName}
+        />
         <div className={cn('modal', className)}>
           {children({ hide, show, isOpen })}
           {withCloseIcon && (
@@ -51,6 +56,7 @@ Modal.propTypes = {
   withEscapeClose: PropTypes.bool,
   withCloseIcon: PropTypes.bool,
   className: PropTypes.string,
+  backdropClassName: PropTypes.string,
 }
 
 Modal.defaultProps = {
@@ -61,6 +67,7 @@ Modal.defaultProps = {
   withEscapeClose: true,
   withCloseIcon: true,
   className: undefined,
+  backdropClassName: undefined,
 }
 
 export default Modal

@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { LoadingIndicator } from 'components/loader'
-import Button from 'components/button'
 
 import LoginSocial from './social'
 import LoginPassword from './password'
+import SignUpModal from './signup'
 import AuthErrorModal from './authError'
 import './login.css'
 
@@ -19,7 +19,7 @@ const Login = ({ authenticated, providers, signin }) => {
         <small className="login-or">Or Sign Up Using</small>
         <LoginSocial providers={providers} signin={signin} />
         <small className="login-signup">Have not account yet ?</small>
-        <Button tertiary>SIGN UP</Button>
+        <SignUpModal />
       </div>
       <AuthErrorModal />
     </div>
