@@ -1,1 +1,1 @@
-export { default } from './social'
+export { default } from './social.container'

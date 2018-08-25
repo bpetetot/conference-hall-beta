@@ -23,7 +23,9 @@ export default [
   when('@@firebase/SIGNED_IN')(auth.signedIn),
   when('@@firebase/SIGNED_OUT')(auth.signedOut),
   /* authentication */
+  when('@@ui/SIGN_UP')(auth.signupWithPassword),
   when('@@ui/SIGN_IN')(auth.signin),
+  when('@@ui/SIGN_IN_WITH_PASSWORD')(auth.signinWithPassword),
   when('@@ui/SIGN_OUT')(auth.signout),
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),

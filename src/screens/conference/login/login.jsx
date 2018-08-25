@@ -6,10 +6,9 @@ import { LoadingIndicator } from 'components/loader'
 import LoginSocial from './social'
 import LoginPassword from './password'
 import SignUpModal from './signup'
-import AuthErrorModal from './authError'
 import './login.css'
 
-const Login = ({ authenticated, providers, signin }) => {
+const Login = ({ authenticated }) => {
   if (authenticated) return <LoadingIndicator className="login-loading" />
   return (
     <div className="login">
@@ -17,23 +16,19 @@ const Login = ({ authenticated, providers, signin }) => {
         <h1 className="login-title">Login</h1>
         <LoginPassword />
         <small className="login-or">Or Sign Up Using</small>
-        <LoginSocial providers={providers} signin={signin} />
+        <LoginSocial />
         <small className="login-signup">Have not account yet ?</small>
         <SignUpModal />
       </div>
-      <AuthErrorModal />
     </div>
   )
 }
 
 Login.propTypes = {
   authenticated: PropTypes.bool,
-  providers: PropTypes.arrayOf(PropTypes.string),
-  signin: PropTypes.func.isRequired,
 }
 
 Login.defaultProps = {
-  providers: [],
   authenticated: false,
 }
 

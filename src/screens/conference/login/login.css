@@ -13,7 +13,7 @@
   width: 30em;
 }
 
-.login .login-title {
+.login-block .login-title {
   font-size: 2em;
   font-weight: 700;
   text-transform: none;
@@ -21,11 +21,11 @@
   margin: 1em 0 2em 0;
 }
 
-.login .login-or {
+.login-block .login-or {
   margin: 5em 0 2em 0;
 }
 
-.login .login-signup {
+.login-block .login-signup {
   margin-top: 5em;
 }
 

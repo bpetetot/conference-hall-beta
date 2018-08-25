@@ -24,7 +24,60 @@ export const signin = async (action, store) => {
       return
   }
   try {
+    // signin
     await firebase.auth().signInWithPopup(provider)
+    // save last connexion providerId in localstorage
+    localStorage.setItem('providerId', providerId)
+  } catch (error) {
+    // eslint-disable-next-line
+    console.error('Authentication error', error)
+    store.auth.update({ authenticated: false, uid: undefined, error })
+  }
+}
+
+export const signinWithPassword = async (action, store, { form }) => {
+  let credentials
+  if (action.payload) {
+    credentials = action.payload
+  } else {
+    const signinForm = form('signin')
+    credentials = signinForm.getFormValues()
+  }
+
+  const { email, password } = credentials
+  if (!email || !password) {
+    const error = { message: 'Email and Password are required.' }
+    store.auth.update({ authenticated: false, uid: undefined, error })
+    return
+  }
+
+  try {
+    await firebase.auth().signInWithEmailAndPassword(email, password)
+
+    // save last connexion providerId in localstorage
+    localStorage.setItem('providerId', 'password')
+  } catch (error) {
+    // eslint-disable-next-line
+    console.error('Authentication error', error)
+    store.auth.update({ authenticated: false, uid: undefined, error })
+  }
+}
+
+export const signupWithPassword = async (action, store, { form }) => {
+  const signupForm = form('signup')
+  const { email, password } = signupForm.getFormValues()
+
+  if (!email || !password) {
+    const error = { message: 'Email and Password are required.' }
+    store.auth.update({ authenticated: false, uid: undefined, error })
+    return
+  }
+
+  try {
+    // signup
+    await firebase.auth().createUserWithEmailAndPassword(email, password)
+    // signin
+    store.dispatch({ type: '@@ui/SIGN_IN_WITH_PASSWORD', payload: { email, password } })
   } catch (error) {
     // eslint-disable-next-line
     console.error('Authentication error', error)
@@ -41,12 +94,21 @@ export const signedIn = async (action, store, { router }) => {
   let user = pick(action.payload, ['uid', 'displayName', 'photoURL', 'email'])
 
   // set auth initialized and authenticated
-  store.auth.update({ initialized: true, authenticated: true, uid: user.uid })
+  store.auth.update({
+    initialized: true, authenticated: true, uid: user.uid, error: {},
+  })
 
   // check if user exists in database
   const userRef = await userCrud.read(user.uid)
+  const userDB = userRef.data()
+
+  // set email as display name if doesnt exists
+  if ((!userRef.exists && !user.displayName) || (userRef.exists && !userDB.displayName)) {
+    user.displayName = user.email
+  }
+
   if (userRef.exists) {
-    user = { ...userRef.data(), ...user }
+    user = { ...user, ...userDB }
   } else {
     // first connexion, add user in database
     await userCrud.create(user)

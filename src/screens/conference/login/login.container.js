@@ -4,11 +4,10 @@ import forRoute from 'hoc-little-router'
 
 import Login from './login'
 
-const mapStore = store => ({
-  ...store.auth.get(),
-  signin: provider => store.dispatch({ type: '@@ui/SIGN_IN', payload: provider }),
-  clearAuthError: () => store.auth.update({ error: {} }),
-})
+const mapStore = (store) => {
+  const { authenticated } = store.auth.get()
+  return { authenticated }
+}
 
 export default compose(
   forRoute.absolute('LOGIN'), //

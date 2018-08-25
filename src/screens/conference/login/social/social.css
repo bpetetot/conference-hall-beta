@@ -20,7 +20,7 @@
 
 .login-last-connexion {
   position: absolute;
-  bottom: -2.5em;
+  top: calc(100% + 1.5em);
   color: var(--primary-color);
   font-weight: 700;
 }
