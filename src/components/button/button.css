@@ -191,6 +191,21 @@
 }
 
 
+/** round button */
+.cc-button-round {
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.cc-button-round.cc-button-small {
+  padding: 8px;
+}
+
+.cc-button-round.cc-button-large {
+  padding: 12px;
+}
+
+
 /** simple button */
 .cc-button-simple {
   padding: 0;

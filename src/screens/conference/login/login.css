@@ -4,66 +4,33 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: var(--primary-color);
+}
+
+.login-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30em;
 }
 
 .login .login-title {
-  text-transform: uppercase;
-  margin-bottom: 1em;
-  color: var(--primary-color-font);
+  font-size: 2em;
+  font-weight: 700;
+  text-transform: none;
+  color: var(--primary-font-color);
+  margin: 1em 0 2em 0;
 }
 
-.login .login-back {
-  margin-top: 1em;
-  color: var(--secondary-color);
-  text-decoration: underline;
+.login .login-or {
+  margin: 5em 0 2em 0;
 }
 
-.login button {
-  margin: 1em 0;
-  min-width: 20em;
+.login .login-signup {
+  margin-top: 5em;
 }
 
-.login button.btn-google {
-  background: #ea2533;
-  color: #fff;
-}
-
-.login button.btn-google:hover {
-  background: #fff;
-  color: #ea2533;
-  opacity: 1;
-}
-
-.login button.btn-twitter {
-  background: #34ccfe;
-  color: #fff;
-}
-
-.login button.btn-twitter:hover {
-  background: #fff;
-  color: #34ccfe;
-  opacity: 1;
-}
-
-.login button.btn-github {
-  background: #000;
-  color: #fff;
-}
-
-.login button.btn-github:hover {
-  background: #fff;
-  color: #000;
-  opacity: 1;
-}
-
-.login button.btn-facebook {
-  background: #3b5998;
-  color: #fff;
-}
-
-.login button.btn-facebook:hover {
-  background: #fff;
-  color: #3b5998;
-  opacity: 1;
+@media only screen and (max-width: 640px) {
+  .login-block {
+    height: 100%;
+  }
 }

@@ -1,0 +1,74 @@
+.login-social {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-providers > button {
+  margin-right: 1em;
+}
+
+.login-providers > button:last-child {
+  margin-right: 0;
+}
+
+.login-providers > button.btn-social {
+  height: 50px;
+  width: 50px;
+}
+
+.login-last-connexion {
+  position: absolute;
+  bottom: -2.5em;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.login-providers > button.btn-google {
+  background: #ea2533;
+  color: #fff;
+  border: 1px solid #ea2533;
+}
+
+.login-providers > button.btn-google:hover {
+  background: #fff;
+  color: #ea2533;
+  opacity: 1;
+}
+
+.login-providers > button.btn-twitter {
+  background: #34ccfe;
+  color: #fff;
+  border: 1px solid #34ccfe;
+}
+
+.login-providers > button.btn-twitter:hover {
+  background: #fff;
+  color: #34ccfe;
+  opacity: 1;
+}
+
+.login-providers > button.btn-github {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+}
+
+.login-providers > button.btn-github:hover {
+  background: #fff;
+  color: #000;
+  opacity: 1;
+}
+
+.login-providers > button.btn-facebook {
+  background: #3b5998;
+  color: #fff;
+  border: 1px solid #3b5998;
+}
+
+.login-providers > button.btn-facebook:hover {
+  background: #fff;
+  color: #3b5998;
+  opacity: 1;
+}
