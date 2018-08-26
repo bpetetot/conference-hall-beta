@@ -1,0 +1,45 @@
+.change-password-modal {
+  min-width: 40em;
+}
+
+.change-password-backdrop {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.change-password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 20em;
+}
+
+.change-password > h1 {
+  font-size: 2em;
+  font-weight: 700;
+  text-transform: none;
+  color: var(--primary-font-color);
+  margin: 1em 0 2em 0;
+  text-align: center;
+}
+
+.change-password > input {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.change-password-btn {
+  margin-top: 1em;
+}
+
+.change-password-error {
+  height: 1rem;
+  margin-top: 1em;
+  color: var(--error-color);
+  text-align: center;
+}
+
+@media only screen and (max-width: 640px) {
+  .change-password-modal {
+    min-width: inherit;
+  }
+}

@@ -25,8 +25,9 @@ export default [
   /* authentication */
   when('@@ui/SIGN_UP')(auth.signupWithPassword),
   when('@@ui/SIGN_IN')(auth.signin),
-  when('@@ui/SIGN_IN_WITH_PASSWORD')(auth.signinWithPassword),
   when('@@ui/SIGN_OUT')(auth.signout),
+  when('@@ui/SIGN_IN_WITH_PASSWORD')(auth.signinWithPassword),
+  when('@@ui/FORGOT_PASSWORD')(auth.sendForgetPasswordEmail),
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   when('@@ui/SAVE_PROFILE')(user.saveProfile),

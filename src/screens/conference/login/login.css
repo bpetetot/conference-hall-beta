@@ -33,4 +33,8 @@
   .login-block {
     height: 100%;
   }
+
+  .login-block .login-or {
+    margin: 2em 0;
+  }
 }

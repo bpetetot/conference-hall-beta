@@ -85,6 +85,16 @@ export const signupWithPassword = async (action, store, { form }) => {
   }
 }
 
+export const sendForgetPasswordEmail = async (action, store) => {
+  const { email, closeModal } = action.payload
+  try {
+    await firebase.auth().sendPasswordResetEmail(email)
+    closeModal()
+  } catch (error) {
+    store.auth.update({ changePasswordError: error })
+  }
+}
+
 export const signout = (action, store, { router }) => {
   firebase.auth().signOut()
   router.push('/')
