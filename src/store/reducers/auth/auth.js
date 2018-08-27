@@ -6,7 +6,9 @@ const defaultData = {
   initialized: false,
   authenticated: false,
   uid: undefined,
-  error: {},
+  signinError: {},
+  signupError: {},
+  changePasswordError: {},
 }
 
 export default types.object({ defaultData })

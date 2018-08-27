@@ -29,37 +29,26 @@ export const signin = async (action, store) => {
     // save last connexion providerId in localstorage
     localStorage.setItem('providerId', providerId)
   } catch (error) {
-    // eslint-disable-next-line
-    console.error('Authentication error', error)
-    store.auth.update({ authenticated: false, uid: undefined, error })
+    store.auth.update({ authenticated: false, uid: undefined, signinError: error })
   }
 }
 
 export const signinWithPassword = async (action, store, { form }) => {
-  let credentials
-  if (action.payload) {
-    credentials = action.payload
-  } else {
-    const signinForm = form('signin')
-    credentials = signinForm.getFormValues()
-  }
+  const signinForm = form('signin')
+  const { email, password } = signinForm.getFormValues()
 
-  const { email, password } = credentials
   if (!email || !password) {
-    const error = { message: 'Email and Password are required.' }
-    store.auth.update({ authenticated: false, uid: undefined, error })
+    const signinError = { message: 'Email and Password are required.' }
+    store.auth.update({ authenticated: false, uid: undefined, signinError })
     return
   }
 
   try {
     await firebase.auth().signInWithEmailAndPassword(email, password)
-
     // save last connexion providerId in localstorage
     localStorage.setItem('providerId', 'password')
   } catch (error) {
-    // eslint-disable-next-line
-    console.error('Authentication error', error)
-    store.auth.update({ authenticated: false, uid: undefined, error })
+    store.auth.update({ authenticated: false, uid: undefined, signinError: error })
   }
 }
 
@@ -68,8 +57,8 @@ export const signupWithPassword = async (action, store, { form }) => {
   const { email, password } = signupForm.getFormValues()
 
   if (!email || !password) {
-    const error = { message: 'Email and Password are required.' }
-    store.auth.update({ authenticated: false, uid: undefined, error })
+    const signupError = { message: 'Email and Password are required.' }
+    store.auth.update({ authenticated: false, uid: undefined, signupError })
     return
   }
 
@@ -77,11 +66,11 @@ export const signupWithPassword = async (action, store, { form }) => {
     // signup
     await firebase.auth().createUserWithEmailAndPassword(email, password)
     // signin
-    store.dispatch({ type: '@@ui/SIGN_IN_WITH_PASSWORD', payload: { email, password } })
+    await firebase.auth().signInWithEmailAndPassword(email, password)
+    // save last connexion providerId in localstorage
+    localStorage.setItem('providerId', 'password')
   } catch (error) {
-    // eslint-disable-next-line
-    console.error('Authentication error', error)
-    store.auth.update({ authenticated: false, uid: undefined, error })
+    store.auth.update({ authenticated: false, uid: undefined, signupError: error })
   }
 }
 

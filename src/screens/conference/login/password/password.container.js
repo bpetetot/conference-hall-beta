@@ -5,7 +5,7 @@ import { reduxForm } from 'redux-form'
 import PasswordSignin from './password'
 
 const mapStore = (store) => {
-  const { message } = store.auth.get().error
+  const { message } = store.auth.get().signinError
   return {
     form: 'signin',
     authError: message,
