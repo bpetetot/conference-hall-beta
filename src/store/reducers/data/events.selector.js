@@ -1,6 +1,7 @@
 import isAfter from 'date-fns/is_after'
 import isBefore from 'date-fns/is_before'
 import isEmpty from 'lodash/isEmpty'
+import { toDate } from 'helpers/firebase'
 
 export const getEventCfpState = (event) => {
   if (event.type === 'meetup') {
@@ -10,8 +11,8 @@ export const getEventCfpState = (event) => {
     if (isEmpty(event.cfpDates)) return 'not-started'
     const { start, end } = event.cfpDates
     const today = new Date()
-    if (isBefore(today, start)) return 'not-started'
-    if (isAfter(today, end)) return 'closed'
+    if (isBefore(today, toDate(start))) return 'not-started'
+    if (isAfter(today, toDate(end))) return 'closed'
     return 'opened'
   }
   return 'closed'
