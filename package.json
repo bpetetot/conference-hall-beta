@@ -33,7 +33,7 @@
     "react-addons-shallow-compare": "^15.6.2",
     "react-dates": "^17.2.0",
     "react-dom": "^16.4.2",
-    "react-markdown": "^3.5.0",
+    "react-markdown": "^4.0.0",
     "react-places-autocomplete": "^7.2.0",
     "react-redux": "^5.0.7",
     "react-sizes": "^1.0.4",
