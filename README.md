@@ -85,7 +85,7 @@ firebase functions:config:get > .runtimeconfig.json
 1. Install [firebase-cli](https://firebase.google.com/docs/cli/) :
 
 ```
-npm install firebase-tools -g
+npm install firebase-tools@5.0.0 -g
 ```
 
 2. You must be logged with firebase and select project :
