@@ -45,6 +45,7 @@
     "webpack": "4.19.1"
   },
   "devDependencies": {
+    "@babel/core": "7.0.0",
     "docz": "^0.10.3",
     "docz-theme-default": "^0.10.3",
     "enzyme": "^3.5.0",
