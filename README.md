@@ -45,6 +45,22 @@ yarn
 yarn start
 ```
 
+### Run unit test
+
+* run all tests
+```
+yarn test
+```
+Run all tests in watch mode.
+* debug test
+```
+yarn test:debug
+```
+* Go to chrome: chrome://inspect/#devices
+* Let go the debugger and put `debugger` in your test.
+
+For more details on debugger within IDE, consult [react-script documentation](https://github.com/facebook/create-react-app/blob/ed5c48c81b2139b4414810e1efe917e04c96ee8d/packages/react-scripts/template/README.md#debugging-tests-in-chrome).
+
 ### Configure Google APIs (optional)
 
 Activate the following APIs in the [Google developer console](https://console.developers.google.com/apis) :

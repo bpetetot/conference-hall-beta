@@ -42,7 +42,6 @@ exports[`components/copyInput should render without props 1`] = `
   className="copy-input"
 >
   <input
-    defaultValue={undefined}
     id="copy-input"
     onFocus={[Function]}
     placeholder="Just copy it"

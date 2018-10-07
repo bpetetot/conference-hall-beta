@@ -20,24 +20,32 @@ describe('components/dropdown', () => {
   it('should hide when clicked outside', () => {
     // register listeners
     const map = {}
-    document.addEventListener = jest.genMockFn().mockImplementation((event, cb) => {
+    document.addEventListener = jest.fn((event, cb) => {
       map[event] = cb
     })
     // mouting
-    const wrapper = mount(<Dropdown action="action">Element</Dropdown>)
+    const wrapper = mount(<div><div className="boo" /><Dropdown action="action">Element</Dropdown></div>)
     // action
+    expect(wrapper.find(Dropdown).instance().state).toEqual({
+      visible: false,
+    })
     wrapper.find('.dropdown').simulate('click')
-    expect(wrapper.state('visible')).toBeTruthy()
-    map.mousedown({ target: 'outside' })
-    expect(wrapper.state('visible')).toBeFalsy()
+    expect(wrapper.find(Dropdown).instance().state).toEqual({
+      visible: true,
+    })
+    const boo = wrapper.find('.boo')
+    map.mousedown(boo)
+    expect(wrapper.find(Dropdown).instance().state).toEqual({
+      visible: false,
+    })
   })
   it('should remove listener after unmounting', () => {
     // register listeners
     let map = {}
-    document.addEventListener = jest.genMockFn().mockImplementation((event, cb) => {
+    document.addEventListener = jest.fn((event, cb) => {
       map[event] = cb
     })
-    document.removeEventListener = jest.genMockFn().mockImplementation(() => {
+    document.removeEventListener = jest.fn(() => {
       map = {}
     })
     // mouting

@@ -5,7 +5,6 @@ exports[`components/badge should not render when no children 1`] = `null`;
 exports[`components/badge should render with children 1`] = `
 <span
   className="cc-badge cc-badge-primary test"
-  style={undefined}
 >
   Benjamin
 </span>
