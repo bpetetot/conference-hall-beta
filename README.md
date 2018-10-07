@@ -5,6 +5,26 @@
 
 ## Getting started
 
+### Pre-requisites
+
+* node@9.11.2+
+* yarn@1.10.1 or npm@5.6.0+
+
+### Configure Firebase
+
+1. Create a firebase project with the [firebase console](https://console.firebase.google.com).
+
+  * activate "Cloud Firestore" for Database
+  * activate "Google Provider" for Authentication
+
+2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables.
+
+  * REACT_APP_API_KEY=<API_KEY>
+  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>
+  * REACT_APP_PROJECT_ID=<PROJECT_ID>
+
+### Run the app in dev mode
+
 1. Clone the Conference Hall app
 
 ```
@@ -25,35 +45,23 @@ yarn
 yarn start
 ```
 
-### Configure Firebase
+### Run unit test
 
-1. Create a firebase project with the [firebase console](https://console.firebase.google.com).
-
-  * activate "Cloud Firestore" for Database
-  * activate "Google Provider" for Authentication
-
-2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables.
-
-  * REACT_APP_API_KEY=<API_KEY>
-  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>
-  * REACT_APP_PROJECT_ID=<PROJECT_ID>
-
-3. Install [firebase-cli](https://firebase.google.com/docs/cli/) :
-
+* run all tests
 ```
-npm install firebase-tools -g
+yarn test
 ```
-
-4. You must be logged with firebase and select project :
-
+Run all tests in watch mode.
+* debug test
 ```
-firebase login
-firebase use --add
+yarn test:debug
 ```
+* Go to chrome: chrome://inspect/#devices
+* Let go the debugger and put `debugger` in your test.
 
-> [Firebase documentation](https://firebase.google.com/docs/web)
+For more details on debugger within IDE, consult [react-script documentation](https://github.com/facebook/create-react-app/blob/ed5c48c81b2139b4414810e1efe917e04c96ee8d/packages/react-scripts/template/README.md#debugging-tests-in-chrome).
 
-### Configure Google APIs
+### Configure Google APIs (optional)
 
 Activate the following APIs in the [Google developer console](https://console.developers.google.com/apis) :
 
@@ -61,7 +69,7 @@ Activate the following APIs in the [Google developer console](https://console.de
 * Google Maps Embed API
 * Google Maps JavaScript API
 
-### Configure Mailgun
+### Configure Mailgun (optional)
 
 The application sends emails through the [Mailgun API](https://www.mailgun.com/)
 
@@ -88,7 +96,32 @@ firebase functions:config:get > .runtimeconfig.json
 
 ## Deploy with Firebase
 
-Build and deploy the app :
+### Pre-requisites
+
+1. Install [firebase-cli](https://firebase.google.com/docs/cli/) :
+
+```
+npm install firebase-tools@5.0.0 -g
+```
+
+2. You must be logged with firebase and select project :
+
+```
+firebase login
+firebase use --add
+```
+
+> [Firebase documentation](https://firebase.google.com/docs/web)
+
+3. Build functions:
+
+```
+cd functions
+yarn
+cd ..
+```
+
+### Build and deploy the app:
 
 ```
 yarn build

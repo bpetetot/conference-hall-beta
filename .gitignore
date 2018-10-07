@@ -29,3 +29,6 @@ firebase-debug.log*
 
 # docz
 .docz/**/
+
+# IDE
+.idea/
