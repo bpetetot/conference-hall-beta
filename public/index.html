@@ -8,6 +8,15 @@
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
   <title>Conference Hall</title>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GOOGLE_ANALYTICS_ID%"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '%REACT_APP_GOOGLE_ANALYTICS_ID%');
+  </script>
 </head>
 
 <body>
@@ -15,6 +24,8 @@
     You need to enable JavaScript to run this app.
   </noscript>
   <div id="root"></div>
+
+  <!-- Google Maps -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=%REACT_APP_API_KEY%&libraries=places"></script>
 </body>
 
