@@ -94,6 +94,10 @@ firebase functions:config:get > .runtimeconfig.json
 
 > **Important Note:** Mailgun is an external service from Firebase and Google, so to be able use it with you will need to activate Firebase pricing.
 
+### Configure Google Analytics (optional)
+
+You can add a Google Analytics by adding your Analytics ID in the environmenent variable `REACT_APP_GOOGLE_ANALYTICS_ID` in the `.env.local` file.
+
 ## Deploy with Firebase
 
 ### Pre-requisites
