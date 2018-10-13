@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "cors": "^2.8.4",
-    "express": "^4.16.3",
+    "express": "^4.16.4",
     "firebase-admin": "^6.0.0",
     "firebase-functions": "^2.0.5",
     "form-data": "^2.3.2",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.11"
   }
 }
