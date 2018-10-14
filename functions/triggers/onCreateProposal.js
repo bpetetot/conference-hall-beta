@@ -7,7 +7,9 @@ const talkConfirmed = require('../email/templates/talkConfirmed')
 module.exports = functions.firestore
   .document('events/{eventId}/proposals/{proposalId}')
   .onCreate((snap, context) => {
+    console.log(':::create::snap' + JSON.stringify(snap))
     const talk = snap.data()
+    console.log(':::create::talk' + JSON.stringify(talk))
     const { eventId } = context.params
     const uids = Object.keys(talk.speakers)
 
