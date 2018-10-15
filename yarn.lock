@@ -943,9 +943,9 @@
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.13.2.tgz#9f446715be249c6ef64ceb6ce639e20ca37aabb0"
 
-"@k-ramel/driver-redux-form@0.13.2":
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-form/-/driver-redux-form-0.13.2.tgz#80e086b1b0cbdd6acd9075f25e878f167d43bf86"
+"@k-ramel/driver-redux-form@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-form/-/driver-redux-form-1.0.0.tgz#f3829f6ad3289f48b7ff1e7cbb6b389ccb4fd240"
 
 "@k-ramel/driver-redux-little-router@0.13.2":
   version "0.13.2"
