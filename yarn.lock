@@ -947,9 +947,9 @@
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-form/-/driver-redux-form-0.13.2.tgz#80e086b1b0cbdd6acd9075f25e878f167d43bf86"
 
-"@k-ramel/driver-redux-little-router@0.13.2":
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-0.13.2.tgz#00614fef566d56182d1128d51fa9bbee85bc2ad5"
+"@k-ramel/driver-redux-little-router@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-1.0.0.tgz#b4236a5a811104ae3425e51e246c3977784c92bd"
 
 "@k-ramel/react@0.13.2":
   version "0.13.2"
