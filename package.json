@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@k-ramel/driver-redux-form": "0.13.2",
-    "@k-ramel/driver-redux-little-router": "0.13.2",
+    "@k-ramel/driver-redux-little-router": "1.0.0",
     "@k-ramel/react": "0.13.2",
     "classnames": "^2.2.6",
     "date-fns": "^1.29.0",
