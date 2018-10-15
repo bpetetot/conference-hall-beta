@@ -951,9 +951,9 @@
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-0.13.2.tgz#00614fef566d56182d1128d51fa9bbee85bc2ad5"
 
-"@k-ramel/react@0.13.2":
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-0.13.2.tgz#0126a00bd5808e2fc78268b4d9c37f30f47fe75d"
+"@k-ramel/react@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.0.0.tgz#fa7b69fc3a5e015b07d98ff4ea81e453f84e3b77"
 
 "@mdx-js/loader@^0.15.2":
   version "0.15.5"
