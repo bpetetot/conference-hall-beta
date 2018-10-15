@@ -939,9 +939,9 @@
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.11.tgz#32a853fad9974cbbc9fc766ec5699a18b22ccee6"
 
-"@k-ramel/driver-http@^0.13.2":
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-0.13.2.tgz#9f446715be249c6ef64ceb6ce639e20ca37aabb0"
+"@k-ramel/driver-http@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-1.0.0.tgz#45fd0d7b5bb64726059d6365bea9a035fc725e3f"
 
 "@k-ramel/driver-redux-form@0.13.2":
   version "0.13.2"
@@ -6698,17 +6698,17 @@ jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
-k-ramel@0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-0.13.2.tgz#248d5bf27d8bc6023525428b474ac86ab69c4771"
+k-ramel@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-1.0.0.tgz#c4d96810ccf207a658190a6c07c84a0d08eaf7ff"
   dependencies:
-    "@k-ramel/driver-http" "^0.13.2"
-    k-redux-factory "6.0.0-rc5"
-    redux "4.0.0"
+    "@k-ramel/driver-http" "^1.0.0"
+    k-redux-factory "6.0.0"
+    redux "4.0.1"
 
-k-redux-factory@6.0.0-rc5:
-  version "6.0.0-rc5"
-  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.0-rc5.tgz#d6e9fdb7a5f7a526c6bf4a5c9b70eb796e112ddf"
+k-redux-factory@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.0.tgz#76b7d2c56f3218763c9db08968c6e5afe39bf44d"
 
 keygrip@~1.0.2:
   version "1.0.3"
@@ -9798,14 +9798,7 @@ redux-little-router@^15.1.1:
     recompose "^0.26.0"
     url-pattern "^1.0.3"
 
-redux@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.0.tgz#aa698a92b729315d22b34a0553d7e6533555cc03"
-  dependencies:
-    loose-envify "^1.1.0"
-    symbol-observable "^1.2.0"
-
-redux@^4.0.1:
+redux@4.0.1, redux@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.1.tgz#436cae6cc40fbe4727689d7c8fae44808f1bfef5"
   dependencies:
