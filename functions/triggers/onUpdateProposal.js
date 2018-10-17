@@ -27,9 +27,9 @@ module.exports = functions.firestore
         getEvent(eventId),
         getUsers(uids),
         updateProposal(eventId, talk)]).then(([event, users]) => sendEmail(mailgun, {
-        to: users.map(user => user.email),
-        subject: `[${event.name}] Talk accepted!`,
-        html: talkAccepted(event, users, talk, app.url),
+          to: users.map(user => user.email),
+          subject: `[${event.name}] Talk accepted!`,
+          html: talkAccepted(event, users, talk, app.url),
       }))
     }
 
@@ -41,9 +41,9 @@ module.exports = functions.firestore
         getEvent(eventId),
         getUsers(uids),
         updateProposal(eventId, talk)]).then(([event, users]) => sendEmail(mailgun, {
-        to: users.map(user => user.email),
-        subject: `[${event.name}] Talk declined`,
-        html: talkRejected(event, users, talk, app.url),
+          to: users.map(user => user.email),
+          subject: `[${event.name}] Talk declined`,
+          html: talkRejected(event, users, talk, app.url),
       }))
     }
     return null

@@ -8,7 +8,7 @@ module.exports = (event, users, talk, url) => `
   <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
 </head>
 <body>
-  <p>Dear ${users.map(user => user.displayName)},</p>
+  <p>Dear ${users.map(user => user.displayName).join(', ')}</p>
   <p>Your talk <strong>"${talk.title}"</strong> has been accepted! 🎉  🎊</p>
   <p>In order to help organizers for the selection and the event management, please confirm your venue:<p>
   <ul>
