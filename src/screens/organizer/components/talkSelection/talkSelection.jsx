@@ -49,7 +49,7 @@ const TalkSelection = ({ onChange, defaultValue }) => {
       )}
 
     </div>
-)
+  )
 }
 
 TalkSelection.propTypes = {
