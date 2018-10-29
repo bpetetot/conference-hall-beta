@@ -9,6 +9,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "cypress:open": "cypress open",
     "lint": "eslint --ext js,jsx src",
     "doc": "docz dev",
     "doc:build": "docz build"
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.1.2",
+    "cypress": "^3.1.0",
     "docz": "^0.12.5",
     "enzyme": "^3.5.0",
     "enzyme-adapter-react-16": "^1.3.1",
