@@ -16,7 +16,7 @@ class ProposalsPaging extends Component {
       page,
     } = this.props
 
-    if (!loaded || nbItems === 0) return null
+    if (!loaded || nbPage <= 1) return null
 
     return (
       <div className="paging">
