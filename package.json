@@ -53,6 +53,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "firebase-tools": "^6.0.1",
     "prettier": "^1.14.2",
     "react-scripts": "2.0.4",
     "redux-devtools-extension": "^2.13.5"
@@ -78,8 +79,7 @@
       "react/destructuring-assignment": 0,
       "jsx-a11y/label-has-for": 0,
       "jsx-a11y/click-events-have-key-events": 0,
-      "jsx-a11y/interactive-supports-focus": 0,
-      "jsx-a11y/anchor-is-valid": 0
+      "jsx-a11y/interactive-supports-focus": 0
     }
   },
   "prettier": {
