@@ -34,10 +34,45 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: CI=true yarn test
 
+  build-deploy:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn
+      - run: cd functions && yarn
+      - save_cache:
+          paths:
+            - node_modules
+            - functions/node_modules
+            - ~/.cache/yarn
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: CI=true yarn build
+      - run:
+          name: Deploy to Firebase (dev env)
+          command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_DEPLOY_TOKEN"
+
 workflows:
   version: 2
-  build:
+  testing:
     jobs:
       - lint
       - test
+  deployment:
+    jobs:
+      - deploy-dev:
+          environment:
+            REACT_APP_AUTH_PROVIDERS: google,twitter,github
+            REACT_APP_API_KEY: $DEV_FIREBASE_API_KEY
+            REACT_APP_AUTH_DOMAIN: $DEV_FIREBASE_AUTH_DOMAIN
+            REACT_APP_PROJECT_ID: $DEV_FIREBASE_PROJECT_ID
+            REACT_APP_GOOGLE_ANALYTICS_ID: ''
+            FIREBASE_DEPLOY_TOKEN: $DEV_FIREBASE_DEPLOY_TOKEN
+          filters:
+            branches:
+              only: master
 
