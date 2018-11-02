@@ -37,32 +37,39 @@ jobs:
   deploy-dev:
     docker:
       - image: circleci/node:8
-    environment:
-      REACT_APP_AUTH_PROVIDERS: google,twitter,github,facebook
-      REACT_APP_API_KEY: ${DEV_FIREBASE_API_KEY}
-      REACT_APP_AUTH_DOMAIN: ${DEV_FIREBASE_AUTH_DOMAIN}
-      REACT_APP_PROJECT_ID: ${DEV_FIREBASE_PROJECT_ID}
-      REACT_APP_GOOGLE_ANALYTICS_ID: ''
-      PUBLIC_URL: https://${DEV_FIREBASE_AUTH_DOMAIN}
-      FIREBASE_DEPLOY_TOKEN: ${DEV_FIREBASE_DEPLOY_TOKEN}
     steps:
+      - run:
+          name: Set environment variables
+          command: |
+            echo 'export REACT_APP_AUTH_PROVIDERS="google,twitter,github,facebook"' >> $BASH_ENV
+            echo 'export REACT_APP_API_KEY="$DEV_FIREBASE_API_KEY"' >> $BASH_ENV
+            echo 'export REACT_APP_AUTH_DOMAIN="$DEV_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export REACT_APP_PROJECT_ID="$DEV_FIREBASE_PROJECT_ID"' >> $BASH_ENV
+            echo 'export REACT_APP_GOOGLE_ANALYTICS_ID=""' >> $BASH_ENV
+            echo 'export PUBLIC_URL="https://DEV_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export FIREBASE_DEPLOY_TOKEN="$DEV_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV
+      - run: echo $REACT_APP_AUTH_PROVIDERS
+      - run: echo $DEV_FIREBASE_AUTH_DOMAIN
+      - run: echo $REACT_APP_AUTH_DOMAIN
       - checkout
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-      - run: yarn
-      - run: cd functions && yarn
+      - run:
+          name: Install node dependencies
+          command: |
+            yarn
+            cd functions
+            yarn
       - save_cache:
           paths:
             - node_modules
             - functions/node_modules
             - ~/.cache/yarn
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: echo 'var:$DEV_FIREBASE_AUTH_DOMAIN'
-      - run: echo 'new:$REACT_APP_AUTH_DOMAIN'
       - run:
-          name: Build app
+          name: Build the app
           command: CI=true yarn build
       - run:
           name: Deploy to Firebase
@@ -71,40 +78,44 @@ jobs:
   deploy-prod:
     docker:
       - image: circleci/node:8
-    environment:
-      REACT_APP_AUTH_PROVIDERS: google,twitter,github
-      REACT_APP_API_KEY: ${PROD_FIREBASE_API_KEY}
-      REACT_APP_AUTH_DOMAIN: ${PROD_FIREBASE_AUTH_DOMAIN}
-      REACT_APP_PROJECT_ID: ${PROD_FIREBASE_PROJECT_ID}
-      REACT_APP_GOOGLE_ANALYTICS_ID: ${PROD_GOOGLE_ANALYTICS_ID}
-      PUBLIC_URL: https://${PROD_FIREBASE_AUTH_DOMAIN}
-      FIREBASE_DEPLOY_TOKEN: ${PROD_FIREBASE_DEPLOY_TOKEN}
     steps:
+      - run:
+          name: Set environment variables
+          command: |
+            echo 'export REACT_APP_AUTH_PROVIDERS="google,twitter,github"' >> $BASH_ENV
+            echo 'export REACT_APP_API_KEY="$PROD_FIREBASE_API_KEY"' >> $BASH_ENV
+            echo 'export REACT_APP_AUTH_DOMAIN="$PROD_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export REACT_APP_PROJECT_ID="$PROD_FIREBASE_PROJECT_ID"' >> $BASH_ENV
+            echo 'export REACT_APP_GOOGLE_ANALYTICS_ID="$PROD_GOOGLE_ANALYTICS_ID"' >> $BASH_ENV
+            echo 'export PUBLIC_URL="https://PROD_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export FIREBASE_DEPLOY_TOKEN="$PROD_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV
       - checkout
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-      - run: yarn
-      - run: cd functions && yarn
+      - run:
+          name: Install node dependencies
+          command: |
+            yarn
+            cd functions
+            yarn
       - save_cache:
           paths:
             - node_modules
             - functions/node_modules
             - ~/.cache/yarn
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: echo 'var:$DEV_FIREBASE_AUTH_DOMAIN'
-      - run: echo 'new:$REACT_APP_AUTH_DOMAIN'
       - run:
           name: Build app
-          command: CI=true yarn build
+          command: yarn build
       - run:
           name: Deploy to Firebase
           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_DEPLOY_TOKEN"
 
 workflows:
   version: 2
-  testing:
+  test-build-deploy:
     jobs:
       - lint
       - test
@@ -113,6 +124,9 @@ workflows:
             branches:
               only: ci/deploy-on-dev
       - deploy-prod:
+          requires:
+            - lint
+            - test
           filters:
             branches:
               only: production
