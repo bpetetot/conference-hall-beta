@@ -34,6 +34,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
 /* load proposals */
 export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()
+  store.ui.organizer.proposalsPaging.update({ page: 1 })
 
   const eventId = router.getRouteParam('eventId')
   const { uid } = store.auth.get()
