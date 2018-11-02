@@ -34,7 +34,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: CI=true yarn test
 
-  build-deploy:
+  deploy:
     docker:
       - image: circleci/node:8
     steps:
@@ -51,28 +51,57 @@ jobs:
             - functions/node_modules
             - ~/.cache/yarn
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: CI=true yarn build
+      - run: echo 'var:$DEV_FIREBASE_AUTH_DOMAIN'
+      - run: echo 'new:$REACT_APP_AUTH_DOMAIN'
       - run:
-          name: Deploy to Firebase (dev env)
+          name: Build app
+          command: CI=true yarn build
+      - run:
+          name: Deploy to Firebase
           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_DEPLOY_TOKEN"
 
 workflows:
   version: 2
   testing:
     jobs:
-      - lint
-      - test
-  deployment:
-    jobs:
-      - deploy-dev:
-          environment:
-            REACT_APP_AUTH_PROVIDERS: google,twitter,github
-            REACT_APP_API_KEY: $DEV_FIREBASE_API_KEY
-            REACT_APP_AUTH_DOMAIN: $DEV_FIREBASE_AUTH_DOMAIN
-            REACT_APP_PROJECT_ID: $DEV_FIREBASE_PROJECT_ID
-            REACT_APP_GOOGLE_ANALYTICS_ID: ''
-            FIREBASE_DEPLOY_TOKEN: $DEV_FIREBASE_DEPLOY_TOKEN
+      - lint:
           filters:
             branches:
-              only: master
+              ignore:
+                - master
+                - production
+      - test:
+          filters:
+            branches:
+              ignore:
+                - master
+                - production
+  deploy-dev:
+    jobs:
+      - deploy:
+          environment:
+            REACT_APP_AUTH_PROVIDERS: google,twitter,github,facebook
+            REACT_APP_API_KEY: ${DEV_FIREBASE_API_KEY}
+            REACT_APP_AUTH_DOMAIN: ${DEV_FIREBASE_AUTH_DOMAIN}
+            REACT_APP_PROJECT_ID: ${DEV_FIREBASE_PROJECT_ID}
+            REACT_APP_GOOGLE_ANALYTICS_ID: ''
+            PUBLIC_URL: https://${DEV_FIREBASE_AUTH_DOMAIN}
+            FIREBASE_DEPLOY_TOKEN: ${DEV_FIREBASE_DEPLOY_TOKEN}
+          filters:
+            branches:
+              only: ci/deploy-on-dev
+  deploy-prod:
+    jobs:
+      - deploy:
+          environment:
+            REACT_APP_AUTH_PROVIDERS: google,twitter,github
+            REACT_APP_API_KEY: ${PROD_FIREBASE_API_KEY}
+            REACT_APP_AUTH_DOMAIN: ${PROD_FIREBASE_AUTH_DOMAIN}
+            REACT_APP_PROJECT_ID: ${PROD_FIREBASE_PROJECT_ID}
+            REACT_APP_GOOGLE_ANALYTICS_ID: ${PROD_GOOGLE_ANALYTICS_ID}
+            PUBLIC_URL: https://${PROD_FIREBASE_AUTH_DOMAIN}
+            FIREBASE_DEPLOY_TOKEN: ${PROD_FIREBASE_DEPLOY_TOKEN}
+          filters:
+            branches:
+              only: production
 
