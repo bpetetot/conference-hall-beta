@@ -1,6 +1,15 @@
-const admin = require('firebase-admin')
+const initialize = require('./firestore/init')
 
-admin.initializeApp()
+initialize()
 
+// functions for triggered events calls
 exports.onCreateProposal = require('./triggers/onCreateProposal')
+
+// functions for HTTP APIs
 exports.api = require('./api')
+
+// functions for direct calls
+const { getCfpState, submitTalk } = require('./direct/submission')
+
+exports.getCfpState = getCfpState
+exports.submitTalk = submitTalk

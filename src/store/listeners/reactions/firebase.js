@@ -2,6 +2,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/functions'
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -12,8 +13,13 @@ const config = {
 export const init = (action, store) => {
   try {
     firebase.initializeApp(config)
+
+    // enable firestore
     const firestore = firebase.firestore()
     firestore.settings({ timestampsInSnapshots: true })
+
+    // enable function calls
+    firebase.functions()
   } catch (error) {
     console.warn(error.code, error.message)
   }
