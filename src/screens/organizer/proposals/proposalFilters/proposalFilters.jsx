@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import debounce from 'lodash/debounce'
 
 import './proposalFilters.css'
 
@@ -22,65 +23,89 @@ const statusLabel = status => ({
   rejected: 'Rejected',
 }[status])
 
-const ProposalFilters = ({
-  statuses,
-  ratings,
-  formats,
-  categories,
-  sortOrders,
-  filters,
-  onChange,
-  deliberationActive,
-}) => (
-  <div className="proposals-filters no-print">
-    {deliberationActive && (
-      <select id="state" onChange={onChange} defaultValue={filters.state}>
-        <option value="">All statuses</option>
-        {statuses.map(status => (
-          <option key={status} value={status}>
-            {statusLabel(status)}
-          </option>
-        ))}
-      </select>
-    )}
+class ProposalFilters extends Component {
+  constructor(props) {
+    super(props)
+    this.onChange = debounce(this.props.onChange, 200)
+  }
 
-    <select id="ratings" onChange={onChange} defaultValue={filters.ratings}>
-      <option value="">All ratings</option>
-      {ratings.map(rating => (
-        <option key={rating} value={rating}>
-          {ratingsLabel(rating)}
-        </option>
-      ))}
-    </select>
+  debounceOnChange = (e) => {
+    e.persist()
+    this.onChange(e)
+  }
 
-    <select id="formats" onChange={onChange} defaultValue={filters.formats}>
-      <option value="">All formats</option>
-      {formats.map(({ id, name }) => (
-        <option key={id} value={id}>
-          {name}
-        </option>
-      ))}
-    </select>
+  render() {
+    const {
+      statuses,
+      ratings,
+      formats,
+      categories,
+      sortOrders,
+      filters,
+      onChange,
+      deliberationActive,
+    } = this.props
 
-    <select id="categories" onChange={onChange} defaultValue={filters.categories}>
-      <option value="">All categories</option>
-      {categories.map(({ id, name }) => (
-        <option key={id} value={id}>
-          {name}
-        </option>
-      ))}
-    </select>
+    return (
+      <div className="proposals-filters no-print">
+        <input
+          id="search"
+          type="search"
+          placeholder="Search by proposal title"
+          onChange={this.debounceOnChange}
+          defaultValue={filters.search}
+        />
 
-    <select id="sortOrder" onChange={onChange} defaultValue={filters.sortOrder}>
-      <option value="">Sort</option>
-      {sortOrders.map(sortOrder => (
-        <option key={sortOrder} value={sortOrder}>
-          {sortOrderLabel(sortOrder)}
-        </option>
-      ))}
-    </select>
-  </div>
-)
+        {deliberationActive && (
+          <select id="state" onChange={onChange} defaultValue={filters.state}>
+            <option value="">All statuses</option>
+            {statuses.map(status => (
+              <option key={status} value={status}>
+                {statusLabel(status)}
+              </option>
+            ))}
+          </select>
+        )}
+
+        <select id="ratings" onChange={onChange} defaultValue={filters.ratings}>
+          <option value="">All ratings</option>
+          {ratings.map(rating => (
+            <option key={rating} value={rating}>
+              {ratingsLabel(rating)}
+            </option>
+          ))}
+        </select>
+
+        <select id="formats" onChange={onChange} defaultValue={filters.formats}>
+          <option value="">All formats</option>
+          {formats.map(({ id, name }) => (
+            <option key={id} value={id}>
+              {name}
+            </option>
+          ))}
+        </select>
+
+        <select id="categories" onChange={onChange} defaultValue={filters.categories}>
+          <option value="">All categories</option>
+          {categories.map(({ id, name }) => (
+            <option key={id} value={id}>
+              {name}
+            </option>
+          ))}
+        </select>
+
+        <select id="sortOrder" onChange={onChange} defaultValue={filters.sortOrder}>
+          <option value="">Sort</option>
+          {sortOrders.map(sortOrder => (
+            <option key={sortOrder} value={sortOrder}>
+              {sortOrderLabel(sortOrder)}
+            </option>
+          ))}
+        </select>
+      </div>
+    )
+  }
+}
 
 ProposalFilters.propTypes = {
   statuses: PropTypes.arrayOf(PropTypes.string),

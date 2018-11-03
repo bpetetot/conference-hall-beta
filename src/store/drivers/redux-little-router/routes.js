@@ -34,9 +34,6 @@ export default {
           sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],
           ratings: ['rated', 'notRated'],
           statuses: ['submitted', 'accepted', 'backup', 'rejected'],
-          '/cards': {
-            title: 'PROPOSALS_CARDS',
-          },
         },
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },

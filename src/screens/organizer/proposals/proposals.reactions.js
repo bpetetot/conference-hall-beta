@@ -9,7 +9,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
   const { query } = router.get()
 
   const pickTruthyValues = pickBy(Boolean)
-  const pickFilterKeys = pick(['state', 'ratings', 'categories', 'formats', 'sortOrder'])
+  const pickFilterKeys = pick(['state', 'ratings', 'categories', 'formats', 'sortOrder', 'search'])
   const ensureIncludedIn = values => value => (values.includes(value) ? value : values[0])
 
   const filtersFromRouterState = pickFilterKeys(query)
@@ -34,6 +34,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
 /* load proposals */
 export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()
+  store.ui.organizer.proposalsPaging.update({ page: 1 })
 
   const eventId = router.getRouteParam('eventId')
   const { uid } = store.auth.get()

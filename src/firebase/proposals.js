@@ -1,5 +1,7 @@
 import firebase from 'firebase/app'
 import omit from 'lodash/omit'
+import toLower from 'lodash/toLower'
+import deburr from 'lodash/deburr'
 
 /**
  * Return the proposal with the given id
@@ -23,7 +25,12 @@ export const fetchEventProposals = async (
   eventId,
   uid,
   {
-    categories, formats, state, sortOrder, ratings,
+    categories,
+    formats,
+    state,
+    sortOrder,
+    ratings,
+    search,
   } = {},
 ) => {
   let query = firebase
@@ -56,15 +63,21 @@ export const fetchEventProposals = async (
   }
 
   const result = await query.get()
-  const proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  let proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+
+  // add search by title (client filter)
+  if (search) {
+    const searchQuery = deburr(toLower(search))
+    proposals = proposals.filter(proposal => deburr(toLower(proposal.title)).includes(searchQuery))
+  }
 
   // add ratings filter (client filter)
   if (ratings === 'rated') {
-    return proposals.filter(proposal => proposal.usersRatings && !!proposal.usersRatings[uid])
+    proposals = proposals.filter(proposal => proposal.usersRatings && !!proposal.usersRatings[uid])
+  } else if (ratings === 'notRated') {
+    proposals = proposals.filter(proposal => !proposal.usersRatings || !proposal.usersRatings[uid])
   }
-  if (ratings === 'notRated') {
-    return proposals.filter(proposal => !proposal.usersRatings || !proposal.usersRatings[uid])
-  }
+
   return proposals
 }
 
