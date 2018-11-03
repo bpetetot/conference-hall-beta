@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="0.1.0"></a>
+## 0.1.0 (2018-11-03)
+
+### Added
+
+- 👷 auto-deploy on staging and production ([#333](https://github.com/bpetetot/conference-hall/issues/333)) [[51c21fa](https://github.com/bpetetot/conference-hall/commit/51c21faa0831ceb39390b7f698c709022136bf27)]
+- ✨ add paging to proposals list ([#334](https://github.com/bpetetot/conference-hall/issues/334)) [[ea9287f](https://github.com/bpetetot/conference-hall/commit/ea9287ff4671c69833f0aa6c21c46fd717d49747)]
+
+### Changed
+
+- ⬆️ upgrade libs (react, firebase, docz, k-ramel) ([#332](https://github.com/bpetetot/conference-hall/issues/332)) [[154a732](https://github.com/bpetetot/conference-hall/commit/154a732b71a77652d6a8db27023c222782b2ec6a)]
+
+
 <a name="0.1.0-beta"></a>
 ## 0.1.0-beta
 
