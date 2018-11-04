@@ -14,8 +14,8 @@ module.exports = functions.firestore
     const { app, mailgun } = functions.config()
     if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
 
-    return Promise.all([getEvent(eventId), getUsers(uids)]).then(([event, users]) =>
-      sendEmail(mailgun, {
+    return Promise.all([getEvent(eventId), getUsers(uids)])
+      .then(([event, users]) => sendEmail(mailgun, {
         to: users.map(user => user.email),
         subject: `[${event.name}] Talk submitted`,
         html: talkConfirmed(event, talk, app.url),
