@@ -52,9 +52,7 @@
       "company": "",        // company
       "photoURL": "",       // photo URL
       "twitter": "",        // twitter username
-      "github": "",         // github username
-      "email": "",          // email
-      "phone": "",          // phone
+      "github": ""          // github username
     }
   ]
 }
