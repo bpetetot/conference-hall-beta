@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Titlebar from 'components/titlebar'
-import Button from 'components/button'
 import { Field, reduxForm } from 'redux-form'
 import {
   markdownInput, radio, SubmitButton, RadioGroup,
@@ -12,16 +11,27 @@ import isEmpty from 'lodash/isEmpty'
 import './talkSubmission.css'
 
 const TalkSubmission = ({
-  talk, event, update, unsubmitTalk, ...formProps
+  talk, event, update, handleSubmit, submitTalk, unsubmitTalk, ...formProps
 }) => (
   <form className="talk-submission">
     <Titlebar icon="fa fa-microphone" title={talk.title}>
-      {update && (
-        <Button secondary onClick={() => unsubmitTalk(talk.id, event.id)}>
+      {update && !formProps.submitting && (
+        <SubmitButton
+          {...formProps}
+          noPristine
+          secondary
+          type="button"
+          onClick={handleSubmit(unsubmitTalk)}
+        >
           Remove submission
-        </Button>
+        </SubmitButton>
       )}
-      <SubmitButton {...formProps} noPristine>
+      <SubmitButton
+        {...formProps}
+        noPristine
+        type="button"
+        onClick={handleSubmit(submitTalk)}
+      >
         {update ? 'Update submission' : `Submit to ${event.name}`}
       </SubmitButton>
     </Titlebar>
@@ -63,6 +73,7 @@ TalkSubmission.propTypes = {
   update: PropTypes.bool,
   talk: PropTypes.objectOf(PropTypes.any),
   event: PropTypes.objectOf(PropTypes.any),
+  submitTalk: PropTypes.func.isRequired,
   unsubmitTalk: PropTypes.func.isRequired,
 }
 

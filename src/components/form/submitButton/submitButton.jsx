@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { propTypes } from 'redux-form'
 
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 
 const SubmitButton = ({
+  type,
+  onClick,
   handleSubmit,
   pristine,
   submitting,
@@ -14,12 +15,14 @@ const SubmitButton = ({
   className,
   children,
   noPristine,
+  secondary,
 }) => (
   <Button
-    accent
-    type="submit"
+    type={type}
+    onClick={onClick || handleSubmit}
     className={className}
-    onClick={handleSubmit}
+    accent={!secondary}
+    secondary={secondary}
     disabled={(!noPristine && pristine) || submitting || invalid}
   >
     {submitting && <IconLabel icon="fa fa-cog fa-spin fa-fw" label={loadingMessage} />}
@@ -28,17 +31,30 @@ const SubmitButton = ({
 )
 
 SubmitButton.propTypes = {
-  ...propTypes,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool,
+  invalid: PropTypes.bool,
   loadingMessage: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   noPristine: PropTypes.bool,
+  secondary: PropTypes.bool,
 }
 
 SubmitButton.defaultProps = {
+  handleSubmit: undefined,
+  pristine: false,
+  invalid: false,
+  submitting: false,
+  onClick: undefined,
   className: undefined,
   loadingMessage: 'Saving...',
   noPristine: false,
+  type: 'submit',
+  secondary: false,
 }
 
 export default SubmitButton
