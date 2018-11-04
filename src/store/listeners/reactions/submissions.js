@@ -19,14 +19,18 @@ export const submitTalkToEvent = async (action, store, { form }) => {
   const talk = store.data.talks.get(talkId)
 
   // submit or update submission with cloud function
-  await submitForm.asyncSubmit(functions.submitTalk, {
-    eventId,
-    talk: { ...data, ...talk },
-    userTimezone: 'utc', // TODO change to user timezone
-  })
+  try {
+    await submitForm.asyncSubmit(functions.submitTalk, {
+      eventId,
+      talk: { ...data, ...talk },
+    })
 
-  const { currentStep } = store.ui.speaker.submission.get()
-  store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
+    const { currentStep } = store.ui.speaker.submission.get()
+    store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
+  } catch (e) {
+    submitForm.setSubmitFailed()
+    console.error(e.message) // eslint-disable-line no-console
+  }
 }
 
 export const removeTalkFromEvent = async (action, store, { form }) => {
@@ -35,12 +39,15 @@ export const removeTalkFromEvent = async (action, store, { form }) => {
   const talk = store.data.talks.get(talkId)
 
   // unsubmit the talk with cloud function
-  const updatedTalk = await submitForm.asyncSubmit(functions.unsubmitTalk, {
-    eventId,
-    talk,
-    userTimezone: 'utc', // TODO change to user timezone
-  })
-
-  store.data.talks.update(updatedTalk)
-  store.ui.speaker.submission.reset()
+  try {
+    const updatedTalk = await submitForm.asyncSubmit(functions.unsubmitTalk, {
+      eventId,
+      talk,
+    })
+    store.data.talks.update(updatedTalk)
+    store.ui.speaker.submission.reset()
+  } catch (e) {
+    submitForm.setSubmitFailed()
+    console.error(e.message) // eslint-disable-line no-console
+  }
 }
