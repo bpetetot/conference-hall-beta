@@ -9,8 +9,7 @@ exports.onCreateProposal = require('./triggers/onCreateProposal')
 exports.api = require('./api')
 
 // functions for direct calls
-const { getCfpState, submitTalk, unsubmitTalk } = require('./direct/submission')
+const { submitTalk, unsubmitTalk } = require('./direct/submission')
 
-exports.getCfpState = getCfpState
 exports.submitTalk = submitTalk
 exports.unsubmitTalk = unsubmitTalk
