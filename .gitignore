@@ -29,6 +29,10 @@ firebase-debug.log*
 .runtimeconfig.json
 .firebase/
 
+# cypress
+cypress/screenshots
+cypress/videos
+
 # docz
 .docz/**/
 

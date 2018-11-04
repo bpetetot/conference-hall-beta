@@ -1,17 +1,20 @@
-// ***********************************************************
-// This example plugins/index.js can be used to load plugins
-//
-// You can change the location of this file or turn off loading
-// the plugins file with the 'pluginsFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/plugins-guide
-// ***********************************************************
+/* eslint-disable */
+const path = require('path')
 
-// This function is called when a project is opened or re-opened (e.g. due to
-// the project's config changing)
+// load .env.local environment variables
+require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') })
 
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  // Get firebase configuration for cypress (if not already in env)
+  if (!process.env.CYPRESS_APP_API_KEY) {
+    config.env.APP_API_KEY = process.env.REACT_APP_API_KEY
+  }
+  if (!process.env.CYPRESS_APP_AUTH_DOMAIN) {
+    config.env.APP_AUTH_DOMAIN = process.env.REACT_APP_AUTH_DOMAIN
+  }
+  if (!process.env.CYPRESS_APP_PROJECT_ID) {
+    config.env.APP_PROJECT_ID = process.env.REACT_APP_PROJECT_ID
+  }
+
+  return config
 }
