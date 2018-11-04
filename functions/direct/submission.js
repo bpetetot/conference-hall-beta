@@ -2,12 +2,12 @@ const functions = require('firebase-functions')
 
 const { DateTime } = require('luxon')
 
-const isEmpty = require('lodash/isEmpty')
-const omit = require('lodash/omit')
+const { isEmpty, omit } = require('lodash')
+const { flow, unset } = require('immutadot')
 
 const { getEvent } = require('../firestore/event')
-const { getTalk, updateTalk } = require('../firestore/talk')
-const { addProposal } = require('../firestore/proposal')
+const { updateTalk } = require('../firestore/talk')
+const { addProposal, updateProposal, removeProposal } = require('../firestore/proposal')
 
 const isSubmitted = (talk, eventId) => {
   if (talk && talk.submissions) {
@@ -16,7 +16,7 @@ const isSubmitted = (talk, eventId) => {
   return false
 }
 
-const getCfpState = functions.https.onCall(async ({ eventId, userTimezone = 'utc' }) => {
+const getCfpState = async ({ eventId, userTimezone = 'utc' }) => {
   const event = await getEvent(eventId)
 
   if (event.type === 'meetup') {
@@ -39,25 +39,42 @@ const getCfpState = functions.https.onCall(async ({ eventId, userTimezone = 'utc
     return 'closed'
   }
   return 'opened'
-})
+}
 
-const submitTalk = functions.https.onCall(async ({ eventId, talkId, userTimezone }) => {
-  const talk = await getTalk(talkId)
+const submitTalk = async ({ eventId, talk, userTimezone }) => {
+  const isCfpOpened = await getCfpState({ eventId, userTimezone }) === 'opened'
+  if (!isCfpOpened) {
+    throw new Error('CFP is not opened')
+  }
+
+  const submittedTalk = omit(talk, ['createTimestamp', 'submissions'])
+
+  await updateTalk(submittedTalk.id, { [`submissions.${eventId}`]: submittedTalk })
 
   if (isSubmitted(talk, eventId)) {
-    throw new Error('talk already submitted')
-  } if (getCfpState({ eventId, userTimezone }) !== 'opened') {
-    throw new Error('CFP is not opened')
+    await updateProposal(eventId, submittedTalk)
   } else {
-    const submittedTalk = { id: talkId, ...omit(talk, ['createTimestamp', 'submissions']) }
-
-    await updateTalk(talkId, { [`submissions.${eventId}`]: submittedTalk })
-
     await addProposal(eventId, submittedTalk)
   }
-})
+}
+
+const unsubmitTalk = async ({ eventId, talk, userTimezone }) => {
+  const isCfpOpened = await getCfpState({ eventId, userTimezone }) === 'opened'
+  if (!isCfpOpened) {
+    throw new Error('CFP is not opened')
+  }
+
+  const updatedTalk = flow(unset(`submissions.${eventId}`), unset('state'))(talk)
+
+  await updateTalk(updatedTalk.id, updatedTalk)
+
+  await removeProposal(eventId, talk.id)
+
+  return updatedTalk
+}
 
 module.exports = {
-  getCfpState,
-  submitTalk,
+  getCfpState: functions.https.onCall(getCfpState),
+  submitTalk: functions.https.onCall(submitTalk),
+  unsubmitTalk: functions.https.onCall(unsubmitTalk),
 }
