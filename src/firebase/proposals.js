@@ -81,42 +81,6 @@ export const fetchEventProposals = async (
   return proposals
 }
 
-/**
- * Add a proposal to an event
- * @param {string} eventId event id
- * @param {object} submittedTalk submittedTalk data
- */
-export const addProposal = (eventId, submittedTalk) => {
-  const { submissions, ...copyTalk } = submittedTalk
-  firebase
-    .firestore()
-    .collection('events')
-    .doc(eventId)
-    .collection('proposals')
-    .doc(submittedTalk.id)
-    .set({
-      ...copyTalk,
-      rating: null,
-      state: 'submitted',
-      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    })
-}
-
-/**
- * Remove a proposal from an event
- * @param {string} eventId event id
- * @param {string} talkId talk id
- */
-export const removeProposal = async (eventId, talkId) => {
-  await firebase
-    .firestore()
-    .collection('events')
-    .doc(eventId)
-    .collection('proposals')
-    .doc(talkId)
-    .delete()
-}
-
 export const updateProposal = (eventId, proposal, options = {}) => {
   const updated = omit(proposal, 'submissions')
   if (options.updateTimestamp) {

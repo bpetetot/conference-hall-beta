@@ -1,5 +1,4 @@
-import { isSubmitted } from 'store/reducers/data/talks.selector'
-import { saveTalkSubmission, unsubmitTalk } from 'firebase/submission'
+import functions from 'firebase/functionCalls'
 
 export const openSelectSubmission = (action, store, { router }) => {
   const { eventId } = action.payload
@@ -13,28 +12,35 @@ export const openEventSubmission = (action, store, { router }) => {
   router.push(`/speaker/event/${eventId}/submission`)
 }
 
-export const submitTalkToEvent = (action, store, { form }) => {
+export const submitTalkToEvent = async (action, store, { form }) => {
   const { talkId, eventId } = action.payload
   const submitForm = form('submit-talk')
   const data = submitForm.getFormValues()
-  // get talk
   const talk = store.data.talks.get(talkId)
-  // check if already submitted
-  const alreadySubmitted = isSubmitted(talkId, eventId)(store)
-  // submit or update submission
-  submitForm.asyncSubmit(saveTalkSubmission, talk, eventId, data, alreadySubmitted)
-  // go to next step
+
+  // submit or update submission with cloud function
+  await submitForm.asyncSubmit(functions.submitTalk, {
+    eventId,
+    talk: { ...data, ...talk },
+    userTimezone: 'utc', // TODO change to user timezone
+  })
+
   const { currentStep } = store.ui.speaker.submission.get()
   store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
 }
 
-export const removeTalkFromEvent = async (action, store) => {
+export const removeTalkFromEvent = async (action, store, { form }) => {
   const { talkId, eventId } = action.payload
-  const alreadySubmitted = isSubmitted(talkId, eventId)(store)
-  if (alreadySubmitted) {
-    const talk = store.data.talks.get(talkId)
-    const updatedTalk = await unsubmitTalk(talk, eventId)
-    store.data.talks.update(updatedTalk)
-    store.ui.speaker.submission.reset()
-  }
+  const submitForm = form('submit-talk')
+  const talk = store.data.talks.get(talkId)
+
+  // unsubmit the talk with cloud function
+  const updatedTalk = await submitForm.asyncSubmit(functions.unsubmitTalk, {
+    eventId,
+    talk,
+    userTimezone: 'utc', // TODO change to user timezone
+  })
+
+  store.data.talks.update(updatedTalk)
+  store.ui.speaker.submission.reset()
 }
