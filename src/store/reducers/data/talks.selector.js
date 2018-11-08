@@ -24,6 +24,29 @@ export const isSubmitted = (talkId, eventId) => (store) => {
   return false
 }
 
+const isEqualToStatus = status => (talkId, eventId) => (store) => {
+  const talk = store.data.talks.get(talkId)
+  if (talk && talk.submissions) {
+    return !!talk.submissions[eventId] && talk.submissions[eventId].state === status
+  }
+  return false
+}
+
+/**
+ * Returns true if the talk has been accepted to the event
+ * @param {string} talkId talk id
+ * @param {string} eventId event id
+ */
+export const isAccepted = (talkId, eventId) => isEqualToStatus('accepted')(talkId, eventId)
+
+/**
+ * Returns true if the talk has been declined to the event
+ * @param {string} talkId talk id
+ * @param {string} eventId event id
+ */
+export const isDeclined = (talkId, eventId) => isEqualToStatus('rejected')(talkId, eventId)
+
+
 /**
  * Returns true if the talk informations are different from the submitted talk info in event
  * @param {String} talkId talk id
