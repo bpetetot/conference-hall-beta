@@ -83,6 +83,10 @@
   align-self: flex-start;
 }
 
+.event-info-type {
+  font-size: 1em;
+}
+
 @media only screen and (max-width: 1024px) {
   .event-page {
     grid-template-columns: 100%;

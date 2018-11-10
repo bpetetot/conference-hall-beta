@@ -22,7 +22,7 @@ const Status = ({
         </Badge>
       )}
       {!cfpOpened && <Badge error>CFP closed</Badge>}
-      {submitted && <Badge outline>Submitted</Badge>}
+      {submitted && <Badge outline>Talk submitted</Badge>}
     </div>
   )
 }
