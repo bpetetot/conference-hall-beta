@@ -3,7 +3,7 @@ import { inject } from '@k-ramel/react'
 import { formValueSelector } from 'redux-form'
 import forRoute from 'hoc-little-router'
 
-import EventForm from '../../components/eventForm'
+import EventForm from '../../form'
 
 const FORM_NAME = 'event-edit'
 const select = formValueSelector(FORM_NAME)
