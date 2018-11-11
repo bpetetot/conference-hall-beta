@@ -21,9 +21,10 @@ module.exports = functions.firestore
     const { app, mailgun } = functions.config()
     if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
     const submissionUpdate = {
-      submissions: {},
+      submissions: {
+        [eventId]: { ...talk },
+      },
     }
-    submissionUpdate.submissions[eventId] = { ...talk }
     if (accepted && talk.emailSent === undefined) {
       // set emailSent to make sure we send accepted email only once.
       talk.emailSent = talk.updateTimestamp
@@ -31,13 +32,13 @@ module.exports = functions.firestore
       return Promise.all([
         getEvent(eventId),
         getUsers(uids),
-        updateProposal(eventId, talk)])
-        .then(([event, users]) => sendEmail(mailgun, {
-          to: users.map(user => user.email),
-          subject: `[${event.name}] Talk accepted!`,
-          html: talkAccepted(event, users, talk, app.url),
-        }))
-        .then(() => partialUpdateTalk(talk.id, submissionUpdate))
+        updateProposal(eventId, talk),
+        partialUpdateTalk(talk.id, submissionUpdate),
+      ]).then(([event, users]) => sendEmail(mailgun, {
+        to: users.map(user => user.email),
+        subject: `[${event.name}] Talk accepted!`,
+        html: talkAccepted(event, users, talk, app.url),
+      }))
     }
 
     if (rejected && talk.emailSent === undefined) {
@@ -47,13 +48,13 @@ module.exports = functions.firestore
       return Promise.all([
         getEvent(eventId),
         getUsers(uids),
-        updateProposal(eventId, talk)])
-        .then(([event, users]) => sendEmail(mailgun, {
-          to: users.map(user => user.email),
-          subject: `[${event.name}] Talk declined`,
-          html: talkRejected(event, users, talk),
-        }))
-        .then(() => partialUpdateTalk(talk.id, submissionUpdate))
+        updateProposal(eventId, talk),
+        partialUpdateTalk(talk.id, submissionUpdate),
+      ]).then(([event, users]) => sendEmail(mailgun, {
+        to: users.map(user => user.email),
+        subject: `[${event.name}] Talk declined`,
+        html: talkRejected(event, users, talk),
+      }))
     }
     return null
   })
