@@ -1,3 +1,5 @@
+import { omit } from 'lodash'
+import { set } from 'immutadot'
 import functions from 'firebase/functionCalls'
 
 export const openSelectSubmission = (action, store, { router }) => {
@@ -18,13 +20,20 @@ export const submitTalkToEvent = async (action, store, { form }) => {
   const data = submitForm.getFormValues()
   const talk = store.data.talks.get(talkId)
 
-  // submit or update submission with cloud function
+  const talkToSubmit = { ...data, ...talk }
   try {
-    await submitForm.asyncSubmit(functions.submitTalk, {
+    // submit or update submission with cloud function
+    submitForm.asyncSubmit(functions.submitTalk, {
       eventId,
-      talk: { ...data, ...talk },
+      talk: talkToSubmit,
     })
 
+    // optimistic rendering because submit with function can be long
+    const submission = omit(talkToSubmit, ['createTimestamp', 'submissions'])
+    const updatedTalk = set(talkToSubmit, `submissions.${eventId}`, submission)
+    store.ui.speaker.myTalks.update(updatedTalk)
+
+    // go to next step
     const { currentStep } = store.ui.speaker.submission.get()
     store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
   } catch (e) {
