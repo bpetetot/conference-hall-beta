@@ -1,4 +1,5 @@
 import pick from 'lodash/pick'
+import has from 'lodash/has'
 import isEqual from 'lodash/isEqual'
 import isEmpty from 'lodash/isEmpty'
 
@@ -23,6 +24,29 @@ export const isSubmitted = (talkId, eventId) => (store) => {
   }
   return false
 }
+
+const isEqualToStatus = status => (talkId, eventId) => (store) => {
+  const talk = store.data.talks.get(talkId)
+  if (has(talk, `submissions[${eventId}].state`)) {
+    return talk.submissions[eventId].state === status
+  }
+  return false
+}
+
+/**
+ * Returns true if the talk has been accepted to the event
+ * @param {string} talkId talk id
+ * @param {string} eventId event id
+ */
+export const isAccepted = isEqualToStatus('accepted')
+
+/**
+ * Returns true if the talk has been declined to the event
+ * @param {string} talkId talk id
+ * @param {string} eventId event id
+ */
+export const isDeclined = isEqualToStatus('rejected')
+
 
 /**
  * Returns true if the talk informations are different from the submitted talk info in event
