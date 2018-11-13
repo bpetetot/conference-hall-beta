@@ -25,7 +25,7 @@ const MyEvents = ({ events, onSelect }) => (
     <List
       className="events-content"
       array={events}
-      noResult="No event yet !"
+      noResult="No event yet!"
       renderRow={({ id, name, updateTimestamp }) => (
         <ListItem
           key={id}
