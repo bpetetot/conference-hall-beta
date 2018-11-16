@@ -1,0 +1,15 @@
+{
+    "home": "/",
+    "speaker": {
+        "hall": "/speaker",
+        "contributors": "/speaker/contributors",
+        "profile": "/speaker/profile",
+        "createTalk": "/speaker/talk/create"
+    },
+    "organizer": {
+        "hall": "/organizer",
+        "contributors": "/organizer/contributors",
+        "organizations": "/organizer/organizations",
+        "createEvent": "/organizer/event/create"
+    }
+}
