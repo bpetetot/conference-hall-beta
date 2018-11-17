@@ -61,6 +61,9 @@ yarn test:debug
 
 For more details on debugger within IDE, consult [react-script documentation](https://github.com/facebook/create-react-app/blob/ed5c48c81b2139b4414810e1efe917e04c96ee8d/packages/react-scripts/template/README.md#debugging-tests-in-chrome).
 
+### Run End-to-End tests
+See [cypress](./cypress)
+
 ### Configure Google APIs (optional)
 
 Activate the following APIs in the [Google developer console](https://console.developers.google.com/apis) :
