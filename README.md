@@ -15,7 +15,7 @@
 
 1. Create a firebase project with the [firebase console](https://console.firebase.google.com).
 
-  * create a "Cloud Firestore" Database. It's okay to start in 'locked' mode.
+  * create a "Cloud Firestore" Database. It's okay to start in 'locked' mode. The rules will be overiden when you deploy.
   * activate "Google" as a sign-in provider for Authentication
 
 2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables.
