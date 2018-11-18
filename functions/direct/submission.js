@@ -5,6 +5,7 @@ const { DateTime } = require('luxon')
 const { isEmpty, omit } = require('lodash')
 const { flow, unset } = require('immutadot')
 
+const { getUser } = require('../firestore/user')
 const { getEvent } = require('../firestore/event')
 const { updateTalk } = require('../firestore/talk')
 const { addProposal, updateProposal, removeProposal } = require('../firestore/proposal')
@@ -39,12 +40,23 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
   return 'opened'
 }
 
-const submitTalk = async ({ eventId, talk, userTimezone }) => {
+const submitTalk = async ({
+  eventId, talk, userTimezone, initialize,
+}, context) => {
+  if (initialize) {
+    // get the user to fully preload the function
+    await getUser(context.auth.uid)
+    return
+  }
+
   const event = await getEvent(eventId)
 
   const isCfpOpened = getCfpState({ event, userTimezone }) === 'opened'
   if (!isCfpOpened) {
-    throw new functions.https.HttpsError('failed-precondition', 'Can\'t submit, CFP is not opened anymore.')
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      "Can't submit, CFP is not opened anymore.",
+    )
   }
 
   const submittedTalk = omit(talk, ['createTimestamp', 'submissions'])
@@ -58,15 +70,29 @@ const submitTalk = async ({ eventId, talk, userTimezone }) => {
   }
 }
 
-const unsubmitTalk = async ({ eventId, talk, userTimezone }) => {
+const unsubmitTalk = async ({
+  eventId, talk, userTimezone, initialize,
+}, context) => {
+  if (initialize) {
+    // get the user to fully preload the function
+    await getUser(context.auth.uid)
+    return Promise.resolve()
+  }
+
   const event = await getEvent(eventId)
 
   const isCfpOpened = getCfpState({ event, userTimezone }) === 'opened'
   if (!isCfpOpened) {
-    throw new functions.https.HttpsError('failed-precondition', 'Can\'t unsubmit, CFP is not opened anymore.')
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      "Can't unsubmit, CFP is not opened anymore.",
+    )
   }
 
-  const updatedTalk = flow(unset(`submissions.${eventId}`), unset('state'))(talk)
+  const updatedTalk = flow(
+    unset(`submissions.${eventId}`),
+    unset('state'),
+  )(talk)
 
   await updateTalk(updatedTalk.id, updatedTalk)
 
