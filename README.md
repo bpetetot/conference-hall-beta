@@ -18,11 +18,11 @@
   * create a "Cloud Firestore" Database. It's okay to start in 'locked' mode. The rules will be overiden when you deploy.
   * activate "Google" as a sign-in provider for Authentication
 
-2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables.
+2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables. You can get all these variables from the homepage by clicking "Add an application" and selecting the web icon.
 
-  * REACT_APP_API_KEY=<API_KEY> (settings -> Web API key)
-  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN> (authentication -> Sign-in methods -> Authorized domains)
-  * REACT_APP_PROJECT_ID=<PROJECT_ID> (settings -> project ID)
+  * REACT_APP_API_KEY=<API_KEY> 
+  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN> 
+  * REACT_APP_PROJECT_ID=<PROJECT_ID> 
 
 ### Run the app in dev mode
 
