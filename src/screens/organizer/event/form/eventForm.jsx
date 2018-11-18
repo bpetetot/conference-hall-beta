@@ -35,7 +35,7 @@ const EventForm = ({ type, organizations, ...formProps }) => (
         ))}
       </Field>
     )}
-    <Field name="private" label="Private event" component={toggle} />
+    <Field name="isPrivate" label="Private event" component={toggle} />
     <Field
       name="address"
       label={type === 'conference' ? 'Venue address' : 'City'}

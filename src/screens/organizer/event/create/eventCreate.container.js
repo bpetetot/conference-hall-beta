@@ -11,7 +11,11 @@ const select = formValueSelector(FORM_NAME)
 const mapStore = store => ({
   form: FORM_NAME,
   type: select(store.getState(), 'type'),
-  initialValues: { type: 'conference', conferenceDates: {} },
+  initialValues: {
+    type: 'conference',
+    isPrivate: false,
+    conferenceDates: {},
+  },
   organizations: store.data.organizations.getAsArray(),
   onSubmit: () => store.dispatch('@@ui/ON_CREATE_EVENT'),
 })
