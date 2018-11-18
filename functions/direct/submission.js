@@ -39,12 +39,19 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
   return 'opened'
 }
 
-const submitTalk = async ({ eventId, talk, userTimezone }) => {
+const submitTalk = async ({
+  eventId, talk, userTimezone, initialize,
+}) => {
+  if (initialize) return
+
   const event = await getEvent(eventId)
 
   const isCfpOpened = getCfpState({ event, userTimezone }) === 'opened'
   if (!isCfpOpened) {
-    throw new functions.https.HttpsError('failed-precondition', 'Can\'t submit, CFP is not opened anymore.')
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      "Can't submit, CFP is not opened anymore.",
+    )
   }
 
   const submittedTalk = omit(talk, ['createTimestamp', 'submissions'])
@@ -58,15 +65,25 @@ const submitTalk = async ({ eventId, talk, userTimezone }) => {
   }
 }
 
-const unsubmitTalk = async ({ eventId, talk, userTimezone }) => {
+const unsubmitTalk = async ({
+  eventId, talk, userTimezone, initialize,
+}) => {
+  if (initialize) return Promise.resolve()
+
   const event = await getEvent(eventId)
 
   const isCfpOpened = getCfpState({ event, userTimezone }) === 'opened'
   if (!isCfpOpened) {
-    throw new functions.https.HttpsError('failed-precondition', 'Can\'t unsubmit, CFP is not opened anymore.')
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      "Can't unsubmit, CFP is not opened anymore.",
+    )
   }
 
-  const updatedTalk = flow(unset(`submissions.${eventId}`), unset('state'))(talk)
+  const updatedTalk = flow(
+    unset(`submissions.${eventId}`),
+    unset('state'),
+  )(talk)
 
   await updateTalk(updatedTalk.id, updatedTalk)
 
