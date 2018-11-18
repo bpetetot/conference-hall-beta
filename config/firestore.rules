@@ -7,6 +7,7 @@ service cloud.firestore {
     function itsMe() { return request.resource.data.uid == request.auth.uid }
     function itsMyOrganizations() { return resource.data.members[request.auth.uid] }
     function itsMyEvent() { return resource.data.owner == request.auth.uid || get(/databases/$(database)/documents/organizations/$(resource.data.organization)).data.members[request.auth.uid] == true }
+    function isPublicEvent() { return resource.data.visibility == 'public' }
     function itsMyTalk() { return resource.data.speakers[request.auth.uid] == true }
     function itsMyProposal() {
     	return get(/databases/$(database)/documents/talks/$(request.path[6])).data.speakers[request.auth.uid] == true
@@ -40,8 +41,8 @@ service cloud.firestore {
 
     // EVENTS
     match /events/{event} {
-    	allow get; // published or private ?
-    	allow list: if authenticated(); // published or private ?
+    	allow get;
+    	allow list: if authenticated() && (isPublicEvent() || itsMyEvent());
     	allow create: if authenticated();
     	allow update: if authenticated() && itsMyEvent();
 
