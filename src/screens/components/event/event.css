@@ -7,7 +7,7 @@
     'event-page-cfp event-page-cfp'
     'event-page-actions event-page-actions'
     'event-page-content event-page-info';
-  grid-gap: 2em;
+  grid-gap: 1em;
 }
 
 .event-page-header {
@@ -81,10 +81,6 @@
 .event-formats {
   grid-area: event-formats;
   align-self: flex-start;
-}
-
-.event-info-type {
-  font-size: 1em;
 }
 
 @media only screen and (max-width: 1024px) {

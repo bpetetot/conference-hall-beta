@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import Maps from 'components/maps'
 import Markdown from 'components/markdown'
-import Badge from 'components/badge'
 import EventTitle from './eventTitle'
 import EventActions from './eventActions'
 import Address from './addressBlock'
@@ -29,7 +28,7 @@ const Event = ({
   formats,
 }) => (
   <div className="event-page">
-    <EventTitle name={name} subtitle="Call for paper" className="event-page-header" />
+    <EventTitle name={name} type={type} subtitle="Call for paper" className="event-page-header" />
     <Cfp eventId={id} className="event-page-cfp" />
     <EventActions className="event-page-actions" eventId={id} isOrganizer={isOrganizer} />
     <div className="event-page-content card">
@@ -40,9 +39,6 @@ const Event = ({
     <div className="event-page-info card">
       <Maps address={address} />
       <div className="event-page-info-detail">
-        <Badge pill outline className="event-info-type">
-          {type}
-        </Badge>
         {type === 'conference' && <Dates dates={conferenceDates} large />}
         <Address address={address} />
         <Website website={website} />

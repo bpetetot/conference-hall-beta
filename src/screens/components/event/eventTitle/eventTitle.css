@@ -3,7 +3,12 @@
   text-align: center;
 }
 
-.event-title > .event-name {
+.event-title .event-name {
   color: var(--primary-color);
   font-weight: 600;
+}
+
+.event-title .event-type {
+  margin-top: 1em;
+  font-size: 0.5em;
 }
