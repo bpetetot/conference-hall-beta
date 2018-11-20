@@ -8,20 +8,21 @@
 ### Pre-requisites
 
 * node@9.11.2+
+* node@8 (for cloud functions)
 * yarn@1.10.1 or npm@5.6.0+
 
 ### Configure Firebase
 
 1. Create a firebase project with the [firebase console](https://console.firebase.google.com).
 
-  * activate "Cloud Firestore" for Database
-  * activate "Google Provider" for Authentication
+  * create a "Cloud Firestore" Database. It's okay to start in 'locked' mode. The rules will be overiden when you deploy.
+  * activate "Google" as a sign-in provider for Authentication
 
-2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables.
+2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables. You can get all these variables from the homepage by clicking "Add an application" and selecting the web icon.
 
-  * REACT_APP_API_KEY=<API_KEY>
-  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>
-  * REACT_APP_PROJECT_ID=<PROJECT_ID>
+  * REACT_APP_API_KEY=<API_KEY> 
+  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN> 
+  * REACT_APP_PROJECT_ID=<PROJECT_ID> 
 
 ### Run the app in dev mode
 
@@ -44,6 +45,8 @@ yarn
 ```
 yarn start
 ```
+
+Before using the app, you'll need to deploy the firestore security rules at least once (see below for how to deploy with firebase)
 
 ### Run unit test
 
@@ -121,7 +124,7 @@ firebase use --add
 
 ```
 cd functions
-yarn
+yarn  # using node8
 cd ..
 ```
 

@@ -19,6 +19,6 @@
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.11",
-    "luxon": "^1.4.5"
+    "luxon": "^1.7.1"
   }
 }
