@@ -4,16 +4,16 @@ import cn from 'classnames'
 
 import Badge from 'components/badge'
 
-import './eventTitle.css'
+import styles from './eventTitle.module.css'
 
 const EventTitle = ({
   name, type, subtitle, className,
 }) => (
-  <h1 className={cn('event-title', className)}>
+  <h1 className={cn(styles.title, className)}>
     <div>
-      <span className="event-name">{name}</span> • {subtitle}
+      <span className={styles.name}>{name}</span> • {subtitle}
     </div>
-    <Badge pill outline className="event-type">
+    <Badge pill outline className={styles.type}>
       {type}
     </Badge>
   </h1>
