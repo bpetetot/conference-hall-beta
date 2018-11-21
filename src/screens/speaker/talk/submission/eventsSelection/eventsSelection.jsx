@@ -25,8 +25,8 @@ const TalksSelection = ({ talkId, events, onSelect }) => (
             <Badge
               pill
               outline
-              info={type === 'meetup'}
-              warning={type === 'conference'}
+              success={type === 'meetup'}
+              info={type === 'conference'}
               className={styles.type}
             >
               {type}
