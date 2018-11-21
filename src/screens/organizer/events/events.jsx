@@ -26,27 +26,32 @@ const MyEvents = ({ events, onSelect }) => (
       array={events}
       noResult="No event yet !"
       renderRow={({
-        id, name, type, address, conferenceDates,
+        id, name, type, visibility, address, conferenceDates,
       }) => (
         <ListItem
           key={id}
           title={<div className={styles.title}>{name}</div>}
-          subtitle={
-            <IconLabel icon="fa fa-map-marker" label={address} />
-          }
+          subtitle={<IconLabel icon="fa fa-map-marker" label={address} />}
           info={(
             <div className={styles.infos}>
-              <Badge
-                pill
-                outline
-                info={type === 'meetup'}
-                warning={type === 'conference'}
-                className={styles.type}
-              >
-                {type}
-              </Badge>
+              <div className={styles.badges}>
+                {visibility === 'private' && (
+                <Badge pill outline error={visibility === 'private'}>
+                  {visibility}
+                </Badge>
+                )}
+                <Badge
+                  pill
+                  outline
+                  info={type === 'meetup'}
+                  warning={type === 'conference'}
+                  className={styles.type}
+                >
+                  {type}
+                </Badge>
+              </div>
               {type === 'conference' && (
-                <EventDates dates={conferenceDates} className={styles.dates} />
+              <EventDates dates={conferenceDates} className={styles.dates} />
               )}
             </div>
           )}

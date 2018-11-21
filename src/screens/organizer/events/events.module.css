@@ -9,6 +9,10 @@
   align-items: flex-end;
 }
 
+.type {
+  margin-left: 1em;
+}
+
 .dates {
   font-size: 0.8em;
   margin-top: 1em;
