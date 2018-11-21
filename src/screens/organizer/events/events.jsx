@@ -12,8 +12,8 @@ import EventDates from 'screens/components/eventDates'
 import styles from './events.module.css'
 
 const MyEvents = ({ events, onSelect }) => (
-  <div className={styles.page}>
-    <Titlebar className={styles.header} icon="fa fa-calendar-o" title="My events">
+  <div>
+    <Titlebar icon="fa fa-calendar-o" title="My events">
       <Button>
         {btn => (
           <Link href="/organizer/event/create" className={btn}>
@@ -23,7 +23,6 @@ const MyEvents = ({ events, onSelect }) => (
       </Button>
     </Titlebar>
     <List
-      className={styles.list}
       array={events}
       noResult="No event yet !"
       renderRow={({
