@@ -3,6 +3,27 @@
 [![circleci](https://circleci.com/gh/bpetetot/conference-hall.svg?style=shield)](https://circleci.com/gh/bpetetot/conference-hall)
 [![Greenkeeper badge](https://badges.greenkeeper.io/bpetetot/conference-hall.svg)](https://greenkeeper.io/)
 
+**[https://conference-hall.io](https://conference-hall.io)**
+
+## Features
+
+**You are a Speaker:**
+- ✨ Write the absract of your talk
+- 🚀 Submit your talks to events (meetups and conferences)
+- 🤝 Invite co-speakers to your talk
+- 🔒 Social login
+
+**You are an Organizer:**
+- ❤️ Create your conference or meetup
+- 📣 Call for papers opens and closes automatically
+- ⚡️ Make it public or private
+- 👥 Use organization to share an event between organizers
+- 💡 Custom formats and categories for the talks
+- ⭐️ Rate proposals to speed deliberation process
+- ✅ Mark proposals as accepted, declined or backup
+- 📥 Send survey to speakers
+- 🌍 API to query proposals
+
 ## Getting started
 
 ### Pre-requisites
@@ -20,9 +41,9 @@
 
 2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables. You can get all these variables from the homepage by clicking "Add an application" and selecting the web icon.
 
-  * REACT_APP_API_KEY=<API_KEY> 
-  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN> 
-  * REACT_APP_PROJECT_ID=<PROJECT_ID> 
+  * REACT_APP_API_KEY=<API_KEY>
+  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>
+  * REACT_APP_PROJECT_ID=<PROJECT_ID>
 
 ### Run the app in dev mode
 
