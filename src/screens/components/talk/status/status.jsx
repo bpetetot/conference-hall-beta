@@ -22,8 +22,8 @@ const Status = ({
         </Badge>
       )}
       {!cfpOpened && <Badge error>CFP closed</Badge>}
-      {accepted && <Badge warning>Accepted</Badge>}
-      {declined && <Badge warning>Declined</Badge>}
+      {accepted && <Badge success>Accepted</Badge>}
+      {declined && <Badge error>Declined</Badge>}
       {submitted && !accepted && !declined && <Badge outline>Submitted</Badge>}
     </div>
   )
