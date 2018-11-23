@@ -5,11 +5,11 @@ import cn from 'classnames'
 import './label.css'
 
 const Label = ({
-  name, label, className, children, error,
+  name, label, className, children, error, classNameInput,
 }) => (
   <div className={cn('form-label', { 'form-has-error': !!error }, className)}>
     {label && <label htmlFor={name}>{label}</label>}
-    <div>
+    <div className={classNameInput}>
       {children}
       {error && <div className="form-error">{error || ''}</div>}
     </div>
@@ -22,6 +22,7 @@ Label.propTypes = {
   name: PropTypes.string,
   error: PropTypes.string,
   className: PropTypes.string,
+  classNameInput: PropTypes.string,
 }
 
 Label.defaultProps = {
@@ -29,6 +30,7 @@ Label.defaultProps = {
   name: undefined,
   error: undefined,
   className: undefined,
+  classNameInput: undefined,
 }
 
 export default Label

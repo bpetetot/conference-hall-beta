@@ -3,10 +3,18 @@ import { inject } from '@k-ramel/react'
 import TalkSelection from './talkSelection'
 
 const mapStore = (store, { proposalId }, { router }) => {
+  const eventId = router.getRouteParam('eventId')
+  const { sendDeliberationEmails } = store.data.events.get(eventId) || {}
+
   const currentProposalId = proposalId || router.getRouteParam('proposalId')
-  const proposal = store.data.proposals.get(currentProposalId) || {}
+  const { state } = store.data.proposals.get(currentProposalId) || {}
+
+  const disabled = sendDeliberationEmails && (state === 'accepted' || state === 'rejected')
+
   return {
-    defaultValue: proposal.state,
+    sendDeliberationEmails,
+    defaultValue: state,
+    disabled,
     onChange: (e) => {
       store.dispatch({
         type: '@@ui/ON_UPDATE_PROPOSAL',
