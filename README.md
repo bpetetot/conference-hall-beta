@@ -2,6 +2,7 @@
 
 [![circleci](https://circleci.com/gh/bpetetot/conference-hall.svg?style=shield)](https://circleci.com/gh/bpetetot/conference-hall)
 [![Greenkeeper badge](https://badges.greenkeeper.io/bpetetot/conference-hall.svg)](https://greenkeeper.io/)
+[![Gitter](https://badges.gitter.im/conference-hall.svg)](https://gitter.im/conference-hall)
 
 **[https://conference-hall.io](https://conference-hall.io)**
 
