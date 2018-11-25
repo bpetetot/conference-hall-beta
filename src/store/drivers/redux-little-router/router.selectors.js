@@ -26,7 +26,6 @@ export const isRoute = title => state => matchRoute(getRouterResult(state), titl
 export const isPublicRoute = state => isRoute('PUBLIC')(state)
 export const isOrganizerRoute = state => isRoute('HOME_ORGANIZER')(state)
 export const isSpeakerRoute = state => isRoute('HOME_SPEAKER')(state)
-export const isMobileMenuRoute = state => isRoute('MOBILE_MENU')(state)
 
 // router attributes selectors
 export const getAppName = state => getRecursively(getRouterResult(state), 'app')

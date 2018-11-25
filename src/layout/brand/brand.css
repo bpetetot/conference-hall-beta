@@ -20,3 +20,16 @@
   color: var(--primary-color);
   text-decoration: none;
 }
+
+.brand > a.burger-link {
+  display: inline-block;
+  color: var(--secondary-color-font);
+}
+
+.mobile-sidebar-portal {
+  top: var(--layout-navbar-height);
+}
+
+.mobile-sidebar {
+  height: calc(100% - var(--layout-navbar-height));
+}
