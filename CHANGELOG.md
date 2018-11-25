@@ -1,5 +1,25 @@
 # Changelog
 
+<a name="0.3.0"></a>
+## 0.3.0 (2018-11-25)
+
+### Added
+
+- ✨ add event info on speaker and organizer list ([#349](https://github.com/bpetetot/conference-hall/issues/349)) [[8d3cf09](https://github.com/bpetetot/conference-hall/commit/8d3cf09e5c33dc71025a7cd3deacf6207cb37a1c)]
+- ✨ add event visibility in organizer event list ([#363](https://github.com/bpetetot/conference-hall/issues/363)) [[55808f1](https://github.com/bpetetot/conference-hall/commit/55808f1f26bd2b8b2ebc0e458d3835bbe9f9c102)]
+
+### Changed
+
+- ⬆️ upgrade minor and patched dependencies versions ([#361](https://github.com/bpetetot/conference-hall/issues/361)) [[4a3b1fc](https://github.com/bpetetot/conference-hall/commit/4a3b1fcf4587d73efffc9174688eba46e5a51bf5)]
+- ♻️ refactor mobile sidebar ([#377](https://github.com/bpetetot/conference-hall/issues/377)) [[8a9b7f0](https://github.com/bpetetot/conference-hall/commit/8a9b7f001d21e65e2e1f20e72feedf922ef7a9b9)]
+
+### Miscellaneous
+
+- 📝 improve install documentation [[0f9ccbf](https://github.com/bpetetot/conference-hall/commit/0f9ccbf4a0b1962ace9088f1133416af7d38d69d)]
+- 📝 list current app features ([#366](https://github.com/bpetetot/conference-hall/issues/366)) [[2b30163](https://github.com/bpetetot/conference-hall/commit/2b30163c7c670d53d898eb768052c10075293458)]
+- 📝 add gitter badge ([#375](https://github.com/bpetetot/conference-hall/issues/375)) [[68b95d5](https://github.com/bpetetot/conference-hall/commit/68b95d58236baea50e4648c72400342244f96aaa)]
+
+
 <a name="0.2.0"></a>
 ## 0.2.0 (2018-11-18)
 
