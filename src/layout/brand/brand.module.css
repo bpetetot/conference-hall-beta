@@ -21,15 +21,14 @@
   text-decoration: none;
 }
 
-.brand > a.burger-link {
-  display: inline-block;
+.brand > .burgerLink:hover  {
   color: var(--secondary-color-font);
 }
 
-.mobile-sidebar-portal {
+.mobileSidebarPortal {
   top: var(--layout-navbar-height);
 }
 
-.mobile-sidebar {
+.mobileSidebar {
   height: calc(100% - var(--layout-navbar-height));
 }

@@ -9,11 +9,11 @@ import Portal from 'components/portals/portal'
 import withTheme from 'styles/themes/withTheme'
 import { withSizes } from 'styles/utils'
 
-import './brand.css'
+import styles from './brand.module.css'
 
 const SidebarWrapper = withTheme(({ className, onClick, content }) => (
-  <Portal className={cn(className, 'mobile-sidebar-portal')}>
-    <div className="mobile-sidebar" onClick={onClick} role="button">
+  <Portal className={cn(className, styles.mobileSidebarPortal)}>
+    <div className={styles.mobileSidebar} onClick={onClick} role="button">
       {content}
     </div>
   </Portal>
@@ -22,12 +22,12 @@ const SidebarWrapper = withTheme(({ className, onClick, content }) => (
 const Brand = ({
   title, baseRoute, isMobile, sidebar, className,
 }) => (
-  <div className={cn('brand', className)}>
+  <div className={cn(styles.brand, className)}>
     {sidebar
       && isMobile && (
         <OpenTrigger
           renderTrigger={({ show, hide, isOpen }) => (
-            <a onClick={isOpen ? hide : show} role="button" className="burger-link">
+            <a onClick={isOpen ? hide : show} role="button" className={styles.burgerLink}>
               <i className={`fa ${isOpen ? 'fa-arrow-left' : 'fa-bars'}`} />
             </a>
           )}
