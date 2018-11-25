@@ -20,11 +20,11 @@ const SidebarWrapper = withTheme(({ className, onClick, content }) => (
 ))
 
 const Brand = ({
-  title, baseRoute, isMobile, sidebar, className,
+  title, baseRoute, isTablet, isMobile, sidebar, className,
 }) => (
   <div className={cn(styles.brand, className)}>
     {sidebar
-      && isMobile && (
+      && (isMobile || isTablet) && (
         <OpenTrigger
           renderTrigger={({ show, hide, isOpen }) => (
             <a onClick={isOpen ? hide : show} role="button" className={styles.burgerLink}>
@@ -42,6 +42,7 @@ const Brand = ({
 Brand.propTypes = {
   title: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
+  isTablet: PropTypes.bool.isRequired,
   baseRoute: PropTypes.string.isRequired,
   sidebar: PropTypes.node,
   className: PropTypes.string,
