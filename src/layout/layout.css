@@ -42,7 +42,7 @@
   grid-template-areas: 'brand navbar' 'main main';
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1023px) {
   .layout-screen {
     grid-template-columns: auto;
     grid-template-areas: 'brand' 'main';

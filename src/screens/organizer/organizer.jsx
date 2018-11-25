@@ -5,7 +5,7 @@ import forRoute from 'hoc-little-router'
 import { protect } from 'store/reducers/auth'
 import AppLayout from 'layout'
 import Contributors from 'screens/components/contributors'
-import { Sidebar, SidebarMobile } from './sidebar'
+import Sidebar from './sidebar'
 
 import { restrictBeta } from '../conference/betaAccess'
 import EventCreate from './event/create'
@@ -22,7 +22,6 @@ import Proposal from './proposal'
 
 const Organizer = () => (
   <AppLayout sidebar={<Sidebar />}>
-    <SidebarMobile />
     <EventCreate />
     <EventEdit />
     <Event />
