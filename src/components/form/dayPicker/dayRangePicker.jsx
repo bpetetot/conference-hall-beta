@@ -1,68 +1,67 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
-import { DateRangePicker } from 'react-dates'
+import DatePicker from 'react-datepicker'
 import { toDate } from 'helpers/firebase'
-
-import './dayRangePicker.css'
-
-let START_DATE = 'START_DATE_ID'
-let END_DATE = 'END_DATE_ID'
 
 class DayRangePicker extends React.Component {
   constructor(props) {
     super(props)
     const { value = {} } = props
-    const initialStartDate = toDate(value.start)
-    const initialEndDate = toDate(value.end)
+    const start = toDate(value.start)
+    const end = toDate(value.end)
 
     this.state = {
-      focusedInput: undefined,
-      start: initialStartDate ? moment(initialStartDate) : undefined,
-      end: initialEndDate ? moment(initialEndDate) : undefined,
+      start: start || undefined,
+      end: end || undefined,
     }
   }
 
-  componentWillMount() {
-    const { id } = this.props
-    START_DATE += `${id}Start`
-    END_DATE += `${id}End`
-  }
-
-  onDatesChange = ({ startDate, endDate }) => {
-    this.setState({ start: startDate, end: endDate })
-    this.props.onChange({
-      start: startDate ? startDate.toDate() : undefined,
-      end: endDate ? endDate.toDate() : undefined,
+  onStartChange = (start) => {
+    this.setState((state) => {
+      const end = state.end || start
+      this.props.onChange({ start, end })
+      return { start, end }
     })
   }
 
-  onFocusChange = (focusedInput) => {
-    this.setState({ focusedInput })
+  onEndChange = (end) => {
+    this.setState((state) => {
+      const start = state.start || end
+      this.props.onChange({ start, end })
+      return { start, end }
+    })
   }
 
   render() {
-    const { focusedInput, start, end } = this.state
+    const { start, end } = this.state
+    const { id } = this.props
+
     return (
       <div>
-        <DateRangePicker
-          startDateId={START_DATE}
-          startDatePlaceholderText="Start Date"
-          endDateId={END_DATE}
-          endDatePlaceholderText="End Date"
-          numberOfMonths={1}
-          hideKeyboardShortcutsPanel
-          readOnly
-          displayFormat="MMMM Do YYYY"
-          onDatesChange={this.onDatesChange}
-          onFocusChange={this.onFocusChange}
-          focusedInput={focusedInput}
+        <DatePicker
+          id={`${id}-start`}
+          selected={start}
           startDate={start}
           endDate={end}
-          minimumNights={0}
-          isOutsideRange={() => false}
-          customInputIcon={<i className="fa fa-calendar" />}
-          customArrowIcon={<i className="fa fa-arrow-right" />}
+          selectsStart
+          onChange={this.onStartChange}
+          dateFormat="MMMM do YYYY"
+          todayButton="Today"
+          placeholderText="Start date"
+          fixedHeight
+        />
+        <i className="fa fa-arrow-right" />
+        <DatePicker
+          id={`${id}-end`}
+          selected={end}
+          startDate={start}
+          endDate={end}
+          selectsEnd
+          onChange={this.onEndChange}
+          dateFormat="MMMM do YYYY"
+          todayButton="Today"
+          placeholderText="End date"
+          fixedHeight
         />
       </div>
     )
