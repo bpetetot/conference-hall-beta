@@ -1,0 +1,8 @@
+.dayRangePicker {
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  margin: 0 1em;
+}

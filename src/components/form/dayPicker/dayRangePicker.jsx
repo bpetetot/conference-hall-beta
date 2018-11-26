@@ -1,7 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
 import DatePicker from 'react-datepicker'
 import { toDate } from 'helpers/firebase'
+import { withSizes } from 'styles/utils'
+import isAfter from 'date-fns/is_after'
+
+import styles from './dayRangePicker.module.css'
 
 class DayRangePicker extends React.Component {
   constructor(props) {
@@ -15,6 +20,24 @@ class DayRangePicker extends React.Component {
       end: end || undefined,
     }
   }
+
+  handleChange = ({ start, end }) => {
+    this.setState((state) => {
+      const startDate = start || state.start
+      let endDate = end || state.end
+
+      if (isAfter(startDate, endDate)) {
+        endDate = startDate
+      }
+
+      this.props.onChange({ start: startDate, end: endDate })
+      return { start: startDate, end: endDate }
+    })
+  }
+
+  handleChangeStart = start => this.handleChange({ start })
+
+  handleChangeEnd = end => this.handleChange({ end })
 
   onStartChange = (start) => {
     this.setState((state) => {
@@ -34,34 +57,36 @@ class DayRangePicker extends React.Component {
 
   render() {
     const { start, end } = this.state
-    const { id } = this.props
+    const { id, isMobile, isTablet } = this.props
 
     return (
-      <div>
+      <div className={styles.dayRangePicker}>
         <DatePicker
           id={`${id}-start`}
           selected={start}
           startDate={start}
           endDate={end}
           selectsStart
-          onChange={this.onStartChange}
+          onChange={this.handleChangeStart}
           dateFormat="MMMM do YYYY"
-          todayButton="Today"
           placeholderText="Start date"
-          fixedHeight
+          withPortal={isMobile || isTablet}
+          calendarClassName="day-picker-custom"
         />
-        <i className="fa fa-arrow-right" />
+
+        <i className={cn(styles.arrow, 'fa fa-arrow-right')} />
+
         <DatePicker
           id={`${id}-end`}
           selected={end}
           startDate={start}
           endDate={end}
           selectsEnd
-          onChange={this.onEndChange}
+          onChange={this.handleChangeEnd}
           dateFormat="MMMM do YYYY"
-          todayButton="Today"
           placeholderText="End date"
-          fixedHeight
+          withPortal={isMobile || isTablet}
+          calendarClassName="day-picker-custom"
         />
       </div>
     )
@@ -71,11 +96,13 @@ class DayRangePicker extends React.Component {
 DayRangePicker.propTypes = {
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  value: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
+  isMobile: PropTypes.bool.isRequired,
+  isTablet: PropTypes.bool.isRequired,
 }
 
 DayRangePicker.defaultProps = {
   value: undefined,
 }
 
-export default DayRangePicker
+export default withSizes(DayRangePicker)
