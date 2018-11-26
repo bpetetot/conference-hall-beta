@@ -47,6 +47,12 @@ export const isAccepted = isEqualToStatus('accepted')
  */
 export const isDeclined = isEqualToStatus('rejected')
 
+/**
+ * Returns true if the talk has been confirmed by the user for this event
+ * @param {string} talkId talk id
+ * @param {string} eventId event id
+ */
+export const isConfirmed = isEqualToStatus('confirmed')
 
 /**
  * Returns true if the talk informations are different from the submitted talk info in event

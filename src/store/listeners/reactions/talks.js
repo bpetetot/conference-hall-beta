@@ -1,6 +1,6 @@
 import compareDesc from 'date-fns/compare_desc'
 import { set, unset } from 'immutadot'
-
+import { cloneDeep } from 'lodash'
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 
 export const createTalk = async (action, store, { form, router }) => {
@@ -25,6 +25,17 @@ export const updateTalk = (action, store, { form, router }) => {
   updateForm.asyncSubmit(talkCrud.update, talk)
   // update talk into data store
   store.data.talks.update(talk)
+  // go to talk page
+  router.push(`/speaker/talk/${talk.id}`)
+}
+
+export const updateSubmissionStatusInTalk = (action, store, { router }) => {
+  const { id, evtId, state } = action.payload.proposal
+  const talk = store.data.talks.get(id)
+  const newTalk = cloneDeep(talk)
+  newTalk.submissions[evtId].state = state
+  // update talk into data store
+  store.data.talks.update(newTalk)
   // go to talk page
   router.push(`/speaker/talk/${talk.id}`)
 }

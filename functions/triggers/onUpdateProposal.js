@@ -38,7 +38,11 @@ module.exports = functions.firestore
         [eventId]: { ...talk },
       },
     }
-
+    if (talk.state === 'confirmed') {
+      // Update talk to refresh status for speaker page.
+      console.log(`:::update::confirmed ${JSON.stringify(submissionUpdate)}`)
+      return partialUpdateTalk(talk.id, submissionUpdate)
+    }
     // send email to accepted proposal
     if (talk.state === 'accepted' && !talk.emailSent) {
       talk.emailSent = talk.updateTimestamp

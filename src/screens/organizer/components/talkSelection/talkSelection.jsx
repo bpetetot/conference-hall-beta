@@ -10,17 +10,19 @@ const TalkSelection = ({ onChange, defaultValue, disabled }) => (
     disabled={disabled}
   >
     <option key="submitted" value="submitted">
-      Deliberate...
+    Deliberate...
     </option>
     <option key="accepted" value="accepted">
-      Accepted
+    Accepted
     </option>
     <option key="backup" value="backup">
-      Backup
+    Backup
     </option>
-    <option key="rejected" value="rejected">
-      Rejected
-    </option>
+    { if(!disabled) { (
+      <option key="confirmed" value="confirmed">
+      Confirmed
+      </option>
+      ) }}
   </select>
 )
 
