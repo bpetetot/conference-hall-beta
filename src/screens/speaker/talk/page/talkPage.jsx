@@ -5,7 +5,12 @@ import { Link } from 'redux-little-router'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import { TalkAbstract, TalkSpeakers, TalkSubmissions, TalkDeliberationNotification } from 'screens/components/talk'
+import {
+  TalkAbstract,
+  TalkSpeakers,
+  TalkSubmissions,
+  TalkDeliberationNotification,
+} from 'screens/components/talk'
 import DeleteTalkButton from './delete'
 import './talkPage.css'
 

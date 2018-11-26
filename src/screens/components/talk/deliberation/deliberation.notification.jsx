@@ -3,10 +3,7 @@ import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 import Notification from './notification.container'
 
-const filterAccepted = submissions => Object.keys(submissions).filter((eventId) => {
-  return submissions[eventId].state === 'accepted'
-})
-
+const filterAccepted = submissions => Object.keys(submissions).filter(eventId => submissions[eventId].state === 'accepted')
 
 const TalkDeliberationNotification = ({ submissions }) => {
   const acceptedSubmission = filterAccepted(submissions)
