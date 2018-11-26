@@ -18,11 +18,9 @@ const TalkSelection = ({ onChange, defaultValue, disabled }) => (
     <option key="backup" value="backup">
     Backup
     </option>
-    { if(!disabled) { (
-      <option key="confirmed" value="confirmed">
-      Confirmed
-      </option>
-      ) }}
+    <option key="confirmed" value="confirmed">
+    Confirmed
+    </option>
   </select>
 )
 
