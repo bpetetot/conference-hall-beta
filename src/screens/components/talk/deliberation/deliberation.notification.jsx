@@ -9,7 +9,6 @@ const TalkDeliberationNotification = ({ submissions }) => {
   const acceptedSubmission = filterAccepted(submissions)
   return (
     <div>
-      {isEmpty(acceptedSubmission) && <div /> }
       {!isEmpty(acceptedSubmission) && (
         <div>
           {acceptedSubmission.map(eventId => (
