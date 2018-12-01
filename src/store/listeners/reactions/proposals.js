@@ -2,12 +2,29 @@ import * as firebase from 'firebase/proposals'
 
 export const updateProposal = async (action, store, { router }) => {
   // get needed inputs
-  const eventId = router.getRouteParam('eventId')
   const { proposal, options } = action.payload
+  let eventId
+  if (proposal && proposal.evtId) {
+    eventId = proposal.evtId
+  } else {
+    eventId = router.getRouteParam('eventId')
+  }
   // update proposal
   await firebase.updateProposal(eventId, proposal, options)
   // update proposal in the store
   store.data.proposals.update(proposal)
+  // refresh talk
+  store.dispatch({
+    type: '@@ui/ON_UPDATE_SUBMISSION_IN_TALK',
+    payload: {
+      proposal: {
+        id: proposal.id,
+        evtId: eventId,
+        state: 'confirmed',
+      },
+      options: { updateTimestamp: true },
+    },
+  })
 }
 
 export const getProposal = async (action, store, { router }) => {

@@ -7,7 +7,7 @@ import Badge from 'components/badge'
 import './status.css'
 
 const Status = ({
-  loaded, submitted, accepted, declined, cfpOpened, outOfDate, onClickEdit, className,
+  loaded, submitted, confirmed, accepted, declined, cfpOpened, outOfDate, onClickEdit, className,
 }) => {
   if (!loaded) return null
   return (
@@ -22,9 +22,10 @@ const Status = ({
         </Badge>
       )}
       {!cfpOpened && <Badge error>CFP closed</Badge>}
-      {accepted && <Badge success>Accepted</Badge>}
-      {declined && <Badge error>Declined</Badge>}
-      {submitted && !accepted && !declined && <Badge outline>Submitted</Badge>}
+      {confirmed && <Badge warning>Confirmed</Badge>}
+      {accepted && <Badge warning>Accepted</Badge>}
+      {declined && <Badge warning>Declined</Badge>}
+      {submitted && !accepted && !declined && !confirmed && <Badge outline>Submitted</Badge>}
     </div>
   )
 }
@@ -32,6 +33,7 @@ const Status = ({
 Status.propTypes = {
   loaded: PropTypes.bool,
   submitted: PropTypes.bool,
+  confirmed: PropTypes.bool,
   accepted: PropTypes.bool,
   declined: PropTypes.bool,
   outOfDate: PropTypes.bool,
@@ -44,6 +46,7 @@ Status.defaultProps = {
   loaded: false,
   submitted: false,
   accepted: false,
+  confirmed: false,
   declined: false,
   outOfDate: false,
   cfpOpened: true,

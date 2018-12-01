@@ -5,6 +5,7 @@ import {
   isDeclined,
   isAccepted,
   isSubmitted,
+  isConfirmed,
   isOutOfDateForEvent,
 } from 'store/reducers/data/talks.selector'
 import Status from './status'
@@ -13,6 +14,7 @@ const mapStore = (store, { talkId, eventId }) => ({
   loaded: !!store.data.events.get(eventId),
   cfpOpened: isCfpOpened(eventId)(store),
   submitted: isSubmitted(talkId, eventId)(store),
+  confirmed: isConfirmed(talkId, eventId)(store),
   accepted: isAccepted(talkId, eventId)(store),
   declined: isDeclined(talkId, eventId)(store),
   outOfDate: isOutOfDateForEvent(talkId, eventId)(store),
