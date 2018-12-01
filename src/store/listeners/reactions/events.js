@@ -4,22 +4,31 @@ import map from 'lodash/map'
 import uniqBy from 'lodash/uniqBy'
 
 import { fetchOrganizationEvents } from 'firebase/organizations'
-import eventCrud, { fetchEvents, fetchUserEvents } from 'firebase/events'
+import eventCrud, { fetchPublicEvents, fetchUserEvents } from 'firebase/events'
 
 export const createEvent = async (action, store, { form, router }) => {
   const createForm = form('event-create')
-  const event = createForm.getFormValues()
+  const { isPrivate, ...eventData } = createForm.getFormValues()
   // get user id
   const { uid } = store.auth.get()
+  const event = {
+    owner: uid,
+    ...eventData,
+    visibility: isPrivate ? 'private' : 'public',
+  }
   // create event into database
-  const ref = await createForm.asyncSubmit(eventCrud.create, { ...event, owner: uid })
+  const ref = await createForm.asyncSubmit(eventCrud.create, event)
   // go to event page
   router.push(`/organizer/event/${ref.id}`)
 }
 
 export const updateEventForm = formName => (action, store, { form }) => {
   const updateForm = form(formName)
-  const event = updateForm.getFormValues()
+  const { isPrivate, ...eventData } = updateForm.getFormValues()
+  const event = {
+    ...eventData,
+    visibility: isPrivate ? 'private' : 'public',
+  }
   // update event into database
   updateForm.asyncSubmit(eventCrud.update, event)
   // update event in store
@@ -86,7 +95,7 @@ export const fetchOrganizerEvents = async (action, store) => {
 }
 
 export const fetchSpeakerEvents = async (action, store) => {
-  const result = await fetchEvents()
+  const result = await fetchPublicEvents()
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
   // set events in the store
   store.data.events.set(events)

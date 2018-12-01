@@ -20,3 +20,15 @@
   color: var(--primary-color);
   text-decoration: none;
 }
+
+.brand > .burgerLink:hover  {
+  color: var(--secondary-color-font);
+}
+
+.mobileSidebarPortal {
+  top: var(--layout-navbar-height);
+}
+
+.mobileSidebar {
+  height: calc(100% - var(--layout-navbar-height));
+}

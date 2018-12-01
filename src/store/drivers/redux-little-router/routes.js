@@ -16,7 +16,6 @@ export default {
     app: 'organizer',
     appTitle: 'Organizer Hall',
     title: 'HOME_ORGANIZER',
-    '/menu': { title: 'MOBILE_MENU' },
     '/event/create': { title: 'CREATE_EVENT' },
     '/event': {
       title: 'HOME_EVENT',
@@ -53,7 +52,6 @@ export default {
     app: 'speaker',
     appTitle: 'Speaker Hall',
     title: 'HOME_SPEAKER',
-    '/menu': { title: 'MOBILE_MENU' },
     '/profile': { title: 'SPEAKER_PROFILE' },
     '/talk/create': { title: 'CREATE_TALK' },
     '/talk': {

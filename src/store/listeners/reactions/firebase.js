@@ -4,7 +4,7 @@ import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/functions'
 
-import { initFunctionCalls } from 'firebase/functionCalls'
+import { initFunctionCalls, preloadFunctions } from 'firebase/functionCalls'
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -32,6 +32,7 @@ export const init = (action, store) => {
       store.dispatch('@@firebase/SIGNED_OUT')
     } else {
       store.dispatch({ type: '@@firebase/SIGNED_IN', payload: user })
+      preloadFunctions()
     }
   })
 }

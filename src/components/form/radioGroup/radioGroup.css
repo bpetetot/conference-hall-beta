@@ -1,6 +1,7 @@
 .form-radio-group {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .form-radio-group-col {
@@ -21,6 +22,7 @@
 
 .form-radio-group-inline > * {
   margin-right: 15px;
+  margin-bottom: 5px;
 }
 
 .form-radio-group-inline > *:last-child {

@@ -1,5 +1,51 @@
 # Changelog
 
+<a name="0.3.0"></a>
+## 0.3.0 (2018-11-25)
+
+### Added
+
+- ✨ add event info on speaker and organizer list ([#349](https://github.com/bpetetot/conference-hall/issues/349)) [[8d3cf09](https://github.com/bpetetot/conference-hall/commit/8d3cf09e5c33dc71025a7cd3deacf6207cb37a1c)]
+- ✨ add event visibility in organizer event list ([#363](https://github.com/bpetetot/conference-hall/issues/363)) [[55808f1](https://github.com/bpetetot/conference-hall/commit/55808f1f26bd2b8b2ebc0e458d3835bbe9f9c102)]
+
+### Changed
+
+- ⬆️ upgrade minor and patched dependencies versions ([#361](https://github.com/bpetetot/conference-hall/issues/361)) [[4a3b1fc](https://github.com/bpetetot/conference-hall/commit/4a3b1fcf4587d73efffc9174688eba46e5a51bf5)]
+- ♻️ refactor mobile sidebar ([#377](https://github.com/bpetetot/conference-hall/issues/377)) [[8a9b7f0](https://github.com/bpetetot/conference-hall/commit/8a9b7f001d21e65e2e1f20e72feedf922ef7a9b9)]
+
+### Miscellaneous
+
+- 📝 improve install documentation [[0f9ccbf](https://github.com/bpetetot/conference-hall/commit/0f9ccbf4a0b1962ace9088f1133416af7d38d69d)]
+- 📝 list current app features ([#366](https://github.com/bpetetot/conference-hall/issues/366)) [[2b30163](https://github.com/bpetetot/conference-hall/commit/2b30163c7c670d53d898eb768052c10075293458)]
+- 📝 add gitter badge ([#375](https://github.com/bpetetot/conference-hall/issues/375)) [[68b95d5](https://github.com/bpetetot/conference-hall/commit/68b95d58236baea50e4648c72400342244f96aaa)]
+
+
+<a name="0.2.0"></a>
+## 0.2.0 (2018-11-18)
+
+### Added
+
+- ✨ add "report a bug" link ([#335](https://github.com/bpetetot/conference-hall/issues/335)) [[c5c7b41](https://github.com/bpetetot/conference-hall/commit/c5c7b41efeaec66412db25c29329322a6bd51cfb)]
+- ✨ add private events ([#351](https://github.com/bpetetot/conference-hall/issues/351)) [[ad4f463](https://github.com/bpetetot/conference-hall/commit/ad4f463df72a510f010abb3022d675dcb2a26082)]
+
+### Changed
+
+- ⬆️ use of node 8 with cloud functions ([#336](https://github.com/bpetetot/conference-hall/issues/336)) [[942cda9](https://github.com/bpetetot/conference-hall/commit/942cda96af32bdc26eb8ef551afb343ce79d7dac)]
+
+### Removed
+
+- 🔥 remove temporary Apis ([#339](https://github.com/bpetetot/conference-hall/issues/339)) [[10c39ce](https://github.com/bpetetot/conference-hall/commit/10c39ce3144e937e09a1ae1ee947599926cb9c3f)]
+- 🔥 preload cloud functions to avoid functions cold-start ([#359](https://github.com/bpetetot/conference-hall/issues/359)) [[6bd90d6](https://github.com/bpetetot/conference-hall/commit/6bd90d63b04e8e35d9c96cb33060b9dd26dc4703)]
+
+### Security
+
+- 🔒 use cloud functions to submit / unsubmit talks ([#338](https://github.com/bpetetot/conference-hall/issues/338)) [[8d67ef9](https://github.com/bpetetot/conference-hall/commit/8d67ef956821d2c34e2c9975a615c6485790a332)]
+
+### Miscellaneous
+
+- 💄 fix radio group overflow ([#352](https://github.com/bpetetot/conference-hall/issues/352)) [[d32b21c](https://github.com/bpetetot/conference-hall/commit/d32b21c3a1c7828afe3cd1e703ab5051fc66da14)]
+
+
 <a name="0.1.0"></a>
 ## 0.1.0 (2018-11-03)
 

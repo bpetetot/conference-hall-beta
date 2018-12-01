@@ -1,20 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
 
 import { toDate } from 'helpers/firebase'
 import { lgf, mdf } from 'helpers/date'
 import IconLabel from 'components/iconLabel'
 import isEqual from 'date-fns/is_equal'
 
-import './datesBlock.css'
+import './eventDates.css'
 
-const DatesBlock = ({ dates: { start, end }, className }) => {
+const EventDates = ({ dates: { start, end }, large, className }) => {
   if (!start && !end) return null
   const startDate = toDate(start)
   const endDate = toDate(end)
   return (
     <IconLabel
-      icon="fa fa-calendar fa-2x"
+      icon={cn('fa fa-calendar', { 'fa-2x': large })}
       className={className}
       label={
         isEqual(startDate, endDate) ? (
@@ -29,14 +30,16 @@ const DatesBlock = ({ dates: { start, end }, className }) => {
   )
 }
 
-DatesBlock.propTypes = {
+EventDates.propTypes = {
   dates: PropTypes.objectOf(PropTypes.any),
+  large: PropTypes.bool,
   className: PropTypes.string,
 }
 
-DatesBlock.defaultProps = {
+EventDates.defaultProps = {
   dates: {},
+  large: false,
   className: undefined,
 }
 
-export default DatesBlock
+export default EventDates

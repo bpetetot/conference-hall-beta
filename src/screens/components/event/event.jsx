@@ -8,9 +8,9 @@ import EventActions from './eventActions'
 import Address from './addressBlock'
 import List from './listBlock'
 import Cfp from './cfpBlock'
-import Dates from './datesBlock'
 import Website from './websiteBlock'
 import Contact from './contactBlock'
+import Dates from '../eventDates'
 
 import './event.css'
 
@@ -28,7 +28,7 @@ const Event = ({
   formats,
 }) => (
   <div className="event-page">
-    <EventTitle name={name} subtitle="Call for paper" className="event-page-header" />
+    <EventTitle name={name} type={type} subtitle="Call for paper" className="event-page-header" />
     <Cfp eventId={id} className="event-page-cfp" />
     <EventActions className="event-page-actions" eventId={id} isOrganizer={isOrganizer} />
     <div className="event-page-content card">
@@ -39,7 +39,7 @@ const Event = ({
     <div className="event-page-info card">
       <Maps address={address} />
       <div className="event-page-info-detail">
-        {type === 'conference' && <Dates dates={conferenceDates} />}
+        {type === 'conference' && <Dates dates={conferenceDates} large />}
         <Address address={address} />
         <Website website={website} />
         <Contact contact={contact} />

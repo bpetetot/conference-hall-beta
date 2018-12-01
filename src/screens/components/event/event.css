@@ -7,7 +7,7 @@
     'event-page-cfp event-page-cfp'
     'event-page-actions event-page-actions'
     'event-page-content event-page-info';
-  grid-gap: 2em;
+  grid-gap: 1em;
 }
 
 .event-page-header {

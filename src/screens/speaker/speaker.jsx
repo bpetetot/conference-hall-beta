@@ -5,7 +5,7 @@ import forRoute from 'hoc-little-router'
 import { protect } from 'store/reducers/auth'
 import AppLayout from 'layout'
 import Contributors from 'screens/components/contributors'
-import { Sidebar, SidebarMobile } from './sidebar'
+import Sidebar from './sidebar'
 import Profile from './profile'
 import MyTalks from './myTalks'
 import TalkCreate from './talk/create'
@@ -19,7 +19,6 @@ import InviteSpeaker from './inviteSpeaker'
 
 const Speaker = () => (
   <AppLayout sidebar={<Sidebar />}>
-    <SidebarMobile />
     <Profile />
     <TalkCreate />
     <TalkEdit />

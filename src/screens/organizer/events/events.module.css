@@ -1,0 +1,25 @@
+.title {
+  margin-bottom: 0.7em;
+}
+
+.infos {
+  color: var(--grey-color-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.type {
+  margin-left: 1em;
+}
+
+.dates {
+  font-size: 0.8em;
+  margin-top: 1em;
+}
+
+@media only screen and (max-width: 480px) {
+  .infos {
+    display: none;
+  }
+}

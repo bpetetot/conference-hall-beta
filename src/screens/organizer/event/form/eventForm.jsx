@@ -12,6 +12,7 @@ import {
   SubmitButton,
   RadioGroup,
   dayRangePicker,
+  toggle,
 } from 'components/form'
 import { required } from 'components/form/validators'
 import './eventForm.css'
@@ -34,6 +35,7 @@ const EventForm = ({ type, organizations, ...formProps }) => (
         ))}
       </Field>
     )}
+    <Field name="isPrivate" label="Private event" component={toggle} />
     <Field
       name="address"
       label={type === 'conference' ? 'Venue address' : 'City'}
