@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const functions = require('firebase-functions')
 const { getEvent } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
@@ -37,7 +36,7 @@ module.exports = functions.firestore
     if (talk.state === 'accepted' && !talk.emailSent) {
       const event = await getEvent(eventId)
       talk.emailSent = talk.updateTimestamp
-      console.log(`:::update::accepted ${JSON.stringify(submissionUpdate)}`)
+
       return Promise.all([
         getUsers(uids),
         updateProposal(eventId, talk),
@@ -53,7 +52,7 @@ module.exports = functions.firestore
     if (talk.state === 'rejected' && !talk.emailSent) {
       const event = await getEvent(eventId)
       talk.emailSent = talk.updateTimestamp
-      console.log(`:::update::rejected ${JSON.stringify(submissionUpdate)}`)
+
       return Promise.all([
         getUsers(uids),
         updateProposal(eventId, talk),
