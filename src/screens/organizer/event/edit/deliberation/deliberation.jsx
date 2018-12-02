@@ -12,8 +12,6 @@ const DeliberationForm = ({
   onActiveDeliberation,
   displayOrganizersRatings,
   onDisplayOrganizersRatings,
-  sendDeliberationEmails,
-  onSendDeliberationEmails,
 }) => (
   <div className={cn(styles.form, 'card')}>
     <Label
@@ -35,26 +33,10 @@ const DeliberationForm = ({
         onChange={onActiveDeliberation}
       />
       <span className={styles.description}>
-        Active deliberation to accept, reject or flag as backup proposals.
+        Active deliberation to mark proposals to accepted or rejected, and send confirmation emails
+        to speakers.
       </span>
     </Label>
-    {deliberationActive && (
-      <Label
-        name="sendDeliberationEmails"
-        label="Deliberation emails auto."
-        classNameInput={styles.label}
-      >
-        <Toggle
-          name="sendDeliberationEmails"
-          value={sendDeliberationEmails}
-          onChange={onSendDeliberationEmails}
-        />
-        <span className={styles.description}>
-          Automatically send an email to speakers when a proposal is marked as accepted or
-          rejected.
-        </span>
-      </Label>
-    )}
   </div>
 )
 
@@ -63,14 +45,11 @@ DeliberationForm.propTypes = {
   onActiveDeliberation: PropTypes.func.isRequired,
   displayOrganizersRatings: PropTypes.bool,
   onDisplayOrganizersRatings: PropTypes.func.isRequired,
-  sendDeliberationEmails: PropTypes.bool,
-  onSendDeliberationEmails: PropTypes.func.isRequired,
 }
 
 DeliberationForm.defaultProps = {
   displayOrganizersRatings: false,
   deliberationActive: false,
-  sendDeliberationEmails: false,
 }
 
 export default DeliberationForm

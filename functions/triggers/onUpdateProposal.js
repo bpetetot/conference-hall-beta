@@ -21,12 +21,6 @@ module.exports = functions.firestore
       return null
     }
 
-    const event = await getEvent(eventId)
-    // if deliberation email disabled, dont need to go further
-    if (!event.sendDeliberationEmails) {
-      return null
-    }
-
     // check mailgun configuration
     const { app, mailgun } = functions.config()
     if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
@@ -41,6 +35,7 @@ module.exports = functions.firestore
 
     // send email to accepted proposal
     if (talk.state === 'accepted' && !talk.emailSent) {
+      const event = await getEvent(eventId)
       talk.emailSent = talk.updateTimestamp
       console.log(`:::update::accepted ${JSON.stringify(submissionUpdate)}`)
       return Promise.all([
@@ -56,6 +51,7 @@ module.exports = functions.firestore
 
     // send email to rejected proposal
     if (talk.state === 'rejected' && !talk.emailSent) {
+      const event = await getEvent(eventId)
       talk.emailSent = talk.updateTimestamp
       console.log(`:::update::rejected ${JSON.stringify(submissionUpdate)}`)
       return Promise.all([
@@ -68,5 +64,6 @@ module.exports = functions.firestore
         html: talkRejected(event, users, talk),
       }))
     }
+
     return null
   })
