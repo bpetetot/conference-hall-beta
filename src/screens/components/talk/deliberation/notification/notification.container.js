@@ -4,24 +4,30 @@ import loader from 'hoc-react-loader/build/core'
 
 import Notification from './notification'
 
-const mapStore = (store, { eventId, submission }) => {
+const mapStore = (store, { eventId, talkId }) => {
   const { name } = store.data.events.get(eventId) || {}
   return {
     name,
     load: () => {
       store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
     },
-    onChange: () => {
-      // change state of submission soorginzer can see the new statusin deliberation page.
+    onConfirm: () => {
       store.dispatch({
-        type: '@@ui/ON_UPDATE_PROPOSAL',
+        type: '@@ui/ON_UPDATE_TALK_SUBMISSION_STATE',
         payload: {
-          proposal: {
-            id: submission.id,
-            evtId: eventId,
-            state: 'confirmed',
-          },
-          options: { updateTimestamp: true },
+          eventId,
+          talkId,
+          state: 'confirmed',
+        },
+      })
+    },
+    onDecline: () => {
+      store.dispatch({
+        type: '@@ui/ON_UPDATE_TALK_SUBMISSION_STATE',
+        payload: {
+          eventId,
+          talkId,
+          state: 'declined',
         },
       })
     },

@@ -6,7 +6,7 @@ import IconLabel from 'components/iconLabel'
 
 import styles from './notification.module.css'
 
-const Notification = ({ name, onChange }) => (
+const Notification = ({ name, onConfirm, onDecline }) => (
   <div className={styles.notification}>
     <IconLabel
       className={styles.message}
@@ -18,10 +18,10 @@ const Notification = ({ name, onChange }) => (
       )}
     />
     <div className={styles.actions}>
-      <Button onClick={onChange} primary>
+      <Button onClick={onConfirm} primary>
         I confirm my venue
       </Button>
-      <Button onClick={onChange} primary error>
+      <Button onClick={onDecline} primary error>
         I cancel my venue
       </Button>
     </div>
@@ -30,7 +30,8 @@ const Notification = ({ name, onChange }) => (
 
 Notification.propTypes = {
   name: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  onDecline: PropTypes.func.isRequired,
 }
 
 Notification.defaultProps = {

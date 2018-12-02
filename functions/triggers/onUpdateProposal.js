@@ -16,24 +16,8 @@ module.exports = functions.firestore
     const previousTalk = snap.before.data()
     const talk = snap.after.data()
 
-    // if proposal state didn't changed, dont need to go further
-    if (previousTalk.state === talk.state) {
-      return null
-    }
-
-    const submissionUpdate = {
-      submissions: {
-        [eventId]: { ...talk },
-      },
-    }
-
-    // Update talk is proposal set as confirmed.
-    if (talk.state === 'confirmed') {
-      return partialUpdateTalk(talk.id, submissionUpdate)
-    }
-
-    // if proposal state didn't changed, dont need to go further
-    if (talk.emailSent) {
+    // if proposal state didn't changed or email sent, dont need to go further
+    if (previousTalk.state === talk.state || talk.emailSent) {
       return null
     }
 
@@ -48,6 +32,12 @@ module.exports = functions.firestore
     if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
 
     const uids = Object.keys(talk.speakers)
+
+    const submissionUpdate = {
+      submissions: {
+        [eventId]: { ...talk },
+      },
+    }
 
     // send email to accepted proposal
     if (talk.state === 'accepted' && !talk.emailSent) {

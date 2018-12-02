@@ -13,7 +13,7 @@ const TalkDeliberationNotification = ({ submissions }) => {
   }
 
   return acceptedSubmission.map(eventId => (
-    <Notification key={eventId} eventId={eventId} submission={submissions[eventId]} />
+    <Notification key={eventId} eventId={eventId} talkId={submissions[eventId].id} />
   ))
 }
 
