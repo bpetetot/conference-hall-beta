@@ -9,7 +9,8 @@ const mapStore = (store, { proposalId }, { router }) => {
   const currentProposalId = proposalId || router.getRouteParam('proposalId')
   const { state } = store.data.proposals.get(currentProposalId) || {}
 
-  const disabled = sendDeliberationEmails && (state === 'accepted' || state === 'rejected' || state === 'confirmed')
+  const disabled = sendDeliberationEmails
+    && (state === 'accepted' || state === 'rejected' || state === 'confirmed' || state === 'declined')
 
   return {
     sendDeliberationEmails,
