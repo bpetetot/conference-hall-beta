@@ -2,7 +2,7 @@
 const functions = require('firebase-functions')
 const { updateProposal } = require('../firestore/proposal')
 
-module.exports = functions.firestore.document('talk/{talkId}').onUpdate(async (snap) => {
+module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (snap) => {
   const previousTalk = snap.before.data()
   const talk = snap.after.data()
 
