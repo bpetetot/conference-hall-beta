@@ -12,25 +12,28 @@ const talkRejected = require('../email/templates/talkRejected')
 module.exports = functions.firestore
   .document('events/{eventId}/proposals/{proposalId}')
   .onUpdate(async (snap, context) => {
+    const { eventId } = context.params
     const previousTalk = snap.before.data()
     const talk = snap.after.data()
 
-    const { eventId } = context.params
+    // if proposal state didn't changed, dont need to go further
+    if (previousTalk.state === talk.state) {
+      return null
+    }
+
     const submissionUpdate = {
       submissions: {
         [eventId]: { ...talk },
       },
     }
-    console.log(`:::update::talk ${JSON.stringify(talk)}`)
-    console.log(`:::update::submissionUpdate ${JSON.stringify(submissionUpdate)}`)
+
+    // Update talk is proposal set as confirmed.
     if (talk.state === 'confirmed') {
-      // Update talk to refresh status for speaker page.
-      console.log(`:::update::confirmed ${JSON.stringify(submissionUpdate)}`)
       return partialUpdateTalk(talk.id, submissionUpdate)
     }
 
-    // if proposal state didn't changed or email already sent, dont need to go further
-    if (previousTalk.state === talk.state || talk.emailSent) {
+    // if proposal state didn't changed, dont need to go further
+    if (talk.emailSent) {
       return null
     }
 
@@ -45,6 +48,7 @@ module.exports = functions.firestore
     if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
 
     const uids = Object.keys(talk.speakers)
+
     // send email to accepted proposal
     if (talk.state === 'accepted' && !talk.emailSent) {
       talk.emailSent = talk.updateTimestamp
