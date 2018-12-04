@@ -13,12 +13,12 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "firebase-admin": "^6.1.0",
+    "firebase-admin": "^6.3.0",
     "firebase-functions": "^2.1.0",
     "form-data": "^2.3.3",
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.11",
-    "luxon": "^1.7.1"
+    "luxon": "^1.8.2"
   }
 }
