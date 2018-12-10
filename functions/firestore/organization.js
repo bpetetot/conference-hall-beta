@@ -5,6 +5,7 @@ const getOrganization = organizationId => admin
   .collection('organizations')
   .doc(organizationId)
   .get()
+  .then(doc => doc.data())
 
 module.exports = {
   getOrganization,

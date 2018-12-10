@@ -1,10 +1,8 @@
 /* eslint-disable no-console */
 const functions = require('firebase-functions')
-const { union } = require('lodash')
 
-const { getEvent } = require('../firestore/event')
+const { getEvent, getEventOrganizers } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
-const { getOrganization } = require('../firestore/organization')
 
 const sendEmail = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
@@ -23,27 +21,20 @@ module.exports = functions.firestore
     const event = await getEvent(eventId)
 
     // Send email to speaker after submission
-    const uids = Object.keys(talk.speakers)
-    const users = await getUsers(uids)
+    const users = await getUsers(Object.keys(talk.speakers))
 
-    sendEmail(mailgun, {
+    await sendEmail(mailgun, {
       to: users.map(user => user.email),
       subject: `[${event.name}] Talk submitted`,
       html: talkConfirmed(event, talk, app.url),
     })
 
     // Send email to organizers after submission
-    const { owner, organization } = event
-    let organizerUids = [owner]
-    if (organization) {
-      const { members } = await getOrganization(organization)
-      organizerUids = union(Object.keys(members), organizerUids)
-    }
-    const organizers = await getUsers(organizerUids)
+    const organizers = await getEventOrganizers(event)
 
-    sendEmail(mailgun, {
+    await sendEmail(mailgun, {
       to: organizers.map(user => user.email),
       subject: `[${event.name}] Talk submitted by someone`,
-      html: talkConfirmed(event, talk, app.url),
+      html: talkConfirmed(event, talk, app.url), // TODO change tempate here
     })
   })
