@@ -41,11 +41,11 @@ const isEqualToStatus = status => (talkId, eventId) => (store) => {
 export const isAccepted = isEqualToStatus('accepted')
 
 /**
- * Returns true if the talk has been declined to the event
+ * Returns true if the talk has been rejected to the event
  * @param {string} talkId talk id
  * @param {string} eventId event id
  */
-export const isDeclined = isEqualToStatus('rejected')
+export const isRejected = isEqualToStatus('rejected')
 
 /**
  * Returns true if the talk has been confirmed by the user for this event
@@ -53,6 +53,14 @@ export const isDeclined = isEqualToStatus('rejected')
  * @param {string} eventId event id
  */
 export const isConfirmed = isEqualToStatus('confirmed')
+
+/**
+ * Returns true if the talk has been declined by the user for this event
+ * @param {string} talkId talk id
+ * @param {string} eventId event id
+ */
+export const isDeclined = isEqualToStatus('declined')
+
 
 /**
  * Returns true if the talk informations are different from the submitted talk info in event

@@ -2,10 +2,11 @@ import { inject } from '@k-ramel/react'
 
 import { isCfpOpened } from 'store/reducers/data/events.selector'
 import {
-  isDeclined,
+  isRejected,
   isAccepted,
   isSubmitted,
   isConfirmed,
+  isDeclined,
   isOutOfDateForEvent,
 } from 'store/reducers/data/talks.selector'
 import Status from './status'
@@ -16,6 +17,7 @@ const mapStore = (store, { talkId, eventId }) => ({
   submitted: isSubmitted(talkId, eventId)(store),
   confirmed: isConfirmed(talkId, eventId)(store),
   accepted: isAccepted(talkId, eventId)(store),
+  rejected: isRejected(talkId, eventId)(store),
   declined: isDeclined(talkId, eventId)(store),
   outOfDate: isOutOfDateForEvent(talkId, eventId)(store),
   onClickEdit: () => {

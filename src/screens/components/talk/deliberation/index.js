@@ -1,1 +1,1 @@
-export { default } from './deliberation.notification'
+export { default } from './deliberation'

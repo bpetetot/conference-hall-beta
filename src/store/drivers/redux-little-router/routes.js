@@ -32,7 +32,7 @@ export default {
           title: 'PROPOSALS',
           sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],
           ratings: ['rated', 'notRated'],
-          statuses: ['submitted', 'accepted', 'backup', 'rejected'],
+          statuses: ['submitted', 'accepted', 'rejected', 'confirmed', 'declined'],
         },
         '/proposal/:proposalId': { title: 'PROPOSAL' },
       },
