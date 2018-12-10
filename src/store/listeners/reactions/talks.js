@@ -28,14 +28,12 @@ export const updateTalk = (action, store, { form, router }) => {
   router.push(`/speaker/talk/${talk.id}`)
 }
 
-export const updateSubmissionStatusInTalk = (action, store, { router }) => {
-  const { id, evtId, state } = action.payload.proposal
-  const talk = store.data.talks.get(id)
-  const newTalk = set(talk, `submissions[${evtId}].state`, state)
-  // update talk into data store
-  store.data.talks.update(newTalk)
-  // go to talk page
-  router.push(`/speaker/talk/${talk.id}`)
+export const updateTalkSubmissionState = (action, store) => {
+  const { eventId, talkId, state } = action.payload
+  const talk = store.data.talks.get(talkId)
+  const updatedTalk = set(talk, `submissions[${eventId}].state`, state)
+  talkCrud.update(updatedTalk)
+  store.data.talks.update(updatedTalk)
 }
 
 export const fetchTalk = async (action, store, { router }) => {

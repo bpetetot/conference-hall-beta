@@ -1,23 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
-import Notification from './notification.container'
+import Notification from './notification'
 
 const filterAccepted = submissions => Object.keys(submissions).filter(eventId => submissions[eventId].state === 'accepted')
 
 const TalkDeliberationNotification = ({ submissions }) => {
   const acceptedSubmission = filterAccepted(submissions)
-  return (
-    <div>
-      {!isEmpty(acceptedSubmission) && (
-        <div>
-          {acceptedSubmission.map(eventId => (
-            <Notification key={eventId} eventId={eventId} submission={submissions[eventId]} />
-          ))}
-        </div>
-      )}
-    </div>
-  )
+
+  if (isEmpty(acceptedSubmission)) {
+    return null
+  }
+
+  return acceptedSubmission.map(eventId => (
+    <Notification key={eventId} eventId={eventId} talkId={submissions[eventId].id} />
+  ))
 }
 
 TalkDeliberationNotification.propTypes = {

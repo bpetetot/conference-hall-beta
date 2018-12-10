@@ -9,7 +9,7 @@ module.exports = functions.firestore
   .document('events/{eventId}/proposals/{proposalId}')
   .onCreate((snap, context) => {
     const talk = snap.data()
-    console.log(`:::create::talk' ${JSON.stringify(talk)}`)
+
     const { eventId } = context.params
     const uids = Object.keys(talk.speakers)
 
