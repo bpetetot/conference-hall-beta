@@ -5,7 +5,8 @@ const { getEvent, getEventOrganizers } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 
 const sendEmail = require('../email')
-const talkConfirmed = require('../email/templates/talkConfirmed')
+const talkSubmitted = require('../email/templates/talkSubmitted')
+const talkReceived = require('../email/templates/talkReceived')
 
 module.exports = functions.firestore
   .document('events/{eventId}/proposals/{proposalId}')
@@ -26,7 +27,7 @@ module.exports = functions.firestore
     await sendEmail(mailgun, {
       to: users.map(user => user.email),
       subject: `[${event.name}] Talk submitted`,
-      html: talkConfirmed(event, talk, app.url),
+      html: talkSubmitted(event, talk, app.url),
     })
 
     // Send email to organizers after submission
@@ -34,7 +35,7 @@ module.exports = functions.firestore
 
     await sendEmail(mailgun, {
       to: organizers.map(user => user.email),
-      subject: `[${event.name}] Talk submitted by someone`,
-      html: talkConfirmed(event, talk, app.url), // TODO change tempate here
+      subject: `[${event.name}] New talk submitted`,
+      html: talkReceived(event, talk, app.url),
     })
   })

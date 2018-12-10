@@ -5,6 +5,7 @@ const { getEvent, getEventOrganizers } = require('../firestore/event')
 
 const sendEmail = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
+const talkDeclined = require('../email/templates/talkDeclined')
 
 module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (snap) => {
   const previousTalk = snap.before.data()
@@ -35,7 +36,7 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
         await sendEmail(mailgun, {
           to: organizers.map(user => user.email),
           subject: `[${event.name}] Talk confirmed by speaker`,
-          html: talkConfirmed(event, talk, app.url), // TODO change tempate here
+          html: talkConfirmed(event, talk, app.url),
         })
       }
 
@@ -44,7 +45,7 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
         await sendEmail(mailgun, {
           to: organizers.map(user => user.email),
           subject: `[${event.name}] Talk declined by speaker`,
-          html: talkConfirmed(event, talk, app.url), // TODO change tempate here
+          html: talkDeclined(event, talk, app.url),
         })
       }
     }
