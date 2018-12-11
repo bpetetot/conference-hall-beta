@@ -2,29 +2,21 @@ import compareDesc from 'date-fns/compare_desc'
 import { set, unset } from 'immutadot'
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 
-export const createTalk = async (action, store, { form, router }) => {
-  const createForm = form('talk-create')
-  const talk = createForm.getFormValues()
-  // get user id
+export const createTalk = async (action, store, { router }) => {
+  const talk = action.payload
   const { uid } = store.auth.get()
-  // create talk into database
-  const ref = await createForm.asyncSubmit(talkCrud.create, {
+  const ref = await talkCrud.create({
     ...talk,
     owner: uid,
     speakers: { [uid]: true },
   })
-  // go to talk page
   router.push(`/speaker/talk/${ref.id}`)
 }
 
-export const updateTalk = (action, store, { form, router }) => {
-  const updateForm = form('talk-edit')
-  const talk = updateForm.getFormValues()
-  // create talk into database
-  updateForm.asyncSubmit(talkCrud.update, talk)
-  // update talk into data store
+export const updateTalk = (action, store, { router }) => {
+  const talk = action.payload
+  talkCrud.update(talk)
   store.data.talks.update(talk)
-  // go to talk page
   router.push(`/speaker/talk/${talk.id}`)
 }
 
