@@ -12,7 +12,6 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "firebase-admin": "^6.3.0",
