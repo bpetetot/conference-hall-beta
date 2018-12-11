@@ -12,15 +12,13 @@ export const openEventSubmission = (action, store, { router }) => {
   router.push(`/speaker/event/${eventId}/submission`)
 }
 
-export const submitTalkToEvent = async (action, store, { form }) => {
-  const { talkId, eventId } = action.payload
-  const submitForm = form('submit-talk')
-  const data = submitForm.getFormValues()
+export const submitTalkToEvent = async (action, store) => {
+  const { talkId, eventId, data } = action.payload
   const talk = store.data.talks.get(talkId)
 
   // submit or update submission with cloud function
   try {
-    await submitForm.asyncSubmit(functions.submitTalk, {
+    await functions.submitTalk({
       eventId,
       talk: { ...data, ...talk },
     })
@@ -28,26 +26,23 @@ export const submitTalkToEvent = async (action, store, { form }) => {
     const { currentStep } = store.ui.speaker.submission.get()
     store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
   } catch (e) {
-    submitForm.setSubmitFailed()
     console.error(e.message) // eslint-disable-line no-console
   }
 }
 
-export const removeTalkFromEvent = async (action, store, { form }) => {
+export const unsubmitTalkFromEvent = async (action, store) => {
   const { talkId, eventId } = action.payload
-  const submitForm = form('submit-talk')
   const talk = store.data.talks.get(talkId)
 
   // unsubmit the talk with cloud function
   try {
-    const updatedTalk = await submitForm.asyncSubmit(functions.unsubmitTalk, {
+    const updatedTalk = await functions.unsubmitTalk({
       eventId,
       talk,
     })
     store.data.talks.update(updatedTalk)
     store.ui.speaker.submission.reset()
   } catch (e) {
-    submitForm.setSubmitFailed()
     console.error(e.message) // eslint-disable-line no-console
   }
 }

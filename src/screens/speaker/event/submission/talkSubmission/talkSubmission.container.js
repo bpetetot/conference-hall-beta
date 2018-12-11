@@ -10,16 +10,17 @@ const mapStore = (store, { eventId }) => {
   const talk = store.data.talks.get(talkId)
   const update = isSubmitted(talkId, eventId)(store)
   const initialValues = talk && talk.submissions ? talk.submissions[event.id] : {}
+
   return {
     event,
     talk,
     update,
     initialValues,
-    submitTalk: () => {
-      store.dispatch({ type: '@@ui/ON_SUBMIT_TALK_TO_EVENT', payload: { talkId, eventId } })
+    onSubmit: (data) => {
+      store.dispatch({ type: '@@ui/ON_SUBMIT_TALK_TO_EVENT', payload: { talkId, eventId, data } })
     },
     unsubmitTalk: () => {
-      store.dispatch({ type: '@@ui/ON_REMOVE_TALK_FROM_EVENT', payload: { talkId, eventId } })
+      store.dispatch({ type: '@@ui/ON_UNSUBMIT_TALK_FROM_EVENT', payload: { talkId, eventId } })
     },
   }
 }
