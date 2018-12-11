@@ -1,19 +1,17 @@
 const functions = require('firebase-functions')
 
-const { getUser } = require('../firestore/user')
 const { getEvent } = require('../firestore/event')
+const { isUserEvent } = require('../firestore/permissions')
 const { exportEventData } = require('../firestore/exports')
 
-const exportEvent = async ({ eventId }, context) => {
-  const user = await getUser(context.auth.uid)
-
-  console.log(user)
-
+const exportEvent = async ({ eventId, filters = {} }, context) => {
   const event = await getEvent(eventId)
-  // TODO check user permissions on event (owner & organization)
 
-  const filters = {}
-  // TODO apply given filters
+  // check user permissions on event (owner & organization)
+  const hasAccess = await isUserEvent(context.auth.uid, event)
+  if (!hasAccess) {
+    throw new Error(`Permission denied on event ${eventId}`) // TODO check error codes for cloud functions
+  }
 
   const eventJson = await exportEventData(event, filters, {
     event: ['id', 'name', 'categories', 'formats'],

@@ -1,4 +1,4 @@
-const { exportEventData } = require('../../firestore/export')
+const { exportEventData } = require('../../firestore/exports')
 
 module.exports = async (req, res) => {
   const { state } = req.query

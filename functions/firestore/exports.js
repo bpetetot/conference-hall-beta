@@ -19,21 +19,20 @@ const getUids = flow(
   uniq,
 )
 
-const exportEventData = (event, filters = {}, attributes = {}) => {
+const exportEventData = async (event, filters = {}, attributes = {}) => {
   const eventAttributes = pickEventAttrs(attributes.event)
   const proposalAttributes = pickProposalAttrs(attributes.proposal)
   const speakerAttributes = pickSpeakerAttrs(attributes.speaker)
 
-  const talks = getEventProposals(event.id, filters.state).then(proposalAttributes)
+  const talks = await getEventProposals(event.id, filters.state).then(proposalAttributes)
 
-  const speakers = talks
-    .then(getUids)
-    .then(getUsers)
-    .then(speakerAttributes)
+  const speakerUids = getUids(talks)
+  const speakers = await getUsers(speakerUids).then(speakerAttributes)
 
-  return Promise.all([talks, speakers])
-    .then(zipObject(['talks', 'speakers']))
-    .then(assign(eventAttributes(event)))
+  return flow(
+    zipObject(['talks', 'speakers']),
+    assign(eventAttributes(event)),
+  )([talks, speakers])
 }
 
 module.exports = {
