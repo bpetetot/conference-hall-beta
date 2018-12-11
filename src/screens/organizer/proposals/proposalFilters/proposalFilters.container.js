@@ -21,6 +21,7 @@ const mapStore = (store, props, { router }) => {
     onChange: ({ target }) => {
       store.ui.organizer.proposals.update({ [target.id]: target.value })
     },
+    onExportProposals: () => store.dispatch('@@ui/EXPORT_PROPOSALS'),
   }
 }
 

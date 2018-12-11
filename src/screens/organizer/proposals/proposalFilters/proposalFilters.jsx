@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash/debounce'
 
+import Button from 'components/button'
+
 import './proposalFilters.css'
 
 const sortOrderLabel = sortOrder => ({
@@ -43,6 +45,7 @@ class ProposalFilters extends Component {
       sortOrders,
       filters,
       onChange,
+      onExportProposals,
       deliberationActive,
     } = this.props
 
@@ -102,6 +105,10 @@ class ProposalFilters extends Component {
             </option>
           ))}
         </select>
+
+        <Button onClick={onExportProposals}>
+          <i className="fa fa-clipboard" />
+        </Button>
       </div>
     )
   }
@@ -115,6 +122,7 @@ ProposalFilters.propTypes = {
   sortOrders: PropTypes.arrayOf(PropTypes.string),
   filters: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
+  onExportProposals: PropTypes.func.isRequired,
   deliberationActive: PropTypes.bool,
 }
 

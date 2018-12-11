@@ -1,11 +1,13 @@
-import * as firebase from 'firebase/proposals'
+import firebase from 'firebase/app'
+
+import * as firebaseProposals from 'firebase/proposals'
 
 export const updateProposal = async (action, store, { router }) => {
   // get needed inputs
   const eventId = router.getRouteParam('eventId')
   const { proposal, options } = action.payload
   // update proposal
-  await firebase.updateProposal(eventId, proposal, options)
+  await firebaseProposals.updateProposal(eventId, proposal, options)
   // update proposal in the store
   store.data.proposals.update(proposal)
 }
@@ -18,7 +20,7 @@ export const getProposal = async (action, store, { router }) => {
   const inStore = store.data.proposals.get(proposalId)
   if (!inStore) {
     // fetch proposal from id
-    const ref = await firebase.fetchProposal(eventId, proposalId)
+    const ref = await firebaseProposals.fetchProposal(eventId, proposalId)
     if (ref.exists) {
       store.data.proposals.add(ref.data())
     }
@@ -58,5 +60,26 @@ export const previousProposal = async (action, store, { router }) => {
       pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
       query: filters,
     })
+  }
+}
+
+export const exportProposals = async (action, store, { router }) => {
+  const eventId = router.getRouteParam('eventId')
+
+  const token = await firebase.auth().currentUser.getIdToken()
+
+  console.log(`Fetch export with token ${token} for event ${eventId}`)
+
+  try {
+    const response = await fetch(`https://conference-hall.firebaseapp.com/api/private/export/${eventId}`, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    })
+
+    const result = await response.text()
+    console.log(result)
+  } catch (error) {
+    console.error('Error fetching export cloud function')
+    console.error(error)
   }
 }
