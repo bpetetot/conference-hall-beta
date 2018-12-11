@@ -10,7 +10,7 @@ const router = express.Router()
 router.use(cors)
 router.use(withAuth)
 
-// Event APIs
+// Export proposals
 router.get('/export/:eventId', exportEvent)
 
 module.exports = router
