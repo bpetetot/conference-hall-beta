@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 
+import { downloadFile } from 'helpers/dom'
 import * as firebaseProposals from 'firebase/proposals'
 
 export const updateProposal = async (action, store, { router }) => {
@@ -68,18 +69,22 @@ export const exportProposals = async (action, store, { router }) => {
 
   const token = await firebase.auth().currentUser.getIdToken()
 
-  console.log(`Fetch export with token ${token} for event ${eventId}`)
+  // get proposal filters & sort from query params
+  const { search } = router.get()
 
+  // fetch proposal export
   try {
-    const response = await fetch(`https://conference-hall.firebaseapp.com/api/private/export/${eventId}`, {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${token}` },
-    })
-
-    const result = await response.text()
-    console.log(result)
+    const response = await fetch(
+      `https://conference-hall.firebaseapp.com/api/private/export/${eventId}${search}`,
+      {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    )
+    const blob = await response.blob()
+    const filename = `export-${Date.now()}.json`
+    downloadFile(filename, blob)
   } catch (error) {
-    console.error('Error fetching export cloud function')
-    console.error(error)
+    console.error(error) // eslint-disable-line
   }
 }

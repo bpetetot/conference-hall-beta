@@ -3,7 +3,7 @@ const {
 } = require('lodash/fp')
 
 const { getUsers } = require('./user')
-const { getEventProposals } = require('./event')
+const { getEventProposals } = require('./proposal')
 
 const pickEventAttrs = (attributes = []) => pick(attributes)
 
@@ -19,12 +19,12 @@ const getUids = flow(
   uniq,
 )
 
-const exportEventData = async (event, filters = {}, attributes = {}) => {
+const exportEventData = async (event, uid, filters = {}, attributes = {}) => {
   const eventAttributes = pickEventAttrs(attributes.event)
   const proposalAttributes = pickProposalAttrs(attributes.proposal)
   const speakerAttributes = pickSpeakerAttrs(attributes.speaker)
 
-  const talks = await getEventProposals(event.id, filters.state).then(proposalAttributes)
+  const talks = await getEventProposals(event.id, uid, filters).then(proposalAttributes)
 
   const speakerUids = getUids(talks)
   const speakers = await getUsers(speakerUids).then(speakerAttributes)

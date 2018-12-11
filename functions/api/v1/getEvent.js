@@ -6,6 +6,7 @@ module.exports = async (req, res) => {
   try {
     const eventExport = await exportEventData(
       res.locals.event,
+      null,
       { state },
       {
         event: ['id', 'name', 'categories', 'formats'],
