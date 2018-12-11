@@ -15,12 +15,9 @@ export const fetchUser = async (action, store) => {
   }
 }
 
-export const saveProfile = (action, store, { form }) => {
-  const profileForm = form('user-profile')
-  const profile = profileForm.getFormValues()
-  // update user data in database
-  profileForm.asyncSubmit(userCrud.update, profile)
-  // update user data in the store
+export const saveProfile = async (action, store) => {
+  const profile = action.payload
+  await userCrud.update(profile)
   store.data.users.update(profile)
 }
 
