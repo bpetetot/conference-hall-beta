@@ -26,7 +26,7 @@ const Profile = ({
     </div>
 
     <Form onSubmit={onSubmit} initialValues={initialValues}>
-      {({ handleSubmit, pristine, invalid }) => (
+      {({ handleSubmit, pristine }) => (
         <form className="profile-form card">
           <Field name="company" label="Company" type="text" component={input} />
           <Field name="phone" label="Phone" type="text" component={input} />
@@ -36,7 +36,7 @@ const Profile = ({
           <Field name="city" label="City" type="text" component={address} />
           <Field name="bio" label="Biography" component={markdownInput} />
 
-          <SubmitButton handleSubmit={handleSubmit} pristine={pristine} invalid={invalid}>
+          <SubmitButton handleSubmit={handleSubmit} pristine={pristine}>
             Save profile
           </SubmitButton>
         </form>
