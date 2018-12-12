@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types,react/no-array-index-key */
 import React from 'react'
-import { Field } from 'redux-form'
+import { Field } from 'react-final-form'
 import uuid from 'uuid/v5'
 
 import { Modal } from 'components/portals'

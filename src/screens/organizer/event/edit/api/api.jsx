@@ -17,7 +17,7 @@ const ApiForm = ({
     <Fragment>
       <div className="api-form card">
         <Label name="apiActive" label="Enable API">
-          <Toggle name="apiActive" value={apiActive} onChange={onActiveApi} />
+          <Toggle name="apiActive" checked={apiActive} onChange={onActiveApi} />
         </Label>
         <Label name="apiKey" label="API key" className="generate-key-input">
           <input type="text" value={apiKey} disabled />

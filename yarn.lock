@@ -5721,6 +5721,10 @@ fill-range@^4.0.0:
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
 
+final-form-arrays@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/final-form-arrays/-/final-form-arrays-1.1.1.tgz#ec869b904b1449775c657e31b96526750d92aca2"
+
 final-form@^4.11.0:
   version "4.11.0"
   resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.11.0.tgz#81750bda11b82c3ddf7b27092f29ebe427f8a560"
@@ -11181,6 +11185,12 @@ react-error-overlay@^5.1.0:
 react-feather@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-1.1.4.tgz#d0143da95f9d52843cf13a553091573a7c617897"
+
+react-final-form-arrays@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-final-form-arrays/-/react-final-form-arrays-2.0.1.tgz#ded628e3a1f2b4c4316b4aa6bf910e23eedca894"
+  dependencies:
+    react-lifecycles-compat "^3.0.4"
 
 react-final-form@^4.0.2:
   version "4.0.2"

@@ -1,26 +1,38 @@
 import React from 'react'
-import { Field, reduxForm, propTypes } from 'redux-form'
+import PropTypes from 'prop-types'
+import { Form, Field } from 'react-final-form'
 
 import { input, textarea, SubmitButton } from 'components/form'
 import { required } from 'components/form/validators'
 
 import './formatForm.css'
 
-const FormatForm = ({ edit, ...formProps }) => (
-  <form className="format-form">
-    <h2>{edit ? 'Update format' : 'Add a new format'}</h2>
-    <div className="format-form-content">
-      <Field name="name" label="Name" type="text" component={input} validate={required} />
-      <Field name="description" label="Description" type="text" component={textarea} />
-      <SubmitButton {...formProps}>
-        {edit ? 'Save format' : 'Add format'}
-      </SubmitButton>
-    </div>
-  </form>
+const FormatForm = ({ edit, onSubmit, initialValues }) => (
+  <Form onSubmit={onSubmit} initialValues={initialValues}>
+    {({ handleSubmit, pristine }) => (
+      <form className="format-form">
+        <h2>{edit ? 'Update format' : 'Add a new format'}</h2>
+        <div className="format-form-content">
+          <Field name="name" label="Name" type="text" component={input} validate={required} />
+          <Field name="description" label="Description" type="text" component={textarea} />
+          <SubmitButton handleSubmit={handleSubmit} pristine={pristine}>
+            {edit ? 'Save format' : 'Add format'}
+          </SubmitButton>
+        </div>
+      </form>
+    )}
+  </Form>
 )
 
 FormatForm.propTypes = {
-  ...propTypes,
+  edit: PropTypes.bool,
+  onSubmit: PropTypes.func.isRequired,
+  initialValues: PropTypes.object,
 }
 
-export default reduxForm({ form: 'format' })(FormatForm)
+FormatForm.defaultProps = {
+  edit: false,
+  initialValues: {},
+}
+
+export default FormatForm
