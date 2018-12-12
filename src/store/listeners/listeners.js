@@ -39,8 +39,8 @@ export default [
   when('@@ui/DELETE_TALK')(talks.deleteTalk),
   /* events */
   when('@@ui/ON_CREATE_EVENT')(events.createEvent),
-  when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEventForm('event-edit')),
-  when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEventForm('cfp-edit')),
+  when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEventForm),
+  when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEventForm),
   when('@@ui/ON_TOGGLE_EVENT_SURVEY')(events.updateEvent),
   when('@@ui/ON_SELECT_SURVEY_QUESTION')(events.updateEvent),
   when('@@ui/ON_TOGGLE_EVENT_DELIBERATION')(events.updateEvent),

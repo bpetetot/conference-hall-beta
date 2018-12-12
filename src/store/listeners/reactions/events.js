@@ -6,32 +6,25 @@ import uniqBy from 'lodash/uniqBy'
 import { fetchOrganizationEvents } from 'firebase/organizations'
 import eventCrud, { fetchPublicEvents, fetchUserEvents } from 'firebase/events'
 
-export const createEvent = async (action, store, { form, router }) => {
-  const createForm = form('event-create')
-  const { isPrivate, ...eventData } = createForm.getFormValues()
-  // get user id
+export const createEvent = async (action, store, { router }) => {
+  const { isPrivate, ...eventData } = action.payload
   const { uid } = store.auth.get()
   const event = {
     owner: uid,
     ...eventData,
     visibility: isPrivate ? 'private' : 'public',
   }
-  // create event into database
-  const ref = await createForm.asyncSubmit(eventCrud.create, event)
-  // go to event page
+  const ref = await eventCrud.create(event)
   router.push(`/organizer/event/${ref.id}`)
 }
 
-export const updateEventForm = formName => (action, store, { form }) => {
-  const updateForm = form(formName)
-  const { isPrivate, ...eventData } = updateForm.getFormValues()
+export const updateEventForm = async (action, store) => {
+  const { isPrivate, ...eventData } = action.payload
   const event = {
     ...eventData,
     visibility: isPrivate ? 'private' : 'public',
   }
-  // update event into database
-  updateForm.asyncSubmit(eventCrud.update, event)
-  // update event in store
+  await eventCrud.update(event)
   store.data.events.update(event)
 }
 

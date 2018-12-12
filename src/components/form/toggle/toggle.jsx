@@ -5,7 +5,7 @@ import './toggle.css'
 
 const Toggle = ({ name, ...rest }) => (
   <label className="toggle" htmlFor={name}>
-    <input id={name} name={name} type="checkbox" {...rest} defaultChecked={rest.value} />
+    <input id={name} name={name} type="checkbox" {...rest} />
     <span className="toggle-item" />
   </label>
 )
