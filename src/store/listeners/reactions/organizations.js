@@ -2,28 +2,20 @@ import { flow, set, unset } from 'immutadot'
 
 import organizationCrud, { fetchUserOrganizations } from 'firebase/organizations'
 
-export const create = async (action, store, { form, router }) => {
-  const createForm = form('organization-create')
-  const organizationValues = createForm.getFormValues()
-  // get user id
+export const create = async (action, store, { router }) => {
+  const data = action.payload
   const { uid } = store.auth.get()
-  // create organization into database
-  const newUserOrganization = flow(set(`members.${uid}`, true), set('owner', uid))(organizationValues)
-  const ref = await createForm.asyncSubmit(organizationCrud.create, newUserOrganization)
+  const newUserOrganization = flow(set(`members.${uid}`, true), set('owner', uid))(data)
+  const ref = await organizationCrud.create(newUserOrganization)
   store.data.organizations.add({ id: ref.id, ...newUserOrganization })
-  // go to organization page
   router.push(`/organizer/organizations/${ref.id}`)
 }
 
-export const update = (action, store, { form, router }) => {
-  const updateForm = form('organization-edit')
-  const organization = updateForm.getFormValues()
-  // create organization into database
-  updateForm.asyncSubmit(organizationCrud.update, organization)
-  // update organization into data store
-  store.data.organizations.update(organization)
-  // go to organization page
-  router.push(`/organizer/organizations/${organization.id}`)
+export const update = async (action, store, { router }) => {
+  const data = action.payload
+  await organizationCrud.update(data)
+  store.data.organizations.update(data)
+  router.push(`/organizer/organizations/${data.id}`)
 }
 
 export const get = async (action, store, { router }) => {
