@@ -1,25 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { propTypes } from 'redux-form'
+import { Form } from 'react-final-form'
 
 import { SubmitButton } from 'components/form'
 import questions from 'screens/components/event/survey/questions'
 import SurveyInput from './surveyInput'
 
-const SurveyForm = ({ survey, ...formProps }) => (
-  <form>
-    {questions.map(q => survey[q.name] && <SurveyInput key={q.name} {...q} />)}
-    <SubmitButton {...formProps}>Save Survey</SubmitButton>
-  </form>
+const SurveyForm = ({ survey, onSubmit, initialValues }) => (
+  <Form onSubmit={onSubmit} initialValues={initialValues}>
+    {({ handleSubmit, pristine }) => (
+      <form>
+        {questions.map(q => survey[q.name] && <SurveyInput key={q.name} {...q} />)}
+        <SubmitButton handleSubmit={handleSubmit} pristine={pristine}>
+          Save Survey
+        </SubmitButton>
+      </form>
+    )}
+  </Form>
 )
 
 SurveyForm.propTypes = {
   survey: PropTypes.objectOf(PropTypes.bool),
-  ...propTypes,
+  onSubmit: PropTypes.func.isRequired,
+  initialValues: PropTypes.object,
 }
 
 SurveyForm.defaultProps = {
   survey: {},
+  initialValues: undefined,
 }
 
 export default SurveyForm

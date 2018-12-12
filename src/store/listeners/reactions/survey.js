@@ -8,10 +8,8 @@ export const fetch = async (action, store) => {
   }
 }
 
-export const save = async (action, store, { form }) => {
-  const { eventId, uid } = action.payload
-  const surveyForm = form(`speaker-survey-${uid}`)
-  const survey = surveyForm.getFormValues()
-  surveyForm.asyncSubmit(saveSurvey, eventId, uid, survey)
-  store.data.surveys.addOrUpdate({ uid, ...survey })
+export const save = async (action, store) => {
+  const { eventId, uid, data } = action.payload
+  await saveSurvey(eventId, uid, data)
+  store.data.surveys.addOrUpdate({ uid, ...data })
 }
