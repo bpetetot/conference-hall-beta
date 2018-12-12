@@ -15,7 +15,6 @@
     "doc:build": "docz build"
   },
   "dependencies": {
-    "@k-ramel/driver-redux-form": "1.0.2",
     "@k-ramel/driver-redux-little-router": "1.0.2",
     "@k-ramel/react": "1.0.2",
     "classnames": "^2.2.6",
@@ -41,7 +40,6 @@
     "react-redux": "^5.1.1",
     "react-sizes": "^1.0.4",
     "redux": "^4.0.1",
-    "redux-form": "^7.4.2",
     "redux-little-router": "^15.1.1",
     "uuid": "^3.3.2"
   },
