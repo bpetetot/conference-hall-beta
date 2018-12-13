@@ -26,4 +26,4 @@ ProposalSubtitle.defaultProps = {
 }
 
 export default ProposalSubtitle
-q
+
