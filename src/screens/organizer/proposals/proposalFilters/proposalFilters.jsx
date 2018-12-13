@@ -21,8 +21,9 @@ const ratingsLabel = rating => ({
 const statusLabel = status => ({
   submitted: 'Not deliberated',
   accepted: 'Accepted',
-  backup: 'Backup',
   rejected: 'Rejected',
+  confirmed: 'Confirmed',
+  declined: 'Declined',
 }[status])
 
 class ProposalFilters extends Component {

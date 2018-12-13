@@ -1181,15 +1181,15 @@
     tslib "1.9.0"
     xmlhttprequest "1.8.0"
 
-"@firebase/auth-types@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.4.0.tgz#f65e1d079a2793f581a995a92f56005e44cf4aac"
+"@firebase/auth-types@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.5.0.tgz#5620308993d524e5b4f0d084372ad7e7dc7dee55"
 
-"@firebase/auth@0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.8.0.tgz#e98374341c66e4dc1e7dabdac4015eebfdae56ce"
+"@firebase/auth@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.9.0.tgz#c815f36c9b0e494c50a15b93ce0d958f4eed0f29"
   dependencies:
-    "@firebase/auth-types" "0.4.0"
+    "@firebase/auth-types" "0.5.0"
 
 "@firebase/database-types@0.3.2":
   version "0.3.2"
@@ -1205,18 +1205,18 @@
     faye-websocket "0.11.1"
     tslib "1.9.0"
 
-"@firebase/firestore-types@0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-0.7.0.tgz#bded7892868cf6b189a121d0f0cec468f1609995"
+"@firebase/firestore-types@0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-0.8.0.tgz#a40b2ed03eda9c189af145acdff408e562976345"
 
-"@firebase/firestore@0.8.8":
-  version "0.8.8"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.8.8.tgz#17d7fccf7afb4b27d4c55e608f03fff55bad163a"
+"@firebase/firestore@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.9.0.tgz#37a6698b1805b07181455df562f7e98192d12546"
   dependencies:
-    "@firebase/firestore-types" "0.7.0"
+    "@firebase/firestore-types" "0.8.0"
     "@firebase/logger" "0.1.2"
     "@firebase/webchannel-wrapper" "0.2.11"
-    grpc "1.16.0"
+    grpc "1.16.1"
     tslib "1.9.0"
 
 "@firebase/functions-types@0.2.1":
@@ -1355,21 +1355,21 @@
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@hbetts/parse-repository-url/-/parse-repository-url-2.1.2.tgz#f78e6950529be9fd0b904fc90e06b078ddf4a847"
 
-"@k-ramel/driver-http@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-1.0.0.tgz#45fd0d7b5bb64726059d6365bea9a035fc725e3f"
+"@k-ramel/driver-http@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-1.0.2.tgz#1a300a725492494805658899b1301f7dcb1d6109"
 
-"@k-ramel/driver-redux-form@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-form/-/driver-redux-form-1.0.0.tgz#f3829f6ad3289f48b7ff1e7cbb6b389ccb4fd240"
+"@k-ramel/driver-redux-form@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-form/-/driver-redux-form-1.0.2.tgz#ef4b66da8d9f78955d5e59577321a808a3d26658"
 
-"@k-ramel/driver-redux-little-router@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-1.0.0.tgz#b4236a5a811104ae3425e51e246c3977784c92bd"
+"@k-ramel/driver-redux-little-router@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-1.0.2.tgz#124dd940caaad893df593484f0121e9b720c312d"
 
-"@k-ramel/react@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.0.0.tgz#fa7b69fc3a5e015b07d98ff4ea81e453f84e3b77"
+"@k-ramel/react@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.0.2.tgz#6aace6d2f730f0be993dcc7f013baaebe2699ae2"
 
 "@mdx-js/loader@^0.16.5":
   version "0.16.5"
@@ -4169,9 +4169,9 @@ data-urls@^1.0.0, data-urls@^1.0.1:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-date-fns@^1.29.0:
-  version "1.29.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
+date-fns@^1.30.1:
+  version "1.30.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
 
 date-fns@^2.0.0-alpha.23:
   version "2.0.0-alpha.25"
@@ -4837,9 +4837,9 @@ env-dot-prop@^1.1.0:
     circular-json "^0.5.9"
     dot-prop "^4.2.0"
 
-enzyme-adapter-react-16@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.7.0.tgz#90344395a89624edbe7f0e443bc19fef62bf1f9f"
+enzyme-adapter-react-16@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.7.1.tgz#c37c4cb0fd75e88a063154a7a88096474914496a"
   dependencies:
     enzyme-adapter-utils "^1.9.0"
     function.prototype.name "^1.1.0"
@@ -4858,9 +4858,9 @@ enzyme-adapter-utils@^1.9.0:
     prop-types "^15.6.2"
     semver "^5.6.0"
 
-enzyme@^3.5.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.7.0.tgz#9b499e8ca155df44fef64d9f1558961ba1385a46"
+enzyme@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.8.0.tgz#646d2d5d0798cb98fdec39afcee8a53237b47ad5"
   dependencies:
     array.prototype.flat "^1.2.1"
     cheerio "^1.0.0-rc.2"
@@ -5687,14 +5687,14 @@ firebase@2.x.x:
   dependencies:
     faye-websocket ">=0.6.0"
 
-firebase@^5.6.0:
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-5.6.0.tgz#fbaecb066a2928ff64f69e7b94669640daba5ba2"
+firebase@^5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-5.7.0.tgz#4e43e3f6521cfb4c1b4caf1b269a402c83713dd4"
   dependencies:
     "@firebase/app" "0.3.5"
-    "@firebase/auth" "0.8.0"
+    "@firebase/auth" "0.9.0"
     "@firebase/database" "0.3.7"
-    "@firebase/firestore" "0.8.8"
+    "@firebase/firestore" "0.9.0"
     "@firebase/functions" "0.3.3"
     "@firebase/messaging" "0.3.7"
     "@firebase/polyfill" "0.3.3"
@@ -6230,13 +6230,13 @@ growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
 
-grpc@1.16.0:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/grpc/-/grpc-1.16.0.tgz#cdf56d6ede2f1b6ab5224ad467cb22e1b3ec36fc"
+grpc@1.16.1:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/grpc/-/grpc-1.16.1.tgz#533316f38cea68111ef577728c3f4e8e9e554543"
   dependencies:
     lodash "^4.17.5"
     nan "^2.0.0"
-    node-pre-gyp "^0.10.0"
+    node-pre-gyp "^0.12.0"
     protobufjs "^5.0.3"
 
 gtoken@^1.2.1, gtoken@^1.2.3:
@@ -7961,17 +7961,17 @@ jws@^3.0.0, jws@^3.1.4, jws@^3.1.5:
     jwa "^1.1.5"
     safe-buffer "^5.0.1"
 
-k-ramel@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-1.0.0.tgz#c4d96810ccf207a658190a6c07c84a0d08eaf7ff"
+k-ramel@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-1.0.2.tgz#d5def41df6867b17af27b48d00a2068acfaeb3bb"
   dependencies:
-    "@k-ramel/driver-http" "^1.0.0"
-    k-redux-factory "6.0.0"
+    "@k-ramel/driver-http" "^1.0.2"
+    k-redux-factory "6.0.2"
     redux "4.0.1"
 
-k-redux-factory@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.0.tgz#76b7d2c56f3218763c9db08968c6e5afe39bf44d"
+k-redux-factory@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.2.tgz#fb580799b685bd21f0cdc81355d2b2173a0e8d24"
 
 keygrip@~1.0.2:
   version "1.0.3"
@@ -9217,6 +9217,21 @@ node-notifier@^5.2.1:
 node-pre-gyp@^0.10.0:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.10.3.tgz#3070040716afdc778747b61b6887bf78880b80fc"
+  dependencies:
+    detect-libc "^1.0.2"
+    mkdirp "^0.5.1"
+    needle "^2.2.1"
+    nopt "^4.0.1"
+    npm-packlist "^1.1.6"
+    npmlog "^4.0.2"
+    rc "^1.2.7"
+    rimraf "^2.6.1"
+    semver "^5.3.0"
+    tar "^4"
+
+node-pre-gyp@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.12.0.tgz#39ba4bb1439da030295f899e3b520b7785766149"
   dependencies:
     detect-libc "^1.0.2"
     mkdirp "^0.5.1"

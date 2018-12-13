@@ -12,10 +12,13 @@ const updateTalk = (talkId, data) => admin
   .firestore()
   .collection('talks')
   .doc(talkId)
-  .update(Object.assign(
-    data,
-    { updateTimestamp: admin.firestore.FieldValue.serverTimestamp() }
-  ))
+  .update({ ...data, updateTimestamp: admin.firestore.FieldValue.serverTimestamp() })
+
+const partialUpdateTalk = (talkId, data) => admin
+  .firestore()
+  .collection('talks')
+  .doc(talkId)
+  .set({ ...data, updateTimestamp: admin.firestore.FieldValue.serverTimestamp() }, { merge: true })
 
 const getAllTalks = () => admin
   .firestore()
@@ -27,4 +30,5 @@ module.exports = {
   getTalk,
   getAllTalks,
   updateTalk,
+  partialUpdateTalk,
 }
