@@ -9,13 +9,13 @@ import './categoryForm.css'
 
 const CategoryForm = ({ edit, onSubmit, initialValues }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
-    {({ handleSubmit, pristine }) => (
+    {({ handleSubmit, pristine, invalid }) => (
       <form className="category-form">
         <h2>{edit ? 'Update category' : 'Add a new category'}</h2>
         <div className="category-form-content">
           <Field name="name" label="Name" type="text" component={input} validate={required} />
           <Field name="description" label="Description" type="text" component={textarea} />
-          <SubmitButton handleSubmit={handleSubmit} pristine={pristine}>
+          <SubmitButton handleSubmit={handleSubmit} pristine={pristine} invalid={invalid}>
             {edit ? 'Save category' : 'Add category'}
           </SubmitButton>
         </div>

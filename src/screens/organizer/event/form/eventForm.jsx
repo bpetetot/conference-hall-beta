@@ -21,19 +21,21 @@ const EventForm = ({
   isCreateForm, organizations, onSubmit, initialValues,
 }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
-    {({ values, handleSubmit, pristine }) => (
+    {({
+      values, handleSubmit, pristine, invalid,
+    }) => (
       <form className="event-form card">
         {isCreateForm && (
-          <RadioGroup name="type" label="Event type" value="conference" inline>
-            <Field
-              name="type"
-              value="conference"
-              label="Conference"
-              type="radio"
-              component={radio}
-            />
-            <Field name="type" value="meetup" label="Meetup" type="radio" component={radio} />
-          </RadioGroup>
+        <RadioGroup name="type" label="Event type" value="conference" inline>
+          <Field
+            name="type"
+            value="conference"
+            label="Conference"
+            type="radio"
+            component={radio}
+          />
+          <Field name="type" value="meetup" label="Meetup" type="radio" component={radio} />
+        </RadioGroup>
         )}
         <Field name="name" label="Name" type="text" component={input} validate={required} />
         <Field
@@ -43,21 +45,16 @@ const EventForm = ({
           validate={required}
         />
         {!isEmpty(organizations) && (
-          <Field label="Organization" name="organization" component={select}>
-            <option />
-            {organizations.map(({ id, name }) => (
-              <option key={id} value={id}>
-                {name}
-              </option>
-            ))}
-          </Field>
+        <Field label="Organization" name="organization" component={select}>
+          <option />
+          {organizations.map(({ id, name }) => (
+            <option key={id} value={id}>
+              {name}
+            </option>
+          ))}
+        </Field>
         )}
-        <Field
-          name="isPrivate"
-          label="Private event"
-          component={toggle}
-          type="checkbox"
-        />
+        <Field name="isPrivate" label="Private event" component={toggle} type="checkbox" />
         <Field
           name="address"
           label={values.type === 'conference' ? 'Venue address' : 'City'}
@@ -65,11 +62,11 @@ const EventForm = ({
           component={address}
         />
         {values.type === 'conference' && (
-          <Field name="conferenceDates" label="Conference date" component={dayRangePicker} />
+        <Field name="conferenceDates" label="Conference date" component={dayRangePicker} />
         )}
         <Field name="website" label="Website" type="text" component={input} />
         <Field name="contact" label="Email contact" type="email" component={input} />
-        <SubmitButton handleSubmit={handleSubmit} pristine={pristine}>
+        <SubmitButton handleSubmit={handleSubmit} pristine={pristine} invalid={invalid}>
           {isCreateForm ? 'Create event' : 'Save event'}
         </SubmitButton>
       </form>
