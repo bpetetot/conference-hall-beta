@@ -166,10 +166,12 @@
 }
 
 .cc-button-secondary.cc-button:disabled {
+  border: 1px solid var(--grey-color-dark);
   background: none;
 }
 
 .cc-button-secondary.cc-button:disabled:hover {
+  border: 1px solid var(--grey-color-dark);
   background: none;
 }
 

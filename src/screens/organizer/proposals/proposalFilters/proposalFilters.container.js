@@ -10,6 +10,7 @@ const mapStore = (store, props, { router }) => {
   const statuses = router.getParentResultParam('statuses')
   const filters = store.ui.organizer.proposals.get()
   const { formats, categories } = store.data.events.get(eventId) || {}
+  const { isExporting } = store.ui.organizer.proposalsExport.get()
   return {
     statuses,
     ratings,
@@ -18,6 +19,7 @@ const mapStore = (store, props, { router }) => {
     sortOrders,
     filters,
     deliberationActive,
+    isExporting,
     onChange: ({ target }) => {
       store.ui.organizer.proposals.update({ [target.id]: target.value })
     },

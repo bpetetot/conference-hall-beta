@@ -1,26 +1,36 @@
+.proposals-toolbar {
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .proposals-filters {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  flex-grow: 1;
 }
 
 .proposals-filters > * {
   margin-right: 1em;
-  margin-bottom: 1em;
+}
+
+.proposals-filters > select,input {
   width: initial;
   min-width: 10em;
   max-width: 15em;
 }
 
-@media only screen and (max-width: 480px) {
-  .proposals-filters {
-    flex-direction: column;
-    margin-bottom: 1em;
-  }
+.proposals-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-  .proposals-filters > * {
-    margin-left: 0;
-    margin-bottom: 0.5em;
-    width: 100%;
+@media only screen and (max-width: 480px) {
+  .proposals-toolbar {
+    display: none;
   }
 }

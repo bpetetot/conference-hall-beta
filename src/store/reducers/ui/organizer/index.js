@@ -3,6 +3,7 @@ import myOrganizations from './myOrganizations'
 import proposal from './proposal'
 import proposals from './proposals'
 import proposalsPaging from './proposalsPaging'
+import proposalsExport from './proposalsExport'
 
 export default {
   myEvents,
@@ -10,4 +11,5 @@ export default {
   proposal,
   proposals,
   proposalsPaging,
+  proposalsExport,
 }

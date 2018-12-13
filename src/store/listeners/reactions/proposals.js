@@ -66,6 +66,7 @@ export const previousProposal = async (action, store, { router }) => {
 
 export const exportProposals = async (action, store, { router }) => {
   const eventId = router.getRouteParam('eventId')
+  store.ui.organizer.proposalsExport.update({ isExporting: true })
 
   const token = await firebase.auth().currentUser.getIdToken()
 
@@ -84,7 +85,10 @@ export const exportProposals = async (action, store, { router }) => {
     const blob = await response.blob()
     const filename = `export-${Date.now()}.json`
     downloadFile(filename, blob)
+
+    store.ui.organizer.proposalsExport.update({ isExporting: false })
   } catch (error) {
     console.error(error) // eslint-disable-line
+    store.ui.organizer.proposalsExport.update({ isExporting: false })
   }
 }

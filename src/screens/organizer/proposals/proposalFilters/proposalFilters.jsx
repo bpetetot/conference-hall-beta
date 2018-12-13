@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import debounce from 'lodash/debounce'
 
 import Button from 'components/button'
+import IconLabel from 'components/iconLabel'
 
 import './proposalFilters.css'
 
@@ -48,68 +49,76 @@ class ProposalFilters extends Component {
       onChange,
       onExportProposals,
       deliberationActive,
+      isExporting,
     } = this.props
 
     return (
-      <div className="proposals-filters no-print">
-        <input
-          id="search"
-          type="search"
-          placeholder="Search by proposal title"
-          onChange={this.debounceOnChange}
-          defaultValue={filters.search}
-        />
+      <div className="proposals-toolbar no-print">
+        <div className="proposals-filters">
+          <input
+            id="search"
+            type="search"
+            placeholder="Search by proposal title"
+            onChange={this.debounceOnChange}
+            defaultValue={filters.search}
+          />
 
-        {deliberationActive && (
-          <select id="state" onChange={onChange} defaultValue={filters.state}>
-            <option value="">All statuses</option>
-            {statuses.map(status => (
-              <option key={status} value={status}>
-                {statusLabel(status)}
+          {deliberationActive && (
+            <select id="state" onChange={onChange} defaultValue={filters.state}>
+              <option value="">All statuses</option>
+              {statuses.map(status => (
+                <option key={status} value={status}>
+                  {statusLabel(status)}
+                </option>
+              ))}
+            </select>
+          )}
+
+          <select id="ratings" onChange={onChange} defaultValue={filters.ratings}>
+            <option value="">All ratings</option>
+            {ratings.map(rating => (
+              <option key={rating} value={rating}>
+                {ratingsLabel(rating)}
               </option>
             ))}
           </select>
-        )}
 
-        <select id="ratings" onChange={onChange} defaultValue={filters.ratings}>
-          <option value="">All ratings</option>
-          {ratings.map(rating => (
-            <option key={rating} value={rating}>
-              {ratingsLabel(rating)}
-            </option>
-          ))}
-        </select>
+          <select id="formats" onChange={onChange} defaultValue={filters.formats}>
+            <option value="">All formats</option>
+            {formats.map(({ id, name }) => (
+              <option key={id} value={id}>
+                {name}
+              </option>
+            ))}
+          </select>
 
-        <select id="formats" onChange={onChange} defaultValue={filters.formats}>
-          <option value="">All formats</option>
-          {formats.map(({ id, name }) => (
-            <option key={id} value={id}>
-              {name}
-            </option>
-          ))}
-        </select>
+          <select id="categories" onChange={onChange} defaultValue={filters.categories}>
+            <option value="">All categories</option>
+            {categories.map(({ id, name }) => (
+              <option key={id} value={id}>
+                {name}
+              </option>
+            ))}
+          </select>
 
-        <select id="categories" onChange={onChange} defaultValue={filters.categories}>
-          <option value="">All categories</option>
-          {categories.map(({ id, name }) => (
-            <option key={id} value={id}>
-              {name}
-            </option>
-          ))}
-        </select>
-
-        <select id="sortOrder" onChange={onChange} defaultValue={filters.sortOrder}>
-          <option value="">Sort</option>
-          {sortOrders.map(sortOrder => (
-            <option key={sortOrder} value={sortOrder}>
-              {sortOrderLabel(sortOrder)}
-            </option>
-          ))}
-        </select>
-
-        <Button onClick={onExportProposals}>
-          <i className="fa fa-clipboard" />
-        </Button>
+          <select id="sortOrder" onChange={onChange} defaultValue={filters.sortOrder}>
+            <option value="">Sort</option>
+            {sortOrders.map(sortOrder => (
+              <option key={sortOrder} value={sortOrder}>
+                {sortOrderLabel(sortOrder)}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="proposals-actions">
+          <Button onClick={onExportProposals} secondary small disabled={isExporting}>
+            {isExporting ? (
+              'Exporting...'
+            ) : (
+              <IconLabel icon="fa fa-cloud-download" label="Export to JSON" />
+            )}
+          </Button>
+        </div>
       </div>
     )
   }
@@ -125,6 +134,7 @@ ProposalFilters.propTypes = {
   onChange: PropTypes.func.isRequired,
   onExportProposals: PropTypes.func.isRequired,
   deliberationActive: PropTypes.bool,
+  isExporting: PropTypes.bool,
 }
 
 ProposalFilters.defaultProps = {
@@ -135,6 +145,7 @@ ProposalFilters.defaultProps = {
   sortOrders: [],
   filters: {},
   deliberationActive: false,
+  isExporting: false,
 }
 
 export default ProposalFilters
