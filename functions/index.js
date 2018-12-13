@@ -4,6 +4,8 @@ initialize()
 
 // functions for triggered events calls
 exports.onCreateProposal = require('./triggers/onCreateProposal')
+exports.onUpdateProposal = require('./triggers/onUpdateProposal')
+exports.onUpdateTalk = require('./triggers/onUpdateTalk')
 
 // functions for HTTP APIs
 exports.api = require('./api')

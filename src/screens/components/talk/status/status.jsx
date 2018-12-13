@@ -7,22 +7,40 @@ import Badge from 'components/badge'
 import './status.css'
 
 const Status = ({
-  loaded, submitted, cfpOpened, outOfDate, onClickEdit, className,
+  loaded,
+  submitted,
+  confirmed,
+  accepted,
+  rejected,
+  declined,
+  cfpOpened,
+  outOfDate,
+  onClickEdit,
+  className,
 }) => {
   if (!loaded) return null
   return (
     <div className={cn('submission-status', className)}>
-      {outOfDate && cfpOpened && (
-        <Badge warning>
-          {classes => (
-            <a role="button" onClick={onClickEdit} className={classes}>
-              Out of date
-            </a>
-          )}
-        </Badge>
+      {outOfDate
+        && cfpOpened && (
+          <Badge warning>
+            {classes => (
+              <a role="button" onClick={onClickEdit} className={classes}>
+                Out of date
+              </a>
+            )}
+          </Badge>
       )}
       {!cfpOpened && <Badge error>CFP closed</Badge>}
-      {submitted && <Badge outline>Talk submitted</Badge>}
+      {accepted && <Badge success outline>Accepted</Badge>}
+      {rejected && <Badge error outline>Not accepted</Badge>}
+      {confirmed && <Badge success>Confirmed</Badge>}
+      {declined && <Badge error>Declined</Badge>}
+      {submitted
+        && !accepted
+        && !rejected
+        && !declined
+        && !confirmed && <Badge outline>Submitted</Badge>}
     </div>
   )
 }
@@ -30,6 +48,10 @@ const Status = ({
 Status.propTypes = {
   loaded: PropTypes.bool,
   submitted: PropTypes.bool,
+  accepted: PropTypes.bool,
+  rejected: PropTypes.bool,
+  confirmed: PropTypes.bool,
+  declined: PropTypes.bool,
   outOfDate: PropTypes.bool,
   cfpOpened: PropTypes.bool,
   onClickEdit: PropTypes.func.isRequired,
@@ -39,6 +61,10 @@ Status.propTypes = {
 Status.defaultProps = {
   loaded: false,
   submitted: false,
+  accepted: false,
+  rejected: false,
+  confirmed: false,
+  declined: false,
   outOfDate: false,
   cfpOpened: true,
   className: undefined,

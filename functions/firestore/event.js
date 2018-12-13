@@ -1,4 +1,8 @@
 const admin = require('firebase-admin')
+const { union } = require('lodash')
+
+const { getUsers } = require('./user')
+const { getOrganization } = require('./organization')
 
 const getEvent = eventId => admin
   .firestore()
@@ -18,11 +22,23 @@ const getEventProposals = (eventId, state) => {
     query = query.where('state', '==', state)
   }
 
-  return query.get()
+  return query
+    .get()
     .then(result => result.docs.map(ref => Object.assign({ id: ref.id }, ref.data())))
+}
+
+const getEventOrganizers = async (event) => {
+  const { owner, organization } = event
+  let organizerUids = [owner]
+  if (organization) {
+    const { members } = await getOrganization(organization)
+    organizerUids = union(Object.keys(members), organizerUids)
+  }
+  return getUsers(organizerUids)
 }
 
 module.exports = {
   getEvent,
   getEventProposals,
+  getEventOrganizers,
 }

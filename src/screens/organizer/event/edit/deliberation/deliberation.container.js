@@ -11,6 +11,7 @@ const mapStore = (store, { eventId }) => {
   } = store.data.events.get(eventId) || {}
   return {
     deliberationActive,
+    displayOrganizersRatings,
     onActiveDeliberation: e => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_DELIBERATION',
       payload: {
@@ -20,7 +21,6 @@ const mapStore = (store, { eventId }) => {
         },
       },
     }),
-    displayOrganizersRatings,
     onDisplayOrganizersRatings: e => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_DISPLAY_ORGANIZERS_RATINGS',
       payload: {
