@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
 import debounce from 'lodash/debounce'
 
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 
-import './proposalsToolbar.css'
+import styles from './proposalsToolbar.module.css'
 
 const sortOrderLabel = sortOrder => ({
   newest: 'Newest',
@@ -53,8 +54,8 @@ class ProposalToolbar extends Component {
     } = this.props
 
     return (
-      <div className="proposals-toolbar no-print">
-        <div className="proposals-filters">
+      <div className={cn(styles.proposalsToolbar, 'no-print')}>
+        <div className={styles.proposalsFilters}>
           <input
             id="search"
             type="search"
@@ -110,7 +111,7 @@ class ProposalToolbar extends Component {
             ))}
           </select>
         </div>
-        <div className="proposals-actions">
+        <div className={styles.proposalsActions}>
           <Button onClick={onExportProposals} secondary disabled={isExporting}>
             {isExporting ? (
               'Exporting...'
