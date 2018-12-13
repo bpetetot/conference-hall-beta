@@ -31,11 +31,13 @@ module.exports = functions.firestore
     })
 
     // Send email to organizers after submission
-    const organizers = await getEventOrganizers(event)
+    if (event.type === 'meetup') {
+      const organizers = await getEventOrganizers(event)
 
-    await sendEmail(mailgun, {
-      to: organizers.map(user => user.email),
-      subject: `[${event.name}] New talk submitted`,
-      html: talkReceived(event, talk, app.url),
-    })
+      await sendEmail(mailgun, {
+        to: organizers.map(user => user.email),
+        subject: `[${event.name}] New talk submitted`,
+        html: talkReceived(event, talk, app.url),
+      })
+    }
   })
