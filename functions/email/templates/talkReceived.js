@@ -9,7 +9,6 @@ module.exports = (event, talk, url) => `
 </head>
 <body>
   <p>✨ The talk <strong>"${talk.title}"</strong> has been submitted to <strong>${event.name}</strong></p>
-  <p>${talk.abstract}</p>
   <p>
   <strong><a href="${url}/organizer/event/${event.id}/proposal/${talk.id}">Check it now!</a></strong>
   </p>
