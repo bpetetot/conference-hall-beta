@@ -9,9 +9,8 @@ module.exports = async (req, res) => {
       null,
       { state },
       {
-        event: ['id', 'name', 'categories', 'formats'],
+        event: ['name', 'categories', 'formats'],
         proposal: [
-          'id',
           'title',
           'state',
           'level',

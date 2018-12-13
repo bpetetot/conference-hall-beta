@@ -17,9 +17,8 @@ module.exports = async (req, res) => {
 
   try {
     const eventJson = await exportEventData(event, uid, filters, {
-      event: ['id', 'name', 'categories', 'formats'],
+      event: ['name', 'categories', 'formats'],
       proposal: [
-        'id',
         'title',
         'state',
         'level',
