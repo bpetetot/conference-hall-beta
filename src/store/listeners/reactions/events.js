@@ -19,6 +19,8 @@ export const createEvent = async (action, store, { router }) => {
 }
 
 export const updateEventForm = async (action, store) => {
+  store.ui.loaders.update({ editForm: true })
+
   const { isPrivate, ...eventData } = action.payload
   const event = {
     ...eventData,
@@ -26,6 +28,8 @@ export const updateEventForm = async (action, store) => {
   }
   await eventCrud.update(event)
   store.data.events.update(event)
+
+  store.ui.loaders.update({ editForm: false })
 }
 
 export const updateEvent = (action, store) => {

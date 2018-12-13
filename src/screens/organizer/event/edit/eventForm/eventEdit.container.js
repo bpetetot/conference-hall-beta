@@ -6,7 +6,9 @@ import EventForm from '../../form'
 
 const mapStore = (store, { eventId }) => {
   const { visibility, ...event } = store.data.events.get(eventId)
+
   return {
+    loading: store.ui.loaders.get().editForm,
     organizations: store.data.organizations.getAsArray(),
     initialValues: {
       isPrivate: visibility !== 'public',
