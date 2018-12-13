@@ -20,7 +20,7 @@ import './eventForm.css'
 const EventForm = ({
   isCreateForm, organizations, onSubmit, initialValues,
 }) => (
-  <Form onSubmit={onSubmit} initialValues={initialValues}>
+  <Form onSubmit={onSubmit} initialValues={initialValues} keepDirtyOnReinitialize={isCreateForm}>
     {({
       values, handleSubmit, pristine, invalid,
     }) => (
