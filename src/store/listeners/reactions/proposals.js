@@ -76,7 +76,7 @@ export const exportProposals = async (action, store, { router }) => {
   // fetch proposal export
   try {
     const response = await fetch(
-      `https://conference-hall.firebaseapp.com/api/private/export/${eventId}${search}`,
+      `/api/private/export/${eventId}${search}`,
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
