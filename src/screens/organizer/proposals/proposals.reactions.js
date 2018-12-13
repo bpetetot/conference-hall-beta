@@ -3,6 +3,7 @@ import {
 } from 'lodash/fp'
 
 import * as firebase from 'firebase/proposals'
+import { fetchUser } from 'firebase/user'
 
 /* set proposal filters from URL query params */
 export const setProposalFiltersFromRouter = (action, store, { router }) => {
@@ -41,7 +42,17 @@ export const loadProposals = async (action, store, { router }) => {
 
   const filters = store.ui.organizer.proposals.get()
   const proposals = await firebase.fetchEventProposals(eventId, uid, filters)
-  store.data.proposals.set(proposals)
+  const props = await Promise.all(proposals.map(async (proposal) => {
+    const prop = { ...proposal }
+    const speakerList = Object.keys(prop.speakers)
+    const speakerNameList = await Promise.all(speakerList.map(async (sp) => {
+      const user = await fetchUser(sp)
+      return user.data().displayName
+    }))
+    prop.speakerName = speakerNameList.join(' - ')
+    return prop
+  }))
+  store.data.proposals.set(props)
 }
 
 /* select a proposal */
@@ -84,3 +95,6 @@ export const changeFilter = async (action, store, { router }) => {
     store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
   }
 }
+
+/* load speakers */
+export const loadSpeakers = async (action, store) => store.ui.organizer.speakersForEvent

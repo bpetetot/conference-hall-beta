@@ -15,4 +15,14 @@ export const fetchUsersByEmail = async (email) => {
   return result.docs.map(ref => ({ uid: ref.id, ...ref.data() }))
 }
 
+export const fetchUser = (uid) => {
+  const result = firebase
+    .firestore()
+    .collection('users')
+    .doc(uid)
+    .get()
+  return result
+}
+
+
 export default crud('users', 'uid')
