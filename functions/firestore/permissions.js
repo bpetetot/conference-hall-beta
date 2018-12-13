@@ -8,7 +8,6 @@ const isUserEvent = async (uid, event) => {
   if (!organization) return false
 
   const { members } = await getOrganization(organization)
-  console.log({ uid, members })
 
   return !!members[uid]
 }
