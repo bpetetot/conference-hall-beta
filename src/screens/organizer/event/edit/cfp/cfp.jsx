@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Field } from 'react-final-form'
-import { FieldArray } from 'react-final-form-arrays'
 import arrayMutators from 'final-form-arrays'
 
 import {
   dayPicker, dayRangePicker, Label, SubmitButton, toggle,
 } from 'components/form'
-import CategoriesForm from './categories'
-import FormatsForm from './formats'
+import CategoriesField from './categories'
+import FormatsField from './formats'
 
 import './cfp.css'
 
@@ -26,13 +25,10 @@ const CFPForm = ({ type, onSubmit, initialValues }) => (
           <Field name="cfpOpened" label="Open CFP" type="checkbox" component={toggle} />
         )}
         <Label label="Talk Categories">
-          <FieldArray
-            name="categories"
-            render={({ fields }) => <CategoriesForm fields={fields} />}
-          />
+          <CategoriesField />
         </Label>
         <Label label="Talk Formats">
-          <FieldArray name="formats" render={({ fields }) => <FormatsForm fields={fields} />} />
+          <FormatsField />
         </Label>
         <SubmitButton handleSubmit={handleSubmit} pristine={pristine}>
           Save CFP settings
