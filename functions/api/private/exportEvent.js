@@ -28,8 +28,23 @@ module.exports = async (req, res) => {
         'formats',
         'speakers',
         'comments',
+        'rating',
+        'loves',
+        'hates',
       ],
-      speaker: ['uid', 'displayName', 'bio', 'company', 'photoURL', 'twitter', 'github'],
+      speaker: [
+        'uid',
+        'displayName',
+        'bio',
+        'company',
+        'photoURL',
+        'twitter',
+        'github',
+        'city',
+        'language',
+        'email',
+        'phone',
+      ],
     })
 
     res.setHeader('Content-Type', 'application/json')
