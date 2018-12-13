@@ -1,25 +1,43 @@
 /* eslint-disable no-console */
 const functions = require('firebase-functions')
-const { getEvent } = require('../firestore/event')
+
+const { getEvent, getEventOrganizers } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
+
 const sendEmail = require('../email')
-const talkConfirmed = require('../email/templates/talkConfirmed')
+const talkSubmitted = require('../email/templates/talkSubmitted')
+const talkReceived = require('../email/templates/talkReceived')
 
 module.exports = functions.firestore
   .document('events/{eventId}/proposals/{proposalId}')
-  .onCreate((snap, context) => {
+  .onCreate(async (snap, context) => {
     const talk = snap.data()
-
     const { eventId } = context.params
-    const uids = Object.keys(talk.speakers)
 
     const { app, mailgun } = functions.config()
-    if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
+    if (!app) {
+      throw new Error('You must provide the app.url variable')
+    }
 
-    return Promise.all([getEvent(eventId), getUsers(uids)])
-      .then(([event, users]) => sendEmail(mailgun, {
-        to: users.map(user => user.email),
-        subject: `[${event.name}] Talk submitted`,
-        html: talkConfirmed(event, talk, app.url),
-      }))
+    const event = await getEvent(eventId)
+
+    // Send email to speaker after submission
+    const users = await getUsers(Object.keys(talk.speakers))
+
+    await sendEmail(mailgun, {
+      to: users.map(user => user.email),
+      subject: `[${event.name}] Talk submitted`,
+      html: talkSubmitted(event, talk, app.url),
+    })
+
+    // Send email to organizers after submission
+    if (event.type === 'meetup') {
+      const organizers = await getEventOrganizers(event)
+
+      await sendEmail(mailgun, {
+        to: organizers.map(user => user.email),
+        subject: `[${event.name}] New talk submitted`,
+        html: talkReceived(event, talk, app.url),
+      })
+    }
   })
