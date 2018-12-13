@@ -5,7 +5,7 @@ import debounce from 'lodash/debounce'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 
-import './proposalFilters.css'
+import './proposalsToolbar.css'
 
 const sortOrderLabel = sortOrder => ({
   newest: 'Newest',
@@ -27,7 +27,7 @@ const statusLabel = status => ({
   declined: 'Declined',
 }[status])
 
-class ProposalFilters extends Component {
+class ProposalToolbar extends Component {
   constructor(props) {
     super(props)
     this.onChange = debounce(this.props.onChange, 200)
@@ -111,7 +111,7 @@ class ProposalFilters extends Component {
           </select>
         </div>
         <div className="proposals-actions">
-          <Button onClick={onExportProposals} secondary small disabled={isExporting}>
+          <Button onClick={onExportProposals} secondary disabled={isExporting}>
             {isExporting ? (
               'Exporting...'
             ) : (
@@ -124,7 +124,7 @@ class ProposalFilters extends Component {
   }
 }
 
-ProposalFilters.propTypes = {
+ProposalToolbar.propTypes = {
   statuses: PropTypes.arrayOf(PropTypes.string),
   ratings: PropTypes.arrayOf(PropTypes.string),
   formats: PropTypes.arrayOf(PropTypes.object),
@@ -137,7 +137,7 @@ ProposalFilters.propTypes = {
   isExporting: PropTypes.bool,
 }
 
-ProposalFilters.defaultProps = {
+ProposalToolbar.defaultProps = {
   statuses: [],
   ratings: [],
   formats: [],
@@ -148,4 +148,4 @@ ProposalFilters.defaultProps = {
   isExporting: false,
 }
 
-export default ProposalFilters
+export default ProposalToolbar

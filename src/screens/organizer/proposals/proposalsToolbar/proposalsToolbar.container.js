@@ -1,6 +1,6 @@
 import { inject } from '@k-ramel/react'
 
-import ProposalFilters from './proposalFilters'
+import ProposalToobar from './proposalsToolbar'
 
 const mapStore = (store, props, { router }) => {
   const eventId = router.getRouteParam('eventId')
@@ -27,4 +27,4 @@ const mapStore = (store, props, { router }) => {
   }
 }
 
-export default inject(mapStore)(ProposalFilters)
+export default inject(mapStore)(ProposalToobar)
