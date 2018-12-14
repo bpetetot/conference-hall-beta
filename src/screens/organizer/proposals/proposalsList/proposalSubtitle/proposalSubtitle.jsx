@@ -7,9 +7,9 @@ import './proposalSubtitle.css'
 
 const ProposalSubtitle = ({ formatLabel, categoryLabel, speakerName }) => (
   <Inline className="proposal-subtitle" classNameItem="proposal-subtitle-item">
+    {!!speakerName && `by ${speakerName}`}
     {!!formatLabel && formatLabel}
     {!!categoryLabel && categoryLabel}
-    {!!speakerName && speakerName}
   </Inline>
 )
 

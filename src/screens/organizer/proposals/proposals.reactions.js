@@ -3,7 +3,7 @@ import {
 } from 'lodash/fp'
 
 import * as firebase from 'firebase/proposals'
-import { fetchUser } from 'firebase/user'
+import userCrud from 'firebase/user'
 
 /* set proposal filters from URL query params */
 export const setProposalFiltersFromRouter = (action, store, { router }) => {
@@ -45,11 +45,16 @@ export const loadProposals = async (action, store, { router }) => {
   const props = await Promise.all(proposals.map(async (proposal) => {
     const prop = { ...proposal }
     const speakerList = Object.keys(prop.speakers)
-    const speakerNameList = await Promise.all(speakerList.map(async (sp) => {
-      const user = await fetchUser(sp)
+    const speakerNameList = await Promise.all(speakerList.map(async (speakerUid) => {
+      // check if user already in the store
+      const userCache = store.data.users.get(speakerUid)
+      if (userCache) return userCache.displayName
+      // Not in the store so fetching user in database
+      const user = await userCrud.read(speakerUid)
+      store.data.users.add(user.data())
       return user.data().displayName
     }))
-    prop.speakerName = speakerNameList.join(' - ')
+    prop.speakerName = speakerNameList.join(' & ')
     return prop
   }))
   store.data.proposals.set(props)
@@ -95,6 +100,3 @@ export const changeFilter = async (action, store, { router }) => {
     store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
   }
 }
-
-/* load speakers */
-export const loadSpeakers = async (action, store) => store.ui.organizer.speakersForEvent
