@@ -20,9 +20,11 @@
 - ⚡️ Make it public or private
 - 👥 Use organization to share an event between organizers
 - 💡 Custom formats and categories for the talks
-- ⭐️ Rate proposals to speed deliberation process
-- ✅ Mark proposals as accepted, declined or backup
 - 📥 Send survey to speakers
+- ⭐️ Rate proposals to speed deliberation process
+- ✅ Mark proposals as accepted, declined...
+- 💌 Automatically send accept or reject emails to speakers
+- 👌 Get speaker confirmations
 - 🌍 API to query proposals
 
 ## Getting started
