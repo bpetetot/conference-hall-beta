@@ -26,4 +26,3 @@ ProposalSubtitle.defaultProps = {
 }
 
 export default ProposalSubtitle
-
