@@ -1,5 +1,22 @@
 # Changelog
 
+<a name="0.4.0"></a>
+## 0.4.0 (2018-12-14)
+
+### Added
+
+- ✨ add profile page for organizers ([#383](https://github.com/bpetetot/conference-hall/issues/383)) [[53c7104](https://github.com/bpetetot/conference-hall/commit/53c7104ab5c37e76568b3d77634473054fa49cf4)]
+- ✨ deliberation and confirmation emails of proposals ([#343](https://github.com/bpetetot/conference-hall/issues/343)) [[27e1170](https://github.com/bpetetot/conference-hall/commit/27e117084aa518c232c8a34e9f9b99c8268038f2)]
+- ✨ display speaker name in event proposals list ([#399](https://github.com/bpetetot/conference-hall/issues/399)) [[9d0893a](https://github.com/bpetetot/conference-hall/commit/9d0893aa6e9877a6ab31128b3a8bd2ef156f90e4)]
+
+### Changed
+
+- ⬆️ update firebase, luxon, popper, react-markdown... ([#384](https://github.com/bpetetot/conference-hall/issues/384)) [[7718c29](https://github.com/bpetetot/conference-hall/commit/7718c29c15c5226f15c33a4deea94fbdbb799e8f)]
+- ⬆️ update firebase, luxon for cloud functions ([#385](https://github.com/bpetetot/conference-hall/issues/385)) [[a652188](https://github.com/bpetetot/conference-hall/commit/a6521885e4fdd1b47b75206e6275bef3ee9d092f)]
+- ⬆️ update deps k-ramel, date-fns... ([#392](https://github.com/bpetetot/conference-hall/issues/392)) [[4b411d2](https://github.com/bpetetot/conference-hall/commit/4b411d2451dd786df7c5e1ed44587dc7302eedc5)]
+- ♻️ use of react-datepicker ([#378](https://github.com/bpetetot/conference-hall/issues/378)) [[5cd9e28](https://github.com/bpetetot/conference-hall/commit/5cd9e28a06386a2371554db6c8bd485734ceeb15)]
+
+
 <a name="0.3.0"></a>
 ## 0.3.0 (2018-11-25)
 
