@@ -34,6 +34,27 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn test
 
+  build:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: yarn
+      - save_cache:
+          paths:
+            - node_modules
+            - ~/.cache/yarn
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Build and check bundle size
+          command:  |
+            yarn build
+            yarn size
+
   deploy-dev:
     docker:
       - image: circleci/node:8
@@ -116,6 +137,7 @@ workflows:
     jobs:
       - lint
       - test
+      - build
       - deploy-dev:
           requires:
             - lint

@@ -10,6 +10,7 @@
     "test": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
     "lint": "eslint --ext js,jsx src",
+    "size": "bundlesize",
     "doc": "docz dev",
     "doc:build": "docz build"
   },
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.2.0",
+    "bundlesize": "^0.17.0",
     "docz": "^0.12.15",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
@@ -88,6 +90,16 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
+  "bundlesize": [
+    {
+      "path": "./build/static/js/*.js",
+      "maxSize": "350 kB"
+    },
+    {
+      "path": "./build/static/css/*.css",
+      "maxSize": "10 kB"
+    }
+  ],
   "browserslist": [
     ">0.2%",
     "not dead",
