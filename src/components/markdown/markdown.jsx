@@ -10,7 +10,7 @@ const Markdown = ({ source, className }) => (
   <div
     className={cn('markdown', className)}
     // eslint-disable-next-line react/no-danger
-    dangerouslySetInnerHTML={{ __html: escape(snarkdown(source)) }}
+    dangerouslySetInnerHTML={{ __html: snarkdown(escape(source)) }}
   />
 )
 
