@@ -20,8 +20,8 @@ export const getEventCfpState = (event) => {
     return 'not-started'
   }
 
-  const start = startOfDay(toDate(cfpDates.start)) // is it UTC to Local date ????
-  const end = endOfDay(toDate(cfpDates.end)) // is it UTC to Local date ????
+  const start = startOfDay(toDate(cfpDates.start))
+  const end = endOfDay(toDate(cfpDates.end))
   const today = new Date()
 
   if (isBefore(today, start)) {

@@ -4,13 +4,11 @@ const functions = {}
 
 const buildFunctionWithTimezone = (functionName) => {
   const cloudFunction = firebase.functions().httpsCallable(functionName)
-
-  // Is it same timezone as luxon ?
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+  const { timeZone } = Intl.DateTimeFormat().resolvedOptions()
 
   return ({ userTimezone, ...rest }) => cloudFunction({
     ...rest,
-    userTimezone: userTimezone || timezone,
+    userTimezone: userTimezone || timeZone,
   })
 }
 
