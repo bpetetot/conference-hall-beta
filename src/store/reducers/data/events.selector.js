@@ -1,5 +1,8 @@
 import isEmpty from 'lodash/isEmpty'
-import { DateTime } from 'luxon'
+import startOfDay from 'date-fns/start_of_day'
+import endOfDay from 'date-fns/end_of_day'
+import isAfter from 'date-fns/is_after'
+import isBefore from 'date-fns/is_before'
 import { toDate } from 'helpers/firebase'
 
 /**
@@ -17,14 +20,14 @@ export const getEventCfpState = (event) => {
     return 'not-started'
   }
 
-  const start = DateTime.fromJSDate(toDate(cfpDates.start)).startOf('day')
-  const end = DateTime.fromJSDate(toDate(cfpDates.end)).endOf('day')
-  const today = DateTime.local()
+  const start = startOfDay(toDate(cfpDates.start))
+  const end = endOfDay(toDate(cfpDates.end))
+  const today = new Date()
 
-  if (today < start) {
+  if (isBefore(today, start)) {
     return 'not-started'
   }
-  if (today > end) {
+  if (isAfter(today, end)) {
     return 'closed'
   }
   return 'opened'
