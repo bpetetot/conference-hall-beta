@@ -6,7 +6,7 @@ import { isOrganizerRoute } from 'store/drivers/redux-little-router'
 import Event from './event'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getPathParam('eventId')
   const event = store.data.events.get(eventId)
   return {
     loaded: !!event,

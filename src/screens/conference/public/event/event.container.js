@@ -1,4 +1,4 @@
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import Event from 'screens/components/event'
 

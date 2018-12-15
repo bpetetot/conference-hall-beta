@@ -8,13 +8,13 @@ const EventSidebar = ({ eventId, name }) => {
   if (!eventId) return null
   return (
     <SideBarPanel label={name}>
-      <SideBarLink to={`/organizer/event/${eventId}`}>
+      <SideBarLink code="EVENT_PAGE" eventId={eventId}>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
-      <SideBarLink to={`/organizer/event/${eventId}/edit`}>
+      <SideBarLink code="EDIT_EVENT" eventId={eventId}>
         <IconLabel icon="fa fa-gear" label="Configuration" />
       </SideBarLink>
-      <SideBarLink to={`/organizer/event/${eventId}/proposals`}>
+      <SideBarLink code="PROPOSALS" eventId={eventId}>
         <IconLabel icon="fa fa-paper-plane" label="Proposals" />
       </SideBarLink>
     </SideBarPanel>

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import Badge from 'components/badge'
 import Titlebar from 'components/titlebar'
@@ -16,7 +16,7 @@ const MyEvents = ({ events, onSelect }) => (
     <Titlebar icon="fa fa-calendar-o" title="My events">
       <Button>
         {btn => (
-          <Link href="/organizer/event/create" className={btn}>
+          <Link code="CREATE_EVENT" className={btn}>
             <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
           </Link>
         )}

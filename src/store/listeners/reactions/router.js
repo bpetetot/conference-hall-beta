@@ -15,7 +15,7 @@ export const onRouteChanged = (action, store, { router }) => {
   // when Event route, set route eventId as app event context
   if (isRoute('HOME_EVENT')(state)) {
     // set route eventId as app event context
-    const eventId = router.getRouteParam('eventId')
+    const eventId = router.getPathParam('eventId')
     if (eventId !== store.ui.app.get().currentEventId) {
       localStorage.setItem('currentEventId', eventId)
       store.ui.app.update({ currentEventId: eventId })

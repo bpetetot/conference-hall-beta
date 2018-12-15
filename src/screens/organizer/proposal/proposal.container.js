@@ -1,13 +1,13 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 import Proposal from './proposal'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getRouteParam('eventId')
-  const proposalId = router.getRouteParam('proposalId')
+  const eventId = router.getPathParam('eventId')
+  const proposalId = router.getPathParam('proposalId')
   const proposal = store.data.proposals.get(proposalId)
   return {
     loaded: !!proposal,

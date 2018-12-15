@@ -12,7 +12,7 @@ const mapStore = (store, { eventId }, { router }) => {
     load: () => {
       store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
     },
-    onClickEvent: () => router.push(`/speaker/event/${eventId}`),
+    onClickEvent: () => router.push('SPEAKER_EVENT_PAGE', { eventId }),
   }
 }
 

@@ -1,13 +1,13 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 import { isCfpOpened } from 'store/reducers/data/events.selector'
 import Submission from './submission'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getPathParam('eventId')
   const event = store.data.events.get(eventId) || {}
   const { currentStep } = store.ui.speaker.submission.get()
   return {

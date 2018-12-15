@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 const NoTalks = () => (
   <Fragment>
     <span>No talk yet! </span>
-    <Link href="/speaker/talk/create">You should create your first talk</Link>
+    <Link code="CREATE_TALK">You should create your first talk</Link>
   </Fragment>
 )
 

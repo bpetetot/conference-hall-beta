@@ -34,7 +34,7 @@ export const signin = async (action, store) => {
 
 export const signout = (action, store, { router }) => {
   firebase.auth().signOut()
-  router.push('/')
+  router.push('HOME')
 }
 
 export const signedIn = async (action, store, { router }) => {
@@ -59,7 +59,7 @@ export const signedIn = async (action, store, { router }) => {
   store.data.organizations.set(organizations.docs.map(ref => ({ id: ref.id, ...ref.data() })))
 
   // go to the next url if exists
-  const next = router.getQueryParam('next')
+  const next = router.getParam('next')
   if (next) {
     router.replace(next)
   }

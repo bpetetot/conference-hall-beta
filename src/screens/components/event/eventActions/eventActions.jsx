@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 import cn from 'classnames'
 
 import Button from 'components/button'
@@ -17,7 +17,7 @@ const EventActions = ({ eventId, isOrganizer, className }) => {
       {isOrganizer && (
         <Button primary>
           {btn => (
-            <Link href={`/organizer/event/${eventId}/edit`} className={btn}>
+            <Link code="EDIT_EVENT" eventId={eventId} className={btn}>
               <IconLabel icon="fa fa-pencil" label="Edit" />
             </Link>
           )}

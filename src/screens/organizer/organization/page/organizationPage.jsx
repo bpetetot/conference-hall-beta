@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 import keys from 'lodash/keys'
 
 import Titlebar from 'components/titlebar'
@@ -26,7 +26,7 @@ const OrganizationPage = ({
     <Titlebar className="organization-header" icon="fa fa-users" title={name}>
       <Button secondary>
         {btn => (
-          <Link href={`/organizer/organizations/${organizationId}/edit`} className={btn}>
+          <Link code="EDIT_ORGANIZATION" organizationId={organizationId} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}
@@ -39,7 +39,8 @@ const OrganizationPage = ({
           <Fragment>
             <p>
               Search and add a member to your organization, he/she will be also able to update it,
-              invite other members and create events for your organization.<br />
+              invite other members and create events for your organization.
+              <br />
               The member must already have a member Hall account.
             </p>
             <p>
@@ -47,7 +48,7 @@ const OrganizationPage = ({
               email address.
             </p>
           </Fragment>
-        )}
+)}
         renderTrigger={({ show }) => (
           <Button onClick={show} secondary>
             <IconLabel icon="fa fa-user" label="Add a member" />

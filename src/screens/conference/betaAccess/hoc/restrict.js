@@ -41,7 +41,7 @@ export default (Component) => {
     return {
       betaAccess,
       skipBetaAccess: process.env.NODE_ENV === 'development',
-      redirectBetaAccessForm: () => router.replace('/beta-access'),
+      redirectBetaAccessForm: () => router.replace('BETA_ACCESS'),
     }
   })(BetaRestricted)
 }

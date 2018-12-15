@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import IconLabel from 'components/iconLabel'
 import Avatar from 'components/avatar'
@@ -17,10 +17,10 @@ const AvatarDropdown = ({
   return (
     <Dropdown action={avatar}>
       <div>{displayName}</div>
-      <Link href="/">
+      <Link code="HOME">
         <IconLabel icon="fa fa-home" label="Conference Hall" />
       </Link>
-      <Link href={`${baseRoute}/contributors`}>
+      <Link code="CONTRIBUTORS">
         <IconLabel icon="fa fa-github-alt" label="Contributors" />
       </Link>
       <button onClick={signout} type="button">

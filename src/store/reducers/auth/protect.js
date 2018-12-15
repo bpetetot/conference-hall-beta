@@ -46,7 +46,7 @@ export default (Component) => {
     return {
       ...auth,
       userDataLoaded: userLoaded && orgaLoaded,
-      url: `${store.getState().router.pathname}${store.getState().router.search}`,
+      url: `${router.getCurrentRoute().href.base}`, // TODO ADD QUERY PARAMS ${store.getState().router.search}
       redirectLogin: url => router.replace(`/login?next=${url}`),
     }
   })(ProtectedComponent)

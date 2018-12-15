@@ -13,7 +13,7 @@ export default [
       await userCrud.update({ uid, betaAccess: key })
       store.data.users.update({ uid, betaAccess: key })
       store.ui.beta.reset()
-      router.push('/organizer')
+      router.push('HOME_ORGANIZER')
     } else {
       store.ui.beta.set({ error: 'Sorry, invalid beta access key.' })
     }

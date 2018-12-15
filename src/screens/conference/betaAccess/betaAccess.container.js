@@ -1,5 +1,5 @@
 import { compose } from 'redux'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 import { inject, listen } from '@k-ramel/react'
 
 import listeners from './betaAccess.listeners'

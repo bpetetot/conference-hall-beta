@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import { toDate } from 'helpers/firebase'
 
@@ -18,7 +18,7 @@ const MyTalks = ({ talks, onSelect }) => (
     <Titlebar icon="fa fa-microphone" title="My talks">
       <Button accent>
         {btn => (
-          <Link href="/speaker/talk/create" className={btn}>
+          <Link code="CREATE_TALK" className={btn}>
             <IconLabel icon="fa fa-calendar-plus-o" label="Create a new talk" />
           </Link>
         )}

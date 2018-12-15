@@ -1,6 +1,6 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 
@@ -9,7 +9,7 @@ import OrganizationForm from '../components/organizationForm'
 const FORM_NAME = 'organization-edit'
 
 const mapStore = (store, ownProps, { router }) => {
-  const organizationId = router.getRouteParam('organizationId')
+  const organizationId = router.getPathParam('organizationId')
   const organization = store.data.organizations.get(organizationId)
   return {
     loaded: !!organization,

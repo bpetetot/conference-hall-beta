@@ -19,7 +19,7 @@ export const createEvent = async (action, store, { form, router }) => {
   // create event into database
   const ref = await createForm.asyncSubmit(eventCrud.create, event)
   // go to event page
-  router.push(`/organizer/event/${ref.id}`)
+  router.push('EVENT_PAGE', { eventId: ref.id })
 }
 
 export const updateEventForm = formName => (action, store, { form }) => {
@@ -64,7 +64,7 @@ export const generateNewApiKey = (action, store) => {
 }
 
 export const fetchEvent = async (action, store, { router }) => {
-  const eventId = action.payload || router.getRouteParam('eventId')
+  const eventId = action.payload || router.getPathParam('eventId')
   if (!eventId) return
   // check if already in the store
   const current = store.data.events.get(eventId)

@@ -1,5 +1,5 @@
 import React from 'react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import AppLayout from 'layout'
 import Contributors from 'screens/components/contributors'

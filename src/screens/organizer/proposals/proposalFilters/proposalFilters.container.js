@@ -3,7 +3,7 @@ import { inject } from '@k-ramel/react'
 import ProposalFilters from './proposalFilters'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getPathParam('eventId')
   const { deliberationActive } = store.data.events.get(eventId) || {}
   const sortOrders = router.getParentResultParam('sortOrders')
   const ratings = router.getParentResultParam('ratings')

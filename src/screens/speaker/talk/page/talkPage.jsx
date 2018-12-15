@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
@@ -22,14 +22,14 @@ const TalkPage = ({
       <DeleteTalkButton talkId={id} />
       <Button secondary small>
         {btn => (
-          <Link href={`/speaker/talk/${id}/edit`} className={btn}>
+          <Link code="EDIT_TALK" talkId={id} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}
       </Button>
       <Button accent>
         {btn => (
-          <Link href={`/speaker/talk/${id}/submission`} className={btn}>
+          <Link code="TALK_SUBMISSION" talkId={id} className={btn}>
             <IconLabel icon="fa fa-paper-plane" label="Submit" />
           </Link>
         )}

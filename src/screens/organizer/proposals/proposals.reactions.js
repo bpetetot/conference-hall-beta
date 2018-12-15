@@ -21,7 +21,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
   const filtersFromUiState = pickTruthyValues(pickFilterKeys(store.ui.organizer.proposals.get()))
   const filtersFromBothStates = { ...filtersFromUiState, ...filtersFromRouterState }
 
-  const availableSortOrders = router.getParentResultParam('sortOrders')
+  const availableSortOrders = router.getParam('sortOrders')
   const validFilters = update(
     'sortOrder',
     ensureIncludedIn(availableSortOrders),
@@ -41,7 +41,7 @@ export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()
   store.ui.organizer.proposalsPaging.update({ page: 1 })
 
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getPathParam('eventId')
   const { uid } = store.auth.get()
 
   const filters = store.ui.organizer.proposals.get()
@@ -73,10 +73,11 @@ export const selectProposal = async (action, store, { router }) => {
   if (proposalIndex !== -1) {
     store.ui.organizer.proposal.set({ proposalIndex })
     const filters = store.ui.organizer.proposals.get()
-    router.push({
-      pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
-      query: filters,
-    })
+    router.push(
+      `/organizer/event/${eventId}/proposal/${proposalId}`,
+      { eventId, proposalId },
+      { ...filters },
+    )
   }
 }
 

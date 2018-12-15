@@ -1363,13 +1363,17 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-form/-/driver-redux-form-1.0.2.tgz#ef4b66da8d9f78955d5e59577321a808a3d26658"
 
-"@k-ramel/driver-redux-little-router@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-redux-little-router/-/driver-redux-little-router-1.0.2.tgz#124dd940caaad893df593484f0121e9b720c312d"
-
 "@k-ramel/react@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.0.2.tgz#6aace6d2f730f0be993dcc7f013baaebe2699ae2"
+
+"@k-redux-router/core@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@k-redux-router/core/-/core-1.0.0.tgz#e4127eace0bf9cf7c9c653da952fe98e475f0302"
+
+"@k-redux-router/react-k-ramel@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@k-redux-router/react-k-ramel/-/react-k-ramel-1.0.1.tgz#24a3e88d294c5eb4df70d98ffc5614fa0b2fd36a"
 
 "@mdx-js/loader@^0.16.5":
   version "0.16.5"
@@ -3234,10 +3238,6 @@ change-case@^3.0.2:
     title-case "^2.1.0"
     upper-case "^1.1.1"
     upper-case-first "^1.1.0"
-
-change-emitter@^0.1.2:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/change-emitter/-/change-emitter-0.1.6.tgz#e8b2fe3d7f1ab7d69a32199aff91ea6931409515"
 
 char-spinner@^1.0.1:
   version "1.0.1"
@@ -5535,7 +5535,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.4:
+fbjs@^0.8.0, fbjs@^0.8.4:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   dependencies:
@@ -6568,7 +6568,7 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
 
-history@^4.6.1, history@^4.7.2:
+history@^4.7.2:
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"
   dependencies:
@@ -6585,10 +6585,6 @@ hmac-drbg@^1.0.0:
     hash.js "^1.0.3"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
-
-hoc-little-router@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/hoc-little-router/-/hoc-little-router-1.2.1.tgz#a4c04ec972ec567a63be53a1510e76ac8c1857e5"
 
 hoc-react-loader@^6.3.0:
   version "6.3.0"
@@ -8385,10 +8381,6 @@ lodash._shimkeys@~2.4.1:
   dependencies:
     lodash._objecttypes "~2.4.1"
 
-lodash.assign@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
-
 lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
@@ -9914,6 +9906,10 @@ path-to-regexp@^1.7.0:
   dependencies:
     isarray "0.0.1"
 
+path-to-regexp@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
+
 path-type@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-1.1.0.tgz#59c44f7ee491da704da415da5a4070ba4f8fe441"
@@ -11425,15 +11421,6 @@ recast@^0.15.0:
     private "~0.1.5"
     source-map "~0.6.1"
 
-recompose@^0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.26.0.tgz#9babff039cb72ba5bd17366d55d7232fbdfb2d30"
-  dependencies:
-    change-emitter "^0.1.2"
-    fbjs "^0.8.1"
-    hoist-non-react-statics "^2.3.1"
-    symbol-observable "^1.0.4"
-
 recursive-readdir@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/recursive-readdir/-/recursive-readdir-2.2.2.tgz#9946fb3274e1628de6e36b2f6714953b4845094f"
@@ -11470,17 +11457,6 @@ redux-form@^7.4.2:
     lodash-es "^4.17.10"
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
-
-redux-little-router@^15.1.1:
-  version "15.1.2"
-  resolved "https://registry.yarnpkg.com/redux-little-router/-/redux-little-router-15.1.2.tgz#07809ff39b5c640decc5daace822c18a568b21a8"
-  dependencies:
-    history "^4.6.1"
-    lodash.assign "^4.2.0"
-    prop-types "^15.5.8"
-    query-string "^5.0.1"
-    recompose "^0.26.0"
-    url-pattern "^1.0.3"
 
 redux@4.0.1, redux@^4.0.1:
   version "4.0.1"
@@ -12806,7 +12782,7 @@ swap-case@^1.1.0:
     lower-case "^1.1.1"
     upper-case "^1.1.1"
 
-symbol-observable@^1.0.4, symbol-observable@^1.2.0:
+symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
@@ -13470,10 +13446,6 @@ url-parse@^1.1.8, url-parse@^1.4.3:
   dependencies:
     querystringify "^2.0.0"
     requires-port "^1.0.0"
-
-url-pattern@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/url-pattern/-/url-pattern-1.0.3.tgz#0409292471b24f23c50d65a47931793d2b5acfc1"
 
 url-to-options@^1.0.1:
   version "1.0.1"

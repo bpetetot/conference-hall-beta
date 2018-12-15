@@ -1,7 +1,7 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import { reduxForm } from 'redux-form'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import CFPForm from './cfp'
 

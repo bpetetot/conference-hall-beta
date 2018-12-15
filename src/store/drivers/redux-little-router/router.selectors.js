@@ -1,17 +1,13 @@
-// selectors
-export const getRouter = state => state.router
-export const getRouterResult = state => getRouter(state).result
-export const getRouterParams = state => getRouter(state).params
-export const getRouterParam = key => state => getRouterParams(state)[key]
-export const getRouterQuery = state => getRouter(state).query
-export const getRouterQueryParam = key => state => getRouterQuery(state)[key]
+import { selectors } from '@k-redux-router/core'
 
-// get the given attribute value for the current route hierarchy
-const getRecursively = (result, attribute) => {
-  if (!result) return undefined
-  if (result[attribute]) return result[attribute]
-  return getRecursively(result.parent, attribute)
-}
+const getRouter = () => selectors(state => state.ui.router)
+
+// selectors
+export const getRouterResult = state => getRouter().getResult(state)
+export const getRouterParams = state => getRouter().getParams(state)
+export const getRouterParam = key => state => getRouterParams(state)[key]
+export const getRouterQuery = state => getRouter().getQueryParams(state)
+export const getRouterQueryParam = key => state => getRouterQuery(state)[key]
 
 // check if given title match with the current route hierarchy
 const matchRoute = (result, title) => {
@@ -20,26 +16,13 @@ const matchRoute = (result, title) => {
   return matchRoute(result.parent, title)
 }
 
-// route matching
-export const isRouteNotFound = state => !getRouterResult(state)
-export const isRoute = title => state => matchRoute(getRouterResult(state), title)
-export const isPublicRoute = state => isRoute('PUBLIC')(state)
-export const isOrganizerRoute = state => isRoute('HOME_ORGANIZER')(state)
-export const isSpeakerRoute = state => isRoute('HOME_SPEAKER')(state)
-
 // router attributes selectors
-export const getAppName = state => getRecursively(getRouterResult(state), 'app')
-export const getAppTitle = state => getRecursively(getRouterResult(state), 'appTitle')
-export const getBaseRoute = (state) => {
-  const app = getRecursively(getRouterResult(state), 'app')
-  switch (app) {
-    case 'speaker':
-      return '/speaker'
-    case 'organizer':
-      return '/organizer'
-    case 'public':
-      return '/public'
-    default:
-      return '/'
-  }
-}
+export const getAppName = state => getRouter().getCurrentRoute(state).app
+export const getAppTitle = state => getRouter().getCurrentRoute(state).appTitle
+export const getBaseRoute = state => getRouter().getCurrentRoute(state).base
+
+// route matching
+export const isRoute = title => state => matchRoute(getRouterResult(state), title)
+export const isPublicRoute = state => getBaseRoute(state) === 'PUBLIC'
+export const isOrganizerRoute = state => getBaseRoute(state) === 'HOME_ORGANIZER'
+export const isSpeakerRoute = state => getBaseRoute(state) === 'HOME_SPEAKER'

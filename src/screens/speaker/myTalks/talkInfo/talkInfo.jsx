@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import './talkInfo.css'
 
@@ -18,7 +18,7 @@ const TalkInfo = ({ id, submissions }) => {
     <small>
       <span>{message}</span>
       <span className="talk-info-space">|</span>
-      <Link href={`/speaker/talk/${id}/submission`} onClick={e => e.stopPropagation()}>
+      <Link href="TALK_SUBMISSION" talkId={id} onClick={e => e.stopPropagation()}>
         Submit
       </Link>
     </small>

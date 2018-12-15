@@ -16,8 +16,8 @@ export const rateProposal = async (action, store, { router }) => {
   const rating = action.payload
   // select needed inputs in the state
   const { uid } = store.auth.get()
-  const eventId = router.getRouteParam('eventId')
-  const proposalId = router.getRouteParam('proposalId')
+  const eventId = router.getPathParam('eventId')
+  const proposalId = router.getPathParam('proposalId')
   // add or remove the rating in database and store
   const rated = !!rating.rating || !!rating.feeling
   if (rated) {

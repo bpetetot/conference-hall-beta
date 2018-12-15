@@ -1,25 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import { Link, Fragment } from 'redux-little-router'
+import { forRoute, Link } from '@k-redux-router/react-k-ramel'
 
 import './notFound.css'
 
-const PageNotFound = ({ isRouteNotFound }) => (
-  <Fragment withConditions={() => isRouteNotFound}>
-    <div className="page-not-found">
-      <h1>Page not found</h1>
-      <Link href="/">back to Conference Hall</Link>
-    </div>
-  </Fragment>
+const PageNotFound = () => (
+  <div className="page-not-found">
+    <h1>Page not found</h1>
+    <Link code="HOME">back to Conference Hall</Link>
+  </div>
 )
 
-PageNotFound.propTypes = {
-  isRouteNotFound: PropTypes.bool,
-}
-
-PageNotFound.defaultProps = {
-  isRouteNotFound: false,
-}
-
-export default PageNotFound
+export default forRoute.notFound()(PageNotFound)
