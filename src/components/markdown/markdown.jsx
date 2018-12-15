@@ -20,7 +20,7 @@ Markdown.propTypes = {
 }
 
 Markdown.defaultProps = {
-  source: undefined,
+  source: '',
   className: undefined,
 }
 

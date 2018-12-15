@@ -2,8 +2,6 @@
 import snap from 'tests/snapshot'
 import Markdown, { MarkdownIcon } from './index.js'
 
-jest.mock('react-markdown', () => 'react-markdown')
-
 const snapshot = props => snap(Markdown)({ ...props })
 const snapshotIcon = props => snap(MarkdownIcon)({ ...props })
 
