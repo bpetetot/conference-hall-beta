@@ -7,7 +7,7 @@ import { isCfpOpened } from 'store/reducers/data/events.selector'
 import Submission from './submission'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getPathParam('eventId')
+  const eventId = router.getParam('eventId')
   const event = store.data.events.get(eventId) || {}
   const { currentStep } = store.ui.speaker.submission.get()
   return {

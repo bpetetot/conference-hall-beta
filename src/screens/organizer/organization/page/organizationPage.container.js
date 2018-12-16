@@ -7,7 +7,7 @@ import loader from 'components/loader'
 import OrganizationPage from './organizationPage'
 
 const mapStore = (store, _, { router }) => {
-  const organizationId = router.getPathParam('organizationId')
+  const organizationId = router.getParam('organizationId')
   const organization = store.data.organizations.get(organizationId)
   const { uid: userId } = store.auth.get()
   const { origin } = window.location

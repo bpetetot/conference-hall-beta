@@ -8,7 +8,7 @@ import TalkForm from '../components/talkForm'
 const FORM_NAME = 'talk-edit'
 
 const mapStore = (store, props, { router }) => {
-  const talkId = router.getPathParam('talkId')
+  const talkId = router.getParam('talkId')
   const talk = store.data.talks.get(talkId)
   return {
     loaded: !!talk,

@@ -6,8 +6,8 @@ import loader from 'components/loader'
 import InviteOrganizer from './inviteOrganizer'
 
 const mapStore = (store, ownProps, { router }) => {
-  const organizationId = router.getPathParam('organizationId')
-  const uidInvite = router.getPathParam('uid')
+  const organizationId = router.getParam('organizationId')
+  const uidInvite = router.getParam('uid')
   const { uid } = store.auth.get()
   const { displayName, photoURL } = store.data.users.get(uidInvite) || {}
   const { name } = store.data.organizations.get(organizationId) || {}

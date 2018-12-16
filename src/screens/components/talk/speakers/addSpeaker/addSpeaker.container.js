@@ -5,7 +5,7 @@ import AddSpeaker from './addSpeaker'
 const mapStore = (store, props, { router }) => {
   const { uid: authId } = store.auth.get()
   const { origin } = window.location
-  const talkId = router.getPathParam('talkId')
+  const talkId = router.getParam('talkId')
   return {
     inviteLink: `${origin}/speaker/talk/${talkId}/invite/${authId}`,
     onSelectUser: (uid) => {

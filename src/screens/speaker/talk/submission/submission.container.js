@@ -6,7 +6,7 @@ import loader from 'components/loader'
 import Submission from './submission'
 
 const mapStore = (store, props, { router }) => {
-  const talkId = router.getPathParam('talkId')
+  const talkId = router.getParam('talkId')
   const talk = store.data.talks.get(talkId) || {}
   return {
     loaded: !!talk,

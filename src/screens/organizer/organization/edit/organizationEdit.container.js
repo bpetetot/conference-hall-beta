@@ -9,7 +9,7 @@ import OrganizationForm from '../components/organizationForm'
 const FORM_NAME = 'organization-edit'
 
 const mapStore = (store, ownProps, { router }) => {
-  const organizationId = router.getPathParam('organizationId')
+  const organizationId = router.getParam('organizationId')
   const organization = store.data.organizations.get(organizationId)
   return {
     loaded: !!organization,

@@ -27,7 +27,7 @@ export const update = (action, store, { form, router }) => {
 }
 
 export const get = async (action, store, { router }) => {
-  const organizationId = action.payload || router.getPathParam('organizationId')
+  const organizationId = action.payload || router.getParam('organizationId')
   if (!organizationId) return
   if (!store.data.organizations.hasKey(organizationId)) {
     const ref = await organizationCrud.read(organizationId)

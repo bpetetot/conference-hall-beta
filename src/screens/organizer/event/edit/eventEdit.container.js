@@ -6,7 +6,7 @@ import loader from 'components/loader'
 import EventEdit from './eventEdit'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getPathParam('eventId')
+  const eventId = router.getParam('eventId')
   const event = store.data.events.get(eventId)
   return {
     loaded: !!event,

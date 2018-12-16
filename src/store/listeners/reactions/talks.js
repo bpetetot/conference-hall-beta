@@ -37,7 +37,7 @@ export const updateTalkSubmissionState = (action, store) => {
 }
 
 export const fetchTalk = async (action, store, { router }) => {
-  const talkId = action.payload || router.getPathParam('talkId')
+  const talkId = action.payload || router.getParam('talkId')
   if (!talkId) return
   // check if already in the store
   const current = store.data.talks.get(talkId)

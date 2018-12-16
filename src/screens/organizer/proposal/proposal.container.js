@@ -6,8 +6,8 @@ import loader from 'components/loader'
 import Proposal from './proposal'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getPathParam('eventId')
-  const proposalId = router.getPathParam('proposalId')
+  const eventId = router.getParam('eventId')
+  const proposalId = router.getParam('proposalId')
   const proposal = store.data.proposals.get(proposalId)
   return {
     loaded: !!proposal,

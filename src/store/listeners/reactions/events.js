@@ -64,7 +64,7 @@ export const generateNewApiKey = (action, store) => {
 }
 
 export const fetchEvent = async (action, store, { router }) => {
-  const eventId = action.payload || router.getPathParam('eventId')
+  const eventId = action.payload || router.getParam('eventId')
   if (!eventId) return
   // check if already in the store
   const current = store.data.events.get(eventId)
