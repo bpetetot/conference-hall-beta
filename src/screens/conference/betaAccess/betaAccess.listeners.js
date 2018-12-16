@@ -1,6 +1,6 @@
 import { when } from 'k-ramel'
 
-import { redirectToNextUrl } from 'helpers/redirect'
+import { redirectToNextUrl } from 'store/drivers/router/redirect'
 import betaAccess from 'firebase/betaAccess'
 import userCrud from 'firebase/user'
 

@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { inject } from '@k-ramel/react'
 
-import { redirectWithNextUrl } from 'helpers/redirect'
+import { redirectWithNextUrl } from 'store/drivers/router/redirect'
 
 export default (Component) => {
   class BetaRestricted extends React.Component {

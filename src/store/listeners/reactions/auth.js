@@ -3,7 +3,7 @@ import pick from 'lodash/pick'
 
 import userCrud from 'firebase/user'
 import { fetchUserOrganizations } from 'firebase/organizations'
-import { redirectToNextUrl } from 'helpers/redirect'
+import { redirectToNextUrl } from 'store/drivers/router/redirect'
 
 export const signin = async (action, store) => {
   const providerId = action.payload
