@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { isSpeakerRoute } from 'store/drivers/redux-little-router'
+import { isSpeakerRoute } from 'store/drivers/router'
 
 export const init = (action, store) => {
   if (isSpeakerRoute(store.getState())) {

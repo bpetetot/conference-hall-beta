@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from '@k-redux-router/react-k-ramel'
-import { forRoute } from '@k-redux-router/react-k-ramel'
+import { Link, forRoute } from '@k-redux-router/react-k-ramel'
 
 import './home.css'
 
@@ -17,4 +16,4 @@ const Home = () => (
   </div>
 )
 
-export default forRoute.absolute('HOME')(Home)
+export default forRoute.absolute('home')(Home)

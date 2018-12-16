@@ -1,28 +1,31 @@
 export default {
   '/': {
-    app: 'conference',
-    appTitle: 'Conference Hall',
-    base: 'HOME',
-    code: 'HOME',
-    '/login': { code: 'LOGIN' },
-    '/beta-access': { code: 'BETA_ACCESS' },
-    '/public': {
-      app: 'public',
-      base: 'PUBLIC',
-      code: 'PUBLIC',
-      '/event/:eventId': { code: 'PUBLIC_EVENT' },
-      '/contributors': { code: 'CONTRIBUTORS' },
-    },
+    code: 'home',
+    base: 'home',
+
+    '/login': { code: 'login' },
+    '/beta-access': { code: 'beta-access' },
   },
+
+  '/public': {
+    code: 'public',
+    base: 'public',
+    appTitle: 'Conference Hall',
+
+    '/event/:eventId': { code: 'public-event' },
+    '/contributors': { code: 'public-contributors' },
+  },
+
   '/organizer': {
-    app: 'organizer',
+    code: 'HOME_ORGANIZER',
     appTitle: 'Organizer Hall',
     base: 'HOME_ORGANIZER',
-    code: 'HOME_ORGANIZER',
+
     '/profile': { code: 'ORGANIZER_PROFILE' },
-    '/event/create': { code: 'CREATE_EVENT' },
     '/event': {
       code: 'HOME_EVENT',
+      base: 'HOME_EVENT',
+      '/create': { code: 'CREATE_EVENT' },
       '/:eventId': {
         code: 'EVENT_PAGE',
         '/edit': {
@@ -50,17 +53,18 @@ export default {
     },
     '/organization/create': { code: 'CREATE_ORGANIZATION' },
     '/invite/organization/:organizationId/:uid': { code: 'INVITE_ORGANIZER' },
-    '/contributors': { code: 'CONTRIBUTORS' },
+    '/contributors': { code: 'ORGANIZER_CONTRIBUTORS' },
   },
+
   '/speaker': {
-    app: 'speaker',
-    appTitle: 'Speaker Hall',
-    base: 'HOME_SPEAKER',
     code: 'HOME_SPEAKER',
+    base: 'HOME_SPEAKER',
+    appTitle: 'Speaker Hall',
+
     '/profile': { code: 'SPEAKER_PROFILE' },
-    '/talk/create': { code: 'CREATE_TALK' },
     '/talk': {
       code: 'HOME_TALK',
+      '/create': { code: 'CREATE_TALK' },
       '/:talkId': {
         code: 'TALK_PAGE',
         '/edit': { code: 'EDIT_TALK' },
@@ -70,12 +74,13 @@ export default {
     '/invite/talk/:talkId/:uid': { code: 'INVITE_SPEAKER' },
     '/event': {
       code: 'HOME_EVENT',
+      base: 'HOME_EVENT',
       '/:eventId': {
         code: 'SPEAKER_EVENT_PAGE',
         '/submission': { code: 'EVENT_SUBMISSION' },
         '/survey': { code: 'SPEAKER_EVENT_SURVEY' },
       },
     },
-    '/contributors': { code: 'CONTRIBUTORS' },
+    '/contributors': { code: 'SPEAKER_CONTRIBUTORS' },
   },
 }

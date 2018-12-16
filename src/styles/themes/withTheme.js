@@ -1,5 +1,5 @@
 import { inject } from '@k-ramel/react'
-import { isOrganizerRoute, isSpeakerRoute } from 'store/drivers/redux-little-router'
+import { isOrganizerRoute, isSpeakerRoute } from 'store/drivers/router'
 import classnames from 'classnames'
 
 const mapStore = (store, { className }) => ({

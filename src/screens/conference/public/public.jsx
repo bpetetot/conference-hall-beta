@@ -13,4 +13,4 @@ const Public = () => (
   </AppLayout>
 )
 
-export default forRoute('PUBLIC')(Public)
+export default forRoute('public')(Public)

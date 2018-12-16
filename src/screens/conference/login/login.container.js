@@ -11,6 +11,6 @@ const mapStore = store => ({
 })
 
 export default compose(
-  forRoute.absolute('LOGIN'), //
+  forRoute.absolute('login'), //
   inject(mapStore), //
 )(Login)

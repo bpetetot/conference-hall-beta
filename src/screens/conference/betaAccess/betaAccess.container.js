@@ -11,7 +11,7 @@ const mapStore = store => ({
 })
 
 export default compose(
-  forRoute.absolute('BETA_ACCESS'),
+  forRoute.absolute('beta-access'),
   inject(mapStore),
   listen(listeners),
 )(BetaAccess)

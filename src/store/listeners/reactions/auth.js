@@ -34,7 +34,7 @@ export const signin = async (action, store) => {
 
 export const signout = (action, store, { router }) => {
   firebase.auth().signOut()
-  router.push('HOME')
+  router.push('home')
 }
 
 export const signedIn = async (action, store, { router }) => {

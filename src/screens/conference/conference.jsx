@@ -15,4 +15,4 @@ const Conference = () => (
   </Fragment>
 )
 
-export default forRoute('HOME')(Conference)
+export default forRoute('home')(Conference)

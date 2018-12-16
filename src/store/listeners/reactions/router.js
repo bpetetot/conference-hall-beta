@@ -1,4 +1,4 @@
-import { isRoute, isSpeakerRoute } from 'store/drivers/redux-little-router'
+import { isEventPage, isSpeakerRoute } from 'store/drivers/router'
 
 // eslint-disable-next-line import/prefer-default-export
 export const onRouteChanged = (action, store, { router }) => {
@@ -13,7 +13,7 @@ export const onRouteChanged = (action, store, { router }) => {
   }
 
   // when Event route, set route eventId as app event context
-  if (isRoute('HOME_EVENT')(state)) {
+  if (isEventPage(state)) {
     // set route eventId as app event context
     const eventId = router.getPathParam('eventId')
     if (eventId !== store.ui.app.get().currentEventId) {
