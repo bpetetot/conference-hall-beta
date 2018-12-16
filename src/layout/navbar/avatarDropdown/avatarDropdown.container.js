@@ -1,16 +1,15 @@
 import { inject } from '@k-ramel/react'
-import { isSpeakerRoute, isOrganizerRoute } from 'store/drivers/router'
 
 import AvatarDropdown from './avatarDropdown'
 
-const mapStore = (store) => {
+const mapStore = (store, props, { router }) => {
   const { uid } = store.auth.get()
   const { displayName, photoURL } = store.data.users.get(uid) || {}
 
   let contributorsRoute = 'public-contributors'
-  if (isSpeakerRoute(store.getState())) {
+  if (router.getParam('root') === 'speaker') {
     contributorsRoute = 'speaker-contributors'
-  } else if (isOrganizerRoute(store.getState())) {
+  } else if (router.getParam('root') === 'organizer') {
     contributorsRoute = 'organizer-contributors'
   }
 

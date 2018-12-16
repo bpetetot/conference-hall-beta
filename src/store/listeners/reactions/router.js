@@ -1,11 +1,8 @@
-import { isEventPage, isSpeakerRoute } from 'store/drivers/router'
-
 // eslint-disable-next-line import/prefer-default-export
 export const onRouteChanged = (action, store, { router }) => {
-  const state = store.getState()
-
   // when speaker route get last eventId in localstorage
-  if (isSpeakerRoute(state) && !store.ui.app.get().currentEventId) {
+  const isSpeakerRoute = router.getParam('root') === 'speaker'
+  if (isSpeakerRoute && !store.ui.app.get().currentEventId) {
     const eventId = localStorage.getItem('currentEventId')
     if (eventId) {
       store.ui.app.update({ currentEventId: eventId })
@@ -13,7 +10,7 @@ export const onRouteChanged = (action, store, { router }) => {
   }
 
   // when Event route, set route eventId as app event context
-  if (isEventPage(state)) {
+  if (router.getParam('isEventPage')) {
     // set route eventId as app event context
     const eventId = router.getPathParam('eventId')
     if (eventId !== store.ui.app.get().currentEventId) {

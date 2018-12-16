@@ -1,9 +1,8 @@
 import { inject } from '@k-ramel/react'
-import { getBaseRoute, getAppTitle } from 'store/drivers/router'
 
 import Brand from './brand'
 
-export default inject(store => ({
-  title: getAppTitle(store.getState()),
-  baseRoute: getBaseRoute(store.getState()),
+export default inject((store, props, { router }) => ({
+  title: router.getParam('title'),
+  baseRoute: router.getParam('root'),
 }))(Brand)

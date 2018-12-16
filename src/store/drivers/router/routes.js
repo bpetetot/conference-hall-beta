@@ -1,8 +1,8 @@
 export default {
   '/': {
     code: 'home',
-    base: 'home',
-    appTitle: 'Conference Hall',
+    root: 'home',
+    title: 'Conference Hall',
 
     '/login': { code: 'login' },
     '/beta-access': { code: 'beta-access' },
@@ -19,8 +19,8 @@ export default {
 
   '/organizer': {
     code: 'organizer',
-    base: 'organizer',
-    appTitle: 'Organizer Hall',
+    root: 'organizer',
+    title: 'Organizer Hall',
 
     '/profile': { code: 'organizer-profile' },
     '/event': {
@@ -59,8 +59,8 @@ export default {
 
   '/speaker': {
     code: 'speaker',
-    base: 'speaker',
-    appTitle: 'Speaker Hall',
+    root: 'speaker',
+    title: 'Speaker Hall',
 
     '/profile': { code: 'speaker-profile' },
     '/talk/create': { code: 'speaker-talk-create' },
