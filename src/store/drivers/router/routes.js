@@ -9,9 +9,6 @@ export default {
 
     '/public': {
       code: 'public',
-      base: 'public',
-      appTitle: 'Conference Hall',
-
       '/event/:eventId': {
         code: 'public-event',
         isEventPage: true,

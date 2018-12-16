@@ -9,7 +9,7 @@ import Dropdown from 'components/dropdown'
 import './avatarDropdown.css'
 
 const AvatarDropdown = ({
-  displayName, photoURL, signout,
+  displayName, photoURL, contributorsRoute, signout,
 }) => {
   const avatar = (
     <Avatar src={photoURL} name={displayName} className="avatar-dropdown" />
@@ -20,7 +20,7 @@ const AvatarDropdown = ({
       <Link code="home">
         <IconLabel icon="fa fa-home" label="Conference Hall" />
       </Link>
-      <Link code="CONTRIBUTORS">
+      <Link code={contributorsRoute}>
         <IconLabel icon="fa fa-github-alt" label="Contributors" />
       </Link>
       <button onClick={signout} type="button">
@@ -33,6 +33,7 @@ const AvatarDropdown = ({
 AvatarDropdown.propTypes = {
   displayName: PropTypes.string,
   photoURL: PropTypes.string,
+  contributorsRoute: PropTypes.string.isRequired,
   signout: PropTypes.func.isRequired,
 }
 
