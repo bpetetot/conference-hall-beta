@@ -61,7 +61,9 @@ export const signedIn = async (action, store, { router }) => {
   // go to the next url if exists
   const next = router.getParam('next')
   if (next) {
-    router.replace(next)
+    const params = router.getParam('params') ? JSON.parse(router.getParam('params')) : undefined
+    const query = router.getParam('query') ? JSON.parse(router.getParam('query')) : undefined
+    router.replace(next, params, query)
   }
 }
 

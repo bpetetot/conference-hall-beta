@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react'
 import PropTypes from 'prop-types'
+import isEmpty from 'lodash/isEmpty'
 import { inject } from '@k-ramel/react'
 import LoadingIndicator from 'components/loader/loading'
 
@@ -11,7 +12,6 @@ export default (Component) => {
       initialized: PropTypes.bool.isRequired,
       userDataLoaded: PropTypes.bool.isRequired,
       redirectLogin: PropTypes.func.isRequired,
-      url: PropTypes.string.isRequired,
     }
 
     componentDidMount() {
@@ -24,10 +24,10 @@ export default (Component) => {
 
     checkAuth = () => {
       const {
-        authenticated, initialized, redirectLogin, url,
+        authenticated, initialized, redirectLogin,
       } = this.props
       if (initialized && !authenticated) {
-        redirectLogin(url)
+        redirectLogin()
       }
     }
 
@@ -43,11 +43,19 @@ export default (Component) => {
     const auth = store.auth.get()
     const userLoaded = store.data.users.hasKey(auth.uid)
     const orgaLoaded = store.data.organizations.isInitialized()
+
+    const nextRoute = { next: router.getCurrentCode() }
+    if (!isEmpty(router.getPathParams())) {
+      nextRoute.params = JSON.stringify(router.getPathParams())
+    }
+    if (!isEmpty(router.getQueryParams())) {
+      nextRoute.query = JSON.stringify(router.getQueryParams())
+    }
+
     return {
       ...auth,
       userDataLoaded: userLoaded && orgaLoaded,
-      url: `${router.getCurrentRoute().href.base}`, // TODO ADD QUERY PARAMS ${store.getState().router.search}
-      redirectLogin: url => router.replace(`/login?next=${url}`),
+      redirectLogin: () => router.replace('login', null, nextRoute),
     }
   })(ProtectedComponent)
 }
