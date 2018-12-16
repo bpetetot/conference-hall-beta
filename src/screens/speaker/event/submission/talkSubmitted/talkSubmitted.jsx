@@ -13,12 +13,12 @@ const TalkSubmitted = ({ eventId, eventName, surveyActive }) => (
       forget to fill
     </p>
     <h2>
-      <Link code="SPEAKER_PROFILE">Your profile</Link>
+      <Link code="speaker-profile">Your profile</Link>
     </h2>
     {surveyActive && <p>and</p>}
     {surveyActive && (
       <h2>
-        <Link code="EVENT_SURVEY" eventId={eventId}>The speaker survey</Link>
+        <Link code="speaker-event-survey" eventId={eventId}>The speaker survey</Link>
       </h2>
     )}
     <i className="fa fa-paper-plane-o" />

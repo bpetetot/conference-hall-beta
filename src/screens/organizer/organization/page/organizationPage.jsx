@@ -26,7 +26,7 @@ const OrganizationPage = ({
     <Titlebar className="organization-header" icon="fa fa-users" title={name}>
       <Button secondary>
         {btn => (
-          <Link code="EDIT_ORGANIZATION" organizationId={organizationId} className={btn}>
+          <Link code="organizer-organization-edit" organizationId={organizationId} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}

@@ -17,7 +17,7 @@ const EventActions = ({ eventId, isOrganizer, className }) => {
       {isOrganizer && (
         <Button primary>
           {btn => (
-            <Link code="EDIT_EVENT" eventId={eventId} className={btn}>
+            <Link code="organizer-event-edit" eventId={eventId} className={btn}>
               <IconLabel icon="fa fa-pencil" label="Edit" />
             </Link>
           )}

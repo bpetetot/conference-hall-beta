@@ -24,7 +24,7 @@ const mapStore = (store, _, { router }) => {
 }
 
 export default compose(
-  forRoute.absolute('ORGANIZATION_PAGE'),
+  forRoute.absolute('organizer-organization-page'),
   inject(mapStore),
   loader,
 )(OrganizationPage)

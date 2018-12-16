@@ -7,7 +7,7 @@ import SpeakerSurvey from './survey'
 
 const mapState = (store, props, { router }) => {
   const { uid } = store.auth.get()
-  const eventId = router.getPathParam('eventId')
+  const eventId = router.getParam('eventId')
   const { name } = store.data.events.get(eventId) || {}
   return {
     loaded: store.data.events.hasKey(eventId),
@@ -17,7 +17,7 @@ const mapState = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute.absolute('EVENT_SURVEY'), //
+  forRoute.absolute('speaker-event-survey'), //
   inject(mapState), //
   loader, //
 )(SpeakerSurvey)

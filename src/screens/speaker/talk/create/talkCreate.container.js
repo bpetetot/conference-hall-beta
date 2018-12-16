@@ -10,6 +10,6 @@ const mapStore = store => ({
 })
 
 export default compose(
-  forRoute.absolute('CREATE_TALK'), //
+  forRoute.absolute('speaker-talk-create'), //
   inject(mapStore), //
 )(TalkForm)

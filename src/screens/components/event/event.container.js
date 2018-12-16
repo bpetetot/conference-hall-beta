@@ -6,7 +6,7 @@ import { isOrganizerRoute } from 'store/drivers/router'
 import Event from './event'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getPathParam('eventId')
+  const eventId = router.getParam('eventId')
   const event = store.data.events.get(eventId)
   return {
     loaded: !!event,

@@ -17,15 +17,15 @@ const mapStore = (store, props, { router }) => {
     uidInvite,
     join: () => {
       store.dispatch({ type: '@@ui/ADD_SPEAKER_TO_TALK', payload: { uid, talkId } })
-      router.push('TALK_PAGE', { talkId })
+      router.push('speaker-talk-page', { talkId })
     },
-    cancel: () => router.push('HOME_SPEAKER'),
+    cancel: () => router.push('speaker'),
   }
 }
 
 export default compose(
-  forRoute.absolute('INVITE_SPEAKER'),
+  forRoute.absolute('speaker-talk-invite'),
   inject(mapStore),
-  listen(listeners, 'INVITE_SPEAKER'),
+  listen(listeners, 'speaker-talk-invite'),
   loader,
 )(InviteSpeaker)

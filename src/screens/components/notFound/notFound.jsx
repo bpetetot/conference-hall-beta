@@ -7,7 +7,7 @@ import './notFound.css'
 const PageNotFound = () => (
   <div className="page-not-found">
     <h1>Page not found</h1>
-    <Link code="HOME">back to Conference Hall</Link>
+    <Link code="home">back to Conference Hall</Link>
   </div>
 )
 

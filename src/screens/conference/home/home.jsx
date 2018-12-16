@@ -5,11 +5,11 @@ import './home.css'
 
 const Home = () => (
   <div className="home">
-    <Link code="HOME_SPEAKER" className="home-link">
+    <Link code="speaker" className="home-link">
       <i className="fa fa-microphone" />
       <span>I&apos;m a speaker</span>
     </Link>
-    <Link code="HOME_ORGANIZER" className="home-link">
+    <Link code="organizer" className="home-link">
       <i className="fa fa-rocket" />
       <span>I&apos;m an organizer</span>
     </Link>

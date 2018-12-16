@@ -16,6 +16,6 @@ const mapStore = (store) => {
 }
 
 export default compose(
-  forRoute(['SPEAKER_PROFILE', 'ORGANIZER_PROFILE']), //
+  forRoute(['speaker-profile', 'organizer-profile']), //
   inject(mapStore), //
 )(Profile)

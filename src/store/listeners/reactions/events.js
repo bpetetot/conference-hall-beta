@@ -19,7 +19,7 @@ export const createEvent = async (action, store, { form, router }) => {
   // create event into database
   const ref = await createForm.asyncSubmit(eventCrud.create, event)
   // go to event page
-  router.push('EVENT_PAGE', { eventId: ref.id })
+  router.push('organizer-event-page', { eventId: ref.id })
 }
 
 export const updateEventForm = formName => (action, store, { form }) => {

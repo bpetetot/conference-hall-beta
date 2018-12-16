@@ -1,5 +1,6 @@
 import { when } from 'k-ramel'
 
+import { redirectToNextUrl } from 'helpers/redirect'
 import betaAccess from 'firebase/betaAccess'
 import userCrud from 'firebase/user'
 
@@ -13,7 +14,9 @@ export default [
       await userCrud.update({ uid, betaAccess: key })
       store.data.users.update({ uid, betaAccess: key })
       store.ui.beta.reset()
-      router.push('HOME_ORGANIZER')
+
+      // redirect to the next url if exists
+      redirectToNextUrl(router)
     } else {
       store.ui.beta.set({ error: 'Sorry, invalid beta access key.' })
     }

@@ -16,7 +16,7 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute('EDIT_EVENT'), //
+  forRoute('organizer-event-edit'), //
   inject(mapStore), //
   loader, //
 )(EventEdit)

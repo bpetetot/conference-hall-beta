@@ -7,7 +7,7 @@ import listeners from './proposals.listeners'
 import Proposals from './proposals'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getPathParam('eventId')
+  const eventId = router.getParam('eventId')
   const event = store.data.events.get(eventId)
   const nbProposals = store.data.proposals.getLength()
   return {
@@ -19,8 +19,8 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute('PROPOSALS'),
+  forRoute('organizer-event-proposals'),
   inject(mapStore),
-  listen(listeners, 'PROPOSALS'),
+  listen(listeners, 'organizer-event-proposals'),
   loader,
 )(Proposals)

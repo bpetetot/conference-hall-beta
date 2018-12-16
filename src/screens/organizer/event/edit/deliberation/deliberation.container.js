@@ -33,4 +33,4 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(forRoute.absolute('EDIT_EVENT_DELIBERATION'), inject(mapStore))(DeliberationForm)
+export default compose(forRoute.absolute('organizer-event-edit-deliberation'), inject(mapStore))(DeliberationForm)

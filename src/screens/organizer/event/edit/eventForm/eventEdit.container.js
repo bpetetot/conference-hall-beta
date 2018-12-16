@@ -23,6 +23,6 @@ const mapStore = (store, { eventId }) => {
 }
 
 export default compose(
-  forRoute.absolute('EDIT_EVENT'), //
+  forRoute.absolute('organizer-event-edit'), //
   inject(mapStore), //
 )(EventForm)

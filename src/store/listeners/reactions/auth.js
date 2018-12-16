@@ -3,6 +3,7 @@ import pick from 'lodash/pick'
 
 import userCrud from 'firebase/user'
 import { fetchUserOrganizations } from 'firebase/organizations'
+import { redirectToNextUrl } from 'helpers/redirect'
 
 export const signin = async (action, store) => {
   const providerId = action.payload
@@ -58,13 +59,8 @@ export const signedIn = async (action, store, { router }) => {
   const organizations = await fetchUserOrganizations(user.uid)
   store.data.organizations.set(organizations.docs.map(ref => ({ id: ref.id, ...ref.data() })))
 
-  // go to the next url if exists
-  const next = router.getParam('next')
-  if (next) {
-    const params = router.getParam('params') ? JSON.parse(router.getParam('params')) : undefined
-    const query = router.getParam('query') ? JSON.parse(router.getParam('query')) : undefined
-    router.replace(next, params, query)
-  }
+  // go to the redirect url if exists
+  redirectToNextUrl(router)
 }
 
 export const signedOut = (action, store) => {

@@ -12,7 +12,7 @@ export const create = async (action, store, { form, router }) => {
   const ref = await createForm.asyncSubmit(organizationCrud.create, newUserOrganization)
   store.data.organizations.add({ id: ref.id, ...newUserOrganization })
   // go to organization page
-  router.push('ORGANIZATION_PAGE', { organizationId: ref.id })
+  router.push('organizer-organization-page', { organizationId: ref.id })
 }
 
 export const update = (action, store, { form, router }) => {
@@ -23,7 +23,7 @@ export const update = (action, store, { form, router }) => {
   // update organization into data store
   store.data.organizations.update(organization)
   // go to organization page
-  router.push('ORGANIZATION_PAGE', { organizationId: organization.id })
+  router.push('organizer-organization-page', { organizationId: organization.id })
 }
 
 export const get = async (action, store, { router }) => {
@@ -48,7 +48,7 @@ export const addMember = async (action, store, { router }) => {
   const updated = set(organization, `members.${uid}`, true)
   await organizationCrud.update(updated)
   store.data.organizations.update(updated)
-  router.push('ORGANIZATION_PAGE', { organizationId })
+  router.push('organizer-organization-page', { organizationId })
 }
 
 export const removeMember = async (action, store, { router }) => {
@@ -57,5 +57,5 @@ export const removeMember = async (action, store, { router }) => {
   const updated = unset(organization, `members.${uid}`)
   await organizationCrud.update(updated)
   store.data.organizations.update(updated)
-  router.push('ORGANIZATION_PAGE', { organizationId })
+  router.push('organizer-organization-page', { organizationId })
 }

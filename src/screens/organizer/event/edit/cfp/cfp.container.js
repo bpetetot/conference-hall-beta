@@ -17,7 +17,7 @@ const mapStore = (store, { eventId }) => {
 }
 
 export default compose(
-  forRoute.absolute('EDIT_EVENT_CFP'),
+  forRoute.absolute('organizer-event-edit-cfp'),
   inject(mapStore),
   reduxForm({ form: FORM_NAME }),
 )(CFPForm)

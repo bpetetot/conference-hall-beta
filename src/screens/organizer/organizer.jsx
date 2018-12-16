@@ -39,4 +39,4 @@ const Organizer = () => (
   </AppLayout>
 )
 
-export default compose(forRoute('HOME_ORGANIZER'), protect, restrictBeta)(Organizer)
+export default compose(forRoute('organizer'), protect, restrictBeta)(Organizer)

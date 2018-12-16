@@ -33,4 +33,4 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(forRoute.absolute('EDIT_EVENT_SURVEY'), inject(mapStore))(SurveyForm)
+export default compose(forRoute.absolute('organizer-event-edit-survey'), inject(mapStore))(SurveyForm)

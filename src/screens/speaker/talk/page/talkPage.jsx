@@ -22,14 +22,14 @@ const TalkPage = ({
       <DeleteTalkButton talkId={id} />
       <Button secondary small>
         {btn => (
-          <Link code="EDIT_TALK" talkId={id} className={btn}>
+          <Link code="speaker-talk-edit" talkId={id} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}
       </Button>
       <Button accent>
         {btn => (
-          <Link code="TALK_SUBMISSION" talkId={id} className={btn}>
+          <Link code="speaker-talk-submission" talkId={id} className={btn}>
             <IconLabel icon="fa fa-paper-plane" label="Submit" />
           </Link>
         )}

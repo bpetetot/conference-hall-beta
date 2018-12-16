@@ -21,7 +21,7 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute('EVENT_SUBMISSION'), //
+  forRoute('speaker-event-submission'), //
   inject(mapStore), //
   loader, //
 )(Submission)

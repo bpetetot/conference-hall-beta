@@ -44,6 +44,6 @@ class Contributors extends Component {
 
 export default forRoute.absolute([
   'public-contributors',
-  'ORGANIZER_CONTRIBUTORS',
-  'SPEAKER_CONTRIBUTORS',
+  'organizer-contributors',
+  'speaker-contributors',
 ])(Contributors)

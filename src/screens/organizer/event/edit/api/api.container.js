@@ -27,4 +27,4 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(forRoute.absolute('EDIT_EVENT_API'), inject(mapStore))(ApiForm)
+export default compose(forRoute.absolute('organizer-event-edit-integrations'), inject(mapStore))(ApiForm)

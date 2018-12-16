@@ -17,7 +17,7 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute('TALK_SUBMISSION'), //
+  forRoute('speaker-talk-submission'), //
   inject(mapStore), //
   loader, //
 )(Submission)

@@ -21,7 +21,7 @@ const mapStore = (store, ownProps, { router }) => {
 }
 
 export default compose(
-  forRoute.absolute('EDIT_ORGANIZATION'), //
+  forRoute.absolute('organizer-organization-edit'), //
   inject(mapStore), //
   loader,
 )(OrganizationForm)

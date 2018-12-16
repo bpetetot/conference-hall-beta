@@ -20,7 +20,7 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute.absolute('EDIT_TALK'), //
+  forRoute.absolute('speaker-talk-edit'), //
   inject(mapStore), //
   loader, //
 )(TalkForm)

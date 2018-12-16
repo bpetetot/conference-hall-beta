@@ -16,7 +16,7 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute.absolute('TALK_PAGE'), //
+  forRoute.absolute('speaker-talk-page'), //
   inject(mapStore), //
   loader, //
 )(TalkPage)

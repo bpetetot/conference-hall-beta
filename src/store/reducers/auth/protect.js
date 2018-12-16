@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react'
 import PropTypes from 'prop-types'
-import isEmpty from 'lodash/isEmpty'
 import { inject } from '@k-ramel/react'
+import { redirectWithNextUrl } from 'helpers/redirect'
+
 import LoadingIndicator from 'components/loader/loading'
 
 export default (Component) => {
@@ -44,18 +45,10 @@ export default (Component) => {
     const userLoaded = store.data.users.hasKey(auth.uid)
     const orgaLoaded = store.data.organizations.isInitialized()
 
-    const nextRoute = { next: router.getCurrentCode() }
-    if (!isEmpty(router.getPathParams())) {
-      nextRoute.params = JSON.stringify(router.getPathParams())
-    }
-    if (!isEmpty(router.getQueryParams())) {
-      nextRoute.query = JSON.stringify(router.getQueryParams())
-    }
-
     return {
       ...auth,
       userDataLoaded: userLoaded && orgaLoaded,
-      redirectLogin: () => router.replace('login', null, nextRoute),
+      redirectLogin: () => redirectWithNextUrl('login', router),
     }
   })(ProtectedComponent)
 }

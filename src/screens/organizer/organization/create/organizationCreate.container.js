@@ -12,6 +12,6 @@ const mapStore = store => ({
 })
 
 export default compose(
-  forRoute.absolute('CREATE_ORGANIZATION'), //
+  forRoute.absolute('organizer-organization-create'), //
   inject(mapStore), //
 )(OrganizationForm)

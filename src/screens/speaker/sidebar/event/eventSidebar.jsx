@@ -9,11 +9,11 @@ const EventSidebar = ({ id, name, surveyActive }) => {
   if (!id) return null
   return (
     <SideBarPanel label={name}>
-      <SideBarLink code="SPEAKER_EVENT_PAGE" eventId={id}>
+      <SideBarLink code="speaker-event-page" eventId={id}>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
       {surveyActive && (
-        <SideBarLink code="SPEAKER_EVENT_SURVEY" eventId={id}>
+        <SideBarLink code="speaker-event-survey" eventId={id}>
           <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
         </SideBarLink>
       )}

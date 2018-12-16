@@ -8,27 +8,27 @@ import './eventTabs.css'
 const EventTabs = ({ eventId }) => (
   <ul className="event-tabs tabs card">
     <li>
-      <Link code="EDIT_EVENT" eventId={eventId}>
+      <Link code="organizer-event-edit" eventId={eventId}>
         <IconLabel icon="fa fa-calendar-check-o" label="Event" />
       </Link>
     </li>
     <li>
-      <Link code="EDIT_EVENT_CFP" eventId={eventId}>
+      <Link code="organizer-event-edit-cfp" eventId={eventId}>
         <IconLabel icon="fa fa-gear" label="CFP Settings" />
       </Link>
     </li>
     <li>
-      <Link code="EDIT_EVENT_DELIBERATION" eventId={eventId}>
+      <Link code="organizer-event-edit-deliberation" eventId={eventId}>
         <IconLabel icon="fa fa-check-square-o" label="Deliberation" />
       </Link>
     </li>
     <li>
-      <Link code="EDIT_EVENT_SURVEY" eventId={eventId}>
+      <Link code="organizer-event-edit-survey" eventId={eventId}>
         <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
       </Link>
     </li>
     <li>
-      <Link code="EDIT_EVENT_API" eventId={eventId}>
+      <Link code="organizer-event-edit-integrations" eventId={eventId}>
         <IconLabel icon="fa fa-rocket" label="API" />
       </Link>
     </li>

@@ -33,4 +33,4 @@ const Speaker = () => (
   </AppLayout>
 )
 
-export default compose(forRoute('HOME_SPEAKER'), protect)(Speaker)
+export default compose(forRoute('speaker'), protect)(Speaker)

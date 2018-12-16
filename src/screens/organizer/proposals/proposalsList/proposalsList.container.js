@@ -24,7 +24,7 @@ const mapStore = (store) => {
 }
 
 export default compose(
-  forRoute.absolute('PROPOSALS'), //
+  forRoute.absolute('organizer-event-proposals'), //
   inject(mapStore), //
   loader, //
 )(ProposalsList)

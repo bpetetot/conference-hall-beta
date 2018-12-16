@@ -3,12 +3,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { inject } from '@k-ramel/react'
 
+import { redirectWithNextUrl } from 'helpers/redirect'
+
 export default (Component) => {
   class BetaRestricted extends React.Component {
     static propTypes = {
       betaAccess: PropTypes.string,
       skipBetaAccess: PropTypes.bool.isRequired,
-      redirectBetaAccessForm: PropTypes.func.isRequired,
+      redirectBetaAccess: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
@@ -24,9 +26,9 @@ export default (Component) => {
     }
 
     checkAccess = () => {
-      const { betaAccess, skipBetaAccess, redirectBetaAccessForm } = this.props
+      const { betaAccess, skipBetaAccess, redirectBetaAccess } = this.props
       if (skipBetaAccess) return
-      if (!betaAccess) redirectBetaAccessForm()
+      if (!betaAccess) redirectBetaAccess()
     }
 
     render() {
@@ -38,10 +40,11 @@ export default (Component) => {
   return inject((store, props, { router }) => {
     const { uid } = store.auth.get() || {}
     const { betaAccess } = store.data.users.get(uid) || {}
+
     return {
       betaAccess,
-      skipBetaAccess: process.env.NODE_ENV === 'development',
-      redirectBetaAccessForm: () => router.replace('beta-access'),
+      skipBetaAccess: false, // process.env.NODE_ENV === 'development',
+      redirectBetaAccess: () => redirectWithNextUrl('beta-access', router),
     }
   })(BetaRestricted)
 }

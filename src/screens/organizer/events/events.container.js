@@ -9,11 +9,11 @@ const mapStore = (store, props, { router }) => ({
   loaded: store.ui.organizer.myEvents.isInitialized(),
   events: store.ui.organizer.myEvents.getAsArray(),
   load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZER_EVENTS'),
-  onSelect: eventId => router.push('EVENT_PAGE', { eventId }),
+  onSelect: eventId => router.push('organizer-event-page', { eventId }),
 })
 
 export default compose(
-  forRoute.absolute('HOME_ORGANIZER'), //
+  forRoute.absolute('organizer'), //
   inject(mapStore), //
   loader, //
 )(Events)

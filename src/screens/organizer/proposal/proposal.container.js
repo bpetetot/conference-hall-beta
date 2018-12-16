@@ -21,7 +21,7 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute.absolute('PROPOSAL'), //
+  forRoute.absolute('organizer-event-proposal-page'), //
   inject(mapStore), //
   loader, //
 )(Proposal)

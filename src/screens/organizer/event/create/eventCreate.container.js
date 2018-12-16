@@ -21,6 +21,6 @@ const mapStore = store => ({
 })
 
 export default compose(
-  forRoute.absolute('CREATE_EVENT'), //
+  forRoute.absolute('organizer-event-create'), //
   inject(mapStore), //
 )(EventForm)

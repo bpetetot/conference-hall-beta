@@ -26,12 +26,12 @@ const mapStore = (store, ownProps, { router }) => {
     join: () => {
       store.dispatch({ type: '@@ui/ADD_ORGANIZATION_MEMBER', payload: { uid, organizationId } })
     },
-    cancel: () => router.push('HOME_ORGANIZER'),
+    cancel: () => router.push('organizer'),
   }
 }
 
 export default compose(
-  forRoute.absolute('INVITE_ORGANIZER'), //
+  forRoute.absolute('organizer-organization-invite'), //
   inject(mapStore), //
   loader, //
 )(InviteOrganizer)
