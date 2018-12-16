@@ -19,4 +19,7 @@ export const getBaseRoute = (state) => {
 export const isPublicRoute = state => getBaseRoute(state) === 'public'
 export const isOrganizerRoute = state => getBaseRoute(state) === 'organizer'
 export const isSpeakerRoute = state => getBaseRoute(state) === 'speaker'
-export const isEventPage = state => getBaseRoute(state) === 'HOME_EVENT'
+export const isEventPage = (state) => {
+  const currentRoute = getRouter().getCurrentRoute(state) || {}
+  return currentRoute.isEventPage
+}

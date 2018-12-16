@@ -7,8 +7,8 @@ import listeners from './inviteSpeaker.listeners'
 import InviteSpeaker from './inviteSpeaker'
 
 const mapStore = (store, props, { router }) => {
-  const talkId = router.getPathParam('talkId')
-  const uidInvite = router.getPathParam('uid')
+  const talkId = router.getParam('talkId')
+  const uidInvite = router.getParam('uid')
   const { uid } = store.auth.get()
   const { title } = store.data.talks.get(talkId) || {}
   return {
@@ -26,6 +26,6 @@ const mapStore = (store, props, { router }) => {
 export default compose(
   forRoute.absolute('speaker-talk-invite'),
   inject(mapStore),
-  listen(listeners, 'speaker-talk-invite'),
+  listen(listeners, 'INVITE_SPEAKER'),
   loader,
 )(InviteSpeaker)

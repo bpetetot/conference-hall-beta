@@ -12,7 +12,10 @@ export default {
       base: 'public',
       appTitle: 'Conference Hall',
 
-      '/event/:eventId': { code: 'public-event' },
+      '/event/:eventId': {
+        code: 'public-event',
+        isEventPage: true,
+      },
       '/contributors': { code: 'public-contributors' },
     },
   },
@@ -28,6 +31,7 @@ export default {
       '/create': { code: 'organizer-event-create' },
       '/:eventId': {
         code: 'organizer-event-page',
+        isEventPage: true,
         '/edit': {
           code: 'organizer-event-edit',
           '/cfp': { code: 'organizer-event-edit-cfp' },
@@ -62,23 +66,18 @@ export default {
     appTitle: 'Speaker Hall',
 
     '/profile': { code: 'speaker-profile' },
-    '/talk': {
-      code: 'speaker-talk',
-      '/create': { code: 'speaker-talk-create' },
-      '/:talkId': {
-        code: 'speaker-talk-page',
-        '/edit': { code: 'speaker-talk-edit' },
-        '/submission': { code: 'speaker-talk-submission' },
-        '/invite/:uid': { code: 'speaker-talk-invite' },
-      },
+    '/talk/create': { code: 'speaker-talk-create' },
+    '/talk/:talkId': {
+      code: 'speaker-talk-page',
+      '/edit': { code: 'speaker-talk-edit' },
+      '/submission': { code: 'speaker-talk-submission' },
+      '/invite/:uid': { code: 'speaker-talk-invite' },
     },
-    '/event': {
-      code: 'speaker-event',
-      '/:eventId': {
-        code: 'speaker-event-page',
-        '/submission': { code: 'speaker-event-submission' },
-        '/survey': { code: 'speaker-event-survey' },
-      },
+    '/event/:eventId': {
+      code: 'speaker-event-page',
+      isEventPage: true,
+      '/submission': { code: 'speaker-event-submission' },
+      '/survey': { code: 'speaker-event-survey' },
     },
     '/contributors': { code: 'speaker-contributors' },
   },
