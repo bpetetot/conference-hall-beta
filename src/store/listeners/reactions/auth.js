@@ -3,7 +3,6 @@ import pick from 'lodash/pick'
 
 import userCrud from 'firebase/user'
 import { fetchUserOrganizations } from 'firebase/organizations'
-import { redirectToNextUrl } from 'store/drivers/router/redirect'
 
 export const signin = async (action, store) => {
   const providerId = action.payload
@@ -38,7 +37,7 @@ export const signout = (action, store, { router }) => {
   router.push('home')
 }
 
-export const signedIn = async (action, store, { router }) => {
+export const signedIn = async (action, store) => {
   let user = pick(action.payload, ['uid', 'displayName', 'photoURL', 'email'])
 
   // set auth initialized and authenticated
@@ -60,7 +59,7 @@ export const signedIn = async (action, store, { router }) => {
   store.data.organizations.set(organizations.docs.map(ref => ({ id: ref.id, ...ref.data() })))
 
   // go to the redirect url if exists
-  redirectToNextUrl(router)
+  store.dispatch('@@router/REDIRECT_TO_NEXT_URL')
 }
 
 export const signedOut = (action, store) => {

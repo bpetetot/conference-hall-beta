@@ -3,8 +3,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { inject } from '@k-ramel/react'
 
-import { redirectWithNextUrl } from 'store/drivers/router/redirect'
-
 export default (Component) => {
   class BetaRestricted extends React.Component {
     static propTypes = {
@@ -37,14 +35,14 @@ export default (Component) => {
     }
   }
 
-  return inject((store, props, { router }) => {
+  return inject((store) => {
     const { uid } = store.auth.get() || {}
     const { betaAccess } = store.data.users.get(uid) || {}
 
     return {
       betaAccess,
-      skipBetaAccess: false, // process.env.NODE_ENV === 'development',
-      redirectBetaAccess: () => redirectWithNextUrl('beta-access', router),
+      skipBetaAccess: process.env.NODE_ENV === 'development',
+      redirectBetaAccess: () => store.dispatch({ type: '@@router/REPLACE_WITH_NEXT_URL', payload: 'beta-access' }),
     }
   })(BetaRestricted)
 }

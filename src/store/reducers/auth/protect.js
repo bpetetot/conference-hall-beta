@@ -2,7 +2,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { inject } from '@k-ramel/react'
-import { redirectWithNextUrl } from 'store/drivers/router/redirect'
 
 import LoadingIndicator from 'components/loader/loading'
 
@@ -40,7 +39,7 @@ export default (Component) => {
     }
   }
 
-  return inject((store, props, { router }) => {
+  return inject((store) => {
     const auth = store.auth.get()
     const userLoaded = store.data.users.hasKey(auth.uid)
     const orgaLoaded = store.data.organizations.isInitialized()
@@ -48,7 +47,7 @@ export default (Component) => {
     return {
       ...auth,
       userDataLoaded: userLoaded && orgaLoaded,
-      redirectLogin: () => redirectWithNextUrl('login', router),
+      redirectLogin: () => store.dispatch({ type: '@@router/REPLACE_WITH_NEXT_URL', payload: 'login' }),
     }
   })(ProtectedComponent)
 }
