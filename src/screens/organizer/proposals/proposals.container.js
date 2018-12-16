@@ -21,6 +21,6 @@ const mapStore = (store, props, { router }) => {
 export default compose(
   forRoute('organizer-event-proposals'),
   inject(mapStore),
-  listen(listeners, 'organizer-event-proposals'),
+  listen(listeners, 'PROPOSALS'),
   loader,
 )(Proposals)
