@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from '@k-redux-router/react-k-ramel'
+import Link from 'components/link'
 
 const SideBarLink = ({ children, code, ...rest }) => (
   <Link
     code={code}
     className="sidebar-link"
-    activeProps={{ className: 'sidebar-link sidebar-link-active' }}
+    classNameActive="sidebar-link-active"
     {...rest}
   >
     {children}
