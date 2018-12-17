@@ -1,3 +1,7 @@
+/**
+ * Routes are managed with k-redux-router integrated with k-ramel
+ * Documentation: https://github.com/alakarteio/k-redux-router
+ */
 export default {
   '/': {
     code: 'home',
