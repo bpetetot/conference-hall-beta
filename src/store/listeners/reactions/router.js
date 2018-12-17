@@ -11,7 +11,8 @@ export const onRouteChanged = (action, store, { router }) => {
   }
 
   // when Event route, set route eventId as app event context
-  if (router.getParam('isEventPage')) {
+  const isEventPage = router.getParam('isEventPage')
+  if (isEventPage) {
     // set route eventId as app event context
     const eventId = router.getParam('eventId')
     if (eventId !== store.ui.app.get().currentEventId) {

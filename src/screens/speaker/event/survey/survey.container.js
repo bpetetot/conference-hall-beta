@@ -13,6 +13,7 @@ const mapState = (store, props, { router }) => {
     loaded: store.data.events.hasKey(eventId),
     uid,
     name,
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId }),
   }
 }
 
