@@ -13,21 +13,24 @@ const EventTitle = ({
     <div>
       <span className={styles.name}>{name}</span> • {subtitle}
     </div>
-    <Badge pill outline className={styles.type}>
-      {type}
-    </Badge>
+    {type && (
+      <Badge pill outline className={styles.type}>
+        {type}
+      </Badge>
+    )}
   </h1>
 )
 
 EventTitle.propTypes = {
   name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
+  type: PropTypes.string,
   className: PropTypes.string,
 }
 
 EventTitle.defaultProps = {
   className: undefined,
+  type: undefined,
 }
 
 export default EventTitle

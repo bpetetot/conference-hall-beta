@@ -1,20 +1,19 @@
 import React from 'react'
-import { Link } from 'redux-little-router'
-import forRoute from 'hoc-little-router'
+import { Link, forRoute } from '@k-redux-router/react-k-ramel'
 
 import './home.css'
 
 const Home = () => (
   <div className="home">
-    <Link href="/speaker" className="home-link">
+    <Link code="speaker" className="home-link">
       <i className="fa fa-microphone" />
       <span>I&apos;m a speaker</span>
     </Link>
-    <Link href="/organizer" className="home-link">
+    <Link code="organizer" className="home-link">
       <i className="fa fa-rocket" />
       <span>I&apos;m an organizer</span>
     </Link>
   </div>
 )
 
-export default forRoute.absolute('HOME')(Home)
+export default forRoute.absolute('home')(Home)

@@ -1,6 +1,6 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import ApiForm from './api'
 
@@ -27,4 +27,4 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(forRoute.absolute('EDIT_EVENT_API'), inject(mapStore))(ApiForm)
+export default compose(forRoute.absolute('organizer-event-edit-integrations'), inject(mapStore))(ApiForm)

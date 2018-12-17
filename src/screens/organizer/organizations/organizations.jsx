@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
@@ -15,7 +15,7 @@ const MyOrganizations = ({ organizations, onSelect }) => (
     <Titlebar className="organizations-header" icon="fa fa-users" title="My organizations">
       <Button>
         {btn => (
-          <Link href="/organizer/organization/create" className={btn}>
+          <Link code="organizer-organization-create" className={btn}>
             <IconLabel icon="fa fa-users" label="Create organization" />
           </Link>
         )}

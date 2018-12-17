@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import OpenTrigger from 'components/helpers/openTrigger'
 import Portal from 'components/portals/portal'
@@ -35,7 +35,7 @@ const Brand = ({
           {({ hide }) => <SidebarWrapper content={sidebar} onClick={hide} />}
         </OpenTrigger>
     )}
-    <Link href={baseRoute}>{title}</Link>
+    <Link code={baseRoute}>{title}</Link>
   </div>
 )
 

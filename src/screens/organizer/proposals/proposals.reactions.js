@@ -11,7 +11,7 @@ import userCrud from 'firebase/user'
 
 /* set proposal filters from URL query params */
 export const setProposalFiltersFromRouter = (action, store, { router }) => {
-  const { query } = router.get()
+  const query = router.getQueryParams()
 
   const pickTruthyValues = pickBy(Boolean)
   const pickFilterKeys = pick(['state', 'ratings', 'categories', 'formats', 'sortOrder', 'search'])
@@ -21,7 +21,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
   const filtersFromUiState = pickTruthyValues(pickFilterKeys(store.ui.organizer.proposals.get()))
   const filtersFromBothStates = { ...filtersFromUiState, ...filtersFromRouterState }
 
-  const availableSortOrders = router.getParentResultParam('sortOrders')
+  const availableSortOrders = router.getParam('sortOrders')
   const validFilters = update(
     'sortOrder',
     ensureIncludedIn(availableSortOrders),
@@ -29,7 +29,9 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
   )
 
   if (!isEqual(validFilters, filtersFromRouterState)) {
-    router.replace({ query: { ...query, ...validFilters } })
+    const route = router.getCurrentCode()
+    const pathParams = router.getPathParams()
+    router.replace(route, pathParams, { ...query, ...validFilters })
   }
   if (!isEqual(validFilters, filtersFromUiState)) {
     store.ui.organizer.proposals.update(validFilters)
@@ -41,7 +43,7 @@ export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()
   store.ui.organizer.proposalsPaging.update({ page: 1 })
 
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getParam('eventId')
   const { uid } = store.auth.get()
 
   const filters = store.ui.organizer.proposals.get()
@@ -73,10 +75,11 @@ export const selectProposal = async (action, store, { router }) => {
   if (proposalIndex !== -1) {
     store.ui.organizer.proposal.set({ proposalIndex })
     const filters = store.ui.organizer.proposals.get()
-    router.push({
-      pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
-      query: filters,
-    })
+    router.push(
+      'organizer-event-proposal-page',
+      { eventId, proposalId },
+      { ...filters },
+    )
   }
 }
 
@@ -90,7 +93,7 @@ export const changeFilter = async (action, store, { router }) => {
     pickBy(filter => filter),
   ])(action.payload)
 
-  const { query } = router.get()
+  const query = router.getQueryParams()
   const updatedQuery = flow(
     omit(removedFilters),
     filters => ({
@@ -100,7 +103,9 @@ export const changeFilter = async (action, store, { router }) => {
   )(query)
 
   if (!isEqual(query, updatedQuery)) {
-    router.replace({ query: updatedQuery })
+    const route = router.getCurrentCode()
+    const pathParams = router.getPathParams()
+    router.replace(route, pathParams, updatedQuery)
     store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
   }
 }
