@@ -1,14 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import snarkdown from 'helpers/snarkdown'
+import escape from 'lodash/escape'
 
-import MarkdownComp from 'react-markdown'
 import './markdown.css'
 
-const Markdown = ({ source, className }) => {
-  if (!source) return null
-  return <MarkdownComp className={cn('markdown', className)} source={source} escapeHtml />
-}
+const Markdown = ({ source, className }) => (
+  <div
+    className={cn('markdown', className)}
+    // eslint-disable-next-line react/no-danger
+    dangerouslySetInnerHTML={{ __html: snarkdown(escape(source)) }}
+  />
+)
 
 Markdown.propTypes = {
   source: PropTypes.string,
@@ -16,7 +20,7 @@ Markdown.propTypes = {
 }
 
 Markdown.defaultProps = {
-  source: undefined,
+  source: '',
   className: undefined,
 }
 

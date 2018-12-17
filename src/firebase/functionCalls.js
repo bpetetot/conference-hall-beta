@@ -1,15 +1,14 @@
 import firebase from 'firebase/app'
-import { DateTime } from 'luxon'
 
 const functions = {}
 
 const buildFunctionWithTimezone = (functionName) => {
   const cloudFunction = firebase.functions().httpsCallable(functionName)
-  const timezone = DateTime.local.zoneName
+  const { timeZone } = Intl.DateTimeFormat().resolvedOptions()
 
   return ({ userTimezone, ...rest }) => cloudFunction({
     ...rest,
-    userTimezone: userTimezone || timezone,
+    userTimezone: userTimezone || timeZone,
   })
 }
 

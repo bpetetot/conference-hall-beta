@@ -1,12 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/mardown should not render if no source 1`] = `null`;
+exports[`components/mardown should not render if no source 1`] = `
+<div
+  className="markdown"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "",
+    }
+  }
+/>
+`;
 
 exports[`components/mardown should render 1`] = `
-<react-markdown
+<div
   className="markdown"
-  escapeHtml={true}
-  source="source"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "source",
+    }
+  }
 />
 `;
 

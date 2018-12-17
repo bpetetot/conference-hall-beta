@@ -1,6 +1,6 @@
 {
   "name": "conference-hall",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "bugs": "https://github.com/bpetetot/conference-hall/issues",
   "repository": "github:bpetetot/conference-hall",
@@ -10,6 +10,7 @@
     "test": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
     "lint": "eslint --ext js,jsx src",
+    "size": "bundlesize",
     "doc": "docz dev",
     "doc:build": "docz build"
   },
@@ -26,27 +27,25 @@
     "immutadot": "^1.0.0",
     "k-ramel": "1.0.2",
     "lodash": "^4.17.10",
-    "luxon": "^1.8.2",
     "normalize.css": "^8.0.1",
     "popper.js": "^1.14.6",
     "randomcolor": "^0.5.3",
     "react": "^16.6.3",
-    "react-addons-shallow-compare": "^15.6.2",
     "react-datepicker": "^2.0.0",
     "react-dom": "^16.6.3",
-    "react-markdown": "^4.0.4",
     "react-places-autocomplete": "^7.2.0",
     "react-redux": "^5.1.1",
     "react-sizes": "^1.0.4",
-    "react-test-renderer": "^16.6.3",
     "redux": "^4.0.1",
     "redux-form": "^7.4.2",
     "redux-little-router": "^15.1.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/core": "7.2.0",
-    "docz": "^0.12.15",
+    "@babel/core": "7.2.2",
+    "bundlesize": "^0.17.0",
+    "docz": "^0.12.17",
+    "docz-theme-default": "^0.12.17",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "eslint-config-airbnb": "^17.1.0",
@@ -56,6 +55,7 @@
     "firebase-tools": "^6.1.2",
     "prettier": "^1.15.3",
     "react-scripts": "2.1.1",
+    "react-test-renderer": "^16.6.3",
     "redux-devtools-extension": "^2.13.7"
   },
   "eslintConfig": {
@@ -88,6 +88,16 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
+  "bundlesize": [
+    {
+      "path": "./build/static/js/*.js",
+      "maxSize": "350 kB"
+    },
+    {
+      "path": "./build/static/css/*.css",
+      "maxSize": "10 kB"
+    }
+  ],
   "browserslist": [
     ">0.2%",
     "not dead",

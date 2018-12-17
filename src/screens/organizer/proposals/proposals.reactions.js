@@ -1,6 +1,10 @@
-import {
-  flow, isEqual, omit, over, pick, update, pickBy,
-} from 'lodash/fp'
+import flow from 'lodash/fp/flow'
+import isEqual from 'lodash/fp/isEqual'
+import omit from 'lodash/fp/omit'
+import over from 'lodash/fp/over'
+import pick from 'lodash/fp/pick'
+import update from 'lodash/fp/update'
+import pickBy from 'lodash/fp/pickBy'
 
 import * as firebase from 'firebase/proposals'
 import userCrud from 'firebase/user'
