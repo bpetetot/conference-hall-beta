@@ -1,0 +1,106 @@
+.cc-calendar-header {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cc-calendar-header button {
+  margin-left: auto;
+}
+
+.cc-month {
+  color: var(--primary-color);
+}
+
+.cc-buttons button {
+  margin-right: 10px;
+}
+
+.cc-buttons button:last-child {
+  margin-right: 0;
+}
+
+.cc-calendar {
+  display: flex;
+  flex-direction: column;
+}
+
+.cc-calendar * {
+  box-sizing: border-box;
+}
+
+.cc-week {
+  display: flex;
+  flex-direction: row;
+}
+
+.cc-week > div {
+  flex: 0 0 calc(100% / 7);
+  min-height: calc(35px * 4 + 10px);
+  max-height: calc(35px * 4 + 10px);
+  overflow: hidden;
+}
+
+.cc-week > div:not(.cc-day) {
+  border: 1px solid transparent;
+}
+
+.cc-day {
+  border: 1px solid transparent;
+  border-top: 1px solid var(--grey-color-light);
+  border-left: 1px solid var(--grey-color-light);
+  padding-top: 10px;
+  color: var(--grey-color-dark);
+  font-weight: 300;
+}
+
+.cc-day-number {
+  height: 30px;
+	margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cc-day-item {
+	font-size: 14px;
+	padding: 2px 5px;
+	height: 30px;
+	margin-bottom: 5px;
+	background-color: var(--primary-color-light);
+	color: var(--primary-color-font);
+	display: flex;
+	align-items: center;
+}
+
+
+.cc-day-item-white {
+  background-color: transparent;
+  color: var(--primary-color);
+}
+
+/* Trick to truncate text */
+.cc-day-item span {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cc-week > .cc-day:last-child {
+  border-right: 1px solid var(--grey-color-light);
+}
+
+.cc-week:last-child > div:not(.cc-day) {
+  border-top: 1px solid var(--grey-color-light);
+}
+
+.cc-week:last-child .cc-day {
+  border-bottom: 1px solid var(--grey-color-light);
+}
+
+.cc-week:last-child .cc-day + div {
+  border-left: 1px solid var(--grey-color-light);
+}
