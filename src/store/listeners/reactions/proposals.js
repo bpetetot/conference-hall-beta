@@ -40,10 +40,7 @@ export const nextProposal = async (action, store, { router }) => {
     store.ui.organizer.proposal.set({ proposalIndex: nextIndex })
     store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
     const filters = store.ui.organizer.proposals.get()
-    router.push({
-      pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
-      query: filters,
-    })
+    router.push('organizer-event-proposal-page', { eventId, proposalId }, filters)
   }
 }
 
@@ -57,26 +54,26 @@ export const previousProposal = async (action, store, { router }) => {
     store.ui.organizer.proposal.set({ proposalIndex: prevIndex })
     store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
     const filters = store.ui.organizer.proposals.get()
-    router.push({
-      pathname: `/organizer/event/${eventId}/proposal/${proposalId}`,
-      query: filters,
-    })
+    router.push('organizer-event-proposal-page', { eventId, proposalId }, filters)
   }
 }
 
 export const exportProposals = async (action, store, { router }) => {
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getParam('eventId')
   store.ui.organizer.proposalsExport.update({ isExporting: true })
 
   const token = await firebase.auth().currentUser.getIdToken()
 
   // get proposal filters & sort from query params
-  const { search } = router.get()
+  const queryParams = router.getQueryParams()
+  const query = encodeURI(Object.entries(queryParams)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&'))
 
   // fetch proposal export
   try {
     const response = await fetch(
-      `/api/private/export/${eventId}${search}`,
+      `/api/private/export/${eventId}?${query}`,
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
