@@ -1,7 +1,7 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import { reduxForm } from 'redux-form'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import CFPForm from './cfp'
 
@@ -17,7 +17,7 @@ const mapStore = (store, { eventId }) => {
 }
 
 export default compose(
-  forRoute.absolute('EDIT_EVENT_CFP'),
+  forRoute.absolute('organizer-event-edit-cfp'),
   inject(mapStore),
   reduxForm({ form: FORM_NAME }),
 )(CFPForm)

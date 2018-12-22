@@ -18,7 +18,9 @@ export default [
   when('@@krml/INIT')(firebase.init),
   when('@@krml/INIT')(app.init),
   /* router */
-  when('ROUTER_LOCATION_CHANGED')(router.onRouteChanged),
+  when('@@router/ROUTE_FOUND')(router.onRouteChanged),
+  when('@@router/REPLACE_WITH_NEXT_URL')(router.replaceWithNextUrl),
+  when('@@router/REDIRECT_TO_NEXT_URL')(router.redirectToNextUrl),
   /* firebase actions */
   when('@@firebase/SIGNED_IN')(auth.signedIn),
   when('@@firebase/SIGNED_OUT')(auth.signedOut),

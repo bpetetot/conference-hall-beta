@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import Home from './home'
 import Login from './login'
@@ -15,4 +15,4 @@ const Conference = () => (
   </Fragment>
 )
 
-export default forRoute('HOME')(Conference)
+export default forRoute('home')(Conference)

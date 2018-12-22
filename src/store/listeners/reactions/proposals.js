@@ -5,7 +5,7 @@ import * as firebaseProposals from 'firebase/proposals'
 
 export const updateProposal = async (action, store, { router }) => {
   // get needed inputs
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getParam('eventId')
   const { proposal, options } = action.payload
   // update proposal
   await firebaseProposals.updateProposal(eventId, proposal, options)
@@ -15,8 +15,8 @@ export const updateProposal = async (action, store, { router }) => {
 
 export const getProposal = async (action, store, { router }) => {
   // get event & proposal id from router
-  const eventId = router.getRouteParam('eventId')
-  const proposalId = router.getRouteParam('proposalId')
+  const eventId = router.getParam('eventId')
+  const proposalId = router.getParam('proposalId')
   // check if already in the store
   const inStore = store.data.proposals.get(proposalId)
   if (!inStore) {
@@ -31,7 +31,7 @@ export const getProposal = async (action, store, { router }) => {
 }
 
 export const nextProposal = async (action, store, { router }) => {
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getParam('eventId')
   const { proposalIndex } = store.ui.organizer.proposal.get()
   const proposalKeys = store.data.proposals.getKeys()
   const nextIndex = proposalIndex + 1
@@ -48,7 +48,7 @@ export const nextProposal = async (action, store, { router }) => {
 }
 
 export const previousProposal = async (action, store, { router }) => {
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getParam('eventId')
   const { proposalIndex } = store.ui.organizer.proposal.get()
   const proposalKeys = store.data.proposals.getKeys()
   const prevIndex = proposalIndex - 1

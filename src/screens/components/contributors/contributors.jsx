@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import { GITHUB_REPO, CONTRIBUTORS_API } from 'helpers/github'
 import IconLabel from 'components/iconLabel'
@@ -42,4 +42,8 @@ class Contributors extends Component {
   }
 }
 
-export default forRoute.absolute('CONTRIBUTORS')(Contributors)
+export default forRoute.absolute([
+  'public-contributors',
+  'organizer-contributors',
+  'speaker-contributors',
+])(Contributors)

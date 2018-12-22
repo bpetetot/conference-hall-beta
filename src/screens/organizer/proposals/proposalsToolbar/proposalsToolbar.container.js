@@ -3,14 +3,14 @@ import { inject } from '@k-ramel/react'
 import ProposalToobar from './proposalsToolbar'
 
 const mapStore = (store, props, { router }) => {
-  const eventId = router.getRouteParam('eventId')
-  const { deliberationActive } = store.data.events.get(eventId) || {}
-  const sortOrders = router.getParentResultParam('sortOrders')
-  const ratings = router.getParentResultParam('ratings')
-  const statuses = router.getParentResultParam('statuses')
+  const eventId = router.getParam('eventId')
+  const sortOrders = router.getParam('sortOrders')
+  const ratings = router.getParam('ratings')
+  const statuses = router.getParam('statuses')
+  const { deliberationActive, formats, categories } = store.data.events.get(eventId) || {}
   const filters = store.ui.organizer.proposals.get()
-  const { formats, categories } = store.data.events.get(eventId) || {}
   const { isExporting } = store.ui.organizer.proposalsExport.get()
+
   return {
     statuses,
     ratings,

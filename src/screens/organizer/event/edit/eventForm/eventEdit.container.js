@@ -1,7 +1,7 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import { formValueSelector } from 'redux-form'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import EventForm from '../../form'
 
@@ -23,6 +23,6 @@ const mapStore = (store, { eventId }) => {
 }
 
 export default compose(
-  forRoute.absolute('EDIT_EVENT'), //
+  forRoute.absolute('organizer-event-edit'), //
   inject(mapStore), //
 )(EventForm)

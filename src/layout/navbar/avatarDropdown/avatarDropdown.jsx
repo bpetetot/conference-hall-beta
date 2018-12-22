@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import IconLabel from 'components/iconLabel'
 import Avatar from 'components/avatar'
@@ -9,7 +9,7 @@ import Dropdown from 'components/dropdown'
 import './avatarDropdown.css'
 
 const AvatarDropdown = ({
-  baseRoute, displayName, photoURL, signout,
+  displayName, photoURL, contributorsRoute, signout,
 }) => {
   const avatar = (
     <Avatar src={photoURL} name={displayName} className="avatar-dropdown" />
@@ -17,10 +17,10 @@ const AvatarDropdown = ({
   return (
     <Dropdown action={avatar}>
       <div>{displayName}</div>
-      <Link href="/">
+      <Link code="home">
         <IconLabel icon="fa fa-home" label="Conference Hall" />
       </Link>
-      <Link href={`${baseRoute}/contributors`}>
+      <Link code={contributorsRoute}>
         <IconLabel icon="fa fa-github-alt" label="Contributors" />
       </Link>
       <button onClick={signout} type="button">
@@ -31,14 +31,13 @@ const AvatarDropdown = ({
 }
 
 AvatarDropdown.propTypes = {
-  baseRoute: PropTypes.string,
   displayName: PropTypes.string,
   photoURL: PropTypes.string,
+  contributorsRoute: PropTypes.string.isRequired,
   signout: PropTypes.func.isRequired,
 }
 
 AvatarDropdown.defaultProps = {
-  baseRoute: undefined,
   displayName: undefined,
   photoURL: undefined,
 }

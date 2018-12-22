@@ -1,6 +1,6 @@
 import React from 'react'
 import { compose } from 'redux'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import { protect } from 'store/reducers/auth'
 import AppLayout from 'layout'
@@ -16,8 +16,8 @@ import MyEvents from './events'
 import OrganizationCreate from './organization/create'
 import OrganizationEdit from './organization/edit'
 import OrganizationPage from './organization/page'
+import InviteOrganizer from './organization/invite'
 import MyOrganizations from './organizations'
-import InviteOrganizer from './inviteOrganizer'
 import Proposals from './proposals'
 import Proposal from './proposal'
 
@@ -31,12 +31,12 @@ const Organizer = () => (
     <OrganizationCreate />
     <OrganizationEdit />
     <OrganizationPage />
-    <MyOrganizations />
     <InviteOrganizer />
+    <MyOrganizations />
     <Proposals />
     <Proposal />
     <Contributors />
   </AppLayout>
 )
 
-export default compose(forRoute('HOME_ORGANIZER'), protect, restrictBeta)(Organizer)
+export default compose(forRoute('organizer'), protect, restrictBeta)(Organizer)

@@ -1,11 +1,10 @@
 import { inject } from '@k-ramel/react'
-import { isOrganizerRoute, isSpeakerRoute } from 'store/drivers/redux-little-router'
 import classnames from 'classnames'
 
-const mapStore = (store, { className }) => ({
+const mapStore = (store, { className }, { router }) => ({
   className: classnames('default-theme', className, {
-    'red-theme': isOrganizerRoute(store.getState()),
-    'blue-theme': isSpeakerRoute(store.getState()),
+    'red-theme': router.getParam('root') === 'organizer',
+    'blue-theme': router.getParam('root') === 'speaker',
   }),
 })
 

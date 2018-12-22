@@ -1,4 +1,4 @@
-import router from './redux-little-router'
+import router from './router'
 import form from './redux-form'
 
 export default {
