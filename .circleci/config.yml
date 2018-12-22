@@ -55,6 +55,50 @@ jobs:
             yarn build
             yarn size
 
+  test-e2e:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - run:
+          name: Set environment variables
+          command: |
+            echo 'export REACT_APP_AUTH_PROVIDERS="google,twitter,github,facebook"' >> $BASH_ENV
+            echo 'export REACT_APP_API_KEY="$E2E_FIREBASE_API_KEY"' >> $BASH_ENV
+            echo 'export REACT_APP_AUTH_DOMAIN="$E2E_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export REACT_APP_PROJECT_ID="$E2E_FIREBASE_PROJECT_ID"' >> $BASH_ENV
+            echo 'export REACT_APP_GOOGLE_ANALYTICS_ID=""' >> $BASH_ENV
+            echo 'export PUBLIC_URL="https://$E2E_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export FIREBASE_DEPLOY_TOKEN="$E2E_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV
+            echo 'export FIREBASE_SERVICE_ACCOUNT="$E2E_FIREBASE_SERVICE_ACCOUNT"' >> $BASH_ENV
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run:
+          name: Install node dependencies
+          command: |
+            yarn
+            cd functions
+            yarn
+      - save_cache:
+          paths:
+            - node_modules
+            - functions/node_modules
+            - ~/.cache/yarn
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Build the app
+          command: yarn build
+      - run:
+          name: Deploy to Firebase
+          command: ./node_modules/.bin/firebase deploy --project=$E2E_FIREBASE_PROJECT_ID --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
+      - run:
+          name: Create serviceAccount.json file
+          command: |
+            echo ${HOME}
+            echo $FIREBASE_SERVICE_ACCOUNT | base64 --decode > ${HOME}/serviceAccount.json
+
   deploy-dev:
     docker:
       - image: circleci/node:8
