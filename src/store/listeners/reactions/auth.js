@@ -34,10 +34,10 @@ export const signin = async (action, store) => {
 
 export const signout = (action, store, { router }) => {
   firebase.auth().signOut()
-  router.push('/')
+  router.push('home')
 }
 
-export const signedIn = async (action, store, { router }) => {
+export const signedIn = async (action, store) => {
   let user = pick(action.payload, ['uid', 'displayName', 'photoURL', 'email'])
 
   // set auth initialized and authenticated
@@ -58,11 +58,8 @@ export const signedIn = async (action, store, { router }) => {
   const organizations = await fetchUserOrganizations(user.uid)
   store.data.organizations.set(organizations.docs.map(ref => ({ id: ref.id, ...ref.data() })))
 
-  // go to the next url if exists
-  const next = router.getQueryParam('next')
-  if (next) {
-    router.replace(next)
-  }
+  // go to the redirect url if exists
+  store.dispatch('@@router/REDIRECT_TO_NEXT_URL')
 }
 
 export const signedOut = (action, store) => {

@@ -1,21 +1,36 @@
+import isEmpty from 'lodash/isEmpty'
+import startOfDay from 'date-fns/start_of_day'
+import endOfDay from 'date-fns/end_of_day'
 import isAfter from 'date-fns/is_after'
 import isBefore from 'date-fns/is_before'
-import isEmpty from 'lodash/isEmpty'
 import { toDate } from 'helpers/firebase'
 
+/**
+ * Compute if the state of the CFP according timezones.
+ * TODO: CODE DUPLICATED in cloud function (share it when monorepo)
+ * @param {*} event Event
+ */
 export const getEventCfpState = (event) => {
   if (event.type === 'meetup') {
     return event.cfpOpened ? 'opened' : 'closed'
   }
-  if (event.type === 'conference') {
-    if (isEmpty(event.cfpDates)) return 'not-started'
-    const { start, end } = event.cfpDates
-    const today = new Date()
-    if (isBefore(today, toDate(start))) return 'not-started'
-    if (isAfter(today, toDate(end))) return 'closed'
-    return 'opened'
+
+  const { cfpDates } = event
+  if (isEmpty(cfpDates)) {
+    return 'not-started'
   }
-  return 'closed'
+
+  const start = startOfDay(toDate(cfpDates.start))
+  const end = endOfDay(toDate(cfpDates.end))
+  const today = new Date()
+
+  if (isBefore(today, start)) {
+    return 'not-started'
+  }
+  if (isAfter(today, end)) {
+    return 'closed'
+  }
+  return 'opened'
 }
 
 /**

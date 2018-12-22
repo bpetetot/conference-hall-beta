@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import isEmpty from 'lodash/isEmpty'
 
 import './inline.css'
 
 class Inline extends React.Component {
   join = children => children.reduce((result, child, index) => {
     if (!child) return result
-    if (index === 0) return [...result, this.renderItem(child, index)]
+    if (index === 0 || isEmpty(result)) return [this.renderItem(child, index)]
     return [...result, this.renderSeparator(`${index}-separator`), this.renderItem(child, index)]
   }, [])
 

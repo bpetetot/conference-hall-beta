@@ -1,0 +1,27 @@
+.paging {
+  display: flex;
+  margin: 1em 0;
+}
+
+.paging-button {
+  padding: 10px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.page-button-previous {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-right-width: 0px;
+}
+
+.page-button-next {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left-width: 0px;
+}
+
+.paging .current-page {
+  color: var(--secondary-color);
+  font-weight: 700;
+}

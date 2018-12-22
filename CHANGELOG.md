@@ -1,5 +1,81 @@
 # Changelog
 
+<a name="0.4.0"></a>
+## 0.4.0 (2018-12-14)
+
+### Added
+
+- ✨ add profile page for organizers ([#383](https://github.com/bpetetot/conference-hall/issues/383)) [[53c7104](https://github.com/bpetetot/conference-hall/commit/53c7104ab5c37e76568b3d77634473054fa49cf4)]
+- ✨ deliberation and confirmation emails of proposals ([#343](https://github.com/bpetetot/conference-hall/issues/343)) [[27e1170](https://github.com/bpetetot/conference-hall/commit/27e117084aa518c232c8a34e9f9b99c8268038f2)]
+- ✨ display speaker name in event proposals list ([#399](https://github.com/bpetetot/conference-hall/issues/399)) [[9d0893a](https://github.com/bpetetot/conference-hall/commit/9d0893aa6e9877a6ab31128b3a8bd2ef156f90e4)]
+
+### Changed
+
+- ⬆️ update firebase, luxon, popper, react-markdown... ([#384](https://github.com/bpetetot/conference-hall/issues/384)) [[7718c29](https://github.com/bpetetot/conference-hall/commit/7718c29c15c5226f15c33a4deea94fbdbb799e8f)]
+- ⬆️ update firebase, luxon for cloud functions ([#385](https://github.com/bpetetot/conference-hall/issues/385)) [[a652188](https://github.com/bpetetot/conference-hall/commit/a6521885e4fdd1b47b75206e6275bef3ee9d092f)]
+- ⬆️ update deps k-ramel, date-fns... ([#392](https://github.com/bpetetot/conference-hall/issues/392)) [[4b411d2](https://github.com/bpetetot/conference-hall/commit/4b411d2451dd786df7c5e1ed44587dc7302eedc5)]
+- ♻️ use of react-datepicker ([#378](https://github.com/bpetetot/conference-hall/issues/378)) [[5cd9e28](https://github.com/bpetetot/conference-hall/commit/5cd9e28a06386a2371554db6c8bd485734ceeb15)]
+
+
+<a name="0.3.0"></a>
+## 0.3.0 (2018-11-25)
+
+### Added
+
+- ✨ add event info on speaker and organizer list ([#349](https://github.com/bpetetot/conference-hall/issues/349)) [[8d3cf09](https://github.com/bpetetot/conference-hall/commit/8d3cf09e5c33dc71025a7cd3deacf6207cb37a1c)]
+- ✨ add event visibility in organizer event list ([#363](https://github.com/bpetetot/conference-hall/issues/363)) [[55808f1](https://github.com/bpetetot/conference-hall/commit/55808f1f26bd2b8b2ebc0e458d3835bbe9f9c102)]
+
+### Changed
+
+- ⬆️ upgrade minor and patched dependencies versions ([#361](https://github.com/bpetetot/conference-hall/issues/361)) [[4a3b1fc](https://github.com/bpetetot/conference-hall/commit/4a3b1fcf4587d73efffc9174688eba46e5a51bf5)]
+- ♻️ refactor mobile sidebar ([#377](https://github.com/bpetetot/conference-hall/issues/377)) [[8a9b7f0](https://github.com/bpetetot/conference-hall/commit/8a9b7f001d21e65e2e1f20e72feedf922ef7a9b9)]
+
+### Miscellaneous
+
+- 📝 improve install documentation [[0f9ccbf](https://github.com/bpetetot/conference-hall/commit/0f9ccbf4a0b1962ace9088f1133416af7d38d69d)]
+- 📝 list current app features ([#366](https://github.com/bpetetot/conference-hall/issues/366)) [[2b30163](https://github.com/bpetetot/conference-hall/commit/2b30163c7c670d53d898eb768052c10075293458)]
+- 📝 add gitter badge ([#375](https://github.com/bpetetot/conference-hall/issues/375)) [[68b95d5](https://github.com/bpetetot/conference-hall/commit/68b95d58236baea50e4648c72400342244f96aaa)]
+
+
+<a name="0.2.0"></a>
+## 0.2.0 (2018-11-18)
+
+### Added
+
+- ✨ add "report a bug" link ([#335](https://github.com/bpetetot/conference-hall/issues/335)) [[c5c7b41](https://github.com/bpetetot/conference-hall/commit/c5c7b41efeaec66412db25c29329322a6bd51cfb)]
+- ✨ add private events ([#351](https://github.com/bpetetot/conference-hall/issues/351)) [[ad4f463](https://github.com/bpetetot/conference-hall/commit/ad4f463df72a510f010abb3022d675dcb2a26082)]
+
+### Changed
+
+- ⬆️ use of node 8 with cloud functions ([#336](https://github.com/bpetetot/conference-hall/issues/336)) [[942cda9](https://github.com/bpetetot/conference-hall/commit/942cda96af32bdc26eb8ef551afb343ce79d7dac)]
+
+### Removed
+
+- 🔥 remove temporary Apis ([#339](https://github.com/bpetetot/conference-hall/issues/339)) [[10c39ce](https://github.com/bpetetot/conference-hall/commit/10c39ce3144e937e09a1ae1ee947599926cb9c3f)]
+- 🔥 preload cloud functions to avoid functions cold-start ([#359](https://github.com/bpetetot/conference-hall/issues/359)) [[6bd90d6](https://github.com/bpetetot/conference-hall/commit/6bd90d63b04e8e35d9c96cb33060b9dd26dc4703)]
+
+### Security
+
+- 🔒 use cloud functions to submit / unsubmit talks ([#338](https://github.com/bpetetot/conference-hall/issues/338)) [[8d67ef9](https://github.com/bpetetot/conference-hall/commit/8d67ef956821d2c34e2c9975a615c6485790a332)]
+
+### Miscellaneous
+
+- 💄 fix radio group overflow ([#352](https://github.com/bpetetot/conference-hall/issues/352)) [[d32b21c](https://github.com/bpetetot/conference-hall/commit/d32b21c3a1c7828afe3cd1e703ab5051fc66da14)]
+
+
+<a name="0.1.0"></a>
+## 0.1.0 (2018-11-03)
+
+### Added
+
+- 👷 auto-deploy on staging and production ([#333](https://github.com/bpetetot/conference-hall/issues/333)) [[51c21fa](https://github.com/bpetetot/conference-hall/commit/51c21faa0831ceb39390b7f698c709022136bf27)]
+- ✨ add paging to proposals list ([#334](https://github.com/bpetetot/conference-hall/issues/334)) [[ea9287f](https://github.com/bpetetot/conference-hall/commit/ea9287ff4671c69833f0aa6c21c46fd717d49747)]
+
+### Changed
+
+- ⬆️ upgrade libs (react, firebase, docz, k-ramel) ([#332](https://github.com/bpetetot/conference-hall/issues/332)) [[154a732](https://github.com/bpetetot/conference-hall/commit/154a732b71a77652d6a8db27023c222782b2ec6a)]
+
+
 <a name="0.1.0-beta"></a>
 ## 0.1.0-beta
 

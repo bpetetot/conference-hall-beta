@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
@@ -24,19 +25,13 @@ const ApiForm = ({
             Generate API Key
           </Button>
         </Label>
-        <div className="api-label">
-          Before enabling API, read the documentation available into the{' '}
-          <a href="" target="_NEW">
-            Github repository
-          </a>
-        </div>
       </div>
       {apiActive && (
         <Fragment>
           <h2 className="api-title">APIs description</h2>
           <ApiCard
             name="GET /api/v1/event/{id}"
-            description="Expose formats, categories, accepted talks and speakers of the event"
+            description="Expose formats, categories, proposals and speakers of the event"
             endpoint={`${origin}/api/v1/event/${eventId}?key=${apiKey}`}
           />
         </Fragment>

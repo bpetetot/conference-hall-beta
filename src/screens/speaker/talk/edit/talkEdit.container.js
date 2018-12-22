@@ -1,6 +1,6 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 import TalkForm from '../components/talkForm'
@@ -8,7 +8,7 @@ import TalkForm from '../components/talkForm'
 const FORM_NAME = 'talk-edit'
 
 const mapStore = (store, props, { router }) => {
-  const talkId = router.getRouteParam('talkId')
+  const talkId = router.getParam('talkId')
   const talk = store.data.talks.get(talkId)
   return {
     loaded: !!talk,
@@ -20,7 +20,7 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute.absolute('EDIT_TALK'), //
+  forRoute.absolute('speaker-talk-edit'), //
   inject(mapStore), //
   loader, //
 )(TalkForm)

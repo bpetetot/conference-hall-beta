@@ -2,19 +2,24 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "private": true,
+  "engines": {
+    "node": "8"
+  },
   "scripts": {
     "api": "firebase serve --only hosting,functions",
-    "shell": "firebase experimental:functions:shell",
+    "shell": "firebase functions:shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
   "dependencies": {
-    "cors": "^2.8.4",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
-    "firebase-admin": "^6.0.0",
-    "firebase-functions": "^2.0.5",
-    "form-data": "^2.3.2",
+    "firebase-admin": "^6.3.0",
+    "firebase-functions": "^2.1.0",
+    "form-data": "^2.3.3",
+    "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "luxon": "^1.8.2"
   }
 }

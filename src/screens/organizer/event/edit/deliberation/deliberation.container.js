@@ -1,6 +1,6 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import DeliberationForm from './deliberation'
 
@@ -11,6 +11,7 @@ const mapStore = (store, { eventId }) => {
   } = store.data.events.get(eventId) || {}
   return {
     deliberationActive,
+    displayOrganizersRatings,
     onActiveDeliberation: e => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_DELIBERATION',
       payload: {
@@ -20,7 +21,6 @@ const mapStore = (store, { eventId }) => {
         },
       },
     }),
-    displayOrganizersRatings,
     onDisplayOrganizersRatings: e => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_DISPLAY_ORGANIZERS_RATINGS',
       payload: {
@@ -33,4 +33,4 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(forRoute.absolute('EDIT_EVENT_DELIBERATION'), inject(mapStore))(DeliberationForm)
+export default compose(forRoute.absolute('organizer-event-edit-deliberation'), inject(mapStore))(DeliberationForm)

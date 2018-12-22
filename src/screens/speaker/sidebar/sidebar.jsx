@@ -8,10 +8,10 @@ import EventSidebar from './event'
 const SpeakerSideBar = ({ fullname, className }) => (
   <SideBar className={className}>
     <SideBarPanel label={fullname}>
-      <SideBarLink to="/speaker/profile">
+      <SideBarLink code="speaker-profile">
         <IconLabel icon="fa fa-user-o" label="Profile" />
       </SideBarLink>
-      <SideBarLink to="/speaker">
+      <SideBarLink code="speaker">
         <IconLabel icon="fa fa-microphone" label="My talks" />
       </SideBarLink>
     </SideBarPanel>

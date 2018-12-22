@@ -1,6 +1,5 @@
 import compareDesc from 'date-fns/compare_desc'
 import { set, unset } from 'immutadot'
-
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 
 export const createTalk = async (action, store, { form, router }) => {
@@ -15,7 +14,7 @@ export const createTalk = async (action, store, { form, router }) => {
     speakers: { [uid]: true },
   })
   // go to talk page
-  router.push(`/speaker/talk/${ref.id}`)
+  router.push('speaker-talk-page', { talkId: ref.id })
 }
 
 export const updateTalk = (action, store, { form, router }) => {
@@ -26,11 +25,19 @@ export const updateTalk = (action, store, { form, router }) => {
   // update talk into data store
   store.data.talks.update(talk)
   // go to talk page
-  router.push(`/speaker/talk/${talk.id}`)
+  router.push('speaker-talk-page', { talkId: talk.id })
+}
+
+export const updateTalkSubmissionState = (action, store) => {
+  const { eventId, talkId, state } = action.payload
+  const talk = store.data.talks.get(talkId)
+  const updatedTalk = set(talk, `submissions[${eventId}].state`, state)
+  talkCrud.update(updatedTalk)
+  store.data.talks.update(updatedTalk)
 }
 
 export const fetchTalk = async (action, store, { router }) => {
-  const talkId = action.payload || router.getRouteParam('talkId')
+  const talkId = action.payload || router.getParam('talkId')
   if (!talkId) return
   // check if already in the store
   const current = store.data.talks.get(talkId)
@@ -77,5 +84,5 @@ export const deleteTalk = async (action, store, { router }) => {
   store.data.talks.remove([talkId])
   store.ui.speaker.myTalks.remove([talkId])
 
-  router.push('/speaker')
+  router.push('speaker')
 }

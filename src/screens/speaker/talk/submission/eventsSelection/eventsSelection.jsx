@@ -1,22 +1,46 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import { toDate } from 'helpers/firebase'
-
 import { List, ListItem } from 'components/list'
-import RelativeDate from 'components/relativeDate'
+import Badge from 'components/badge'
+import IconLabel from 'components/iconLabel'
 import NoEvents from 'screens/speaker/components/noEvents'
 import Status from 'screens/components/talk/status'
+import EventDates from 'screens/components/eventDates'
+
+import styles from './eventsSelection.module.css'
 
 const TalksSelection = ({ talkId, events, onSelect }) => (
   <List
     array={events}
     noResult={<NoEvents />}
-    renderRow={({ id, name, updateTimestamp }) => (
+    renderRow={({
+      id, name, type, address, conferenceDates,
+    }) => (
       <ListItem
         key={id}
-        title={name}
-        subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
+        title={(
+          <div className={styles.title}>
+            <span>{name}</span>
+            <Badge
+              pill
+              outline
+              success={type === 'meetup'}
+              info={type === 'conference'}
+              className={styles.type}
+            >
+              {type}
+            </Badge>
+          </div>
+        )}
+        subtitle={(
+          <Fragment>
+            {type === 'conference' && (
+              <EventDates dates={conferenceDates} className={styles.dates} />
+            )}
+            <IconLabel icon="fa fa-map-marker" label={address} />
+          </Fragment>
+        )}
         info={<Status eventId={id} talkId={talkId} />}
         onSelect={() => onSelect(id)}
       />

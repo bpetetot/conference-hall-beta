@@ -1,5 +1,7 @@
 import firebase from 'firebase/app'
 import omit from 'lodash/omit'
+import toLower from 'lodash/toLower'
+import deburr from 'lodash/deburr'
 
 /**
  * Return the proposal with the given id
@@ -23,7 +25,12 @@ export const fetchEventProposals = async (
   eventId,
   uid,
   {
-    categories, formats, state, sortOrder, ratings,
+    categories,
+    formats,
+    state,
+    sortOrder,
+    ratings,
+    search,
   } = {},
 ) => {
   let query = firebase
@@ -56,52 +63,22 @@ export const fetchEventProposals = async (
   }
 
   const result = await query.get()
-  const proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  let proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+
+  // add search by title (client filter)
+  if (search) {
+    const searchQuery = deburr(toLower(search))
+    proposals = proposals.filter(proposal => deburr(toLower(proposal.title)).includes(searchQuery))
+  }
 
   // add ratings filter (client filter)
   if (ratings === 'rated') {
-    return proposals.filter(proposal => proposal.usersRatings && !!proposal.usersRatings[uid])
+    proposals = proposals.filter(proposal => proposal.usersRatings && !!proposal.usersRatings[uid])
+  } else if (ratings === 'notRated') {
+    proposals = proposals.filter(proposal => !proposal.usersRatings || !proposal.usersRatings[uid])
   }
-  if (ratings === 'notRated') {
-    return proposals.filter(proposal => !proposal.usersRatings || !proposal.usersRatings[uid])
-  }
+
   return proposals
-}
-
-/**
- * Add a proposal to an event
- * @param {string} eventId event id
- * @param {object} submittedTalk submittedTalk data
- */
-export const addProposal = (eventId, submittedTalk) => {
-  const { submissions, ...copyTalk } = submittedTalk
-  firebase
-    .firestore()
-    .collection('events')
-    .doc(eventId)
-    .collection('proposals')
-    .doc(submittedTalk.id)
-    .set({
-      ...copyTalk,
-      rating: null,
-      state: 'submitted',
-      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    })
-}
-
-/**
- * Remove a proposal from an event
- * @param {string} eventId event id
- * @param {string} talkId talk id
- */
-export const removeProposal = async (eventId, talkId) => {
-  await firebase
-    .firestore()
-    .collection('events')
-    .doc(eventId)
-    .collection('proposals')
-    .doc(talkId)
-    .delete()
 }
 
 export const updateProposal = (eventId, proposal, options = {}) => {

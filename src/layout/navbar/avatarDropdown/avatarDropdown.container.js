@@ -1,16 +1,22 @@
 import { inject } from '@k-ramel/react'
 
-import { getBaseRoute } from 'store/drivers/redux-little-router'
 import AvatarDropdown from './avatarDropdown'
 
-const mapStore = (store) => {
+const mapStore = (store, props, { router }) => {
   const { uid } = store.auth.get()
   const { displayName, photoURL } = store.data.users.get(uid) || {}
-  const baseRoute = getBaseRoute(store.getState())
+
+  let contributorsRoute = 'public-contributors'
+  if (router.getParam('root') === 'speaker') {
+    contributorsRoute = 'speaker-contributors'
+  } else if (router.getParam('root') === 'organizer') {
+    contributorsRoute = 'organizer-contributors'
+  }
+
   return {
-    baseRoute,
     displayName,
     photoURL,
+    contributorsRoute,
     signout: () => store.dispatch('@@ui/SIGN_OUT'),
   }
 }

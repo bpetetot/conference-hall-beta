@@ -2,22 +2,47 @@
 
 [![circleci](https://circleci.com/gh/bpetetot/conference-hall.svg?style=shield)](https://circleci.com/gh/bpetetot/conference-hall)
 [![Greenkeeper badge](https://badges.greenkeeper.io/bpetetot/conference-hall.svg)](https://greenkeeper.io/)
+[![Gitter](https://badges.gitter.im/conference-hall.svg)](https://gitter.im/conference-hall)
+
+**[https://conference-hall.io](https://conference-hall.io)**
+
+## Features
+
+**You are a Speaker:**
+- ✨ Write the absract of your talk
+- 🚀 Submit your talks to events (meetups and conferences)
+- 🤝 Invite co-speakers to your talk
+- 🔒 Social login
+
+**You are an Organizer:**
+- ❤️ Create your conference or meetup
+- 📣 Call for papers opens and closes automatically
+- ⚡️ Make it public or private
+- 👥 Use organization to share an event between organizers
+- 💡 Custom formats and categories for the talks
+- 📥 Send survey to speakers
+- ⭐️ Rate proposals to speed deliberation process
+- ✅ Mark proposals as accepted, declined...
+- 💌 Automatically send accept or reject emails to speakers
+- 👌 Get speaker confirmations
+- 🌍 API to query proposals
 
 ## Getting started
 
 ### Pre-requisites
 
 * node@9.11.2+
+* node@8 (for cloud functions)
 * yarn@1.10.1 or npm@5.6.0+
 
 ### Configure Firebase
 
 1. Create a firebase project with the [firebase console](https://console.firebase.google.com).
 
-  * activate "Cloud Firestore" for Database
-  * activate "Google Provider" for Authentication
+  * create a "Cloud Firestore" Database. It's okay to start in 'locked' mode. The rules will be overiden when you deploy.
+  * activate "Google" as a sign-in provider for Authentication
 
-2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables.
+2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables. You can get all these variables from the homepage by clicking "Add an application" and selecting the web icon.
 
   * REACT_APP_API_KEY=<API_KEY>
   * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>
@@ -44,6 +69,8 @@ yarn
 ```
 yarn start
 ```
+
+Before using the app, you'll need to deploy the firestore security rules at least once (see below for how to deploy with firebase)
 
 ### Run unit test
 
@@ -124,7 +151,7 @@ firebase use --add
 
 ```
 cd functions
-yarn
+yarn  # using node8
 cd ..
 ```
 

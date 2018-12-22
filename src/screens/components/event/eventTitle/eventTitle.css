@@ -1,9 +1,0 @@
-.event-title {
-  width: 100%;
-  text-align: center;
-}
-
-.event-title > .event-name {
-  color: var(--primary-color);
-  font-weight: 600;
-}

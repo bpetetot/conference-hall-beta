@@ -1,0 +1,14 @@
+.title {
+  width: 100%;
+  text-align: center;
+}
+
+.name {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.type {
+  margin-top: 1em;
+  font-size: 0.5em;
+}

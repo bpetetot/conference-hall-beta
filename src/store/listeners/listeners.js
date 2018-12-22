@@ -18,7 +18,9 @@ export default [
   when('@@krml/INIT')(firebase.init),
   when('@@krml/INIT')(app.init),
   /* router */
-  when('ROUTER_LOCATION_CHANGED')(router.onRouteChanged),
+  when('@@router/ROUTE_FOUND')(router.onRouteChanged),
+  when('@@router/REPLACE_WITH_NEXT_URL')(router.replaceWithNextUrl),
+  when('@@router/REDIRECT_TO_NEXT_URL')(router.redirectToNextUrl),
   /* firebase actions */
   when('@@firebase/SIGNED_IN')(auth.signedIn),
   when('@@firebase/SIGNED_OUT')(auth.signedOut),
@@ -32,6 +34,7 @@ export default [
   /* talks */
   when('@@ui/ON_CREATE_TALK')(talks.createTalk),
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
+  when('@@ui/ON_UPDATE_TALK_SUBMISSION_STATE')(talks.updateTalkSubmissionState),
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
   when('@@ui/ON_LOAD_SPEAKER_TALKS')(talks.fetchSpeakerTalks),
   when(/@@ui\/(.*)_SPEAKER_TO_TALK/g)(talks.updateSpeakerToTalk),
@@ -66,6 +69,7 @@ export default [
   when('@@ui/ON_UPDATE_PROPOSAL')(proposals.updateProposal),
   when('@@ui/ON_NEXT_PROPOSAL')(proposals.nextProposal),
   when('@@ui/ON_PREVIOUS_PROPOSAL')(proposals.previousProposal),
+  when('@@ui/EXPORT_PROPOSALS')(proposals.exportProposals),
   /* ratings */
   when('@@ui/ON_LOAD_RATINGS')(ratings.fetchRatings),
   when('@@ui/RATE_PROPOSAL')(ratings.rateProposal),

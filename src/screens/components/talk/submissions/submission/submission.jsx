@@ -1,16 +1,18 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import Status from '../../status'
 import './submission.css'
 
 const Submission = ({
-  talkId, eventId, name, onClickEvent,
+  talkId, eventId, name,
 }) => (
   <div className="talk-submission-event">
-    <a onClick={onClickEvent} role="button">
+    <Link code="speaker-event-page" eventId={eventId}>
       {name}
-    </a>
+    </Link>
     <div className="talk-submission-event-actions">
       <Status talkId={talkId} eventId={eventId} />
     </div>
@@ -21,7 +23,6 @@ Submission.propTypes = {
   talkId: PropTypes.string.isRequired,
   eventId: PropTypes.string.isRequired,
   name: PropTypes.string,
-  onClickEvent: PropTypes.func.isRequired,
 }
 
 Submission.defaultProps = {

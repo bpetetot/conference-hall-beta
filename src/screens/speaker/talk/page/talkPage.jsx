@@ -1,13 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import { TalkAbstract, TalkSpeakers, TalkSubmissions } from 'screens/components/talk'
+import {
+  TalkAbstract,
+  TalkSpeakers,
+  TalkSubmissions,
+  TalkDeliberationNotification,
+} from 'screens/components/talk'
 import DeleteTalkButton from './delete'
-
 import './talkPage.css'
 
 const TalkPage = ({
@@ -18,19 +22,20 @@ const TalkPage = ({
       <DeleteTalkButton talkId={id} />
       <Button secondary small>
         {btn => (
-          <Link href={`/speaker/talk/${id}/edit`} className={btn}>
+          <Link code="speaker-talk-edit" talkId={id} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}
       </Button>
       <Button accent>
         {btn => (
-          <Link href={`/speaker/talk/${id}/submission`} className={btn}>
+          <Link code="speaker-talk-submission" talkId={id} className={btn}>
             <IconLabel icon="fa fa-paper-plane" label="Submit" />
           </Link>
         )}
       </Button>
     </Titlebar>
+    <TalkDeliberationNotification submissions={submissions} />
     <div className="talk-page">
       <TalkAbstract
         className="talk-content"

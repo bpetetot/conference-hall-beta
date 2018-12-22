@@ -1,6 +1,6 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import TalkForm from '../components/talkForm'
 
@@ -10,6 +10,6 @@ const mapStore = store => ({
 })
 
 export default compose(
-  forRoute.absolute('CREATE_TALK'), //
+  forRoute.absolute('speaker-talk-create'), //
   inject(mapStore), //
 )(TalkForm)
