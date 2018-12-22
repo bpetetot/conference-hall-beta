@@ -15,7 +15,7 @@ export const createEvent = async (action, store, { router }) => {
     visibility: isPrivate ? 'private' : 'public',
   }
   const ref = await eventCrud.create(event)
-  router.push(`/organizer/event/${ref.id}`)
+  router.push('organizer-event-page', { eventId: ref.id })
 }
 
 export const updateEventForm = async (action, store) => {
@@ -61,7 +61,7 @@ export const generateNewApiKey = (action, store) => {
 }
 
 export const fetchEvent = async (action, store, { router }) => {
-  const eventId = action.payload || router.getRouteParam('eventId')
+  const eventId = action.payload || router.getParam('eventId')
   if (!eventId) return
   // check if already in the store
   const current = store.data.events.get(eventId)

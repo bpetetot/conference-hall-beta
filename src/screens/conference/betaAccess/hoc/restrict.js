@@ -8,7 +8,7 @@ export default (Component) => {
     static propTypes = {
       betaAccess: PropTypes.string,
       skipBetaAccess: PropTypes.bool.isRequired,
-      redirectBetaAccessForm: PropTypes.func.isRequired,
+      redirectBetaAccess: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
@@ -24,9 +24,9 @@ export default (Component) => {
     }
 
     checkAccess = () => {
-      const { betaAccess, skipBetaAccess, redirectBetaAccessForm } = this.props
+      const { betaAccess, skipBetaAccess, redirectBetaAccess } = this.props
       if (skipBetaAccess) return
-      if (!betaAccess) redirectBetaAccessForm()
+      if (!betaAccess) redirectBetaAccess()
     }
 
     render() {
@@ -35,13 +35,14 @@ export default (Component) => {
     }
   }
 
-  return inject((store, props, { router }) => {
+  return inject((store) => {
     const { uid } = store.auth.get() || {}
     const { betaAccess } = store.data.users.get(uid) || {}
+
     return {
       betaAccess,
       skipBetaAccess: process.env.NODE_ENV === 'development',
-      redirectBetaAccessForm: () => router.replace('/beta-access'),
+      redirectBetaAccess: () => store.dispatch({ type: '@@router/REPLACE_WITH_NEXT_URL', payload: 'beta-access' }),
     }
   })(BetaRestricted)
 }

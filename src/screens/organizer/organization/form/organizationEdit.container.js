@@ -1,13 +1,13 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 
 import OrganizationForm from './organizationForm'
 
 const mapStore = (store, ownProps, { router }) => {
-  const organizationId = router.getRouteParam('organizationId')
+  const organizationId = router.getParam('organizationId')
   const organization = store.data.organizations.get(organizationId)
   return {
     loaded: !!organization,
@@ -18,7 +18,7 @@ const mapStore = (store, ownProps, { router }) => {
 }
 
 export default compose(
-  forRoute.absolute('EDIT_ORGANIZATION'), //
+  forRoute.absolute('organizer-organization-edit'), //
   inject(mapStore), //
   loader,
 )(OrganizationForm)

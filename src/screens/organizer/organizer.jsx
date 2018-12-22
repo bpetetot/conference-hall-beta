@@ -1,6 +1,6 @@
 import React from 'react'
 import { compose } from 'redux'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import { protect } from 'store/reducers/auth'
 import AppLayout from 'layout'
@@ -39,4 +39,4 @@ const Organizer = () => (
   </AppLayout>
 )
 
-export default compose(forRoute('HOME_ORGANIZER'), protect, restrictBeta)(Organizer)
+export default compose(forRoute('organizer'), protect, restrictBeta)(Organizer)

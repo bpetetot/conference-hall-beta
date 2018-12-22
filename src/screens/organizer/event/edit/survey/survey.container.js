@@ -1,6 +1,6 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import SurveyForm from './survey'
 
@@ -33,4 +33,4 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(forRoute.absolute('EDIT_EVENT_SURVEY'), inject(mapStore))(SurveyForm)
+export default compose(forRoute.absolute('organizer-event-edit-survey'), inject(mapStore))(SurveyForm)

@@ -5,7 +5,7 @@ import loader from 'hoc-react-loader/build/core'
 import SurveyForm from './surveyForm'
 
 const mapState = (store, { uid }, { router }) => {
-  const eventId = router.getRouteParam('eventId')
+  const eventId = router.getParam('eventId')
   const { survey } = store.data.events.get(eventId) || {}
   const speakerSurvey = store.data.surveys.get(uid)
   return {

@@ -1,0 +1,42 @@
+.proposalsToolbar {
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.proposalsFilters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.proposalsFilters > * {
+  margin-right: 1em;
+}
+
+.proposalsFilters > select {
+  width: initial;
+  min-width: 10em;
+  max-width: 15em;
+}
+
+.proposalsFilters > input {
+  width: initial;
+  min-width: 10em;
+  max-width: 15em;
+}
+
+.proposalsActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 480px) {
+  .proposalsToolbar {
+    display: none;
+  }
+}

@@ -10,14 +10,14 @@ export const createTalk = async (action, store, { router }) => {
     owner: uid,
     speakers: { [uid]: true },
   })
-  router.push(`/speaker/talk/${ref.id}`)
+  router.push('speaker-talk-page', { talkId: ref.id })
 }
 
 export const updateTalk = (action, store, { router }) => {
   const talk = action.payload
   talkCrud.update(talk)
   store.data.talks.update(talk)
-  router.push(`/speaker/talk/${talk.id}`)
+  router.push('speaker-talk-page', { talkId: talk.id })
 }
 
 export const updateTalkSubmissionState = (action, store) => {
@@ -29,7 +29,7 @@ export const updateTalkSubmissionState = (action, store) => {
 }
 
 export const fetchTalk = async (action, store, { router }) => {
-  const talkId = action.payload || router.getRouteParam('talkId')
+  const talkId = action.payload || router.getParam('talkId')
   if (!talkId) return
   // check if already in the store
   const current = store.data.talks.get(talkId)
@@ -76,5 +76,5 @@ export const deleteTalk = async (action, store, { router }) => {
   store.data.talks.remove([talkId])
   store.ui.speaker.myTalks.remove([talkId])
 
-  router.push('/speaker')
+  router.push('speaker')
 }

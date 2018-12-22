@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { inject } from '@k-ramel/react'
+
 import LoadingIndicator from 'components/loader/loading'
 
 export default (Component) => {
@@ -11,7 +12,6 @@ export default (Component) => {
       initialized: PropTypes.bool.isRequired,
       userDataLoaded: PropTypes.bool.isRequired,
       redirectLogin: PropTypes.func.isRequired,
-      url: PropTypes.string.isRequired,
     }
 
     componentDidMount() {
@@ -24,10 +24,10 @@ export default (Component) => {
 
     checkAuth = () => {
       const {
-        authenticated, initialized, redirectLogin, url,
+        authenticated, initialized, redirectLogin,
       } = this.props
       if (initialized && !authenticated) {
-        redirectLogin(url)
+        redirectLogin()
       }
     }
 
@@ -39,15 +39,15 @@ export default (Component) => {
     }
   }
 
-  return inject((store, props, { router }) => {
+  return inject((store) => {
     const auth = store.auth.get()
     const userLoaded = store.data.users.hasKey(auth.uid)
     const orgaLoaded = store.data.organizations.isInitialized()
+
     return {
       ...auth,
       userDataLoaded: userLoaded && orgaLoaded,
-      url: `${store.getState().router.pathname}${store.getState().router.search}`,
-      redirectLogin: url => router.replace(`/login?next=${url}`),
+      redirectLogin: () => store.dispatch({ type: '@@router/REPLACE_WITH_NEXT_URL', payload: 'login' }),
     }
   })(ProtectedComponent)
 }

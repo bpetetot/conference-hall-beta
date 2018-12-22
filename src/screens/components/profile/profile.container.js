@@ -1,6 +1,6 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import Profile from './profile'
 
@@ -15,6 +15,6 @@ const mapStore = (store) => {
 }
 
 export default compose(
-  forRoute('USER_PROFILE'), //
+  forRoute(['speaker-profile', 'organizer-profile']), //
   inject(mapStore), //
 )(Profile)

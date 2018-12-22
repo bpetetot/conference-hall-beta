@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'redux-little-router'
+import Link from 'components/link'
 
-const SideBarLink = ({ children, to }) => (
+const SideBarLink = ({ children, code, ...rest }) => (
   <Link
-    href={to}
+    code={code}
     className="sidebar-link"
-    activeProps={{ className: 'sidebar-link sidebar-link-active' }}
+    classNameActive="sidebar-link-active"
+    {...rest}
   >
     {children}
   </Link>
@@ -14,7 +15,7 @@ const SideBarLink = ({ children, to }) => (
 
 SideBarLink.propTypes = {
   children: PropTypes.node.isRequired,
-  to: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
 }
 
 export default SideBarLink

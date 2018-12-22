@@ -8,18 +8,18 @@ export const create = async (action, store, { router }) => {
   const newUserOrganization = flow(set(`members.${uid}`, true), set('owner', uid))(data)
   const ref = await organizationCrud.create(newUserOrganization)
   store.data.organizations.add({ id: ref.id, ...newUserOrganization })
-  router.push(`/organizer/organizations/${ref.id}`)
+  router.push('organizer-organization-page', { organizationId: ref.id })
 }
 
 export const update = async (action, store, { router }) => {
   const data = action.payload
   await organizationCrud.update(data)
   store.data.organizations.update(data)
-  router.push(`/organizer/organizations/${data.id}`)
+  router.push('organizer-organization-page', { organizationId: data.id })
 }
 
 export const get = async (action, store, { router }) => {
-  const organizationId = action.payload || router.getRouteParam('organizationId')
+  const organizationId = action.payload || router.getParam('organizationId')
   if (!organizationId) return
   if (!store.data.organizations.hasKey(organizationId)) {
     const ref = await organizationCrud.read(organizationId)
@@ -40,7 +40,7 @@ export const addMember = async (action, store, { router }) => {
   const updated = set(organization, `members.${uid}`, true)
   await organizationCrud.update(updated)
   store.data.organizations.update(updated)
-  router.push(`/organizer/organizations/${organizationId}`)
+  router.push('organizer-organization-page', { organizationId })
 }
 
 export const removeMember = async (action, store, { router }) => {
@@ -49,5 +49,5 @@ export const removeMember = async (action, store, { router }) => {
   const updated = unset(organization, `members.${uid}`)
   await organizationCrud.update(updated)
   store.data.organizations.update(updated)
-  router.push(`/organizer/organizations/${organizationId}`)
+  router.push('organizer-organization-page', { organizationId })
 }

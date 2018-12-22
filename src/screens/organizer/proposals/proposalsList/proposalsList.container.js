@@ -1,6 +1,6 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import forRoute from 'hoc-little-router'
+import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 import ProposalsList from './proposalsList'
@@ -24,7 +24,7 @@ const mapStore = (store) => {
 }
 
 export default compose(
-  forRoute.absolute('PROPOSALS'), //
+  forRoute.absolute('organizer-event-proposals'), //
   inject(mapStore), //
   loader, //
 )(ProposalsList)

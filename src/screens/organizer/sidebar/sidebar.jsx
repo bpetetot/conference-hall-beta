@@ -8,13 +8,13 @@ import EventSideBar from './event'
 const OrganizerSideBar = ({ fullname, className }) => (
   <SideBar className={className}>
     <SideBarPanel label={fullname}>
-      <SideBarLink to="/organizer/profile">
+      <SideBarLink code="organizer-profile">
         <IconLabel icon="fa fa-user-o" label="Profile" />
       </SideBarLink>
-      <SideBarLink to="/organizer">
+      <SideBarLink code="organizer">
         <IconLabel icon="fa fa-calendar-o" label="My events" />
       </SideBarLink>
-      <SideBarLink to="/organizer/organizations">
+      <SideBarLink code="organizer-organizations">
         <IconLabel icon="fa fa-users" label="My organizations" />
       </SideBarLink>
     </SideBarPanel>
