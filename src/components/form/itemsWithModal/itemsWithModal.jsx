@@ -3,6 +3,7 @@ import React from 'react'
 import { Field } from 'react-final-form'
 import { FieldArray } from 'react-final-form-arrays'
 import uuid from 'uuid/v5'
+import isEqual from 'lodash/isEqual'
 
 import { Modal } from 'components/portals'
 import Button from 'components/button'
@@ -29,7 +30,7 @@ export default (name, Form) => class extends React.Component {
 
     render() {
       return (
-        <FieldArray name={name}>
+        <FieldArray name={name} isEqual={isEqual}>
           {({ fields }) => (
             <div className="items-form">
               {fields.map((item, index) => (
