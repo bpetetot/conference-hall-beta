@@ -1,4 +1,4 @@
-const { getOrganization } = require('../firestore/user')
+const { getOrganization } = require('./organization')
 
 const isUserEvent = async (uid, event) => {
   const { owner, organization } = event
