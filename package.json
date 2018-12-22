@@ -6,11 +6,15 @@
   "repository": "github:bpetetot/conference-hall",
   "scripts": {
     "start": "react-scripts start",
+    "start:dist": "npm run build && firebase serve --only hosting -p 3000",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
-    "cypress:run": "cypress run",
-    "cypress:open": "cypress open",
+
+    "cypress": "yarn cypress:config && cypress run",
+    "cypress:open": "yarn cypress:config && cypress open",
+    "cypress:config": "cypress-firebase createTestEnvFile",
+
     "lint": "eslint --ext js,jsx src",
     "doc": "docz dev",
     "doc:build": "docz build"
@@ -49,6 +53,7 @@
   "devDependencies": {
     "@babel/core": "7.1.2",
     "cypress": "^3.1.1",
+    "cypress-firebase": "^0.0.8",
     "docz": "^0.12.5",
     "dotenv": "^6.1.0",
     "enzyme": "^3.5.0",
