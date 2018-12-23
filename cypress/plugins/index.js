@@ -10,6 +10,7 @@ module.exports = (on, config) => {
   config.env.APP_API_KEY = process.env.REACT_APP_API_KEY
   config.env.APP_AUTH_DOMAIN = process.env.REACT_APP_AUTH_DOMAIN
   config.env.APP_PROJECT_ID = process.env.REACT_APP_PROJECT_ID
+  config.env.FIREBASE_TOKEN = process.env.FIREBASE_TOKEN
 
   return cypressFirebasePlugin(config)
 }

@@ -6,20 +6,37 @@ To run Cypress tests for Conference Hall, you have to configure a **dedicated Fi
 
 Follow the following steps to setup Cypress env.
 1. Create and configure a Firebase project for Conference Hall Cypress tests.
-2. Activate "Email address / Password" login in "Authentication" Tab.
-3. Add the following email / password with the Firebase Interface:
-    - **email:** cypress@conference-hall.io
-    - **password:** cypress
-4. Set Firebase environment variables in your `.env.local` file.
+2. Deploy the app on the instance
+3. Authenticate with a user to the app and get the user UID
+4. Copy the UID into `cypress/config.json` in the property `TEST_UID`
 
-  * CYPRESS_APP_API_KEY=<API_KEY>
-  * CYPRESS_APP_AUTH_DOMAIN=<AUTH_DOMAIN>
-  * CYPRESS_APP_PROJECT_ID=<PROJECT_ID>
-  * CYPRESS_APP_TOKEN=<TOKEN>
+## Configure & Execute Cypress locally
 
-## Execute
+1. From the firebase project settings, download a `serviceAccount.json` file and copy it to the project root folder
+2. Set Firebase environment variables in your `.env.local` file.
 
-1. Launch the app: `yarn start`
-2. Launch Cypress:
-   - With user interface: `yarn cypress:open`
-   - In headless mode: `yarn cypress:run`
+    * `REACT_APP_API_KEY=<API_KEY>`
+    * `REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>`
+    * `REACT_APP_PROJECT_ID=<PROJECT_ID>`
+    * `FIREBASE_TOKEN=<TOKEN>` you can get it with command: `firebase login:ci`
+
+3. Launch the app: `yarn start`
+4. Launch Cypress:
+
+    * With user interface: `yarn cypress:open`
+    * In headless mode: `yarn cypress`
+
+## Configure Cypress in the CI
+
+1. From the firebase project settings download a `serviceAccount.json` file
+2. Encode the `serviceAccount.json` file in base64
+
+    * `cat serviceAccount.json | base64`
+
+3. Set Firebase environment variables in your CI.
+
+    * `E2E_FIREBASE_API_KEY=<API_KEY>`
+    * `E2E_FIREBASE_AUTH_DOMAIN=<AUTH_DOMAIN>`
+    * `E2E_FIREBASE_PROJECT_ID=<PROJECT_ID>`
+    * `E2E_FIREBASE_TOKEN=<TOKEN>` you can get it with command: `firebase login:ci`
+    * `E2E_FIREBASE_SERVICE_ACCOUNT=<BASE64>` set the encoded base64 `serviceAccount.json` file
