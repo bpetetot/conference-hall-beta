@@ -8,7 +8,9 @@ Follow the following steps to setup Cypress env.
 1. Create and configure a Firebase project for Conference Hall Cypress tests.
 2. Deploy the app on the instance
 3. Authenticate with a user to the app and get the user UID
-4. Copy the UID into `cypress/config.json` in the property `TEST_UID`
+4. Configure the `cypress/config.json` with:
+    * The UID in the property `TEST_UID`
+    * The project ID in the property `FIREBASE_PROJECT_ID`
 
 ## Configure & Execute Cypress locally
 
