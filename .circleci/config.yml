@@ -47,7 +47,7 @@ jobs:
             echo 'export REACT_APP_PROJECT_ID="$E2E_FIREBASE_PROJECT_ID"' >> $BASH_ENV
             echo 'export REACT_APP_GOOGLE_ANALYTICS_ID=""' >> $BASH_ENV
             echo 'export PUBLIC_URL="https://$E2E_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
-            echo 'export FIREBASE_TOKEN="$E2E_FIREBASE_TOKEN"' >> $BASH_ENV
+            echo 'export FIREBASE_TOKEN="$E2E_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV
             echo 'export FIREBASE_SERVICE_ACCOUNT="$E2E_FIREBASE_SERVICE_ACCOUNT"' >> $BASH_ENV
       - checkout
       - restore_cache:

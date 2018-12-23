@@ -38,5 +38,5 @@ Follow the following steps to setup Cypress env.
     * `E2E_FIREBASE_API_KEY=<API_KEY>`
     * `E2E_FIREBASE_AUTH_DOMAIN=<AUTH_DOMAIN>`
     * `E2E_FIREBASE_PROJECT_ID=<PROJECT_ID>`
-    * `E2E_FIREBASE_TOKEN=<TOKEN>` you can get it with command: `firebase login:ci`
+    * `E2E_FIREBASE_DEPLOY_TOKEN=<TOKEN>` you can get it with command: `firebase login:ci`
     * `E2E_FIREBASE_SERVICE_ACCOUNT=<BASE64>` set the encoded base64 `serviceAccount.json` file
