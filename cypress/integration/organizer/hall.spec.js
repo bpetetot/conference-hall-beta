@@ -7,13 +7,13 @@ describe('Organizer Hall', () => {
     cy.visit(links.organizer.hall)
   })
 
-  after(() => { cy.logout() })
+  after(() => { cy.logoutFirebase() })
 
   it('Check the Organizer Hall page', () => {
     cy.contains('Organizer Hall')
     cy.contains('My events')
     cy.contains('Create event')
-    cy.contains('No event yet!')
+    cy.contains('No event yet !')
   })
 
   it('Check navbar dropdown', () => {

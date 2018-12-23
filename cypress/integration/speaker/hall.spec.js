@@ -7,7 +7,7 @@ describe('Speaker Hall', () => {
     cy.visit(links.speaker.hall)
   })
 
-  after(() => { cy.logout() })
+  after(() => { cy.logoutFirebase() })
 
   it('Check the Speaker Hall page', () => {
     cy.contains('Speaker Hall')

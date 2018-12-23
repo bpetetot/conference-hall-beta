@@ -95,9 +95,10 @@ jobs:
           command: ./node_modules/.bin/firebase deploy --project=$E2E_FIREBASE_PROJECT_ID --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
       - run:
           name: Create serviceAccount.json file
-          command: |
-            echo ${HOME}
-            echo $FIREBASE_SERVICE_ACCOUNT | base64 --decode > ${HOME}/serviceAccount.json
+          command: echo $FIREBASE_SERVICE_ACCOUNT | base64 --decode > ./serviceAccount.json
+      - run:
+          name: Run Cypress tests
+          command: yarn cypress
 
   deploy-dev:
     docker:
@@ -182,6 +183,7 @@ workflows:
       - lint
       - test
       - build
+      - test-e2e
       - deploy-dev:
           requires:
             - lint
