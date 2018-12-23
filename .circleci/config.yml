@@ -7,14 +7,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - cache-{{ checksum "package.json" }}
+          - cache-
       - run: yarn
       - save_cache:
           paths:
             - node_modules
-            - ~/.cache/yarn
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache
+          key: cache-{{ checksum "package.json" }}
       - run: yarn lint
 
   test:
@@ -24,40 +24,19 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - cache-{{ checksum "package.json" }}
+          - cache-
       - run: yarn
       - save_cache:
           paths:
             - node_modules
-            - ~/.cache/yarn
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache
+          key: cache-{{ checksum "package.json" }}
       - run: yarn test
-
-  build:
-    docker:
-      - image: circleci/node:8
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-      - run: yarn
-      - save_cache:
-          paths:
-            - node_modules
-            - ~/.cache/yarn
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Build and check bundle size
-          command:  |
-            yarn build
-            yarn size
 
   test-e2e:
     docker:
-      - image: circleci/node:8
+      - image: cypress/base:8
     steps:
       - run:
           name: Set environment variables
@@ -73,23 +52,25 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - cache-{{ checksum "package.json" }}
+          - cache-
       - run:
           name: Install node dependencies
           command: |
-            yarn
+            yarn install --frozen-lockfile
             cd functions
-            yarn
+            yarn install --frozen-lockfile
       - save_cache:
           paths:
             - node_modules
             - functions/node_modules
-            - ~/.cache/yarn
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache
+          key: cache-{{ checksum "package.json" }}
       - run:
-          name: Build the app
-          command: yarn build
+          name: Build and check bundle size
+          command:  |
+            yarn build
+            yarn size
       - run:
           name: Deploy to Firebase
           command: ./node_modules/.bin/firebase deploy --project=$E2E_FIREBASE_PROJECT_ID --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
@@ -98,7 +79,7 @@ jobs:
           command: echo $FIREBASE_SERVICE_ACCOUNT | base64 --decode > ./serviceAccount.json
       - run:
           name: Run Cypress tests
-          command: yarn cypress
+          command: yarn cypress --config baseUrl=$PUBLIC_URL
 
   deploy-dev:
     docker:
@@ -117,8 +98,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - cache-{{ checksum "package.json" }}
+          - cache-
       - run:
           name: Install node dependencies
           command: |
@@ -129,8 +110,8 @@ jobs:
           paths:
             - node_modules
             - functions/node_modules
-            - ~/.cache/yarn
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache
+          key: cache-{{ checksum "package.json" }}
       - run:
           name: Build the app
           command: yarn build
@@ -155,8 +136,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - cache-{{ checksum "package.json" }}
+          - cache-
       - run:
           name: Install node dependencies
           command: |
@@ -167,8 +148,8 @@ jobs:
           paths:
             - node_modules
             - functions/node_modules
-            - ~/.cache/yarn
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache
+          key: cache-{{ checksum "package.json" }}
       - run:
           name: Build app
           command: yarn build
@@ -182,7 +163,6 @@ workflows:
     jobs:
       - lint
       - test
-      - build
       - test-e2e
       - deploy-dev:
           requires:

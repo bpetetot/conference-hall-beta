@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "dev": "conference-hall",
+    "e2e": "conference-hall-e2e"
+  }
+}

@@ -25,7 +25,6 @@ yarn-error.log*
 
 # firebase
 firebase-debug.log*
-.firebaserc
 .runtimeconfig.json
 .firebase/
 serviceAccount.json
