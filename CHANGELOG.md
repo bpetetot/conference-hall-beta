@@ -1,5 +1,26 @@
 # Changelog
 
+<a name="0.5.0"></a>
+## 0.5.0 (2018-12-23)
+
+### Added
+
+- ✨ export event proposals in organizer page ([#393](https://github.com/bpetetot/conference-hall/issues/393)) [[36dbb1d](https://github.com/bpetetot/conference-hall/commit/36dbb1db1e9575b1cacf8e791c7ba7c63757d74b)]
+
+### Changed
+
+- ⬆️ upgrade babel, docz ([#405](https://github.com/bpetetot/conference-hall/issues/405)) [[e19f3e8](https://github.com/bpetetot/conference-hall/commit/e19f3e8ff93bc817743f782410d849cff12b70aa)]
+- ⬆️ upgrade react, firebase &amp; luxon ([#414](https://github.com/bpetetot/conference-hall/issues/414)) [[ea63490](https://github.com/bpetetot/conference-hall/commit/ea63490abeafc9a1bfd047dee386a79711a8e13b)]
+- ♻️ import only necessary lodash/fp functions ([#402](https://github.com/bpetetot/conference-hall/issues/402)) [[25645bb](https://github.com/bpetetot/conference-hall/commit/25645bbd51b96bd66585410ceb51b61ee74e11ea)]
+- ♻️ use snarkdown instead of react-markdown ([#403](https://github.com/bpetetot/conference-hall/issues/403)) [[7376303](https://github.com/bpetetot/conference-hall/commit/7376303d3eca326349131d9c1be2769384df087d)]
+- ♻️ remove luxon ([#404](https://github.com/bpetetot/conference-hall/issues/404)) [[70713a7](https://github.com/bpetetot/conference-hall/commit/70713a72cb1254a73406b96224032dfbe9703f14)]
+- ♻️ migrate to k-redux-router ([#407](https://github.com/bpetetot/conference-hall/issues/407)) [[ddbfba3](https://github.com/bpetetot/conference-hall/commit/ddbfba36c87e6e24d264860c8e8e8ef199f7763d)]
+
+### Miscellaneous
+
+- 👷 add bundlesize as CI check ([#401](https://github.com/bpetetot/conference-hall/issues/401)) [[0f74882](https://github.com/bpetetot/conference-hall/commit/0f7488249f5b123709709dc9f560ae5318c5c245)]
+
+
 <a name="0.4.0"></a>
 ## 0.4.0 (2018-12-14)
 

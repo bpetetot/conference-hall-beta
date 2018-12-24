@@ -24,6 +24,7 @@
 - ⭐️ Rate proposals to speed deliberation process
 - ✅ Mark proposals as accepted, declined...
 - 💌 Automatically send accept or reject emails to speakers
+- 📃 Export proposals as JSON
 - 👌 Get speaker confirmations
 - 🌍 API to query proposals
 
