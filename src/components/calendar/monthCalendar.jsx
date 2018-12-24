@@ -2,31 +2,31 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import {
-  parse, format, getDaysInMonth, startOfMonth, getDay, addMonths,
+  format, getDaysInMonth, startOfMonth, getDay, addMonths,
 } from 'date-fns'
+import { set } from 'immutadot'
 import range from 'lodash/range'
 import chunk from 'lodash/chunk'
 import isString from 'lodash/isString'
 import add from 'lodash/fp/add'
 import Button from '../button'
-import Modal from '../portals/modal'
-import { List, ListItem } from '../list'
+import DayModal from './dayModal'
 
 import './monthCalendar.css'
 
 class MonthCalendar extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      offset: 0,
-    }
+  state = {
+    offset: 0,
   }
 
-  setOffset = offset => () => this.setState({ offset })
+  goToPreviousMonth = () => this.setState(state => ({ offset: state.offset - 1 }))
 
-  renderDayItem = (customClassName = () => null) => (item, index) => (
-    <div key={item} className={`cc-day-item ${customClassName(index)}`}><span>{item}</span></div>
+  gotToNextMonth = () => this.setState(state => ({ offset: state.offset + 1 }))
+
+  goToToday = () => this.setState({ offset: 0 })
+
+  renderDayItem = (item, customClassName = '') => (
+    <div key={item} className={cn('cc-day-item', customClassName)}><span>{item}</span></div>
   )
 
   renderDayContent = (date) => {
@@ -37,61 +37,48 @@ class MonthCalendar extends Component {
       })
 
       if (content.length > 3) {
-        const modal = (
-          <Modal
-            className="default-theme"
-            renderTrigger={({ show }) => (
-              <Button simple onClick={show}>{content.length - 2} other elements</Button>
-            )}
-          >
-            {() => (
-              <List
-                array={content}
-                renderRow={item => (
-                  <ListItem
-                    key={item}
-                    title={item}
-                  />
-                )}
-              />
-            )}
-          </Modal>
-        )
+        const modal = (<DayModal content={content} />)
         const directlyRendered = content.slice(0, 2)
         directlyRendered.push(modal)
 
-        // eslint-disable-next-line no-confusing-arrow
-        const makeLastElementWhite = index => index === 2 ? 'cc-day-item-white' : null
-        return directlyRendered.map(this.renderDayItem(makeLastElementWhite))
+        return directlyRendered.map((item, index) => this.renderDayItem(item, index === 2 ? 'cc-day-item-white' : undefined))
       }
 
-      return content.map(this.renderDayItem())
+      return content.map(item => this.renderDayItem(item))
     }
 
     if (isString(content)) {
-      return this.renderDayItem()(content)
+      return this.renderDayItem(content)
     }
 
     return null
   }
 
-  render() {
-    const { date, onDayClick } = this.props
-    const parsedDate = addMonths(parse(date), this.state.offset)
-    const startDay = getDay(startOfMonth(parsedDate))
-    const preFillOffset = startDay === 0 ? 0 : startDay - 1
+  generateWeeksForMonth = (date) => {
+    const startDay = getDay(startOfMonth(date))
 
-    const weeks = chunk([
-      ...Array(preFillOffset).fill(null),
-      ...range(getDaysInMonth(parsedDate)).map(add(1)),
+    return chunk([
+      ...Array(startDay).fill(null),
+      ...range(getDaysInMonth(date)).map(add(1)),
     ], 7)
+  }
 
+  addEmptyDaysForNexMonth = (weeks) => {
     const lastWeek = weeks[weeks.length - 1]
     const fillOffset = 7 - lastWeek.length
-    weeks[weeks.length - 1] = [
+
+    return set(weeks, weeks.length - 1, [
       ...lastWeek,
       ...Array(fillOffset).fill(null),
-    ]
+    ])
+  }
+
+  render() {
+    const { date, onDayClick } = this.props
+    const parsedDate = addMonths(date, this.state.offset)
+
+    let weeks = this.generateWeeksForMonth(parsedDate)
+    weeks = this.addEmptyDaysForNexMonth(weeks)
 
     return (
       <div className="cc-calendar">
@@ -100,19 +87,19 @@ class MonthCalendar extends Component {
           <div className="cc-buttons">
             <Button
               secondary
-              onClick={this.setOffset(this.state.offset - 1)}
+              onClick={this.goToPreviousMonth}
             >
               Previous
             </Button>
             <Button
               primary
-              onClick={this.setOffset(0)}
+              onClick={this.goToToday}
             >
               Today
             </Button>
             <Button
               secondary
-              onClick={this.setOffset(this.state.offset + 1)}
+              onClick={this.gotToNextMonth}
             >
               Next
             </Button>
@@ -122,7 +109,7 @@ class MonthCalendar extends Component {
           {weeks.map(days => (
             <div key={days.join('')} className="cc-week">
               {days.map((day, index) => {
-                const dayDate = new Date(day, parsedDate.getMonth(), parsedDate.getFullYear())
+                const dayDate = new Date(parsedDate.getFullYear(), parsedDate.getMonth(), day)
                 return (
                   <div
                     key={day === null ? index : dayDate}
@@ -150,13 +137,13 @@ class MonthCalendar extends Component {
 }
 
 MonthCalendar.propTypes = {
-  date: PropTypes.string,
+  date: PropTypes.instanceOf(Date),
   renderDay: PropTypes.func,
   onDayClick: PropTypes.func,
 }
 
 MonthCalendar.defaultProps = {
-  date: format(new Date(), 'MM/DD/YYYY'),
+  date: new Date(),
   renderDay: () => null,
   onDayClick: () => null,
 }
