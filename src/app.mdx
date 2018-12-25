@@ -17,16 +17,16 @@ https://github.com/bpetetot/conference-hall
 
 ### Configure Firebase
 
-1. Create a firebase project with the [firebase console](https://console.firebase.google.com).
+Create a firebase project with the [firebase console](https://console.firebase.google.com).
 
-  * create a "Cloud Firestore" Database. It's okay to start in 'locked' mode. The rules will be overiden when you deploy.
-  * activate "Google" as a sign-in provider for Authentication
+* create a "Cloud Firestore" Database. It's okay to start in 'locked' mode. The rules will be overiden when you deploy.
+* activate "Google" as a sign-in provider for Authentication
 
-2. Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables. You can get all these variables from the homepage by clicking "Add an application" and selecting the web icon.
+Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables. You can get all these variables from the homepage by clicking "Add an application" and selecting the web icon.
 
-  * REACT_APP_API_KEY=<API_KEY>
-  * REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>
-  * REACT_APP_PROJECT_ID=<PROJECT_ID>
+* `REACT_APP_API_KEY=<API_KEY>`
+* `REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>`
+* `REACT_APP_PROJECT_ID=<PROJECT_ID>`
 
 ### Configure Google APIs (optional)
 
@@ -69,40 +69,35 @@ You can add a Google Analytics by adding your Analytics ID in the environmenent 
 
 ### Run the app in dev mode
 
-1. Clone the Conference Hall app
-
+1. Clone the Conference Hall app:
 ```
 git clone https://github.com/bpetetot/conference-hall.git
 ```
 
-2. Install dependencies with yarn
-
+2. Install dependencies:
 ```
 yarn
 ```
 
 3. Configure the app with [Firebase](#configure-firebase) and [Google APIs](#configure-google-apis)
 
-4. Start the app
+4. Start the app:
 
 ```
 yarn start
 ```
 
-Before using the app, you'll need to deploy the firestore security rules at least once (see below for how to deploy with firebase)
+> Before using the app, you'll need to deploy the firestore security rules at least once (see below for how to deploy with firebase)
 
 ### Run unit test
 
-* run all tests
 ```
 yarn test
 ```
-Run all tests in watch mode.
-* debug test
-```
-yarn test:debug
-```
-* Go to chrome: chrome://inspect/#devices
+
+**Run tests with debug mode**
+* Debug test: `yarn test:debug`
+* Go to chrome: `chrome://inspect/#devices`
 * Let go the debugger and put `debugger` in your test.
 
 For more details on debugger within IDE, consult [react-script documentation](https://github.com/facebook/create-react-app/blob/ed5c48c81b2139b4414810e1efe917e04c96ee8d/packages/react-scripts/template/README.md#debugging-tests-in-chrome).
@@ -117,24 +112,22 @@ For more details on debugger within IDE, consult [react-script documentation](ht
 npm install firebase-tools -g
 ```
 
-2. You must be logged with firebase and select project :
+2. You must be logged with firebase and select project ([Firebase documentation](https://firebase.google.com/docs/web)) :
 
 ```
 firebase login
 firebase use --add
 ```
 
-> [Firebase documentation](https://firebase.google.com/docs/web)
-
 3. Build functions:
 
 ```
 cd functions
-yarn  # using node8
+yarn
 cd ..
 ```
 
-### Build and deploy the app:
+### Build and deploy the app
 
 ```
 yarn build
