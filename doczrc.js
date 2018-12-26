@@ -8,6 +8,7 @@ export default {
 
   menu: [
     'Home',
+    'Installation',
     {
       name: 'Cloud functions',
       menu: ['Getting started', 'APIs'],
