@@ -30,7 +30,7 @@ firebase-debug.log*
 .firebase/
 
 # docz
-.docz/**/
+.docz/
 
 # IDE
 .idea/
