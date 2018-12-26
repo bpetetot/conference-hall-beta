@@ -27,3 +27,11 @@
 - 📃 Export proposals as JSON
 - 👌 Get speaker confirmations
 - 🌍 API to query proposals
+
+## You want to contribute ?
+
+You want to contibute and make **Conference Hall** better, go there:
+
+**[https://contribute.conference-hall.io](https://contribute.conference-hall.io)**
+
+

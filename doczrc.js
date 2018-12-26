@@ -7,7 +7,7 @@ export default {
   codeSandbox: false,
 
   menu: [
-    'Getting Started',
+    'Home',
     {
       name: 'Components',
       menu: [
