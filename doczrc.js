@@ -9,6 +9,10 @@ export default {
   menu: [
     'Home',
     {
+      name: 'Cloud functions',
+      menu: ['Getting started', 'APIs'],
+    },
+    {
       name: 'Components',
       menu: [
         'Avatar',
@@ -20,10 +24,6 @@ export default {
         'Snackbar',
         'Toggle',
       ],
-    },
-    {
-      name: 'Cloud functions',
-      menu: ['Getting started', 'APIs'],
     },
   ],
 
