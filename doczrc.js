@@ -3,7 +3,7 @@ export default {
   description: 'Contribute to Conference Hall',
 
   port: 3001,
-  wrapper: '.docz/wrapper',
+  wrapper: 'docs/app/wrapper',
   codeSandbox: false,
 
   menu: [
@@ -25,6 +25,7 @@ export default {
         'Toggle',
       ],
     },
+    'Code of conduct',
   ],
 
   themeConfig: {
@@ -40,17 +41,24 @@ export default {
         fontSize: 16,
       },
       paragraph: {
-        margin: '20px 0px 10px 0px',
+        margin: '0px 0px 10px 0px',
       },
       h1: {
         fontFamily: 'Arial, Helvetica, sans-serif',
         fontSize: '32px',
+        marginBottom: '16px !important',
+        '::before': {
+          background: 'transparent !important',
+        },
       },
       h2: {
         fontFamily: 'Arial, Helvetica, sans-serif',
         fontSize: '24px',
-        borderBottomStyle: 'solid',
+        borderBottomStyle: 'none',
         fontWeight: 600,
+        paddingBottom: '0px !important',
+        marginBottom: '16px !important',
+        marginTop: '1.5em !important',
       },
       h3: {
         fontFamily: 'Arial, Helvetica, sans-serif',
