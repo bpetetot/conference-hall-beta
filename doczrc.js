@@ -13,6 +13,7 @@ export default {
     'Cloud functions',
     'Components',
     'Code of conduct',
+    'Changelog',
   ],
 
   themeConfig: {
@@ -41,7 +42,7 @@ export default {
       h2: {
         fontFamily: 'Arial, Helvetica, sans-serif',
         fontSize: '24px',
-        borderBottomStyle: 'none',
+        borderBottomStyle: 'solid',
         fontWeight: 600,
         paddingBottom: '0px !important',
         marginBottom: '16px !important',
