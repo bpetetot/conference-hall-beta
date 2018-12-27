@@ -14,7 +14,7 @@ Contributions, issues and feature requests are very welcome. If you are using th
 
 ### Commit messages
 
-// explain it here
+// TODO explain it here
 https://gitmoji.carloscuesta.me/
 
 ### Adding new feature
