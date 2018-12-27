@@ -10,23 +10,8 @@ export default {
     'Home',
     'Contributing guide',
     'Installation',
-    {
-      name: 'Cloud functions',
-      menu: ['Getting started', 'APIs'],
-    },
-    {
-      name: 'Components',
-      menu: [
-        'Avatar',
-        'Badge',
-        'Button',
-        'Confirmation Popin',
-        'Drawer',
-        'Modal',
-        'Snackbar',
-        'Toggle',
-      ],
-    },
+    'Cloud functions',
+    'Components',
     'Code of conduct',
   ],
 
