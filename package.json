@@ -44,8 +44,8 @@
   "devDependencies": {
     "@babel/core": "7.2.2",
     "bundlesize": "^0.17.0",
-    "docz": "^0.13.5",
-    "docz-theme-default": "^0.13.5",
+    "docz": "^0.13.7",
+    "docz-theme-default": "^0.13.7",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "eslint-config-airbnb": "^17.1.0",

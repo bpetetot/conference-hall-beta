@@ -8,6 +8,7 @@ export default {
 
   menu: [
     'Home',
+    'Contributing guide',
     'Installation',
     {
       name: 'Cloud functions',
