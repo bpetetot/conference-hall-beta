@@ -96,6 +96,36 @@ yarn test
 
 For more details on debugger within IDE, consult [react-script documentation](https://github.com/facebook/create-react-app/blob/ed5c48c81b2139b4414810e1efe917e04c96ee8d/packages/react-scripts/template/README.md#debugging-tests-in-chrome).
 
+## Cloud functions
+
+The project uses cloud functions for severals features (send emails, export, apis...). Before deploying the application, you need to resolve cloud functions dependencies.
+
+All commands must be done in `/functions` folder with **node@8**
+
+Cloud functions uses its own `package.json`, first install dependencies:
+```
+yarn
+```
+
+### Test APIs locally
+
+```
+yarn api
+```
+
+You can test it on `http://localhost:5000/api/v1/xxx?key=<API_KEY>`
+
+An API key must be generated in Conference Hall app.
+
+### Test triggered functions
+
+```
+yarn shell
+```
+
+See [cloud functions documentation](https://firebase.google.com/docs/functions/local-emulator) for more info.
+
+
 ## Deploy
 
 ### Pre-requisites
@@ -113,13 +143,7 @@ firebase login
 firebase use --add
 ```
 
-3. Build functions:
-
-```
-cd functions
-yarn
-cd ..
-```
+3. Install dependencies for the app and cloud functions.
 
 ### Build and deploy the app
 

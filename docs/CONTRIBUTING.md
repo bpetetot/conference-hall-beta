@@ -1,6 +1,10 @@
 # Contributing
 
-Contributions, issues and feature requests are very welcome. If you are using this app and fixed a bug or improve it, please consider submitting a PR! Also you can ping me at [Twitter](https://twitter.com/bpetetot)
+Contributions, issues and feature requests are very welcome. If you are using this app and fixed a bug or improve it, please consider submitting a PR!
+
+You can contact other contributors on [Gitter](https://gitter.im/conference-hall) or ping me at [Twitter](https://twitter.com/bpetetot)
+
+If you want to contribute you must read and accept out [Code of Conduct](/code-of-conduct)
 
 ## Guidelines
 
@@ -14,9 +18,10 @@ Contributions, issues and feature requests are very welcome. If you are using th
 
 ### Commit messages
 
-// TODO explain it here
+This project uses [gitmoji](https://gitmoji.carloscuesta.me/) as commit convention, because it's fun and provides an easy way of identifying the purpose or intention of a commit with only looking at the emojis used. All you just have to do is to find the emoji corresponding to the purpose of your commit in [this list](https://gitmoji.carloscuesta.me/) following by a short message explaining the update. You can also add a description if it's needed. That's all ;)
+
 https://gitmoji.carloscuesta.me/
 
 ### Adding new feature
 
-Provide convincing reason to add this feature. Ideally you should open a suggestion issue first and have it green-lighted before working on it.
+Ideally you should talk about it on [Gitter](https://gitter.im/conference-hall) with other contributors or open a suggestion issue on [GitHub](https://github.com/bpetetot/conference-hall).

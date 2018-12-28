@@ -8,10 +8,10 @@ export default {
 
   menu: [
     'Home',
-    'Contributing guide',
+    'Contributing',
     'Installation',
-    'Cloud functions',
     'Components',
+    'APIs',
     'Code of conduct',
     'Changelog',
   ],
