@@ -9,7 +9,7 @@
 ## Features
 
 **You are a Speaker:**
-- ✨ Write the absract of your talk
+- ✨ Write the abstract of your talk
 - 🚀 Submit your talks to events (meetups and conferences)
 - 🤝 Invite co-speakers to your talk
 - 🔒 Social login
