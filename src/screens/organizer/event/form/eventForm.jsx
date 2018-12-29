@@ -54,7 +54,14 @@ const EventForm = ({
           ))}
         </Field>
         )}
-        <Field name="isPrivate" label="Private event" component={toggle} type="checkbox" />
+        <Field
+          name="visibility"
+          label="Private event"
+          component={toggle}
+          type="checkbox"
+          truthy="private"
+          falsy="public"
+        />
         <Field
           name="address"
           label={values.type === 'conference' ? 'Venue address' : 'City'}

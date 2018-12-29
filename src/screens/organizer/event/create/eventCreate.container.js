@@ -9,7 +9,7 @@ const mapStore = store => ({
   organizations: store.data.organizations.getAsArray(),
   initialValues: {
     type: 'conference',
-    isPrivate: false,
+    visibility: 'private',
     conferenceDates: {},
   },
   onSubmit: payload => store.dispatch({ type: '@@ui/ON_CREATE_EVENT', payload }),

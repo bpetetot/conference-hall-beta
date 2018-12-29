@@ -7,13 +7,9 @@ import { fetchOrganizationEvents } from 'firebase/organizations'
 import eventCrud, { fetchPublicEvents, fetchUserEvents } from 'firebase/events'
 
 export const createEvent = async (action, store, { router }) => {
-  const { isPrivate, ...eventData } = action.payload
   const { uid } = store.auth.get()
-  const event = {
-    owner: uid,
-    ...eventData,
-    visibility: isPrivate ? 'private' : 'public',
-  }
+  const eventData = action.payload
+  const event = { ...eventData, owner: uid }
   const ref = await eventCrud.create(event)
   router.push('organizer-event-page', { eventId: ref.id })
 }
@@ -21,11 +17,7 @@ export const createEvent = async (action, store, { router }) => {
 export const updateEventForm = async (action, store) => {
   store.ui.loaders.update({ editForm: true })
 
-  const { isPrivate, ...eventData } = action.payload
-  const event = {
-    ...eventData,
-    visibility: isPrivate ? 'private' : 'public',
-  }
+  const event = action.payload
   await eventCrud.update(event)
   store.data.events.update(event)
 

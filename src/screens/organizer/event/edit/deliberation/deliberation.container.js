@@ -12,21 +12,21 @@ const mapStore = (store, { eventId }) => {
   return {
     deliberationActive,
     displayOrganizersRatings,
-    onActiveDeliberation: e => store.dispatch({
+    onActiveDeliberation: checked => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_DELIBERATION',
       payload: {
         event: {
           id: eventId,
-          deliberationActive: e.target.checked,
+          deliberationActive: checked,
         },
       },
     }),
-    onDisplayOrganizersRatings: e => store.dispatch({
+    onDisplayOrganizersRatings: checked => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_DISPLAY_ORGANIZERS_RATINGS',
       payload: {
         event: {
           id: eventId,
-          displayOrganizersRatings: e.target.checked,
+          displayOrganizersRatings: checked,
         },
       },
     }),

@@ -9,7 +9,7 @@ import { DayPicker, DayRangePicker } from './dayPicker'
 import Label from './label'
 
 const renderField = component => ({
-  input, label, type, meta, placeholder, children,
+  input, label, type, meta, placeholder, children, ...rest
 }) => (
   <Label name={input.name} label={label} error={meta.error}>
     {component === 'address' && <Address {...input} autoComplete="nope" />}
@@ -23,7 +23,7 @@ const renderField = component => ({
     {component === 'markdown-input' && <MarkdownInput {...input} />}
     {component === 'dayPicker' && <DayPicker id={input.name} {...input} />}
     {component === 'dayRangePicker' && <DayRangePicker id={input.name} {...input} />}
-    {component === 'toggle' && <Toggle {...input} name={input.name} />}
+    {component === 'toggle' && <Toggle {...rest} {...input} name={input.name} />}
   </Label>
 )
 
