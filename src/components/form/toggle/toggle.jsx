@@ -58,11 +58,15 @@ Toggle.propTypes = {
   onChange: PropTypes.func.isRequired,
   truthy: PropTypes.string,
   falsy: PropTypes.string,
+  checked: PropTypes.bool,
+  value: PropTypes.any,
 }
 
 Toggle.defaultProps = {
   truthy: undefined,
   falsy: undefined,
+  checked: false,
+  value: undefined,
 }
 
 export default Toggle
