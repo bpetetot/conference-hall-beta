@@ -11,7 +11,9 @@ const mapStore = (store, { eventId }) => {
     loading: store.ui.loaders.get().editForm,
     organizations: store.data.organizations.getAsArray(),
     initialValues: { ...event },
-    onSubmit: payload => store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_DETAILS', payload }),
+    onSubmit: (payload) => {
+      store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_DETAILS', payload })
+    },
   }
 }
 

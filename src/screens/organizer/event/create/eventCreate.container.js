@@ -12,7 +12,9 @@ const mapStore = store => ({
     visibility: 'private',
     conferenceDates: {},
   },
-  onSubmit: payload => store.dispatch({ type: '@@ui/ON_CREATE_EVENT', payload }),
+  onSubmit: (payload) => {
+    store.dispatch({ type: '@@ui/ON_CREATE_EVENT', payload })
+  },
 })
 
 export default compose(

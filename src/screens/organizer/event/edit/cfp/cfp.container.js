@@ -9,7 +9,9 @@ const mapStore = (store, { eventId }) => {
   return {
     type: event && event.type,
     initialValues: event,
-    onSubmit: payload => store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_CFP', payload }),
+    onSubmit: (payload) => {
+      store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_CFP', payload })
+    },
   }
 }
 

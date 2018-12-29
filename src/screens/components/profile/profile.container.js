@@ -10,7 +10,9 @@ const mapStore = (store) => {
   return {
     ...user,
     initialValues: user,
-    onSubmit: payload => store.dispatch({ type: '@@ui/SAVE_PROFILE', payload }),
+    onSubmit: (payload) => {
+      store.dispatch({ type: '@@ui/SAVE_PROFILE', payload })
+    },
   }
 }
 

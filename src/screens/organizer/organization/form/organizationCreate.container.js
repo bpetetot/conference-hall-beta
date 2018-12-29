@@ -5,7 +5,9 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 import OrganizationForm from './organizationForm'
 
 const mapStore = store => ({
-  onSubmit: payload => store.dispatch({ type: '@@ui/ON_CREATE_ORGANIZATION', payload }),
+  onSubmit: (payload) => {
+    store.dispatch({ type: '@@ui/ON_CREATE_ORGANIZATION', payload })
+  },
 })
 
 export default compose(

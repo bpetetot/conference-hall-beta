@@ -13,7 +13,9 @@ const mapStore = (store, props, { router }) => {
     loaded: !!talk,
     initialValues: talk,
     load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
-    onSubmit: payload => store.dispatch({ type: '@@ui/ON_UPDATE_TALK', payload }),
+    onSubmit: (payload) => {
+      store.dispatch({ type: '@@ui/ON_UPDATE_TALK', payload })
+    },
   }
 }
 

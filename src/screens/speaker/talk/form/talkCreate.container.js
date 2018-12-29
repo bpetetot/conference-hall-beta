@@ -5,7 +5,9 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 import TalkForm from './talkForm'
 
 const mapStore = store => ({
-  onSubmit: payload => store.dispatch({ type: '@@ui/ON_CREATE_TALK', payload }),
+  onSubmit: (payload) => {
+    store.dispatch({ type: '@@ui/ON_CREATE_TALK', payload })
+  },
 })
 
 export default compose(
