@@ -3,25 +3,34 @@
   margin: 1em 0;
 }
 
-.paging-button {
+.button {
   padding: 10px;
   background: #fff;
   cursor: pointer;
+  border: 1px solid var(--grey-color);
 }
 
-.page-button-previous {
+.previous {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   border-right-width: 0px;
+  width: 80px;
 }
 
-.page-button-next {
+.next {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   border-left-width: 0px;
+  width: 80px;
 }
 
-.paging .current-page {
-  color: var(--secondary-color);
-  font-weight: 700;
+.status {
+  text-align: center;
+  color: var(--grey-color-dark);
+}
+
+@media only screen and (max-width: 1023px) {
+  .status {
+    flex-grow: 1;
+  }
 }
