@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import cn from 'classnames'
 import PropTypes from 'prop-types'
 
-import './proposalsPaging.css'
+import styles from './proposalsPaging.module.css'
 
 class ProposalsPaging extends Component {
   goToPage = page => () => {
@@ -19,25 +20,21 @@ class ProposalsPaging extends Component {
     if (!loaded || nbPage <= 1) return null
 
     return (
-      <div className="paging">
+      <div className={styles.paging}>
         <button
           type="button"
-          className="paging-button page-button-previous"
+          className={cn(styles.button, styles.previous)}
           disabled={page <= 1}
           onClick={this.goToPage(page - 1)}
         >
           Previous
         </button>
-        <button
-          type="button"
-          className="paging-button"
-          disabled
-        >
+        <div className={cn(styles.button, styles.status)}>
           {`${nbItems} proposals - page ${page}/${nbPage}`}
-        </button>
+        </div>
         <button
           type="button"
-          className="paging-button page-button-next"
+          className={cn(styles.button, styles.next)}
           disabled={page >= nbPage}
           onClick={this.goToPage(page + 1)}
         >

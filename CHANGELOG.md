@@ -1,6 +1,29 @@
 # Changelog
 
-<a name="0.4.0"></a>
+<a name="0.5.0" />
+
+## 0.5.0 (2018-12-23)
+
+### Added
+
+- ✨ export event proposals in organizer page ([#393](https://github.com/bpetetot/conference-hall/issues/393)) [[36dbb1d](https://github.com/bpetetot/conference-hall/commit/36dbb1db1e9575b1cacf8e791c7ba7c63757d74b)]
+
+### Changed
+
+- ⬆️ upgrade babel, docz ([#405](https://github.com/bpetetot/conference-hall/issues/405)) [[e19f3e8](https://github.com/bpetetot/conference-hall/commit/e19f3e8ff93bc817743f782410d849cff12b70aa)]
+- ⬆️ upgrade react, firebase &amp; luxon ([#414](https://github.com/bpetetot/conference-hall/issues/414)) [[ea63490](https://github.com/bpetetot/conference-hall/commit/ea63490abeafc9a1bfd047dee386a79711a8e13b)]
+- ♻️ import only necessary lodash/fp functions ([#402](https://github.com/bpetetot/conference-hall/issues/402)) [[25645bb](https://github.com/bpetetot/conference-hall/commit/25645bbd51b96bd66585410ceb51b61ee74e11ea)]
+- ♻️ use snarkdown instead of react-markdown ([#403](https://github.com/bpetetot/conference-hall/issues/403)) [[7376303](https://github.com/bpetetot/conference-hall/commit/7376303d3eca326349131d9c1be2769384df087d)]
+- ♻️ remove luxon ([#404](https://github.com/bpetetot/conference-hall/issues/404)) [[70713a7](https://github.com/bpetetot/conference-hall/commit/70713a72cb1254a73406b96224032dfbe9703f14)]
+- ♻️ migrate to k-redux-router ([#407](https://github.com/bpetetot/conference-hall/issues/407)) [[ddbfba3](https://github.com/bpetetot/conference-hall/commit/ddbfba36c87e6e24d264860c8e8e8ef199f7763d)]
+
+### Miscellaneous
+
+- 👷 add bundlesize as CI check ([#401](https://github.com/bpetetot/conference-hall/issues/401)) [[0f74882](https://github.com/bpetetot/conference-hall/commit/0f7488249f5b123709709dc9f560ae5318c5c245)]
+
+
+<a name="0.4.0" />
+
 ## 0.4.0 (2018-12-14)
 
 ### Added
@@ -17,7 +40,8 @@
 - ♻️ use of react-datepicker ([#378](https://github.com/bpetetot/conference-hall/issues/378)) [[5cd9e28](https://github.com/bpetetot/conference-hall/commit/5cd9e28a06386a2371554db6c8bd485734ceeb15)]
 
 
-<a name="0.3.0"></a>
+<a name="0.3.0" />
+
 ## 0.3.0 (2018-11-25)
 
 ### Added
@@ -37,7 +61,8 @@
 - 📝 add gitter badge ([#375](https://github.com/bpetetot/conference-hall/issues/375)) [[68b95d5](https://github.com/bpetetot/conference-hall/commit/68b95d58236baea50e4648c72400342244f96aaa)]
 
 
-<a name="0.2.0"></a>
+<a name="0.2.0" />
+
 ## 0.2.0 (2018-11-18)
 
 ### Added
@@ -63,7 +88,8 @@
 - 💄 fix radio group overflow ([#352](https://github.com/bpetetot/conference-hall/issues/352)) [[d32b21c](https://github.com/bpetetot/conference-hall/commit/d32b21c3a1c7828afe3cd1e703ab5051fc66da14)]
 
 
-<a name="0.1.0"></a>
+<a name="0.1.0" />
+
 ## 0.1.0 (2018-11-03)
 
 ### Added
@@ -76,46 +102,47 @@
 - ⬆️ upgrade libs (react, firebase, docz, k-ramel) ([#332](https://github.com/bpetetot/conference-hall/issues/332)) [[154a732](https://github.com/bpetetot/conference-hall/commit/154a732b71a77652d6a8db27023c222782b2ec6a)]
 
 
-<a name="0.1.0-beta"></a>
+<a name="0.1.0-beta" />
+
 ## 0.1.0-beta
 
 First beta version of Conference-Hall.
 
 ### Added
 
-- :chart_with_upwards_trend: add analytics ([#324](https://github.com/bpetetot/conference-hall/issues/324)) ([8335bd3](https://github.com/bpetetot/conference-hall/commit/8335bd3813e4caee83274c7b7548e6c6189b61b4))
-- :sparkles: app login ([#1](https://github.com/bpetetot/conference-hall/issues/1)) ([961e860](https://github.com/bpetetot/conference-hall/commit/961e860a6216f092c93c1391480c3a28743be29a))
-- :sparkles: event creation ([#2](https://github.com/bpetetot/conference-hall/issues/2)) ([7df2961](https://github.com/bpetetot/conference-hall/commit/7df296136e10e5ecbac33b642ec2cbc750cc0572))
-- :sparkles: event page ([#3](https://github.com/bpetetot/conference-hall/issues/3)) ([e99afa6](https://github.com/bpetetot/conference-hall/commit/e99afa65a4b739ae5b2ee1c19f1a684750595955))
-- :sparkles: address autocomplete &amp; embeded map ([#4](https://github.com/bpetetot/conference-hall/issues/4)) ([a03fe20](https://github.com/bpetetot/conference-hall/commit/a03fe20bd084e1213bb4f1ac09b2f45e37a03191))
-- :sparkles: display markdown in html ([#5](https://github.com/bpetetot/conference-hall/issues/5)) ([bdec5d8](https://github.com/bpetetot/conference-hall/commit/bdec5d8fd2938e97a556766b0b8fcfb96902a557))
-- :sparkles: edit event ([#14](https://github.com/bpetetot/conference-hall/issues/14)) ([671aa89](https://github.com/bpetetot/conference-hall/commit/671aa89eba7cac06b69521a41264de295768ba74))
-- :sparkles: my events screen ([#19](https://github.com/bpetetot/conference-hall/issues/19)) ([e7435f1](https://github.com/bpetetot/conference-hall/commit/e7435f1218679b72d8a955e9e8614957f54f1e13))
-- :sparkles: cfp categories form ([#28](https://github.com/bpetetot/conference-hall/issues/28)) ([c5f1793](https://github.com/bpetetot/conference-hall/commit/c5f1793d69e70d9553dd298cdfa5cd355d402f93))
-- :sparkles: speaker profile form ([#54](https://github.com/bpetetot/conference-hall/issues/54)) ([9f16dd1](https://github.com/bpetetot/conference-hall/commit/9f16dd1614dc5949d284b37c90f296b3d57b93fa))
-- :sparkles: talk creation by speaker ([#59](https://github.com/bpetetot/conference-hall/issues/59)) ([09341a1](https://github.com/bpetetot/conference-hall/commit/09341a13289a4d49a5ae9512f48b4c58310c9a40))
-- :sparkles: list speaker talks ([#62](https://github.com/bpetetot/conference-hall/issues/62)) ([0ce20c9](https://github.com/bpetetot/conference-hall/commit/0ce20c93d60e99d2a01a019c64b528d82292b7a4))
-- :sparkles: speaker&#x27;s talk page ([#66](https://github.com/bpetetot/conference-hall/issues/66)) ([d7d0a5c](https://github.com/bpetetot/conference-hall/commit/d7d0a5c31d37a23aae92bfe7859901cdcfbde525))
-- :sparkles: edit talk page ([#68](https://github.com/bpetetot/conference-hall/issues/68)) ([77f6b06](https://github.com/bpetetot/conference-hall/commit/77f6b065541e30725fd691c7e0d878b6d807ea24))
-- :sparkles: speakers &amp; details in talk page ([#70](https://github.com/bpetetot/conference-hall/issues/70)) ([4a17ad6](https://github.com/bpetetot/conference-hall/commit/4a17ad6805f7a6763c7b57c2c2eaa86b966ab8ad))
-- :sparkles: public event page ([#72](https://github.com/bpetetot/conference-hall/issues/72)) ([a3f8f23](https://github.com/bpetetot/conference-hall/commit/a3f8f23aae6df7f6176e95e5a6bb03acb7dc613e))
-- :sparkles: set current event on speaker page ([#83](https://github.com/bpetetot/conference-hall/issues/83)) ([9480e91](https://github.com/bpetetot/conference-hall/commit/9480e914075f161a7a8cce693cb44d8f8dbd35cb))
-- :sparkles: report a bug link ([#86](https://github.com/bpetetot/conference-hall/issues/86)) ([2e9a213](https://github.com/bpetetot/conference-hall/commit/2e9a213581e05bf52468ea5a92aabcb70b8c40ad))
-- :sparkles: submit talk to event ([#88](https://github.com/bpetetot/conference-hall/issues/88)) ([ff75334](https://github.com/bpetetot/conference-hall/commit/ff753343e98c75a20565a316a046e1253952fa14))
-- :sparkles: list of event proposals ([#97](https://github.com/bpetetot/conference-hall/issues/97)) ([36df11f](https://github.com/bpetetot/conference-hall/commit/36df11f6af42944073157eb32a0e4f2cd7321679))
-- :sparkles: proposal page for organizer ([#99](https://github.com/bpetetot/conference-hall/issues/99)) ([9474f83](https://github.com/bpetetot/conference-hall/commit/9474f83da171d59d1761cd34cba5404e90914336))
-- :sparkles: rating system ([#102](https://github.com/bpetetot/conference-hall/issues/102)) ([2906c69](https://github.com/bpetetot/conference-hall/commit/2906c69a7f51b9c7662bb0cc24c29cf8b82f1c5e))
-- :sparkles: unsubmit talk from event ([#112](https://github.com/bpetetot/conference-hall/issues/112)) ([28aaf47](https://github.com/bpetetot/conference-hall/commit/28aaf47c5ccbcf0f28fe65a469e588873df08c44))
-- :sparkles: filter and sort CFP proposals ([#114](https://github.com/bpetetot/conference-hall/issues/114)) ([514c040](https://github.com/bpetetot/conference-hall/commit/514c04053f22d59c560c5a1b0d3668c170337b67))
-- :sparkles: add/remove co-speaker ([#150](https://github.com/bpetetot/conference-hall/issues/150)) ([fc19388](https://github.com/bpetetot/conference-hall/commit/fc193887a26c8faffac4cbd84ea857782ba06e87))
-- :sparkles: add twitter and github in profile ([#154](https://github.com/bpetetot/conference-hall/issues/154)) ([2dd3e73](https://github.com/bpetetot/conference-hall/commit/2dd3e73125eb992698525341f9b70b3d1e6ed582))
-- :sparkles: contributors page ([#189](https://github.com/bpetetot/conference-hall/issues/189)) ([274c0b8](https://github.com/bpetetot/conference-hall/commit/274c0b8a4437b46e88ce8fa661c2632690c8880a))
-- :sparkles: delete a talk ([#192](https://github.com/bpetetot/conference-hall/issues/192)) ([f616c45](https://github.com/bpetetot/conference-hall/commit/f616c45422fcd760bd82c199ed46a538e9dc81ff))
-- :sparkles: speaker survey ([#197](https://github.com/bpetetot/conference-hall/issues/197)) ([8e7cdef](https://github.com/bpetetot/conference-hall/commit/8e7cdef423fc74562183efd5c8ccc5c06808fba4))
-- :sparkles: organizers team ([#164](https://github.com/bpetetot/conference-hall/issues/164)) ([e2ffe27](https://github.com/bpetetot/conference-hall/commit/e2ffe274556629926b5b3a2310b3ccb347b3d2e6))
-- :sparkles: restrict &quot;organizer hall&quot; with beta-invite access ([#216](https://github.com/bpetetot/conference-hall/issues/216)) ([153a11a](https://github.com/bpetetot/conference-hall/commit/153a11a8871b65b266943c0107323ceeb1d15d87))
-- :sparkles: organizers team ratings ([#226](https://github.com/bpetetot/conference-hall/issues/226)) ([36b2e38](https://github.com/bpetetot/conference-hall/commit/36b2e389bf228ecff87826eaf9227fe88b4df6ff))
-- :sparkles: send email after submission ([#228](https://github.com/bpetetot/conference-hall/issues/228)) ([2ffb589](https://github.com/bpetetot/conference-hall/commit/2ffb5898b95a113579255e41b8a599d023f92819))
-- :sparkles: manage apis for organizers ([#244](https://github.com/bpetetot/conference-hall/issues/244)) ([0c51ade](https://github.com/bpetetot/conference-hall/commit/0c51ade65bd97026d13913d981d458c976b31382))
-- :sparkles: proposals cards ([#268](https://github.com/bpetetot/conference-hall/issues/268)) ([d89df1f](https://github.com/bpetetot/conference-hall/commit/d89df1f0b4f09d18f87ca4c257f64cd6bff0cac7))
-- :tada: initialize project ([ce7d339](https://github.com/bpetetot/conference-hall/commit/ce7d33916d90da36f137d9caa4c3feaa5ba1ac2f))
+- 📈 add analytics ([#324](https://github.com/bpetetot/conference-hall/issues/324)) ([8335bd3](https://github.com/bpetetot/conference-hall/commit/8335bd3813e4caee83274c7b7548e6c6189b61b4))
+- ✨ app login ([#1](https://github.com/bpetetot/conference-hall/issues/1)) ([961e860](https://github.com/bpetetot/conference-hall/commit/961e860a6216f092c93c1391480c3a28743be29a))
+- ✨ event creation ([#2](https://github.com/bpetetot/conference-hall/issues/2)) ([7df2961](https://github.com/bpetetot/conference-hall/commit/7df296136e10e5ecbac33b642ec2cbc750cc0572))
+- ✨ event page ([#3](https://github.com/bpetetot/conference-hall/issues/3)) ([e99afa6](https://github.com/bpetetot/conference-hall/commit/e99afa65a4b739ae5b2ee1c19f1a684750595955))
+- ✨ address autocomplete &amp; embeded map ([#4](https://github.com/bpetetot/conference-hall/issues/4)) ([a03fe20](https://github.com/bpetetot/conference-hall/commit/a03fe20bd084e1213bb4f1ac09b2f45e37a03191))
+- ✨ display markdown in html ([#5](https://github.com/bpetetot/conference-hall/issues/5)) ([bdec5d8](https://github.com/bpetetot/conference-hall/commit/bdec5d8fd2938e97a556766b0b8fcfb96902a557))
+- ✨ edit event ([#14](https://github.com/bpetetot/conference-hall/issues/14)) ([671aa89](https://github.com/bpetetot/conference-hall/commit/671aa89eba7cac06b69521a41264de295768ba74))
+- ✨ my events screen ([#19](https://github.com/bpetetot/conference-hall/issues/19)) ([e7435f1](https://github.com/bpetetot/conference-hall/commit/e7435f1218679b72d8a955e9e8614957f54f1e13))
+- ✨ cfp categories form ([#28](https://github.com/bpetetot/conference-hall/issues/28)) ([c5f1793](https://github.com/bpetetot/conference-hall/commit/c5f1793d69e70d9553dd298cdfa5cd355d402f93))
+- ✨ speaker profile form ([#54](https://github.com/bpetetot/conference-hall/issues/54)) ([9f16dd1](https://github.com/bpetetot/conference-hall/commit/9f16dd1614dc5949d284b37c90f296b3d57b93fa))
+- ✨ talk creation by speaker ([#59](https://github.com/bpetetot/conference-hall/issues/59)) ([09341a1](https://github.com/bpetetot/conference-hall/commit/09341a13289a4d49a5ae9512f48b4c58310c9a40))
+- ✨ list speaker talks ([#62](https://github.com/bpetetot/conference-hall/issues/62)) ([0ce20c9](https://github.com/bpetetot/conference-hall/commit/0ce20c93d60e99d2a01a019c64b528d82292b7a4))
+- ✨ speaker&#x27;s talk page ([#66](https://github.com/bpetetot/conference-hall/issues/66)) ([d7d0a5c](https://github.com/bpetetot/conference-hall/commit/d7d0a5c31d37a23aae92bfe7859901cdcfbde525))
+- ✨ edit talk page ([#68](https://github.com/bpetetot/conference-hall/issues/68)) ([77f6b06](https://github.com/bpetetot/conference-hall/commit/77f6b065541e30725fd691c7e0d878b6d807ea24))
+- ✨ speakers &amp; details in talk page ([#70](https://github.com/bpetetot/conference-hall/issues/70)) ([4a17ad6](https://github.com/bpetetot/conference-hall/commit/4a17ad6805f7a6763c7b57c2c2eaa86b966ab8ad))
+- ✨ public event page ([#72](https://github.com/bpetetot/conference-hall/issues/72)) ([a3f8f23](https://github.com/bpetetot/conference-hall/commit/a3f8f23aae6df7f6176e95e5a6bb03acb7dc613e))
+- ✨ set current event on speaker page ([#83](https://github.com/bpetetot/conference-hall/issues/83)) ([9480e91](https://github.com/bpetetot/conference-hall/commit/9480e914075f161a7a8cce693cb44d8f8dbd35cb))
+- ✨ report a bug link ([#86](https://github.com/bpetetot/conference-hall/issues/86)) ([2e9a213](https://github.com/bpetetot/conference-hall/commit/2e9a213581e05bf52468ea5a92aabcb70b8c40ad))
+- ✨ submit talk to event ([#88](https://github.com/bpetetot/conference-hall/issues/88)) ([ff75334](https://github.com/bpetetot/conference-hall/commit/ff753343e98c75a20565a316a046e1253952fa14))
+- ✨ list of event proposals ([#97](https://github.com/bpetetot/conference-hall/issues/97)) ([36df11f](https://github.com/bpetetot/conference-hall/commit/36df11f6af42944073157eb32a0e4f2cd7321679))
+- ✨ proposal page for organizer ([#99](https://github.com/bpetetot/conference-hall/issues/99)) ([9474f83](https://github.com/bpetetot/conference-hall/commit/9474f83da171d59d1761cd34cba5404e90914336))
+- ✨ rating system ([#102](https://github.com/bpetetot/conference-hall/issues/102)) ([2906c69](https://github.com/bpetetot/conference-hall/commit/2906c69a7f51b9c7662bb0cc24c29cf8b82f1c5e))
+- ✨ unsubmit talk from event ([#112](https://github.com/bpetetot/conference-hall/issues/112)) ([28aaf47](https://github.com/bpetetot/conference-hall/commit/28aaf47c5ccbcf0f28fe65a469e588873df08c44))
+- ✨ filter and sort CFP proposals ([#114](https://github.com/bpetetot/conference-hall/issues/114)) ([514c040](https://github.com/bpetetot/conference-hall/commit/514c04053f22d59c560c5a1b0d3668c170337b67))
+- ✨ add/remove co-speaker ([#150](https://github.com/bpetetot/conference-hall/issues/150)) ([fc19388](https://github.com/bpetetot/conference-hall/commit/fc193887a26c8faffac4cbd84ea857782ba06e87))
+- ✨ add twitter and github in profile ([#154](https://github.com/bpetetot/conference-hall/issues/154)) ([2dd3e73](https://github.com/bpetetot/conference-hall/commit/2dd3e73125eb992698525341f9b70b3d1e6ed582))
+- ✨ contributors page ([#189](https://github.com/bpetetot/conference-hall/issues/189)) ([274c0b8](https://github.com/bpetetot/conference-hall/commit/274c0b8a4437b46e88ce8fa661c2632690c8880a))
+- ✨ delete a talk ([#192](https://github.com/bpetetot/conference-hall/issues/192)) ([f616c45](https://github.com/bpetetot/conference-hall/commit/f616c45422fcd760bd82c199ed46a538e9dc81ff))
+- ✨ speaker survey ([#197](https://github.com/bpetetot/conference-hall/issues/197)) ([8e7cdef](https://github.com/bpetetot/conference-hall/commit/8e7cdef423fc74562183efd5c8ccc5c06808fba4))
+- ✨ organizers team ([#164](https://github.com/bpetetot/conference-hall/issues/164)) ([e2ffe27](https://github.com/bpetetot/conference-hall/commit/e2ffe274556629926b5b3a2310b3ccb347b3d2e6))
+- ✨ restrict &quot;organizer hall&quot; with beta-invite access ([#216](https://github.com/bpetetot/conference-hall/issues/216)) ([153a11a](https://github.com/bpetetot/conference-hall/commit/153a11a8871b65b266943c0107323ceeb1d15d87))
+- ✨ organizers team ratings ([#226](https://github.com/bpetetot/conference-hall/issues/226)) ([36b2e38](https://github.com/bpetetot/conference-hall/commit/36b2e389bf228ecff87826eaf9227fe88b4df6ff))
+- ✨ send email after submission ([#228](https://github.com/bpetetot/conference-hall/issues/228)) ([2ffb589](https://github.com/bpetetot/conference-hall/commit/2ffb5898b95a113579255e41b8a599d023f92819))
+- ✨ manage apis for organizers ([#244](https://github.com/bpetetot/conference-hall/issues/244)) ([0c51ade](https://github.com/bpetetot/conference-hall/commit/0c51ade65bd97026d13913d981d458c976b31382))
+- ✨ proposals cards ([#268](https://github.com/bpetetot/conference-hall/issues/268)) ([d89df1f](https://github.com/bpetetot/conference-hall/commit/d89df1f0b4f09d18f87ca4c257f64cd6bff0cac7))
+- 🎉 initialize project ([ce7d339](https://github.com/bpetetot/conference-hall/commit/ce7d33916d90da36f137d9caa4c3feaa5ba1ac2f))
