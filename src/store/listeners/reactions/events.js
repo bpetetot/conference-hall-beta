@@ -24,10 +24,9 @@ export const createEvent = async (action, store, { form, router }) => {
 
 export const updateEventForm = formName => (action, store, { form }) => {
   const updateForm = form(formName)
-  const { isPrivate, ...eventData } = updateForm.getFormValues()
-  const event = {
-    ...eventData,
-    visibility: isPrivate ? 'private' : 'public',
+  const { isPrivate, ...event } = updateForm.getFormValues()
+  if (formName === 'event-edit') {
+    event.visibility = isPrivate ? 'private' : 'public'
   }
   // update event into database
   updateForm.asyncSubmit(eventCrud.update, event)
