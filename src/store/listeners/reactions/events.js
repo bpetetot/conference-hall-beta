@@ -10,18 +10,22 @@ export const createEvent = async (action, store, { router }) => {
   const { uid } = store.auth.get()
   const eventData = action.payload
   const event = { ...eventData, owner: uid }
+
+  store.ui.loaders.update({ isEventSaving: true })
   const ref = await eventCrud.create(event)
+  store.ui.loaders.update({ isEventSaving: false })
+
   router.push('organizer-event-page', { eventId: ref.id })
 }
 
 export const updateEventForm = async (action, store) => {
-  store.ui.loaders.update({ editForm: true })
-
   const event = action.payload
-  await eventCrud.update(event)
-  store.data.events.update(event)
 
-  store.ui.loaders.update({ editForm: false })
+  store.ui.loaders.update({ isEventSaving: true })
+  await eventCrud.update(event)
+  store.ui.loaders.update({ isEventSaving: false })
+
+  store.data.events.update(event)
 }
 
 export const updateEvent = (action, store) => {

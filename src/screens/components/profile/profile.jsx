@@ -10,11 +10,7 @@ import Avatar from 'components/avatar'
 import './profile.css'
 
 const Profile = ({
-  displayName,
-  photoURL,
-  email,
-  onSubmit,
-  initialValues,
+  displayName, photoURL, email, onSubmit, initialValues, submitting,
 }) => (
   <div className="profile">
     <div className="profile-header card">
@@ -31,12 +27,24 @@ const Profile = ({
           <Field name="company" label="Company" type="text" component={input} />
           <Field name="phone" label="Phone" type="text" component={input} />
           <Field name="language" label="Favorite language" type="text" component={input} />
-          <Field name="twitter" label="Twitter" type="text" component={input} placeholder="@username" />
-          <Field name="github" label="Github" type="text" component={input} placeholder="username" />
+          <Field
+            name="twitter"
+            label="Twitter"
+            type="text"
+            component={input}
+            placeholder="@username"
+          />
+          <Field
+            name="github"
+            label="Github"
+            type="text"
+            component={input}
+            placeholder="username"
+          />
           <Field name="city" label="City" type="text" component={address} />
           <Field name="bio" label="Biography" component={markdownInput} />
 
-          <SubmitButton handleSubmit={handleSubmit} pristine={pristine}>
+          <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
             Save profile
           </SubmitButton>
         </form>
@@ -51,6 +59,7 @@ Profile.propTypes = {
   photoURL: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
+  submitting: PropTypes.bool,
 }
 
 Profile.defaultProps = {
@@ -58,6 +67,7 @@ Profile.defaultProps = {
   email: undefined,
   photoURL: undefined,
   initialValues: {},
+  submitting: false,
 }
 
 export default Profile

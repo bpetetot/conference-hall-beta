@@ -16,6 +16,8 @@ const mapStore = (store, { eventId }) => {
     talk,
     update,
     initialValues,
+    isSubmitting: store.ui.loaders.get().isTalkSubmitting,
+    isUnsubmitting: store.ui.loaders.get().isTalkUnsubmitting,
     onSubmit: (data) => {
       store.dispatch({ type: '@@ui/ON_SUBMIT_TALK_TO_EVENT', payload: { talkId, eventId, data } })
     },

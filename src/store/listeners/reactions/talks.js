@@ -5,17 +5,25 @@ import talkCrud, { fetchUserTalks } from 'firebase/talks'
 export const createTalk = async (action, store, { router }) => {
   const talk = action.payload
   const { uid } = store.auth.get()
+
+  store.ui.loaders.update({ isTalkSaving: true })
   const ref = await talkCrud.create({
     ...talk,
     owner: uid,
     speakers: { [uid]: true },
   })
+  store.ui.loaders.update({ isTalkSaving: false })
+
   router.push('speaker-talk-page', { talkId: ref.id })
 }
 
-export const updateTalk = (action, store, { router }) => {
+export const updateTalk = async (action, store, { router }) => {
   const talk = action.payload
-  talkCrud.update(talk)
+
+  store.ui.loaders.update({ isTalkSaving: true })
+  await talkCrud.update(talk)
+  store.ui.loaders.update({ isTalkSaving: false })
+
   store.data.talks.update(talk)
   router.push('speaker-talk-page', { talkId: talk.id })
 }

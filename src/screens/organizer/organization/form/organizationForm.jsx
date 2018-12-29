@@ -7,12 +7,12 @@ import { required } from 'components/form/validators'
 
 import './organizationForm.css'
 
-const OrganizationForm = ({ onSubmit, initialValues }) => (
+const OrganizationForm = ({ onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit, pristine }) => (
       <form className="organization-form card">
         <Field name="name" label="Name" type="text" component={input} validate={required} />
-        <SubmitButton handleSubmit={handleSubmit} pristine={pristine}>
+        <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
           {!initialValues ? 'Create organization' : 'Save organization'}
         </SubmitButton>
       </form>
@@ -23,10 +23,12 @@ const OrganizationForm = ({ onSubmit, initialValues }) => (
 OrganizationForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
+  submitting: PropTypes.bool,
 }
 
 OrganizationForm.defaultProps = {
   initialValues: undefined,
+  submitting: false,
 }
 
 export default OrganizationForm

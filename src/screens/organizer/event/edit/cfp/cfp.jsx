@@ -11,7 +11,9 @@ import FormatsField from './formats'
 
 import './cfp.css'
 
-const CFPForm = ({ type, onSubmit, initialValues }) => (
+const CFPForm = ({
+  type, onSubmit, initialValues, submitting,
+}) => (
   <Form onSubmit={onSubmit} initialValues={initialValues} mutators={{ ...arrayMutators }}>
     {({ handleSubmit, pristine }) => (
       <form className="cfp-form card">
@@ -30,7 +32,7 @@ const CFPForm = ({ type, onSubmit, initialValues }) => (
         <Label label="Talk Formats">
           <FormatsField />
         </Label>
-        <SubmitButton handleSubmit={handleSubmit} pristine={pristine}>
+        <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
           Save CFP settings
         </SubmitButton>
       </form>
@@ -42,10 +44,12 @@ CFPForm.propTypes = {
   type: PropTypes.oneOf(['conference', 'meetup']).isRequired,
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
+  submitting: PropTypes.bool,
 }
 
 CFPForm.defaultProps = {
   initialValues: {},
+  submitting: false,
 }
 
 export default CFPForm

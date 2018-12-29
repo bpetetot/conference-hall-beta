@@ -10,6 +10,10 @@ export const fetch = async (action, store) => {
 
 export const save = async (action, store) => {
   const { eventId, uid, data } = action.payload
+
+  store.ui.loaders.update({ isSurveySaving: true })
   await saveSurvey(eventId, uid, data)
+  store.ui.loaders.update({ isSurveySaving: false })
+
   store.data.surveys.addOrUpdate({ uid, ...data })
 }

@@ -17,7 +17,11 @@ export const fetchUser = async (action, store) => {
 
 export const saveProfile = async (action, store) => {
   const profile = action.payload
+
+  store.ui.loaders.update({ isProfileSaving: true })
   await userCrud.update(profile)
+  store.ui.loaders.update({ isProfileSaving: false })
+
   store.data.users.update(profile)
 }
 

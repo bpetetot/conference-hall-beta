@@ -4,6 +4,10 @@ import PropTypes from 'prop-types'
 import './toggle.css'
 
 class Toggle extends Component {
+  state = {
+    checked: this.props.checked,
+  }
+
   getValue = (checked) => {
     const { truthy, falsy } = this.props
     if (checked && truthy) {
@@ -17,6 +21,10 @@ class Toggle extends Component {
 
   getChecked = (value) => {
     const { truthy, falsy } = this.props
+    const { checked } = this.state
+    if (!truthy && !falsy) {
+      return checked
+    }
     if (value === truthy) {
       return true
     }
@@ -29,7 +37,7 @@ class Toggle extends Component {
   handleChange = (e) => {
     const { checked } = e.target
     const { onChange } = this.props
-    onChange(this.getValue(checked))
+    this.setState(() => ({ checked }), () => onChange(this.getValue(checked)))
   }
 
   render() {

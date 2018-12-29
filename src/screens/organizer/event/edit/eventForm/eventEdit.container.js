@@ -8,7 +8,7 @@ const mapStore = (store, { eventId }) => {
   const event = store.data.events.get(eventId)
 
   return {
-    loading: store.ui.loaders.get().editForm,
+    submitting: store.ui.loaders.get().isEventSaving,
     organizations: store.data.organizations.getAsArray(),
     initialValues: { ...event },
     onSubmit: (payload) => {

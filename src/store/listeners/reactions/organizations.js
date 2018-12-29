@@ -6,14 +6,22 @@ export const create = async (action, store, { router }) => {
   const data = action.payload
   const { uid } = store.auth.get()
   const newUserOrganization = flow(set(`members.${uid}`, true), set('owner', uid))(data)
+
+  store.ui.loaders.update({ isOrganizationSaving: true })
   const ref = await organizationCrud.create(newUserOrganization)
+  store.ui.loaders.update({ isOrganizationSaving: false })
+
   store.data.organizations.add({ id: ref.id, ...newUserOrganization })
   router.push('organizer-organization-page', { organizationId: ref.id })
 }
 
 export const update = async (action, store, { router }) => {
   const data = action.payload
+
+  store.ui.loaders.update({ isOrganizationSaving: true })
   await organizationCrud.update(data)
+  store.ui.loaders.update({ isOrganizationSaving: false })
+
   store.data.organizations.update(data)
   router.push('organizer-organization-page', { organizationId: data.id })
 }

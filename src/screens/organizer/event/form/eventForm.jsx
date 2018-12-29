@@ -18,7 +18,7 @@ import { required } from 'components/form/validators'
 import './eventForm.css'
 
 const EventForm = ({
-  isCreateForm, organizations, onSubmit, initialValues, loading,
+  isCreateForm, organizations, onSubmit, initialValues, submitting,
 }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues} keepDirtyOnReinitialize={isCreateForm}>
     {({
@@ -77,7 +77,7 @@ const EventForm = ({
           handleSubmit={handleSubmit}
           pristine={pristine}
           invalid={invalid}
-          submitting={loading}
+          submitting={submitting}
         >
           {isCreateForm ? 'Create event' : 'Save event'}
         </SubmitButton>
@@ -91,14 +91,14 @@ EventForm.propTypes = {
   organizations: PropTypes.arrayOf(PropTypes.object),
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
-  loading: PropTypes.bool,
+  submitting: PropTypes.bool,
 }
 
 EventForm.defaultProps = {
   isCreateForm: false,
   organizations: [],
   initialValues: undefined,
-  loading: false,
+  submitting: false,
 }
 
 export default EventForm

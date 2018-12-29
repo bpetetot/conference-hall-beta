@@ -8,7 +8,7 @@ import {
 import { required } from 'components/form/validators'
 import './talkForm.css'
 
-const TalkForm = ({ onSubmit, initialValues }) => (
+const TalkForm = ({ onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit, pristine, invalid }) => (
       <form className="talk-form card">
@@ -20,7 +20,12 @@ const TalkForm = ({ onSubmit, initialValues }) => (
           <Field name="level" value="advanced" label="Advanced" type="radio" component={radio} />
         </RadioGroup>
         <Field name="references" label="References" component={markdownInput} />
-        <SubmitButton handleSubmit={handleSubmit} pristine={pristine} invalid={invalid}>
+        <SubmitButton
+          handleSubmit={handleSubmit}
+          pristine={pristine}
+          invalid={invalid}
+          submitting={submitting}
+        >
           {!initialValues ? 'Create Talk' : 'Save Talk'}
         </SubmitButton>
       </form>
@@ -31,10 +36,12 @@ const TalkForm = ({ onSubmit, initialValues }) => (
 TalkForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
+  submitting: PropTypes.bool,
 }
 
 TalkForm.defaultProps = {
   initialValues: undefined,
+  submitting: false,
 }
 
 export default TalkForm

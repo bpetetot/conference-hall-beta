@@ -12,6 +12,7 @@ const mapStore = (store, ownProps, { router }) => {
   return {
     loaded: !!organization,
     initialValues: organization,
+    submitting: store.ui.loaders.get().isOrganizationSaving,
     onSubmit: (payload) => {
       store.dispatch({ type: '@@ui/ON_UPDATE_ORGANIZATION', payload })
     },

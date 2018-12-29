@@ -11,18 +11,30 @@ import isEmpty from 'lodash/isEmpty'
 import './talkSubmission.css'
 
 const TalkSubmission = ({
-  talk, event, update, onSubmit, unsubmitTalk, initialValues,
+  talk,
+  event,
+  update,
+  onSubmit,
+  unsubmitTalk,
+  initialValues,
+  isSubmitting,
+  isUnsubmitting,
 }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit }) => (
       <form className="talk-submission">
         <Titlebar icon="fa fa-microphone" title={talk.title}>
           {update && (
-            <SubmitButton secondary type="button" onClick={unsubmitTalk}>
+            <SubmitButton
+              secondary
+              type="button"
+              onClick={unsubmitTalk}
+              submitting={isUnsubmitting}
+            >
               Remove submission
             </SubmitButton>
           )}
-          <SubmitButton onClick={handleSubmit}>
+          <SubmitButton onClick={handleSubmit} submitting={isSubmitting}>
             {update ? 'Update submission' : `Submit to ${event.name}`}
           </SubmitButton>
         </Titlebar>
@@ -69,6 +81,8 @@ TalkSubmission.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   unsubmitTalk: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
+  isSubmitting: PropTypes.bool,
+  isUnsubmitting: PropTypes.bool,
 }
 
 TalkSubmission.defaultProps = {
@@ -76,6 +90,8 @@ TalkSubmission.defaultProps = {
   talk: {},
   event: {},
   initialValues: undefined,
+  isSubmitting: false,
+  isUnsubmitting: false,
 }
 
 export default TalkSubmission

@@ -17,6 +17,7 @@ export const submitTalkToEvent = async (action, store) => {
   const talk = store.data.talks.get(talkId)
 
   // submit or update submission with cloud function
+  store.ui.loaders.update({ isTalkSubmitting: true })
   try {
     await functions.submitTalk({
       eventId,
@@ -25,7 +26,9 @@ export const submitTalkToEvent = async (action, store) => {
 
     const { currentStep } = store.ui.speaker.submission.get()
     store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
+    store.ui.loaders.update({ isTalkSubmitting: false })
   } catch (e) {
+    store.ui.loaders.update({ isTalkSubmitting: false })
     console.error(e.message) // eslint-disable-line no-console
   }
 }
@@ -35,6 +38,7 @@ export const unsubmitTalkFromEvent = async (action, store) => {
   const talk = store.data.talks.get(talkId)
 
   // unsubmit the talk with cloud function
+  store.ui.loaders.update({ isTalkUnsubmitting: true })
   try {
     const updatedTalk = await functions.unsubmitTalk({
       eventId,
@@ -42,7 +46,9 @@ export const unsubmitTalkFromEvent = async (action, store) => {
     })
     store.data.talks.update(updatedTalk)
     store.ui.speaker.submission.reset()
+    store.ui.loaders.update({ isTalkUnsubmitting: false })
   } catch (e) {
+    store.ui.loaders.update({ isTalkUnsubmitting: false })
     console.error(e.message) // eslint-disable-line no-console
   }
 }
