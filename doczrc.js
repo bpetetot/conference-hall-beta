@@ -75,7 +75,20 @@ export default {
 
   modifyBundlerConfig: (config) => {
     config.module.rules.push({
+      test: /\.module\.css$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+          },
+        },
+      ],
+    })
+    config.module.rules.push({
       test: /\.css$/,
+      exclude: /\.module\.css$/,
       use: ['style-loader', 'css-loader'],
     })
     return config
