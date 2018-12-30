@@ -6,8 +6,9 @@ import escape from 'lodash/escape'
 
 import './markdown.css'
 
-const Markdown = ({ source, className }) => (
+const Markdown = ({ source, className, ...rest }) => (
   <div
+    {...rest}
     className={cn('markdown', className)}
     // eslint-disable-next-line react/no-danger
     dangerouslySetInnerHTML={{ __html: snarkdown(escape(source)) }}

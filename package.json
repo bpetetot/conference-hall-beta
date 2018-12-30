@@ -10,11 +10,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
-
     "cypress": "yarn cypress:config && cypress run",
     "cypress:open": "yarn cypress:config && cypress open",
     "cypress:config": "cypress-firebase createTestEnvFile",
-
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
     "doc": "docz dev",

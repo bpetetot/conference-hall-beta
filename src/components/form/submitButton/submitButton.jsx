@@ -23,6 +23,7 @@ const SubmitButton = ({
     accent={!secondary}
     secondary={secondary}
     disabled={pristine || submitting || invalid}
+    data-test="submit"
   >
     {submitting && <IconLabel icon="fa fa-cog fa-spin fa-fw" label={loadingMessage} />}
     {!submitting && children}

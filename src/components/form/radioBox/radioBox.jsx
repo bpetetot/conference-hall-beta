@@ -8,7 +8,9 @@ const RadioBox = ({
 }) => (
   <div className="form-radio">
     <input name={name} id={`${name}-${value}`} type="radio" value={value} {...rest} />
-    <label htmlFor={`${name}-${value}`}>{children}</label>
+    <label htmlFor={`${name}-${value}`} data-test={`${name}-${value}`}>
+      {children}
+    </label>
   </div>
 )
 

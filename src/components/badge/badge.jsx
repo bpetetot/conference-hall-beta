@@ -18,6 +18,7 @@ const Badge = ({
   outline,
   className,
   style,
+  ...rest
 }) => {
   if (!children) return null
 
@@ -43,7 +44,7 @@ const Badge = ({
   }
 
   return (
-    <span className={classes} style={style}>
+    <span {...rest} className={classes} style={style}>
       {children}
     </span>
   )
