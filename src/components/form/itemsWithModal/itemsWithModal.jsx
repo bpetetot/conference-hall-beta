@@ -39,7 +39,7 @@ export default (name, Form) => class extends React.Component {
                     name={item}
                     component={({ input }) => (
                       <Modal
-                        renderTrigger={({ show }) => (
+                        renderTrigger={({ show }) => input.value && (
                           <Item
                             onEdit={show}
                             onDelete={this.onRemoveItem(fields, index)}
