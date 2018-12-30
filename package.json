@@ -1,6 +1,6 @@
 {
   "name": "conference-hall",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "bugs": "https://github.com/bpetetot/conference-hall/issues",
   "repository": "github:bpetetot/conference-hall",
@@ -21,13 +21,14 @@
     "doc:build": "docz build"
   },
   "dependencies": {
-    "@k-ramel/driver-redux-form": "1.0.2",
     "@k-ramel/react": "1.0.2",
     "@k-redux-router/core": "^1.0.0",
     "@k-redux-router/react-k-ramel": "^1.0.1",
     "classnames": "^2.2.6",
     "date-fns": "^1.30.1",
-    "firebase": "^5.7.0",
+    "final-form": "^4.11.0",
+    "final-form-arrays": "^1.1.1",
+    "firebase": "^5.7.1",
     "font-awesome": "^4.7.0",
     "hoc-react-loader": "^6.3.0",
     "immutadot": "^1.0.0",
@@ -36,15 +37,16 @@
     "normalize.css": "^8.0.1",
     "path-to-regexp": "^2.4.0",
     "popper.js": "^1.14.6",
+    "prop-types": "^15.6.2",
     "randomcolor": "^0.5.3",
-    "react": "^16.6.3",
+    "react": "^16.7.0",
     "react-datepicker": "^2.0.0",
-    "react-dom": "^16.6.3",
+    "react-dom": "^16.7.0",
+    "react-final-form": "^4.0.2",
+    "react-final-form-arrays": "^2.0.1",
     "react-places-autocomplete": "^7.2.0",
-    "react-redux": "^5.1.1",
     "react-sizes": "^1.0.4",
     "redux": "^4.0.1",
-    "redux-form": "^7.4.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -52,8 +54,8 @@
     "bundlesize": "^0.17.0",
     "cypress": "^3.1.1",
     "cypress-firebase": "^0.0.8",
-    "docz": "^0.12.17",
-    "docz-theme-default": "^0.12.17",
+    "docz": "^0.13.7",
+    "docz-theme-default": "^0.13.7",
     "dotenv": "^6.1.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
@@ -62,11 +64,14 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "firebase-tools": "^6.1.2",
+    "firebase-tools": "^6.2.2",
     "prettier": "^1.15.3",
-    "react-scripts": "2.1.1",
-    "react-test-renderer": "^16.6.3",
+    "react-scripts": "2.1.2",
+    "react-test-renderer": "^16.7.0",
     "redux-devtools-extension": "^2.13.7"
+  },
+  "resolutions": {
+    "ansi-styles": "^3.2.0"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -90,9 +95,16 @@
       "jsx-a11y/label-has-for": 0,
       "jsx-a11y/click-events-have-key-events": 0,
       "jsx-a11y/interactive-supports-focus": 0,
-      "jsx-a11y/anchor-is-valid": [ "error", {
-        "aspects": [ "noHref", "invalidHref", "preferButton" ]
-      }]
+      "jsx-a11y/anchor-is-valid": [
+        "error",
+        {
+          "aspects": [
+            "noHref",
+            "invalidHref",
+            "preferButton"
+          ]
+        }
+      ]
     }
   },
   "prettier": {

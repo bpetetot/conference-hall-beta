@@ -9,12 +9,12 @@ const mapStore = (store, { eventId }) => {
   return {
     surveyActive,
     survey,
-    onActiveSurvey: e => store.dispatch({
+    onActiveSurvey: checked => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_SURVEY',
       payload: {
         event: {
           id: eventId,
-          surveyActive: e.target.checked,
+          surveyActive: checked,
         },
       },
     }),

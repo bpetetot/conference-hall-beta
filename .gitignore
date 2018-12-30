@@ -35,7 +35,7 @@ cypress/videos
 cypress.env.json
 
 # docz
-.docz/**/
+.docz/
 
 # IDE
 .idea/

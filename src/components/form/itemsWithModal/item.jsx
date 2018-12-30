@@ -11,13 +11,7 @@ const Item = ({ name, onEdit, onDelete }) => (
     {btn => (
       <div role="button" onClick={onEdit} className={cn('item-box', btn)}>
         <div>{name}</div>
-        <a
-          role="button"
-          onClick={(e) => {
-            onDelete()
-            e.stopPropagation()
-          }}
-        >
+        <a role="button" onClick={onDelete}>
           <i className="fa fa-times" />
         </a>
       </div>

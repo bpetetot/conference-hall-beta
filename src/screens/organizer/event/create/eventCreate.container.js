@@ -1,23 +1,21 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { formValueSelector } from 'redux-form'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import EventForm from '../form'
 
-const FORM_NAME = 'event-create'
-const select = formValueSelector(FORM_NAME)
-
 const mapStore = store => ({
-  form: FORM_NAME,
-  type: select(store.getState(), 'type'),
+  submitting: store.ui.loaders.get().isEventSaving,
+  isCreateForm: true,
+  organizations: store.data.organizations.getAsArray(),
   initialValues: {
     type: 'conference',
-    isPrivate: false,
+    visibility: 'private',
     conferenceDates: {},
   },
-  organizations: store.data.organizations.getAsArray(),
-  onSubmit: () => store.dispatch('@@ui/ON_CREATE_EVENT'),
+  onSubmit: (payload) => {
+    store.dispatch({ type: '@@ui/ON_CREATE_EVENT', payload })
+  },
 })
 
 export default compose(

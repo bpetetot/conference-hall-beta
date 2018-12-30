@@ -29,8 +29,8 @@ EventTitle.propTypes = {
 }
 
 EventTitle.defaultProps = {
-  className: undefined,
   type: undefined,
+  className: undefined,
 }
 
 export default EventTitle

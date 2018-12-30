@@ -3,19 +3,20 @@ import { inject } from '@k-ramel/react'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
-import TalkForm from '../components/talkForm'
-
-const FORM_NAME = 'talk-edit'
+import TalkForm from './talkForm'
 
 const mapStore = (store, props, { router }) => {
   const talkId = router.getParam('talkId')
   const talk = store.data.talks.get(talkId)
+
   return {
     loaded: !!talk,
-    form: FORM_NAME,
     initialValues: talk,
+    submitting: store.ui.loaders.get().isTalkSaving,
     load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
-    onSubmit: () => store.dispatch('@@ui/ON_UPDATE_TALK'),
+    onSubmit: (payload) => {
+      store.dispatch({ type: '@@ui/ON_UPDATE_TALK', payload })
+    },
   }
 }
 

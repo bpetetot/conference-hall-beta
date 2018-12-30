@@ -1,8 +1,7 @@
 ---
 name: Toggle
-route: /form/toggle
-menu: Form
-order: 21
+route: /components/toggle
+menu: Components
 ---
 
 import { Playground, PropsTable } from 'docz'
@@ -13,7 +12,13 @@ import Toggle from './toggle'
 ## Basic usage
 
 <Playground>
-  <Toggle name="myToggle" />
+  <Toggle name="myToggle" onChange={console.log} />
+</Playground>
+
+## With truthy and falsy value
+
+<Playground>
+  <Toggle name="myToggle" truthy="enabled" falsy="disabled" onChange={console.log} />
 </Playground>
 
 ## Properties

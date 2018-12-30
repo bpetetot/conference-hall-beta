@@ -23,9 +23,15 @@ class DayRangePicker extends React.Component {
 
   handleChange = ({ start, end }) => {
     this.setState((state) => {
-      const startDate = start || state.start
+      let startDate = start || state.start
       let endDate = end || state.end
 
+      if (startDate && !endDate) {
+        endDate = startDate
+      }
+      if (!startDate && endDate) {
+        startDate = endDate
+      }
       if (isAfter(startDate, endDate)) {
         endDate = startDate
       }
@@ -81,6 +87,7 @@ class DayRangePicker extends React.Component {
           selected={end}
           startDate={start}
           endDate={end}
+          minDate={start}
           selectsEnd
           onChange={this.handleChangeEnd}
           dateFormat="MMMM do YYYY"

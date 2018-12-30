@@ -9,9 +9,11 @@ const mapStore = (store) => {
   const user = store.data.users.get(uid)
   return {
     ...user,
-    form: 'user-profile',
     initialValues: user,
-    onSubmit: () => store.dispatch('@@ui/SAVE_PROFILE'),
+    submitting: store.ui.loaders.get().isProfileSaving,
+    onSubmit: (payload) => {
+      store.dispatch({ type: '@@ui/SAVE_PROFILE', payload })
+    },
   }
 }
 

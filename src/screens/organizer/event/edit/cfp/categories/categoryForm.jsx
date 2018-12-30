@@ -1,26 +1,38 @@
 import React from 'react'
-import { Field, reduxForm, propTypes } from 'redux-form'
+import PropTypes from 'prop-types'
+import { Form, Field } from 'react-final-form'
 
 import { input, textarea, SubmitButton } from 'components/form'
 import { required } from 'components/form/validators'
 
 import './categoryForm.css'
 
-const CategoryForm = ({ edit, ...formProps }) => (
-  <form className="category-form">
-    <h2>{edit ? 'Update category' : 'Add a new category'}</h2>
-    <div className="category-form-content">
-      <Field name="name" label="Name" type="text" component={input} validate={required} />
-      <Field name="description" label="Description" type="text" component={textarea} />
-      <SubmitButton {...formProps}>
-        {edit ? 'Save category' : 'Add category'}
-      </SubmitButton>
-    </div>
-  </form>
+const CategoryForm = ({ edit, onSubmit, initialValues }) => (
+  <Form onSubmit={onSubmit} initialValues={initialValues}>
+    {({ handleSubmit, pristine, invalid }) => (
+      <form className="category-form">
+        <h2>{edit ? 'Update category' : 'Add a new category'}</h2>
+        <div className="category-form-content">
+          <Field name="name" label="Name" type="text" component={input} validate={required} />
+          <Field name="description" label="Description" type="text" component={textarea} />
+          <SubmitButton handleSubmit={handleSubmit} pristine={pristine} invalid={invalid}>
+            {edit ? 'Save category' : 'Add category'}
+          </SubmitButton>
+        </div>
+      </form>
+    )}
+  </Form>
 )
 
 CategoryForm.propTypes = {
-  ...propTypes,
+  edit: PropTypes.bool,
+  onSubmit: PropTypes.func.isRequired,
+  initialValues: PropTypes.object,
 }
 
-export default reduxForm({ form: 'category' })(CategoryForm)
+CategoryForm.defaultProps = {
+  edit: false,
+  initialValues: {},
+}
+
+export default CategoryForm

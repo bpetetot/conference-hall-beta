@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Field } from 'redux-form'
+import { Field } from 'react-final-form'
 
 import './surveyInput.css'
 
