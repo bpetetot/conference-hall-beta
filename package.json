@@ -31,6 +31,7 @@
     "normalize.css": "^8.0.1",
     "path-to-regexp": "^2.4.0",
     "popper.js": "^1.14.6",
+    "prop-types": "^15.6.2",
     "randomcolor": "^0.5.3",
     "react": "^16.7.0",
     "react-datepicker": "^2.0.0",
