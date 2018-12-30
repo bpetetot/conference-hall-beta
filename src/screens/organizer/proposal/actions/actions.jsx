@@ -2,18 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import Titlebar from 'components/titlebar'
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import TeamRatings from './teamRatings'
 import SpeakerSurveys from './speakerSurveys'
 
-import './actions.css'
+import styles from './actions.module.css'
 
 const Actions = ({
   eventId, proposal, surveyActive, displayOrganizersRatings, className,
 }) => (
-  <div className={cn('proposal-actions-btn', className)}>
+  <Titlebar className={cn(styles.header, className)} title={proposal.title}>
     {displayOrganizersRatings && (
       <Drawer
         title="Team ratings"
@@ -39,7 +40,18 @@ const Actions = ({
         <SpeakerSurveys eventId={eventId} speakers={proposal.speakers} />
       </Drawer>
     )}
-  </div>
+
+    <Drawer
+      title="Organizers thread"
+      renderTrigger={({ show }) => (
+        <Button secondary onClick={show}>
+          <IconLabel icon="fa fa-comments" label="Organizers thread" />
+        </Button>
+      )}
+    >
+      Discuss between organizers about the proposal.
+    </Drawer>
+  </Titlebar>
 )
 
 Actions.propTypes = {
