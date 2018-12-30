@@ -1,24 +1,19 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { formValueSelector } from 'redux-form'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import EventForm from '../../form'
 
-const FORM_NAME = 'event-edit'
-const select = formValueSelector(FORM_NAME)
-
 const mapStore = (store, { eventId }) => {
-  const { visibility, ...event } = store.data.events.get(eventId)
+  const event = store.data.events.get(eventId)
+
   return {
-    form: FORM_NAME,
-    type: select(store.getState(), 'type'),
-    initialValues: {
-      isPrivate: visibility !== 'public',
-      ...event,
-    },
+    submitting: store.ui.loaders.get().isEventSaving,
     organizations: store.data.organizations.getAsArray(),
-    onSubmit: () => store.dispatch('@@ui/ON_UPDATE_EVENT_DETAILS'),
+    initialValues: { ...event },
+    onSubmit: (payload) => {
+      store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_DETAILS', payload })
+    },
   }
 }
 

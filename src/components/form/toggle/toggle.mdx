@@ -12,7 +12,13 @@ import Toggle from './toggle'
 ## Basic usage
 
 <Playground>
-  <Toggle name="myToggle" />
+  <Toggle name="myToggle" onChange={console.log} />
+</Playground>
+
+## With truthy and falsy value
+
+<Playground>
+  <Toggle name="myToggle" truthy="enabled" falsy="disabled" onChange={console.log} />
 </Playground>
 
 ## Properties

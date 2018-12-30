@@ -10,12 +10,12 @@ const mapStore = (store, { eventId }) => {
   return {
     apiActive,
     apiKey,
-    onActiveApi: e => store.dispatch({
+    onActiveApi: checked => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_API',
       payload: {
         event: {
           id: eventId,
-          apiActive: e.target.checked,
+          apiActive: checked,
           apiKey,
         },
       },

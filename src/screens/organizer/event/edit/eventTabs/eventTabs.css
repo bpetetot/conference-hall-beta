@@ -2,6 +2,7 @@ ul.event-tabs {
   padding: 2em;
   margin-bottom: 2em;
   justify-content: flex-start;
+  align-items: center;
 }
 
 ul.event-tabs a {

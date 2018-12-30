@@ -14,7 +14,7 @@ const SurveyForm = ({
 }) => (
   <div className="survey-form card">
     <Label name="surveyActive" label="Enable Survey">
-      <Toggle name="surveyActive" value={surveyActive} onChange={onActiveSurvey} />
+      <Toggle name="surveyActive" checked={surveyActive} onChange={onActiveSurvey} />
     </Label>
     <p className="survey-label">Select questions that you want to ask to speakers :</p>
     {questions.map(question => (

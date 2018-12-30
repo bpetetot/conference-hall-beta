@@ -2,11 +2,13 @@ import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
-import TalkForm from '../components/talkForm'
+import TalkForm from './talkForm'
 
 const mapStore = store => ({
-  form: 'talk-create',
-  onSubmit: () => store.dispatch('@@ui/ON_CREATE_TALK'),
+  submitting: store.ui.loaders.get().isTalkSaving,
+  onSubmit: (payload) => {
+    store.dispatch({ type: '@@ui/ON_CREATE_TALK', payload })
+  },
 })
 
 export default compose(

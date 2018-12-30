@@ -21,7 +21,7 @@ const DeliberationForm = ({
     >
       <Toggle
         name="displayOrganizersRatings"
-        value={displayOrganizersRatings}
+        checked={displayOrganizersRatings}
         onChange={onDisplayOrganizersRatings}
       />
       <span className={styles.description}>All organizers can see ratings of others.</span>
@@ -29,7 +29,7 @@ const DeliberationForm = ({
     <Label name="deliberationActive" label="Enable Deliberation" classNameInput={styles.label}>
       <Toggle
         name="deliberationActive"
-        value={deliberationActive}
+        checked={deliberationActive}
         onChange={onActiveDeliberation}
       />
       <span className={styles.description}>
