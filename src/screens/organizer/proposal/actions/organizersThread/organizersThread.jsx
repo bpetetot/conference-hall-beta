@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import isEmpty from 'lodash/isEmpty'
 
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
@@ -22,12 +23,13 @@ class OrganizersThread extends Component {
 
   render() {
     const { messages, onAddMessage } = this.props
+    const nbMessages = !isEmpty(messages) ? ` (${messages.length})` : ''
     return (
       <Drawer
         title="Organizers thread"
         renderTrigger={({ show }) => (
           <Button secondary onClick={show}>
-            <IconLabel icon="fa fa-comments" label={`Organizers thread (${messages.length})`} />
+            <IconLabel icon="fa fa-comments" label={`Organizers thread${nbMessages}`} />
           </Button>
         )}
       >
