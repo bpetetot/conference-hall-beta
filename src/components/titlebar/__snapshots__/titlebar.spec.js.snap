@@ -10,6 +10,7 @@ exports[`components/titlebar should render 1`] = `
     <IconLabel
       icon="i"
       label="t"
+      overflow={true}
     />
   </span>
   <div
