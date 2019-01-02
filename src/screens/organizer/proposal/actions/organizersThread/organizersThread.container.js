@@ -7,17 +7,10 @@ import OrganizersThread from './organizersThread'
 
 const mapStore = (store, { eventId, proposalId }) => {
   const { uid } = store.auth.get()
+  const messages = store.ui.organizer.organizersThread.get()
+
   return {
-    messages: [
-      {
-        id: 'message1',
-        name: 'Luke Skywalker',
-        content:
-          'May the force be with youMay the force be with youMay the force be with youMay the force be with youMay the force be with youMay the force be with youMay the force be with you',
-        date: new Date(),
-        img: 'https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png',
-      },
-    ],
+    messages,
     load: () => {
       store.dispatch({
         type: '@@ui/ON_LOAD_PROPOSAL_ORGANIZERS_MESSAGES',
@@ -40,6 +33,6 @@ const mapStore = (store, { eventId, proposalId }) => {
 
 export default compose(
   inject(mapStore),
-  listen(listeners, 'ORGANIZERS_THREAD'),
   loader(),
+  listen(listeners, 'ORGANIZERS_THREAD'),
 )(OrganizersThread)

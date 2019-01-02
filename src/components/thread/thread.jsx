@@ -8,30 +8,43 @@ import Message from './message'
 import styles from './thread.module.css'
 
 class Thread extends Component {
-  state = {
-    message: undefined,
-  }
-
   thread = React.createRef()
 
+  input = React.createRef()
+
   componentDidMount() {
-    if (this.thread) {
-      const { current } = this.thread
-      current.scrollTop = current.scrollHeight
+    this.scrollToBottom()
+  }
+
+  componentDidUpdate(prevProps) {
+    const { messages } = this.props
+    if (messages && prevProps.messages && messages.length > prevProps.messages.length) {
+      this.scrollToBottom()
     }
   }
 
-  handleChange = (e) => {
-    this.setState({ message: e.target.value })
+  scrollToBottom = () => {
+    const { current } = this.thread
+    current.scrollTop = current.scrollHeight
   }
 
   handleAddMessage = () => {
-    const { message } = this.state
-    this.props.onAddMessage(message)
+    const message = this.input.current.value
+    if (message) {
+      this.props.onAddMessage(message)
+      this.input.current.value = ''
+    }
+  }
+
+  handleKey = (e) => {
+    if (e.keyCode === 13) {
+      this.handleAddMessage()
+    }
   }
 
   render() {
     const { description, messages, className } = this.props
+
     return (
       <div className={cn(styles.thread, className)}>
         {description && <div className={styles.description}>{description}</div>}
@@ -42,10 +55,11 @@ class Thread extends Component {
         </div>
         <div className={styles.input}>
           <input
+            ref={this.input}
             type="text"
             name="message"
             placeholder="Send a message"
-            onChange={this.handleChange}
+            onKeyDown={this.handleKey}
           />
           <Button onClick={this.handleAddMessage}>Send</Button>
         </div>
