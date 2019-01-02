@@ -1,4 +1,4 @@
-/* eslint-disable react/no-array-index-key */
+/* eslint-disable */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
@@ -17,9 +17,12 @@ class Thread extends Component {
     this.scrollToBottom()
   }
 
-  componentDidUpdate(prevProps) {
-    const { messages } = this.props
-    if (messages && prevProps.messages && messages.length > prevProps.messages.length) {
+  componentDidUpdate(oldProps) {
+    if (
+      this.props.messages
+      && oldProps.messages
+      && this.props.messages.length > oldProps.messages.length
+    ) {
       this.scrollToBottom()
     }
   }
