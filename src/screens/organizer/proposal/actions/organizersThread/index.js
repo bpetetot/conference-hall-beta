@@ -1,1 +1,1 @@
-export { default } from './organizersThread'
+export { default } from './organizersThread.container'

@@ -4,8 +4,9 @@ import loader from 'hoc-react-loader/build/core'
 
 import SpeakerSurveys from './speakerSurveys'
 
-const mapState = (store, { eventId, speakers }) => {
+const mapState = (store, { eventId, proposalId }) => {
   const { survey } = store.data.events.get(eventId) || {}
+  const { speakers } = store.data.proposals.get(proposalId) || {}
   const uids = Object.keys(speakers)
   const responses = uids.map(uid => ({ uid, response: store.data.surveys.get(uid) }))
   return {

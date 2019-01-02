@@ -8,6 +8,10 @@ import Message from './message'
 import styles from './thread.module.css'
 
 class Thread extends Component {
+  state = {
+    message: undefined,
+  }
+
   thread = React.createRef()
 
   componentDidMount() {
@@ -15,6 +19,15 @@ class Thread extends Component {
       const { current } = this.thread
       current.scrollTop = current.scrollHeight
     }
+  }
+
+  handleChange = (e) => {
+    this.setState({ message: e.target.value })
+  }
+
+  handleAddMessage = () => {
+    const { message } = this.state
+    this.props.onAddMessage(message)
   }
 
   render() {
@@ -28,8 +41,13 @@ class Thread extends Component {
           ))}
         </div>
         <div className={styles.input}>
-          <input type="text" name="message" placeholder="Send a message" />
-          <Button>Send</Button>
+          <input
+            type="text"
+            name="message"
+            placeholder="Send a message"
+            onChange={this.handleChange}
+          />
+          <Button onClick={this.handleAddMessage}>Send</Button>
         </div>
       </div>
     )
@@ -39,6 +57,7 @@ class Thread extends Component {
 Thread.propTypes = {
   description: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
+  onAddMessage: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 

@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import { displayRating } from 'helpers/number'
-import UserAvatar from 'screens/components/userAvatar'
+import { Drawer } from 'components/portals'
+import Button from 'components/button'
 import IconLabel from 'components/iconLabel/iconLabel'
+import UserAvatar from 'screens/components/userAvatar'
 import TotalRatings from 'screens/organizer/components/totalRatings'
 
 import './teamRatings.css'
@@ -12,7 +14,14 @@ import './teamRatings.css'
 const TeamRatings = ({
   total, loves, hates, noopinion, ratings,
 }) => (
-  <Fragment>
+  <Drawer
+    title="Team ratings"
+    renderTrigger={({ show }) => (
+      <Button secondary onClick={show}>
+        <IconLabel icon="fa fa-star" label="All ratings" />
+      </Button>
+    )}
+  >
     <div className="team-ratings-total">
       <span className="team-ratings-total-label">Total</span>
       <TotalRatings
@@ -40,7 +49,7 @@ const TeamRatings = ({
         </div>
       </div>
     ))}
-  </Fragment>
+  </Drawer>
 )
 
 TeamRatings.propTypes = {
