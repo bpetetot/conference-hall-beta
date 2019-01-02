@@ -1,6 +1,5 @@
 import { compose } from 'redux'
 import { inject, listen } from '@k-ramel/react'
-import loader from 'hoc-react-loader/build/core'
 
 import listeners from './organizersThread.listeners'
 import OrganizersThread from './organizersThread'
@@ -11,7 +10,7 @@ const mapStore = (store, { eventId, proposalId }) => {
 
   return {
     messages,
-    load: () => {
+    loadMessages: () => {
       store.dispatch({
         type: '@@ui/ON_LOAD_PROPOSAL_ORGANIZERS_MESSAGES',
         payload: { eventId, proposalId },
@@ -33,6 +32,5 @@ const mapStore = (store, { eventId, proposalId }) => {
 
 export default compose(
   inject(mapStore),
-  loader(),
   listen(listeners, 'ORGANIZERS_THREAD'),
 )(OrganizersThread)

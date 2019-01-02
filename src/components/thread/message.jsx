@@ -8,7 +8,7 @@ import Avatar from 'components/avatar'
 import styles from './message.module.css'
 
 const Message = ({
-  img, name, content, date, className,
+  img, name, message, date, className,
 }) => (
   <div className={cn(styles.wrapper, className)}>
     <Avatar src={img} name={name} size="medium" className={styles.avatar} />
@@ -17,8 +17,8 @@ const Message = ({
         <span className={styles.name}>{name}</span>
         <span className={styles.date}>{distanceInWordsToNow(date, { addSuffix: true })}</span>
       </div>
-      <div className={styles.content}>
-        {content}
+      <div className={styles.message}>
+        {message}
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@ const Message = ({
 Message.propTypes = {
   img: PropTypes.string,
   name: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
   className: PropTypes.string,
 }

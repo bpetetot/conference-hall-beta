@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
@@ -49,8 +50,8 @@ class Thread extends Component {
       <div className={cn(styles.thread, className)}>
         {description && <div className={styles.description}>{description}</div>}
         <div ref={this.thread} className={styles.messages}>
-          {messages.map(({ id, ...message }) => (
-            <Message key={id} {...message} className={styles.message} />
+          {messages.map((message, index) => (
+            <Message key={index} {...message} className={styles.message} />
           ))}
         </div>
         <div className={styles.input}>
