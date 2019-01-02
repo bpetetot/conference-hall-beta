@@ -10,6 +10,7 @@
   letter-spacing: 2px;
   font-weight: 400;
   text-transform: uppercase;
+  overflow: hidden;
 }
 
 .titlebar .titlebar-actions {

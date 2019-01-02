@@ -2,56 +2,35 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import { Drawer } from 'components/portals'
-import Button from 'components/button'
-import IconLabel from 'components/iconLabel'
+import Titlebar from 'components/titlebar'
+
 import TeamRatings from './teamRatings'
 import SpeakerSurveys from './speakerSurveys'
-
-import './actions.css'
+import OrganizersThread from './organizersThread'
+import styles from './actions.module.css'
 
 const Actions = ({
-  eventId, proposal, surveyActive, displayOrganizersRatings, className,
+  eventId, proposalId, title, surveyActive, displayOrganizersRatings, className,
 }) => (
-  <div className={cn('proposal-actions-btn', className)}>
-    {displayOrganizersRatings && (
-      <Drawer
-        title="Team ratings"
-        renderTrigger={({ show }) => (
-          <Button secondary onClick={show}>
-            <IconLabel icon="fa fa-star" label="All ratings" />
-          </Button>
-        )}
-      >
-        <TeamRatings id={proposal.id} />
-      </Drawer>
-    )}
+  <Titlebar className={cn(styles.header, className)} title={title}>
+    {displayOrganizersRatings && <TeamRatings proposalId={proposalId} />}
 
-    {surveyActive && (
-      <Drawer
-        title="Speaker survey"
-        renderTrigger={({ show }) => (
-          <Button secondary onClick={show}>
-            <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
-          </Button>
-        )}
-      >
-        <SpeakerSurveys eventId={eventId} speakers={proposal.speakers} />
-      </Drawer>
-    )}
-  </div>
+    {surveyActive && <SpeakerSurveys eventId={eventId} proposalId={proposalId} />}
+
+    <OrganizersThread eventId={eventId} proposalId={proposalId} />
+  </Titlebar>
 )
 
 Actions.propTypes = {
   eventId: PropTypes.string.isRequired,
-  proposal: PropTypes.objectOf(PropTypes.any),
+  proposalId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   displayOrganizersRatings: PropTypes.bool,
   surveyActive: PropTypes.bool,
   className: PropTypes.string,
 }
 
 Actions.defaultProps = {
-  proposal: {},
   displayOrganizersRatings: false,
   surveyActive: false,
   className: undefined,

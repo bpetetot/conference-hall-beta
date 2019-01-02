@@ -10,7 +10,7 @@ const Titlebar = ({
 }) => (
   <div className={cn('titlebar', className)}>
     <span className="titlebar-title">
-      <IconLabel icon={icon} label={title} />
+      <IconLabel icon={icon} label={title} overflow />
     </span>
     {children && <div className="titlebar-actions">{children}</div>}
   </div>

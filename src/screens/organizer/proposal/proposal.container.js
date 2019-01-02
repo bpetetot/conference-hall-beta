@@ -9,8 +9,9 @@ const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
   const proposalId = router.getParam('proposalId')
   const proposal = store.data.proposals.get(proposalId)
+  const event = store.data.events.get(eventId)
   return {
-    loaded: !!proposal,
+    loaded: !!proposal && !!event,
     proposal,
     eventId,
     load: () => {

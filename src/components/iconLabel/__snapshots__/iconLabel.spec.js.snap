@@ -12,7 +12,7 @@ exports[`components/iconLabel should render icon label 1`] = `
     />
   </span>
   <span
-    className="icon-label-label"
+    className=""
   >
     l
   </span>
@@ -24,7 +24,7 @@ exports[`components/iconLabel should render icon label on right 1`] = `
   className="icon-label icon-label-right"
 >
   <span
-    className="icon-label-label"
+    className=""
   >
     l
   </span>
@@ -46,7 +46,7 @@ exports[`components/iconLabel should render icon label with class 1`] = `
     />
   </span>
   <span
-    className="icon-label-label"
+    className=""
   >
     l
   </span>

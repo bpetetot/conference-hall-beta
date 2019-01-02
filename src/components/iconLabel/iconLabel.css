@@ -17,3 +17,16 @@ button .icon-label {
   margin-left: 0.6em;
   margin-right: 0;
 }
+
+.icon-label-overflow {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+@media only screen and (max-width: 480px) {
+  .icon-label-overflow {
+    white-space: normal;
+  }
+}

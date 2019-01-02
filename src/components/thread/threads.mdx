@@ -1,0 +1,53 @@
+---
+name: Thread
+route: /components/thread
+menu: Components
+---
+
+import { Playground, PropsTable } from 'docz'
+import Message from './message'
+import Thread from './thread'
+
+# Thread
+
+## Message
+
+<Playground>
+  <Message
+    img="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png"
+    name="Luke Skywalker"
+    message="May the force be with you"
+    date={new Date()}
+  />
+</Playground>
+
+## Messages thread
+
+<Playground>
+  <Thread
+    messages={[
+      {
+        id: 'message1',
+        name: 'Luke Skywalker',
+        message: 'May the force be with you',
+        date: new Date(),
+        img: 'https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png',
+      },
+      {
+        id: 'message2',
+        name: 'Darth Vader',
+        message: 'Luke, I am your father',
+        date: new Date(),
+        img: 'https://upload.wikimedia.org/wikipedia/en/7/76/Darth_Vader.jpg',
+      },
+      {
+        id: 'message3',
+        name: 'Luke Skywalker',
+        message: 'Noooooooooooo !!!!!',
+        date: new Date(),
+        img: 'https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png',
+      },
+    ]}
+    onAddMessage={console.log}
+  />
+</Playground>
