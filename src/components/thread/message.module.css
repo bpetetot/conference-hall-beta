@@ -23,10 +23,6 @@
   color: var(--grey-color-dark)
 }
 
-.content {
-  font-size: 0.98em;
-}
-
 @media only screen and (max-width: 480px) {
   .message {
     flex-direction: column;

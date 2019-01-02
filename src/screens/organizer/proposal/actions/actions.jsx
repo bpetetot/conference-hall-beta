@@ -6,9 +6,10 @@ import Titlebar from 'components/titlebar'
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
+
 import TeamRatings from './teamRatings'
 import SpeakerSurveys from './speakerSurveys'
-
+import OrganizersThread from './organizersThread'
 import styles from './actions.module.css'
 
 const Actions = ({
@@ -49,7 +50,7 @@ const Actions = ({
         </Button>
       )}
     >
-      Discuss between organizers about the proposal.
+      <OrganizersThread />
     </Drawer>
   </Titlebar>
 )

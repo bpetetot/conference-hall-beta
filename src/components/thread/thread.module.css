@@ -4,7 +4,12 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-end;
-  max-width: 600px;
+}
+
+.description {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--grey-color-light);
 }
 
 .messages {
@@ -17,4 +22,16 @@
 }
 
 .input {
+  flex-shrink: 0;
+  display: flex;
+}
+
+.input button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.input input[type=text] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
