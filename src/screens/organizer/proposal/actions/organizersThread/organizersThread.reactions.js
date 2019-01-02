@@ -10,7 +10,7 @@ export const loadMessages = async (action, store) => {
   const messages = await Promise.all(
     result.map(async ({ uid, date, message }) => {
       let user = store.data.users.get(uid)
-      if (user) {
+      if (!user) {
         const ref = await userCrud.read(uid)
         user = ref.data()
         store.data.users.add(user)
