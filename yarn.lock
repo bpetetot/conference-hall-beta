@@ -1108,9 +1108,10 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-1.0.2.tgz#1a300a725492494805658899b1301f7dcb1d6109"
 
-"@k-ramel/react@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.0.2.tgz#6aace6d2f730f0be993dcc7f013baaebe2699ae2"
+"@k-ramel/react@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.1.0.tgz#60516e85e1d632af987f8416c1981182d540275d"
+  integrity sha512-wgTphEqmGO7Pui3VVRoyI3FV5cI8XeVtNxpcnVJvbbKk6fM+QEbXAZcEuWQdnKHg3imCPZ6rUz98lwypefSIfQ==
 
 "@k-redux-router/core@^1.0.0":
   version "1.0.0"
