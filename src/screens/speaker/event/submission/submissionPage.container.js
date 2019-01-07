@@ -11,7 +11,7 @@ const mapStore = (store, props, { router }) => {
   const talk = store.data.talks.get(talkId) || {}
   const submission = talk.submissions && talk.submissions[eventId]
   return {
-    loaded: !!talk,
+    loaded: !!talk.id,
     ...submission,
     load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
   }

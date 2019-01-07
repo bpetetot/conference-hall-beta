@@ -1,20 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from '@k-redux-router/react-k-ramel'
 
 import Titlebar from 'components/titlebar'
+import IconLabel from 'components/iconLabel'
 import { TalkAbstract, TalkSpeakers } from 'screens/components/talk'
 import './submissionPage.css'
 
 const SubmissionPage = ({
-  title,
-  abstract,
-  level,
-  owner,
-  references,
-  speakers,
+  id, title, abstract, level, owner, references, speakers,
 }) => (
   <div>
-    <Titlebar icon="fa fa-microphone" title={title} />
+    <Titlebar icon="fa fa-microphone" title={title}>
+      <Link code="speaker-talk-page" talkId={id}>
+        <IconLabel icon="fa fa-history" label="Show current version" />
+      </Link>
+    </Titlebar>
     <div className="talk-page">
       <TalkAbstract
         className="talk-content"
@@ -30,6 +31,7 @@ const SubmissionPage = ({
 )
 
 SubmissionPage.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
   abstract: PropTypes.string,
   level: PropTypes.string,
@@ -39,6 +41,7 @@ SubmissionPage.propTypes = {
 }
 
 SubmissionPage.defaultProps = {
+  id: undefined,
   title: undefined,
   abstract: undefined,
   level: 'not defined',
