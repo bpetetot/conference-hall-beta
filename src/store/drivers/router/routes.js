@@ -78,6 +78,7 @@ export default {
       code: 'speaker-event-page',
       isEventPage: true,
       '/submission': { code: 'speaker-event-submission' },
+      '/submissions': { code: 'speaker-event-submissions' },
       '/survey': { code: 'speaker-event-survey' },
     },
     '/contributors': { code: 'speaker-contributors' },
