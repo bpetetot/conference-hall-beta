@@ -78,7 +78,10 @@ export default {
       code: 'speaker-event-page',
       isEventPage: true,
       '/submission': { code: 'speaker-event-submission' },
-      '/submissions': { code: 'speaker-event-submissions' },
+      '/submissions': {
+        code: 'speaker-event-submissions',
+        '/:talkId': { code: 'speaker-event-submission-page' },
+      },
       '/survey': { code: 'speaker-event-survey' },
     },
     '/contributors': { code: 'speaker-contributors' },

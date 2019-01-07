@@ -18,12 +18,12 @@ const mapStore = (store, props, { router }) => {
     talks,
     loaded: store.ui.speaker.myTalks.isInitialized(),
     load: () => store.dispatch('@@ui/ON_LOAD_SPEAKER_TALKS'),
-    onSelect: () => {},
+    onSelect: talkId => router.push('speaker-event-submission-page', { eventId, talkId }),
   }
 }
 
 export default compose(
-  forRoute('speaker-event-submissions'),
+  forRoute.absolute('speaker-event-submissions'),
   inject(mapStore),
   loader,
 )(Submissions)

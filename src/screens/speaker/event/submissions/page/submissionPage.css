@@ -1,0 +1,25 @@
+.talk-page {
+  display: grid;
+  grid-template-columns: auto 30%;
+  grid-template-rows: auto;
+  grid-template-areas: 'talk-content talk-info';
+  grid-gap: 2em;
+}
+
+.talk-page .talk-content {
+  grid-area: talk-content;
+}
+
+.talk-page .talk-info {
+  grid-area: talk-info;
+  align-self: start;
+}
+
+@media only screen and (max-width: 1024px) {
+  .talk-page {
+    grid-template-columns: auto 30%;
+    grid-template-rows: auto auto;
+    grid-template-areas: 'talk-content talk-content' 'talk-info talk-info';
+    grid-gap: 1em;
+  }
+}
