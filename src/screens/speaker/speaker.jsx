@@ -15,7 +15,7 @@ import InviteSpeaker from './talk/invite'
 import EventPage from './event/page'
 import EventSubmitWizard from './event/submitWizard'
 import EventSubmissions from './event/submissions'
-import EventSubmissionPage from './event/submissions/page'
+import EventSubmissionPage from './event/submission'
 import EventSurvey from './event/survey'
 
 const Speaker = () => (
