@@ -4,7 +4,7 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 import { isCfpOpened } from 'store/reducers/data/events.selector'
-import Submission from './submission'
+import SubmitWizard from './submitWizard'
 
 const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
@@ -21,7 +21,7 @@ const mapStore = (store, props, { router }) => {
 }
 
 export default compose(
-  forRoute('speaker-event-submission'), //
-  inject(mapStore), //
-  loader, //
-)(Submission)
+  forRoute('speaker-event-submit-wizard'),
+  inject(mapStore),
+  loader,
+)(SubmitWizard)

@@ -13,7 +13,7 @@ import TalkSubmission from './talk/submission'
 import Talk from './talk/page'
 import InviteSpeaker from './talk/invite'
 import EventPage from './event/page'
-import EventSubmitForm from './event/submission'
+import EventSubmitWizard from './event/submitWizard'
 import EventSubmissions from './event/submissions'
 import EventSubmissionPage from './event/submissions/page'
 import EventSurvey from './event/survey'
@@ -28,7 +28,7 @@ const Speaker = () => (
     <InviteSpeaker />
     <MyTalks />
     <EventPage />
-    <EventSubmitForm />
+    <EventSubmitWizard />
     <EventSubmissions />
     <EventSubmissionPage />
     <EventSurvey />

@@ -8,7 +8,7 @@ import TalkDetails from './talkDetails'
 import TalkSubmission from './talkSubmission'
 import TalkSubmitted from './talkSubmitted'
 
-import './submission.css'
+import './submitWizard.css'
 
 const steps = [
   { label: 'Talk selection', icon: 'fa fa-bars' },
@@ -17,12 +17,12 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const Submission = ({
+const SubmitWizard = ({
   eventId, cfpOpened, eventName, currentStep,
 }) => {
   if (!eventId || !cfpOpened) return null
   return (
-    <div className="submission">
+    <div className="submitWizard">
       <EventTitle name={eventName} subtitle="Talk submission" />
       <Stepper steps={steps} currentStep={currentStep} />
       {currentStep === 0 && <Selection eventId={eventId} eventName={eventName} />}
@@ -33,18 +33,18 @@ const Submission = ({
   )
 }
 
-Submission.propTypes = {
+SubmitWizard.propTypes = {
   eventId: PropTypes.string,
   cfpOpened: PropTypes.bool,
   eventName: PropTypes.string,
   currentStep: PropTypes.number,
 }
 
-Submission.defaultProps = {
+SubmitWizard.defaultProps = {
   eventId: undefined,
   cfpOpened: false,
   eventName: undefined,
   currentStep: 0,
 }
 
-export default Submission
+export default SubmitWizard
