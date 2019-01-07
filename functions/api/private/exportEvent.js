@@ -27,6 +27,7 @@ module.exports = async (req, res) => {
         'formats',
         'speakers',
         'comments',
+        'references',
         'rating',
         'loves',
         'hates',

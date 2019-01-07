@@ -1,4 +1,5 @@
 const functions = require('firebase-functions')
+const pick = require('lodash/pick')
 const { getEvent } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 const { updateProposal } = require('../firestore/proposal')
@@ -12,11 +13,11 @@ module.exports = functions.firestore
   .document('events/{eventId}/proposals/{proposalId}')
   .onUpdate(async (snap, context) => {
     const { eventId } = context.params
-    const previousTalk = snap.before.data()
-    const talk = snap.after.data()
+    const previousProposal = snap.before.data()
+    const proposal = snap.after.data()
 
     // if proposal state didn't changed or email sent, dont need to go further
-    if (previousTalk.state === talk.state || talk.emailSent) {
+    if (previousProposal.state === proposal.state || proposal.emailSent) {
       return null
     }
 
@@ -24,43 +25,55 @@ module.exports = functions.firestore
     const { app, mailgun } = functions.config()
     if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
 
-    const uids = Object.keys(talk.speakers)
+    const uids = Object.keys(proposal.speakers)
 
     const submissionUpdate = {
       submissions: {
-        [eventId]: { ...talk },
+        [eventId]: pick(proposal, [
+          'id',
+          'title',
+          'abstract',
+          'level',
+          'state',
+          'categories',
+          'formats',
+          'speakers',
+          'references',
+          'comments',
+          'emailSent',
+        ]),
       },
     }
 
     // send email to accepted proposal
-    if (talk.state === 'accepted' && !talk.emailSent) {
+    if (proposal.state === 'accepted' && !proposal.emailSent) {
       const event = await getEvent(eventId)
-      talk.emailSent = talk.updateTimestamp
+      proposal.emailSent = proposal.updateTimestamp
 
       return Promise.all([
         getUsers(uids),
-        updateProposal(eventId, talk),
-        partialUpdateTalk(talk.id, submissionUpdate),
+        updateProposal(eventId, proposal),
+        partialUpdateTalk(proposal.id, submissionUpdate),
       ]).then(([users]) => sendEmail(mailgun, {
         to: users.map(user => user.email),
         subject: `[${event.name}] Talk accepted!`,
-        html: talkAccepted(event, users, talk, app.url),
+        html: talkAccepted(event, users, proposal, app.url),
       }))
     }
 
     // send email to rejected proposal
-    if (talk.state === 'rejected' && !talk.emailSent) {
+    if (proposal.state === 'rejected' && !proposal.emailSent) {
       const event = await getEvent(eventId)
-      talk.emailSent = talk.updateTimestamp
+      proposal.emailSent = proposal.updateTimestamp
 
       return Promise.all([
         getUsers(uids),
-        updateProposal(eventId, talk),
-        partialUpdateTalk(talk.id, submissionUpdate),
+        updateProposal(eventId, proposal),
+        partialUpdateTalk(proposal.id, submissionUpdate),
       ]).then(([users]) => sendEmail(mailgun, {
         to: users.map(user => user.email),
         subject: `[${event.name}] Talk declined`,
-        html: talkRejected(event, users, talk),
+        html: talkRejected(event, users, proposal),
       }))
     }
 
