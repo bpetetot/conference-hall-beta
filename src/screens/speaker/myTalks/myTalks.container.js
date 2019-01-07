@@ -13,7 +13,7 @@ const mapStore = (store, props, { router }) => ({
 })
 
 export default compose(
-  forRoute.absolute('speaker'), //
-  inject(mapStore), //
-  loader, //
+  forRoute.absolute('speaker'),
+  inject(mapStore),
+  loader,
 )(MyTalks)

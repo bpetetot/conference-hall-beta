@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
 
 import { toDate } from 'helpers/firebase'
-
 import { List, ListItem } from 'components/list'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import RelativeDate from 'components/relativeDate'
 import NoTalks from 'screens/speaker/components/noTalks'
+
 import TalkInfo from './talkInfo'
 
 
