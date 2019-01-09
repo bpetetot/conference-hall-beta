@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Titlebar from 'components/titlebar'
 import SubmitTalkLink from 'screens/components/submitTalksLink'
+import TalkStatus from 'screens/components/talk/status'
 import { List, ListItem } from 'components/list'
 
 const Submissions = ({ eventId, talks, onSelect }) => (
@@ -14,11 +15,11 @@ const Submissions = ({ eventId, talks, onSelect }) => (
       <List
         array={talks}
         noResult={<div>No submissions</div>}
-        renderRow={({ id, title, state }) => (
+        renderRow={({ id, title }) => (
           <ListItem
             key={id}
             title={title}
-            info={<div>{state}</div>}
+            info={<TalkStatus talkId={id} eventId={eventId} />}
             onSelect={() => onSelect(id)}
           />
         )}

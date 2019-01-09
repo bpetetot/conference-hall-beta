@@ -4,11 +4,11 @@ import { Link } from '@k-redux-router/react-k-ramel'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
-import { TalkAbstract, TalkSpeakers } from 'screens/components/talk'
+import { TalkAbstract, TalkSpeakers, TalkStatus } from 'screens/components/talk'
 import './submissionPage.css'
 
 const SubmissionPage = ({
-  id, title, abstract, level, owner, references, speakers,
+  eventId, id, title, abstract, level, owner, references, speakers,
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
@@ -17,6 +17,9 @@ const SubmissionPage = ({
       </Link>
     </Titlebar>
     <div className="talk-page">
+      <div className="talk-header">
+        <TalkStatus talkId={id} eventId={eventId} />
+      </div>
       <TalkAbstract
         className="talk-content"
         abstract={abstract}
@@ -31,6 +34,7 @@ const SubmissionPage = ({
 )
 
 SubmissionPage.propTypes = {
+  eventId: PropTypes.string.isRequired,
   id: PropTypes.string,
   title: PropTypes.string,
   abstract: PropTypes.string,
