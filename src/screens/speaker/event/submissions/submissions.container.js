@@ -13,10 +13,15 @@ const mapStore = (store, props, { router }) => {
     .filter(talk => !!talk.submissions[eventId])
     .map(talk => talk.submissions[eventId])
 
+  const { name: eventName } = store.data.events.get(eventId) || {}
+
+  const loaded = store.ui.speaker.myTalks.isInitialized() && store.data.events.hasKey(eventId)
+
   return {
     eventId,
+    eventName,
     talks,
-    loaded: store.ui.speaker.myTalks.isInitialized(),
+    loaded,
     load: () => store.dispatch('@@ui/ON_LOAD_SPEAKER_TALKS'),
     onSelect: talkId => router.push('speaker-event-submission-page', { eventId, talkId }),
   }

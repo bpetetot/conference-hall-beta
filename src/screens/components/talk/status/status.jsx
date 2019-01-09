@@ -17,6 +17,7 @@ const Status = ({
   outOfDate,
   onClickEdit,
   className,
+  displayCfpStatus,
 }) => {
   if (!loaded) return null
   return (
@@ -31,7 +32,7 @@ const Status = ({
             )}
           </Badge>
       )}
-      {!cfpOpened && <Badge error>CFP closed</Badge>}
+      {!cfpOpened && displayCfpStatus && <Badge error>CFP closed</Badge>}
       {accepted && <Badge success outline>Accepted</Badge>}
       {rejected && <Badge error outline>Not accepted</Badge>}
       {confirmed && <Badge success>Confirmed</Badge>}
@@ -54,6 +55,7 @@ Status.propTypes = {
   declined: PropTypes.bool,
   outOfDate: PropTypes.bool,
   cfpOpened: PropTypes.bool,
+  displayCfpStatus: PropTypes.bool,
   onClickEdit: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
@@ -67,6 +69,7 @@ Status.defaultProps = {
   declined: false,
   outOfDate: false,
   cfpOpened: true,
+  displayCfpStatus: true,
   className: undefined,
 }
 

@@ -6,9 +6,11 @@ import SubmitTalkLink from 'screens/components/submitTalksLink'
 import TalkStatus from 'screens/components/talk/status'
 import { List, ListItem } from 'components/list'
 
-const Submissions = ({ eventId, talks, onSelect }) => (
+const Submissions = ({
+  eventId, eventName, talks, onSelect,
+}) => (
   <div>
-    <Titlebar icon="fa fa-inbox" title="My submissions">
+    <Titlebar icon="fa fa-inbox" title={`My submissions to "${eventName}"`}>
       <SubmitTalkLink eventId={eventId} />
     </Titlebar>
     <div>
@@ -19,7 +21,7 @@ const Submissions = ({ eventId, talks, onSelect }) => (
           <ListItem
             key={id}
             title={title}
-            info={<TalkStatus talkId={id} eventId={eventId} />}
+            info={<TalkStatus talkId={id} eventId={eventId} displayCfpStatus={false} />}
             onSelect={() => onSelect(id)}
           />
         )}
@@ -30,6 +32,7 @@ const Submissions = ({ eventId, talks, onSelect }) => (
 
 Submissions.propTypes = {
   eventId: PropTypes.string.isRequired,
+  eventName: PropTypes.string.isRequired,
   talks: PropTypes.array,
   onSelect: PropTypes.func.isRequired,
 }
