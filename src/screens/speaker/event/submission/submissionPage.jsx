@@ -8,7 +8,8 @@ import Button from 'components/button'
 import { TalkAbstract, TalkSpeakers, TalkStatus } from 'screens/components/talk'
 import { FormatBadge, CategoryBadge } from 'screens/components/event/badges'
 import Notification from 'screens/components/talk/deliberation/notification'
-import './submissionPage.css'
+
+import styles from './submissionPage.module.css'
 
 const SubmissionPage = ({
   eventId,
@@ -40,22 +41,26 @@ const SubmissionPage = ({
         </Button>
       )}
     </Titlebar>
-    <div className="talk-page">
-      <div className="talk-header">
-        {state === 'accepted' && <Notification eventId={eventId} talkId={id} />}
-        <div className="talk-status">
+    <div className={styles.submission}>
+      <div className={styles.header}>
+        {state === 'accepted' && (
+          <div className={styles.notification}>
+            <Notification eventId={eventId} talkId={id} />
+          </div>
+        )}
+        <div className={styles.status}>
           {state !== 'accepted' && <TalkStatus talkId={id} eventId={eventId} />}
           <FormatBadge outline eventId={eventId} formatId={formats} />
           <CategoryBadge outline eventId={eventId} categoryId={categories} />
         </div>
       </div>
       <TalkAbstract
-        className="talk-content"
+        className={styles.content}
         abstract={abstract}
         references={references}
         level={level}
       />
-      <div className="talk-info">
+      <div className={styles.info}>
         <TalkSpeakers speakers={speakers} owner={owner} />
       </div>
     </div>

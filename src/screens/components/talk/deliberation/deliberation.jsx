@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 import Notification from './notification'
 
-import styles from './deliberation.css'
+import styles from './deliberation.module.css'
 
 const filterAccepted = submissions => Object.keys(submissions).filter(eventId => submissions[eventId].state === 'accepted')
 
