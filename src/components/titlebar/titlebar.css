@@ -15,6 +15,7 @@
 
 .titlebar .titlebar-actions {
   display: flex;
+  align-items: center;
 }
 
 .titlebar .titlebar-actions > * {

@@ -4,17 +4,33 @@ import { Link } from '@k-redux-router/react-k-ramel'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
+import Button from 'components/button'
 import { TalkAbstract, TalkSpeakers, TalkStatus } from 'screens/components/talk'
 import './submissionPage.css'
 
 const SubmissionPage = ({
-  eventId, id, title, abstract, level, owner, references, speakers,
+  eventId,
+  id,
+  title,
+  abstract,
+  level,
+  owner,
+  references,
+  speakers,
+  opUpdateSubmission,
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
-      <Link code="speaker-talk-page" talkId={id}>
-        <IconLabel icon="fa fa-history" label="Show current version" />
-      </Link>
+      <Button secondary>
+        {btn => (
+          <Link code="speaker-talk-page" talkId={id} className={btn}>
+            <IconLabel icon="fa fa-history" label="Show current version" />
+          </Link>
+        )}
+      </Button>
+      <Button accent onClick={opUpdateSubmission}>
+        Update submission
+      </Button>
     </Titlebar>
     <div className="talk-page">
       <div className="talk-header">
@@ -42,6 +58,7 @@ SubmissionPage.propTypes = {
   owner: PropTypes.string,
   references: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
+  opUpdateSubmission: PropTypes.func.isRequired,
 }
 
 SubmissionPage.defaultProps = {
