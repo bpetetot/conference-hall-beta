@@ -18,6 +18,7 @@ const SubmissionPage = ({
   references,
   speakers,
   opUpdateSubmission,
+  cfpOpened,
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
@@ -28,9 +29,11 @@ const SubmissionPage = ({
           </Link>
         )}
       </Button>
-      <Button accent onClick={opUpdateSubmission}>
-        Update submission
-      </Button>
+      {cfpOpened && (
+        <Button accent onClick={opUpdateSubmission}>
+          Update submission
+        </Button>
+      )}
     </Titlebar>
     <div className="talk-page">
       <div className="talk-header">
@@ -59,6 +62,7 @@ SubmissionPage.propTypes = {
   references: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
   opUpdateSubmission: PropTypes.func.isRequired,
+  cfpOpened: PropTypes.bool,
 }
 
 SubmissionPage.defaultProps = {
@@ -69,6 +73,7 @@ SubmissionPage.defaultProps = {
   owner: undefined,
   references: undefined,
   speakers: {},
+  cfpOpened: false,
 }
 
 export default SubmissionPage
