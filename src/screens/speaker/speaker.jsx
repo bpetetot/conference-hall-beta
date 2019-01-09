@@ -7,7 +7,7 @@ import AppLayout from 'layout'
 import Contributors from 'screens/components/contributors'
 import Profile from 'screens/components/profile'
 import Sidebar from './sidebar'
-import MyTalks from './myTalks'
+import MyTalks from './talks'
 import { TalkEdit, TalkCreate } from './talk/form'
 import TalkSubmission from './talk/submission'
 import Talk from './talk/page'
@@ -25,8 +25,8 @@ const Speaker = () => (
     <TalkEdit />
     <TalkSubmission />
     <Talk />
-    <InviteSpeaker />
     <MyTalks />
+    <InviteSpeaker />
     <EventPage />
     <EventSubmitWizard />
     <EventSubmissions />
