@@ -6,6 +6,7 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { TalkAbstract, TalkSpeakers, TalkStatus } from 'screens/components/talk'
+import { FormatBadge, CategoryBadge } from 'screens/components/event/badges'
 import Notification from 'screens/components/talk/deliberation/notification'
 import './submissionPage.css'
 
@@ -18,7 +19,9 @@ const SubmissionPage = ({
   owner,
   state,
   references,
+  formats,
   speakers,
+  categories,
   opUpdateSubmission,
   cfpOpened,
 }) => (
@@ -40,7 +43,11 @@ const SubmissionPage = ({
     <div className="talk-page">
       <div className="talk-header">
         {state === 'accepted' && <Notification eventId={eventId} talkId={id} />}
-        {state !== 'accepted' && <TalkStatus talkId={id} eventId={eventId} />}
+        <div className="talk-status">
+          {state !== 'accepted' && <TalkStatus talkId={id} eventId={eventId} />}
+          <FormatBadge outline eventId={eventId} formatId={formats} />
+          <CategoryBadge outline eventId={eventId} categoryId={categories} />
+        </div>
       </div>
       <TalkAbstract
         className="talk-content"
@@ -64,6 +71,8 @@ SubmissionPage.propTypes = {
   owner: PropTypes.string,
   state: PropTypes.string,
   references: PropTypes.string,
+  formats: PropTypes.string,
+  categories: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
   opUpdateSubmission: PropTypes.func.isRequired,
   cfpOpened: PropTypes.bool,
@@ -77,6 +86,8 @@ SubmissionPage.defaultProps = {
   owner: undefined,
   state: undefined,
   references: undefined,
+  formats: undefined,
+  categories: undefined,
   speakers: {},
   cfpOpened: false,
 }

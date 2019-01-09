@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import Badge from 'components/badge'
 import Markdown from 'components/markdown'
-import { FormatBadge, CategoryBadge } from 'screens/organizer/event/components/badges'
+import { FormatBadge, CategoryBadge } from 'screens/components/event/badges'
 import './talk.css'
 
 const Talk = ({ eventId, proposal, className }) => (

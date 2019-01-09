@@ -19,6 +19,18 @@
   align-self: start;
 }
 
+.talk-status {
+  display: flex;
+}
+
+.talk-status > * {
+  margin-right: 1em;
+}
+
+.talk-status > *:last-child {
+  margin-right: 0;
+}
+
 @media only screen and (max-width: 1024px) {
   .talk-page {
     grid-template-columns: auto;
