@@ -80,7 +80,10 @@ export default {
       '/submission': { code: 'speaker-event-submit-wizard' },
       '/submissions': {
         code: 'speaker-event-submissions',
-        '/:talkId': { code: 'speaker-event-submission-page' },
+        '/:talkId': {
+          code: 'speaker-event-submission-page',
+          parentScreen: 'speaker-event-submissions',
+        },
       },
       '/survey': { code: 'speaker-event-survey' },
     },
