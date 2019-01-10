@@ -15,33 +15,37 @@ const Status = ({
   declined,
   cfpOpened,
   outOfDate,
-  onClickEdit,
   className,
   displayCfpStatus,
 }) => {
   if (!loaded) return null
   return (
     <div className={cn('submission-status', className)}>
-      {outOfDate
-        && cfpOpened && (
-          <Badge warning>
-            {classes => (
-              <a role="button" onClick={onClickEdit} className={classes}>
-                Out of date
-              </a>
-            )}
-          </Badge>
-      )}
+      {outOfDate && cfpOpened && <Badge warning>Out of date</Badge>}
       {!cfpOpened && displayCfpStatus && <Badge error>CFP closed</Badge>}
-      {accepted && <Badge success outline>Accepted</Badge>}
-      {rejected && <Badge error outline>Not accepted</Badge>}
-      {confirmed && <Badge success outline>Confirmed</Badge>}
-      {declined && <Badge error outline>Declined</Badge>}
-      {submitted
-        && !accepted
-        && !rejected
-        && !declined
-        && !confirmed && <Badge outline>Submitted</Badge>}
+      {accepted && (
+        <Badge success outline>
+          Accepted
+        </Badge>
+      )}
+      {rejected && (
+        <Badge error outline>
+          Not accepted
+        </Badge>
+      )}
+      {confirmed && (
+        <Badge success outline>
+          Confirmed
+        </Badge>
+      )}
+      {declined && (
+        <Badge error outline>
+          Declined
+        </Badge>
+      )}
+      {submitted && !accepted && !rejected && !declined && !confirmed && (
+        <Badge outline>Submitted</Badge>
+      )}
     </div>
   )
 }
@@ -56,7 +60,6 @@ Status.propTypes = {
   outOfDate: PropTypes.bool,
   cfpOpened: PropTypes.bool,
   displayCfpStatus: PropTypes.bool,
-  onClickEdit: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 

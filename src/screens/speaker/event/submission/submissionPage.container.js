@@ -19,7 +19,7 @@ const mapStore = (store, props, { router }) => {
     cfpOpened: isCfpOpened(eventId)(store),
     load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
     opUpdateSubmission: () => {
-      store.dispatch({ type: '@@ui/GO_TO_EVENT_SUBMISSION', payload: { eventId, talkId } })
+      store.dispatch({ type: '@@ui/GO_TO_EVENT_SUBMISSION', payload: { eventId, talkId, step: 2 } })
     },
   }
 }

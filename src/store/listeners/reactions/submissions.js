@@ -7,8 +7,8 @@ export const openSelectSubmission = (action, store, { router }) => {
 }
 
 export const openEventSubmission = (action, store, { router }) => {
-  const { talkId, eventId } = action.payload
-  store.ui.speaker.submission.set({ talkId, currentStep: 1 })
+  const { talkId, eventId, step = 1 } = action.payload
+  store.ui.speaker.submission.set({ talkId, currentStep: step })
   router.push('speaker-event-submit-wizard', { eventId })
 }
 
