@@ -13,7 +13,7 @@ module.exports = (event, talk, url) => `
   <strong><a href="${url}/organizer/event/${event.id}/proposal/${talk.id}">Check it now!</a></strong>
   </p>
   <p>
-  – <i>Conference Hall</i>
+  Made with 💗 by <a href="${url}">conference-hall.io</a> – <i>"${event.name}" team</i>
   </p>
   </body>
 </html>

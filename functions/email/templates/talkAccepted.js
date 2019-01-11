@@ -15,10 +15,10 @@ module.exports = (event, users, talk, url) => `
   <li><strong><a href="${url}/speaker/talk/${talk.id}">My talk <strong>${talk.title}<strong></a></li></strong>
   </p>
   <p>
-  Thanks !
+  See you there !
   </p>
   <p>
-  See you there – <i>"${event.name}" team</i>
+  Made with 💗 by <a href="${url}">conference-hall.io</a> – <i>"${event.name}" team</i>
   </p>
   </body>
 </html>

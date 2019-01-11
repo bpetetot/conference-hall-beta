@@ -2,7 +2,7 @@
 const fetch = require('isomorphic-fetch')
 const FormData = require('form-data')
 
-module.exports = (config, { to, subject, html }) => {
+module.exports = (config, { to, subject, html, confName }) => {
   if (!config || !config.key || !config.domain) {
     return Promise.reject(new Error('Mailgun configuration mailgun.key or mailgun.domain not found.'))
   }
@@ -14,7 +14,7 @@ module.exports = (config, { to, subject, html }) => {
 
   const token = Buffer.from(`api:${key}`).toString('base64')
   const endpoint = `https://api.mailgun.net/v3/${domain}/messages`
-  const from = `Conference Hall <no-reply@${domain}>`
+  const from = `${confName} <no-reply@${domain}>`
 
   const form = new FormData()
   form.append('from', from)
