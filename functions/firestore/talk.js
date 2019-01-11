@@ -12,7 +12,7 @@ const updateTalk = (talkId, data) => admin
   .firestore()
   .collection('talks')
   .doc(talkId)
-  .update({ ...data, updateTimestamp: admin.firestore.FieldValue.serverTimestamp() })
+  .update({ ...data, updateTimestamp: admin.firestore().FieldValue.serverTimestamp() })
 
 const partialUpdateTalk = (talkId, data) => admin
   .firestore()
