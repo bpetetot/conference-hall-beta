@@ -1,5 +1,28 @@
 # Changelog
 
+<a name="0.6.0" />
+
+## 0.6.0 (2019-01-03)
+
+### Added
+
+- ✨ add organizers thread for a proposal ([#423](https://github.com/bpetetot/conference-hall/issues/423)) [[429026d](https://github.com/bpetetot/conference-hall/commit/429026da29d78721c6e562920eb6471e4b8c015b)]
+
+### Changed
+
+- ⬆️ upgrade k-ramel and eslint-plugin-react ([#426](https://github.com/bpetetot/conference-hall/issues/426)) [[4f8bed7](https://github.com/bpetetot/conference-hall/commit/4f8bed7ea2a781941787fcf8a9ffcf9052027d0f)]
+- 💄 fit the pagination with parent width on mobile ([#422](https://github.com/bpetetot/conference-hall/issues/422)) [[b0a5161](https://github.com/bpetetot/conference-hall/commit/b0a51611b27c95b3dcf8b18ff078e17de8e56deb)]
+- ♻️ replace redux-form by react-final-form ([#397](https://github.com/bpetetot/conference-hall/issues/397)) [[772c874](https://github.com/bpetetot/conference-hall/commit/772c8741a0adea529619b174491016d6d2eb76ab)]
+
+### Fixed
+
+- 🐛 fix when you edit cfp config of a private event it becomes public ([#421](https://github.com/bpetetot/conference-hall/issues/421)) [[094053a](https://github.com/bpetetot/conference-hall/commit/094053a40b5eaf376f324c6a9baf357dbf8f79a6)]
+
+### Miscellaneous
+
+- 📝 contribute documentation ([#418](https://github.com/bpetetot/conference-hall/issues/418)) [[02fd334](https://github.com/bpetetot/conference-hall/commit/02fd3344522a94e253b4c7f2f025fc7f323c33dc)]
+
+
 <a name="0.5.0" />
 
 ## 0.5.0 (2018-12-23)
