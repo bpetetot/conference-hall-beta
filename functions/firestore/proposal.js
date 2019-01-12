@@ -14,7 +14,7 @@ const addProposal = (eventId, proposal) => {
       ...newProposal,
       rating: null,
       state: 'submitted',
-      updateTimestamp: firebase.firestore().FieldValue.serverTimestamp(),
+      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
 }
 

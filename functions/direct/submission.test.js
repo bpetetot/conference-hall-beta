@@ -40,6 +40,8 @@ describe('Submitssion', () => {
   // mock DB
   const databaseStub = sinon.stub()
   const collectionStub = sinon.stub()
+  const fieldValueStub = sinon.stub()
+  const timestampStub = sinon.stub()
   // mock event queries
   const docEventStub = sinon.stub()
   const getEventStub = sinon.stub()
@@ -51,9 +53,11 @@ describe('Submitssion', () => {
   const docProposalStub = sinon.stub()
 
   beforeEach(() => {
-    // mock firestore DB
+    // mock firestore DB static methods
     Object.defineProperty(admin, 'firestore', { get: () => databaseStub, configurable: true })
-    databaseStub.returns({ collection: collectionStub, FieldValue: { serverTimestamp: () => {} } })
+    Object.defineProperty(admin.firestore, 'FieldValue', { get: () => fieldValueStub, configurable: true })
+    Object.defineProperty(admin.firestore.FieldValue, 'serverTimestamp', { get: () => timestampStub, configurable: true })
+    databaseStub.returns({ collection: collectionStub })
     // mock getEvent
     collectionStub.withArgs('events').returns({ doc: docEventStub })
     docEventStub.withArgs(eventId).returns({
@@ -71,7 +75,6 @@ describe('Submitssion', () => {
   })
 
   it('should add a proposal when the submitted talk hasn\'t been submitted already', async () => {
-    Object.defineProperty(admin, 'firestore', { get: () => databaseStub, configurable: true })
     // mock addProposal
     const setProposalStub = sinon.stub()
     collectionProposalStub.withArgs('proposals').returns({ doc: docProposalStub })
