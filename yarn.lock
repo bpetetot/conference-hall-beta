@@ -1104,13 +1104,15 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-3.0.0.tgz#3fa172e3006f36e547fb49835bf25fc487a29f1c"
 
-"@k-ramel/driver-http@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-1.1.0.tgz#60112530c426617f69b8405b2f21b63061f2f2d7"
+"@k-ramel/driver-http@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-1.2.0.tgz#1508219e1fac83ec879b62dc19f633e42713e263"
 
-"@k-ramel/react@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.1.0.tgz#60516e85e1d632af987f8416c1981182d540275d"
+"@k-ramel/react@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.2.0.tgz#3ebd80fe5ae08fbe2a7a86288594a6de1ac332ba"
+  dependencies:
+    fbjs "^1.0.0"
 
 "@k-redux-router/core@^1.0.0":
   version "1.0.0"
@@ -4722,9 +4724,9 @@ eslint-plugin-react@7.11.1:
     jsx-ast-utils "^2.0.1"
     prop-types "^15.6.2"
 
-eslint-plugin-react@^7.12.2:
-  version "7.12.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.12.2.tgz#95a4d8117011787824625ea57be9e38401d33548"
+eslint-plugin-react@^7.12.3:
+  version "7.12.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.12.3.tgz#b9ca4cd7cd3f5d927db418a1950366a12d4568fd"
   dependencies:
     array-includes "^3.0.3"
     doctrine "^2.1.0"
@@ -5140,11 +5142,28 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
+fbjs-css-vars@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz#216551136ae02fe255932c3ec8775f18e2c078b8"
+
 fbjs@^0.8.0:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   dependencies:
     core-js "^1.0.0"
+    isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.18"
+
+fbjs@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-1.0.0.tgz#52c215e0883a3c86af2a7a776ed51525ae8e0a5a"
+  dependencies:
+    core-js "^2.4.1"
+    fbjs-css-vars "^1.0.0"
     isomorphic-fetch "^2.1.1"
     loose-envify "^1.0.0"
     object-assign "^4.1.0"
@@ -5993,10 +6012,6 @@ h2x-traverse@^1.1.0:
 h2x-types@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/h2x-types/-/h2x-types-1.1.0.tgz#ec0d5e3674e2207269f32976ac9c82aaff4818e6"
-
-handle-thing@^1.2.5:
-  version "1.2.5"
-  resolved "http://registry.npmjs.org/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
 
 handle-thing@^2.0.0:
   version "2.0.0"
@@ -7647,11 +7662,11 @@ jws@^3.0.0, jws@^3.1.4, jws@^3.1.5:
     jwa "^1.1.5"
     safe-buffer "^5.0.1"
 
-k-ramel@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-1.1.0.tgz#44521420fb589b5705018dde1c4a314294426388"
+k-ramel@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-1.2.0.tgz#0bf26e536be5fed37b155c70ad04031898b5cb80"
   dependencies:
-    "@k-ramel/driver-http" "^1.1.0"
+    "@k-ramel/driver-http" "^1.2.0"
     k-redux-factory "6.0.2"
     redux "4.0.1"
 
@@ -8976,7 +8991,7 @@ object.values@^1.0.4:
     function-bind "^1.1.0"
     has "^1.0.1"
 
-obuf@^1.0.0, obuf@^1.1.1, obuf@^1.1.2:
+obuf@^1.0.0, obuf@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
 
@@ -10468,6 +10483,35 @@ react-dev-utils@^7.0.0:
     strip-ansi "4.0.0"
     text-table "0.2.0"
 
+react-dev-utils@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-7.0.1.tgz#c53e759a22668ee2c0d146c24ce4bdec2b41e3c8"
+  dependencies:
+    "@babel/code-frame" "7.0.0"
+    address "1.0.3"
+    browserslist "4.1.1"
+    chalk "2.4.1"
+    cross-spawn "6.0.5"
+    detect-port-alt "1.1.6"
+    escape-string-regexp "1.0.5"
+    filesize "3.6.1"
+    find-up "3.0.0"
+    global-modules "1.0.0"
+    globby "8.0.1"
+    gzip-size "5.0.0"
+    immer "1.7.2"
+    inquirer "6.2.0"
+    is-root "2.0.0"
+    loader-utils "1.1.0"
+    opn "5.4.0"
+    pkg-up "2.0.0"
+    react-error-overlay "^5.1.2"
+    recursive-readdir "2.2.2"
+    shell-quote "1.6.1"
+    sockjs-client "1.1.5"
+    strip-ansi "4.0.0"
+    text-table "0.2.0"
+
 react-docgen-typescript-loader@^3.0.0-rc.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-docgen-typescript-loader/-/react-docgen-typescript-loader-3.0.0.tgz#4042e2854d29380e4d01e479d438c03ec00de8e8"
@@ -10504,6 +10548,10 @@ react-dom@^16.7.0:
 react-error-overlay@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.1.tgz#56f0439f001ff3588da0f479a86482ccb1e708cb"
+
+react-error-overlay@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.2.tgz#888957b884d4b25b083a82ad550f7aad96585394"
 
 react-feather@^1.1.5:
   version "1.1.5"
@@ -10628,9 +10676,9 @@ react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
-react-scripts@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-2.1.2.tgz#cf1686cd9ca3c6148e1428e97aac12995f01b554"
+react-scripts@2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-2.1.3.tgz#6e49be279f4039fb9f330d2b3529b933b8e90945"
   dependencies:
     "@babel/core" "7.1.6"
     "@svgr/webpack" "2.4.1"
@@ -10669,14 +10717,14 @@ react-scripts@2.1.2:
     postcss-preset-env "6.3.1"
     postcss-safe-parser "4.0.1"
     react-app-polyfill "^0.2.0"
-    react-dev-utils "^7.0.0"
+    react-dev-utils "^7.0.1"
     resolve "1.8.1"
     sass-loader "7.1.0"
     style-loader "0.23.0"
     terser-webpack-plugin "1.1.0"
     url-loader "1.1.1"
     webpack "4.19.1"
-    webpack-dev-server "3.1.9"
+    webpack-dev-server "3.1.14"
     webpack-manifest-plugin "2.0.4"
     workbox-webpack-plugin "3.6.3"
   optionalDependencies:
@@ -10758,7 +10806,7 @@ read@1.0.x:
   dependencies:
     mute-stream "~0.0.4"
 
-"readable-stream@1 || 2", readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.2.9, readable-stream@^2.3.0, readable-stream@^2.3.3, readable-stream@^2.3.5, readable-stream@^2.3.6, readable-stream@~2.3.6:
+"readable-stream@1 || 2", readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.3.0, readable-stream@^2.3.3, readable-stream@^2.3.5, readable-stream@^2.3.6, readable-stream@~2.3.6:
   version "2.3.6"
   resolved "http://registry.npmjs.org/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   dependencies:
@@ -11780,18 +11828,6 @@ spdx-license-ids@^3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.3.tgz#81c0ce8f21474756148bbb5f3bfc0f36bf15d76e"
 
-spdy-transport@^2.0.18:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/spdy-transport/-/spdy-transport-2.1.1.tgz#c54815d73858aadd06ce63001e7d25fa6441623b"
-  dependencies:
-    debug "^2.6.8"
-    detect-node "^2.0.3"
-    hpack.js "^2.1.6"
-    obuf "^1.1.1"
-    readable-stream "^2.2.9"
-    safe-buffer "^5.0.1"
-    wbuf "^1.7.2"
-
 spdy-transport@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/spdy-transport/-/spdy-transport-3.0.0.tgz#00d4863a6400ad75df93361a1608605e5dcdcf31"
@@ -11802,17 +11838,6 @@ spdy-transport@^3.0.0:
     obuf "^1.1.2"
     readable-stream "^3.0.6"
     wbuf "^1.7.3"
-
-spdy@^3.4.1:
-  version "3.4.7"
-  resolved "https://registry.yarnpkg.com/spdy/-/spdy-3.4.7.tgz#42ff41ece5cc0f99a3a6c28aabb73f5c3b03acbc"
-  dependencies:
-    debug "^2.6.8"
-    handle-thing "^1.2.5"
-    http-deceiver "^1.2.7"
-    safe-buffer "^5.0.1"
-    select-hose "^2.0.0"
-    spdy-transport "^2.0.18"
 
 spdy@^4.0.0:
   version "4.0.0"
@@ -13023,7 +13048,7 @@ watchpack@^1.5.0:
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
 
-wbuf@^1.1.0, wbuf@^1.7.2, wbuf@^1.7.3:
+wbuf@^1.1.0, wbuf@^1.7.3:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/wbuf/-/wbuf-1.7.3.tgz#c1d8d149316d3ea852848895cb6a0bfe887b87df"
   dependencies:
@@ -13074,40 +13099,7 @@ webpack-dev-middleware@3.4.0:
     range-parser "^1.0.3"
     webpack-log "^2.0.0"
 
-webpack-dev-server@3.1.9:
-  version "3.1.9"
-  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.1.9.tgz#8b32167624d2faff40dcedc2cbce17ed1f34d3e0"
-  dependencies:
-    ansi-html "0.0.7"
-    bonjour "^3.5.0"
-    chokidar "^2.0.0"
-    compression "^1.5.2"
-    connect-history-api-fallback "^1.3.0"
-    debug "^3.1.0"
-    del "^3.0.0"
-    express "^4.16.2"
-    html-entities "^1.2.0"
-    http-proxy-middleware "~0.18.0"
-    import-local "^2.0.0"
-    internal-ip "^3.0.1"
-    ip "^1.1.5"
-    killable "^1.0.0"
-    loglevel "^1.4.1"
-    opn "^5.1.0"
-    portfinder "^1.0.9"
-    schema-utils "^1.0.0"
-    selfsigned "^1.9.1"
-    serve-index "^1.7.2"
-    sockjs "0.3.19"
-    sockjs-client "1.1.5"
-    spdy "^3.4.1"
-    strip-ansi "^3.0.0"
-    supports-color "^5.1.0"
-    webpack-dev-middleware "3.4.0"
-    webpack-log "^2.0.0"
-    yargs "12.0.2"
-
-webpack-dev-server@^3.1.14:
+webpack-dev-server@3.1.14, webpack-dev-server@^3.1.14:
   version "3.1.14"
   resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.1.14.tgz#60fb229b997fc5a0a1fc6237421030180959d469"
   dependencies:

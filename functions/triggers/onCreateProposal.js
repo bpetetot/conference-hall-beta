@@ -28,6 +28,7 @@ module.exports = functions.firestore
       to: users.map(user => user.email),
       subject: `[${event.name}] Talk submitted`,
       html: talkSubmitted(event, talk, app.url),
+      confName: event.name,
     })
 
     // Send email to organizers after submission
@@ -38,6 +39,7 @@ module.exports = functions.firestore
         to: organizers.map(user => user.email),
         subject: `[${event.name}] New talk submitted`,
         html: talkReceived(event, talk, app.url),
+        confName: event.name,
       })
     }
   })
