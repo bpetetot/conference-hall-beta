@@ -9,7 +9,7 @@ const admin = require('firebase-admin')
 const test = require('firebase-functions-test')()
 const submission = require('./submission')
 
-describe('Submit talk', () => {
+describe('Submitssion', () => {
   const eventId = 'wpYPL2EC3WzxUqY77rQZ'
   const submissionsObject = {
     wpYPL2EC3WzxUqY77rQZ: {
@@ -37,74 +37,83 @@ describe('Submit talk', () => {
     name: 'RivieraDEV 2019',
     id: 'wpYPL2EC3WzxUqY77rQZ',
   }
-  it('should add a proposal when the submitted talk hasn\'t been submitted already', async () => {
+  // mock DB
+  const databaseStub = sinon.stub()
+  const collectionStub = sinon.stub()
+  // mock event queries
+  const docEventStub = sinon.stub()
+  const getEventStub = sinon.stub()
+  const collectionProposalStub = sinon.stub()
+  // mock updateTalk
+  const docTalkStub = sinon.stub()
+  const updateTalkStub = sinon.stub()
+  // mock updateProposal
+  const docProposalStub = sinon.stub()
+
+  beforeEach(() => {
     // mock firestore DB
-    const databaseStub = sinon.stub()
-    const collectionStub = sinon.stub()
     Object.defineProperty(admin, 'firestore', { get: () => databaseStub, configurable: true })
     databaseStub.returns({ collection: collectionStub, FieldValue: { serverTimestamp: () => {} } })
-
     // mock getEvent
-    const docStub = sinon.stub()
-    const getEventStub = sinon.stub()
-    const collectionProposalStub = sinon.stub()
-    collectionStub.withArgs('events').returns({ doc: docStub })
-    docStub.withArgs(eventId).returns({ get: getEventStub, collection: collectionProposalStub })
+    collectionStub.withArgs('events').returns({ doc: docEventStub })
+    docEventStub.withArgs(eventId).returns({
+      get: getEventStub,
+      collection: collectionProposalStub,
+    })
     getEventStub.returns(Promise.resolve({ data: () => event }))
-
     // mock updateTalk
-    const talkDocStub = sinon.stub()
-    const updateStub = sinon.stub()
-    collectionStub.withArgs('talks').returns({ doc: talkDocStub })
-    talkDocStub.withArgs(talk.id).returns({ update: updateStub })
-    updateStub.returns(() => {})
+    collectionStub.withArgs('talks').returns({ doc: docTalkStub })
+    docTalkStub.withArgs(talk.id).returns({ update: updateTalkStub })
+    updateTalkStub.returns(() => {})
+  })
+  afterEach(() => {
+    sinon.reset()
+  })
 
+  it('should add a proposal when the submitted talk hasn\'t been submitted already', async () => {
+    Object.defineProperty(admin, 'firestore', { get: () => databaseStub, configurable: true })
     // mock addProposal
-    const proposalStub = sinon.stub()
-    const setStub = sinon.stub()
-    collectionProposalStub.withArgs('proposals').returns({ doc: proposalStub })
-    proposalStub.withArgs(talk.id).returns({ set: setStub })
-    setStub.returns(() => {})
+    const setProposalStub = sinon.stub()
+    collectionProposalStub.withArgs('proposals').returns({ doc: docProposalStub })
+    docProposalStub.withArgs(talk.id).returns({ set: setProposalStub })
+    setProposalStub.returns(() => {})
 
     const submitTalkWrapped = test.wrap(submission.submitTalk)
     await submitTalkWrapped({ eventId, talk })
-    assert.isTrue(docStub.calledTwice)
-    assert.isTrue(updateStub.calledOnce)
+    assert.isTrue(docEventStub.calledTwice)
+    assert.isTrue(updateTalkStub.calledOnce)
+    assert.isTrue(setProposalStub.calledOnce)
   })
+
   it('should update a proposal when this talk has already been submitted', async () => {
     // talk already has submission for this event
     talk.submissions = submissionsObject
-    // mock firestore DB
-    const databaseStub = sinon.stub()
-    const collectionStub = sinon.stub()
-    Object.defineProperty(admin, 'firestore', { get: () => databaseStub, configurable: true })
-    databaseStub.returns({ collection: collectionStub, FieldValue: { serverTimestamp: () => {} } })
-
-    // mock getEvent
-    const docStub = sinon.stub()
-    const getEventStub = sinon.stub()
-    const collectionProposalStub = sinon.stub()
-    collectionStub.withArgs('events').returns({ doc: docStub })
-    docStub.withArgs(eventId).returns({ get: getEventStub, collection: collectionProposalStub })
-    getEventStub.returns(Promise.resolve({ data: () => event }))
-
-    // mock updateTalk
-    const talkDocStub = sinon.stub()
-    const updateStub = sinon.stub()
-    collectionStub.withArgs('talks').returns({ doc: talkDocStub })
-    talkDocStub.withArgs(talk.id).returns({ update: updateStub })
-    updateStub.returns(() => {})
-
     // mock updateProposal
-    const proposalStub = sinon.stub()
     const updateProposalStub = sinon.stub()
-    collectionProposalStub.withArgs('proposals').returns({ doc: proposalStub })
-    proposalStub.withArgs(talk.id).returns({ update: updateProposalStub })
+    collectionProposalStub.withArgs('proposals').returns({ doc: docProposalStub })
+    docProposalStub.withArgs(talk.id).returns({ update: updateProposalStub })
     updateProposalStub.returns(() => {})
 
     const submitTalkWrapped = test.wrap(submission.submitTalk)
     await submitTalkWrapped({ eventId, talk })
-    assert.isTrue(docStub.calledTwice)
-    assert.isTrue(updateStub.calledOnce)
+    assert.isTrue(docEventStub.calledTwice)
+    assert.isTrue(updateTalkStub.calledOnce)
+    assert.isTrue(updateProposalStub.called)
+  })
+
+  it('should remove a proposal when unsumit is called', async () => {
+    // talk already has submission for this event
+    talk.submissions = submissionsObject
+    // mock deleteProposal
+    const deleteProposalStub = sinon.stub()
+    collectionProposalStub.withArgs('proposals').returns({ doc: docProposalStub })
+    docProposalStub.withArgs(talk.id).returns({ delete: deleteProposalStub })
+    deleteProposalStub.returns(() => {})
+
+    const submitTalkWrapped = test.wrap(submission.unsubmitTalk)
+    await submitTalkWrapped({ eventId, talk })
+    assert.isTrue(docEventStub.calledTwice)
+    assert.isTrue(updateTalkStub.calledOnce)
+    assert.isTrue(deleteProposalStub.called)
   })
 })
