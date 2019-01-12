@@ -7,8 +7,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom && npm run test:functions",
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "test:functions": "cd ./functions && npm i && npm run test",
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
     "doc": "docz dev",
