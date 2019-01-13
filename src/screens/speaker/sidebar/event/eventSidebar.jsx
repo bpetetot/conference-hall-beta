@@ -12,12 +12,15 @@ const EventSidebar = ({ id, name, surveyActive }) => {
       <SideBarLink code="speaker-event-page" eventId={id}>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
+      <SideBarLink code="speaker-event-submissions" eventId={id}>
+        <IconLabel icon="fa fa-inbox" label="My submissions" />
+      </SideBarLink>
       {surveyActive && (
         <SideBarLink code="speaker-event-survey" eventId={id}>
           <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
         </SideBarLink>
       )}
-      <SubmitTalksLink eventId={id} className="sidebar-link" />
+      <SubmitTalksLink eventId={id} className="sidebar-link" classNameActive="sidebar-link-active" />
     </SideBarPanel>
   )
 }

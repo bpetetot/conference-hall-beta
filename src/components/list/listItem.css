@@ -4,6 +4,7 @@
   justify-content: space-between;
   margin: 0;
   padding: 1em 1.2em;
+  min-height: 70px;
 }
 
 .list-item.clickable {

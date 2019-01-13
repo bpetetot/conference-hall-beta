@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
-import NoTalks from 'screens/speaker/components/noTalks'
+import NoTalks from 'screens/components/talk/noTalks'
 import Status from 'screens/components/talk/status'
 
 import { toDate } from 'helpers/firebase'

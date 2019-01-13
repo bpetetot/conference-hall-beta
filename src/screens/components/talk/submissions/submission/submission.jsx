@@ -6,11 +6,9 @@ import { Link } from '@k-redux-router/react-k-ramel'
 import Status from '../../status'
 import './submission.css'
 
-const Submission = ({
-  talkId, eventId, name,
-}) => (
+const Submission = ({ talkId, eventId, name }) => (
   <div className="talk-submission-event">
-    <Link code="speaker-event-page" eventId={eventId}>
+    <Link code="speaker-event-submission-page" eventId={eventId} talkId={talkId}>
       {name}
     </Link>
     <div className="talk-submission-event-actions">
