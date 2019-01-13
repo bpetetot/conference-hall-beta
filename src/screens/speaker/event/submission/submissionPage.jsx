@@ -28,13 +28,9 @@ const SubmissionPage = ({
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
-      <Button secondary>
-        {btn => (
-          <Link code="speaker-talk-page" talkId={id} className={btn}>
-            <IconLabel icon="fa fa-history" label="Show current version" />
-          </Link>
-        )}
-      </Button>
+      <Link code="speaker-talk-page" talkId={id}>
+        <IconLabel icon="fa fa-history" label="Show current version" />
+      </Link>
       {cfpOpened && (
         <Button accent onClick={opUpdateSubmission}>
           Update submission
