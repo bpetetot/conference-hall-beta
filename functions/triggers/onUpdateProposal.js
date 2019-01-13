@@ -58,6 +58,7 @@ module.exports = functions.firestore
         to: users.map(user => user.email),
         subject: `[${event.name}] Talk accepted!`,
         html: talkAccepted(event, users, proposal, app.url),
+        confName: event.name,
       }))
     }
 
@@ -73,7 +74,8 @@ module.exports = functions.firestore
       ]).then(([users]) => sendEmail(mailgun, {
         to: users.map(user => user.email),
         subject: `[${event.name}] Talk declined`,
-        html: talkRejected(event, users, proposal),
+        html: talkRejected(event, users, proposal, app.url),
+        confName: event.name,
       }))
     }
 

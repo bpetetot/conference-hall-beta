@@ -26,13 +26,25 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-      - run: yarn
+      - run:
+          name: Install node dependencies
+          command: |
+            yarn
+            cd functions
+            yarn
       - save_cache:
           paths:
             - node_modules
             - ~/.cache/yarn
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn test
+      - run:
+          name: Exectute app tests
+          command: yarn test
+      - run:
+          name: Execute cloud function tests
+          command: |
+            cd functions
+            yarn test
 
   build:
     docker:

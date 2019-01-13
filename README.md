@@ -26,6 +26,7 @@ Conference Hall is still in beta but already contains a large set of features.
 - 💡 Custom formats and categories for the talks
 - 📥 Send survey to speakers
 - ⭐️ Rate proposals to speed deliberation process
+- 💬 Discussion between organizers about a proposal
 - ✅ Mark proposals as accepted, declined...
 - 💌 Automatically send accept or reject emails to speakers
 - 📃 Export proposals as JSON
