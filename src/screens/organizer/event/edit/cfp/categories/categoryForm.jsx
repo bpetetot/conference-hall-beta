@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Field } from 'react-final-form'
+import { Form } from 'react-final-form'
 
+import Field from 'components/form/field'
 import { input, textarea, SubmitButton } from 'components/form'
 import { required } from 'components/form/validators'
 

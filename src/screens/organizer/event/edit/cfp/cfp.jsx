@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Field } from 'react-final-form'
+import { Form } from 'react-final-form'
 import arrayMutators from 'final-form-arrays'
 
+import Field from 'components/form/field'
 import {
   dayPicker, dayRangePicker, Label, SubmitButton, toggle,
 } from 'components/form'

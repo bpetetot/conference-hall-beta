@@ -6,7 +6,8 @@ import UserAvatar from 'screens/components/userAvatar'
 import IconLabel from 'components/iconLabel'
 import IconLink from 'components/iconLink'
 import Markdown from 'components/markdown'
-import './speaker.css'
+
+import styles from './speaker.module.css'
 
 const Speaker = ({
   uid, email, github, twitter, company, language, city, bio,
@@ -18,8 +19,8 @@ const Speaker = ({
 
   return (
     <div>
-      <UserAvatar id={uid} className="proposal-speaker-avatar" />
-      <div className="proposal-speaker-icons">
+      <UserAvatar id={uid} className={styles.avatar} />
+      <div className={styles.icons}>
         <IconLink icon="fa fa-envelope-o" label={email} href={`mailto:${email}`} />
         <IconLink icon="fa fa-github" label={github} href={getGitHubUserRepo(github)} />
         <IconLink icon="fa fa-twitter" label={twitter} href={`https://twitter.com/${twitterUrl}`} />
@@ -27,7 +28,7 @@ const Speaker = ({
         <IconLabel icon="fa fa-map-marker" label={city} />
         <IconLabel icon="fa fa-language" label={language} />
       </div>
-      <Markdown source={bio} />
+      {bio && <Markdown source={bio} className={styles.bio} />}
     </div>
   )
 }
