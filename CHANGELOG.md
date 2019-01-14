@@ -1,5 +1,27 @@
 # Changelog
 
+<a name="0.7.0" />
+
+## 0.7.0 (2019-01-14)
+
+### Added
+
+- ✨ In emails, replace the &quot;from&quot; label by the event name [[1e88d88](https://github.com/bpetetot/conference-hall/commit/1e88d88e26a03868b75bc628d83d0c2f38694399)]
+- ✨ open proposals list selecting an event in the list ([#435](https://github.com/bpetetot/conference-hall/issues/435)) [[015d382](https://github.com/bpetetot/conference-hall/commit/015d3826479888a4e7256f24e32cb851ba878214)]
+- ✨ speaker&#x27;s submissions page for an event ([#428](https://github.com/bpetetot/conference-hall/issues/428)) [[5ae5ce5](https://github.com/bpetetot/conference-hall/commit/5ae5ce551c0baafbf9b2a86d8d810d8b412c6af3)]
+- ✅ test submit and unsubmit cloud functions ([#433](https://github.com/bpetetot/conference-hall/issues/433)) [[5d09521](https://github.com/bpetetot/conference-hall/commit/5d09521242e108ccea53e3e628768c15d738006e)]
+- 👷 execute cloud functions tests in ci ([#434](https://github.com/bpetetot/conference-hall/issues/434)) [[5e95d59](https://github.com/bpetetot/conference-hall/commit/5e95d59a57cbee5d282280ab54a603f3eab76490)]
+
+### Changed
+
+- ⬆️ upgrade k-ramel, react-script, eslint ([#431](https://github.com/bpetetot/conference-hall/issues/431)) [[1ad57d1](https://github.com/bpetetot/conference-hall/commit/1ad57d128aa33e98f81e8354d3460d8495adc596)]
+- ⬆️ upgrade k-ramel and firebase ([#441](https://github.com/bpetetot/conference-hall/issues/441)) [[d2846e0](https://github.com/bpetetot/conference-hall/commit/d2846e087ec7d8f597775c077b67e5e8bad19c14)]
+
+### Fixed
+
+- 🐛 speaker page should handle talk without submission ([#440](https://github.com/bpetetot/conference-hall/issues/440)) [[96c91ac](https://github.com/bpetetot/conference-hall/commit/96c91ac994d258cec98ce9812f16ea1be99876f5)]
+
+
 <a name="0.6.0" />
 
 ## 0.6.0 (2019-01-03)
