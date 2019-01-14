@@ -10,7 +10,7 @@ const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
   const talks = store.ui.speaker.myTalks
     .getAsArray()
-    .filter(talk => !!talk.submissions[eventId])
+    .filter(talk => talk.submissions && !!talk.submissions[eventId])
     .map(talk => talk.submissions[eventId])
 
   const { name: eventName } = store.data.events.get(eventId) || {}
