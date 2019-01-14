@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="0.7.1" />
+
+## 0.7.1 (2019-01-14)
+
+### Fixed
+
+- 🐛 can&#x27;t reset of value a field in forms ([#442](https://github.com/bpetetot/conference-hall/issues/442)) [[88cdc46](https://github.com/bpetetot/conference-hall/commit/88cdc46b27716ad9fb3ea9edf0e2b4b6fe0e0765)]
+
+
 <a name="0.7.0" />
 
 ## 0.7.0 (2019-01-14)
