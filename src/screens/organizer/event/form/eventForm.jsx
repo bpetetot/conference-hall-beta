@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Field } from 'react-final-form'
+import { Form } from 'react-final-form'
 import isEmpty from 'lodash/isEmpty'
 
+import Field from 'components/form/field'
 import {
   input,
   select,
