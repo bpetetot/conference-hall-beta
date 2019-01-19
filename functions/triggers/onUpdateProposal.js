@@ -4,7 +4,7 @@ const { getEvent } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 const { updateProposal } = require('../firestore/proposal')
 const { partialUpdateTalk } = require('../firestore/talk')
-const sendEmail = require('../email')
+const email = require('../email')
 const talkAccepted = require('../email/templates/talkAccepted')
 const talkRejected = require('../email/templates/talkRejected')
 
@@ -54,7 +54,7 @@ module.exports = functions.firestore
         getUsers(uids),
         updateProposal(eventId, proposal),
         partialUpdateTalk(proposal.id, submissionUpdate),
-      ]).then(([users]) => sendEmail(mailgun, {
+      ]).then(([users]) => email.send(mailgun, {
         to: users.map(user => user.email),
         subject: `[${event.name}] Talk accepted!`,
         html: talkAccepted(event, users, proposal, app.url),
@@ -71,7 +71,7 @@ module.exports = functions.firestore
         getUsers(uids),
         updateProposal(eventId, proposal),
         partialUpdateTalk(proposal.id, submissionUpdate),
-      ]).then(([users]) => sendEmail(mailgun, {
+      ]).then(([users]) => email.send(mailgun, {
         to: users.map(user => user.email),
         subject: `[${event.name}] Talk declined`,
         html: talkRejected(event, users, proposal, app.url),
