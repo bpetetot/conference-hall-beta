@@ -23,7 +23,7 @@ export const fetchEventProposals = async (
   eventId,
   uid,
   {
-    categories, formats, state, sortOrder, ratings, search,
+    categories, formats, state, sortOrder, ratings,
   } = {},
 ) => {
   let query = firebase

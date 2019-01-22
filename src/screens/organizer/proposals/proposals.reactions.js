@@ -65,7 +65,7 @@ export const loadProposals = async (action, store, { router }) => {
     prop.speakerName = speakerNameList.join(' & ')
     return prop
   }))
-    // Cross-fields search better handled in UI than firebase
+  // Cross-fields search better handled in UI than firebase
   const { search } = filters
   if (search) {
     const searchQuery = deburr(toLower(search))
