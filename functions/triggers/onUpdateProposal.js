@@ -49,7 +49,6 @@ module.exports = functions.firestore
     if (proposal.state === 'accepted' && !proposal.emailSent) {
       const event = await getEvent(eventId)
       proposal.emailSent = proposal.updateTimestamp
-
       return Promise.all([
         getUsers(uids),
         updateProposal(eventId, proposal),
@@ -66,7 +65,6 @@ module.exports = functions.firestore
     if (proposal.state === 'rejected' && !proposal.emailSent) {
       const event = await getEvent(eventId)
       proposal.emailSent = proposal.updateTimestamp
-
       return Promise.all([
         getUsers(uids),
         updateProposal(eventId, proposal),

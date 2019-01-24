@@ -51,7 +51,7 @@ describe('onCreateProposal', () => {
     data: () => talk,
   }
   // mock email.send
-  const emailSend = sinon.stub(email, 'send').callsFake(() => {})
+  let emailSend
   conf = { mailgun: { domain: 'somedomain.org', key: 'SOME-SECRET' }, app: { url: 'https://somefirebase.url' } }
   beforeEach(() => {
     test.mockConfig(conf)
@@ -70,9 +70,11 @@ describe('onCreateProposal', () => {
     // mock getUsers
     collectionStub.withArgs('users').returns({ doc: docUserStub, exists: true })
     docUserStub.withArgs('ibBeWNBzL3XVc0teerodftWdYzD2').returns({ get: () => new Promise(resolve => resolve({ data: () => user, exists: true })) })
+    emailSend = sinon.stub(email, 'send').callsFake(() => {})
   })
   afterEach(() => {
     sinon.reset()
+    emailSend.restore()
   })
 
   it('should send email to speakers after submission for a conference', async () => {
