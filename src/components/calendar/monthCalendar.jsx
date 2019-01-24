@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import {
-  format, getDaysInMonth, startOfMonth, getDay, addMonths,
-} from 'date-fns'
+import format from 'date-fns/format'
+import getDaysInMonth from 'date-fns/get_days_in_month'
+import startOfMonth from 'date-fns/start_of_month'
+import getDay from 'date-fns/get_day'
+import addMonths from 'date-fns/add_months'
 import { set } from 'immutadot'
 import range from 'lodash/range'
 import chunk from 'lodash/chunk'
@@ -57,13 +59,11 @@ class MonthCalendar extends Component {
   generateWeeksForMonth = (date) => {
     const startDay = getDay(startOfMonth(date))
 
-    return chunk([
+    const weeks = chunk([
       ...Array(startDay).fill(null),
       ...range(getDaysInMonth(date)).map(add(1)),
     ], 7)
-  }
 
-  addEmptyDaysForNexMonth = (weeks) => {
     const lastWeek = weeks[weeks.length - 1]
     const fillOffset = 7 - lastWeek.length
 
@@ -77,8 +77,7 @@ class MonthCalendar extends Component {
     const { date, onDayClick } = this.props
     const parsedDate = addMonths(date, this.state.offset)
 
-    let weeks = this.generateWeeksForMonth(parsedDate)
-    weeks = this.addEmptyDaysForNexMonth(weeks)
+    const weeks = this.generateWeeksForMonth(parsedDate)
 
     return (
       <div className="cc-calendar">

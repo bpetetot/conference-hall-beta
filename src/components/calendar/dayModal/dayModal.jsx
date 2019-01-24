@@ -6,7 +6,6 @@ import { List, ListItem } from '../../list'
 
 const DayModal = ({ content }) => (
   <Modal
-    className="default-theme"
     renderTrigger={({ show }) => (
       <Button simple onClick={show}>{content.length - 2} other elements</Button>
     )}

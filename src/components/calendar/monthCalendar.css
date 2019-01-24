@@ -38,8 +38,6 @@
 
 .cc-week > div {
   flex: 0 0 calc(100% / 7);
-  min-height: calc(35px * 4 + 10px);
-  max-height: calc(35px * 4 + 10px);
   overflow: hidden;
 }
 
@@ -58,21 +56,21 @@
 
 .cc-day-number {
   height: 30px;
-	margin-bottom: 5px;
+  margin-bottom: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .cc-day-item {
-	font-size: 14px;
-	padding: 2px 5px;
-	height: 30px;
-	margin-bottom: 5px;
-	background-color: var(--primary-color-light);
-	color: var(--primary-color-font);
-	display: flex;
-	align-items: center;
+  font-size: 14px;
+  padding: 2px 5px;
+  height: 30px;
+  margin-bottom: 5px;
+  background-color: var(--primary-color-light);
+  color: var(--primary-color-font);
+  display: flex;
+  align-items: center;
 }
 
 
