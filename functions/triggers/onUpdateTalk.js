@@ -7,6 +7,13 @@ const email = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
 const talkDeclined = require('../email/templates/talkDeclined')
 
+// onUpdateTalk is called when atalk is updated.
+// If this update include a change is the submision.state, this is a confirmation of an accepted
+// submission.
+// To test this function online:
+// > firebase functions:config:get > .runtimeconfig.json
+// > firebase functions:shell
+// > onUpdateTalk({before: {...}, after: {...}}, {params: {talkId: ".."}})
 module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (snap) => {
   const previousTalk = snap.before.data()
   const talk = snap.after.data()

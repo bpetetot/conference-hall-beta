@@ -8,6 +8,12 @@ const email = require('../email')
 const talkSubmitted = require('../email/templates/talkSubmitted')
 const talkReceived = require('../email/templates/talkReceived')
 
+// onCreateProposal is called when a talk is submitted. A new submission is created and
+// an email is sent to the speaker for a confirmation of her submission.
+// To test this function online:
+// > firebase functions:config:get > .runtimeconfig.json
+// > firebase functions:shell
+// > onCreateProposal({...},  {params:{eventId: "...", proposalId: '...'}})
 module.exports = functions.firestore
   .document('events/{eventId}/proposals/{proposalId}')
   .onCreate(async (snap, context) => {

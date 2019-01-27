@@ -8,7 +8,7 @@ const test = require('firebase-functions-test')()
 const onUpdateProposal = require('./onUpdateProposal')
 const email = require('../email')
 
-describe('onCreateProposal', () => {
+describe('onUpdateProposal', () => {
   const eventId = 'wpYPL2EC3WzxUqY77rQZ'
   const before = {
     abstract: 'hello',
@@ -171,6 +171,20 @@ describe('onCreateProposal', () => {
     // given
     after.state = 'rejected'
     after.emailSent = true
+    // when
+    const onUpdateProposalWrapped = test.wrap(onUpdateProposal)
+    await onUpdateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: 'iBTbrWOMWmsy85CNhkwF' } })
+    // then
+    sinon.assert.match(emailSend.notCalled, true)
+    sinon.assert.match(docUserStub.notCalled, true)
+    sinon.assert.match(updateProposalStub.notCalled, true)
+    sinon.assert.match(updateTalkStub.notCalled, true)
+  })
+
+  it('should NOT send email to speakers after submission is neither accepted nor rejected', async () => {
+    // given
+    after.state = 'somestate'
+    after.emailSent = false
     // when
     const onUpdateProposalWrapped = test.wrap(onUpdateProposal)
     await onUpdateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: 'iBTbrWOMWmsy85CNhkwF' } })

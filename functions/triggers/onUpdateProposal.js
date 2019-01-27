@@ -8,7 +8,13 @@ const email = require('../email')
 const talkAccepted = require('../email/templates/talkAccepted')
 const talkRejected = require('../email/templates/talkRejected')
 
-
+// onUpdateProposal is called when a submission is updated.
+// If this update include a change is the proposal's state, it means deliberations happened and the
+// talk is either accepted or rejected. In both cases, send an email to the speaker.
+// To test this function online:
+// > firebase functions:config:get > .runtimeconfig.json
+// > firebase functions:shell
+// > onUpdateProposal({before: {...}, after: {...}},  {params:{eventId: "...", proposalId: '...'}})
 module.exports = functions.firestore
   .document('events/{eventId}/proposals/{proposalId}')
   .onUpdate(async (snap, context) => {

@@ -5,7 +5,8 @@ node_modules
 package-lock.json
 
 # testing
-/coverage
+**/coverage
+**/.nyc_output/
 
 # production
 /build
