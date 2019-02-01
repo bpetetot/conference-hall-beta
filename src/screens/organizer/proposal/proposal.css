@@ -49,8 +49,12 @@
     grid-template-rows: auto;
     grid-template-areas:
       'proposal-ratings'
-      'proposal-sidebar'
-      'proposal-talk';
+      'proposal-talk'
+      'proposal-speakers';
+  }
+
+  .proposal-actions {
+    display: none;
   }
 
   .proposal .card {
