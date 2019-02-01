@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="0.7.2" />
+
+## 0.7.2 (2019-02-01)
+
+### Fixed
+
+- 🐛 fix ratings when get a slow connexion ([#455](https://github.com/bpetetot/conference-hall/issues/442))
+
+
 <a name="0.7.1" />
 
 ## 0.7.1 (2019-01-14)
