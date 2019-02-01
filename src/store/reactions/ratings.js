@@ -18,6 +18,7 @@ export const rateProposal = async (action, store, { router }) => {
   const { uid } = store.auth.get()
   const eventId = router.getParam('eventId')
   const proposalId = router.getParam('proposalId')
+
   // add or remove the rating in database and store
   const rated = !!rating.rating || !!rating.feeling
   if (rated) {
@@ -27,11 +28,14 @@ export const rateProposal = async (action, store, { router }) => {
     await deleteRating(eventId, proposalId, uid)
     store.data.ratings.remove([uid])
   }
+
+  // retrieve all ratings before updating proposal computed
+  const ratings = await getRatings(eventId, proposalId)
   // compute average rating
-  const avgRating = getRatingsAverage(store)
-  const loves = getFeelingsCount('love')(store)
-  const hates = getFeelingsCount('hate')(store)
-  const noopinion = getFeelingsCount('noopinion')(store)
+  const avgRating = getRatingsAverage(ratings)
+  const loves = getFeelingsCount('love')(ratings)
+  const hates = getFeelingsCount('hate')(ratings)
+  const noopinion = getFeelingsCount('noopinion')(ratings)
   const ratingUpdated = {
     rating: avgRating, loves, hates, noopinion,
   }
