@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import snarkdown from 'helpers/snarkdown'
-import escape from 'lodash/escape'
+import marked from 'marked'
 
 import './markdown.css'
 
@@ -10,7 +9,7 @@ const Markdown = ({ source, className }) => (
   <div
     className={cn('markdown', className)}
     // eslint-disable-next-line react/no-danger
-    dangerouslySetInnerHTML={{ __html: snarkdown(escape(source)) }}
+    dangerouslySetInnerHTML={{ __html: marked(source) }}
   />
 )
 
