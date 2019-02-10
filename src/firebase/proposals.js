@@ -45,9 +45,9 @@ export const fetchEventProposals = async (
   // add sortOrder
   if (sortOrder) {
     if (sortOrder === 'newest') {
-      query = query.orderBy('updateTimestamp', 'desc')
+      query = query.orderBy('createTimestamp', 'desc')
     } else if (sortOrder === 'oldest') {
-      query = query.orderBy('updateTimestamp', 'asc')
+      query = query.orderBy('createTimestamp', 'asc')
     } else if (sortOrder === 'highestRating') {
       query = query.orderBy('rating', 'desc')
     } else if (sortOrder === 'lowestRating') {
