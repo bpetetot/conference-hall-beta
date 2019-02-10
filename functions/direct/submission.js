@@ -59,13 +59,15 @@ const submitTalk = async ({
     )
   }
 
-  const submittedTalk = omit(talk, ['createTimestamp', 'submissions'])
+  const submittedTalk = omit(talk, ['createTimestamp', 'updateTimestamp', 'submissions'])
 
   await updateTalk(submittedTalk.id, { [`submissions.${eventId}`]: submittedTalk })
 
   if (isSubmitted(talk, eventId)) {
+    console.log(`ADD`)
     await updateProposal(eventId, submittedTalk)
   } else {
+    console.log(`UPDATE`)
     await addProposal(eventId, submittedTalk)
   }
 }

@@ -4,6 +4,7 @@ const { omit, toLower, deburr } = require('lodash')
 
 const addProposal = (eventId, proposal) => {
   const newProposal = omit(proposal, 'submissions')
+  const now = firebase.firestore.FieldValue.serverTimestamp()
   return firebase
     .firestore()
     .collection('events')
@@ -14,19 +15,21 @@ const addProposal = (eventId, proposal) => {
       ...newProposal,
       rating: null,
       state: 'submitted',
-      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      updateTimestamp: now,
+      createTimestamp: now,
     })
 }
 
 const updateProposal = (eventId, proposal) => {
   const updatedProposal = omit(proposal, 'submissions')
+  const now = firebase.firestore.FieldValue.serverTimestamp()
   return firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('proposals')
     .doc(proposal.id)
-    .update(updatedProposal)
+    .update({ ...updatedProposal, updateTimestamp: now })
 }
 
 const removeProposal = (eventId, proposalId) => firebase
@@ -63,9 +66,10 @@ const getEventProposals = async (
   // add sortOrder
   if (sortOrder) {
     if (sortOrder === 'newest') {
-      query = query.orderBy('updateTimestamp', 'desc')
+      console.log(`createTimestamp`)
+      query = query.orderBy('createTimestamp', 'desc')
     } else if (sortOrder === 'oldest') {
-      query = query.orderBy('updateTimestamp', 'asc')
+      query = query.orderBy('createTimestamp', 'asc')
     } else if (sortOrder === 'highestRating') {
       query = query.orderBy('rating', 'desc')
     } else if (sortOrder === 'lowestRating') {
