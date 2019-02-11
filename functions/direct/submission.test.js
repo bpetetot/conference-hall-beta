@@ -1,7 +1,4 @@
 /* eslint-disable no-undef */
-const chai = require('chai')
-
-const { assert } = chai
 const sinon = require('sinon')
 const admin = require('firebase-admin')
 // Require and initialize firebase-functions-test. Since we are not passing in any parameters,
@@ -9,7 +6,7 @@ const admin = require('firebase-admin')
 const test = require('firebase-functions-test')()
 const submission = require('./submission')
 
-describe('Submitssion', () => {
+describe('Submission', () => {
   const eventId = 'wpYPL2EC3WzxUqY77rQZ'
   const submissionsObject = {
     wpYPL2EC3WzxUqY77rQZ: {
@@ -83,9 +80,9 @@ describe('Submitssion', () => {
 
     const submitTalkWrapped = test.wrap(submission.submitTalk)
     await submitTalkWrapped({ eventId, talk })
-    assert.isTrue(docEventStub.calledTwice)
-    assert.isTrue(updateTalkStub.calledOnce)
-    assert.isTrue(setProposalStub.calledOnce)
+    sinon.assert.match(docEventStub.calledTwice, true)
+    sinon.assert.match(updateTalkStub.calledOnce, true)
+    sinon.assert.match(setProposalStub.calledOnce, true)
   })
 
   it('should update a proposal when this talk has already been submitted', async () => {
@@ -99,9 +96,9 @@ describe('Submitssion', () => {
 
     const submitTalkWrapped = test.wrap(submission.submitTalk)
     await submitTalkWrapped({ eventId, talk })
-    assert.isTrue(docEventStub.calledTwice)
-    assert.isTrue(updateTalkStub.calledOnce)
-    assert.isTrue(updateProposalStub.called)
+    sinon.assert.match(docEventStub.calledTwice, true)
+    sinon.assert.match(updateTalkStub.calledOnce, true)
+    sinon.assert.match(updateProposalStub.called, true)
   })
 
   it('should remove a proposal when unsumit is called', async () => {
@@ -115,8 +112,8 @@ describe('Submitssion', () => {
 
     const submitTalkWrapped = test.wrap(submission.unsubmitTalk)
     await submitTalkWrapped({ eventId, talk })
-    assert.isTrue(docEventStub.calledTwice)
-    assert.isTrue(updateTalkStub.calledOnce)
-    assert.isTrue(deleteProposalStub.called)
+    sinon.assert.match(docEventStub.calledTwice, true)
+    sinon.assert.match(updateTalkStub.calledOnce, true)
+    sinon.assert.match(deleteProposalStub.called, true)
   })
 })
