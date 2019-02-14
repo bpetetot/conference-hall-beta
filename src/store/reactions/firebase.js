@@ -17,8 +17,7 @@ export const init = (action, store) => {
     firebase.initializeApp(config)
 
     // enable firestore
-    const firestore = firebase.firestore()
-    firestore.settings({ timestampsInSnapshots: true })
+    firebase.firestore()
 
     // enable function calls
     firebase.functions()
