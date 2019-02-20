@@ -1,5 +1,25 @@
 # Changelog
 
+<a name="0.8.0" />
+## 0.8.0 (2019-02-20)
+
+### Added
+
+- ✨ enhance search for proposal by title and speaker ([#449](https://github.com/bpetetot/conference-hall/issues/449)) [[3add185](https://github.com/bpetetot/conference-hall/commit/3add185690aa77137982a89e5f79eb923971d6d3)]
+- ✅ Unit test onCreateProposal Cloud Function ([#447](https://github.com/bpetetot/conference-hall/issues/447)) [[207fab8](https://github.com/bpetetot/conference-hall/commit/207fab8f728fdffb4e778730eb9dbe3c851f6b7b)]
+
+### Changed
+
+- ⬆️ upgrade project dependencies ([#471](https://github.com/bpetetot/conference-hall/issues/471)) [[9fc5098](https://github.com/bpetetot/conference-hall/commit/9fc5098aaaead06693f185aba5e9fe960687c19d)]
+- 💄 fix proposal layout on mobile ([#457](https://github.com/bpetetot/conference-hall/issues/457)) [[c0d01ba](https://github.com/bpetetot/conference-hall/commit/c0d01ba5e2e540b2dff71aeea6b772a7056fb56f)]
+- 💄 render beautiful markdown ([#464](https://github.com/bpetetot/conference-hall/issues/464)) [[2485625](https://github.com/bpetetot/conference-hall/commit/2485625ff37cf9ca18a449da017559d596ba2dd3)]
+- 💄 Add missing tooltip for &quot;No way&quot; rating on proposals ([#470](https://github.com/bpetetot/conference-hall/issues/470)) [[5cf2d95](https://github.com/bpetetot/conference-hall/commit/5cf2d957f375b75c4d2297a3576ff0770ef28cb8)]
+
+### Fixed
+
+- 🐛 fix event route access ([#473](https://github.com/bpetetot/conference-hall/issues/473)) [[4fa0c4d](https://github.com/bpetetot/conference-hall/commit/4fa0c4d20158c0f56e7c465a8c777c65a32ade2b)]
+
+
 <a name="0.7.2" />
 
 ## 0.7.2 (2019-02-01)
