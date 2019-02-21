@@ -1048,9 +1048,10 @@
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-1.4.0.tgz#042029dcaf63f6e0e894647b44fab411a2eadfe3"
 
-"@k-ramel/react@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.2.0.tgz#3ebd80fe5ae08fbe2a7a86288594a6de1ac332ba"
+"@k-ramel/react@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-2.0.0.tgz#90ebd84ade0b0824100377c9b97f8544a2cea042"
+  integrity sha512-EhA+w3ZTCyBumL3FLAKQ2Hi9lIyP07rAOY4FmHSZhl9SZDl311ePGc3v1g/1TIPydAcy+lE72toemHCPuzvmAA==
   dependencies:
     fbjs "^1.0.0"
 
