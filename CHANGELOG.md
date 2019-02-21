@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="0.8.1" />
+## 0.8.1 (2019-02-21)
+
+### Added
+
+- ✨ add proposal id to api ([#477](https://github.com/bpetetot/conference-hall/issues/477)) [[fbb9626](https://github.com/bpetetot/conference-hall/commit/fbb96267178d14d03ecdc5938faafb6787a13aca)]
+
+### Fixed
+
+- ✏️ fix typo in accepted talk email ([#474](https://github.com/bpetetot/conference-hall/issues/474)) [[2bffaf3](https://github.com/bpetetot/conference-hall/commit/2bffaf3c60454c749ca47991e7563d8f57a158d2)]
+
+
 <a name="0.8.0" />
 ## 0.8.0 (2019-02-20)
 
