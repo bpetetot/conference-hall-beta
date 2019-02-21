@@ -1044,10 +1044,6 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-3.0.0.tgz#3fa172e3006f36e547fb49835bf25fc487a29f1c"
 
-"@k-ramel/driver-http@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-1.4.0.tgz#042029dcaf63f6e0e894647b44fab411a2eadfe3"
-
 "@k-ramel/react@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.2.0.tgz#3ebd80fe5ae08fbe2a7a86288594a6de1ac332ba"
@@ -7505,17 +7501,18 @@ jws@^3.0.0, jws@^3.1.4, jws@^3.1.5:
     jwa "^1.1.5"
     safe-buffer "^5.0.1"
 
-k-ramel@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-1.4.0.tgz#e07ed0f3949c12f171dbe17679bcaeafe9b34b7a"
+k-ramel@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-2.0.0.tgz#dfbb650cb7a8641ebbda4005c0af47738e76263e"
+  integrity sha512-+x87FlKXHUmBLxcVgDeDGzse7bn8XI4pZ9ft+lTercewlNonHuKDsGxkgjW5O4ZaSA6GqhP5uI3OmxRvw+7xbA==
   dependencies:
-    "@k-ramel/driver-http" "^1.4.0"
-    k-redux-factory "6.0.2"
+    k-redux-factory "6.0.4"
     redux "4.0.1"
 
-k-redux-factory@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.2.tgz#fb580799b685bd21f0cdc81355d2b2173a0e8d24"
+k-redux-factory@6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.4.tgz#911b8b02efc8190a54bf341be29342f3960bd7d4"
+  integrity sha512-w7wv7c9y93RizgpHjBCblEOk38HHccJ7yxjYsXsSHb8V0R2ULHejJ+aJwkOhBkNopjB1aC88f0YVC6uRr5VREw==
 
 keyv@3.0.0:
   version "3.0.0"
