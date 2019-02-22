@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
       {
         event: ['name', 'categories', 'formats'],
         proposal: [
+          'id',
           'title',
           'state',
           'level',
