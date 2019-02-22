@@ -29,6 +29,7 @@ module.exports = functions.firestore
     const users = await getUsers(Object.keys(talk.speakers))
     await email.send(mailgun, {
       to: users.map(user => user.email),
+      cc: null,
       subject: `[${event.name}] Talk submitted`,
       html: talkSubmitted(event, talk, app.url),
       confName: event.name,
@@ -39,6 +40,7 @@ module.exports = functions.firestore
       const organizers = await getEventOrganizers(event)
       await email.send(mailgun, {
         to: organizers.map(user => user.email),
+        cc: null,
         subject: `[${event.name}] New talk submitted`,
         html: talkReceived(event, talk, app.url),
         confName: event.name,

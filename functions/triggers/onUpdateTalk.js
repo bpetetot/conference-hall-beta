@@ -2,7 +2,7 @@ const functions = require('firebase-functions')
 
 const { updateProposal } = require('../firestore/proposal')
 const { getEvent, getEventOrganizers } = require('../firestore/event')
-
+const { isEmpty } = require('lodash')
 const email = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
 const talkDeclined = require('../email/templates/talkDeclined')
@@ -36,12 +36,14 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
       }
 
       const event = await getEvent(eventId)
+      const cc = !isEmpty(event.contact) && /\S+@\S+\.\S+/.test(event.contact) ? event.contact : null
       const organizers = await getEventOrganizers(event)
 
       if (state === 'confirmed') {
         // send confirmation email to organizers
         await email.send(mailgun, {
           to: organizers.map(user => user.email),
+          cc,
           subject: `[${event.name}] Talk confirmed by speaker`,
           html: talkConfirmed(event, talk, app.url),
           confName: event.name,
@@ -52,6 +54,7 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
         // send decline email to organizers
         await email.send(mailgun, {
           to: organizers.map(user => user.email),
+          cc,
           subject: `[${event.name}] Talk declined by speaker`,
           html: talkDeclined(event, talk, app.url),
           confName: event.name,
