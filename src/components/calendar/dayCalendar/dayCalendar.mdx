@@ -1,0 +1,50 @@
+---
+name: DayCalendar
+route: /day-calendar
+order: 11
+---
+
+import { Playground, PropsTable } from 'docz'
+import DayCalendar from './dayCalendar'
+
+# DayCalendar
+
+## day calendar
+
+<Playground className="horizontal-separator">
+  <DayCalendar sessions={[
+    {
+      title: 'My super quickie',
+      speakers: ['Yvonnick FRIN', 'Benjamin Petetot'],
+      date: new Date(2019, 1, 28, 8),
+      duration: 20,
+      room: 'Titan',
+    },
+    {
+      title: 'My super workshop',
+      speakers: ['Yvonnick FRIN', 'Benjamin Petetot'],
+      date: new Date(2019, 1, 28, 10),
+      duration: 90,
+      room: 'Belem',
+    },
+    {
+      title: 'My super conference',
+      speakers: ['Yvonnick FRIN', 'Benjamin Petetot'],
+      date: new Date(2019, 1, 28, 14),
+      duration: 60,
+      room: 'Titan',
+    },
+    {
+      title: 'My super conference le retour',
+      speakers: ['Yvonnick FRIN', 'Benjamin Petetot'],
+      date: new Date(2019, 2, 1, 14),
+      duration: 60,
+      room: 'Titan',
+    }
+  ]} />
+</Playground>
+
+## Properties
+
+<PropsTable of={DayCalendar} />
+

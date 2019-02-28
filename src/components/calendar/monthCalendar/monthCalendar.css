@@ -1,4 +1,4 @@
-.cc-calendar-header {
+.cc-month-calendar-header {
   padding: 20px 0;
   display: flex;
   flex-direction: row;
@@ -6,46 +6,46 @@
   align-items: center;
 }
 
-.cc-calendar-header button {
+.cc-month-calendar-header button {
   margin-left: auto;
 }
 
-.cc-month {
+.cc-month-month {
   color: var(--primary-color);
 }
 
-.cc-buttons button {
+.cc-month-buttons button {
   margin-right: 10px;
 }
 
-.cc-buttons button:last-child {
+.cc-month-buttons button:last-child {
   margin-right: 0;
 }
 
-.cc-calendar {
+.cc-month-calendar {
   display: flex;
   flex-direction: column;
 }
 
-.cc-calendar * {
+.cc-month-calendar * {
   box-sizing: border-box;
 }
 
-.cc-week {
+.cc-month-week {
   display: flex;
   flex-direction: row;
 }
 
-.cc-week > div {
+.cc-month-week > div {
   flex: 0 0 calc(100% / 7);
   overflow: hidden;
 }
 
-.cc-week > div:not(.cc-day) {
+.cc-month-week > div:not(.cc-month-day) {
   border: 1px solid transparent;
 }
 
-.cc-day {
+.cc-month-day {
   border: 1px solid transparent;
   border-top: 1px solid var(--grey-color-light);
   border-left: 1px solid var(--grey-color-light);
@@ -54,7 +54,7 @@
   font-weight: 300;
 }
 
-.cc-day-number {
+.cc-month-day-number {
   height: 30px;
   margin-bottom: 5px;
   display: flex;
@@ -62,7 +62,7 @@
   justify-content: center;
 }
 
-.cc-day-item {
+.cc-month-day-item {
   font-size: 14px;
   padding: 2px 5px;
   height: 30px;
@@ -74,31 +74,31 @@
 }
 
 
-.cc-day-item-white {
+.cc-month-day-item-white {
   background-color: transparent;
   color: var(--primary-color);
 }
 
 /* Trick to truncate text */
-.cc-day-item span {
+.cc-month-day-item span {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.cc-week > .cc-day:last-child {
+.cc-month-week > .cc-month-day:last-child {
   border-right: 1px solid var(--grey-color-light);
 }
 
-.cc-week:last-child > div:not(.cc-day) {
+.cc-month-week:last-child > div:not(.cc-month-day) {
   border-top: 1px solid var(--grey-color-light);
 }
 
-.cc-week:last-child .cc-day {
+.cc-month-week:last-child .cc-month-day {
   border-bottom: 1px solid var(--grey-color-light);
 }
 
-.cc-week:last-child .cc-day + div {
+.cc-month-week:last-child .cc-month-day + div {
   border-left: 1px solid var(--grey-color-light);
 }
