@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="0.8.2" />
+## 0.8.2 (2019-03-03)
+
+### Changed
+
+- ♻️ enable proposals cards route ([#494](https://github.com/bpetetot/conference-hall/issues/494)) [[33f2503](https://github.com/bpetetot/conference-hall/commit/33f2503014ca0c735a618e5d07213c6a62e17a86)]
+
+### Fixed
+
+- 🐛 fix code style in markdown display ([#493](https://github.com/bpetetot/conference-hall/issues/493)) [[fb7aa79](https://github.com/bpetetot/conference-hall/commit/fb7aa79e3cc12f566757fc2be145a3f03711a342)]
+
+
 <a name="0.8.1" />
 ## 0.8.1 (2019-02-21)
 
