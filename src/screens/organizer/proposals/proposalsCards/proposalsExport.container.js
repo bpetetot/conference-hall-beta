@@ -6,13 +6,7 @@ import loader from 'components/loader'
 import ProposalsExport from './proposalsExport'
 
 const mapStore = (store) => {
-  const { page, itemsPerPage } = store.ui.organizer.proposalsPaging.get()
-  const startIndex = (page - 1) * itemsPerPage
-  const endIndex = startIndex + itemsPerPage - 1
-  const proposals = store.data.proposals
-    .getAsArray()
-    .filter((_, index) => index >= startIndex && index <= endIndex)
-
+  const proposals = store.data.proposals.getAsArray()
   return {
     loaded: store.data.proposals.isInitialized(),
     proposals,
@@ -24,7 +18,7 @@ const mapStore = (store) => {
 }
 
 export default compose(
-  forRoute.absolute('PROPOSALS_CARDS'), //
+  forRoute.absolute('organizer-event-proposals-cards'), //
   inject(mapStore), //
   loader, //
 )(ProposalsExport)
