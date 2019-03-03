@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="0.8.3" />
+## 0.8.3 (2019-03-03)
+
+### Changed
+
+- ⬆️ upgrade dependencies k-ramel, react, babel ([#495](https://github.com/bpetetot/conference-hall/issues/495)) [[5be0d8f](https://github.com/bpetetot/conference-hall/commit/5be0d8fd33398cf57e180077d7016581bd52a9d5)]
+- ⬆️ upgrade lodash and functions dependencies ([#496](https://github.com/bpetetot/conference-hall/issues/496)) [[90aa580](https://github.com/bpetetot/conference-hall/commit/90aa58032873d7bd19f2593e8582c5d431177d5e)]
+
+
 <a name="0.8.2" />
 ## 0.8.2 (2019-03-03)
 
