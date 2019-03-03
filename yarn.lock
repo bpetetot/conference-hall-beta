@@ -27,6 +27,25 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
+"@babel/core@7.3.4":
+  version "7.3.4"
+  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.3.4.tgz#921a5a13746c21e32445bf0798680e9d11a6530b"
+  dependencies:
+    "@babel/code-frame" "^7.0.0"
+    "@babel/generator" "^7.3.4"
+    "@babel/helpers" "^7.2.0"
+    "@babel/parser" "^7.3.4"
+    "@babel/template" "^7.2.2"
+    "@babel/traverse" "^7.3.4"
+    "@babel/types" "^7.3.4"
+    convert-source-map "^1.1.0"
+    debug "^4.1.0"
+    json5 "^2.1.0"
+    lodash "^4.17.11"
+    resolve "^1.3.2"
+    semver "^5.4.1"
+    source-map "^0.5.0"
+
 "@babel/generator@^7.2.2":
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.2.2.tgz#18c816c70962640eab42fe8cae5f3947a5c65ccc"
@@ -34,6 +53,16 @@
     "@babel/types" "^7.2.2"
     jsesc "^2.5.1"
     lodash "^4.17.10"
+    source-map "^0.5.0"
+    trim-right "^1.0.1"
+
+"@babel/generator@^7.3.4":
+  version "7.3.4"
+  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.3.4.tgz#9aa48c1989257877a9d971296e5b73bfe72e446e"
+  dependencies:
+    "@babel/types" "^7.3.4"
+    jsesc "^2.5.1"
+    lodash "^4.17.11"
     source-map "^0.5.0"
     trim-right "^1.0.1"
 
@@ -219,6 +248,10 @@
 "@babel/parser@^7.0.0", "@babel/parser@^7.1.3", "@babel/parser@^7.2.2", "@babel/parser@^7.2.3":
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.2.3.tgz#32f5df65744b70888d17872ec106b02434ba1489"
+
+"@babel/parser@^7.3.4":
+  version "7.3.4"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.3.4.tgz#a43357e4bbf4b92a437fb9e465c192848287f27c"
 
 "@babel/plugin-proposal-async-generator-functions@^7.2.0":
   version "7.2.0"
@@ -757,12 +790,34 @@
     globals "^11.1.0"
     lodash "^4.17.10"
 
+"@babel/traverse@^7.3.4":
+  version "7.3.4"
+  resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.3.4.tgz#1330aab72234f8dea091b08c4f8b9d05c7119e06"
+  dependencies:
+    "@babel/code-frame" "^7.0.0"
+    "@babel/generator" "^7.3.4"
+    "@babel/helper-function-name" "^7.1.0"
+    "@babel/helper-split-export-declaration" "^7.0.0"
+    "@babel/parser" "^7.3.4"
+    "@babel/types" "^7.3.4"
+    debug "^4.1.0"
+    globals "^11.1.0"
+    lodash "^4.17.11"
+
 "@babel/types@^7.0.0", "@babel/types@^7.1.6", "@babel/types@^7.2.0", "@babel/types@^7.2.2":
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.2.2.tgz#44e10fc24e33af524488b716cdaee5360ea8ed1e"
   dependencies:
     esutils "^2.0.2"
     lodash "^4.17.10"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.3.4":
+  version "7.3.4"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.3.4.tgz#bf482eaeaffb367a28abbf9357a94963235d90ed"
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
 "@csstools/convert-colors@^1.4.0":
@@ -856,115 +911,115 @@
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.2.tgz#63985d3d8b02530e0869962f4da09142ee8e200e"
 
-"@firebase/app-types@0.3.3":
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.3.3.tgz#87659dd4cce8d1e341c717c61bd654998ac7142b"
+"@firebase/app-types@0.3.5":
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.3.5.tgz#b1d4c7ee0e6655bdcafb0ed3d560aea72f6b239d"
 
-"@firebase/app@0.3.8":
-  version "0.3.8"
-  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.3.8.tgz#76eeee7fa1d3af2c8725dd1e95a03ff470475309"
+"@firebase/app@0.3.10":
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.3.10.tgz#f68ec4d03046548568b13330dbc6ac31133b5683"
   dependencies:
-    "@firebase/app-types" "0.3.3"
-    "@firebase/util" "0.2.6"
+    "@firebase/app-types" "0.3.5"
+    "@firebase/util" "0.2.8"
     dom-storage "2.1.0"
     tslib "1.9.0"
     xmlhttprequest "1.8.0"
 
-"@firebase/auth-types@0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.5.1.tgz#e719bbb4d9080581ff7234a26ee0570211e08945"
+"@firebase/auth-types@0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.5.3.tgz#0f6e815a1dae256f534efc446afbe68c4c182729"
 
-"@firebase/auth@0.9.2":
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.9.2.tgz#e51f4f03204068817f9b77b277b65f6ddb8ec920"
+"@firebase/auth@0.9.4":
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.9.4.tgz#fcf7c7b1bd66e93fbc3afca89555382cd11997c2"
   dependencies:
-    "@firebase/auth-types" "0.5.1"
+    "@firebase/auth-types" "0.5.3"
 
-"@firebase/database-types@0.3.4":
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@firebase/database-types/-/database-types-0.3.4.tgz#ca2ab19b9e8dec89d41804867f2359c457b0c504"
+"@firebase/database-types@0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@firebase/database-types/-/database-types-0.3.6.tgz#681961e4f2186f155fd5d5c1384ccccbd2ed8702"
 
-"@firebase/database@0.3.11":
-  version "0.3.11"
-  resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.3.11.tgz#038c10a22bf4b84f9336b6639e0f6b02165d3f79"
+"@firebase/database@0.3.13":
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.3.13.tgz#28effad7f7eb6e0fee681cd5e9bbf601a880191f"
   dependencies:
-    "@firebase/database-types" "0.3.4"
-    "@firebase/logger" "0.1.5"
-    "@firebase/util" "0.2.6"
+    "@firebase/database-types" "0.3.6"
+    "@firebase/logger" "0.1.7"
+    "@firebase/util" "0.2.8"
     faye-websocket "0.11.1"
     tslib "1.9.0"
 
-"@firebase/firestore-types@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-1.0.1.tgz#33e107e036ed25fde07adee355cec1a7afa5699a"
+"@firebase/firestore-types@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-1.0.3.tgz#a3f3246baf7080aecf9c76fcd080d4b1061961b0"
 
-"@firebase/firestore@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-1.0.2.tgz#340228602d17e81ad8a4c763bebe544d822999b2"
+"@firebase/firestore@1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-1.0.5.tgz#c4dbf45c585468a869e2a46b54633c3c74773153"
   dependencies:
-    "@firebase/firestore-types" "1.0.1"
-    "@firebase/logger" "0.1.5"
-    "@firebase/webchannel-wrapper" "0.2.12"
+    "@firebase/firestore-types" "1.0.3"
+    "@firebase/logger" "0.1.7"
+    "@firebase/webchannel-wrapper" "0.2.14"
     grpc "1.18.0"
     tslib "1.9.0"
 
-"@firebase/functions-types@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@firebase/functions-types/-/functions-types-0.2.2.tgz#4fd547be29a4255fed29b4b36d8d0fdfc410fe2f"
+"@firebase/functions-types@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@firebase/functions-types/-/functions-types-0.3.0.tgz#7a7d772f4ec3529370b8af646de4dd98cf591606"
 
-"@firebase/functions@0.3.6":
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/@firebase/functions/-/functions-0.3.6.tgz#db5a555f310d79cbd6c3f8bb409ae2c7cd652222"
+"@firebase/functions@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@firebase/functions/-/functions-0.4.0.tgz#e594ea407c61b2457d117a1bed54a4931a61f621"
   dependencies:
-    "@firebase/functions-types" "0.2.2"
-    "@firebase/messaging-types" "0.2.4"
+    "@firebase/functions-types" "0.3.0"
+    "@firebase/messaging-types" "0.2.6"
     isomorphic-fetch "2.2.1"
     tslib "1.9.0"
 
-"@firebase/logger@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@firebase/logger/-/logger-0.1.5.tgz#c698f933cfe5d8c31f3c1425a38b54505cac9255"
+"@firebase/logger@0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@firebase/logger/-/logger-0.1.7.tgz#13bde9325657d65b9f09159c528695d948f0c7a4"
 
-"@firebase/messaging-types@0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@firebase/messaging-types/-/messaging-types-0.2.4.tgz#17d08d14e5c1a818ba9ec3510aea412332ae56a7"
+"@firebase/messaging-types@0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@firebase/messaging-types/-/messaging-types-0.2.6.tgz#7aed3963bb7631f51c76be0b1ba4d1592bc27378"
 
-"@firebase/messaging@0.3.10":
-  version "0.3.10"
-  resolved "https://registry.yarnpkg.com/@firebase/messaging/-/messaging-0.3.10.tgz#b2a0d1ecf35d7f3255ea4203cb14158b80a3c668"
+"@firebase/messaging@0.3.12":
+  version "0.3.12"
+  resolved "https://registry.yarnpkg.com/@firebase/messaging/-/messaging-0.3.12.tgz#24662a816570e2e7dfc457376a3f454b82dac966"
   dependencies:
-    "@firebase/messaging-types" "0.2.4"
-    "@firebase/util" "0.2.6"
+    "@firebase/messaging-types" "0.2.6"
+    "@firebase/util" "0.2.8"
     tslib "1.9.0"
 
-"@firebase/polyfill@0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@firebase/polyfill/-/polyfill-0.3.5.tgz#7a04de798019386edff4854455905244198cc958"
+"@firebase/polyfill@0.3.7":
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/@firebase/polyfill/-/polyfill-0.3.7.tgz#c5cc0fbe96189055242dabb0586b789ed6c052cd"
   dependencies:
     core-js "2.5.5"
     promise-polyfill "7.1.2"
     whatwg-fetch "2.0.4"
 
-"@firebase/storage-types@0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@firebase/storage-types/-/storage-types-0.2.4.tgz#5dca2f81edf1fecbb9dbc5b7a18ba93bf9da7979"
-
-"@firebase/storage@0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@firebase/storage/-/storage-0.2.7.tgz#fef08d4d98a62fa6942861bb1cbbbc6bcad0c7a6"
-  dependencies:
-    "@firebase/storage-types" "0.2.4"
-    tslib "1.9.0"
-
-"@firebase/util@0.2.6":
+"@firebase/storage-types@0.2.6":
   version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@firebase/util/-/util-0.2.6.tgz#03262ea2f94de60c4ce844069bdedcc7819d3dde"
+  resolved "https://registry.yarnpkg.com/@firebase/storage-types/-/storage-types-0.2.6.tgz#a990b1a9cbd4cadc4f1785b4b80533a7934981a8"
+
+"@firebase/storage@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@firebase/storage/-/storage-0.2.9.tgz#952ab0bb2636f784104c32ebd3ee054412d1943a"
+  dependencies:
+    "@firebase/storage-types" "0.2.6"
+    tslib "1.9.0"
+
+"@firebase/util@0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@firebase/util/-/util-0.2.8.tgz#623cdea3451b1898e47498ceb8f3496c7b7f4d64"
   dependencies:
     tslib "1.9.0"
 
-"@firebase/webchannel-wrapper@0.2.12":
-  version "0.2.12"
-  resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.12.tgz#cfca32cf1e976eedbe00ddb2f21e28ab01f7e223"
+"@firebase/webchannel-wrapper@0.2.14":
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.14.tgz#82ce7c523500e8637f83f59317837c1557c454f7"
 
 "@google-cloud/common@^0.17.0":
   version "0.17.0"
@@ -1044,13 +1099,9 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-3.0.0.tgz#3fa172e3006f36e547fb49835bf25fc487a29f1c"
 
-"@k-ramel/driver-http@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/driver-http/-/driver-http-1.4.0.tgz#042029dcaf63f6e0e894647b44fab411a2eadfe3"
-
-"@k-ramel/react@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-1.2.0.tgz#3ebd80fe5ae08fbe2a7a86288594a6de1ac332ba"
+"@k-ramel/react@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-2.0.0.tgz#90ebd84ade0b0824100377c9b97f8544a2cea042"
   dependencies:
     fbjs "^1.0.0"
 
@@ -1599,6 +1650,10 @@ arr-union@^3.1.0:
 array-equal@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npmjs.org/array-equal/-/array-equal-1.0.0.tgz#8c2a5ef2472fd9ea742b04c77a75093ba2757c93"
+
+array-filter@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/array-filter/-/array-filter-1.0.0.tgz#baf79e62e6ef4c2a4c0b831232daffec251f9d83"
 
 array-filter@~0.0.0:
   version "0.0.1"
@@ -4326,12 +4381,11 @@ env-dot-prop@^2.0.1:
   dependencies:
     dot-prop "^4.2.0"
 
-enzyme-adapter-react-16@^1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.9.1.tgz#6d49a3a31c3a0fccf527610f31b837e0f307128a"
+enzyme-adapter-react-16@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.10.0.tgz#12e5b6f4be84f9a2ef374acc2555f829f351fc6e"
   dependencies:
     enzyme-adapter-utils "^1.10.0"
-    function.prototype.name "^1.1.0"
     object.assign "^4.1.0"
     object.values "^1.1.0"
     prop-types "^15.6.2"
@@ -4348,17 +4402,19 @@ enzyme-adapter-utils@^1.10.0:
     prop-types "^15.6.2"
     semver "^5.6.0"
 
-enzyme@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.8.0.tgz#646d2d5d0798cb98fdec39afcee8a53237b47ad5"
+enzyme@^3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-3.9.0.tgz#2b491f06ca966eb56b6510068c7894a7e0be3909"
   dependencies:
     array.prototype.flat "^1.2.1"
     cheerio "^1.0.0-rc.2"
     function.prototype.name "^1.1.0"
     has "^1.0.3"
+    html-element-map "^1.0.0"
     is-boolean-object "^1.0.0"
     is-callable "^1.1.4"
     is-number-object "^1.0.3"
+    is-regex "^1.0.4"
     is-string "^1.0.4"
     is-subset "^0.1.1"
     lodash.escape "^4.0.1"
@@ -5194,9 +5250,9 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-firebase-tools@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-6.3.1.tgz#9a3e12a3215da2adc1df885ba32ddd6eac08bd43"
+firebase-tools@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-6.4.0.tgz#87a757e00fdd6476d6ef4f8b080e173a13546268"
   dependencies:
     JSONStream "^1.2.1"
     archiver "^2.1.1"
@@ -5245,18 +5301,18 @@ firebase@2.x.x:
   dependencies:
     faye-websocket ">=0.6.0"
 
-firebase@^5.8.2:
-  version "5.8.2"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-5.8.2.tgz#4fc6acb1d41e9aa18fa712ca68b7826b355b541a"
+firebase@^5.8.5:
+  version "5.8.5"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-5.8.5.tgz#2f8cf0b022bf646e6c3c870c7f6549652c25ac8b"
   dependencies:
-    "@firebase/app" "0.3.8"
-    "@firebase/auth" "0.9.2"
-    "@firebase/database" "0.3.11"
-    "@firebase/firestore" "1.0.2"
-    "@firebase/functions" "0.3.6"
-    "@firebase/messaging" "0.3.10"
-    "@firebase/polyfill" "0.3.5"
-    "@firebase/storage" "0.2.7"
+    "@firebase/app" "0.3.10"
+    "@firebase/auth" "0.9.4"
+    "@firebase/database" "0.3.13"
+    "@firebase/firestore" "1.0.5"
+    "@firebase/functions" "0.4.0"
+    "@firebase/messaging" "0.3.12"
+    "@firebase/polyfill" "0.3.7"
+    "@firebase/storage" "0.2.9"
 
 flat-arguments@^1.0.0:
   version "1.0.2"
@@ -6121,6 +6177,12 @@ hsla-regex@^1.0.0:
 html-comment-regex@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.2.tgz#97d4688aeb5c81886a364faa0cad1dda14d433a7"
+
+html-element-map@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/html-element-map/-/html-element-map-1.0.0.tgz#19a41940225153ecdfead74f8509154ff1cdc18b"
+  dependencies:
+    array-filter "^1.0.0"
 
 html-encoding-sniffer@^1.0.2:
   version "1.0.2"
@@ -7505,17 +7567,16 @@ jws@^3.0.0, jws@^3.1.4, jws@^3.1.5:
     jwa "^1.1.5"
     safe-buffer "^5.0.1"
 
-k-ramel@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-1.4.0.tgz#e07ed0f3949c12f171dbe17679bcaeafe9b34b7a"
+k-ramel@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-2.0.0.tgz#dfbb650cb7a8641ebbda4005c0af47738e76263e"
   dependencies:
-    "@k-ramel/driver-http" "^1.4.0"
-    k-redux-factory "6.0.2"
+    k-redux-factory "6.0.4"
     redux "4.0.1"
 
-k-redux-factory@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.2.tgz#fb580799b685bd21f0cdc81355d2b2173a0e8d24"
+k-redux-factory@6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/k-redux-factory/-/k-redux-factory-6.0.4.tgz#911b8b02efc8190a54bf341be29342f3960bd7d4"
 
 keyv@3.0.0:
   version "3.0.0"
@@ -8033,9 +8094,9 @@ markdown-table@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-0.4.0.tgz#890c2c1b3bfe83fb00e4129b8e4cfe645270f9d1"
 
-marked@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-0.6.0.tgz#a18d01cfdcf8d15c3c455b71c8329e5e0f01faa1"
+marked@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.6.1.tgz#a63addde477bca9613028de4b2bc3629e53a0562"
 
 match-sorter@^2.3.0:
   version "2.3.0"
@@ -10421,14 +10482,14 @@ react-dom@^16.7.0:
     prop-types "^15.6.2"
     scheduler "^0.12.0"
 
-react-dom@^16.8.2:
-  version "16.8.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.2.tgz#7c8a69545dd554d45d66442230ba04a6a0a3c3d3"
+react-dom@^16.8.3:
+  version "16.8.3"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.3.tgz#ae236029e66210783ac81999d3015dfc475b9c32"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.13.2"
+    scheduler "^0.13.3"
 
 react-error-overlay@^5.1.1:
   version "5.1.1"
@@ -10481,9 +10542,13 @@ react-is@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
 
-react-is@^16.8.1, react-is@^16.8.2:
+react-is@^16.8.1:
   version "16.8.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.2.tgz#09891d324cad1cb0c1f2d91f70a71a4bee34df0f"
+
+react-is@^16.8.3:
+  version "16.8.3"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.3.tgz#4ad8b029c2a718fc0cfc746c8d4e1b7221e5387d"
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -10512,9 +10577,9 @@ react-perfect-scrollbar@^1.4.2:
     perfect-scrollbar "^1.4.0"
     prop-types "^15.6.1"
 
-react-places-autocomplete@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-7.2.0.tgz#85319ff42a1e3e0d2b02cc40471c1e2911e6dfbe"
+react-places-autocomplete@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/react-places-autocomplete/-/react-places-autocomplete-7.2.1.tgz#ecdfdbb530ba19fedddd967a646642c2efd225cf"
   dependencies:
     lodash.debounce "^4.0.8"
     prop-types "^15.5.8"
@@ -10635,14 +10700,14 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.7.0"
     scheduler "^0.12.0"
 
-react-test-renderer@^16.8.2:
-  version "16.8.2"
-  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.8.2.tgz#3ce0bf12aa211116612fda01a886d6163c9c459b"
+react-test-renderer@^16.8.3:
+  version "16.8.3"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.8.3.tgz#230006af264cc46aeef94392e04747c21839e05e"
   dependencies:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    react-is "^16.8.2"
-    scheduler "^0.13.2"
+    react-is "^16.8.3"
+    scheduler "^0.13.3"
 
 react@^16.7.0:
   version "16.7.0"
@@ -10653,14 +10718,14 @@ react@^16.7.0:
     prop-types "^15.6.2"
     scheduler "^0.12.0"
 
-react@^16.8.2:
-  version "16.8.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.8.2.tgz#83064596feaa98d9c2857c4deae1848b542c9c0c"
+react@^16.8.3:
+  version "16.8.3"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.8.3.tgz#c6f988a2ce895375de216edcfaedd6b9a76451d9"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.13.2"
+    scheduler "^0.13.3"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -11334,9 +11399,9 @@ scheduler@^0.12.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-scheduler@^0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.2.tgz#969eaee2764a51d2e97b20a60963b2546beff8fa"
+scheduler@^0.13.3:
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.3.tgz#bed3c5850f62ea9c716a4d781f9daeb9b2a58896"
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
