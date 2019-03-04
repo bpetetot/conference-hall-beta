@@ -1,0 +1,112 @@
+.cc-day-calendar-header {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cc-day-calendar-header button {
+  margin-left: auto;
+}
+
+.cc-day-day {
+  color: var(--primary-color);
+}
+
+.cc-day-buttons button {
+  margin-right: 10px;
+}
+
+.cc-day-buttons button:last-child {
+  margin-right: 0;
+}
+
+.cc-day-calendar {
+  display: flex;
+  flex-direction: column;
+}
+
+.cc-day-calendar * {
+  box-sizing: border-box;
+}
+
+.cc-day-columns,
+.cc-day-rooms {
+  display: flex;
+  flex-direction: row;
+}
+
+.cc-day-rooms {
+  border-bottom: 1px solid var(--grey-color-light);
+}
+
+.cc-day-column,
+.cc-day-room {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+}
+
+.cc-day-column:first-child,
+.cc-day-room:first-child {
+  flex: 0 0 75px;
+}
+
+.cc-day-room {
+  text-align: center;
+  padding-bottom: 10px;
+  border-right: 1px solid var(--grey-color-light);
+}
+
+.cc-day-room:first-child,
+.cc-day-room:last-child {
+  border: 0;
+}
+
+.cc-day-hour {
+  display: flex;
+  padding: 10px 0;
+  height: 125px;
+  border-right: 1px solid var(--grey-color-light);
+}
+
+.cc-day-hour:not(:first-child) {
+  border-top: 1px solid var(--grey-color-light);
+}
+
+.cc-day-column:first-child .cc-day-hour,
+.cc-day-column:last-child .cc-day-hour {
+  border-right: 0;
+}
+
+.cc-day-hour-header,
+.cc-day-room {
+  color: var(--grey-color-dark);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.cc-day-hour-header {
+  align-self: flex-start;
+}
+
+.cc-day-hour-header-minutes {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.cc-day-session {
+  width: 100%;
+  position: absolute;
+  background-color: var(--primary-color-light);
+  color: var(--primary-color-font);
+  padding: 5px;
+  font-size: 20px;
+}
+
+.cc-day-session-speakers {
+  font-weight: 300;
+  font-size: 16px;
+}
