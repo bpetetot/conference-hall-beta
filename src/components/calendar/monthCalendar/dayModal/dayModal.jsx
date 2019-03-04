@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from '../../button'
-import { Modal } from '../../portals'
-import { List, ListItem } from '../../list'
+import Button from '../../../button'
+import { Modal } from '../../../portals'
+import { List, ListItem } from '../../../list'
 
 const DayModal = ({ content }) => (
   <Modal

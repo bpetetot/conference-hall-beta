@@ -11,7 +11,7 @@ import range from 'lodash/range'
 import chunk from 'lodash/chunk'
 import isString from 'lodash/isString'
 import add from 'lodash/fp/add'
-import Button from '../button'
+import Button from '../../button'
 import DayModal from './dayModal'
 
 import './monthCalendar.css'
@@ -28,7 +28,7 @@ class MonthCalendar extends Component {
   goToToday = () => this.setState({ offset: 0 })
 
   renderDayItem = (item, customClassName = '') => (
-    <div key={item} className={cn('cc-day-item', customClassName)}><span>{item}</span></div>
+    <div key={item} className={cn('cc-month-day-item', customClassName)}><span>{item}</span></div>
   )
 
   renderDayContent = (date) => {
@@ -43,7 +43,7 @@ class MonthCalendar extends Component {
         const directlyRendered = content.slice(0, 2)
         directlyRendered.push(modal)
 
-        return directlyRendered.map((item, index) => this.renderDayItem(item, index === 2 ? 'cc-day-item-white' : undefined))
+        return directlyRendered.map((item, index) => this.renderDayItem(item, index === 2 ? 'cc-month-day-item-white' : undefined))
       }
 
       return content.map(item => this.renderDayItem(item))
@@ -80,10 +80,10 @@ class MonthCalendar extends Component {
     const weeks = this.generateWeeksForMonth(parsedDate)
 
     return (
-      <div className="cc-calendar">
-        <div className="cc-calendar-header">
-          <span className="cc-month">{format(parsedDate, 'MMMM YYYY')}</span>
-          <div className="cc-buttons">
+      <div className="cc-month-calendar">
+        <div className="cc-month-calendar-header">
+          <span className="cc-month-month">{format(parsedDate, 'MMMM YYYY')}</span>
+          <div className="cc-month-buttons">
             <Button
               secondary
               onClick={this.goToPreviousMonth}
@@ -104,22 +104,22 @@ class MonthCalendar extends Component {
             </Button>
           </div>
         </div>
-        <div className="cc-weeks">
+        <div className="cc-month-weeks">
           {weeks.map(days => (
-            <div key={days.join('')} className="cc-week">
+            <div key={days.join('')} className="cc-month-week">
               {days.map((day, index) => {
                 const dayDate = new Date(parsedDate.getFullYear(), parsedDate.getMonth(), day)
                 return (
                   <div
                     key={day === null ? index : dayDate}
                     role="button"
-                    className={cn({ 'cc-day': day !== null })}
+                    className={cn({ 'cc-month-day': day !== null })}
                     onClick={() => onDayClick(dayDate)}
                   >
                     {day !== null && (
                       <Fragment>
-                        <div className="cc-day-number">{day}</div>
-                        <div className="cc-day-content">
+                        <div className="cc-month-day-number">{day}</div>
+                        <div className="cc-month-day-content">
                           {this.renderDayContent(dayDate)}
                         </div>
                       </Fragment>
