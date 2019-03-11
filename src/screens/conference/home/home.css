@@ -4,7 +4,7 @@
 }
 
 .header {
-  background-image: url(header.png);
+  /* background-image: url(header.png); */
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -108,7 +108,7 @@
 }
 
 .information {
-  background-image: url(information.png);
+  /* background-image: url(information.png); */
   background-position: left bottom;
   background-repeat: no-repeat;
   background-color: #ed1543;
