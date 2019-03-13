@@ -5,13 +5,13 @@ import PropTypes from 'prop-types'
 import { LoadingIndicator } from 'components/loader'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import AuthErrorModal from './authError'
 import './login.css'
 
 const Login = ({
   authenticated, initialized, providers, signin,
 }) => {
   const [authenticating, setAuthenticating] = useState(false)
+  const [errorMessage, setErrorMessage] = useState()
 
   useEffect(() => {
     setAuthenticating(true)
@@ -23,7 +23,7 @@ const Login = ({
       })
       .catch((error) => {
         setAuthenticating(false)
-        console.error('Authentication error', error)
+        setErrorMessage(error.message)
       })
   }, [])
 
@@ -39,7 +39,7 @@ const Login = ({
           <IconLabel icon={`fa fa-${provider}`} label={`with ${provider}`} />
         </Button>
       ))}
-      <AuthErrorModal />
+      {errorMessage && <p className="login-error">{errorMessage}</p>}
     </div>
   )
 }
