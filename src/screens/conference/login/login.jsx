@@ -1,4 +1,5 @@
-import React from 'react'
+import firebase from 'firebase/app'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { LoadingIndicator } from 'components/loader'
@@ -8,9 +9,28 @@ import AuthErrorModal from './authError'
 import './login.css'
 
 const Login = ({
-  authenticated, providers, signin,
+  authenticated, initialized, providers, signin,
 }) => {
-  if (authenticated) return <LoadingIndicator className="login-loading" />
+  const [authenticating, setAuthenticating] = useState(false)
+
+  useEffect(() => {
+    setAuthenticating(true)
+    firebase
+      .auth()
+      .getRedirectResult()
+      .then(() => {
+        setAuthenticating(false)
+      })
+      .catch((error) => {
+        setAuthenticating(false)
+        console.error('Authentication error', error)
+      })
+  }, [])
+
+  if (!initialized || authenticating || authenticated) {
+    return <LoadingIndicator className="login-loading" />
+  }
+
   return (
     <div className="login">
       <h1 className="login-title">Connexion</h1>
@@ -25,6 +45,7 @@ const Login = ({
 }
 
 Login.propTypes = {
+  initialized: PropTypes.bool,
   authenticated: PropTypes.bool,
   providers: PropTypes.arrayOf(PropTypes.string),
   signin: PropTypes.func.isRequired,
@@ -32,6 +53,7 @@ Login.propTypes = {
 
 Login.defaultProps = {
   providers: [],
+  initialized: false,
   authenticated: false,
 }
 

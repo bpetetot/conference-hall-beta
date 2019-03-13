@@ -4,7 +4,7 @@ import pick from 'lodash/pick'
 import userCrud from 'firebase/user'
 import { fetchUserOrganizations } from 'firebase/organizations'
 
-export const signin = async (action, store) => {
+export const signin = (action) => {
   const providerId = action.payload
   let provider
   switch (providerId) {
@@ -23,13 +23,11 @@ export const signin = async (action, store) => {
     default:
       return
   }
-  try {
-    await firebase.auth().signInWithPopup(provider)
-  } catch (error) {
-    // eslint-disable-next-line
-    console.error('Authentication error', error)
-    store.auth.update({ authenticated: false, uid: undefined, error })
-  }
+  provider.setCustomParameters({
+    prompt: 'select_account',
+  })
+
+  firebase.auth().signInWithRedirect(provider)
 }
 
 export const signout = (action, store, { router }) => {
