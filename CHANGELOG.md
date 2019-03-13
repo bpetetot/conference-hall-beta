@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.8.4" />
+## 0.8.4 (2019-03-13)
+
+### Changed
+
+- ♻️ replace auth popup by redirect ([#505](https://github.com/bpetetot/conference-hall/issues/505)) [[34464b2](https://github.com/bpetetot/conference-hall/commit/34464b2d7d5bfce5795e79005aa57ab93fe04171)]
+
+
 <a name="0.8.3" />
 ## 0.8.3 (2019-03-03)
 
