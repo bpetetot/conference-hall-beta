@@ -1,5 +1,34 @@
 # Changelog
 
+<a name="0.8.4" />
+## 0.8.4 (2019-03-13)
+
+### Changed
+
+- ♻️ replace auth popup by redirect ([#505](https://github.com/bpetetot/conference-hall/issues/505)) [[34464b2](https://github.com/bpetetot/conference-hall/commit/34464b2d7d5bfce5795e79005aa57ab93fe04171)]
+
+
+<a name="0.8.3" />
+## 0.8.3 (2019-03-03)
+
+### Changed
+
+- ⬆️ upgrade dependencies k-ramel, react, babel ([#495](https://github.com/bpetetot/conference-hall/issues/495)) [[5be0d8f](https://github.com/bpetetot/conference-hall/commit/5be0d8fd33398cf57e180077d7016581bd52a9d5)]
+- ⬆️ upgrade lodash and functions dependencies ([#496](https://github.com/bpetetot/conference-hall/issues/496)) [[90aa580](https://github.com/bpetetot/conference-hall/commit/90aa58032873d7bd19f2593e8582c5d431177d5e)]
+
+
+<a name="0.8.2" />
+## 0.8.2 (2019-03-03)
+
+### Changed
+
+- ♻️ enable proposals cards route ([#494](https://github.com/bpetetot/conference-hall/issues/494)) [[33f2503](https://github.com/bpetetot/conference-hall/commit/33f2503014ca0c735a618e5d07213c6a62e17a86)]
+
+### Fixed
+
+- 🐛 fix code style in markdown display ([#493](https://github.com/bpetetot/conference-hall/issues/493)) [[fb7aa79](https://github.com/bpetetot/conference-hall/commit/fb7aa79e3cc12f566757fc2be145a3f03711a342)]
+
+
 <a name="0.8.1" />
 ## 0.8.1 (2019-02-21)
 

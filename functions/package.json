@@ -22,13 +22,13 @@
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.11",
-    "luxon": "^1.11.2"
+    "luxon": "^1.11.4"
   },
   "devDependencies": {
-    "eslint": "^5.13.0",
+    "eslint": "^5.15.1",
     "firebase-functions-test": "^0.1.6",
-    "mocha": "^5.2.0",
-    "nyc": "^13.1.0",
-    "sinon": "^7.2.3"
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
+    "sinon": "^7.2.7"
   }
 }

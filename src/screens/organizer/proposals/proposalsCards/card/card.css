@@ -124,11 +124,16 @@
 
 @media print {
   .proposal-card {
-    width: calc((210mm / 3) - 0.5em);
-    height: calc((297mm / 4) - 0.5em);
-    margin: 0.25em;
+    width: calc((210mm / 3) - 10mm);
+    height: calc((297mm / 4) - 10mm);
+    margin: 2mm;
     border: 1px solid var(--grey-color-dark);
     box-shadow: none;
+  }
+
+  .proposal-card:hover {
+    box-shadow: none;
+    border-top-color: inherit;
   }
 
   .proposal-card-header {

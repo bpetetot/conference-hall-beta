@@ -19,6 +19,14 @@
   text-decoration: underline;
 }
 
+.login .login-error {
+  background: var(--background-color);
+  color: var(--error-color);
+  padding: 1em;
+  max-width: 20em;
+  border-radius: 3px;
+}
+
 .login button {
   margin: 1em 0;
   min-width: 20em;
