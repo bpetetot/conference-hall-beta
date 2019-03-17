@@ -1,6 +1,5 @@
 const functions = require('firebase-functions')
 const pick = require('lodash/pick')
-const { isEmpty } = require('lodash')
 const { getEvent } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 const { updateProposal } = require('../firestore/proposal')
@@ -54,7 +53,6 @@ module.exports = functions.firestore
     // send email to accepted proposal
     if (proposal.state === 'accepted' && !proposal.emailSent) {
       const event = await getEvent(eventId)
-      const cc = !isEmpty(event.contact) && /\S+@\S+\.\S+/.test(event.contact) ? event.contact : null
       proposal.emailSent = proposal.updateTimestamp
       return Promise.all([
         getUsers(uids),
@@ -62,7 +60,7 @@ module.exports = functions.firestore
         partialUpdateTalk(proposal.id, submissionUpdate),
       ]).then(([users]) => email.send(mailgun, {
         to: users.map(user => user.email),
-        cc,
+        contact: event.contact,
         subject: `[${event.name}] Talk accepted!`,
         html: talkAccepted(event, users, proposal, app.url),
         confName: event.name,
@@ -72,7 +70,6 @@ module.exports = functions.firestore
     // send email to rejected proposal
     if (proposal.state === 'rejected' && !proposal.emailSent) {
       const event = await getEvent(eventId)
-      const cc = !isEmpty(event.contact) && /\S+@\S+\.\S+/.test(event.contact) ? event.contact : null
       proposal.emailSent = proposal.updateTimestamp
       return Promise.all([
         getUsers(uids),
@@ -80,7 +77,7 @@ module.exports = functions.firestore
         partialUpdateTalk(proposal.id, submissionUpdate),
       ]).then(([users]) => email.send(mailgun, {
         to: users.map(user => user.email),
-        cc,
+        contact: event.contact,
         subject: `[${event.name}] Talk declined`,
         html: talkRejected(event, users, proposal, app.url),
         confName: event.name,
