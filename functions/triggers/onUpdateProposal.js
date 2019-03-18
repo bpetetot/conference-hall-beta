@@ -50,7 +50,6 @@ module.exports = functions.firestore
         ]),
       },
     }
-
     // send email to accepted proposal
     if (proposal.state === 'accepted' && !proposal.emailSent) {
       const event = await getEvent(eventId)
@@ -61,6 +60,7 @@ module.exports = functions.firestore
         partialUpdateTalk(proposal.id, submissionUpdate),
       ]).then(([users]) => email.send(mailgun, {
         to: users.map(user => user.email),
+        contact: event.contact,
         subject: `[${event.name}] Talk accepted!`,
         html: talkAccepted(event, users, proposal, app.url),
         confName: event.name,
@@ -77,6 +77,7 @@ module.exports = functions.firestore
         partialUpdateTalk(proposal.id, submissionUpdate),
       ]).then(([users]) => email.send(mailgun, {
         to: users.map(user => user.email),
+        contact: event.contact,
         subject: `[${event.name}] Talk declined`,
         html: talkRejected(event, users, proposal, app.url),
         confName: event.name,
