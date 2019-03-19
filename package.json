@@ -45,7 +45,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/core": "7.3.4",
+    "@babel/core": "7.4.0",
     "bundlesize": "^0.17.1",
     "docz": "^0.13.7",
     "docz-theme-default": "^0.13.7",
