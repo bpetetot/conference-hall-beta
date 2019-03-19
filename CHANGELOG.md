@@ -1,5 +1,66 @@
 # Changelog
 
+<a name="0.8.4" />
+## 0.8.4 (2019-03-13)
+
+### Changed
+
+- ♻️ replace auth popup by redirect ([#505](https://github.com/bpetetot/conference-hall/issues/505)) [[34464b2](https://github.com/bpetetot/conference-hall/commit/34464b2d7d5bfce5795e79005aa57ab93fe04171)]
+
+
+<a name="0.8.3" />
+## 0.8.3 (2019-03-03)
+
+### Changed
+
+- ⬆️ upgrade dependencies k-ramel, react, babel ([#495](https://github.com/bpetetot/conference-hall/issues/495)) [[5be0d8f](https://github.com/bpetetot/conference-hall/commit/5be0d8fd33398cf57e180077d7016581bd52a9d5)]
+- ⬆️ upgrade lodash and functions dependencies ([#496](https://github.com/bpetetot/conference-hall/issues/496)) [[90aa580](https://github.com/bpetetot/conference-hall/commit/90aa58032873d7bd19f2593e8582c5d431177d5e)]
+
+
+<a name="0.8.2" />
+## 0.8.2 (2019-03-03)
+
+### Changed
+
+- ♻️ enable proposals cards route ([#494](https://github.com/bpetetot/conference-hall/issues/494)) [[33f2503](https://github.com/bpetetot/conference-hall/commit/33f2503014ca0c735a618e5d07213c6a62e17a86)]
+
+### Fixed
+
+- 🐛 fix code style in markdown display ([#493](https://github.com/bpetetot/conference-hall/issues/493)) [[fb7aa79](https://github.com/bpetetot/conference-hall/commit/fb7aa79e3cc12f566757fc2be145a3f03711a342)]
+
+
+<a name="0.8.1" />
+## 0.8.1 (2019-02-21)
+
+### Added
+
+- ✨ add proposal id to api ([#477](https://github.com/bpetetot/conference-hall/issues/477)) [[fbb9626](https://github.com/bpetetot/conference-hall/commit/fbb96267178d14d03ecdc5938faafb6787a13aca)]
+
+### Fixed
+
+- ✏️ fix typo in accepted talk email ([#474](https://github.com/bpetetot/conference-hall/issues/474)) [[2bffaf3](https://github.com/bpetetot/conference-hall/commit/2bffaf3c60454c749ca47991e7563d8f57a158d2)]
+
+
+<a name="0.8.0" />
+## 0.8.0 (2019-02-20)
+
+### Added
+
+- ✨ enhance search for proposal by title and speaker ([#449](https://github.com/bpetetot/conference-hall/issues/449)) [[3add185](https://github.com/bpetetot/conference-hall/commit/3add185690aa77137982a89e5f79eb923971d6d3)]
+- ✅ Unit test onCreateProposal Cloud Function ([#447](https://github.com/bpetetot/conference-hall/issues/447)) [[207fab8](https://github.com/bpetetot/conference-hall/commit/207fab8f728fdffb4e778730eb9dbe3c851f6b7b)]
+
+### Changed
+
+- ⬆️ upgrade project dependencies ([#471](https://github.com/bpetetot/conference-hall/issues/471)) [[9fc5098](https://github.com/bpetetot/conference-hall/commit/9fc5098aaaead06693f185aba5e9fe960687c19d)]
+- 💄 fix proposal layout on mobile ([#457](https://github.com/bpetetot/conference-hall/issues/457)) [[c0d01ba](https://github.com/bpetetot/conference-hall/commit/c0d01ba5e2e540b2dff71aeea6b772a7056fb56f)]
+- 💄 render beautiful markdown ([#464](https://github.com/bpetetot/conference-hall/issues/464)) [[2485625](https://github.com/bpetetot/conference-hall/commit/2485625ff37cf9ca18a449da017559d596ba2dd3)]
+- 💄 Add missing tooltip for &quot;No way&quot; rating on proposals ([#470](https://github.com/bpetetot/conference-hall/issues/470)) [[5cf2d95](https://github.com/bpetetot/conference-hall/commit/5cf2d957f375b75c4d2297a3576ff0770ef28cb8)]
+
+### Fixed
+
+- 🐛 fix event route access ([#473](https://github.com/bpetetot/conference-hall/issues/473)) [[4fa0c4d](https://github.com/bpetetot/conference-hall/commit/4fa0c4d20158c0f56e7c465a8c777c65a32ade2b)]
+
+
 <a name="0.7.2" />
 
 ## 0.7.2 (2019-02-01)

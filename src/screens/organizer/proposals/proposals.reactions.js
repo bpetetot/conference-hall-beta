@@ -5,6 +5,8 @@ import over from 'lodash/fp/over'
 import pick from 'lodash/fp/pick'
 import update from 'lodash/fp/update'
 import pickBy from 'lodash/fp/pickBy'
+import toLower from 'lodash/toLower'
+import deburr from 'lodash/deburr'
 
 import * as firebase from 'firebase/proposals'
 import userCrud from 'firebase/user'
@@ -48,7 +50,7 @@ export const loadProposals = async (action, store, { router }) => {
 
   const filters = store.ui.organizer.proposals.get()
   const proposals = await firebase.fetchEventProposals(eventId, uid, filters)
-  const props = await Promise.all(proposals.map(async (proposal) => {
+  let props = await Promise.all(proposals.map(async (proposal) => {
     const prop = { ...proposal }
     const speakerList = Object.keys(prop.speakers)
     const speakerNameList = await Promise.all(speakerList.map(async (speakerUid) => {
@@ -63,6 +65,13 @@ export const loadProposals = async (action, store, { router }) => {
     prop.speakerName = speakerNameList.join(' & ')
     return prop
   }))
+  // Cross-fields search better handled in UI than firebase
+  const { search } = filters
+  if (search) {
+    const searchQuery = deburr(toLower(search))
+    props = props.filter(proposal => deburr(toLower(proposal.title)).includes(searchQuery)
+      || deburr(toLower(proposal.speakerName)).includes(searchQuery))
+  }
   store.data.proposals.set(props)
 }
 

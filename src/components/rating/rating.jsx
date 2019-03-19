@@ -83,17 +83,19 @@ class Rating extends Component {
             role="button"
           />
         </Tooltip>
-        <i
-          className={cn('fa fa-2x', {
-            'fa-circle-thin': isNil(rating) || rating < 0,
-            'fa-circle rating-hate': feeling === 'hate',
-            'fa-circle rating-hate-disable': rating > 0,
-            bounce: validatedRating === 0,
-          })}
-          onMouseEnter={this.handleMouseEnterStar(0, 'hate')}
-          onClick={this.handleClick}
-          role="button"
-        />
+        <Tooltip tooltip="No way! (0)" placement="top">
+          <i
+            className={cn('fa fa-2x', {
+              'fa-circle-thin': isNil(rating) || rating < 0,
+              'fa-circle rating-hate': feeling === 'hate',
+              'fa-circle rating-hate-disable': rating > 0,
+              bounce: validatedRating === 0,
+            })}
+            onMouseEnter={this.handleMouseEnterStar(0, 'hate')}
+            onClick={this.handleClick}
+            role="button"
+          />
+        </Tooltip>
         {starsArray.map(i => (
           <i
             key={i}
@@ -107,7 +109,7 @@ class Rating extends Component {
             role="button"
           />
         ))}
-        <Tooltip tooltip="I love it!" placement="right">
+        <Tooltip tooltip="I love it! (5)" placement="right">
           <i
             className={cn('fa fa-2x', {
               'fa-heart-o': isNil(rating) || feeling !== 'love',

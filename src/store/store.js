@@ -18,7 +18,6 @@ const store = createStore(reducers, {
       getState: state => state.ui.router,
     }),
   },
-  devtools: true,
 })
 
 export default store

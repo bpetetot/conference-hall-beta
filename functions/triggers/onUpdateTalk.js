@@ -2,7 +2,6 @@ const functions = require('firebase-functions')
 
 const { updateProposal } = require('../firestore/proposal')
 const { getEvent, getEventOrganizers } = require('../firestore/event')
-
 const email = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
 const talkDeclined = require('../email/templates/talkDeclined')
@@ -42,6 +41,7 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
         // send confirmation email to organizers
         await email.send(mailgun, {
           to: organizers.map(user => user.email),
+          contact: event.contact,
           subject: `[${event.name}] Talk confirmed by speaker`,
           html: talkConfirmed(event, talk, app.url),
           confName: event.name,
@@ -52,6 +52,7 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
         // send decline email to organizers
         await email.send(mailgun, {
           to: organizers.map(user => user.email),
+          contact: event.contact,
           subject: `[${event.name}] Talk declined by speaker`,
           html: talkDeclined(event, talk, app.url),
           confName: event.name,

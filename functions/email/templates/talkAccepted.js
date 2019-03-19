@@ -10,12 +10,12 @@ module.exports = (event, users, talk, url) => `
 <body>
   <p>Dear ${users.map(user => user.displayName).join(', ')}</p>
   <p>Your talk <strong>"${talk.title}"</strong> has been accepted! 🎉  🎊</p>
-  <p>In order to help organizers for the selection and the event management, please confirm your venue:<p>
+  <p>In order to help organizers for the selection and the event management, please confirm your participation:<p>
   <ul>
   <li><strong><a href="${url}/speaker/talk/${talk.id}">My talk <strong>${talk.title}<strong></a></li></strong>
   </p>
   <p>
-  See you there !
+  See you there!
   </p>
   <p>
   Made with 💗 by <a href="${url}">conference-hall.io</a> – <i>"${event.name}" team</i>

@@ -45,6 +45,9 @@ export default {
           sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],
           ratings: ['rated', 'notRated'],
           statuses: ['submitted', 'accepted', 'rejected', 'confirmed', 'declined'],
+          '/cards': {
+            code: 'organizer-event-proposals-cards',
+          },
         },
         '/proposal/:proposalId': { code: 'organizer-event-proposal-page' },
       },

@@ -59,7 +59,7 @@ class ProposalToolbar extends Component {
           <input
             id="search"
             type="search"
-            placeholder="Search by proposal title"
+            placeholder="Search by title or speaker"
             onChange={this.debounceOnChange}
             defaultValue={filters.search}
           />

@@ -17,8 +17,7 @@ export const init = (action, store) => {
     firebase.initializeApp(config)
 
     // enable firestore
-    const firestore = firebase.firestore()
-    firestore.settings({ timestampsInSnapshots: true })
+    firebase.firestore()
 
     // enable function calls
     firebase.functions()
@@ -28,11 +27,11 @@ export const init = (action, store) => {
   }
 
   firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
-      store.dispatch('@@firebase/SIGNED_OUT')
-    } else {
+    if (user) {
       store.dispatch({ type: '@@firebase/SIGNED_IN', payload: user })
       preloadFunctions()
+    } else {
+      store.dispatch('@@firebase/SIGNED_OUT')
     }
   })
 }

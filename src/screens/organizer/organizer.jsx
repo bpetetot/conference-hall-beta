@@ -7,6 +7,7 @@ import AppLayout from 'layout'
 import Contributors from 'screens/components/contributors'
 import Profile from 'screens/components/profile'
 import Sidebar from './sidebar'
+import isEventAuthorized from './isEventAutorized'
 
 import { restrictBeta } from '../conference/betaAccess'
 import EventCreate from './event/create'
@@ -39,4 +40,9 @@ const Organizer = () => (
   </AppLayout>
 )
 
-export default compose(forRoute('organizer'), protect, restrictBeta)(Organizer)
+export default compose(
+  forRoute('organizer'),
+  protect,
+  restrictBeta,
+  isEventAuthorized,
+)(Organizer)
