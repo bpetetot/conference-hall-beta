@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
       null,
       { state },
       {
-        event: ['name', 'categories', 'formats'],
+        event: ['name', 'categories', 'formats', 'address', 'conferenceDates'],
         proposal: [
           'id',
           'title',
