@@ -1,3 +1,4 @@
+const has = require('lodash/has')
 const { exportEventData } = require('../../firestore/exports')
 
 module.exports = async (req, res) => {
@@ -24,6 +25,13 @@ module.exports = async (req, res) => {
         speaker: ['uid', 'displayName', 'bio', 'company', 'photoURL', 'twitter', 'github'],
       },
     )
+
+    if (has(eventExport, 'conferenceDates.start')) {
+      eventExport.conferenceDates.start = eventExport.conferenceDates.start.toDate().toISOString()
+    }
+    if (has(eventExport, 'conferenceDates.end')) {
+      eventExport.conferenceDates.end = eventExport.conferenceDates.end.toDate().toISOString()
+    }
 
     res.send(eventExport)
   } catch (error) {
