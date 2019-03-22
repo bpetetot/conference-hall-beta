@@ -9,6 +9,8 @@ import Portal from 'components/portals/portal'
 import withTheme from 'styles/themes/withTheme'
 import { withSizes } from 'styles/utils'
 
+import AvatarDropdown from '../avatarDropdown'
+
 import styles from './brand.module.css'
 
 const SidebarWrapper = withTheme(({ className, onClick, content }) => (
@@ -23,19 +25,19 @@ const Brand = ({
   title, baseRoute, isTablet, isMobile, sidebar, className,
 }) => (
   <div className={cn(styles.brand, className)}>
-    {sidebar
-      && (isMobile || isTablet) && (
-        <OpenTrigger
-          renderTrigger={({ show, hide, isOpen }) => (
-            <a onClick={isOpen ? hide : show} role="button" className={styles.burgerLink}>
-              <i className={`fa ${isOpen ? 'fa-arrow-left' : 'fa-bars'}`} />
-            </a>
-          )}
-        >
-          {({ hide }) => <SidebarWrapper content={sidebar} onClick={hide} />}
-        </OpenTrigger>
+    {sidebar && (isMobile || isTablet) && (
+      <OpenTrigger
+        renderTrigger={({ show, hide, isOpen }) => (
+          <a onClick={isOpen ? hide : show} role="button" className={styles.burgerLink}>
+            <i className={`fa ${isOpen ? 'fa-arrow-left' : 'fa-bars'}`} />
+          </a>
+        )}
+      >
+        {({ hide }) => <SidebarWrapper content={sidebar} onClick={hide} />}
+      </OpenTrigger>
     )}
     <Link code={baseRoute}>{title}</Link>
+    {sidebar && (isMobile || isTablet) && <AvatarDropdown classname={styles.avatar} />}
   </div>
 )
 
