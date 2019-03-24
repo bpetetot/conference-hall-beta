@@ -42,7 +42,9 @@ const Profile = ({
             component={input}
             placeholder="username"
           />
-          <Field name="city" label="City" type="text" component={address} />
+          <Field name="zipcode" label="Zip code" type="text" component={input} autocomplete="postal-code" />
+          <Field name="city" label="City" type="text" component={address} autocomplete="locality" />
+          <Field name="country" label="Country" type="text" component={input} autocomplete="country" />
           <Field name="bio" label="Biography" component={markdownInput} />
 
           <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>

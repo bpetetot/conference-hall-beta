@@ -10,7 +10,7 @@ import Markdown from 'components/markdown'
 import styles from './speaker.module.css'
 
 const Speaker = ({
-  uid, email, github, twitter, company, language, city, bio,
+  uid, email, github, twitter, company, language, zipcode, city, country, bio,
 }) => {
   let twitterUrl
   if (twitter) {
@@ -25,7 +25,9 @@ const Speaker = ({
         <IconLink icon="fa fa-github" label={github} href={getGitHubUserRepo(github)} />
         <IconLink icon="fa fa-twitter" label={twitter} href={`https://twitter.com/${twitterUrl}`} />
         <IconLabel icon="fa fa-building-o" label={company} />
+        <IconLabel icon="fa fa-map-marker" label={zipcode} />
         <IconLabel icon="fa fa-map-marker" label={city} />
+        <IconLabel icon="fa fa-map-marker" label={country} />
         <IconLabel icon="fa fa-language" label={language} />
       </div>
       {bio && <Markdown source={bio} className={styles.bio} />}
@@ -40,7 +42,9 @@ Speaker.propTypes = {
   twitter: PropTypes.string,
   company: PropTypes.string,
   language: PropTypes.string,
+  zipcode: PropTypes.string,
   city: PropTypes.string,
+  country: PropTypes.string,
   bio: PropTypes.string,
 }
 
@@ -50,7 +54,9 @@ Speaker.defaultProps = {
   twitter: undefined,
   company: undefined,
   language: undefined,
+  zipcode: undefined,
   city: undefined,
+  country: undefined,
   bio: undefined,
 }
 
