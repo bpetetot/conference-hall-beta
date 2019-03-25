@@ -1105,9 +1105,10 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-3.0.0.tgz#3fa172e3006f36e547fb49835bf25fc487a29f1c"
 
-"@k-ramel/react@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-2.0.0.tgz#90ebd84ade0b0824100377c9b97f8544a2cea042"
+"@k-ramel/react@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-2.1.0.tgz#5517b229ce4663f19a05cc968c51819398cf7ea3"
+  integrity sha512-ysS0syEW/5P+p1Cfr3lt1UL8HYhzjJFLXfnNZ0uYOBfB5pUrOfTTxwgLifYNJOgl71ky3oBHTdvrqhs1f3LL7Q==
   dependencies:
     fbjs "^1.0.0"
 
