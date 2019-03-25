@@ -15,7 +15,7 @@
     "doc:build": "docz build"
   },
   "dependencies": {
-    "@k-ramel/react": "2.0.0",
+    "@k-ramel/react": "2.1.0",
     "@k-redux-router/core": "^1.0.0",
     "@k-redux-router/react-k-ramel": "^1.0.1",
     "classnames": "^2.2.6",
