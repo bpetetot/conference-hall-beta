@@ -7573,9 +7573,10 @@ jws@^3.0.0, jws@^3.1.4, jws@^3.1.5:
     jwa "^1.1.5"
     safe-buffer "^5.0.1"
 
-k-ramel@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-2.0.0.tgz#dfbb650cb7a8641ebbda4005c0af47738e76263e"
+k-ramel@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/k-ramel/-/k-ramel-2.1.0.tgz#bb7a5cab2c1c65cc4286cdf36cd3550acfecc2ea"
+  integrity sha512-Lr7/jGhFQlXT936HOTS/IqInfeUO/gcY8pnUtcMszHYB5HZN75qSDIrpGlCESf3c3pE1bdegEaV2H3SpHgwXdQ==
   dependencies:
     k-redux-factory "6.0.4"
     redux "4.0.1"
