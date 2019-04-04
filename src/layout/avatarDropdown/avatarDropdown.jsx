@@ -11,11 +11,9 @@ import './avatarDropdown.css'
 const AvatarDropdown = ({
   displayName, photoURL, contributorsRoute, signout,
 }) => {
-  const avatar = (
-    <Avatar src={photoURL} name={displayName} className="avatar-dropdown" />
-  )
+  const avatar = <Avatar src={photoURL} name={displayName} className="avatar-dropdown-button" />
   return (
-    <Dropdown action={avatar}>
+    <Dropdown className="avatar-dropdown" action={avatar}>
       <div>{displayName}</div>
       <Link code="home">
         <IconLabel icon="fa fa-home" label="Conference Hall" />
