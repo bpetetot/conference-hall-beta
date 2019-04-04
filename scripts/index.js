@@ -1,11 +1,24 @@
 /* eslint-disable no-underscore-dangle */
 const admin = require('firebase-admin')
+const isString = require('lodash/isString')
+const pick = require('lodash/pick')
+const first = require('lodash/first')
 
 // ====================================
 // Configuration
 // ====================================
 
 // service account credentials (need to be downloaded from firebase console)
+
+/**
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * MUST ACTIVATE GEOCODING API
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ */
+const googleMapsClient = require('@google/maps').createClient({
+  key: 'API KEY HERE',
+  Promise,
+})
 const serviceAccount = require('./serviceAccount.json')
 
 // initialize app credentials
@@ -13,103 +26,72 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 })
 
-// initialize firestore database
-const db = admin.firestore()
+const { updateUsers, updateEvents } = require('./updates')
 
-// ====================================
-// Utils
-// ====================================
-
-const isTimestamp = date => !!date && date instanceof admin.firestore.Timestamp
-
-// ====================================
-// Firebase update functions
-// ====================================
-
-const getEvent = async (id) => {
-  const doc = await db.collection('events').doc(id).get()
-  return { id: doc.id, data: doc.data() }
-}
-
-const getAllEvents = async () => {
-  const events = await db.collection('events').get()
-  return events.docs.map(doc => ({ id: doc.id, data: doc.data() }))
-}
-
-const getProposals = async (eventId) => {
-  const eventProposals = await db
-    .collection('events')
-    .doc(eventId)
-    .collection('proposals')
-    .get()
-
-  const proposals = eventProposals.docs.map(doc => doc.data())
-
-  return { eventId, proposals }
-}
-
-/**
- * Function used to update all proposals for all events or by event id
- * @param function callback proposal updater
- * @param string eventId event id (optional)
- */
-const updateProposals = async (callback, eventId) => {
-  let events = []
-  if (eventId) {
-    events = [await getEvent(eventId)]
-  } else {
-    events = await getAllEvents()
-  }
-  const eventsProposalsList = await Promise.all(events.map(e => getProposals(e.id)))
-
-  return Promise.all(
-    eventsProposalsList.map(async (eventProposals) => {
-      console.log(`Update proposals for event ${eventProposals.eventId}:`)
-      console.log(` > ${eventProposals.proposals.length} proposals`)
-
-      return Promise.all(
-        eventProposals.proposals.map((oldProposal) => {
-          const updatedProposal = callback(oldProposal) || {}
-          console.log(`   - update proposal ${oldProposal.title} (${oldProposal.id})`)
-          return db
-            .collection('events')
-            .doc(eventProposals.eventId)
-            .collection('proposals')
-            .doc(oldProposal.id)
-            .update(updatedProposal)
-        }),
-      )
-    }),
-  )
-}
+const getAddressComponent = (name, addressComponents) => pick(first(addressComponents.filter(component => component.types.includes(name))), [
+  'short_name',
+  'long_name',
+])
 
 const main = async () => {
-  await updateProposals((proposal) => {
-    let { updateTimestamp } = proposal
+  // update users address
+  await updateUsers(async (user) => {
+    if (!user.city) return null
 
-    if (isTimestamp(updateTimestamp)) {
-      updateTimestamp = new admin.firestore.Timestamp(
-        updateTimestamp._seconds,
-        updateTimestamp._nanoseconds,
-      )
-    } else if (updateTimestamp._seconds && updateTimestamp._nanoseconds) {
-      updateTimestamp = new admin.firestore.Timestamp(
-        updateTimestamp._seconds,
-        updateTimestamp._nanoseconds,
-      )
-    } else if (updateTimestamp.seconds && updateTimestamp.nanoseconds) {
-      updateTimestamp = new admin.firestore.Timestamp(
-        updateTimestamp.seconds,
-        updateTimestamp.nanoseconds,
-      )
-    } else if (!isTimestamp(updateTimestamp) && updateTimestamp instanceof Date) {
-      updateTimestamp = admin.firestore.Timestamp.fromDate(updateTimestamp)
-    }
+    const response = await googleMapsClient.geocode({ address: user.city }).asPromise()
+    const { results } = response.json
 
-    const createTimestamp = updateTimestamp
+    const result = first(results)
+    if (!result) return null
+
+    const country = getAddressComponent('country', result.address_components)
+    const locality = getAddressComponent('locality', result.address_components)
+
+    // console.log({
+    //   formattedAddress: user.city,
+    //   locality,
+    //   country,
+    //   latLng: result.geometry.location,
+    // })
+
     return {
-      updateTimestamp,
-      createTimestamp,
+      address: {
+        formattedAddress: user.city,
+        locality,
+        country,
+        latLng: result.geometry.location,
+      },
+    }
+  })
+
+  // update events address
+  await updateEvents(async (event) => {
+    if (!event.address || !isString(event.address)) return null
+
+    const response = await googleMapsClient.geocode({ address: event.address }).asPromise()
+    const { results } = response.json
+
+    const result = first(results)
+    if (!result) return null
+
+    const country = getAddressComponent('country', result.address_components)
+    const locality = getAddressComponent('locality', result.address_components)
+
+    // console.log({
+    //   formattedAddress: event.address,
+    //   locality,
+    //   country,
+    //   latLng: result.geometry.location,
+    // })
+
+    return {
+      oldAddress: event.address,
+      address: {
+        formattedAddress: event.address,
+        locality,
+        country,
+        latLng: result.geometry.location,
+      },
     }
   })
   console.log('🎉 Finished')
