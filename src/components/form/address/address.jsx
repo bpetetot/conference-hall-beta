@@ -19,6 +19,8 @@ const AddressInput = (props) => {
   const [address, setAddress] = useState(props.value && props.value.formattedAddress)
 
   const handleSelect = async (selectedAddress) => {
+    setAddress(selectedAddress)
+
     const results = await geocodeByAddress(selectedAddress)
     const result = first(results)
     if (!result) return
@@ -27,7 +29,6 @@ const AddressInput = (props) => {
     const country = getAddressComponent('country')(result.address_components)
     const locality = getAddressComponent('locality')(result.address_components)
 
-    setAddress(selectedAddress)
     props.onChange({
       formattedAddress: selectedAddress,
       locality,

@@ -31,7 +31,7 @@ const MyEvents = ({ events, onSelect }) => (
         <ListItem
           key={id}
           title={<div className={styles.title}>{name}</div>}
-          subtitle={<IconLabel icon="fa fa-map-marker" label={address} />}
+          subtitle={<IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />}
           info={(
             <div className={styles.infos}>
               <div className={styles.badges}>

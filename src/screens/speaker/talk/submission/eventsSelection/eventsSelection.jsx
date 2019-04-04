@@ -38,7 +38,7 @@ const TalksSelection = ({ talkId, events, onSelect }) => (
             {type === 'conference' && (
               <EventDates dates={conferenceDates} className={styles.dates} />
             )}
-            <IconLabel icon="fa fa-map-marker" label={address} />
+            <IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />
           </Fragment>
         )}
         info={<Status eventId={id} talkId={talkId} />}
