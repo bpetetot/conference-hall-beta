@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/button should render with children 1`] = `
+<button
+  className="cc-button cc-button-secondary test"
+  type="button"
+>
+  Benjamin
+</button>
+`;

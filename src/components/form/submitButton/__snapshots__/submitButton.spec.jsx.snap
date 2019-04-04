@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/submitButton should render 1`] = `
+<SubmitButton
+  invalid={false}
+  loadingMessage="Saving..."
+  name="name"
+  pristine={false}
+  secondary={false}
+  submitting={false}
+  type="submit"
+  value="value"
+>
+  <span>
+    children
+  </span>
+</SubmitButton>
+`;
