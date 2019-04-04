@@ -69,17 +69,14 @@ const updateProposals = async (callback, eventId) => {
 
       return Promise.all(
         eventProposals.proposals.map((oldProposal) => {
-          const newProposal = callback(oldProposal) || {}
+          const updatedProposal = callback(oldProposal) || {}
           console.log(`   - update proposal ${oldProposal.title} (${oldProposal.id})`)
           return db
             .collection('events')
             .doc(eventProposals.eventId)
             .collection('proposals')
             .doc(oldProposal.id)
-            .set({
-              ...oldProposal,
-              ...newProposal,
-            })
+            .update(updatedProposal)
         }),
       )
     }),
