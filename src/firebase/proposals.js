@@ -69,7 +69,7 @@ export const fetchEventProposals = async (
 }
 
 export const updateProposal = (eventId, proposal, options = {}) => {
-  const updated = omit(proposal, 'submissions')
+  const updated = omit(proposal, 'submissions', 'createTimestamp')
   if (options.updateTimestamp) {
     updated.updateTimestamp = firebase.firestore.FieldValue.serverTimestamp()
   }

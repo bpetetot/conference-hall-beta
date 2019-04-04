@@ -1,7 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 const admin = require('firebase-admin')
 
-const isTimestamp = date => !!date && date instanceof admin.firestore.Timestamp
+// ====================================
+// Configuration
+// ====================================
 
 // service account credentials (need to be downloaded from firebase console)
 const serviceAccount = require('./serviceAccount.json')
@@ -14,7 +16,22 @@ admin.initializeApp({
 // initialize firestore database
 const db = admin.firestore()
 
-const getEvents = async () => {
+// ====================================
+// Utils
+// ====================================
+
+const isTimestamp = date => !!date && date instanceof admin.firestore.Timestamp
+
+// ====================================
+// Firebase update functions
+// ====================================
+
+const getEvent = async (id) => {
+  const doc = await db.collection('events').doc(id).get()
+  return { id: doc.id, data: doc.data() }
+}
+
+const getAllEvents = async () => {
   const events = await db.collection('events').get()
   return events.docs.map(doc => ({ id: doc.id, data: doc.data() }))
 }
@@ -31,8 +48,18 @@ const getProposals = async (eventId) => {
   return { eventId, proposals }
 }
 
-const updateProposals = async (callback) => {
-  const events = await getEvents()
+/**
+ * Function used to update all proposals for all events or by event id
+ * @param function callback proposal updater
+ * @param string eventId event id (optional)
+ */
+const updateProposals = async (callback, eventId) => {
+  let events = []
+  if (eventId) {
+    events = [await getEvent(eventId)]
+  } else {
+    events = await getAllEvents()
+  }
   const eventsProposalsList = await Promise.all(events.map(e => getProposals(e.id)))
 
   return Promise.all(

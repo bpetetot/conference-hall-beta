@@ -1,4 +1,5 @@
 import firebase from 'firebase/app'
+import omit from 'lodash/omit'
 
 /**
  * create document in the collection
@@ -50,7 +51,7 @@ const update = (collection, idAttr) => data => firebase
   .collection(collection)
   .doc(data[idAttr])
   .update({
-    ...data,
+    ...omit(data, 'createTimestamp'),
     updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
   })
 

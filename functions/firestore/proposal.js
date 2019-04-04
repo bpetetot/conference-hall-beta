@@ -66,7 +66,6 @@ const getEventProposals = async (
   // add sortOrder
   if (sortOrder) {
     if (sortOrder === 'newest') {
-      console.log(`createTimestamp`)
       query = query.orderBy('createTimestamp', 'desc')
     } else if (sortOrder === 'oldest') {
       query = query.orderBy('createTimestamp', 'asc')
