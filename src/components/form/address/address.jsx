@@ -6,6 +6,7 @@ import flow from 'lodash/fp/flow'
 import filter from 'lodash/fp/filter'
 import first from 'lodash/fp/first'
 import pick from 'lodash/fp/pick'
+import isEmpty from 'lodash/isEmpty'
 
 import './address.css'
 
@@ -16,7 +17,14 @@ const getAddressComponent = name => flow(
 )
 
 const AddressInput = (props) => {
-  const [address, setAddress] = useState(props.value && props.value.formattedAddress)
+  const [address, setAddress] = useState(props.value.formattedAddress || '')
+
+  const handleChange = (inputAddress) => {
+    setAddress(inputAddress)
+    if (isEmpty(inputAddress)) {
+      props.onChange({})
+    }
+  }
 
   const handleSelect = async (selectedAddress) => {
     setAddress(selectedAddress)
@@ -38,7 +46,7 @@ const AddressInput = (props) => {
   }
 
   return (
-    <PlacesAutocomplete {...props} value={address} onChange={setAddress} onSelect={handleSelect}>
+    <PlacesAutocomplete {...props} value={address} onChange={handleChange} onSelect={handleSelect}>
       {({ getInputProps, suggestions, getSuggestionItemProps }) => (
         <div className="cc-address-input-wrapper">
           <input {...getInputProps({ autoComplete: 'nope' })} />
@@ -68,7 +76,7 @@ AddressInput.propTypes = {
 }
 
 AddressInput.defaultProps = {
-  value: undefined,
+  value: {},
 }
 
 export default AddressInput
