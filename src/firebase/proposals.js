@@ -45,9 +45,9 @@ export const fetchEventProposals = async (
   // add sortOrder
   if (sortOrder) {
     if (sortOrder === 'newest') {
-      query = query.orderBy('updateTimestamp', 'desc')
+      query = query.orderBy('createTimestamp', 'desc')
     } else if (sortOrder === 'oldest') {
-      query = query.orderBy('updateTimestamp', 'asc')
+      query = query.orderBy('createTimestamp', 'asc')
     } else if (sortOrder === 'highestRating') {
       query = query.orderBy('rating', 'desc')
     } else if (sortOrder === 'lowestRating') {
@@ -69,7 +69,7 @@ export const fetchEventProposals = async (
 }
 
 export const updateProposal = (eventId, proposal, options = {}) => {
-  const updated = omit(proposal, 'submissions')
+  const updated = omit(proposal, 'submissions', 'createTimestamp')
   if (options.updateTimestamp) {
     updated.updateTimestamp = firebase.firestore.FieldValue.serverTimestamp()
   }

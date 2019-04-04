@@ -18,14 +18,14 @@
       "collectionId": "proposals",
       "fields": [
         { "fieldPath": "state", "mode": "ASCENDING" },
-        { "fieldPath": "updateTimestamp", "mode": "ASCENDING" }
+        { "fieldPath": "createTimestamp", "mode": "ASCENDING" }
       ]
     },
     {
       "collectionId": "proposals",
       "fields": [
         { "fieldPath": "state", "mode": "ASCENDING" },
-        { "fieldPath": "updateTimestamp", "mode": "DESCENDING" }
+        { "fieldPath": "createTimestamp", "mode": "DESCENDING" }
       ]
     },
     {
@@ -46,14 +46,14 @@
       "collectionId": "proposals",
       "fields": [
         { "fieldPath": "categories", "mode": "ASCENDING" },
-        { "fieldPath": "updateTimestamp", "mode": "ASCENDING" }
+        { "fieldPath": "createTimestamp", "mode": "ASCENDING" }
       ]
     },
     {
       "collectionId": "proposals",
       "fields": [
         { "fieldPath": "categories", "mode": "ASCENDING" },
-        { "fieldPath": "updateTimestamp", "mode": "DESCENDING" }
+        { "fieldPath": "createTimestamp", "mode": "DESCENDING" }
       ]
     },
     {
@@ -74,14 +74,14 @@
       "collectionId": "proposals",
       "fields": [
         { "fieldPath": "formats", "mode": "ASCENDING" },
-        { "fieldPath": "updateTimestamp", "mode": "ASCENDING" }
+        { "fieldPath": "createTimestamp", "mode": "ASCENDING" }
       ]
     },
     {
       "collectionId": "proposals",
       "fields": [
         { "fieldPath": "formats", "mode": "ASCENDING" },
-        { "fieldPath": "updateTimestamp", "mode": "DESCENDING" }
+        { "fieldPath": "createTimestamp", "mode": "DESCENDING" }
       ]
     }
   ]
