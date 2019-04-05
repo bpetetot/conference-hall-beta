@@ -29,6 +29,7 @@ firebase-debug.log*
 .firebaserc
 .runtimeconfig.json
 .firebase/
+serviceAccount.json
 
 # docz
 .docz/

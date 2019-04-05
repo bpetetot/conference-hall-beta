@@ -59,7 +59,7 @@ const submitTalk = async ({
     )
   }
 
-  const submittedTalk = omit(talk, ['createTimestamp', 'submissions'])
+  const submittedTalk = omit(talk, ['createTimestamp', 'updateTimestamp', 'submissions'])
 
   await updateTalk(submittedTalk.id, { [`submissions.${eventId}`]: submittedTalk })
 
