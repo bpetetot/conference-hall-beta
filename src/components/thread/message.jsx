@@ -9,21 +9,30 @@ import Button from 'components/button'
 import styles from './message.module.css'
 
 const Message = ({
-  id, img, name, message, date, className, modified, editable, onEdit, allowEdit, onSave,
+  id, img, name, message, date, className, modified, allowEdit, onSave,
 }) => {
   const [inputMessageValue, setInputMessageValue] = useState(message)
+
+  const [editable, setEditable] = useState(false)
+
   const onChange = (event) => {
     setInputMessageValue(event.target.value)
   }
+
   const onCancel = () => {
     setInputMessageValue(message)
-    onEdit(id)
+    setEditable(!editable)
   }
 
   const handleKey = (event) => {
     if (event.keyCode === 13) {
       onSave(inputMessageValue, id)
     }
+  }
+
+  const handleSave = () => {
+    onSave(inputMessageValue, id)
+    setEditable(!editable)
   }
 
   return (
@@ -34,9 +43,9 @@ const Message = ({
           <span className={styles.name}>{name}</span>
           <span className={styles.date}>
             {distanceInWordsToNow(date, { addSuffix: true })}
-            {modified && ' ( modified )'}
           </span>
-          {allowEdit && <i role="button" className={cn('fa fa-pencil', styles.edit)} onClick={() => onEdit(id)} />}
+          <span className={styles.modified}>{modified && '(modified)'}</span>
+          {allowEdit && <i role="button" className={cn('fa fa-pencil', styles.edit)} onClick={() => setEditable(!editable)} />}
         </div>
         {!editable && (
         <div className={styles.message}>
@@ -50,10 +59,10 @@ const Message = ({
             name="message"
             value={inputMessageValue}
             onChange={onChange}
-            onKeyDown={handleKey}
+            onKeyUp={handleKey}
           />
-          <Button size="small" secondary onClick={onCancel}>Cancel</Button>
-          <Button size="small" onClick={() => onSave(inputMessageValue, id)}>Save changes</Button>
+          <Button secondary onClick={onCancel}>Cancel</Button>
+          <Button onClick={handleSave}>Save changes</Button>
         </div>
         )}
       </div>
@@ -67,9 +76,7 @@ Message.propTypes = {
   name: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
-  editable: PropTypes.bool,
   modified: PropTypes.bool,
-  onEdit: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   allowEdit: PropTypes.bool.isRequired,
   className: PropTypes.string,
@@ -78,7 +85,6 @@ Message.propTypes = {
 Message.defaultProps = {
   img: undefined,
   className: undefined,
-  editable: false,
   modified: false,
 }
 

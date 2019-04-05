@@ -25,11 +25,17 @@
 .date {
   font-size: 0.8em;
   color: var(--grey-color-dark);
+  margin-right: 0.2em;
+}
+
+.modified {
+  font-size: 0.8em;
+  color: var(--grey-color-dark);
+  margin-right: 0.4em;
 }
 
 .edit {
   color: var(--grey-color-dark);
-  margin-left: 0.5em;
   visibility: hidden;
 }
 

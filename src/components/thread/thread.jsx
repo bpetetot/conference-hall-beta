@@ -47,7 +47,7 @@ class Thread extends Component {
   }
 
   render() {
-    const { description, messages, className, onEditMessage, onSaveMessage, currentUser } = this.props
+    const { description, messages, className, onSaveMessage, currentUser } = this.props
     return (
       <div className={cn(styles.thread, className)}>
         {description && <div className={styles.description}>{description}</div>}
@@ -57,7 +57,6 @@ class Thread extends Component {
               allowEdit={currentUser === message.owner}
               key={index} 
               {...message} 
-              onEdit={onEditMessage}
               onSave={onSaveMessage}
               className={styles.message} 
             />
@@ -83,7 +82,6 @@ Thread.propTypes = {
   description: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
   onSaveMessage: PropTypes.func.isRequired,
-  onEditMessage: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 

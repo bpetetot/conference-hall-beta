@@ -105,20 +105,18 @@ export const fetchOrganizersThread = async (eventId, proposalId) => {
   return result.docs.map(ref => ({ messageId: ref.id, ...ref.data() }))
 }
 
-export const addOrganizersThreadMessage = async (eventId, proposalId, uid, message) => {
-  await firebase
-    .firestore()
-    .collection('events')
-    .doc(eventId)
-    .collection('proposals')
-    .doc(proposalId)
-    .collection('organizersThread')
-    .add({
-      uid,
-      message,
-      date: firebase.firestore.FieldValue.serverTimestamp(),
-    })
-}
+export const addOrganizersThreadMessage = async (eventId, proposalId, uid, message) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('proposals')
+  .doc(proposalId)
+  .collection('organizersThread')
+  .add({
+    uid,
+    message,
+    date: firebase.firestore.FieldValue.serverTimestamp(),
+  })
 
 export const updateOrganizersThreadMessage = async (
   eventId,

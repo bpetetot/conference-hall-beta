@@ -30,7 +30,7 @@ export const loadMessages = async (action, store) => {
   store.ui.organizer.organizersThread.set(messages)
 }
 
-export const saveMessage = (action, store) => {
+export const saveMessage = async (action, store) => {
   const {
     eventId, proposalId, uid, message, messageId,
   } = action.payload
@@ -39,26 +39,22 @@ export const saveMessage = (action, store) => {
     store.ui.organizer.organizersThread.update({
       id: messageId,
       message,
-      editable: false,
       modified: true,
     })
   } else {
     const user = store.data.users.get(uid)
 
+    const { id } = await addOrganizersThreadMessage(eventId, proposalId, uid, message)
+
     const newMessage = {
+      id,
       message,
+      owner: uid,
       date: new Date(),
       name: user.displayName,
       img: user.photoURL,
     }
+
     store.ui.organizer.organizersThread.add(newMessage)
-
-    addOrganizersThreadMessage(eventId, proposalId, uid, message)
   }
-}
-
-export const editMessage = (action, store) => {
-  const { messageId } = action.payload
-  const message = store.ui.organizer.organizersThread.get(messageId)
-  store.ui.organizer.organizersThread.update({ id: messageId, editable: !message.editable })
 }

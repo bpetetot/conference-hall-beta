@@ -29,16 +29,6 @@ const mapStore = (store, { eventId, proposalId }) => {
         },
       })
     },
-    onEditMessage: (messageId) => {
-      store.dispatch({
-        type: '@@ui/ON_EDIT_PROPOSAL_ORGANIZERS_MESSAGE',
-        payload: {
-          eventId,
-          proposalId,
-          messageId,
-        },
-      })
-    },
   }
 }
 
