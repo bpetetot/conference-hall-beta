@@ -102,7 +102,7 @@ export const fetchOrganizersThread = async (eventId, proposalId) => {
     .collection('organizersThread')
     .orderBy('date', 'asc')
     .get()
-  return result.docs.map(ref => ref.data())
+  return result.docs.map(ref => ({ messageId: ref.id, ...ref.data() }))
 }
 
 export const addOrganizersThreadMessage = async (eventId, proposalId, uid, message) => {
@@ -117,5 +117,24 @@ export const addOrganizersThreadMessage = async (eventId, proposalId, uid, messa
       uid,
       message,
       date: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+}
+
+export const updateOrganizersThreadMessage = async (
+  eventId,
+  proposalId,
+  messageId,
+  message) => {
+  await firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(proposalId)
+    .collection('organizersThread')
+    .doc(messageId)
+    .update({
+      message,
+      modified: true,
     })
 }

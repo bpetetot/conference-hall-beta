@@ -3,6 +3,10 @@
   align-items: flex-start;
 }
 
+.wrapper:hover .edit {
+  visibility: visible;
+}
+
 .avatar {
   margin-right: 0.5em;
 }
@@ -20,7 +24,35 @@
 
 .date {
   font-size: 0.8em;
-  color: var(--grey-color-dark)
+  color: var(--grey-color-dark);
+}
+
+.edit {
+  color: var(--grey-color-dark);
+  margin-left: 0.5em;
+  visibility: hidden;
+}
+
+.edit:hover {
+  color: var( --primary-color-dark);
+  cursor: pointer;
+}
+
+.editInput {
+  flex-shrink: 0;
+  display: flex;
+}
+
+.editInput button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 0.5em;
+}
+
+.editInput input[type=text] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 21em;
 }
 
 @media only screen and (max-width: 480px) {
