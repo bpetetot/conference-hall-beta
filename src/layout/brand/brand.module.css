@@ -21,7 +21,11 @@
   text-decoration: none;
 }
 
-.brand > .burgerLink:hover  {
+.brand > .burgerLink {
+  width: 40px;
+}
+
+.brand > .burgerLink:hover {
   color: var(--secondary-color-font);
 }
 

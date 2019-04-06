@@ -1,5 +1,23 @@
 # Changelog
 
+<a name="0.9.0" />
+## 0.9.0 (2019-04-04)
+
+### Added
+
+- ✨ display login error messages ([#506](https://github.com/bpetetot/conference-hall/issues/506)) [[37dc9b7](https://github.com/bpetetot/conference-hall/commit/37dc9b7a8594b3203d08141b1ada32e0523dae01)]
+- ✨ add event&#x27;s dates and address in API ([#511](https://github.com/bpetetot/conference-hall/issues/511)) [[6a24864](https://github.com/bpetetot/conference-hall/commit/6a248646e1cee1d0d0d4e4e8645365a650c3a91b)]
+- ✨ sort by newest data for proposals list ([#523](https://github.com/bpetetot/conference-hall/issues/523)) [[3bca5d3](https://github.com/bpetetot/conference-hall/commit/3bca5d3430cb9a856ad641568f5cd40a2a303ec5)]
+- ✨ add logout for mobile ([#515](https://github.com/bpetetot/conference-hall/issues/515)) [[3d3ac1f](https://github.com/bpetetot/conference-hall/commit/3d3ac1f84e4372b6631a62b1e4601c4d9739efb1)]
+- ✨ cc conference mailing list in rejection, acceptance email ([#478](https://github.com/bpetetot/conference-hall/issues/478)) [[6d99de1](https://github.com/bpetetot/conference-hall/commit/6d99de1d9470b93089758edf5e06aeb5807546e9)]
+
+### Changed
+
+- ⬆️ upgrade react, firebase, final-form ([#507](https://github.com/bpetetot/conference-hall/issues/507)) [[c48e2b5](https://github.com/bpetetot/conference-hall/commit/c48e2b591c07cd032747fdcd3f310b212e1bbb45)]
+- ⬆️ upgrade babel, react-datepicker, firebase, k-ramel, luxon ([#512](https://github.com/bpetetot/conference-hall/issues/512)) [[c038877](https://github.com/bpetetot/conference-hall/commit/c0388777374c69f17ea90bc0b5b511541c07c16d)]
+- 💄 enlarge total rating zone ([#509](https://github.com/bpetetot/conference-hall/issues/509)) [[c887918](https://github.com/bpetetot/conference-hall/commit/c887918bff037f4de75e33f488e841bfe36d95a3)]
+
+
 <a name="0.8.4" />
 ## 0.8.4 (2019-03-13)
 
