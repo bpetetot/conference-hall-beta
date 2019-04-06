@@ -15,7 +15,7 @@ describe('components/inputButton', () => {
   })
 
   it('should render with required props', () => {
-    expect(<InputButton {...props} />).toMatchSnapshot();
+    expect(<InputButton {...props} />).toMatchSnapshot()
   })
 
   it('should render with enabled button when defaultValue provided', () => {

@@ -24,8 +24,8 @@ describe('components/dayPicker', () => {
 
   it('should handle return key as button click', () => {
     const wrapper = shallow(<DayPicker {...props} defaultValue="" />)
-    wrapper.find('DatePicker').simulate('change', new Date(0) )
+    wrapper.find('DatePicker').simulate('change', new Date(0))
     expect(onChange).toHaveBeenCalled()
-    expect(wrapper.state().date).toEqual(new Date(0));
+    expect(wrapper.state().date).toEqual(new Date(0))
   })
 })
