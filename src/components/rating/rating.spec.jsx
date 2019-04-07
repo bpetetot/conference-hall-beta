@@ -4,7 +4,6 @@ import { shallow } from 'enzyme'
 import Rating from './index.js'
 
 describe('components/rating', () => {
-
   it('should call onClick by default', () => {
     const onRate = jest.fn()
     const wrapper = shallow(<Rating
