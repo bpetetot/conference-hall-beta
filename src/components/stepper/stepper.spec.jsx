@@ -3,8 +3,8 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Stepper from './index.js'
 
-describe('components/Stepper', () => {
-  it('should call onClick by default', () => {
+describe('components/stepper', () => {
+  it('should render', () => {
     const steps = [
       { label: 'Event selection', icon: 'fa fa-bars' },
       { label: 'Talk details', icon: 'fa fa-microphone' },

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Stepper should call onClick by default 1`] = `
+exports[`components/stepper should render 1`] = `
 <div
   className="stepper"
 >

@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/stepSpace should render when step is current 1`] = `
+<Thread
+  messages={
+    Array [
+      Object {
+        "date": 1970-01-01T00:00:00.000Z,
+        "id": "message1",
+        "img": "https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png",
+        "message": "May the force be with you",
+        "name": "Luke Skywalker",
+      },
+    ]
+  }
+  onAddMessage={[MockFunction]}
+>
+  <div
+    className="thread"
+  >
+    <div
+      className="messages"
+    >
+      <Message
+        className="message"
+        date={1970-01-01T00:00:00.000Z}
+        id="message1"
+        img="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png"
+        key="0"
+        message="May the force be with you"
+        name="Luke Skywalker"
+      >
+        <div
+          className="wrapper message"
+        >
+          <Avatar
+            className="avatar"
+            name="Luke Skywalker"
+            size="medium"
+            square={false}
+            src="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png"
+            withLabel={false}
+          >
+            <div
+              className="cc-avatar-wrapper avatar"
+            >
+              <div
+                className="cc-avatar cc-avatar-image"
+                style={
+                  Object {
+                    "background": "transparent",
+                  }
+                }
+              >
+                <img
+                  alt="Luke Skywalker"
+                  src="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png"
+                />
+              </div>
+            </div>
+          </Avatar>
+          <div>
+            <div
+              className="message"
+            >
+              <span
+                className="name"
+              >
+                Luke Skywalker
+              </span>
+              <span
+                className="date"
+              >
+                over 49 years ago
+              </span>
+            </div>
+            <div
+              className="message"
+            >
+              May the force be with you
+            </div>
+          </div>
+        </div>
+      </Message>
+    </div>
+    <div
+      className="input"
+    >
+      <input
+        name="message"
+        onKeyDown={[Function]}
+        placeholder="Send a message"
+        type="text"
+      />
+      <Button
+        accent={false}
+        block={false}
+        error={false}
+        onClick={[Function]}
+        primary={true}
+        secondary={false}
+        simple={false}
+        size="normal"
+        tertiary={false}
+      >
+        <button
+          className="cc-button cc-button-primary"
+          onClick={[Function]}
+          type="button"
+        >
+          Send
+        </button>
+      </Button>
+    </div>
+  </div>
+</Thread>
+`;

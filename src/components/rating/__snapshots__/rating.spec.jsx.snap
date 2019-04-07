@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/rating should call onClick by default 1`] = `
+exports[`components/rating should render 1`] = `
 <div
   className="rating"
   onMouseLeave={[Function]}
