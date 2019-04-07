@@ -4,7 +4,10 @@ exports[`components/inline should render 1`] = `
 <div
   className="inline-items proposal-subtitle"
 >
-  <span className="proposal-subtitle-item" key="0">
+  <span
+    className="proposal-subtitle-item"
+    key="0"
+  >
     speakerName
   </span>
   <span
@@ -16,18 +19,6 @@ exports[`components/inline should render 1`] = `
   <span
     className="proposal-subtitle-item"
     key="1"
-  >
-    formatLabel
-  </span>
-  <span
-    className="inline-items-separator"
-    key="2-separator"
-  >
-    •
-  </span>
-  <span
-    className="proposal-subtitle-item"
-    key="2"
   >
     categoryLabel
   </span>

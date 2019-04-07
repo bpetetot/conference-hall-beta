@@ -9,7 +9,6 @@ describe('components/inline', () => {
       shallow(
         <Inline className="proposal-subtitle" classNameItem="proposal-subtitle-item">
           {'speakerName'}
-          {'formatLabel'}
           {'categoryLabel'}
         </Inline>,
       ),
