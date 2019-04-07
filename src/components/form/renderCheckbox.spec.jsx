@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import snap from 'tests/snapshot'
-import {checkbox} from './index'
+import { checkbox } from './index'
 
 const snapshot = props => snap(checkbox)({ ...props })
 
