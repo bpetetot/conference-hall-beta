@@ -1,10 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/button should render with children 1`] = `
-<button
+<a
   className="cc-button cc-button-secondary test"
-  type="button"
+  href="someurl"
 >
   Benjamin
-</button>
+</a>
+`;
+
+exports[`components/button should renter with function children 1`] = `
+<div>
+  some content
+</div>
 `;
