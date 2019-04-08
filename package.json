@@ -111,7 +111,7 @@
     },
     {
       "path": "./build/static/css/*.css",
-      "maxSize": "10 kB"
+      "maxSize": "20 kB"
     }
   ],
   "browserslist": [
