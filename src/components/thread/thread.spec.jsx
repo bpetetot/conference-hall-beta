@@ -3,8 +3,8 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Thread from './index'
 
-describe('components/stepSpace', () => {
-  it('should render when step is current', () => {
+describe('components/thread', () => {
+  it('should render a message in the thread', () => {
     const messages = [
       {
         id: 'message1',
@@ -12,12 +12,15 @@ describe('components/stepSpace', () => {
         message: 'May the force be with you',
         date: new Date(0),
         img: 'https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png',
+        onSave: () => {},
+        allowEdit: false,
       },
     ]
-    const onAddMessage = jest.fn()
+    const mock = jest.fn()
     const wrapper = mount(<Thread
+      currentUser="Yoda"
       messages={messages}
-      onAddMessage={onAddMessage}
+      onSaveMessage={mock}
     />)
     expect(wrapper).toMatchSnapshot()
   })
