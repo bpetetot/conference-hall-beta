@@ -35,7 +35,7 @@ class Thread extends Component {
   handleAddMessage = () => {
     const message = this.input.current.value
     if (message) {
-      this.props.onAddMessage(message)
+      this.props.onSaveMessage(message)
       this.input.current.value = ''
     }
   }
@@ -47,14 +47,19 @@ class Thread extends Component {
   }
 
   render() {
-    const { description, messages, className } = this.props
-
+    const { description, messages, className, onSaveMessage, currentUser } = this.props
     return (
       <div className={cn(styles.thread, className)}>
         {description && <div className={styles.description}>{description}</div>}
         <div ref={this.thread} className={styles.messages}>
           {messages.map((message, index) => (
-            <Message key={index} {...message} className={styles.message} />
+            <Message 
+              allowEdit={currentUser === message.owner}
+              key={index} 
+              {...message} 
+              onSave={onSaveMessage}
+              className={styles.message} 
+            />
           ))}
         </div>
         <div className={styles.input}>
@@ -73,9 +78,10 @@ class Thread extends Component {
 }
 
 Thread.propTypes = {
+  currentUser: PropTypes.string.isRequired,
   description: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
-  onAddMessage: PropTypes.func.isRequired,
+  onSaveMessage: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 
