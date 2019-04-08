@@ -7,6 +7,10 @@
   visibility: visible;
 }
 
+.messageContent {
+  width: 100%;
+}
+
 .avatar {
   margin-right: 0.5em;
 }
@@ -50,15 +54,7 @@
 }
 
 .editInput button {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
   margin-left: 0.5em;
-}
-
-.editInput input[type=text] {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  width: 21em;
 }
 
 @media only screen and (max-width: 480px) {

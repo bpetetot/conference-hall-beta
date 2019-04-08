@@ -24,21 +24,21 @@ const Message = ({
     setEditable(!editable)
   }
 
-  const handleKey = (event) => {
-    if (event.keyCode === 13) {
-      onSave(inputMessageValue, id)
-    }
-  }
-
   const handleSave = () => {
     onSave(inputMessageValue, id)
     setEditable(!editable)
   }
 
+  const handleKey = (event) => {
+    if (event.keyCode === 13) {
+      handleSave()
+    }
+  }
+
   return (
     <div className={cn(styles.wrapper, className)}>
       <Avatar src={img} name={name} size="medium" className={styles.avatar} />
-      <div>
+      <div className={styles.messageContent}>
         <div className={styles.message}>
           <span className={styles.name}>{name}</span>
           <span className={styles.date}>
@@ -62,7 +62,7 @@ const Message = ({
             onKeyUp={handleKey}
           />
           <Button secondary onClick={onCancel}>Cancel</Button>
-          <Button onClick={handleSave}>Save changes</Button>
+          <Button onClick={handleSave}>Save</Button>
         </div>
         )}
       </div>
