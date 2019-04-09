@@ -31,6 +31,7 @@
 
 .mobileSidebarPortal {
   top: var(--layout-navbar-height);
+  z-index: 50;
 }
 
 .mobileSidebar {
