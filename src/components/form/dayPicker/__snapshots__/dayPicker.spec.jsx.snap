@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/dayPicker should render 1`] = `
+<DayPicker
+  id="1"
+  isMobile={false}
+  isTablet={true}
+  onChange={[MockFunction]}
+  value=""
+/>
+`;

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/label should render 1`] = `
+<Label
+  className="blue"
+  classNameInput="red"
+  error="error"
+  label="label"
+  name="name"
+>
+  children
+</Label>
+`;
