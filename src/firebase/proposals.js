@@ -136,3 +136,18 @@ export const updateOrganizersThreadMessage = async (
       modified: true,
     })
 }
+
+export const deleteOrganizersThreadMessage = async (
+  eventId,
+  proposalId,
+  messageId) => {
+  await firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(proposalId)
+    .collection('organizersThread')
+    .doc(messageId)
+    .delete()
+}

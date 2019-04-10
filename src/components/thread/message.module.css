@@ -7,6 +7,10 @@
   visibility: visible;
 }
 
+.wrapper:hover .trash {
+  visibility: visible;
+}
+
 .messageContent {
   width: 100%;
 }
@@ -48,6 +52,17 @@
   cursor: pointer;
 }
 
+.trash {
+  color: var(--grey-color-dark);
+  visibility: hidden;
+  margin-left: 0.5em;
+}
+
+.trash:hover {
+  color: var(--error-color);
+  cursor: pointer;
+}
+
 .editInput {
   flex-shrink: 0;
   display: flex;
@@ -55,6 +70,10 @@
 
 .editInput button {
   margin-left: 0.5em;
+}
+
+.previewMessageDelete {
+  margin-top: 2em;
 }
 
 @media only screen and (max-width: 480px) {
