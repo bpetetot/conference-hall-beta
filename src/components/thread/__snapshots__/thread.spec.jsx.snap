@@ -16,6 +16,7 @@ exports[`components/thread should render a message in the thread 1`] = `
       },
     ]
   }
+  onDeleteMessage={[MockFunction]}
   onSaveMessage={[MockFunction]}
 >
   <div
@@ -34,6 +35,7 @@ exports[`components/thread should render a message in the thread 1`] = `
         message="May the force be with you"
         modified={false}
         name="Luke Skywalker"
+        onDelete={[MockFunction]}
         onSave={[MockFunction]}
       >
         <div
