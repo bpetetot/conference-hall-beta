@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/checkbox should render with children 1`] = `
+<div
+  className="form-checkbox"
+>
+  <input
+    defaultChecked={false}
+    id="name-false"
+    label="label"
+    name="name"
+    type="checkbox"
+    value={false}
+  />
+  <label
+    htmlFor="name-false"
+  >
+    label
+  </label>
+</div>
+`;

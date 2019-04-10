@@ -68,6 +68,7 @@ service cloud.firestore {
         match /organizersThread/{message} {
           allow list: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
           allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow update: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
         }
       }
     }

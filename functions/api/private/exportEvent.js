@@ -1,3 +1,5 @@
+const has = require('lodash/has')
+
 const { getEvent } = require('../../firestore/event')
 const { isUserEvent } = require('../../firestore/permissions')
 const { exportEventData } = require('../../firestore/exports')
@@ -17,7 +19,7 @@ module.exports = async (req, res) => {
 
   try {
     const eventJson = await exportEventData(event, uid, filters, {
-      event: ['name', 'categories', 'formats'],
+      event: ['name', 'categories', 'formats', 'address', 'conferenceDates'],
       proposal: [
         'title',
         'state',
@@ -46,6 +48,13 @@ module.exports = async (req, res) => {
         'phone',
       ],
     })
+
+    if (has(eventJson, 'conferenceDates.start')) {
+      eventJson.conferenceDates.start = eventJson.conferenceDates.start.toDate().toISOString()
+    }
+    if (has(eventJson, 'conferenceDates.end')) {
+      eventJson.conferenceDates.end = eventJson.conferenceDates.end.toDate().toISOString()
+    }
 
     res.setHeader('Content-Type', 'application/json')
     res.send(JSON.stringify(eventJson))

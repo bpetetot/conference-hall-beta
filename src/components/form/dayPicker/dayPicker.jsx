@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 import { toDate } from 'helpers/firebase'
 import { withSizes } from 'styles/utils'
 
-class DayPicker extends React.Component {
+export class DayPicker extends React.Component {
   constructor(props) {
     super(props)
     const date = toDate(props.value)
