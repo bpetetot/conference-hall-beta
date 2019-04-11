@@ -48,7 +48,7 @@
     "@babel/core": "7.4.3",
     "bundlesize": "^0.17.1",
     "docz": "^0.13.7",
-    "docz-theme-default": "^0.13.7",
+    "docz-theme-default": "^1.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "enzyme-to-json": "^3.3.5",
