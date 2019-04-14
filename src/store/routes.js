@@ -40,6 +40,9 @@ export default {
           '/deliberation': { code: 'organizer-event-edit-deliberation' },
           '/integrations': { code: 'organizer-event-edit-integrations' },
         },
+        '/agenda': {
+          code: 'organizer-event-agenda',
+        },
         '/proposals': {
           code: 'organizer-event-proposals',
           sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],
