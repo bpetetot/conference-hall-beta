@@ -47,7 +47,7 @@ class Thread extends Component {
   }
 
   render() {
-    const { description, messages, className, onSaveMessage, currentUser } = this.props
+    const { description, messages, className, onSaveMessage, onDeleteMessage, currentUser } = this.props
     return (
       <div className={cn(styles.thread, className)}>
         {description && <div className={styles.description}>{description}</div>}
@@ -58,6 +58,7 @@ class Thread extends Component {
               key={index} 
               {...message} 
               onSave={onSaveMessage}
+              onDelete={onDeleteMessage}
               className={styles.message} 
             />
           ))}
@@ -82,6 +83,7 @@ Thread.propTypes = {
   description: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
   onSaveMessage: PropTypes.func.isRequired,
+  onDeleteMessage: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 

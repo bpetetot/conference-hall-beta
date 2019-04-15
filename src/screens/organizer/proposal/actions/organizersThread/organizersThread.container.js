@@ -29,6 +29,16 @@ const mapStore = (store, { eventId, proposalId }) => {
         },
       })
     },
+    onDeleteMessage: (messageId) => {
+      store.dispatch({
+        type: '@@ui/ON_DELETE_PROPOSAL_ORGANIZERS_MESSAGE',
+        payload: {
+          eventId,
+          proposalId,
+          messageId,
+        },
+      })
+    },
   }
 }
 

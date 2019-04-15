@@ -21,6 +21,7 @@ describe('components/thread', () => {
       currentUser="Yoda"
       messages={messages}
       onSaveMessage={mock}
+      onDeleteMessage={mock}
     />)
     expect(wrapper).toMatchSnapshot()
   })

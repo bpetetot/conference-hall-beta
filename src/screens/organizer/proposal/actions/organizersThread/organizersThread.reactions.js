@@ -1,6 +1,11 @@
 import userCrud from 'firebase/user'
 import { toDate } from 'helpers/firebase'
-import { fetchOrganizersThread, addOrganizersThreadMessage, updateOrganizersThreadMessage } from 'firebase/proposals'
+import {
+  fetchOrganizersThread,
+  addOrganizersThreadMessage,
+  updateOrganizersThreadMessage,
+  deleteOrganizersThreadMessage,
+} from 'firebase/proposals'
 
 export const loadMessages = async (action, store) => {
   const { eventId, proposalId } = action.payload
@@ -57,4 +62,12 @@ export const saveMessage = async (action, store) => {
 
     store.ui.organizer.organizersThread.add(newMessage)
   }
+}
+
+export const deleteMessage = (action, store) => {
+  const {
+    eventId, proposalId, messageId,
+  } = action.payload
+  deleteOrganizersThreadMessage(eventId, proposalId, messageId)
+  store.ui.organizer.organizersThread.remove(messageId)
 }

@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 
 import Avatar from 'components/avatar'
 import Button from 'components/button'
+import { ConfirmationPopin } from 'components/portals'
 
 import styles from './message.module.css'
 
 const Message = ({
-  id, img, name, message, date, className, modified, allowEdit, onSave,
+  id, img, name, message, date, className, modified, allowEdit, onSave, onDelete,
 }) => {
   const [inputMessageValue, setInputMessageValue] = useState(message)
 
@@ -35,6 +36,32 @@ const Message = ({
     }
   }
 
+  const DeleteMessage = () => (
+    <ConfirmationPopin
+      title="Delete a message"
+      content={(
+        <Fragment>
+          Are you sure you want to delete this message ? This cannot be undone.
+          <Message
+            id={id}
+            img={img}
+            name={name}
+            message={message}
+            date={date}
+            modified={modified}
+            className={styles.previewMessageDelete}
+          />
+        </Fragment>
+      )}
+      className="remove-member-modal"
+      onOk={() => onDelete(id)}
+      withCancel
+      renderTrigger={({ show }) => (
+        <i role="button" className={cn('fa fa-trash', styles.trash)} onClick={show} />
+      )}
+    />
+  )
+
   return (
     <div className={cn(styles.wrapper, className)}>
       <Avatar src={img} name={name} size="medium" className={styles.avatar} />
@@ -46,6 +73,7 @@ const Message = ({
           </span>
           <span className={styles.modified}>{modified && '(modified)'}</span>
           {allowEdit && <i role="button" className={cn('fa fa-pencil', styles.edit)} onClick={() => setEditable(!editable)} />}
+          {allowEdit && <DeleteMessage />}
         </div>
         {!editable && (
         <div className={styles.message}>
@@ -77,8 +105,9 @@ Message.propTypes = {
   message: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
   modified: PropTypes.bool,
-  onSave: PropTypes.func.isRequired,
-  allowEdit: PropTypes.bool.isRequired,
+  onSave: PropTypes.func,
+  onDelete: PropTypes.func,
+  allowEdit: PropTypes.bool,
   className: PropTypes.string,
 }
 
@@ -86,6 +115,9 @@ Message.defaultProps = {
   img: undefined,
   className: undefined,
   modified: false,
+  onSave: undefined,
+  onDelete: undefined,
+  allowEdit: false,
 }
 
 export default Message

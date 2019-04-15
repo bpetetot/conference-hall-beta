@@ -25,6 +25,7 @@ class OrganizersThread extends Component {
     const {
       messages,
       onSaveMessage,
+      onDeleteMessage,
       currentUser,
     } = this.props
     const nbMessages = !isEmpty(messages) ? ` (${messages.length})` : ''
@@ -43,6 +44,7 @@ class OrganizersThread extends Component {
           currentUser={currentUser}
           messages={messages}
           onSaveMessage={onSaveMessage}
+          onDeleteMessage={onDeleteMessage}
         />
       </Drawer>
     )
@@ -54,6 +56,7 @@ OrganizersThread.propTypes = {
   messages: Thread.propTypes.messages,
   currentUser: PropTypes.string.isRequired,
   onSaveMessage: PropTypes.func.isRequired,
+  onDeleteMessage: PropTypes.func.isRequired,
   loadMessages: PropTypes.func.isRequired,
 }
 
