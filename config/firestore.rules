@@ -15,6 +15,8 @@ service cloud.firestore {
     function fromMyEvent(eventRes) {
     	return eventRes.data.owner == request.auth.uid || get(/databases/$(database)/documents/organizations/$(eventRes.data.organization)).data.members[request.auth.uid] == true
     }
+    function itsMyMessage(message) { return request.auth.uid == message.data.uid }
+ 
 		function itsMySurvey() { return request.path[6] == request.auth.uid }
     function hasInviteCode() { return request.resource.id == resource.id }
 
@@ -68,8 +70,8 @@ service cloud.firestore {
         match /organizersThread/{message} {
           allow list: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
           allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-          allow update: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-          allow delete: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow update: if authenticated() && itsMyMessage(get(/databases/$(database)/documents/events/$(event)/proposals/$(proposal)/organizersThread/$(message)));
+          allow delete: if authenticated() && itsMyMessage(get(/databases/$(database)/documents/events/$(event)/proposals/$(proposal)/organizersThread/$(message)));
         }
       }
     }
