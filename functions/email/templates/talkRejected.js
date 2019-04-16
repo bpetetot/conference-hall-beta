@@ -12,7 +12,7 @@ module.exports = (event, users, talk, url) => `
   <p>Your talk <strong>"${talk.title}"</strong> has been declined.</p>
   <p>
   We had lots of excellent talks this year and choosing has been heart-breaking 😓 
-  Thank you very for your submission and please consider resubmitting next year.
+  Thank you very much for your submission and please consider resubmitting next year.
   </p>
   <p>
   Made with 💗 by <a href="${url}">conference-hall.io</a> – <i>"${event.name}" team</i>
