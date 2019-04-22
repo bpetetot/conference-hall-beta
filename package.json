@@ -58,7 +58,7 @@
     "eslint-plugin-react": "^7.12.4",
     "firebase-tools": "^6.6.0",
     "prettier": "^1.16.4",
-    "react-scripts": "2.1.8",
+    "react-scripts": "3.0.0",
     "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8"
   },
