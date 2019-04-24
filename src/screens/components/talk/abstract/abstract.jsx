@@ -12,17 +12,14 @@ const TalkAbstract = ({
   <div className={cn('talk-abstract card', className)}>
     <div className="talk-abstract-title">
       <h3>Abstract</h3>
-      <Badge outline pill light>Level {level}</Badge>
+      <div className="talk-abstract-more-info">
+        <Badge outline pill light>{level}</Badge>
+        <Badge outline pill light>{language}</Badge>
+      </div>
     </div>
     <Markdown source={abstract} />
     <h3 className="talk-reference">References</h3>
     <Markdown source={references} />
-    {language ? (
-      <>
-        <h3 className="talk-reference">Language</h3>
-        {language}
-      </>
-    ) : null}
   </div>
 )
 
