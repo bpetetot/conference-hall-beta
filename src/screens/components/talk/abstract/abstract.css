@@ -7,3 +7,19 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+
+.talk-abstract .talk-abstract-more-info > * {
+  margin-left: 1em;
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .talk-abstract .talk-abstract-title {
+    flex-direction: column;
+  }
+
+  .talk-abstract .talk-abstract-more-info > * {
+    margin-left: 0;
+    margin-right: 1em;
+  }
+}

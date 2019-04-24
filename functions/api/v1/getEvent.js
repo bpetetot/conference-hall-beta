@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
           'formats',
           'speakers',
           'comments',
+          'language',
         ],
         speaker: ['uid', 'displayName', 'bio', 'company', 'photoURL', 'twitter', 'github'],
       },

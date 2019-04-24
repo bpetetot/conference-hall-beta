@@ -20,6 +20,7 @@ const SubmissionPage = ({
   owner,
   state,
   references,
+  language,
   formats,
   speakers,
   categories,
@@ -54,6 +55,7 @@ const SubmissionPage = ({
         className={styles.content}
         abstract={abstract}
         references={references}
+        language={language}
         level={level}
       />
       <div className={styles.info}>
@@ -72,6 +74,7 @@ SubmissionPage.propTypes = {
   owner: PropTypes.string,
   state: PropTypes.string,
   references: PropTypes.string,
+  language: PropTypes.string,
   formats: PropTypes.string,
   categories: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
@@ -87,6 +90,7 @@ SubmissionPage.defaultProps = {
   owner: undefined,
   state: undefined,
   references: undefined,
+  language: undefined,
   formats: undefined,
   categories: undefined,
   speakers: {},
