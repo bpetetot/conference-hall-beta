@@ -1,6 +1,6 @@
 {
   "name": "conference-hall",
-  "version": "0.8.4",
+  "version": "0.9.0",
   "private": true,
   "bugs": "https://github.com/bpetetot/conference-hall/issues",
   "repository": "github:bpetetot/conference-hall",
@@ -15,50 +15,51 @@
     "doc:build": "docz build"
   },
   "dependencies": {
-    "@k-ramel/react": "2.0.0",
+    "@k-ramel/react": "2.1.0",
     "@k-redux-router/core": "^1.0.0",
     "@k-redux-router/react-k-ramel": "^1.0.1",
     "classnames": "^2.2.6",
     "date-fns": "^1.30.1",
     "final-form": "^4.12.0",
     "final-form-arrays": "^1.1.2",
-    "firebase": "^5.8.6",
+    "firebase": "^5.9.3",
     "font-awesome": "^4.7.0",
     "hoc-react-loader": "^6.3.0",
     "immutadot": "^1.0.0",
-    "k-ramel": "2.0.0",
+    "k-ramel": "2.1.0",
     "lodash": "^4.17.11",
-    "marked": "^0.6.1",
+    "marked": "^0.6.2",
     "normalize.css": "^8.0.1",
     "path-to-regexp": "^2.4.0",
-    "popper.js": "^1.14.7",
+    "popper.js": "^1.15.0",
     "prop-types": "^15.7.2",
     "randomcolor": "^0.5.4",
-    "react": "^16.8.4",
-    "react-datepicker": "^2.1.0",
-    "react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-datepicker": "^2.3.0",
+    "react-dom": "^16.8.6",
     "react-final-form": "^4.1.0",
-    "react-final-form-arrays": "2.0.1",
+    "react-final-form-arrays": "2.0.3",
     "react-places-autocomplete": "^7.2.1",
     "react-sizes": "^1.0.4",
     "redux": "^4.0.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/core": "7.3.4",
+    "@babel/core": "7.4.3",
     "bundlesize": "^0.17.1",
     "docz": "^0.13.7",
     "docz-theme-default": "^0.13.7",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.11.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
-    "firebase-tools": "^6.5.0",
+    "firebase-tools": "^6.6.0",
     "prettier": "^1.16.4",
     "react-scripts": "2.1.8",
-    "react-test-renderer": "^16.8.4",
+    "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8"
   },
   "resolutions": {
@@ -111,7 +112,7 @@
     },
     {
       "path": "./build/static/css/*.css",
-      "maxSize": "10 kB"
+      "maxSize": "20 kB"
     }
   ],
   "browserslist": [
@@ -119,5 +120,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "jest": {
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ]
+  }
 }

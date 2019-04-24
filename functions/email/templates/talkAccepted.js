@@ -9,7 +9,7 @@ module.exports = (event, users, talk, url) => `
 </head>
 <body>
   <p>Dear ${users.map(user => user.displayName).join(', ')}</p>
-  <p>Your talk <strong>"${talk.title}"</strong> has been accepted! 🎉  🎊</p>
+  <p>Your talk <strong>"${talk.title}"</strong> at <strong>"${event.name}"</strong> has been accepted! 🎉  🎊</p>
   <p>In order to help organizers for the selection and the event management, please confirm your participation:<p>
   <ul>
   <li><strong><a href="${url}/speaker/talk/${talk.id}">My talk <strong>${talk.title}<strong></a></li></strong>

@@ -45,9 +45,9 @@ export const fetchEventProposals = async (
   // add sortOrder
   if (sortOrder) {
     if (sortOrder === 'newest') {
-      query = query.orderBy('updateTimestamp', 'desc')
+      query = query.orderBy('createTimestamp', 'desc')
     } else if (sortOrder === 'oldest') {
-      query = query.orderBy('updateTimestamp', 'asc')
+      query = query.orderBy('createTimestamp', 'asc')
     } else if (sortOrder === 'highestRating') {
       query = query.orderBy('rating', 'desc')
     } else if (sortOrder === 'lowestRating') {
@@ -69,7 +69,7 @@ export const fetchEventProposals = async (
 }
 
 export const updateProposal = (eventId, proposal, options = {}) => {
-  const updated = omit(proposal, 'submissions')
+  const updated = omit(proposal, 'submissions', 'createTimestamp')
   if (options.updateTimestamp) {
     updated.updateTimestamp = firebase.firestore.FieldValue.serverTimestamp()
   }
@@ -102,10 +102,27 @@ export const fetchOrganizersThread = async (eventId, proposalId) => {
     .collection('organizersThread')
     .orderBy('date', 'asc')
     .get()
-  return result.docs.map(ref => ref.data())
+  return result.docs.map(ref => ({ messageId: ref.id, ...ref.data() }))
 }
 
-export const addOrganizersThreadMessage = async (eventId, proposalId, uid, message) => {
+export const addOrganizersThreadMessage = async (eventId, proposalId, uid, message) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('proposals')
+  .doc(proposalId)
+  .collection('organizersThread')
+  .add({
+    uid,
+    message,
+    date: firebase.firestore.FieldValue.serverTimestamp(),
+  })
+
+export const updateOrganizersThreadMessage = async (
+  eventId,
+  proposalId,
+  messageId,
+  message) => {
   await firebase
     .firestore()
     .collection('events')
@@ -113,9 +130,24 @@ export const addOrganizersThreadMessage = async (eventId, proposalId, uid, messa
     .collection('proposals')
     .doc(proposalId)
     .collection('organizersThread')
-    .add({
-      uid,
+    .doc(messageId)
+    .update({
       message,
-      date: firebase.firestore.FieldValue.serverTimestamp(),
+      modified: true,
     })
+}
+
+export const deleteOrganizersThreadMessage = async (
+  eventId,
+  proposalId,
+  messageId) => {
+  await firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(proposalId)
+    .collection('organizersThread')
+    .doc(messageId)
+    .delete()
 }

@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/rating should render 1`] = `
+<div
+  className="rating"
+  onMouseLeave={[Function]}
+>
+  <Tooltip
+    inline={false}
+    placement="left"
+    tooltip="Without opinion"
+  >
+    <i
+      className="fa fa-2x fa-ban rating-noopinion-disable"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      role="button"
+    />
+  </Tooltip>
+  <Tooltip
+    inline={false}
+    placement="top"
+    tooltip="No way! (0)"
+  >
+    <i
+      className="fa fa-2x bounce"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      role="button"
+    />
+  </Tooltip>
+  <i
+    className="fa fa-2x fa-star-o"
+    key="1"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+  />
+  <i
+    className="fa fa-2x fa-star-o"
+    key="2"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+  />
+  <i
+    className="fa fa-2x fa-star-o"
+    key="3"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+  />
+  <i
+    className="fa fa-2x fa-star-o"
+    key="4"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+  />
+  <i
+    className="fa fa-2x fa-star-o"
+    key="5"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    role="button"
+  />
+  <Tooltip
+    inline={false}
+    placement="right"
+    tooltip="I love it! (5)"
+  >
+    <i
+      className="fa fa-2x fa-heart-o"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      role="button"
+    />
+  </Tooltip>
+</div>
+`;

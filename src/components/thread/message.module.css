@@ -3,6 +3,18 @@
   align-items: flex-start;
 }
 
+.wrapper:hover .edit {
+  visibility: visible;
+}
+
+.wrapper:hover .trash {
+  visibility: visible;
+}
+
+.messageContent {
+  width: 100%;
+}
+
 .avatar {
   margin-right: 0.5em;
 }
@@ -20,7 +32,48 @@
 
 .date {
   font-size: 0.8em;
-  color: var(--grey-color-dark)
+  color: var(--grey-color-dark);
+  margin-right: 0.2em;
+}
+
+.modified {
+  font-size: 0.8em;
+  color: var(--grey-color-dark);
+  margin-right: 0.4em;
+}
+
+.edit {
+  color: var(--grey-color-dark);
+  visibility: hidden;
+}
+
+.edit:hover {
+  color: var( --primary-color-dark);
+  cursor: pointer;
+}
+
+.trash {
+  color: var(--grey-color-dark);
+  visibility: hidden;
+  margin-left: 0.5em;
+}
+
+.trash:hover {
+  color: var(--error-color);
+  cursor: pointer;
+}
+
+.editInput {
+  flex-shrink: 0;
+  display: flex;
+}
+
+.editInput button {
+  margin-left: 0.5em;
+}
+
+.previewMessageDelete {
+  margin-top: 2em;
 }
 
 @media only screen and (max-width: 480px) {

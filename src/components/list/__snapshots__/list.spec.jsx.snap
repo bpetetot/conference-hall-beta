@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/list should render a non-empty list 1`] = `
+<div
+  className="list event-proposals"
+>
+  <div
+    key="hello"
+  >
+    hello
+  </div>
+</div>
+`;
+
+exports[`components/list should render an empty list with custom empty 1`] = `
+<div
+  className="list event-proposals"
+>
+  <div
+    className="no-result"
+  >
+    😢
+  </div>
+</div>
+`;
+
+exports[`components/list should render an empty list with default no result 1`] = `
+<div
+  className="list event-proposals"
+>
+  <div
+    className="no-result"
+  >
+    No result
+  </div>
+</div>
+`;

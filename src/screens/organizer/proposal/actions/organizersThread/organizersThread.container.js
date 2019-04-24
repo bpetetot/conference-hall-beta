@@ -6,9 +6,10 @@ import OrganizersThread from './organizersThread'
 
 const mapStore = (store, { eventId, proposalId }) => {
   const { uid } = store.auth.get()
-  const messages = store.ui.organizer.organizersThread.get()
+  const messages = store.ui.organizer.organizersThread.getAsArray()
 
   return {
+    currentUser: uid,
     messages,
     loadMessages: () => {
       store.dispatch({
@@ -16,14 +17,25 @@ const mapStore = (store, { eventId, proposalId }) => {
         payload: { eventId, proposalId },
       })
     },
-    onAddMessage: (message) => {
+    onSaveMessage: (message, messageId) => {
       store.dispatch({
-        type: '@@ui/ON_ADD_PROPOSAL_ORGANIZERS_MESSAGE',
+        type: '@@ui/ON_SAVE_PROPOSAL_ORGANIZERS_MESSAGE',
         payload: {
           eventId,
           proposalId,
           uid,
+          messageId,
           message,
+        },
+      })
+    },
+    onDeleteMessage: (messageId) => {
+      store.dispatch({
+        type: '@@ui/ON_DELETE_PROPOSAL_ORGANIZERS_MESSAGE',
+        payload: {
+          eventId,
+          proposalId,
+          messageId,
         },
       })
     },
