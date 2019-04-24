@@ -28,6 +28,9 @@ const Talk = ({ eventId, proposal, className }) => (
       <Badge outline pill light>
         {proposal.level}
       </Badge>
+      <Badge outline pill light>
+        {proposal.language}
+      </Badge>
     </div>
     <div className="proposal-talk-info">
       <Markdown source={proposal.abstract} />
