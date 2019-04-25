@@ -16,7 +16,7 @@ module.exports.send = (config, {
   const { key, domain } = config
 
   const token = Buffer.from(`api:${key}`).toString('base64')
-  const endpoint = `https://api.mailgun.net/v3/${domain}/messages`
+  const endpoint = `https://api.eu.mailgun.net/v3/${domain}/messages`
   const from = `${confName} <no-reply@${domain}>`
 
   const form = new FormData()
