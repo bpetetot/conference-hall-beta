@@ -1,5 +1,28 @@
 # Changelog
 
+<a name="0.10.0" />
+## 0.10.0 (2019-04-24)
+
+### Added
+
+- ✨ modify your own commentary in the Organizers Thread ([#525](https://github.com/bpetetot/conference-hall/issues/525)) [[4ef0726](https://github.com/bpetetot/conference-hall/commit/4ef0726c1f24c73fa7a7b8b50f279612ae2ea14c)]
+- ✨ delete your own commentary in the Organizers Thread ([#533](https://github.com/bpetetot/conference-hall/issues/533)) [[73aea4c](https://github.com/bpetetot/conference-hall/commit/73aea4c71199a82a5f13b67778025ec5806568a5)]
+- ✨ add language field for a talk([#517](https://github.com/bpetetot/conference-hall/issues/517)) [[42b307e](https://github.com/bpetetot/conference-hall/commit/42b307eb244294c09c447c22bec761328df79c47)]
+- ✅ add components snapshot testing ([#524](https://github.com/bpetetot/conference-hall/issues/524)) [[3e92089](https://github.com/bpetetot/conference-hall/commit/3e920895c4e28ac69e9fd67b1e374262c8b3aa7a)]
+- 🍻 add event name to &quot;talk accepted&quot; email ([#531](https://github.com/bpetetot/conference-hall/issues/531)) [[484226e](https://github.com/bpetetot/conference-hall/commit/484226ed8fba9b01dcf8741a2c3b02aeaafa715e)]
+
+### Changed
+
+- ⬆️ upgrade firebase, luxon, popper, enzyme ([#530](https://github.com/bpetetot/conference-hall/issues/530)) [[d71fdb7](https://github.com/bpetetot/conference-hall/commit/d71fdb7a97a462e4eaeb8ab80adab24a3889bacc)]
+- 🔧 change css bundle size ([#528](https://github.com/bpetetot/conference-hall/issues/528)) [[1848d81](https://github.com/bpetetot/conference-hall/commit/1848d81d5a3c6afd19dbf3316024908a15df42b7)]
+- 🔧 restrict rules for update / delete own message ([#540](https://github.com/bpetetot/conference-hall/issues/540)) [[5356521](https://github.com/bpetetot/conference-hall/commit/5356521b4145f85ca1a3fdc2d74dd41c9ebb0335)]
+
+### Fixed
+
+- 🐛 fix avatar zindex too high ([#529](https://github.com/bpetetot/conference-hall/issues/529)) [[debbc1c](https://github.com/bpetetot/conference-hall/commit/debbc1c7773663ad4883c6d9f9937090d0c1127c)]
+- ✏️ missing word in the email for rejected talks ([#541](https://github.com/bpetetot/conference-hall/issues/541)) [[432bd88](https://github.com/bpetetot/conference-hall/commit/432bd88d8c51a86f21cbe0584393d69b65204ce6)]
+
+
 <a name="0.9.0" />
 ## 0.9.0 (2019-04-04)
 
