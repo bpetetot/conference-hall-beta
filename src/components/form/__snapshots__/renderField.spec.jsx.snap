@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/renderField should render 1`] = `
+<Label
+  error="error"
+  name="boo"
+>
+  <input
+    id="boo"
+    name="boo"
+    type="radio"
+  />
+</Label>
+`;

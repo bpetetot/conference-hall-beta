@@ -22,7 +22,12 @@ class OrganizersThread extends Component {
   }
 
   render() {
-    const { messages, onAddMessage } = this.props
+    const {
+      messages,
+      onSaveMessage,
+      onDeleteMessage,
+      currentUser,
+    } = this.props
     const nbMessages = !isEmpty(messages) ? ` (${messages.length})` : ''
     return (
       <Drawer
@@ -36,8 +41,10 @@ class OrganizersThread extends Component {
         <Thread
           className={styles.organizersThread}
           description="Discuss with other organizers about this proposal. The speaker WILL NOT see these comments."
+          currentUser={currentUser}
           messages={messages}
-          onAddMessage={onAddMessage}
+          onSaveMessage={onSaveMessage}
+          onDeleteMessage={onDeleteMessage}
         />
       </Drawer>
     )
@@ -47,7 +54,9 @@ class OrganizersThread extends Component {
 OrganizersThread.propTypes = {
   proposalId: PropTypes.string.isRequired,
   messages: Thread.propTypes.messages,
-  onAddMessage: PropTypes.func.isRequired,
+  currentUser: PropTypes.string.isRequired,
+  onSaveMessage: PropTypes.func.isRequired,
+  onDeleteMessage: PropTypes.func.isRequired,
   loadMessages: PropTypes.func.isRequired,
 }
 

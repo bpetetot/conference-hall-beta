@@ -7,12 +7,15 @@ import Markdown from 'components/markdown'
 import './abstract.css'
 
 const TalkAbstract = ({
-  abstract, references, level, className,
+  abstract, references, language, level, className,
 }) => (
   <div className={cn('talk-abstract card', className)}>
     <div className="talk-abstract-title">
       <h3>Abstract</h3>
-      <Badge outline pill light>Level {level}</Badge>
+      <div className="talk-abstract-more-info">
+        <Badge outline pill light>{level}</Badge>
+        <Badge outline pill light>{language}</Badge>
+      </div>
     </div>
     <Markdown source={abstract} />
     <h3 className="talk-reference">References</h3>
@@ -23,6 +26,7 @@ const TalkAbstract = ({
 TalkAbstract.propTypes = {
   abstract: PropTypes.string,
   references: PropTypes.string,
+  language: PropTypes.string,
   level: PropTypes.string,
   className: PropTypes.string,
 }
@@ -30,6 +34,7 @@ TalkAbstract.propTypes = {
 TalkAbstract.defaultProps = {
   abstract: undefined,
   references: undefined,
+  language: undefined,
   level: 'not defined',
   className: undefined,
 }

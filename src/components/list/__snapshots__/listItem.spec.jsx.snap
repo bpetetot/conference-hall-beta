@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/listItem should render 1`] = `
+<div
+  className="list-item"
+  role="button"
+>
+  <div>
+    <div
+      className="list-item-title"
+    >
+      title
+    </div>
+    <div
+      className=" list-item-subtitle"
+    >
+      subtitle
+    </div>
+  </div>
+  <div
+    className="list-item-info"
+  >
+    info
+  </div>
+</div>
+`;
+
+exports[`components/listItem should render clickable if onSelect is provided 1`] = `
+<div
+  className="list-item clickable"
+  onClick={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  role="button"
+>
+  <div>
+    <div
+      className="list-item-title"
+    >
+      title
+    </div>
+    <div
+      className=" list-item-subtitle"
+    >
+      subtitle
+    </div>
+  </div>
+  <div
+    className="list-item-info"
+  >
+    info
+  </div>
+</div>
+`;

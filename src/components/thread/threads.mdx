@@ -18,6 +18,9 @@ import Thread from './thread'
     name="Luke Skywalker"
     message="May the force be with you"
     date={new Date()}
+    onSave={console.log}
+    onEdit={console.log}
+    OnDelete={console.log}
   />
 </Playground>
 
@@ -48,6 +51,8 @@ import Thread from './thread'
         img: 'https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png',
       },
     ]}
-    onAddMessage={console.log}
+    onSaveMessage={console.log}
+    onEditMessage={console.log}
+    onDeleteMessage={console.log}
   />
 </Playground>

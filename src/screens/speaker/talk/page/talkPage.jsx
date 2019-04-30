@@ -15,7 +15,7 @@ import DeleteTalkButton from './delete'
 import './talkPage.css'
 
 const TalkPage = ({
-  id, title, abstract, level, owner, references, speakers, submissions,
+  id, title, abstract, level, owner, references, language, speakers, submissions,
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
@@ -41,6 +41,7 @@ const TalkPage = ({
         className="talk-content"
         abstract={abstract}
         references={references}
+        language={language}
         level={level}
       />
       <div className="talk-info">
@@ -58,6 +59,7 @@ TalkPage.propTypes = {
   level: PropTypes.string,
   owner: PropTypes.string,
   references: PropTypes.string,
+  language: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
   submissions: PropTypes.objectOf(PropTypes.any),
 }
@@ -67,6 +69,7 @@ TalkPage.defaultProps = {
   level: 'not defined',
   owner: undefined,
   references: undefined,
+  language: undefined,
   speakers: {},
   submissions: {},
 }

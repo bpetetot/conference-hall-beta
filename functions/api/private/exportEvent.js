@@ -33,6 +33,7 @@ module.exports = async (req, res) => {
         'rating',
         'loves',
         'hates',
+        'language',
       ],
       speaker: [
         'uid',

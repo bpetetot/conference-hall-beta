@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/address should render with children 1`] = `
+<PlacesAutocomplete
+  debounce={200}
+  highlightFirstSuggestion={false}
+  onChange={[Function]}
+  onError={[Function]}
+  searchOptions={Object {}}
+  shouldFetchSuggestions={true}
+  value="value"
+>
+  <Component />
+</PlacesAutocomplete>
+`;

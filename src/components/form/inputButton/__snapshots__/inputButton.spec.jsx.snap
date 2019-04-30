@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/inputButton should render with required props 1`] = `
+<InputButton
+  btnLabel="label"
+  disabled={false}
+  onChange={[MockFunction]}
+  onClick={[MockFunction]}
+/>
+`;
