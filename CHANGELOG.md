@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.11.0" />
+## 0.11.0 (2019-04-30)
+
+### Added
+
+- ✨ latitude, longitude and country for event address and user address ([#546](https://github.com/bpetetot/conference-hall/issues/546)) [[b6b5a7a](https://github.com/bpetetot/conference-hall/commit/b6b5a7a1996972be92597ae38aafb23138bd952a)]
+
+
 <a name="0.10.0" />
 ## 0.10.0 (2019-04-24)
 
