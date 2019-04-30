@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
         'photoURL',
         'twitter',
         'github',
-        'city',
+        'address',
         'language',
         'email',
         'phone',

@@ -37,10 +37,10 @@ const Event = ({
       <List className="event-formats" title="Talk formats" list={formats} />
     </div>
     <div className="event-page-info card">
-      <Maps address={address} />
+      <Maps address={address && address.formattedAddress} />
       <div className="event-page-info-detail">
         {type === 'conference' && <Dates dates={conferenceDates} large />}
-        <Address address={address} />
+        <Address address={address && address.formattedAddress} />
         <Website website={website} />
         <Contact contact={contact} />
       </div>
@@ -53,7 +53,7 @@ Event.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
   type: PropTypes.string,
-  address: PropTypes.string,
+  address: PropTypes.object,
   conferenceDates: PropTypes.objectOf(PropTypes.any),
   description: PropTypes.string,
   website: PropTypes.string,

@@ -112,6 +112,12 @@
     through2 "^3.0.0"
     xdg-basedir "^3.0.0"
 
+"@google/maps@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@google/maps/-/maps-0.5.5.tgz#478a5791e3b8d444be966462daec3ee43eb331e0"
+  dependencies:
+    uuid ">=2.2.1"
+
 "@grpc/grpc-js@^0.3.0":
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-0.3.6.tgz#d9b52043907170d38e06711d9477fde29ab46fa8"
@@ -1242,7 +1248,7 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
-uuid@^3.3.2:
+uuid@>=2.2.1, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 
