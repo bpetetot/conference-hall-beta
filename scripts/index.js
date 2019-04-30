@@ -16,7 +16,7 @@ const first = require('lodash/first')
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 const googleMapsClient = require('@google/maps').createClient({
-  key: 'API KEY HERE',
+  key: 'YOUR API KEY HERE',
   Promise,
 })
 const serviceAccount = require('./serviceAccount.json')
@@ -28,6 +28,7 @@ admin.initializeApp({
 
 const { updateUsers, updateEvents } = require('./updates')
 
+// eslint-disable-next-line
 const getAddressComponent = (name, addressComponents) => pick(first(addressComponents.filter(component => component.types.includes(name))), [
   'short_name',
   'long_name',
@@ -39,7 +40,7 @@ const main = async () => {
     if (!user.city) return null
 
     const response = await googleMapsClient.geocode({ address: user.city }).asPromise()
-    const { results } = response.json
+    const { results } = (response && response.json) || {}
 
     const result = first(results)
     if (!result) return null
@@ -53,6 +54,7 @@ const main = async () => {
     //   country,
     //   latLng: result.geometry.location,
     // })
+    // return null
 
     return {
       address: {
@@ -69,7 +71,8 @@ const main = async () => {
     if (!event.address || !isString(event.address)) return null
 
     const response = await googleMapsClient.geocode({ address: event.address }).asPromise()
-    const { results } = response.json
+    const { results } = (response && response.json) || {}
+
 
     const result = first(results)
     if (!result) return null
@@ -83,6 +86,7 @@ const main = async () => {
     //   country,
     //   latLng: result.geometry.location,
     // })
+    // return null
 
     return {
       oldAddress: event.address,
