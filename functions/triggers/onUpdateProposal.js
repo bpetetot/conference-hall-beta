@@ -22,7 +22,7 @@ module.exports = functions.firestore
     const previousProposal = snap.before.data()
     const proposal = snap.after.data()
 
-    // if proposal state didn't changed or email sent, dont need to go further
+    // if proposal state didn't changed or email was sent, don't need to go further
     if (previousProposal.state === proposal.state || proposal.emailSent) {
       return null
     }
@@ -32,7 +32,7 @@ module.exports = functions.firestore
     if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
 
     const uids = Object.keys(proposal.speakers)
-
+    // embedded submission in talk
     const submissionUpdate = {
       submissions: {
         [eventId]: pick(proposal, [
@@ -64,6 +64,7 @@ module.exports = functions.firestore
         subject: `[${event.name}] Talk accepted!`,
         html: talkAccepted(event, users, proposal, app.url),
         confName: event.name,
+        webHookInfo: { type: 'deliberation_email', talkId: proposal.id, eventId },
       }))
     }
 
@@ -81,6 +82,7 @@ module.exports = functions.firestore
         subject: `[${event.name}] Talk declined`,
         html: talkRejected(event, users, proposal, app.url),
         confName: event.name,
+        webHookInfo: { type: 'deliberation_email', talkId: proposal.id, eventId },
       }))
     }
 

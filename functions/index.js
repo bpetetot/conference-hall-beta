@@ -12,6 +12,8 @@ exports.api = require('./api')
 
 // functions for direct calls
 const { submitTalk, unsubmitTalk } = require('./direct/submission')
+const { delivered } = require('./direct/emailWebhooks')
 
 exports.submitTalk = submitTalk
 exports.unsubmitTalk = unsubmitTalk
+exports.delivered = delivered
