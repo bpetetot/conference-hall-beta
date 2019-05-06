@@ -8,4 +8,5 @@ export default {
   ratings: types.keyValue({ key: 'uid' }),
   users: types.keyValue({ key: 'uid' }),
   surveys: types.keyValue({ key: 'uid' }),
+  meetups: types.keyValue(),
 }
