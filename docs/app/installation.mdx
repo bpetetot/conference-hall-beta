@@ -60,6 +60,17 @@ firebase functions:config:get > .runtimeconfig.json
 
 > **Important Note:** Mailgun is an external service from Firebase and Google, so to be able use it with you will need to activate Firebase pricing.
 
+### Configure Mailgun webhook (optional)
+
+To guarantee the acceptance or refusal emails are sent to speakers after deliberation is done, you can configure a
+MailGun webhook.
+
+* go to MailGun dashboard https://app.mailgun.com/app/webhooks
+* log in to your MailGun account
+* in webhooks list select `Delivered Messages` add your firebase cloud function `https://us-central1-FIREBASE_PROJECT.cloudfunctions.net/delivered`
+
+For each delivered email, the proposal in DB will have a `emailDelivered` field to `true`.
+
 ### Configure Google Analytics (optional)
 
 You can add a Google Analytics by adding your Analytics ID in the environmenent variable `REACT_APP_GOOGLE_ANALYTICS_ID` in the `.env.local` file.
