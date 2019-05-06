@@ -1,5 +1,6 @@
 import { createMeetup } from 'firebase/meetups'
 
+// eslint-disable-next-line import/prefer-default-export
 export const create = async (action, store, { router }) => {
   const data = action.payload
   const eventId = router.getParam('eventId')

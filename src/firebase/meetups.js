@@ -1,11 +1,11 @@
 import firebase from 'firebase/app'
 
 /**
- * Add or update a user survey to an event
+ * Add a meetup to a specific event
  * @param {string} eventId event id
- * @param {string} uid user id
- * @param {object} survey
+ * @param {object} meetup
  */
+// eslint-disable-next-line import/prefer-default-export
 export const createMeetup = (eventId, data) => firebase
   .firestore()
   .collection('events')
