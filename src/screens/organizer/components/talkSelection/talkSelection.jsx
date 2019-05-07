@@ -23,7 +23,6 @@ const TalkSelection = ({
     </div>
     {!isDeliberationDone && (
       <select
-        id="ratings"
         onChange={onChange}
         onClick={e => e.stopPropagation()}
         defaultValue={state}
