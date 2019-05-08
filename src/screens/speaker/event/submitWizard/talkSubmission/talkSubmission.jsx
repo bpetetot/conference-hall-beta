@@ -4,6 +4,7 @@ import { Form } from 'react-final-form'
 
 import Field from 'components/form/field'
 import Titlebar from 'components/titlebar'
+import { required } from 'components/form/validators'
 import {
   markdownInput, radio, SubmitButton, RadioGroup,
 } from 'components/form'
@@ -41,7 +42,7 @@ const TalkSubmission = ({
         </Titlebar>
         <div className="submit-talk-form card">
           {!isEmpty(event.categories) && (
-            <RadioGroup name="categories" label="Talk categories" inline>
+            <RadioGroup name="categories" label="Talk categories" inline validate={required}>
               {event.categories.map(c => (
                 <Field
                   key={c.id}
@@ -55,7 +56,7 @@ const TalkSubmission = ({
             </RadioGroup>
           )}
           {!isEmpty(event.formats) && (
-            <RadioGroup name="formats" label="Talk formats" inline>
+            <RadioGroup name="formats" label="Talk formats" inline validate={required}>
               {event.formats.map(f => (
                 <Field
                   key={f.id}

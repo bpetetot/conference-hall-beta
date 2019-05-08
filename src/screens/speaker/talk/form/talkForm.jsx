@@ -16,7 +16,7 @@ const TalkForm = ({ onSubmit, initialValues, submitting }) => (
         <Field name="title" label="Title" type="text" component={input} validate={required} />
         <Field name="abstract" label="Abstract" component={markdownInput} validate={required} />
         <Field name="language" label="Talk language" type="text" component={input} />
-        <RadioGroup name="level" label="Level" inline>
+        <RadioGroup name="level" label="Level" inline validate={required}>
           <Field name="level" value="beginner" label="Beginner" type="radio" component={radio} />
           <Field name="level" value="intermediate" label="Intermediate" type="radio" component={radio} />
           <Field name="level" value="advanced" label="Advanced" type="radio" component={radio} />
