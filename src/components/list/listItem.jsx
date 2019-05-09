@@ -7,13 +7,13 @@ import './listItem.css'
 const ListItem = ({
   onSelect, info, title, subtitle, renderActions,
 }) => (
-  <div className={cn('list-item', { clickable: onSelect })} onClick={onSelect} role="button">
-    <div>
+  <div className={cn('list-item')}>
+    {renderActions && <div className="list-item-actions">{renderActions()}</div>}
+    <div className={cn('list-item-main', { clickable: onSelect })} onClick={onSelect} role="button">
       <div className="list-item-title">{title}</div>
       {subtitle && <div className=" list-item-subtitle">{subtitle}</div>}
     </div>
     <div className="list-item-info">{info}</div>
-    {renderActions && <div className="list-item-actions">{renderActions()}</div>}
   </div>
 )
 

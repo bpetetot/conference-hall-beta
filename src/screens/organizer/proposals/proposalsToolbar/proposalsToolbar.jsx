@@ -49,10 +49,12 @@ class ProposalToolbar extends Component {
       filters,
       onChange,
       onExportProposals,
+      selection,
       deliberationActive,
       isExporting,
     } = this.props
-
+    // TODO bulk email
+    console.log(`ProposalToolbar::${JSON.stringify(selection)}`)
     return (
       <div className={cn(styles.proposalsToolbar, 'no-print')}>
         <div className={styles.proposalsFilters}>
@@ -127,6 +129,7 @@ class ProposalToolbar extends Component {
 
 ProposalToolbar.propTypes = {
   statuses: PropTypes.arrayOf(PropTypes.string),
+  selection: PropTypes.arrayOf(PropTypes.string),
   ratings: PropTypes.arrayOf(PropTypes.string),
   formats: PropTypes.arrayOf(PropTypes.object),
   categories: PropTypes.arrayOf(PropTypes.object),
@@ -140,6 +143,7 @@ ProposalToolbar.propTypes = {
 
 ProposalToolbar.defaultProps = {
   statuses: [],
+  selection: [],
   ratings: [],
   formats: [],
   categories: [],

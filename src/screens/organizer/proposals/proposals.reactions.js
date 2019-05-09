@@ -39,7 +39,22 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
     store.ui.organizer.proposals.update(validFilters)
   }
 }
-
+export const addProposalToSelection = async (action, store) => {
+  const proposalsSelection = store.ui.organizer.proposalsSelection.get()
+  const proposals = proposalsSelection.items
+  const { proposalId } = action.payload
+  if (proposals.includes(proposalId)) {
+    store.ui.organizer.proposalsSelection.update({
+      count: proposals.length - 1,
+      items: proposals.filter(val => val !== proposalId),
+    })
+  } else {
+    store.ui.organizer.proposalsSelection.update({
+      count: proposals.length,
+      items: [...proposals, proposalId],
+    })
+  }
+}
 /* load proposals */
 export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()

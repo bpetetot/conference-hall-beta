@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Badge from 'components/badge'
 
 const TalkSelection = ({
-  onChange, state, isDeliberationDone,
+  onChange, state, emailDelivered, emailSent, isDeliberationDone,
 }) => (
   <Fragment>
     <div>
@@ -31,24 +31,37 @@ const TalkSelection = ({
           Deliberate...
         </option>
         <option key="accepted" value="accepted">
-          Accept proposal and send email
+          Accept proposal
         </option>
         <option key="rejected" value="rejected">
-          Reject proposal and send email
+          Reject proposal
         </option>
       </select>
     )}
+    <div style={{ marginLeft: '1em' }}>
+      {emailSent && emailDelivered && (<Badge success outline>Delivered</Badge>)}
+    </div>
+    <div>
+      {emailSent && !emailDelivered && (<Badge warning outline>Sending...</Badge>)}
+    </div>
+    <div>
+      {!emailSent && !emailDelivered && (<Badge outline>No email</Badge>)}
+    </div>
   </Fragment>
 )
 
 TalkSelection.propTypes = {
   onChange: PropTypes.func.isRequired,
   state: PropTypes.string,
+  emailDelivered: PropTypes.bool,
+  emailSent: PropTypes.bool,
   isDeliberationDone: PropTypes.bool.isRequired,
 }
 
 TalkSelection.defaultProps = {
   state: undefined,
+  emailDelivered: false,
+  emailSent: false,
 }
 
 export default TalkSelection

@@ -7,12 +7,12 @@ import ProposalsList from './proposalsList'
 import ProposalsCards from './proposalsCards'
 import ProposalsPaging from './proposalsPaging'
 
-const Proposals = ({ eventId, nbProposals }) => {
+const Proposals = ({ eventId, proposalsSelection, nbProposals }) => {
   const title = nbProposals > 0 ? `Proposals (${nbProposals})` : 'Proposals'
   return (
     <div>
       <Titlebar icon="fa fa-paper-plane" title={title} className="no-print" />
-      <ProposalsToolbar eventId={eventId} />
+      <ProposalsToolbar selection={proposalsSelection} eventId={eventId} />
       <ProposalsList eventId={eventId} />
       <ProposalsCards eventId={eventId} />
       <ProposalsPaging />
@@ -23,6 +23,7 @@ const Proposals = ({ eventId, nbProposals }) => {
 Proposals.propTypes = {
   eventId: PropTypes.string.isRequired,
   nbProposals: PropTypes.number.isRequired,
+  proposalsSelection: PropTypes.array.isRequired,
 }
 
 export default Proposals

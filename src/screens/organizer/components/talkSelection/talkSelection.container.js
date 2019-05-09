@@ -4,12 +4,14 @@ import TalkSelection from './talkSelection'
 
 const mapStore = (store, { proposalId }, { router }) => {
   const currentProposalId = proposalId || router.getParam('proposalId')
-  const { state } = store.data.proposals.get(currentProposalId) || {}
+  const { emailSent, emailDelivered, state } = store.data.proposals.get(currentProposalId) || {}
 
-  const isDeliberationDone = state === 'accepted' || state === 'rejected' || state === 'confirmed' || state === 'declined'
+  const isDeliberationDone = !!emailSent && (state === 'accepted' || state === 'rejected' || state === 'confirmed' || state === 'declined')
 
   return {
     isDeliberationDone,
+    emailSent: !!emailSent,
+    emailDelivered,
     state,
     onChange: (e) => {
       store.dispatch({
