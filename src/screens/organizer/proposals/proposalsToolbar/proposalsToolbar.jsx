@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import debounce from 'lodash/debounce'
-
+import Checkbox from 'components/form/checkbox'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 
@@ -32,6 +32,7 @@ class ProposalToolbar extends Component {
   constructor(props) {
     super(props)
     this.onChange = debounce(this.props.onChange, 200)
+    this.checkAll = false
   }
 
   debounceOnChange = (e) => {
@@ -52,12 +53,19 @@ class ProposalToolbar extends Component {
       selection,
       deliberationActive,
       isExporting,
+      onSelectAll,
     } = this.props
     // TODO bulk email
     console.log(`ProposalToolbar::${JSON.stringify(selection)}`)
     return (
       <div className={cn(styles.proposalsToolbar, 'no-print')}>
         <div className={styles.proposalsFilters}>
+          <Checkbox
+            onClick={() => { this.checkAll = !this.checkAll; onSelectAll(this.checkAll) }}
+            label="All"
+            name=""
+            value={this.checkAll}
+          />
           <input
             id="search"
             type="search"
@@ -136,6 +144,7 @@ ProposalToolbar.propTypes = {
   sortOrders: PropTypes.arrayOf(PropTypes.string),
   filters: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
+  onSelectAll: PropTypes.func.isRequired,
   onExportProposals: PropTypes.func.isRequired,
   deliberationActive: PropTypes.bool,
   isExporting: PropTypes.bool,

@@ -9,7 +9,7 @@ import ProposalInfo from './proposalInfo'
 import './proposalsList.css'
 
 const Proposals = ({
-  eventId, proposals, onSelect, onAddProposalToSelection, isMobile,
+  eventId, proposals, proposalsSelection, onSelect, onAddProposalToSelection, isMobile,
 }) => (
   <List
     className="event-proposals"
@@ -27,7 +27,7 @@ const Proposals = ({
             onClick={() => onAddProposalToSelection(proposal.id)}
             label=""
             name=""
-            value=""
+            value={!!proposalsSelection.includes(proposal.id)}
             disabled={!!proposal.emailSent && !!proposal.emailDelivered}
           />
         )}
@@ -39,6 +39,7 @@ const Proposals = ({
 Proposals.propTypes = {
   eventId: PropTypes.string.isRequired,
   proposals: PropTypes.arrayOf(PropTypes.object),
+  proposalsSelection: PropTypes.arrayOf(PropTypes.string),
   onSelect: PropTypes.func.isRequired,
   onAddProposalToSelection: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
@@ -46,6 +47,7 @@ Proposals.propTypes = {
 
 Proposals.defaultProps = {
   proposals: [],
+  proposalsSelection: [],
 }
 
 export default withSizes(Proposals)

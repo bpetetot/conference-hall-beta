@@ -39,6 +39,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
     store.ui.organizer.proposals.update(validFilters)
   }
 }
+/* select a proposal to send email */
 export const addProposalToSelection = async (action, store) => {
   const proposalsSelection = store.ui.organizer.proposalsSelection.get()
   const proposals = proposalsSelection.items
@@ -55,6 +56,26 @@ export const addProposalToSelection = async (action, store) => {
     })
   }
 }
+
+/* select a all proposal to send email */
+export const selectAllProposal = async (action, store) => {
+  const isChecked = action.payload.checkAll
+  if (isChecked) {
+    const proposalKeys = store.data.proposals.getKeys()
+    const emailNotSent = proposalKeys.filter(val => !store.data.proposals.get(val).emailDelivered)
+    store.ui.organizer.proposalsSelection.update({
+      count: emailNotSent.length,
+      items: emailNotSent,
+    })
+  } else { // deselect all
+    store.ui.organizer.proposalsSelection.update({
+      count: 0,
+      items: [],
+    })
+  }
+  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+}
+
 /* load proposals */
 export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()

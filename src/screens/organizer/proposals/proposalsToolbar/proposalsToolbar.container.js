@@ -23,6 +23,9 @@ const mapStore = (store, props, { router }) => {
     onChange: ({ target }) => {
       store.ui.organizer.proposals.update({ [target.id]: target.value })
     },
+    onSelectAll: (isChecked) => {
+      store.dispatch({ type: '@@ui/SELECT_ALL_PROPOSALS', payload: { checkAll: isChecked } })
+    },
     onExportProposals: () => store.dispatch('@@ui/EXPORT_PROPOSALS'),
   }
 }
