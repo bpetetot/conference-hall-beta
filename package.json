@@ -58,7 +58,7 @@
     "eslint-plugin-react": "^7.12.4",
     "firebase-tools": "^6.9.2",
     "prettier": "^1.16.4",
-    "react-scripts": "2.1.8",
+    "react-scripts": "3.0.1",
     "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8"
   },
@@ -115,12 +115,19 @@
       "maxSize": "20 kB"
     }
   ],
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not ie <= 11",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "jest": {
     "snapshotSerializers": [
       "<rootDir>/node_modules/enzyme-to-json/serializer"

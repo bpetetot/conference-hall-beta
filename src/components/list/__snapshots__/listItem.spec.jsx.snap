@@ -35,7 +35,7 @@ exports[`components/listItem should render clickable if onSelect is provided 1`]
       ],
       "results": Array [
         Object {
-          "isThrow": false,
+          "type": "return",
           "value": undefined,
         },
       ],
