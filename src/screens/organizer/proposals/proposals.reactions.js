@@ -41,9 +41,17 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
 }
 
 /* select a proposal to send email */
-export const sendEmails = async (action, store) => {
+export const sendEmails = async (action, store, { router }) => {
   const { selection } = action.payload
-  console.log(`send emails ${JSON.stringify(selection)}`)
+  const eventId = router.getParam('eventId')
+  for (let i = 0; i < selection.length; i += 1) {
+    const proposal = store.data.proposals.get(selection[i])
+    if (proposal.state === 'accepted' || proposal.state === 'rejected') {
+      proposal.emailStatus = 'sending'
+      firebase.updateProposal(eventId, proposal)
+    }
+  }
+  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
 }
 
 /* select a proposal to send email */
@@ -69,7 +77,8 @@ export const selectAllProposal = async (action, store) => {
   const isChecked = action.payload.checkAll
   if (isChecked) {
     const proposalKeys = store.data.proposals.getKeys()
-    const emailNotSent = proposalKeys.filter(val => !store.data.proposals.get(val).emailDelivered)
+    const emailNotSent = proposalKeys.filter(val => store.data.proposals.get(val).emailStatus !== 'delivered'
+       && store.data.proposals.get(val).emailStatus !== 'sending')
     store.ui.organizer.proposalsSelection.update({
       count: emailNotSent.length,
       items: emailNotSent,

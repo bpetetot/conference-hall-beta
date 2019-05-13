@@ -1,25 +1,24 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-
 import Badge from 'components/badge'
 
 const TalkSelection = ({
-  onChange, state, emailDelivered, emailSent, isDeliberationDone,
+  onChange, state, emailStatus, isDeliberationDone,
 }) => (
   <Fragment>
     <div>
-      {state === 'accepted' && (
+      {isDeliberationDone && state === 'accepted' && (
         <Badge success outline>
           Accepted proposal
         </Badge>
       )}
-      {state === 'rejected' && (
+      {isDeliberationDone && state === 'rejected' && (
         <Badge error outline>
           Rejected proposal
         </Badge>
       )}
-      {state === 'confirmed' && <Badge success>Confirmed by speaker</Badge>}
-      {state === 'declined' && <Badge error>Declined by speaker</Badge>}
+      {isDeliberationDone && state === 'confirmed' && <Badge success>Confirmed by speaker</Badge>}
+      {isDeliberationDone && state === 'declined' && <Badge error>Declined by speaker</Badge>}
     </div>
     {!isDeliberationDone && (
       <select
@@ -39,13 +38,16 @@ const TalkSelection = ({
       </select>
     )}
     <div style={{ marginLeft: '1em' }}>
-      {emailSent && emailDelivered && (<Badge success outline>Delivered</Badge>)}
+      {emailStatus && emailStatus === 'delivered' && (<Badge success outline>Delivered</Badge>)}
     </div>
     <div>
-      {emailSent && !emailDelivered && (<Badge warning outline>Sending...</Badge>)}
+      {emailStatus && emailStatus === 'sending' && (<Badge warning outline>Sending...</Badge>)}
     </div>
     <div>
-      {!emailSent && !emailDelivered && (<Badge outline>No email</Badge>)}
+      {emailStatus && emailStatus === 'sent' && (<Badge warning outline>Sent</Badge>)}
+    </div>
+    <div>
+      { (!emailStatus || emailStatus === 'none') && (<Badge outline>No email</Badge>)}
     </div>
   </Fragment>
 )
@@ -53,15 +55,13 @@ const TalkSelection = ({
 TalkSelection.propTypes = {
   onChange: PropTypes.func.isRequired,
   state: PropTypes.string,
-  emailDelivered: PropTypes.bool,
-  emailSent: PropTypes.bool,
+  emailStatus: PropTypes.string,
   isDeliberationDone: PropTypes.bool.isRequired,
 }
 
 TalkSelection.defaultProps = {
   state: undefined,
-  emailDelivered: false,
-  emailSent: false,
+  emailStatus: 'none',
 }
 
 export default TalkSelection

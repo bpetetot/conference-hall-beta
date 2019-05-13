@@ -21,12 +21,11 @@ module.exports = functions.firestore
     const { eventId } = context.params
     const previousProposal = snap.before.data()
     const proposal = snap.after.data()
-
-    // if proposal state didn't changed or email was sent, don't need to go further
-    if (previousProposal.state === proposal.state || proposal.emailSent) {
+    // if proposal state didn't changed or email was delivered, don't need to go further
+    if (previousProposal.state === proposal.state
+      && previousProposal.emailStatus === proposal.emailStatus) {
       return null
     }
-
     // check mailgun configuration
     const { app, mailgun } = functions.config()
     if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
@@ -51,9 +50,9 @@ module.exports = functions.firestore
       },
     }
     // send email to accepted proposal
-    if (proposal.state === 'accepted' && !proposal.emailSent) {
+    if (proposal.state === 'accepted' && proposal.emailStatus === 'sending') {
       const event = await getEvent(eventId)
-      proposal.emailSent = proposal.updateTimestamp
+      proposal.emailStatus = 'sent'
       return Promise.all([
         getUsers(uids),
         updateProposal(eventId, proposal),
@@ -69,9 +68,9 @@ module.exports = functions.firestore
     }
 
     // send email to rejected proposal
-    if (proposal.state === 'rejected' && !proposal.emailSent) {
+    if (proposal.state === 'rejected' && proposal.emailStatus === 'sending') {
       const event = await getEvent(eventId)
-      proposal.emailSent = proposal.updateTimestamp
+      proposal.emailStatus = 'sent'
       return Promise.all([
         getUsers(uids),
         updateProposal(eventId, proposal),
@@ -85,6 +84,8 @@ module.exports = functions.firestore
         webHookInfo: { type: 'deliberation_email', talkId: proposal.id, eventId },
       }))
     }
-
+    if (previousProposal.state !== proposal.state) {
+      return updateProposal(eventId, proposal)
+    }
     return null
   })

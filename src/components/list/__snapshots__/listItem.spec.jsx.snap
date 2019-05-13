@@ -3,9 +3,11 @@
 exports[`components/listItem should render 1`] = `
 <div
   className="list-item"
-  role="button"
 >
-  <div>
+  <div
+    className="list-item-main"
+    role="button"
+  >
     <div
       className="list-item-title"
     >
@@ -27,23 +29,25 @@ exports[`components/listItem should render 1`] = `
 
 exports[`components/listItem should render clickable if onSelect is provided 1`] = `
 <div
-  className="list-item clickable"
-  onClick={
-    [MockFunction] {
-      "calls": Array [
-        Array [],
-      ],
-      "results": Array [
-        Object {
-          "isThrow": false,
-          "value": undefined,
-        },
-      ],
-    }
-  }
-  role="button"
+  className="list-item"
 >
-  <div>
+  <div
+    className="list-item-main clickable"
+    onClick={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    role="button"
+  >
     <div
       className="list-item-title"
     >

@@ -28,7 +28,7 @@ const Proposals = ({
             label=""
             name=""
             value={!!proposalsSelection.includes(proposal.id)}
-            disabled={!!proposal.emailSent && !!proposal.emailDelivered}
+            disabled={proposal.emailStatus === 'delivered'}
           />
         )}
       />

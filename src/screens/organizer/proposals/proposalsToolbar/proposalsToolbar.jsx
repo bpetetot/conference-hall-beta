@@ -56,8 +56,6 @@ class ProposalToolbar extends Component {
       isExporting,
       onSelectAll,
     } = this.props
-    // TODO bulk email
-    console.log(`ProposalToolbar::${JSON.stringify(selection)}`)
     return (
       <div className={cn(styles.proposalsToolbar, 'no-print')}>
         <div className={styles.proposalsFilters}>
