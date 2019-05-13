@@ -3,7 +3,7 @@
   "description": "Cloud Functions for Firebase",
   "private": true,
   "engines": {
-    "node": "8"
+    "node": "10"
   },
   "scripts": {
     "api": "firebase serve --only hosting,functions",
@@ -16,8 +16,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "firebase-admin": "^7.2.0",
-    "firebase-functions": "^2.2.1",
+    "firebase-admin": "^7.3.0",
+    "firebase-functions": "^2.3.1",
     "form-data": "^2.3.3",
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
