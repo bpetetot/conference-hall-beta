@@ -39,6 +39,13 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
     store.ui.organizer.proposals.update(validFilters)
   }
 }
+
+/* select a proposal to send email */
+export const sendEmails = async (action, store) => {
+  const { selection } = action.payload
+  console.log(`send emails ${JSON.stringify(selection)}`)
+}
+
 /* select a proposal to send email */
 export const addProposalToSelection = async (action, store) => {
   const proposalsSelection = store.ui.organizer.proposalsSelection.get()

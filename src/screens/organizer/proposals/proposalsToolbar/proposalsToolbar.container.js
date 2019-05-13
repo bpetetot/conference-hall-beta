@@ -27,6 +27,7 @@ const mapStore = (store, props, { router }) => {
       store.dispatch({ type: '@@ui/SELECT_ALL_PROPOSALS', payload: { checkAll: isChecked } })
     },
     onExportProposals: () => store.dispatch('@@ui/EXPORT_PROPOSALS'),
+    onSendEmails: selection => store.dispatch({ type: '@@ui/SEND_EMAIL_FOR_PROPOSALS', payload: { selection } }),
   }
 }
 

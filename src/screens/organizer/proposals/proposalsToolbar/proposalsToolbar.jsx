@@ -49,6 +49,7 @@ class ProposalToolbar extends Component {
       sortOrders,
       filters,
       onChange,
+      onSendEmails,
       onExportProposals,
       selection,
       deliberationActive,
@@ -129,6 +130,9 @@ class ProposalToolbar extends Component {
               <IconLabel icon="fa fa-cloud-download" label="Export to JSON" />
             )}
           </Button>
+          <Button onClick={() => onSendEmails(selection)} secondary>
+            <IconLabel icon="fa fa-rocket" label="SendEmail" />
+          </Button>
         </div>
       </div>
     )
@@ -144,6 +148,7 @@ ProposalToolbar.propTypes = {
   sortOrders: PropTypes.arrayOf(PropTypes.string),
   filters: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
+  onSendEmails: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
   onExportProposals: PropTypes.func.isRequired,
   deliberationActive: PropTypes.bool,
