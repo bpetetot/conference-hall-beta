@@ -21,7 +21,7 @@ const TalkForm = ({ onSubmit, initialValues, submitting }) => (
           <Field name="level" value="intermediate" label="Intermediate" type="radio" component={radio} />
           <Field name="level" value="advanced" label="Advanced" type="radio" component={radio} />
         </RadioGroup>
-        <Field name="references" label="References" component={markdownInput} />
+        <Field name="references" label="Talk References" title="slides, livecoding, github repo, video, summary, steps of the talk" component={markdownInput} />
         <SubmitButton
           handleSubmit={handleSubmit}
           pristine={pristine}

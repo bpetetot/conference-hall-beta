@@ -1,5 +1,6 @@
 .cc-tooltip {
   font-size: .8em;
+  z-index: 100;
 }
 
 .cc-tooltip[data-placement^="top"] .cc-tooltip-arrow  {
