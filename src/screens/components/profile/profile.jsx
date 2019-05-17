@@ -44,6 +44,7 @@ const Profile = ({
           />
           <Field name="address" label="City" type="text" component={address} />
           <Field name="bio" label="Biography" component={markdownInput} />
+          <Field name="speakerReferences" label="Speaker references" title="Add your talks already given" component={markdownInput} />
 
           <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
             Save profile
