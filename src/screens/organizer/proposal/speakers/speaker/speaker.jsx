@@ -29,7 +29,12 @@ const Speaker = ({
         <IconLabel icon="fa fa-language" label={language} />
       </div>
       {bio && <Markdown source={bio} className={styles.bio} />}
-      {speakerReferences && <Markdown source={speakerReferences} className={styles.bio} />}
+      {speakerReferences && (
+        <>
+          <h4>Speaker References</h4>
+          <Markdown source={speakerReferences} className={styles.bio} />
+        </>
+      )}
     </div>
   )
 }
