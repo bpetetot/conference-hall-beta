@@ -5,7 +5,7 @@ import debounce from 'lodash/debounce'
 import Checkbox from 'components/form/checkbox'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
-
+import Dropdown from 'components/dropdown'
 import styles from './proposalsToolbar.module.css'
 
 const sortOrderLabel = sortOrder => ({
@@ -51,6 +51,8 @@ class ProposalToolbar extends Component {
       onChange,
       onSendEmails,
       onExportProposals,
+      onAcceptProposals,
+      onRejectProposals,
       selection,
       deliberationActive,
       isExporting,
@@ -121,16 +123,24 @@ class ProposalToolbar extends Component {
           </select>
         </div>
         <div className={styles.proposalsActions}>
-          <Button onClick={onExportProposals} secondary disabled={isExporting}>
-            {isExporting ? (
-              'Exporting...'
-            ) : (
-              <IconLabel icon="fa fa-cloud-download" label="Export to JSON" />
-            )}
-          </Button>
-          <Button onClick={() => onSendEmails(selection)} secondary>
-            <IconLabel icon="fa fa-rocket" label="SendEmail" />
-          </Button>
+          <Dropdown className="avatar-dropdown" action={<Button secondary><IconLabel icon="fa fa-angle-down" label="Do..." /></Button>}>
+            <button type="button" onClick={onExportProposals} disabled={isExporting}>
+              {isExporting ? (
+                'Exporting...'
+              ) : (
+                <IconLabel icon="fa fa-cloud-download" label="Export to JSON" />
+              )}
+            </button>
+            <button type="button" onClick={() => onSendEmails(selection)}>
+              <IconLabel icon="fa fa-rocket" label="Send emails" />
+            </button>
+            <button type="button" onClick={() => onAcceptProposals(selection)}>
+              <IconLabel icon="fa fa-check" label="Accept proposals" />
+            </button>
+            <button type="button" onClick={() => onRejectProposals(selection)}>
+              <IconLabel icon="fa fa-close" label="Reject proposals" />
+            </button>
+          </Dropdown>
         </div>
       </div>
     )
@@ -148,6 +158,8 @@ ProposalToolbar.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSendEmails: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
+  onAcceptProposals: PropTypes.func.isRequired,
+  onRejectProposals: PropTypes.func.isRequired,
   onExportProposals: PropTypes.func.isRequired,
   deliberationActive: PropTypes.bool,
   isExporting: PropTypes.bool,

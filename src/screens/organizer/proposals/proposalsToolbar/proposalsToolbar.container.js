@@ -28,6 +28,8 @@ const mapStore = (store, props, { router }) => {
     },
     onExportProposals: () => store.dispatch('@@ui/EXPORT_PROPOSALS'),
     onSendEmails: selection => store.dispatch({ type: '@@ui/SEND_EMAIL_FOR_PROPOSALS', payload: { selection } }),
+    onAcceptProposals: selection => store.dispatch({ type: '@@ui/ACCEPT_PROPOSALS', payload: { selection } }),
+    onRejectProposals: selection => store.dispatch({ type: '@@ui/REJECT_PROPOSALS', payload: { selection } }),
   }
 }
 

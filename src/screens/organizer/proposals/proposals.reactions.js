@@ -40,7 +40,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
   }
 }
 
-/* select a proposal to send email */
+/* Send email to a selection of proposals */
 export const sendEmails = async (action, store, { router }) => {
   const { selection } = action.payload
   const eventId = router.getParam('eventId')
@@ -50,6 +50,32 @@ export const sendEmails = async (action, store, { router }) => {
       proposal.emailStatus = 'sending'
       firebase.updateProposal(eventId, proposal)
     }
+  }
+  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+}
+
+/* reject several proposals */
+export const rejectProposals = async (action, store, { router }) => {
+  const { selection } = action.payload
+  if (selection) {
+    const eventId = router.getParam('eventId')
+    for (let i = 0; i < selection.length; i += 1) {
+      const proposal = store.data.proposals.get(selection[i])
+      proposal.state = 'rejected'
+      firebase.updateProposal(eventId, proposal)
+    }
+    store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+  }
+}
+
+/* accept several proposals */
+export const acceptProposals = async (action, store, { router }) => {
+  const { selection } = action.payload
+  const eventId = router.getParam('eventId')
+  for (let i = 0; i < selection.length; i += 1) {
+    const proposal = store.data.proposals.get(selection[i])
+    proposal.state = 'accepted'
+    firebase.updateProposal(eventId, proposal)
   }
   store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
 }
