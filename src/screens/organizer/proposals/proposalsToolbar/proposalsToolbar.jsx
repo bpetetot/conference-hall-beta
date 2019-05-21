@@ -49,6 +49,7 @@ class ProposalToolbar extends Component {
       sortOrders,
       filters,
       onChange,
+      onRefresh,
       onSendEmails,
       onExportProposals,
       onAcceptProposals,
@@ -141,6 +142,9 @@ class ProposalToolbar extends Component {
               <IconLabel icon="fa fa-close" label="Reject proposals" />
             </button>
           </Dropdown>
+          <Button type="button" secondary onClick={onRefresh}>
+            <IconLabel icon="fa fa-refresh" label=" " />
+          </Button>
         </div>
       </div>
     )
@@ -156,6 +160,7 @@ ProposalToolbar.propTypes = {
   sortOrders: PropTypes.arrayOf(PropTypes.string),
   filters: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
+  onRefresh: PropTypes.func,
   onSendEmails: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
   onAcceptProposals: PropTypes.func.isRequired,
@@ -166,6 +171,7 @@ ProposalToolbar.propTypes = {
 }
 
 ProposalToolbar.defaultProps = {
+  onRefresh: () => {},
   statuses: [],
   selection: [],
   ratings: [],

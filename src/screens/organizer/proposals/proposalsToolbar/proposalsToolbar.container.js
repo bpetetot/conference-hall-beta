@@ -20,6 +20,9 @@ const mapStore = (store, props, { router }) => {
     filters,
     deliberationActive,
     isExporting,
+    onRefresh: () => {
+      store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+    },
     onChange: ({ target }) => {
       store.ui.organizer.proposals.update({ [target.id]: target.value })
     },
