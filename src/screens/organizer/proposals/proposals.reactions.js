@@ -61,8 +61,10 @@ export const rejectProposals = async (action, store, { router }) => {
     const eventId = router.getParam('eventId')
     for (let i = 0; i < selection.length; i += 1) {
       const proposal = store.data.proposals.get(selection[i])
-      proposal.state = 'rejected'
-      firebase.updateProposal(eventId, proposal)
+      if (proposal.emailStatus !== 'sent') { // do not allow change of deliberationwhen email marked as sent
+        proposal.state = 'rejected'
+        firebase.updateProposal(eventId, proposal)
+      }
     }
     store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
   }
@@ -74,8 +76,10 @@ export const acceptProposals = async (action, store, { router }) => {
   const eventId = router.getParam('eventId')
   for (let i = 0; i < selection.length; i += 1) {
     const proposal = store.data.proposals.get(selection[i])
-    proposal.state = 'accepted'
-    firebase.updateProposal(eventId, proposal)
+    if (proposal.emailStatus !== 'sent') { // do not allow change of deliberationwhen email marked as sent
+      proposal.state = 'accepted'
+      firebase.updateProposal(eventId, proposal)
+    }
   }
   store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
 }
@@ -92,7 +96,7 @@ export const addProposalToSelection = async (action, store) => {
     })
   } else {
     store.ui.organizer.proposalsSelection.update({
-      count: proposals.length,
+      count: proposals.length + 1,
       items: [...proposals, proposalId],
     })
   }
@@ -121,7 +125,11 @@ export const selectAllProposal = async (action, store) => {
 /* load proposals */
 export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()
-  store.ui.organizer.proposalsPaging.update({ page: 1 })
+  let currentPage = store.ui.organizer.proposalsPaging.get()
+  if (!currentPage) {
+    currentPage = { page: 1 }
+  }
+  store.ui.organizer.proposalsPaging.update(currentPage)
 
   const eventId = router.getParam('eventId')
   const { uid } = store.auth.get()
