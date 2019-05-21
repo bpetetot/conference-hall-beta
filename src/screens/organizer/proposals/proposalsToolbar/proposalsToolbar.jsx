@@ -63,7 +63,7 @@ class ProposalToolbar extends Component {
         <div className={styles.proposalsFilters}>
           <Checkbox
             onClick={() => { this.checkAll = !this.checkAll; onSelectAll(this.checkAll) }}
-            label="All"
+            label="All Pages"
             name=""
             value={this.checkAll}
           />
