@@ -3,17 +3,12 @@ import PropTypes from 'prop-types'
 
 import Avatar from 'components/avatar'
 
-import './contributor.css'
+import styles from './contributor.module.css'
 
 const Contributor = ({ name, image, url }) => (
-  <div className="contributor">
-    <Avatar
-      name={name}
-      src={image}
-      size="large"
-      className="contributor-avatar"
-    />
-    <a className="contributor-name" href={url} target="_blank" rel="noopener noreferrer">
+  <div className={styles.contributor}>
+    <Avatar name={name} src={image} size="large" className={styles.contributorAvatar} />
+    <a className={styles.contributorName} href={url} target="_blank" rel="noopener noreferrer">
       {name}
     </a>
   </div>

@@ -1,0 +1,11 @@
+.contributorsList {
+  margin: 3em 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contributorsList > * {
+  margin: 1em;
+  width: 100px;
+}

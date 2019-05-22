@@ -3,85 +3,7 @@
   overflow: auto;
 }
 
-.header {
-  background-image: url(header.jpg);
-  background-position: center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: #090909;
-  background-attachment: fixed;
-  color: #fff;
-  min-height: 750px;
-  padding: 0 150px;
-}
-
-.header .header-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-bar .logo {
-  display: flex;
-  align-items: center;
-  margin: 45px;
-  color: #ea2845;
-}
-
-.header-bar .title {
-  margin-left: 24px;
-  color: #ffffff;
-  font-size: 1.8em;
-  font-weight: 300;
-  letter-spacing: 2px;
-}
-
-.header-bar .title-2 {
-  color: #ea2845;
-  font-weight: 700;
-}
-
-.header-bar ul {
-  margin: 64px;
-  display: flex;
-  list-style-type: none;
-}
-
-.header-bar ul a {
-  color: #fff;
-  margin: 0 1em;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.2em;
-}
-
-.header .search {
-  padding-top: 140px;
-  margin-left: 45px;
-  margin-right: 45px;
-}
-
-.header .search h4 {
-  max-width: 600px;
-  margin: 20px 0 0;
-  font-size: 20px;
-  line-height: 32px;
-  color: #fff;
-  font-weight: 300;
-}
-
-.header .search input {
-  max-width: 650px;
-  min-width: 200px;
-  border-radius: 30px;
-  margin-top: 40px;
-  height: 55px;
-  font-size: 18px;
-  padding: 0 25px;
-}
-
 .highlights {
-  background: #f1f3f3;
   padding: 100px;
   text-align: center;
   display: flex;
@@ -95,7 +17,7 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 18px;
-  color: #ea2845;
+  color: var(--secondary-color);
   margin: 40px 0 0;
 }
 
@@ -108,12 +30,13 @@
 }
 
 .information {
-  background-image: url(information.jpg);
+  background-image: url(images/information.png);
   background-position: left bottom;
   background-repeat: no-repeat;
-  background-color: #ed1543;
+  background-color: var(--secondary-color);
   height: 500px;
   overflow: hidden;
+  padding: 0 150px;
 }
 
 .information-wrapper {
@@ -123,28 +46,27 @@
 }
 
 .information-wrapper h2 {
-  font-size: 32px;
+  font-size: 2.5em;
+  font-weight: 400;
   margin-top: 0;
-  color: #fff;
+  color: var(--primary-color);
   text-transform: none;
 }
 
 .information-wrapper p {
-  font-size: 18px;
+  line-height: 1.8em;
+  font-size: 1.3em;
   font-weight: 300;
-  line-height: 32px;
-  color: #fff;
 }
 
 .information-wrapper .btn {
   display: inline-block;
   min-width: 200px;
   margin-top: 25px;
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
   font-weight: 600;
-  background: #fff;
-  border-color: #fff;
-  color: #ed1543;
-  border: 2px solid #e92845;
   font-size: 18px;
   text-align: center;
   padding: 14px 28px;
@@ -153,81 +75,76 @@
 }
 
 .information-wrapper .btn:hover {
-  background: transparent;
+  background: var(--primary-color);
+  border-color: var(--primary-color);
   color: #fff;
-  border-color: #fff;
 }
 
 .features {
-  background: #111;
+  background: var(--primary-color);
   text-align: center;
-  color: #fff;
+  color: var(--secondary-color);
   padding: 100px 0;
 }
 
 .features h4 {
-  font-size: 36px;
-  margin: 0;
+  font-size: 2.5em;
+  font-weight: 400;
+  margin-bottom: 1em;
   line-height: 60px;
+  color: var(--secondary-color);
+}
+
+.features div {
+  display: flex;
+  flex-wrap: wrap;
   color: #fff;
-}
-
-.features p {
-  font-weight: 300;
   max-width: 700px;
-  margin: 15px auto 100px;
-  font-size: 18px;
-  line-height: 30px;
-}
-
-.screenshots {
-  background: #f7f7f7;
-  padding: 100px 0;
-  text-align: center;
-}
-
-.screenshots h4 {
-  font-size: 36px;
-  margin: 0;
-  line-height: 60px;
-  color: #ed1543;
-}
-
-.screenshots p {
+  margin: 15px auto 40px;
+  line-height: 1.8em;
+  font-size: 1.2em;
   font-weight: 300;
-  max-width: 700px;
-  margin: 15px auto 100px;
-  color: #000;
-  font-size: 18px;
-  line-height: 30px;
+}
+
+.features div > * {
+  margin: 0.5em;
+  padding: 0.5em;
+  border: 1px solid #fff;
+  flex-grow: 1;
 }
 
 .contributors {
   background: #fdfdfd;
   padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 }
 
 .contributors h4 {
-  font-size: 36px;
-  margin: 0;
+  font-size: 2.5em;
+  font-weight: 400;
+  margin-bottom: 1em;
   line-height: 60px;
-  color: #ed1543;
+  color: var(--primary-color);
 }
 
 .contributors p {
+  margin: 15px auto 40px;
+  line-height: 1.8em;
+  font-size: 1.3em;
   font-weight: 300;
   max-width: 700px;
-  margin: 15px auto 100px;
-  color: #000;
-  font-size: 18px;
-  line-height: 30px;
+}
+
+.contributorsList {
+  max-width: 700px;
+  margin: auto;
 }
 
 .footer {
-  background-color: #f1f3f3;
   text-align: center;
-  color: #090909;
   padding: 60px 20px;
 }
 

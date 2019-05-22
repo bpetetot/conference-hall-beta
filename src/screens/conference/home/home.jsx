@@ -1,75 +1,39 @@
 import React from 'react'
-import { Link, forRoute } from '@k-redux-router/react-k-ramel'
+
+import { forRoute } from '@k-redux-router/react-k-ramel'
+
+import Contributors from 'components/contributors'
+
+import Navbar from './navbar'
+import Hero from './hero'
 
 import './home.css'
 
 const Home = () => (
   <div className="home">
-    <header className="header">
-      <div className="header-bar">
-        <div className="logo">
-          <i className="fa fa-paper-plane fa-3x" />
-          &nbsp;
-          <span className="title">
-            Conference <span className="title-2">Hall</span>
-          </span>
-        </div>
-        <nav className="navigation">
-          <ul>
-            <li>
-              <Link code="organizer">SPEAKER</Link>
-            </li>
-            <li>
-              <Link code="organizer">ORGANIZER</Link>
-            </li>
-            <li>
-              <a href="#features">FEATURES</a>
-            </li>
-            <li>
-              <a href="#screenshots">SCREENSHOTS</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div className="search">
-        <h4>
-          Find events and meetups all around the world to submit your talks, quickies and
-          workshops...
-        </h4>
-        <input type="search" placeholder="Search an event to submit..." />
-      </div>
-    </header>
-
+    <Navbar />
+    <Hero />
     <div className="highlights">
       <div className="highlight-block">
         <div className="icon-wrapper">
           <i className="fa fa-github fa-4x" />
         </div>
         <h5>Open source</h5>
-        <p>
-          Documentis per Lycaoniam milite campestrem idem omnia per magna magnis timore nostris
-          propinqua igitur se.
-        </p>
+        <p>Conference Hall is an MIT-licensed open-source project.</p>
       </div>
       <div className="highlight-block">
         <div className="icon-wrapper">
           <i className="fa fa-microphone fa-4x" />
         </div>
         <h5>Speaker friendly</h5>
-        <p>
-          Inopia et ordinarias praefectus causam convectio ordinarias praetorio ad Rufinus ea quam
-          sit alioqui ipse.
-        </p>
+        <p>Write your talk abstract once, and submit it everywhere.</p>
       </div>
       <div className="highlight-block">
         <div className="icon-wrapper">
           <i className="fa fa-calendar-check-o fa-4x" />
         </div>
         <h5>Help organizers</h5>
-        <p>
-          Latrones re nulla equitum undique fama distinebatur dispersique periculo avia nulla
-          equitum quo militaribus quoniam.
-        </p>
+        <p>Speed up and optimize your event or meetup process with Conference Hall.</p>
       </div>
     </div>
 
@@ -77,49 +41,90 @@ const Home = () => (
       <div className="information-wrapper">
         <h2>An opened SaaS platform to manage call for papers.</h2>
         <p>
-          Quae dum ita struuntur, indicatum est apud Tyrum indumentum regale textum occulte,
-          incertum quo locante vel cuius usibus apparatum. ideoque rector provinciae tunc pater
-          Apollinaris eiusdem nominis ut conscius ductus est aliique congregati sunt ex diversis
-          civitatibus multi, qui atrocium criminum ponderibus urgebantur.
+          Conference Hall is an opened SaaS platform to manage call for papers and speakers
+          submissions for your conferences and meetups. Speaker writes a talk once and can submit it
+          to every events of the platform.
         </p>
         <a
           href="https://github/bpetetot/conference-hall"
           target="blank"
           className="btn btn-secondary d-inline-block"
         >
-          Learn more about Conference Hall
+          Contribute to Conference Hall on GitHub
         </a>
       </div>
     </div>
 
     <div className="features" id="features">
       <h4>Features</h4>
-      <p>
-        Et Epigonus quidem amictu tenus philosophus, ut apparuit, prece frustra temptata, sulcatis
-        lateribus mortisque metu admoto turpi confessione cogitatorum socium, quae nulla erant,
-        fuisse firmavit cum nec vidisset quicquam nec audisset penitus expers forensium rerum;
-        Eusebius vero obiecta fidentius negans, suspensus in eodem gradu constantiae stetit
-        latrocinium illud esse, non iudicium clamans.
-      </p>
-    </div>
-
-    <div className="screenshots" id="screenshots">
-      <h4>Screenshots</h4>
-      <p>
-        Metuentes igitur idem latrones Lycaoniam magna parte campestrem cum se inpares nostris fore
-        congressione stataria documentis frequentibus scirent, tramitibus deviis petivere Pamphyliam
-        diu quidem intactam sed timore populationum et caedium, milite per omnia diffuso propinqua,
-        magnis undique praesidiis conmunitam.
-      </p>
+      <div>
+        <span role="img" aria-label="Write the abstract">
+          ✨Write the abstract of your talk
+        </span>
+        <span role="img" aria-label="Submit your talks">
+          🚀 Submit your talks to events
+        </span>
+        <span role="img" aria-label="Invite co-speakers">
+          🤝 Invite co-speakers to your talk
+        </span>
+        <span role="img" aria-label="Social login">
+          🔒 Social login
+        </span>
+        <span role="img" aria-label="Create your conference or meetup">
+          ❤️ Create your conference or meetup
+        </span>
+        <span role="img" aria-label="Automatic CFP open/close">
+          📣 Automatic CFP open/close
+        </span>
+        <span role="img" aria-label="Make private events">
+          ⚡️ Make private events
+        </span>
+        <span role="img" aria-label="Manage organization">
+          👥 Manage organization
+        </span>
+        <span role="img" aria-label="Customomize event">
+          💡 Customomize event
+        </span>
+        <span role="img" aria-label="Send survey to speakers">
+          📥 Send survey to speakers
+        </span>
+        <span role="img" aria-label="Rate proposals">
+          ⭐️ Rate proposals
+        </span>
+        <span role="img" aria-label="Discussion between organizers">
+          💬 Discussion between organizers
+        </span>
+        <span role="img" aria-label="Mark proposals as accepted, declined">
+          ✅ Mark proposals as accepted, declined...
+        </span>
+        <span role="img" aria-label="Send emails">
+          💌 Send emails
+        </span>
+        <span role="img" aria-label="Export proposals">
+          📃 Export proposals
+        </span>
+        <span role="img" aria-label="Get speaker confirmations">
+          👌 Get speaker confirmations
+        </span>
+        <span role="img" aria-label="API to query proposals">
+          🌍 API to query proposals
+        </span>
+      </div>
     </div>
 
     <div className="contributors" id="contributors">
-      <h4>Contributors</h4>
+      <h4>
+        Made with{' '}
+        <span role="img" aria-label="heart">
+          ❤️
+        </span>{' '}
+        by Contributors
+      </h4>
       <p>
         Conference Hall is an MIT-licensed open-source project. Hence, it grows thanks to all the
         contributors. Feel free to contribute!
       </p>
-      <div className="support-section">Benjamin</div>
+      <Contributors className="contributorsList" />
     </div>
 
     <footer className="footer">
