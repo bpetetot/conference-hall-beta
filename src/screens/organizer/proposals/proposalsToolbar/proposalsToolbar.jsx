@@ -124,7 +124,7 @@ class ProposalToolbar extends Component {
           </select>
         </div>
         <div className={styles.proposalsActions}>
-          <Dropdown className="avatar-dropdown" action={<Button secondary><IconLabel icon="fa fa-angle-down" label="Do..." /></Button>}>
+          <Dropdown action={<Button secondary><IconLabel icon="fa fa-angle-down" label="Do..." /></Button>}>
             <button type="button" onClick={onExportProposals} disabled={isExporting}>
               {isExporting ? (
                 'Exporting...'
