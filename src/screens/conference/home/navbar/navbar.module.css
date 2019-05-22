@@ -5,12 +5,28 @@
   background: transparent;
   position: fixed;
   width: 100%;
+  transition: background-color 500ms;
+}
+
+.scrolled {
+  background: var(--primary-color);
 }
 
 .brand {
   width: var(--layout-sidebar-width);
   height: var(--layout-navbar-height);
   background: transparent;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  padding-left: 1.5em;
+  color: #fff;
+  font-weight: 700;
+  color: #fff;
+}
+
+.accent {
+  color: var(--secondary-color);
 }
 
 .navigation > ul {
@@ -30,4 +46,8 @@
   text-decoration: none;
   font-weight: 700;
   font-size: 1em;
+}
+
+.navigation > ul > li > a:hover {
+  color: var(--secondary-color);
 }

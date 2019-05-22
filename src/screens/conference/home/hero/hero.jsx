@@ -1,17 +1,17 @@
 import React from 'react'
 
-import './hero.css'
+import styles from './hero.module.css'
 
 const Hero = () => (
-  <header className="header">
-    <div className="search">
-      <h4>
-          Find events and meetups all around the world to submit your talks, quickies and
-          workshops...
-      </h4>
+  <header className={styles.header}>
+    <div className={styles.search}>
+      <h1>
+          Find events and meetups all around the world to submit your talks, quickies or
+          workshops.
+      </h1>
       <input type="search" placeholder="Search an event to submit..." />
     </div>
   </header>
 )
 
-export default Hero
+export default React.memo(Hero)

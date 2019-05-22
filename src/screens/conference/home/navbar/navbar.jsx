@@ -1,14 +1,19 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import cn from 'classnames'
 
 import { Link } from '@k-redux-router/react-k-ramel'
-import Brand from 'layout/brand'
 import AvatarDropdown from 'layout/avatarDropdown'
 
 import styles from './navbar.module.css'
 
-const Navbar = () => (
-  <div className={styles.navbar}>
-    <Brand className={styles.brand} />
+const Navbar = ({ scrolled }) => (
+  <div className={cn(styles.navbar, { [styles.scrolled]: scrolled })}>
+    <div className={styles.brand}>
+      <span>
+        Conference <span className={styles.accent}>Hall</span>
+      </span>
+    </div>
     <nav className={styles.navigation}>
       <ul>
         <li>
@@ -28,4 +33,12 @@ const Navbar = () => (
   </div>
 )
 
-export default Navbar
+Navbar.propTypes = {
+  scrolled: PropTypes.bool,
+}
+
+Navbar.defaultProps = {
+  scrolled: false,
+}
+
+export default React.memo(Navbar)
