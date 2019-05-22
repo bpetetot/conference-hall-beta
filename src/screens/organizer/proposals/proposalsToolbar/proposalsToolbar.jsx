@@ -32,7 +32,7 @@ class ProposalToolbar extends Component {
   constructor(props) {
     super(props)
     this.onChange = debounce(this.props.onChange, 200)
-    this.checkAll = false
+    this.checkAll = props.selection.length
   }
 
   debounceOnChange = (e) => {
