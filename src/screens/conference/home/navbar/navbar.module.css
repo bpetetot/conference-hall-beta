@@ -5,7 +5,9 @@
   background: transparent;
   position: fixed;
   width: 100%;
+  height: var(--layout-navbar-height);
   transition: background-color 500ms;
+  z-index: 10;
 }
 
 .scrolled {
@@ -13,16 +15,25 @@
 }
 
 .brand {
-  width: var(--layout-sidebar-width);
-  height: var(--layout-navbar-height);
+  flex: 1 1 100%;
   background: transparent;
-  font-size: 1.5em;
   display: flex;
   align-items: center;
   padding-left: 1.5em;
   color: #fff;
   font-weight: 700;
   color: #fff;
+}
+
+.title {
+  font-size: 1.5em;
+  padding: 1.5em;
+}
+
+.search {
+  flex: 1 1 100%;
+  width: 100%;
+  max-width: 550px;
 }
 
 .accent {

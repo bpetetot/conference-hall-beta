@@ -20,10 +20,10 @@ const Home = () => {
     function handleScroll() {
       if (requestRunning === null) {
         requestRunning = window.requestAnimationFrame(() => {
-          if (wrapper.scrollTop >= 400 && !scrolled) {
+          if (wrapper.scrollTop >= 300 && !scrolled) {
             setScrolled(true)
           }
-          if (wrapper.scrollTop < 400 && scrolled) {
+          if (wrapper.scrollTop < 300 && scrolled) {
             setScrolled(false)
           }
           requestRunning = null

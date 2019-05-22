@@ -1,0 +1,44 @@
+.search {
+  border-radius: 3px;
+  font-size: 1.2em;
+  border-color: #fff;
+}
+
+.search {
+  background: #fff;
+  border-color: #fff;
+  color: var(--primary-color);
+}
+
+.search > input[type='text'] {
+  border-color: #fff;
+}
+
+.search > input[type='text']:focus {
+  border-color: #fff;
+}
+
+.search > button {
+  background: #fff;
+  border-color: #fff;
+  color: var(--grey-color-dark);
+}
+
+
+.search > button:disabled {
+  background: #fff;
+  border-color: #fff;
+  color: var(--grey-color-dark);
+}
+
+.search > button:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--grey-color-dark);
+}
+
+.search > button:disabled:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--grey-color-dark);
+}
