@@ -1,1 +1,1 @@
-export { default } from './searchEvent'
+export { default } from './searchEvent.container'

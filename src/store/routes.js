@@ -10,7 +10,7 @@ export default {
 
     '/login': { code: 'login' },
     '/beta-access': { code: 'beta-access' },
-
+    '/events': { code: 'events' },
     '/public': {
       code: 'public',
       '/event/:eventId': {

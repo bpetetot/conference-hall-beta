@@ -10,9 +10,13 @@ import styles from './contributors.module.css'
 const EXCLUDED_CONTRIBUTORS = ['greenkeeper[bot]']
 
 const fetchContributors = async (callback) => {
-  const response = await fetch(CONTRIBUTORS_API)
-  const result = await response.json()
-  callback(result)
+  try {
+    const response = await fetch(CONTRIBUTORS_API)
+    const result = await response.json()
+    callback(result || [])
+  } catch (e) {
+    callback([])
+  }
 }
 const Contributors = ({ className }) => {
   const [contributors, setContributors] = useState([])
