@@ -9,11 +9,11 @@
   display: flex;
 }
 
-.highlight-block {
+.highlightBlock {
   width: 33%;
 }
 
-.highlight-block h5 {
+.highlightBlock h5 {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 18px;
@@ -21,7 +21,7 @@
   margin: 30px 0 0;
 }
 
-.highlight-block p {
+.highlightBlock p {
   font-size: 18px;
   font-weight: 500;
   max-width: 300px;
@@ -36,7 +36,7 @@
     padding: 20px 0 30px 0;
   }
 
-  .highlight-block {
+  .highlightBlock {
     width: 100%;
     margin-top: 40px;
   }
@@ -47,14 +47,14 @@
     padding: 50px;
   }
 
-  .highlight-block {
+  .highlightBlock {
     width: 90%;
   }
 }
 
 
 .information {
-  background-image: url(images/information.png);
+  background-image: url(./images/information.png);
   background-position: left bottom;
   background-repeat: no-repeat;
   background-color: var(--secondary-color);
@@ -63,13 +63,13 @@
   padding: 0 150px;
 }
 
-.information-wrapper {
+.informationWrapper {
   width: 70%;
   padding: 70px;
   float: right;
 }
 
-.information-wrapper h2 {
+.informationWrapper h2 {
   font-size: 2.5em;
   font-weight: 400;
   margin-top: 0;
@@ -77,13 +77,13 @@
   text-transform: none;
 }
 
-.information-wrapper p {
+.informationWrapper p {
   line-height: 1.8em;
   font-size: 1.3em;
   font-weight: 300;
 }
 
-.information-wrapper .btn {
+.informationWrapper .btn {
   display: inline-block;
   min-width: 200px;
   margin-top: 25px;
@@ -98,7 +98,7 @@
   text-decoration: none;
 }
 
-.information-wrapper .btn:hover {
+.informationWrapper .btn:hover {
   background: var(--primary-color);
   border-color: var(--primary-color);
   color: #fff;
@@ -118,7 +118,7 @@
     height: auto;
   }
 
-  .information-wrapper {
+  .informationWrapper {
     width: 100%;
     padding: 20px;
     float: none;

@@ -8,7 +8,7 @@ import IconLabel from 'components/iconLabel'
 import Navbar from './navbar'
 import Hero from './hero'
 
-import './home.css'
+import styles from './home.module.css'
 
 const Home = () => {
   const scrollWrapper = useRef(null)
@@ -36,26 +36,26 @@ const Home = () => {
   })
 
   return (
-    <div ref={scrollWrapper} className="home">
+    <div ref={scrollWrapper} className={styles.home}>
       <Navbar scrolled={scrolled} />
       <Hero />
-      <div className="highlights">
-        <div className="highlight-block">
-          <div className="icon-wrapper">
+      <div className={styles.highlights}>
+        <div className={styles.highlightBlock}>
+          <div>
             <i className="fa fa-github fa-4x" />
           </div>
           <h5>Open source</h5>
           <p>Conference Hall is an MIT-licensed open-source project.</p>
         </div>
-        <div className="highlight-block">
-          <div className="icon-wrapper">
+        <div className={styles.highlightBlock}>
+          <div>
             <i className="fa fa-microphone fa-4x" />
           </div>
           <h5>Speaker friendly</h5>
           <p>Write your talk abstract once, and submit it everywhere.</p>
         </div>
-        <div className="highlight-block">
-          <div className="icon-wrapper">
+        <div className={styles.highlightBlock}>
+          <div>
             <i className="fa fa-calendar-check-o fa-4x" />
           </div>
           <h5>Help organizers</h5>
@@ -63,8 +63,8 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="information" id="information">
-        <div className="information-wrapper">
+      <div className={styles.information}>
+        <div className={styles.informationWrapper}>
           <h2>An opened SaaS platform to manage call for papers.</h2>
           <p>
             Conference Hall is an opened SaaS platform to manage call for papers and speakers
@@ -74,14 +74,14 @@ const Home = () => {
           <a
             href="https://github/bpetetot/conference-hall"
             target="blank"
-            className="btn btn-secondary d-inline-block"
+            className={styleMedia.btn}
           >
             <IconLabel icon="fa fa-github" label="Contribute to Conference Hall" />
           </a>
         </div>
       </div>
 
-      <div className="features" id="features">
+      <div className={styles.features} id="features">
         <h4>Features</h4>
         <div>
           <span role="img" aria-label="Write the abstract">
@@ -138,7 +138,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="contributors" id="contributors">
+      <div className={styles.contributors}>
         <h4>
           Made with{' '}
           <span role="img" aria-label="heart">
@@ -150,10 +150,10 @@ const Home = () => {
           Conference Hall is an MIT-licensed open-source project. Hence, it grows thanks to all the
           contributors. Feel free to contribute!
         </p>
-        <Contributors className="contributorsList" />
+        <Contributors className={styles.contributorsList} />
       </div>
 
-      <footer className="footer">
+      <footer className={styles.footer}>
         <p>
           <a
             href="https://github/bpetetot/conference-hall"
