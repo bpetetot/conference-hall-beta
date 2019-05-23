@@ -72,7 +72,7 @@ const Home = () => {
             it to every events of the platform.
           </p>
           <a
-            href="https://github/bpetetot/conference-hall"
+            href="https://github.com/bpetetot/conference-hall"
             target="blank"
             className={styleMedia.btn}
           >
