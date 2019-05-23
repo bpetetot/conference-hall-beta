@@ -12,9 +12,11 @@ import styles from './navbar.module.css'
 const Navbar = ({ scrolled, isMobile }) => (
   <div className={cn(styles.navbar, { [styles.scrolled]: scrolled })}>
     <div className={styles.brand}>
-      <span className={styles.title}>
-        Conference <span className={styles.accent}>Hall</span>
-      </span>
+      <Link code="home">
+        <span className={styles.title}>
+          Conference <span className={styles.accent}>Hall</span>
+        </span>
+      </Link>
       {scrolled && !isMobile && (
         <div className={styles.search}>
           <SearchEventInput />

@@ -1,8 +1,6 @@
-import { compose } from 'redux'
-import { inject, listen } from '@k-ramel/react'
+import { inject } from '@k-ramel/react'
 
 import SearchEvent from './searchEvent'
-import listeners from './searchEvent.listener'
 
 const mapStore = (store, props, { router }) => ({
   value: store.ui.searchEvents.get().query,
@@ -11,11 +9,8 @@ const mapStore = (store, props, { router }) => ({
   },
   onClick: () => {
     const { query } = store.ui.searchEvents.get()
-    router.push('events', null, { query })
+    router.push('search', null, { query })
   },
 })
 
-export default compose(
-  listen(listeners, 'PROPOSALS'),
-  inject(mapStore),
-)(SearchEvent)
+export default inject(mapStore)(SearchEvent)

@@ -19,15 +19,23 @@
   background: transparent;
   display: flex;
   align-items: center;
-  color: #fff;
   font-weight: 700;
+}
+
+.brand a {
+  text-decoration: none;
+  color: #fff;
+  min-width: 180px;
+}
+
+.brand a:hover {
+  text-decoration: none;
   color: #fff;
 }
 
 .title {
   font-size: 1.2em;
   padding: 1.5em;
-  min-width: 180px;
 }
 
 .search {

@@ -5,6 +5,7 @@ import Home from './home'
 import Login from './login'
 import Public from './public'
 import BetaAccess from './betaAccess'
+import Search from './search'
 
 const Conference = () => (
   <Fragment>
@@ -12,6 +13,7 @@ const Conference = () => (
     <Login />
     <Public />
     <BetaAccess />
+    <Search />
   </Fragment>
 )
 

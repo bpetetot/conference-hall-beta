@@ -12,6 +12,7 @@ import * as submissions from './reactions/submissions'
 import * as proposals from './reactions/proposals'
 import * as ratings from './reactions/ratings'
 import * as survey from './reactions/survey'
+import * as search from './reactions/search'
 
 export default [
   /* app loaded */
@@ -76,4 +77,6 @@ export default [
   /* survey */
   when('@@ui/ON_LOAD_SURVEY')(survey.fetch),
   when('@@ui/SAVE_SPEAKER_SURVEY')(survey.save),
+  /* search */
+  when('@@ui/ON_CHANGE_SEARCH_EVENTS_QUERY')(search.setSearchEventsQuery),
 ]
