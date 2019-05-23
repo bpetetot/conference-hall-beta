@@ -54,7 +54,7 @@
 
 
 .information {
-  background-image: url(./images/information.png);
+  background-image: url(./images/information.webp);
   background-position: left bottom;
   background-repeat: no-repeat;
   background-color: var(--secondary-color);
@@ -83,7 +83,7 @@
   font-weight: 300;
 }
 
-.informationWrapper .btn {
+.informationWrapper > a {
   display: inline-block;
   min-width: 200px;
   margin-top: 25px;
@@ -98,7 +98,7 @@
   text-decoration: none;
 }
 
-.informationWrapper .btn:hover {
+.informationWrapper > a:hover {
   background: var(--primary-color);
   border-color: var(--primary-color);
   color: #fff;
