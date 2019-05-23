@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import Contributors from 'components/contributors'
+import IconLabel from 'components/iconLabel'
 
 import Navbar from './navbar'
 import Hero from './hero'
@@ -15,18 +16,18 @@ const Home = () => {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    let requestRunning = null
+    let request = null
     const wrapper = scrollWrapper.current
     function handleScroll() {
-      if (requestRunning === null) {
-        requestRunning = window.requestAnimationFrame(() => {
+      if (request === null) {
+        request = window.requestAnimationFrame(() => {
           if (wrapper.scrollTop >= 300 && !scrolled) {
             setScrolled(true)
           }
           if (wrapper.scrollTop < 300 && scrolled) {
             setScrolled(false)
           }
-          requestRunning = null
+          request = null
         })
       }
     }
@@ -75,7 +76,7 @@ const Home = () => {
             target="blank"
             className="btn btn-secondary d-inline-block"
           >
-            Contribute to Conference Hall on GitHub
+            <IconLabel icon="fa fa-github" label="Contribute to Conference Hall" />
           </a>
         </div>
       </div>
@@ -154,6 +155,12 @@ const Home = () => {
 
       <footer className="footer">
         <p>
+          <a
+            href="https://github/bpetetot/conference-hall"
+            target="blank"
+          >
+            <i className="fa fa-github fa-2x" />
+          </a><br />
           Released under the MIT License <br />
           Copyright © 2018-2019 by&nbsp;
           <a href="https://twitter.com/bpetetot" target="blank">

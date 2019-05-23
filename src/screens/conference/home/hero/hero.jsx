@@ -1,9 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from '@k-redux-router/react-k-ramel'
+import { withSizes } from 'styles/utils'
 
 import SearchEventInput from 'screens/components/searchEvent'
 import styles from './hero.module.css'
 
-const Hero = () => (
+const Hero = ({ isMobile }) => (
   <header className={styles.header}>
     <div className={styles.hero}>
       <h1>
@@ -11,7 +14,21 @@ const Hero = () => (
       </h1>
       <SearchEventInput />
     </div>
+    {isMobile && (
+      <div className={styles.actions}>
+        <Link code="speaker">SPEAKER</Link>
+        <Link code="organizer">ORGANIZER</Link>
+      </div>
+    )}
   </header>
 )
 
-export default React.memo(Hero)
+Hero.propTypes = {
+  isMobile: PropTypes.bool,
+}
+
+Hero.defaultProps = {
+  isMobile: false,
+}
+
+export default withSizes(React.memo(Hero))

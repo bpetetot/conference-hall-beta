@@ -9,7 +9,8 @@
   min-height: 750px;
   padding: 0 150px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero {
@@ -25,4 +26,46 @@
   color: #fff;
   font-weight: 700;
   letter-spacing: 0px;
+}
+
+.hero > div {
+  max-width: 600px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.actions > a {
+  padding: 0.9em;
+  background-color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  border-radius: 3px;
+  margin-right: 20px;
+}
+
+.actions > a:active {
+  background-color: transparent;
+}
+
+.actions > a:hover {
+  background-color: transparent;
+}
+
+.actions > a:last-child {
+  margin-right: 0;
+}
+
+@media only screen and (max-width: 480px) {
+  .header {
+    padding: 0 20px 100px 20px;
+    justify-content: flex-end;
+    min-height: 100vh;
+  }
 }

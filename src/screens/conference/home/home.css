@@ -18,7 +18,7 @@
   font-weight: bold;
   font-size: 18px;
   color: var(--secondary-color);
-  margin: 40px 0 0;
+  margin: 30px 0 0;
 }
 
 .highlight-block p {
@@ -28,6 +28,30 @@
   margin: 20px auto;
   line-height: 30px;
 }
+
+@media only screen and (max-width: 480px) {
+  .highlights {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0 30px 0;
+  }
+
+  .highlight-block {
+    width: 100%;
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .highlights {
+    padding: 50px;
+  }
+
+  .highlight-block {
+    width: 90%;
+  }
+}
+
 
 .information {
   background-image: url(images/information.png);
@@ -80,6 +104,27 @@
   color: #fff;
 }
 
+@media only screen and (max-width: 1024px) {
+  .information {
+    background-position: -200px bottom;
+    padding: 0 30px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .information {
+    background-image: none;
+    padding: 20px 0;
+    height: auto;
+  }
+
+  .information-wrapper {
+    width: 100%;
+    padding: 20px;
+    float: none;
+  }
+}
+
 .features {
   background: var(--primary-color);
   text-align: center;
@@ -113,6 +158,12 @@
   flex-grow: 1;
 }
 
+@media only screen and (max-width: 480px) {
+  .features {
+    padding: 20px;
+  }
+}
+
 .contributors {
   background: #fdfdfd;
   padding: 100px 0;
@@ -141,6 +192,12 @@
 .contributorsList {
   max-width: 700px;
   margin: auto;
+}
+
+@media only screen and (max-width: 480px) {
+  .contributors {
+    padding: 20px;
+  }
 }
 
 .footer {

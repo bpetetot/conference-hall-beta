@@ -19,15 +19,15 @@
   background: transparent;
   display: flex;
   align-items: center;
-  padding-left: 1.5em;
   color: #fff;
   font-weight: 700;
   color: #fff;
 }
 
 .title {
-  font-size: 1.5em;
+  font-size: 1.2em;
   padding: 1.5em;
+  min-width: 180px;
 }
 
 .search {
@@ -41,7 +41,7 @@
 }
 
 .navigation > ul {
-  margin: 0 3em;
+  margin-right: 3em;
   display: flex;
   align-items: center;
   list-style-type: none;
@@ -56,7 +56,7 @@
   margin: 0 1em;
   text-decoration: none;
   font-weight: 700;
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 .navigation > ul > li > a:hover {
