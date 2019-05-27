@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
 
 import IconLabel from 'components/iconLabel'
+import Button from 'components/button'
 import Navbar from 'screens/components/navbar'
 
 import EventCard from './eventCard'
@@ -48,6 +49,13 @@ const SearchResults = ({ query, events }) => (
       <div className={styles.block}>
         <h1>No conference</h1>
         <p>No conference found. Try to launch a new search with other keyword or filters.</p>
+        <Button>
+          {className => (
+            <Link code="search" query={{ query }} className={className}>
+              Remove all filters
+            </Link>
+          )}
+        </Button>
       </div>
     </div>
   </Fragment>

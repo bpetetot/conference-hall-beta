@@ -1,5 +1,5 @@
 .search {
-  margin: 2em var(--layout-sidebar-width);
+  margin: 3em;
 }
 
 .block {
@@ -7,7 +7,7 @@
 }
 
 .filters {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
   font-size: 1.7em;
 }
 
@@ -22,9 +22,45 @@
 
 .results {
   margin-bottom: 1em;
+}
+
+.results > * {
+  width: 20%;
+  display: inline-block;
+  margin-bottom: 2em;
+}
+
+.more {
   display: flex;
 }
 
-.more > a {
-  font-weight: 700;
+@media only screen and (max-width: 1024px) {
+  .search {
+    margin: 3em;
+  }
+
+  .results > * {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .search {
+    margin: 2em;
+  }
+
+  .results > * {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .search {
+    margin: 1em;
+  }
+
+  .results > * {
+    width: 100%;
+    padding-right: 0;
+  }
 }
