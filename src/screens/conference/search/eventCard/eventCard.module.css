@@ -5,9 +5,8 @@
 
 .image {
   height: 10em;
-  border: 1px solid var(--grey-color);
+  background: var(--secondary-color);
   border-radius: 3px;
-  background: #fff;
   content: '';
 }
 
@@ -21,8 +20,21 @@
   text-decoration: none;
 }
 
+.card > a:hover {
+  text-decoration: none;
+  color: unset;
+}
+
+.card > a:hover .image {
+  box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.3) inset;
+}
+
+.card > a:hover .name {
+  text-decoration: underline;
+}
+
 .name {
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 700;
   padding-bottom: 0.2em;
 }

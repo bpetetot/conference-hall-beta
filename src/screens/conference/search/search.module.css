@@ -3,11 +3,21 @@
 }
 
 .block {
-  margin-bottom: 3em;
+  margin-bottom: 4em;
 }
 
 .filters {
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+  font-size: 1.7em;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.filter {
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .results {

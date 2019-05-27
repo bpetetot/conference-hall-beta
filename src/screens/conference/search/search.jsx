@@ -13,11 +13,10 @@ const SearchResults = ({ query, events }) => (
     <Navbar scrolled withSearchInput />
     <div className={styles.search}>
       <div className={styles.block}>
-        <h1>{events.length} conferences</h1>
         <div className={styles.filters}>
-          <span>
-            In <b>France</b>
-          </span>
+          <span className={styles.title}>{events.length} conferences</span> in{' '}
+          <span className={styles.filter}>France</span> from{' '}
+          <span className={styles.filter}>today</span>
         </div>
         <div className={styles.results}>
           {events.map(e => (
@@ -31,11 +30,9 @@ const SearchResults = ({ query, events }) => (
         </div>
       </div>
       <div className={styles.block}>
-        <h1>{events.length} meetups</h1>
         <div className={styles.filters}>
-          <span>
-            In <b>Nantes, France</b>
-          </span>
+          <span className={styles.title}>{events.length} meetups</span> in{' '}
+          <span className={styles.filter}>Nantes, France</span>
         </div>
         <div className={styles.results}>
           {events.map(e => (
