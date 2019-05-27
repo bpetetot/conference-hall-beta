@@ -14,6 +14,7 @@ const saveEvent = async (id, event) => {
     objectID: id,
     id,
     ...event,
+    _geoloc: get(event, 'address.latLng'),
     updateTimestamp: dateToTimestamp(event.updateTimestamp),
     createTimestamp: dateToTimestamp(event.createTimestamp),
   }
