@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
 
-import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import Navbar from 'screens/components/navbar'
 
@@ -24,11 +23,6 @@ const SearchResults = ({ query, events }) => (
             <EventCard key={e.id} {...e} />
           ))}
         </div>
-        <div className={styles.more}>
-          <Link code="search" query={{ query }}>
-            <IconLabel icon="fa fa-search-plus" label="View more conferences" />
-          </Link>
-        </div>
       </div>
       <div className={styles.block}>
         <div className={styles.filters}>
@@ -39,11 +33,6 @@ const SearchResults = ({ query, events }) => (
           {events.map(e => (
             <EventCard key={e.id} {...e} />
           ))}
-        </div>
-        <div className={styles.more}>
-          <Link code="search" query={{ query }}>
-            <IconLabel icon="fa fa-search-plus" label="View more meetups" />
-          </Link>
         </div>
       </div>
       <div className={styles.block}>

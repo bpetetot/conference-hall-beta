@@ -2,6 +2,11 @@
   margin: 3em;
 }
 
+.search p {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
 .block {
   margin-bottom: 4em;
 }
@@ -31,7 +36,7 @@
 }
 
 .more {
-  display: flex;
+  text-align: right;
 }
 
 @media only screen and (max-width: 1024px) {

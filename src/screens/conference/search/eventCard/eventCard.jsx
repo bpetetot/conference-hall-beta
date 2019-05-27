@@ -9,25 +9,22 @@ import styles from './eventCard.module.css'
 const EventCard = ({
   id, name, type, address, conferenceDates,
 }) => (
-  <div className={styles.card}>
-    <Link code="speaker-event-page" eventId={id}>
-      <div className={styles.image} />
+  <Link code="speaker-event-page" eventId={id} className={styles.wrapper}>
+    <div className={styles.card}>
+      <div className={styles.name}>{name}</div>
       <div className={styles.legend}>
-        <div>
-          <div className={styles.name}>{name}</div>
-          <div className={styles.address}>
-            {address && address.locality && <span>{address.locality.long_name}, </span>}
-            {address && address.country && <span>{address.country.long_name}</span>}
-          </div>
-          {type === 'conference' && (
-          <div className={styles.dates}>
-            <EventDates dates={conferenceDates} noIcon />
-          </div>
-          )}
+        <div className={styles.address}>
+          {address && address.locality && <span>{address.locality.long_name}, </span>}
+          {address && address.country && <span>{address.country.long_name}</span>}
         </div>
+        {type === 'conference' && (
+        <div className={styles.dates}>
+          <EventDates dates={conferenceDates} noIcon />
+        </div>
+        )}
       </div>
-    </Link>
-  </div>
+    </div>
+  </Link>
 )
 
 EventCard.propTypes = {
