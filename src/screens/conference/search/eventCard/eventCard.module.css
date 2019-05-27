@@ -1,0 +1,37 @@
+.card {
+  width: 20%;
+  margin-right: 2em;
+}
+
+.image {
+  height: 10em;
+  border: 1px solid var(--grey-color);
+  border-radius: 3px;
+  background: #fff;
+  content: '';
+}
+
+.legend {
+  margin-top: 0.5em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card > a {
+  text-decoration: none;
+}
+
+.name {
+  font-size: 1.2em;
+  font-weight: 700;
+  padding-bottom: 0.2em;
+}
+
+.address {
+  font-size: 0.9em;
+  padding-bottom: 0.2em;
+}
+
+.dates {
+  font-size: 0.9em;
+}

@@ -2,20 +2,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import randomColor from 'randomcolor'
+
+import { generateColor } from 'helpers/color'
 
 import './avatar.css'
-
-const generateColor = (seed) => {
-  if (!seed) return {}
-  return {
-    background: randomColor({
-      seed,
-      luminosity: 'bright',
-      hsla: 'rgb',
-    }),
-  }
-}
 
 const Avatar = ({
   name,
@@ -34,7 +24,7 @@ const Avatar = ({
   if (color) {
     bgColor = { background: color }
   } else if (!src) {
-    bgColor = generateColor(name)
+    bgColor = { background: generateColor(name) }
   }
 
   const classes = cn(

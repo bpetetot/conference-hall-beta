@@ -13,19 +13,21 @@ const Navbar = ({
   fixed, transparent, withSearchInput, isMobile,
 }) => (
   <div className={cn(styles.navbar, { [styles.transparent]: transparent, [styles.fixed]: fixed })}>
-    <div className={styles.brand}>
-      <Link code="home">
-        <span className={styles.title}>
-          Conference <span className={styles.accent}>Hall</span>
-        </span>
-      </Link>
+    <div className={styles.leftSide}>
+      <div className={styles.brand}>
+        <Link code="home">
+          <span className={styles.title}>
+            Conference <span className={styles.accent}>Hall</span>
+          </span>
+        </Link>
+      </div>
       {withSearchInput && !isMobile && (
         <div className={styles.search}>
           <SearchEventInput />
         </div>
       )}
     </div>
-    <nav className={styles.navigation}>
+    <nav className={styles.rightSide}>
       <ul>
         {!isMobile && (
           <Fragment>

@@ -1,0 +1,20 @@
+.search {
+  margin: 2em var(--layout-sidebar-width);
+}
+
+.block {
+  margin-bottom: 3em;
+}
+
+.filters {
+  margin-bottom: 1em;
+}
+
+.results {
+  margin-bottom: 1em;
+  display: flex;
+}
+
+.more > a {
+  font-weight: 700;
+}

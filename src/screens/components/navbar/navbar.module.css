@@ -17,12 +17,16 @@
   background: transparent;
 }
 
-.brand {
+.leftSide {
   flex: 1 1 100%;
   background: transparent;
   display: flex;
   align-items: center;
   font-weight: 700;
+}
+
+.brand {
+  width: var(--layout-sidebar-width);
 }
 
 .brand a {
@@ -51,18 +55,18 @@
   color: var(--secondary-color);
 }
 
-.navigation > ul {
+.rightSide > ul {
   margin-right: 3em;
   display: flex;
   align-items: center;
   list-style-type: none;
 }
 
-.navigation > ul > li:last-child {
+.rightSide > ul > li:last-child {
   margin-left: 1em;
 }
 
-.navigation > ul > li > a {
+.rightSide > ul > li > a {
   color: #fff;
   margin: 0 1em;
   text-decoration: none;
@@ -70,6 +74,6 @@
   font-size: 1.2em;
 }
 
-.navigation > ul > li > a:hover {
+.rightSide > ul > li > a:hover {
   color: var(--secondary-color);
 }
