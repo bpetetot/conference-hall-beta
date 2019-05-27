@@ -9,15 +9,17 @@ import SearchEventInput from 'screens/components/searchEvent'
 
 import styles from './navbar.module.css'
 
-const Navbar = ({ scrolled, isMobile }) => (
-  <div className={cn(styles.navbar, { [styles.scrolled]: scrolled })}>
+const Navbar = ({
+  fixed, transparent, withSearchInput, isMobile,
+}) => (
+  <div className={cn(styles.navbar, { [styles.transparent]: transparent, [styles.fixed]: fixed })}>
     <div className={styles.brand}>
       <Link code="home">
         <span className={styles.title}>
           Conference <span className={styles.accent}>Hall</span>
         </span>
       </Link>
-      {scrolled && !isMobile && (
+      {withSearchInput && !isMobile && (
         <div className={styles.search}>
           <SearchEventInput />
         </div>
@@ -47,13 +49,17 @@ const Navbar = ({ scrolled, isMobile }) => (
 )
 
 Navbar.propTypes = {
-  scrolled: PropTypes.bool,
+  fixed: PropTypes.bool,
+  transparent: PropTypes.bool,
+  withSearchInput: PropTypes.bool,
   isMobile: PropTypes.bool,
 }
 
 Navbar.defaultProps = {
-  scrolled: false,
+  fixed: false,
+  transparent: false,
   isMobile: false,
+  withSearchInput: false,
 }
 
 export default withSizes(React.memo(Navbar))

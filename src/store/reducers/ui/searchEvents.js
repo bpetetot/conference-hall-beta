@@ -1,7 +1,7 @@
 import { types } from 'k-ramel'
 
 const defaultData = {
-  query: '',
+  query: undefined,
 }
 
 export default types.object({ defaultData })

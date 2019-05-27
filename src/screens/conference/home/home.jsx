@@ -5,7 +5,7 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 import Contributors from 'components/contributors'
 import IconLabel from 'components/iconLabel'
 
-import Navbar from './navbar'
+import Navbar from 'screens/components/navbar'
 import Hero from './hero'
 
 import styles from './home.module.css'
@@ -37,7 +37,7 @@ const Home = () => {
 
   return (
     <div ref={scrollWrapper} className={styles.home}>
-      <Navbar scrolled={scrolled} />
+      <Navbar fixed transparent={!scrolled} withSearchInput={scrolled} />
       <Hero />
       <div className={styles.highlights}>
         <div className={styles.highlightBlock}>

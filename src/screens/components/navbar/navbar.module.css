@@ -2,16 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: transparent;
-  position: fixed;
   width: 100%;
   height: var(--layout-navbar-height);
+  background: var(--primary-color);
   transition: background-color 500ms;
   z-index: 10;
 }
 
-.scrolled {
-  background: var(--primary-color);
+.fixed {
+  position: fixed;
+}
+
+.transparent {
+  background: transparent;
 }
 
 .brand {
