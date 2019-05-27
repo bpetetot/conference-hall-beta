@@ -20,7 +20,7 @@ const SearchResults = ({ query, events }) => (
         </div>
         <div className={styles.results}>
           {events.map(e => (
-            <EventCard key={e.id} {...e} />
+            <EventCard key={e.objectID} {...e} />
           ))}
         </div>
       </div>
@@ -31,7 +31,7 @@ const SearchResults = ({ query, events }) => (
         </div>
         <div className={styles.results}>
           {events.map(e => (
-            <EventCard key={e.id} {...e} />
+            <EventCard key={e.objectID} {...e} />
           ))}
         </div>
       </div>

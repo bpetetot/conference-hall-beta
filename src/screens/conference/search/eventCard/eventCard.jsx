@@ -7,9 +7,9 @@ import EventDates from 'screens/components/eventDates'
 import styles from './eventCard.module.css'
 
 const EventCard = ({
-  id, name, type, address, conferenceDates,
+  objectID, name, type, address, conferenceDates,
 }) => (
-  <Link code="speaker-event-page" eventId={id} className={styles.wrapper}>
+  <Link code="speaker-event-page" eventId={objectID} className={styles.wrapper}>
     <div className={styles.card}>
       <div className={styles.name}>{name}</div>
       <div className={styles.legend}>
@@ -28,7 +28,7 @@ const EventCard = ({
 )
 
 EventCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  objectID: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   address: PropTypes.string,

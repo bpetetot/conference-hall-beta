@@ -26,6 +26,20 @@ Create a `.env.local` file by copying `.env` file at root folder and set firebas
 * `REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>`
 * `REACT_APP_PROJECT_ID=<PROJECT_ID>`
 
+### Configure Algolia
+
+Create an Algolia app here: [Algolia app management](https://www.algolia.com/manage/applications)
+
+Add to `.env.local` the Algolia **ID** and **Search-only Key**:
+* `REACT_APP_ALGOLIA_ID=<ID>`
+* `REACT_APP_ALGOLIA_SEARCH_KEY=<SEARCH_KEY>`
+
+Add to cloud functions configuration the Algolia **ID** and **Admin Key**:
+
+```
+firebase functions:config:set algolia.id="<ID>" algolia.key="<ADMIN_KEY>"
+```
+
 ### Configure Google APIs (optional)
 
 Activate the following APIs in the [Google developer console](https://console.developers.google.com/apis) :
