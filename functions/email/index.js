@@ -24,7 +24,7 @@ module.exports.send = (config, {
   form.append('subject', subject)
   form.append('html', html)
   to.forEach((dest) => {
-    if (dest) form.append('to', dest)
+    if (dest) form.append('bcc', dest)
   })
   const cc = !isEmpty(contact) && /\S+@\S+\.\S+/.test(contact) ? contact : null
   if (cc) {
