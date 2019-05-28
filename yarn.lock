@@ -855,6 +855,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.4.5":
+  version "7.4.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
+  integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.2.2", "@babel/template@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.4.tgz#f4b88d1225689a08f5bc3a17483545be9e4ed237"
@@ -10462,12 +10469,12 @@ react-feather@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-1.1.6.tgz#2a547e3d5cd5e383d3da0128d593cbdb3c1b32f7"
 
-react-final-form-arrays@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/react-final-form-arrays/-/react-final-form-arrays-2.0.3.tgz#938bd0d62741ab59c6a680968f79eac029e37333"
+react-final-form-arrays@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-final-form-arrays/-/react-final-form-arrays-3.0.0.tgz#c0b0c472fb42c7459d612f39703b8f5a65002f4a"
+  integrity sha512-XTPCCgL4clnpn7z/DSHQleMyJt6UowuJ2aMonFecdkeT1EvjJ0KZjKjFSU0niFjjMIRdUUjVfeZtMJurF8DUsg==
   dependencies:
-    "@babel/runtime" "^7.3.4"
-    react-lifecycles-compat "^3.0.4"
+    "@babel/runtime" "^7.4.5"
 
 react-final-form@^4.1.0:
   version "4.1.0"
