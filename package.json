@@ -38,7 +38,7 @@
     "react-datepicker": "^2.3.0",
     "react-dom": "^16.8.6",
     "react-final-form": "^4.1.0",
-    "react-final-form-arrays": "2.0.3",
+    "react-final-form-arrays": "3.0.0",
     "react-places-autocomplete": "^7.2.1",
     "react-sizes": "^1.0.4",
     "redux": "^4.0.1",
