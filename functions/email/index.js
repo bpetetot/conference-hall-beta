@@ -4,7 +4,7 @@ const FormData = require('form-data')
 const { isEmpty } = require('lodash')
 
 module.exports.send = (config, {
-  to, contact, subject, html, confName,
+  to, cc, bcc, subject, html, confName,
 }) => {
   if (!config || !config.key || !config.domain) {
     return Promise.reject(new Error('Mailgun configuration mailgun.key or mailgun.domain not found.'))
@@ -26,10 +26,14 @@ module.exports.send = (config, {
   to.forEach((dest) => {
     if (dest) form.append('to', dest)
   })
-  const cc = !isEmpty(contact) && /\S+@\S+\.\S+/.test(contact) ? contact : null
-  if (cc) {
-    form.append('cc', cc)
-  }
+  bcc.forEach((dest) => {
+    const bccEmail = !isEmpty(dest) && /\S+@\S+\.\S+/.test(dest) ? dest : null
+    if (bccEmail) form.append('bcc', bccEmail)
+  })
+  cc.forEach((dest) => {
+    const ccEmail = !isEmpty(dest) && /\S+@\S+\.\S+/.test(dest) ? dest : null
+    if (ccEmail) form.append('cc', ccEmail)
+  })
   return fetch(endpoint, {
     headers: { Authorization: `Basic ${token}` },
     method: 'POST',

@@ -96,29 +96,24 @@ describe('onCreateProposal', () => {
     sinon.assert.match(docEventStub.calledOnce, true)
   })
 
-  it('should send email to speakers and organizers after submission for a meetup', async () => {
+  it('should send email to speakers and organizers after submission if events email orga is true', async () => {
     // given
-    event.type = 'meetup'
+    event.emailorga = true
+    event.emailcontact = true
+    event.contact = 'contact@org.com'
     // when
     const onCreateProposalWrapped = test.wrap(onCreateProposal)
     await onCreateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: '' } })
     // then
-    sinon.assert.match(emailSend.calledTwice, true)
+    sinon.assert.match(emailSend.calledOnce, true)
     sinon.assert.calledWith(emailSend.firstCall, sinon.match({
       domain: 'somedomain.org',
       key: 'SOME-SECRET',
     }), sinon.match({
       to: ['corinnekrych@gmail.com'],
+      cc: ['contact@org.com'],
+      bcc: ['corinnekrych@gmail.com'],
       subject: '[RivieraDEV 2019] Talk submitted',
-      html: sinon.match.any,
-      confName: 'RivieraDEV 2019',
-    }))
-    sinon.assert.calledWith(emailSend.secondCall, sinon.match({
-      domain: 'somedomain.org',
-      key: 'SOME-SECRET',
-    }), sinon.match({
-      to: ['corinnekrych@gmail.com'],
-      subject: '[RivieraDEV 2019] New talk submitted',
       html: sinon.match.any,
       confName: 'RivieraDEV 2019',
     }))

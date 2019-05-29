@@ -2,6 +2,7 @@ const functions = require('firebase-functions')
 
 const { updateProposal } = require('../firestore/proposal')
 const { getEvent, getEventOrganizers } = require('../firestore/event')
+const { getUsers } = require('../firestore/user')
 const email = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
 const talkDeclined = require('../email/templates/talkDeclined')
@@ -35,24 +36,36 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
       }
 
       const event = await getEvent(eventId)
-      const organizers = await getEventOrganizers(event)
-
-      if (state === 'confirmed') {
+      const uids = Object.keys(talk.speakers)
+      const users = await getUsers(uids)
+      let cc
+      let bcc
+      const to = users.map(user => user.email)
+      if (event.emailorga) {
+        const organizers = await getEventOrganizers(event)
+        bcc = organizers.map(user => user.email)
+      }
+      if (event.emailcontact && event.contact) {
+        cc = [event.contact]
+      }
+      if ((cc || bcc || to) && state === 'confirmed') {
         // send confirmation email to organizers
         await email.send(mailgun, {
-          to: organizers.map(user => user.email),
-          contact: event.contact,
+          to,
+          cc,
+          bcc,
           subject: `[${event.name}] Talk confirmed by speaker`,
           html: talkConfirmed(event, talk, app.url),
           confName: event.name,
         })
       }
 
-      if (state === 'declined') {
+      if ((cc || bcc || to) && state === 'declined') {
         // send decline email to organizers
         await email.send(mailgun, {
-          to: organizers.map(user => user.email),
-          contact: event.contact,
+          to,
+          cc,
+          bcc,
           subject: `[${event.name}] Talk declined by speaker`,
           html: talkDeclined(event, talk, app.url),
           confName: event.name,

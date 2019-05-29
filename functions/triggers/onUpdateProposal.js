@@ -1,6 +1,6 @@
 const functions = require('firebase-functions')
 const pick = require('lodash/pick')
-const { getEvent } = require('../firestore/event')
+const { getEvent, getEventOrganizers } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 const { updateProposal } = require('../firestore/proposal')
 const { partialUpdateTalk } = require('../firestore/talk')
@@ -50,9 +50,19 @@ module.exports = functions.firestore
         ]),
       },
     }
-    // send email to accepted proposal
-    if (proposal.state === 'accepted' && !proposal.emailSent) {
+    // send email to accepted or declined proposal
+    if ((proposal.state === 'accepted' || proposal.state === 'rejected') && !proposal.emailSent) {
       const event = await getEvent(eventId)
+      const status = proposal.state === 'accepted' ? 'accepted' : 'declined'
+      let cc
+      let bcc
+      if (event.emailorga) {
+        const organizers = await getEventOrganizers(event)
+        bcc = organizers.map(user => user.email)
+      }
+      if (event.emailcontact && event.contact) {
+        cc = [event.contact]
+      }
       proposal.emailSent = proposal.updateTimestamp
       return Promise.all([
         getUsers(uids),
@@ -60,26 +70,10 @@ module.exports = functions.firestore
         partialUpdateTalk(proposal.id, submissionUpdate),
       ]).then(([users]) => email.send(mailgun, {
         to: users.map(user => user.email),
-        contact: event.contact,
-        subject: `[${event.name}] Talk accepted!`,
-        html: talkAccepted(event, users, proposal, app.url),
-        confName: event.name,
-      }))
-    }
-
-    // send email to rejected proposal
-    if (proposal.state === 'rejected' && !proposal.emailSent) {
-      const event = await getEvent(eventId)
-      proposal.emailSent = proposal.updateTimestamp
-      return Promise.all([
-        getUsers(uids),
-        updateProposal(eventId, proposal),
-        partialUpdateTalk(proposal.id, submissionUpdate),
-      ]).then(([users]) => email.send(mailgun, {
-        to: users.map(user => user.email),
-        contact: event.contact,
-        subject: `[${event.name}] Talk declined`,
-        html: talkRejected(event, users, proposal, app.url),
+        cc,
+        bcc,
+        subject: `[${event.name}] Talk ${status}`,
+        html: status === 'accepted' ? talkAccepted(event, users, proposal, app.url) : talkRejected(event, users, proposal, app.url),
         confName: event.name,
       }))
     }
