@@ -9,8 +9,6 @@ import Portal from 'components/portals/portal'
 import withTheme from 'styles/themes/withTheme'
 import { withSizes } from 'styles/utils'
 
-import Avatar from '../avatar'
-
 import styles from './brand.module.css'
 
 const SidebarWrapper = withTheme(({ className, onClick, content }) => (
@@ -24,7 +22,13 @@ const SidebarWrapper = withTheme(({ className, onClick, content }) => (
 const Brand = ({
   title, baseRoute, isTablet, isMobile, sidebar, className,
 }) => (
-  <div className={cn(styles.brand, { [styles.invert]: baseRoute !== 'home' }, className)}>
+  <div
+    className={cn(
+      styles.brand,
+      { [styles.invert]: baseRoute !== 'home' && !isMobile && !isTablet },
+      className,
+    )}
+  >
     {sidebar && (isMobile || isTablet) && (
       <OpenTrigger
         renderTrigger={({ show, hide, isOpen }) => (
@@ -39,7 +43,6 @@ const Brand = ({
     <Link code={baseRoute}>
       {title} <span className={styles.subtitle}>Hall</span>
     </Link>
-    {sidebar && (isMobile || isTablet) && <Avatar classname={styles.avatar} />}
   </div>
 )
 

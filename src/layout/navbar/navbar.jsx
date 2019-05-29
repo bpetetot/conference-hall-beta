@@ -24,7 +24,7 @@ const Navbar = ({
       <Brand sidebar={sidebar} />
       {withSearchInput && !isMobile && (
         <div className={styles.search}>
-          <InputSearch />
+          <InputSearch darkMode />
         </div>
       )}
     </div>

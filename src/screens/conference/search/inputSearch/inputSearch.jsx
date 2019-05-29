@@ -1,11 +1,12 @@
 import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
 
 import Button from 'components/button'
 
 import styles from './inputSearch.module.css'
 
-const SearchEventInput = ({ defaultValue, onSearch }) => {
+const SearchEventInput = ({ defaultValue, onSearch, darkMode }) => {
   const inputRef = useRef()
 
   const handleSearch = () => {
@@ -17,7 +18,7 @@ const SearchEventInput = ({ defaultValue, onSearch }) => {
   }
 
   return (
-    <div className={styles.searchInput}>
+    <div className={cn(styles.searchInput, { [styles.dark]: darkMode })}>
       <input
         ref={inputRef}
         type="text"
@@ -36,10 +37,12 @@ const SearchEventInput = ({ defaultValue, onSearch }) => {
 SearchEventInput.propTypes = {
   onSearch: PropTypes.func.isRequired,
   defaultValue: PropTypes.string,
+  darkMode: PropTypes.bool,
 }
 
 SearchEventInput.defaultProps = {
   defaultValue: undefined,
+  darkMode: false,
 }
 
 export default React.memo(SearchEventInput)

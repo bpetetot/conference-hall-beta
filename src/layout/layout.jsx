@@ -8,7 +8,7 @@ import './layout.css'
 
 const AppLayout = ({ children, sidebar }) => (
   <div className={cn('layout-screen', { 'layout-screen-full-width': !sidebar })}>
-    <Navbar className="layout-navbar" withSearchInput />
+    <Navbar className="layout-navbar" sidebar={sidebar} withSearchInput />
     {sidebar && <div className="layout-sidebar">{sidebar}</div>}
     <div className={cn('layout-main', { 'layout-main-full-width': !sidebar })}>
       {children}
