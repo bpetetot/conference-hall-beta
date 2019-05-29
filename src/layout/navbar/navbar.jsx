@@ -1,37 +1,69 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import { Link } from '@k-redux-router/react-k-ramel'
+import { withSizes } from 'styles/utils'
 
-import IconLink from 'components/iconLink'
-import IconLabel from 'components/iconLabel'
+import InputSearch from 'screens/conference/search/inputSearch'
 
-import AvatarDropdown from '../avatarDropdown'
+import Brand from './brand'
+import Avatar from './avatar'
+import styles from './navbar.module.css'
 
-import './navbar.css'
-
-const Navbar = ({ name, className }) => (
-  <nav className={cn('navbar', className)}>
-    <div className="navbar-left">{name && <IconLabel icon="fa fa-caret-right" label={name} />}</div>
-    <div className="navbar-right">
-      <IconLink
-        icon="fa fa-github"
-        label="report a bug"
-        className="navbar-link"
-        href="https://github.com/bpetetot/conference-hall/issues/new"
-      />
-      <AvatarDropdown />
+const Navbar = ({
+  fixed, transparent, withSearchInput, isMobile, sidebar, className,
+}) => (
+  <div
+    className={cn(
+      styles.navbar,
+      { [styles.transparent]: transparent, [styles.fixed]: fixed },
+      className,
+    )}
+  >
+    <div className={styles.leftSide}>
+      <Brand sidebar={sidebar} />
+      {withSearchInput && !isMobile && (
+        <div className={styles.search}>
+          <InputSearch />
+        </div>
+      )}
     </div>
-  </nav>
+    <nav className={styles.rightSide}>
+      <ul>
+        {!isMobile && (
+          <Fragment>
+            <li>
+              <Link code="speaker">SPEAKER</Link>
+            </li>
+            <li>
+              <Link code="organizer">ORGANIZER</Link>
+            </li>
+          </Fragment>
+        )}
+        <li>
+          <Avatar />
+        </li>
+      </ul>
+    </nav>
+  </div>
 )
 
 Navbar.propTypes = {
-  name: PropTypes.string,
+  fixed: PropTypes.bool,
+  transparent: PropTypes.bool,
+  withSearchInput: PropTypes.bool,
+  isMobile: PropTypes.bool,
+  sidebar: PropTypes.node,
   className: PropTypes.string,
 }
 
 Navbar.defaultProps = {
-  name: undefined,
+  fixed: false,
+  transparent: false,
+  isMobile: false,
+  withSearchInput: false,
+  sidebar: undefined,
   className: undefined,
 }
 
-export default Navbar
+export default withSizes(React.memo(Navbar))

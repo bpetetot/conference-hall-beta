@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import Button from 'components/button'
-import Navbar from 'screens/components/navbar'
+import Navbar from 'layout/navbar'
 
 import EventCard from './eventCard'
 import styles from './search.module.css'

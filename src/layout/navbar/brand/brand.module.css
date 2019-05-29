@@ -1,0 +1,61 @@
+.brand {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--primary-color-font);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s;
+  padding: 0 1em;
+  width: var(--layout-sidebar-width);
+  height: 100%;
+  padding: 0.9em;
+}
+
+.brand > a {
+  text-decoration: none;
+  color: var(--primary-color-font);
+}
+
+.brand > a:hover {
+  text-decoration: none;
+  color: var(--primary-color-font);
+}
+
+.subtitle {
+  color: var(--secondary-color);
+}
+
+.invert {
+  color: var(--secondary-color-font);
+  background: var(--secondary-color);
+}
+
+.invert > a {
+  color: var(--secondary-color-font);
+}
+
+.invert > a:hover {
+  color: var(--secondary-color-font);
+}
+
+.invert .subtitle {
+  color: var(--secondary-color-font);
+}
+
+.brand > .burgerLink {
+  width: 40px;
+}
+
+.brand > .burgerLink:hover {
+  color: var(--secondary-color-font);
+}
+
+.mobileSidebarPortal {
+  top: var(--layout-navbar-height);
+  z-index: 50;
+}
+
+.mobileSidebar {
+  height: calc(100% - var(--layout-navbar-height));
+}

@@ -6,7 +6,7 @@ export default {
   '/': {
     code: 'home',
     root: 'home',
-    title: 'Conference Hall',
+    title: 'Conference',
 
     '/login': { code: 'login' },
     '/beta-access': { code: 'beta-access' },
@@ -24,7 +24,7 @@ export default {
   '/organizer': {
     code: 'organizer',
     root: 'organizer',
-    title: 'Organizer Hall',
+    title: 'Organizer',
 
     '/profile': { code: 'organizer-profile' },
     '/event': {
@@ -67,7 +67,7 @@ export default {
   '/speaker': {
     code: 'speaker',
     root: 'speaker',
-    title: 'Speaker Hall',
+    title: 'Speaker',
 
     '/profile': { code: 'speaker-profile' },
     '/talk/create': { code: 'speaker-talk-create' },

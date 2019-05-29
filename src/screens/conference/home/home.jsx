@@ -5,7 +5,7 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 import Contributors from 'components/contributors'
 import IconLabel from 'components/iconLabel'
 
-import Navbar from 'screens/components/navbar'
+import Navbar from 'layout/navbar'
 import Hero from './hero'
 
 import styles from './home.module.css'
