@@ -80,4 +80,5 @@ export default [
   /* search */
   when('@@ui/ON_CHANGE_SEARCH_EVENTS_QUERY')(search.setSearchEventsQuery),
   when('@@ui/SEARCH_CONFERENCES')(search.searchConferences),
+  when('@@ui/RESET_SEARCH')(search.resetSearch),
 ]

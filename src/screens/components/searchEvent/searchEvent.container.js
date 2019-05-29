@@ -15,8 +15,11 @@ const mapStore = (store, props, { router }) => {
     },
     onClick: () => {
       const { query } = store.ui.searchEvents.get()
+      router.push('search', null, { query })
       if (query) {
-        router.push('search', null, { query })
+        if (store.ui.searchEvents.isInitialized()) {
+          store.dispatch('@@ui/SEARCH_CONFERENCES')
+        }
       }
     },
   }

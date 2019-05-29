@@ -6,11 +6,14 @@ import loader from 'components/loader'
 
 import Search from './search'
 
-const mapStore = (store, props, { router }) => ({
+const mapStore = store => ({
   loaded: !store.ui.searchEvents.get().loadingConferences,
-  query: router.getParam('query'),
   events: store.ui.searchEvents.get().conferences,
-  load: () => store.dispatch('@@ui/SEARCH_CONFERENCES'),
+  load: () => {
+    if (store.ui.searchEvents.isInitialized()) return
+    store.dispatch('@@ui/SEARCH_CONFERENCES')
+  },
+  resetSearch: () => store.dispatch('@@ui/RESET_SEARCH'),
 })
 
 export default compose(

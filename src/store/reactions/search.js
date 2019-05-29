@@ -9,10 +9,16 @@ export const searchConferences = async (action, store, { router, algolia }) => {
 
   store.ui.searchEvents.update({ loadingConferences: true })
   const conferences = await algolia.getIndex('conference').search({ query })
-  console.log(conferences)
+
   store.ui.searchEvents.update({
     loadingConferences: false,
     conferences: conferences.hits,
     nbHitsConferences: conferences.nbHits,
   })
+}
+
+export const resetSearch = (action, store, { router }) => {
+  store.ui.searchEvents.update({ query: undefined })
+  store.dispatch('@@ui/SEARCH_CONFERENCES')
+  router.push('search')
 }
