@@ -8,6 +8,7 @@ import {
   input,
   select,
   address,
+  Label,
   markdownInput,
   radio,
   SubmitButton,
@@ -17,6 +18,7 @@ import {
 } from 'components/form'
 import { required } from 'components/form/validators'
 import './eventForm.css'
+import { Tooltip } from 'components/tooltip'
 
 const EventForm = ({
   isCreateForm, organizations, onSubmit, initialValues, submitting,
@@ -73,7 +75,13 @@ const EventForm = ({
         <Field name="conferenceDates" label="Conference date" component={dayRangePicker} />
         )}
         <Field name="website" label="Website" type="text" component={input} />
-        <Field name="contact" label="Email contact" type="email" component={input} />
+        <Field name="contact" label="Conference mailing list" type="email" component={input} />
+        <Tooltip tooltip="Emails to cc deliberation, speaker's confirmation..." placement="left">
+          <Field name="emails" label="Send email to" component={Label}>
+            <Field name="emailcontact" label="conference mailing list" component={toggle} truthy="true" falsy="false" />
+            <Field name="emailorga" label="private orgas' emails" component={toggle} truthy="true" falsy="false" />
+          </Field>
+        </Tooltip>
         <SubmitButton
           handleSubmit={handleSubmit}
           pristine={pristine}
