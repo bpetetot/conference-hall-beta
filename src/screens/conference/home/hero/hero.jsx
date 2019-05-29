@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
 import { withSizes } from 'styles/utils'
 
-import SearchEventInput from 'screens/components/searchEvent'
+import InputSearch from 'screens/conference/search/inputSearch'
 import styles from './hero.module.css'
 
 const Hero = ({ isMobile }) => (
@@ -12,7 +12,7 @@ const Hero = ({ isMobile }) => (
       <h1>
         Find events and meetups all around the world to submit your talks, quickies or workshops.
       </h1>
-      <SearchEventInput />
+      <InputSearch />
     </div>
     {isMobile && (
       <div className={styles.actions}>

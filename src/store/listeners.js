@@ -78,7 +78,6 @@ export default [
   when('@@ui/ON_LOAD_SURVEY')(survey.fetch),
   when('@@ui/SAVE_SPEAKER_SURVEY')(survey.save),
   /* search */
-  when('@@ui/ON_CHANGE_SEARCH_EVENTS_QUERY')(search.setSearchEventsQuery),
   when('@@ui/SEARCH_CONFERENCES')(search.searchConferences),
   when('@@ui/RESET_SEARCH')(search.resetSearch),
 ]

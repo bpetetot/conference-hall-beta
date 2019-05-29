@@ -5,7 +5,7 @@ import { Link } from '@k-redux-router/react-k-ramel'
 import { withSizes } from 'styles/utils'
 
 import AvatarDropdown from 'layout/avatarDropdown'
-import SearchEventInput from 'screens/components/searchEvent'
+import InputSearch from 'screens/conference/search/inputSearch'
 
 import styles from './navbar.module.css'
 
@@ -23,7 +23,7 @@ const Navbar = ({
       </div>
       {withSearchInput && !isMobile && (
         <div className={styles.search}>
-          <SearchEventInput />
+          <InputSearch />
         </div>
       )}
     </div>

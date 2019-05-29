@@ -1,7 +1,6 @@
 import { types } from 'k-ramel'
 
 const defaultData = {
-  query: undefined,
   nbHitsConferences: 0,
   loadingConferences: false,
   conferences: [],

@@ -31,7 +31,7 @@ EventCard.propTypes = {
   objectID: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  address: PropTypes.string,
+  address: PropTypes.object,
   conferenceDates: PropTypes.object,
 }
 
