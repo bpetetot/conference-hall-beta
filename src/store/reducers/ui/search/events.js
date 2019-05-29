@@ -1,11 +1,10 @@
 import { types } from 'k-ramel'
 
 const defaultData = {
-  nbHitsConferences: 0,
-  loadingConferences: false,
+  loading: false,
+  totalConferences: 0,
   conferences: [],
-  nbHitsMeetups: 0,
-  loadingMeetups: false,
+  totalMeetups: 0,
   meetups: [],
 }
 

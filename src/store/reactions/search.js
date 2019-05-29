@@ -1,18 +1,22 @@
 /* eslint-disable import/prefer-default-export */
-export const searchConferences = async (action, store, { router, algolia }) => {
+export const searchEvents = async (action, store, { router, algolia }) => {
   const query = router.getParam('query')
 
-  store.ui.searchEvents.update({ loadingConferences: true })
-  const conferences = await algolia.getIndex('conference').search({ query })
+  store.ui.search.events.update({ loading: true })
 
-  store.ui.searchEvents.update({
-    loadingConferences: false,
+  const conferences = await algolia.getIndex('conference').search({ query })
+  const meetups = await algolia.getIndex('meetup').search({ query })
+
+  store.ui.search.events.update({
+    loading: false,
+    totalConferences: conferences.nbHits,
     conferences: conferences.hits,
-    nbHitsConferences: conferences.nbHits,
+    totalMeetups: meetups.nbHits,
+    meetups: meetups.hits,
   })
 }
 
 export const resetSearch = (action, store, { router }) => {
   router.push('search')
-  store.dispatch('@@ui/SEARCH_CONFERENCES')
+  store.dispatch('@@ui/SEARCH_EVENTS')
 }

@@ -4,7 +4,7 @@ import speaker from './speaker'
 import organizer from './organizer'
 import beta from './beta'
 import loaders from './loaders'
-import searchEvents from './searchEvents'
+import search from './search'
 
 export default {
   app,
@@ -13,5 +13,5 @@ export default {
   organizer,
   beta,
   loaders,
-  searchEvents,
+  search,
 }

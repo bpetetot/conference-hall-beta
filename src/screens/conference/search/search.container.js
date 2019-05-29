@@ -6,15 +6,21 @@ import loader from 'components/loader'
 
 import Search from './search'
 
-const mapStore = store => ({
-  loaded: !store.ui.searchEvents.get().loadingConferences,
-  events: store.ui.searchEvents.get().conferences,
-  load: () => {
-    if (store.ui.searchEvents.isInitialized()) return
-    store.dispatch('@@ui/SEARCH_CONFERENCES')
-  },
-  resetSearch: () => store.dispatch('@@ui/RESET_SEARCH'),
-})
+const mapStore = (store) => {
+  const search = store.ui.search.events.get()
+  return {
+    loaded: !search.loading,
+    totalConferences: search.totalConferences,
+    conferences: search.conferences,
+    totalMeetups: search.totalMeetups,
+    meetups: search.meetups,
+    load: () => {
+      if (store.ui.search.events.isInitialized()) return
+      store.dispatch('@@ui/SEARCH_EVENTS')
+    },
+    resetSearch: () => store.dispatch('@@ui/RESET_SEARCH'),
+  }
+}
 
 export default compose(
   forRoute.absolute('search'),
