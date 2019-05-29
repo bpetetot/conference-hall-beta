@@ -8,7 +8,7 @@ module.exports = (event, talk, url) => `
   <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
 </head>
 <body>
-  <p>👌 Thanks for giving the talk <strong>"${talk.title}"</strong> at <strong>${event.name}</strong><./p>
+  <p>👌 Thanks for giving the talk <strong>"${talk.title}"</strong> at <strong>${event.name}</strong>.</p>
   <p>
   <strong>See you there!</strong>
   </p>
