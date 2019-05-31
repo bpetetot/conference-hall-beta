@@ -8,31 +8,13 @@
 }
 
 .block {
-  margin-bottom: 4em;
-}
-
-.filters {
-  margin-bottom: 1em;
-  font-size: 1.7em;
-}
-
-.title {
-  font-weight: 700;
-}
-
-.filter {
-  font-weight: 700;
-  text-decoration: underline;
-}
-
-.results {
-  margin-bottom: 1em;
+  margin-top: 3em;
 }
 
 .results > * {
-  width: 20%;
+  width: 19%;
   display: inline-block;
-  margin-bottom: 2em;
+  margin-top: 1em;
 }
 
 .more {
@@ -66,6 +48,6 @@
 
   .results > * {
     width: 100%;
-    padding-right: 0;
+    margin-right: 0;
   }
 }

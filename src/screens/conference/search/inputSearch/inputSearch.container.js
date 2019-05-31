@@ -2,13 +2,10 @@ import { inject } from '@k-ramel/react'
 
 import InputSearch from './inputSearch'
 
-const mapStore = (store, props, { router }) => ({
-  defaultValue: router.getParam('query'),
+const mapStore = store => ({
+  defaultValue: store.ui.search.events.get().query,
   onSearch: (query) => {
-    router.push('search', null, { query })
-    if (store.ui.search.events.isInitialized()) {
-      store.dispatch('@@ui/SEARCH_EVENTS')
-    }
+    store.dispatch({ type: '@@ui/SEARCH_EVENTS', payload: { query } })
   },
 })
 

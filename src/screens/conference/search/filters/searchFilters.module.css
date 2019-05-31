@@ -1,0 +1,24 @@
+.filters {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.filters input[type=text] {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.7em;
+}
+
+.filter {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.button {
+  margin-left: 1em;
+}

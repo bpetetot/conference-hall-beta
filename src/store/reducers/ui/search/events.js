@@ -1,6 +1,9 @@
 import { types } from 'k-ramel'
 
 const defaultData = {
+  query: undefined,
+  date: new Date(),
+  location: undefined,
   loading: false,
   totalConferences: 0,
   conferences: [],

@@ -20,16 +20,19 @@ export class DayPicker extends React.Component {
 
   render() {
     const { date } = this.state
-    const { id, isMobile, isTablet } = this.props
+    const {
+      id, isMobile, isTablet, dateFormat, className, placeholderText,
+    } = this.props
 
     return (
       <DatePicker
         id={id}
         selected={date}
         onChange={this.onDateChange}
-        dateFormat="MMMM do YYYY"
-        placeholderText="Date"
+        dateFormat={dateFormat}
+        placeholderText={placeholderText}
         withPortal={isMobile || isTablet}
+        className={className}
         calendarClassName="day-picker-custom"
       />
     )
@@ -42,10 +45,16 @@ DayPicker.propTypes = {
   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.number]),
   isMobile: PropTypes.bool.isRequired,
   isTablet: PropTypes.bool.isRequired,
+  dateFormat: PropTypes.string,
+  className: PropTypes.string,
+  placeholderText: PropTypes.string,
 }
 
 DayPicker.defaultProps = {
   value: undefined,
+  dateFormat: 'MMMM do YYYY',
+  className: undefined,
+  placeholderText: undefined,
 }
 
 export default withSizes(DayPicker)

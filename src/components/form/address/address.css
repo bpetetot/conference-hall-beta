@@ -6,7 +6,6 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 100%;
   border: 1px solid var(--grey-color);
   border-radius: 3px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);

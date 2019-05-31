@@ -16,7 +16,7 @@ const getAddressComponent = name => flow(
   pick(['short_name', 'long_name']),
 )
 
-const AddressInput = (props) => {
+const AddressInput = ({ placeholder, ...props }) => {
   const [address, setAddress] = useState(props.value.formattedAddress || '')
 
   const handleChange = (inputAddress) => {
@@ -46,10 +46,16 @@ const AddressInput = (props) => {
   }
 
   return (
-    <PlacesAutocomplete {...props} value={address} onChange={handleChange} onSelect={handleSelect}>
+    <PlacesAutocomplete
+      {...props}
+      value={address}
+      onChange={handleChange}
+      onSelect={handleSelect}
+      highlightFirstSuggestion
+    >
       {({ getInputProps, suggestions, getSuggestionItemProps }) => (
         <div className="cc-address-input-wrapper">
-          <input {...getInputProps({ autoComplete: 'nope' })} />
+          <input {...getInputProps({ autoComplete: 'nope' })} placeholder={placeholder} />
 
           <div className="cc-address-input-suggestions">
             {suggestions.map((suggestion) => {
@@ -73,10 +79,12 @@ const AddressInput = (props) => {
 AddressInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 }
 
 AddressInput.defaultProps = {
   value: {},
+  placeholder: undefined,
 }
 
 export default AddressInput

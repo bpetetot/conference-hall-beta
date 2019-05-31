@@ -18,7 +18,10 @@ const mapStore = (store) => {
       if (store.ui.search.events.isInitialized()) return
       store.dispatch('@@ui/SEARCH_EVENTS')
     },
-    resetSearch: () => store.dispatch('@@ui/RESET_SEARCH'),
+    resetSearch: () => {
+      store.ui.search.events.reset()
+      store.dispatch('@@ui/SEARCH_EVENTS')
+    },
   }
 }
 
