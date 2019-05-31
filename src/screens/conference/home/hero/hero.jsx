@@ -12,7 +12,7 @@ const Hero = ({ isMobile }) => (
       <h1>
         Find events and meetups all around the world to submit your talks, quickies or workshops.
       </h1>
-      <InputSearch />
+      <InputSearch className={styles.inputSearch} />
     </div>
     {isMobile && (
       <div className={styles.actions}>

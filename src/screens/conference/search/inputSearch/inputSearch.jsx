@@ -6,7 +6,9 @@ import Button from 'components/button'
 
 import styles from './inputSearch.module.css'
 
-const SearchEventInput = ({ defaultValue, onSearch, darkMode }) => {
+const SearchEventInput = ({
+  defaultValue, onSearch, className, darkMode,
+}) => {
   const inputRef = useRef()
 
   const handleSearch = () => {
@@ -18,7 +20,7 @@ const SearchEventInput = ({ defaultValue, onSearch, darkMode }) => {
   }
 
   return (
-    <div className={cn(styles.searchInput, { [styles.dark]: darkMode })}>
+    <div className={cn(styles.searchInput, className, { [styles.dark]: darkMode })}>
       <input
         ref={inputRef}
         type="text"
@@ -37,11 +39,13 @@ const SearchEventInput = ({ defaultValue, onSearch, darkMode }) => {
 SearchEventInput.propTypes = {
   onSearch: PropTypes.func.isRequired,
   defaultValue: PropTypes.string,
+  className: PropTypes.string,
   darkMode: PropTypes.bool,
 }
 
 SearchEventInput.defaultProps = {
   defaultValue: undefined,
+  className: undefined,
   darkMode: false,
 }
 

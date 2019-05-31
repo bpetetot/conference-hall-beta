@@ -32,6 +32,10 @@
   max-width: 600px;
 }
 
+.inputSearch {
+  font-size: 1.3em;
+}
+
 .actions {
   display: flex;
   align-items: center;

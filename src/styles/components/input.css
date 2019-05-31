@@ -9,7 +9,7 @@ select {
   font-family: inherit;
   outline: none;
   padding: 0 1em;
-  transition: all 0.5s;
+  transition: all 0.25s;
   height: 2.7em;
   line-height: 2.7em;
   width: 100%;
