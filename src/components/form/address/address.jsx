@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
@@ -18,6 +18,7 @@ const getAddressComponent = name => flow(
 
 const AddressInput = ({ placeholder, ...props }) => {
   const [address, setAddress] = useState(props.value.formattedAddress || '')
+  const inputRef = useRef()
 
   const handleChange = (inputAddress) => {
     setAddress(inputAddress)
@@ -45,6 +46,10 @@ const AddressInput = ({ placeholder, ...props }) => {
     })
   }
 
+  const handleFocus = () => {
+    inputRef.current.select()
+  }
+
   return (
     <PlacesAutocomplete
       {...props}
@@ -55,7 +60,12 @@ const AddressInput = ({ placeholder, ...props }) => {
     >
       {({ getInputProps, suggestions, getSuggestionItemProps }) => (
         <div className="cc-address-input-wrapper">
-          <input {...getInputProps({ autoComplete: 'nope' })} placeholder={placeholder} />
+          <input
+            ref={inputRef}
+            {...getInputProps({ autoComplete: 'nope' })}
+            onFocus={handleFocus}
+            placeholder={placeholder}
+          />
 
           <div className="cc-address-input-suggestions">
             {suggestions.map((suggestion) => {
