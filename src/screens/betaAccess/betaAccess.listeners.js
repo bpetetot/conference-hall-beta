@@ -8,6 +8,8 @@ export default [
     const key = action.payload
     const accessRef = await betaAccess.read(key)
 
+    console.log('check')
+
     if (accessRef.exists) {
       const { uid } = store.auth.get()
       await userCrud.update({ uid, betaAccess: key })

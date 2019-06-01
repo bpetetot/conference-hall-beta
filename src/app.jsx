@@ -5,7 +5,11 @@ import { provider } from '@k-ramel/react'
 
 import withTheme from 'styles/themes/withTheme'
 import NotFound from './screens/components/notFound'
-import Conference from './screens/conference'
+import Homepage from './screens/homepage'
+import Search from './screens/search'
+import Login from './screens/login'
+import BetaAccess from './screens/betaAccess'
+import Public from './screens/public'
 import Organizer from './screens/organizer'
 import Speaker from './screens/speaker'
 
@@ -15,7 +19,11 @@ import './styles'
 
 const App = ({ className }) => (
   <div className={cn('app', className)}>
-    <Conference />
+    <Homepage />
+    <Search />
+    <Login />
+    <BetaAccess />
+    <Public />
     <Organizer />
     <Speaker />
     <NotFound />

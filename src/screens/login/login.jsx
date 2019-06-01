@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import AppLayout from 'layout'
 import { LoadingIndicator } from 'components/loader'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
@@ -32,15 +33,20 @@ const Login = ({
   }
 
   return (
-    <div className="login">
+    <AppLayout className="login" fullwidth>
       <h1 className="login-title">Connexion</h1>
       {providers.map(provider => (
-        <Button key={provider} className={`btn-${provider}`} onClick={() => signin(provider)}>
+        <Button
+          key={provider}
+          className={`btn-${provider}`}
+          onClick={() => signin(provider)}
+          size="large"
+        >
           <IconLabel icon={`fa fa-${provider}`} label={`with ${provider}`} />
         </Button>
       ))}
       {errorMessage && <p className="login-error">{errorMessage}</p>}
-    </div>
+    </AppLayout>
   )
 }
 

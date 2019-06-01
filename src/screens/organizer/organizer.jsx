@@ -9,7 +9,7 @@ import Profile from 'screens/components/profile'
 import Sidebar from './sidebar'
 import isEventAuthorized from './isEventAutorized'
 
-import { restrictBeta } from '../conference/betaAccess'
+import { restrictBeta } from '../betaAccess'
 import EventCreate from './event/create'
 import EventEdit from './event/edit'
 import Event from './event/page'

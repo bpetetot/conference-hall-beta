@@ -10,20 +10,11 @@
 .layout-main {
   grid-area: main;
   overflow: auto;
+  padding: 3em;
 }
 
-.layout-main > * {
-  margin: 3em;
-}
-
-.layout-main.layout-main-full-width {
-  padding: 0 3em;
-}
-
-.layout-main.layout-main-full-width > * {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1400px;
+.layout-main.fullwidth {
+  padding: 0;
 }
 
 .layout-screen {
@@ -34,7 +25,7 @@
   height: 100%;
 }
 
-.layout-screen.layout-screen-full-width {
+.layout-screen.nosidebar {
   grid-template-areas: 'navbar navbar' 'main main';
 }
 
@@ -43,17 +34,16 @@
     grid-template-columns: auto;
     grid-template-areas: 'navbar' 'main';
   }
-  .layout-screen.layout-screen-full-width {
+  .layout-screen.nosidebar {
     grid-template-areas: 'navbar' 'main';
-  }
-  .layout-main.layout-main-full-width {
-    padding: 0;
   }
   .layout-sidebar {
     display: none;
   }
-  .layout-main > * {
-    margin: 0;
+  .layout-main {
+    padding: 1em;
+  }
+  .layout-main.fullwidth {
     padding: 1em;
   }
 }
@@ -72,7 +62,10 @@
   .layout-sidebar {
     display: none;
   }
-  .layout-main > * {
-    margin: 0em;
+  .layout-main {
+    margin: 1em;
+  }
+  .layout-main.fullwidth {
+    padding: 1em;
   }
 }

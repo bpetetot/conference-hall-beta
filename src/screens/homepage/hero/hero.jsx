@@ -4,7 +4,7 @@ import { Link } from '@k-redux-router/react-k-ramel'
 
 import { withSizes } from 'styles/utils'
 import Button from 'components/button'
-import InputSearch from 'screens/conference/search/inputSearch'
+import InputSearch from 'screens/search/inputSearch'
 
 import styles from './hero.module.css'
 

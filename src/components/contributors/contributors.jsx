@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import Avatar from 'components/avatar'
 import { CONTRIBUTORS_API } from 'helpers/github'
-import Contributor from './contributor'
 
 import styles from './contributors.module.css'
 
@@ -26,11 +26,28 @@ const Contributors = ({ className }) => {
   }, [])
 
   return (
-    <div className={cn(styles.contributorsList, className)}>
+    <div className={cn(styles.list, className)}>
       {contributors
         .filter(c => !EXCLUDED_CONTRIBUTORS.includes(c.login))
         .map(c => (
-          <Contributor key={c.id} name={c.login} image={c.avatar_url} url={c.html_url} />
+          <div key={c.id} className={styles.wrapper}>
+            <div className={styles.contributor}>
+              <Avatar
+                name={c.login}
+                src={c.avatar_url}
+                size="large"
+                className={styles.avater}
+              />
+              <a
+                className={styles.name}
+                href={c.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {c.login}
+              </a>
+            </div>
+          </div>
         ))}
     </div>
   )

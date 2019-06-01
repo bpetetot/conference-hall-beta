@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import { withSizes } from 'styles/utils'
 
-import InputSearch from 'screens/conference/search/inputSearch'
+import InputSearch from 'screens/search/inputSearch'
 import Link from 'components/link'
 
 import Brand from './brand'

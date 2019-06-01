@@ -9,7 +9,7 @@ import styles from './eventCard.module.css'
 const EventCard = ({
   objectID, name, type, address, conferenceDates,
 }) => (
-  <Link code="speaker-event-page" eventId={objectID} className={styles.wrapper}>
+  <Link code="public-event" eventId={objectID} className={styles.wrapper}>
     <div className={styles.card}>
       <div className={styles.name}>{name}</div>
       <div className={styles.legend}>

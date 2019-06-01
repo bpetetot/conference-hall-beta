@@ -5,17 +5,15 @@
   align-items: center;
   text-align: center;
   height: 100%;
-  background: var(--primary-color);
-  color: var(--grey-color);
 }
 
 .beta-access h1.beta-access-title {
-  color: var(--primary-color-font);
   text-transform: uppercase;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 .beta-access .beta-access-form {
+  margin-top: 2em;
   width: 50%;
 }
 
