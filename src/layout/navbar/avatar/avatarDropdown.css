@@ -1,3 +1,8 @@
+.avatar-dropdown {
+  margin-right: 1em;
+  margin-left: 2em;
+}
+
 .avatar-dropdown-button .cc-avatar-image > img {
   border: 2px solid var(--primary-color-font);
   font-size: 1.5em;

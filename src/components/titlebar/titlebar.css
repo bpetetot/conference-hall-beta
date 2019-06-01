@@ -31,7 +31,6 @@
   }
 
   .titlebar .titlebar-actions {
-    flex-direction: column;
     width: 100%;
   }
 

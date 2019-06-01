@@ -39,10 +39,18 @@
 
 .rightSide {
   height: 100%;
+  margin-right: 1em;
+}
+
+@media only screen and (max-width: 1023px) {
+  .rightSide {
+    margin-right: 0em;
+  }
 }
 
 .rightSide > ul {
-  margin: 0 3em 0 0;
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   list-style-type: none;
@@ -54,10 +62,6 @@
   display: flex;
   align-items: center;
   position: relative;
-}
-
-.rightSide > ul > li:last-child {
-  margin-left: 1em;
 }
 
 .rightSide > ul > li > a {

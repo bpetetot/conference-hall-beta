@@ -3,7 +3,6 @@
   font-weight: 700;
   color: var(--primary-color-font);
   display: flex;
-  justify-content: space-between;
   align-items: center;
   transition: all 0.5s;
   padding: 0 1em;
