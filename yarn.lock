@@ -6605,6 +6605,23 @@ internal-ip@^4.2.0:
     default-gateway "^4.2.0"
     ipaddr.js "^1.9.0"
 
+intl-messageformat-parser@^1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-1.6.3.tgz#26e5363f013f2d54e900de0d180f8b04db0e635b"
+
+intl-messageformat@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-3.1.4.tgz#c35efbaf8ddd3840ec316b39c96089d77c55e912"
+  dependencies:
+    intl-messageformat-parser "^1.6.3"
+    intl-pluralrules "^1.0.1"
+
+intl-pluralrules@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/intl-pluralrules/-/intl-pluralrules-1.0.2.tgz#ae32d168edb2f643fa260e674f0443e5e6144f0d"
+  dependencies:
+    make-plural "^4.3.0"
+
 invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
@@ -8112,6 +8129,12 @@ make-dir@^2.0.0:
   dependencies:
     pify "^4.0.1"
     semver "^5.6.0"
+
+make-plural@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-4.3.0.tgz#f23de08efdb0cac2e0c9ba9f315b0dff6b4c2735"
+  optionalDependencies:
+    minimist "^1.2.0"
 
 makeerror@1.0.x:
   version "1.0.11"

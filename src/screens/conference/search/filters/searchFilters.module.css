@@ -9,12 +9,21 @@
   font-weight: 700;
 }
 
-.title {
-  font-weight: 700;
-  font-size: 1.7em;
+.searchFilter {
+  flex-grow: 1;
 }
 
-.filter {
+.text {
   font-weight: 700;
-  text-decoration: underline;
+  font-size: 1.5em;
+  margin: 0 1em;
+}
+
+.actions {
+  margin-left: 2em;
+}
+
+.button {
+  width: 120px;
+  height: 2.7em;
 }

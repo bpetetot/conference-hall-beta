@@ -4,14 +4,15 @@ import PropTypes from 'prop-types'
 import EventCard from './card'
 import NoResult from './noResult'
 import styles from './searchResults.module.css'
+import messages from './searchResults.messages'
 
 const SearchResults = ({ results, total, type }) => (
   <div className={styles.block}>
     {total !== 0 && (
       <Fragment>
-        <h2>
-          {total} {type}
-        </h2>
+        <h1>
+          {messages(type, { itemCount: total })}
+        </h1>
         <div className={styles.results}>
           {results.map(e => (
             <EventCard key={e.objectID} {...e} />

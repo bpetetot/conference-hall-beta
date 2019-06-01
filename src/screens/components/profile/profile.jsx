@@ -42,7 +42,13 @@ const Profile = ({
             component={input}
             placeholder="username"
           />
-          <Field name="address" label="City" type="text" component={address} />
+          <Field
+            name="address"
+            label="City"
+            type="text"
+            component={address}
+            searchOptions={{ types: ['(cities)'] }}
+          />
           <Field name="bio" label="Biography" component={markdownInput} />
 
           <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>

@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   border-radius: 3px;
-  font-size: 1em;
   background: #fff;
 }
 
@@ -11,19 +10,21 @@
 }
 
 .input[type=text] {
-  border: none;
-  border-radius: 3px;
-  padding: 1em;
   flex-grow: 1;
-  font-weight: 300; 
   background: #fff;
+  border-right: none;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.input:focus + .button {
+  border-color: var(--primary-color);
 }
 
 .dark .input[type=text] {
   color: var(--primary-color-font);
   background: var(--primary-color-light);
+  border: none;
 }
 
 .input:focus {
@@ -33,36 +34,38 @@
 .dark .input:focus {
   color: var(--primary-color);
   background: #fff;
+  border: none;
 }
 
 .dark .input:focus + .button {
   color: var(--primary-color);
   background: #fff;
-  border-color: #fff;
+  border: none;
 }
 
 .button {
   background: #fff;
-  border-color: #fff;
   color: var(--grey-color-dark);
+  border-color: var(--grey-color);
+  border-left: none;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 .dark .button {
   background: var(--primary-color-light);
-  border-color: var(--primary-color-light);
+  border: none;
   color: var(--grey-color);
 }
 
 .button:hover {
   background: #fff;
-  border-color: #fff;
+  border: none;
   color: var(--grey-color-dark);
 }
 
 .dark .button:hover {
   background: var(--primary-color-light);
-  border-color: var(--primary-color-light);
+  border: none;
   color: var(--grey-color);
 }

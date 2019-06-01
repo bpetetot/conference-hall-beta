@@ -8,6 +8,7 @@ const mapStore = store => ({
   onFilter: (filters) => {
     store.dispatch({ type: '@@ui/SEARCH_EVENTS', payload: filters })
   },
+  onReset: () => store.dispatch('@@ui/RESET_SEARCH'),
 })
 
 export default inject(mapStore)(SearchFilters)

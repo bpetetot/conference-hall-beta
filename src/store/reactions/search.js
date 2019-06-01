@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { dateToTimestamp } from 'helpers/date'
 
 export const searchEvents = async (action, store, { router, algolia }) => {
@@ -40,4 +39,9 @@ export const searchEvents = async (action, store, { router, algolia }) => {
     totalMeetups: meetups.nbHits,
     meetups: meetups.hits,
   })
+}
+
+export const resetSearch = async (action, store) => {
+  store.ui.search.events.reset()
+  store.dispatch('@@ui/SEARCH_EVENTS')
 }

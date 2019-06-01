@@ -27,6 +27,7 @@
     "font-awesome": "^4.7.0",
     "hoc-react-loader": "^6.3.0",
     "immutadot": "^1.0.0",
+    "intl-messageformat": "^3.1.4",
     "k-ramel": "2.1.0",
     "lodash": "^4.17.11",
     "marked": "^0.6.2",

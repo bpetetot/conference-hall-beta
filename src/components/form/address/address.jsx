@@ -90,11 +90,13 @@ AddressInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  className: PropTypes.string,
 }
 
 AddressInput.defaultProps = {
   value: {},
   placeholder: undefined,
+  className: undefined,
 }
 
 export default AddressInput

@@ -12,9 +12,15 @@ const renderField = component => ({
   input, label, type, meta, placeholder, children, ...rest
 }) => (
   <Label name={input.name} label={label} error={meta.error}>
-    {component === 'address' && <Address {...input} autoComplete="nope" />}
-    {component === 'input' && <input {...input} id={input.name} type={type} placeholder={placeholder} />}
-    {component === 'select' && <select {...input} id={input.name}>{children}</select>}
+    {component === 'address' && <Address {...rest} {...input} autoComplete="nope" />}
+    {component === 'input' && (
+      <input {...input} id={input.name} type={type} placeholder={placeholder} />
+    )}
+    {component === 'select' && (
+      <select {...input} id={input.name}>
+        {children}
+      </select>
+    )}
     {component === 'textarea' && (
       <textarea id={input.name} {...input}>
         {input.value}

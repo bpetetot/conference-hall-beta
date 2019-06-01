@@ -8,7 +8,7 @@ import styles from './noResult.module.css'
 
 const NoResult = ({ type, resetSearch, className }) => (
   <div className={cn(styles.noResult, className)}>
-    <h2>No {type}</h2>
+    <h1>No {type}</h1>
     <p>No {type} found. Try to launch a new search with other keyword or filters.</p>
     <Button onClick={resetSearch}>Reset all filters</Button>
   </div>

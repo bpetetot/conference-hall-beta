@@ -10,6 +10,7 @@ const mapStore = (store) => {
   const search = store.ui.search.events.get()
   return {
     loaded: !search.loading,
+    total: search.totalConferences + search.totalMeetups,
     load: () => {
       if (store.ui.search.events.isInitialized()) return
       store.dispatch('@@ui/SEARCH_EVENTS')
