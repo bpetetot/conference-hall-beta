@@ -10,7 +10,7 @@ export default {
 
     '/login': { code: 'login' },
     '/beta-access': { code: 'beta-access' },
-    '/search': { code: 'search' },
+    '/search': { root: 'search', code: 'search' },
     '/public': {
       code: 'public',
       '/event/:eventId': {

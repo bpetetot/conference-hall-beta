@@ -25,7 +25,7 @@ const Brand = ({
   <div
     className={cn(
       styles.brand,
-      { [styles.invert]: baseRoute !== 'home' && !isMobile && !isTablet },
+      { [styles.invert]: (baseRoute === 'speaker' || baseRoute === 'organizer') && !isMobile && !isTablet },
       className,
     )}
   >
@@ -40,7 +40,7 @@ const Brand = ({
         {({ hide }) => <SidebarWrapper content={sidebar} onClick={hide} />}
       </OpenTrigger>
     )}
-    <Link code={baseRoute}>
+    <Link code="home">
       {title} <span className={styles.subtitle}>Hall</span>
     </Link>
   </div>

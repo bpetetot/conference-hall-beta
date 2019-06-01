@@ -37,11 +37,23 @@
   color: var(--secondary-color);
 }
 
+.rightSide {
+  height: 100%;
+}
+
 .rightSide > ul {
-  margin-right: 3em;
+  margin: 0 3em 0 0;
   display: flex;
   align-items: center;
   list-style-type: none;
+  height: 100%;
+}
+
+.rightSide > ul > li {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .rightSide > ul > li:last-child {
@@ -54,6 +66,23 @@
   text-decoration: none;
   font-weight: 700;
   font-size: 1.2em;
+}
+
+.rightSide > ul > li > a.active {
+  color: var(--secondary-color);
+}
+
+.rightSide > ul > li > a::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  content: '';
+  border-bottom: 5px solid transparent;
+}
+
+.rightSide > ul > li > a.active::after {
+  border-color: var(--secondary-color);
 }
 
 .rightSide > ul > li > a:hover {

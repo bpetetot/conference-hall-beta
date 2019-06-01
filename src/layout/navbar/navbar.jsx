@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import { Link } from '@k-redux-router/react-k-ramel'
 import { withSizes } from 'styles/utils'
 
 import InputSearch from 'screens/conference/search/inputSearch'
+import Link from 'components/link'
 
 import Brand from './brand'
 import Avatar from './avatar'
@@ -33,13 +33,19 @@ const Navbar = ({
         {!isMobile && (
           <Fragment>
             <li>
-              <Link code="search">SEARCH</Link>
+              <Link code="search" classNameActive={styles.active} onlyRoot>
+                SEARCH
+              </Link>
             </li>
             <li>
-              <Link code="speaker">SPEAKER</Link>
+              <Link code="speaker" classNameActive={styles.active} onlyRoot>
+                SPEAKER
+              </Link>
             </li>
             <li>
-              <Link code="organizer">ORGANIZER</Link>
+              <Link code="organizer" classNameActive={styles.active} onlyRoot>
+                ORGANIZER
+              </Link>
             </li>
           </Fragment>
         )}
