@@ -33,6 +33,9 @@ const Navbar = ({
         {!isMobile && (
           <Fragment>
             <li>
+              <Link code="search">EXPLORE</Link>
+            </li>
+            <li>
               <Link code="speaker">SPEAKER</Link>
             </li>
             <li>

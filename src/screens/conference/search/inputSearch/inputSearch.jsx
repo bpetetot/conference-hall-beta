@@ -25,7 +25,7 @@ const SearchEventInput = ({
         ref={inputRef}
         type="text"
         defaultValue={defaultValue}
-        placeholder="Search for events and meetups"
+        placeholder="Search for conferences and meetups"
         onKeyPress={handleKeyPress}
         className={styles.input}
       />

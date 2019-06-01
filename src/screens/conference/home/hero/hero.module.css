@@ -28,41 +28,54 @@
   letter-spacing: 0px;
 }
 
-.hero > div {
+.inputSearch {
+  font-size: 1.3em;
   max-width: 600px;
 }
 
-.inputSearch {
-  font-size: 1.3em;
+.actions {
+  margin-top: 4em;
 }
 
-.actions {
+.actions > a {
+  display: block;
+  padding: .8em 2em;
+  font-size: 1.3em;
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 30px;
+  margin-right: 20px;
+  max-width: 230px;
+}
+
+.actions > a:hover {
+  color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+}
+
+.actions > a:last-child {
+  margin-right: 0;
+}
+
+.mobileActions {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin-top: 20px;
 }
 
-.actions > a {
+.mobileActions > a {
+  color: var(--primary-color);
   padding: 0.9em;
-  background-color: var(--secondary-color);
-  border: 2px solid var(--secondary-color);
   text-decoration: none;
   width: 100%;
-  text-align: center;
-  border-radius: 3px;
   margin-right: 20px;
 }
 
-.actions > a:active {
-  background-color: transparent;
-}
-
-.actions > a:hover {
-  background-color: transparent;
-}
-
-.actions > a:last-child {
+.mobileActions > a:last-child {
   margin-right: 0;
 }
 
@@ -71,5 +84,9 @@
     padding: 0 20px 100px 20px;
     justify-content: flex-end;
     min-height: 100vh;
+  }
+
+  .actions > a {
+    width: 100%;
   }
 }
