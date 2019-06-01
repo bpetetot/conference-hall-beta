@@ -5,8 +5,8 @@ import SearchFilters from './searchFilters'
 const mapStore = store => ({
   defaultLocation: store.ui.search.events.get().location,
   defaultDate: store.ui.search.events.get().date,
-  onFilter: ({ location, date }) => {
-    store.dispatch({ type: '@@ui/SEARCH_EVENTS', payload: { location, date } })
+  onFilter: (filters) => {
+    store.dispatch({ type: '@@ui/SEARCH_EVENTS', payload: filters })
   },
 })
 

@@ -17,3 +17,9 @@ export const mdf = (date) => {
   if (!date) return undefined
   return format(date, 'MMM. Do YYYY')
 }
+
+/**
+ * Date to a timestamp epoch
+ * @param {Date} date instance of Date
+ */
+export const dateToTimestamp = date => Number.parseInt(date.getTime() / 1000, 10)

@@ -2,32 +2,9 @@
   margin: 3em;
 }
 
-.search p {
-  font-size: 1.2em;
-  font-weight: 300;
-}
-
-.block {
-  margin-top: 3em;
-}
-
-.results > * {
-  width: 19%;
-  display: inline-block;
-  margin-top: 1em;
-}
-
-.more {
-  text-align: right;
-}
-
 @media only screen and (max-width: 1024px) {
   .search {
     margin: 3em;
-  }
-
-  .results > * {
-    width: 30%;
   }
 }
 
@@ -35,19 +12,10 @@
   .search {
     margin: 2em;
   }
-
-  .results > * {
-    width: 50%;
-  }
 }
 
 @media only screen and (max-width: 480px) {
   .search {
     margin: 1em;
-  }
-
-  .results > * {
-    width: 100%;
-    margin-right: 0;
   }
 }

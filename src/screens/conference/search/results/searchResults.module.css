@@ -1,0 +1,28 @@
+.block {
+  margin-top: 3em;
+}
+
+.results > * {
+  width: 19%;
+  display: inline-block;
+  margin-top: 1em;
+}
+
+@media only screen and (max-width: 1024px) {
+  .results > * {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .results > * {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .results > * {
+    width: 100%;
+    margin-right: 0;
+  }
+}
