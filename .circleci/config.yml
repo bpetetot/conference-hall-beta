@@ -71,16 +71,6 @@ jobs:
     docker:
       - image: circleci/node:10.16.0
     steps:
-      - run:
-          name: Set environment variables
-          command: |
-            export REACT_APP_AUTH_PROVIDERS="google,twitter,github,facebook"
-            export REACT_APP_API_KEY="$DEV_FIREBASE_API_KEY"
-            export REACT_APP_AUTH_DOMAIN="$DEV_FIREBASE_AUTH_DOMAIN"
-            export REACT_APP_PROJECT_ID="$DEV_FIREBASE_PROJECT_ID"
-            export REACT_APP_GOOGLE_ANALYTICS_ID=""
-            export PUBLIC_URL="https://$DEV_FIREBASE_AUTH_DOMAIN"
-            export FIREBASE_DEPLOY_TOKEN="$DEV_FIREBASE_DEPLOY_TOKEN"
       - checkout
       - restore_cache:
           keys:
@@ -98,6 +88,16 @@ jobs:
             - functions/node_modules
             - ~/.cache/yarn
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Set environment variables
+          command: |
+            echo 'export REACT_APP_AUTH_PROVIDERS="google,twitter,github,facebook"' >> $BASH_ENV
+            echo 'export REACT_APP_API_KEY="$DEV_FIREBASE_API_KEY"' >> $BASH_ENV
+            echo 'export REACT_APP_AUTH_DOMAIN="$DEV_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export REACT_APP_PROJECT_ID="$DEV_FIREBASE_PROJECT_ID"' >> $BASH_ENV
+            echo 'export REACT_APP_GOOGLE_ANALYTICS_ID=""' >> $BASH_ENV
+            echo 'export PUBLIC_URL="https://$DEV_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export FIREBASE_DEPLOY_TOKEN="$DEV_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV
       - run:
           name: Build the app
           command: yarn build
@@ -109,16 +109,6 @@ jobs:
     docker:
       - image: circleci/node:10.16.0
     steps:
-      - run:
-          name: Set environment variables
-          command: |
-            export REACT_APP_AUTH_PROVIDERS="google,twitter,github"
-            export REACT_APP_API_KEY="$PROD_FIREBASE_API_KEY"
-            export REACT_APP_AUTH_DOMAIN="$PROD_FIREBASE_AUTH_DOMAIN"
-            export REACT_APP_PROJECT_ID="$PROD_FIREBASE_PROJECT_ID"
-            export REACT_APP_GOOGLE_ANALYTICS_ID="$PROD_GOOGLE_ANALYTICS_ID"
-            export PUBLIC_URL="https://$PROD_FIREBASE_AUTH_DOMAIN"
-            export FIREBASE_DEPLOY_TOKEN="$PROD_FIREBASE_DEPLOY_TOKEN"
       - checkout
       - restore_cache:
           keys:
@@ -136,6 +126,16 @@ jobs:
             - functions/node_modules
             - ~/.cache/yarn
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Set environment variables
+          command: |
+            echo 'export REACT_APP_AUTH_PROVIDERS="google,twitter,github"' >> $BASH_ENV
+            echo 'export REACT_APP_API_KEY="$PROD_FIREBASE_API_KEY"' >> $BASH_ENV
+            echo 'export REACT_APP_AUTH_DOMAIN="$PROD_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export REACT_APP_PROJECT_ID="$PROD_FIREBASE_PROJECT_ID"' >> $BASH_ENV
+            echo 'export REACT_APP_GOOGLE_ANALYTICS_ID="$PROD_GOOGLE_ANALYTICS_ID"' >> $BASH_ENV
+            echo 'export PUBLIC_URL="https://$PROD_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
+            echo 'export FIREBASE_DEPLOY_TOKEN="$PROD_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV
       - run:
           name: Build app
           command: yarn build
