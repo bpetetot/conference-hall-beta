@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "firebase-admin": "^7.3.0",
     "firebase-functions": "^2.3.1",
     "form-data": "^2.3.3",
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.11",
-    "luxon": "^1.12.1"
+    "luxon": "^1.16.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
