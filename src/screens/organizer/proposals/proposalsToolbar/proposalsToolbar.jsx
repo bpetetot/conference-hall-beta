@@ -155,15 +155,6 @@ class ProposalToolbar extends Component {
             {deliberationActive && (
               <button
                 type="button"
-                onClick={() => onSendEmails(selection)}
-                disabled={isEmpty(selection)}
-              >
-                <IconLabel icon="fa fa-rocket" label="Send emails" />
-              </button>
-            )}
-            {deliberationActive && (
-              <button
-                type="button"
                 onClick={() => onAcceptProposals(selection)}
                 disabled={isEmpty(selection)}
               >
@@ -177,6 +168,15 @@ class ProposalToolbar extends Component {
                 disabled={isEmpty(selection)}
               >
                 <IconLabel icon="fa fa-close" label="Reject proposals" />
+              </button>
+            )}
+            {deliberationActive && (
+              <button
+                type="button"
+                onClick={() => onSendEmails(selection)}
+                disabled={isEmpty(selection)}
+              >
+                <IconLabel icon="fa fa-rocket" label="Send emails" />
               </button>
             )}
           </Dropdown>
