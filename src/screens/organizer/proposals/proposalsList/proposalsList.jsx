@@ -9,7 +9,12 @@ import ProposalInfo from './proposalInfo'
 import './proposalsList.css'
 
 const Proposals = ({
-  eventId, proposals, proposalsSelection, onSelect, onAddProposalToSelection, isMobile,
+  eventId,
+  proposals,
+  proposalsSelection,
+  onSelect,
+  onAddProposalToSelection,
+  isMobile,
 }) => (
   <List
     className="event-proposals"
@@ -21,14 +26,17 @@ const Proposals = ({
         subtitle={!isMobile && <ProposalSubtitle eventId={eventId} proposal={proposal} />}
         info={<ProposalInfo proposal={proposal} isMobile={isMobile} />}
         onSelect={() => onSelect(eventId, proposal.id)}
-        renderActions={() => (
-          <Checkbox
-            key={proposal.id}
-            onClick={() => onAddProposalToSelection(proposal.id)}
-            value={!!proposalsSelection.includes(proposal.id)}
-            disabled={proposal.emailStatus === 'delivered'}
-          />
-        )}
+        renderCheckbox={() => {
+          if (isMobile) return undefined
+          return (
+            <Checkbox
+              key={proposal.id}
+              onClick={() => onAddProposalToSelection(proposal.id)}
+              value={!!proposalsSelection.includes(proposal.id)}
+              disabled={proposal.emailStatus === 'delivered'}
+            />
+          )
+        }}
       />
     )}
   />
