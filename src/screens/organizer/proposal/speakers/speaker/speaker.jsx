@@ -10,7 +10,7 @@ import Markdown from 'components/markdown'
 import styles from './speaker.module.css'
 
 const Speaker = ({
-  uid, email, github, twitter, company, language, address, bio,
+  uid, email, github, twitter, company, language, address, bio, speakerReferences,
 }) => {
   let twitterUrl
   if (twitter) {
@@ -29,6 +29,12 @@ const Speaker = ({
         <IconLabel icon="fa fa-language" label={language} />
       </div>
       {bio && <Markdown source={bio} className={styles.bio} />}
+      {speakerReferences && (
+        <>
+          <h4>Speaker References</h4>
+          <Markdown source={speakerReferences} className={styles.bio} />
+        </>
+      )}
     </div>
   )
 }
@@ -42,6 +48,7 @@ Speaker.propTypes = {
   language: PropTypes.string,
   address: PropTypes.object,
   bio: PropTypes.string,
+  speakerReferences: PropTypes.string,
 }
 
 Speaker.defaultProps = {
@@ -52,6 +59,7 @@ Speaker.defaultProps = {
   language: undefined,
   address: undefined,
   bio: undefined,
+  speakerReferences: undefined,
 }
 
 export default Speaker
