@@ -11,8 +11,8 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
-    "doc": "docz dev",
-    "doc:build": "docz build"
+    "doc": "NODE_PATH=./src docz dev",
+    "doc:build": "NODE_PATH=./src docz build"
   },
   "dependencies": {
     "@k-ramel/react": "2.1.0",
@@ -61,6 +61,9 @@
     "react-scripts": "3.0.1",
     "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8"
+  },
+  "resolutions": {
+    "docz/**/webpack": "4.28.4"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
