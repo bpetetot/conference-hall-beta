@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import debounce from 'lodash/debounce'
+import isEmpty from 'lodash/isEmpty'
+
 import Checkbox from 'components/form/checkbox'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
@@ -68,6 +70,9 @@ class ProposalToolbar extends Component {
       deliberationActive,
       isExporting,
     } = this.props
+
+    const { checkAll } = this.state
+
     return (
       <div className={cn(styles.proposalsToolbar, 'no-print')}>
         <div className={styles.proposalsFilters}>
@@ -75,7 +80,7 @@ class ProposalToolbar extends Component {
             onClick={this.handleSelect}
             label="All pages"
             name="all-pages"
-            value={this.state.checkAll}
+            value={checkAll}
           />
           <input
             id="search"
@@ -135,10 +140,10 @@ class ProposalToolbar extends Component {
         <div className={styles.proposalsActions}>
           <Dropdown
             action={(
-              <Button secondary>
-                <IconLabel icon="fa fa-angle-down" label="Do..." />
+              <Button primary>
+                <IconLabel icon="fa fa-angle-down" label="Actions..." />
               </Button>
-)}
+            )}
           >
             <button type="button" onClick={onExportProposals} disabled={isExporting}>
               {isExporting ? (
@@ -147,18 +152,36 @@ class ProposalToolbar extends Component {
                 <IconLabel icon="fa fa-cloud-download" label="Export to JSON" />
               )}
             </button>
-            <button type="button" onClick={() => onSendEmails(selection)}>
-              <IconLabel icon="fa fa-rocket" label="Send emails" />
-            </button>
-            <button type="button" onClick={() => onAcceptProposals(selection)}>
-              <IconLabel icon="fa fa-check" label="Accept proposals" />
-            </button>
-            <button type="button" onClick={() => onRejectProposals(selection)}>
-              <IconLabel icon="fa fa-close" label="Reject proposals" />
-            </button>
+            {deliberationActive && (
+              <button
+                type="button"
+                onClick={() => onSendEmails(selection)}
+                disabled={isEmpty(selection)}
+              >
+                <IconLabel icon="fa fa-rocket" label="Send emails" />
+              </button>
+            )}
+            {deliberationActive && (
+              <button
+                type="button"
+                onClick={() => onAcceptProposals(selection)}
+                disabled={isEmpty(selection)}
+              >
+                <IconLabel icon="fa fa-check" label="Accept proposals" />
+              </button>
+            )}
+            {deliberationActive && (
+              <button
+                type="button"
+                onClick={() => onRejectProposals(selection)}
+                disabled={isEmpty(selection)}
+              >
+                <IconLabel icon="fa fa-close" label="Reject proposals" />
+              </button>
+            )}
           </Dropdown>
-          <Button type="button" secondary onClick={onRefresh}>
-            <IconLabel icon="fa fa-refresh" label=" " />
+          <Button type="button" primary onClick={onRefresh}>
+            <i className="fa fa-refresh" />
           </Button>
         </div>
       </div>
