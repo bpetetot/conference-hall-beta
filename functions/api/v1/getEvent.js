@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
           'comments',
           'language',
         ],
-        speaker: ['uid', 'displayName', 'bio', 'company', 'photoURL', 'twitter', 'github'],
+        speaker: ['uid', 'displayName', 'bio', 'speakerReferences', 'company', 'photoURL', 'twitter', 'github'],
       },
     )
 
