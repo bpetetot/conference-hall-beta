@@ -43,6 +43,8 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
 /* Send email to a selection of proposals */
 export const sendEmails = async (action, store, { router }) => {
   const { selection } = action.payload
+  if (!selection) return
+
   const eventId = router.getParam('eventId')
   for (let i = 0; i < selection.length; i += 1) {
     const proposal = store.data.proposals.get(selection[i])
@@ -57,26 +59,28 @@ export const sendEmails = async (action, store, { router }) => {
 /* reject several proposals */
 export const rejectProposals = async (action, store, { router }) => {
   const { selection } = action.payload
-  if (selection) {
-    const eventId = router.getParam('eventId')
-    for (let i = 0; i < selection.length; i += 1) {
-      const proposal = store.data.proposals.get(selection[i])
-      if (proposal.emailStatus !== 'sent') { // do not allow change of deliberationwhen email marked as sent
-        proposal.state = 'rejected'
-        firebase.updateProposal(eventId, proposal)
-      }
+  if (!selection) return
+
+  const eventId = router.getParam('eventId')
+  for (let i = 0; i < selection.length; i += 1) {
+    const proposal = store.data.proposals.get(selection[i])
+    if (proposal.emailStatus !== 'sent') { // do not allow change of deliberation when email marked as sent
+      proposal.state = 'rejected'
+      firebase.updateProposal(eventId, proposal)
     }
-    store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
   }
+  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
 }
 
 /* accept several proposals */
 export const acceptProposals = async (action, store, { router }) => {
   const { selection } = action.payload
+  if (!selection) return
+
   const eventId = router.getParam('eventId')
   for (let i = 0; i < selection.length; i += 1) {
     const proposal = store.data.proposals.get(selection[i])
-    if (proposal.emailStatus !== 'sent') { // do not allow change of deliberationwhen email marked as sent
+    if (proposal.emailStatus !== 'sent') { // do not allow change of deliberation when email marked as sent
       proposal.state = 'accepted'
       firebase.updateProposal(eventId, proposal)
     }
