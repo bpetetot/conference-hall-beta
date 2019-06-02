@@ -6,15 +6,7 @@ export default {
   wrapper: 'docs/app/wrapper',
   codeSandbox: false,
 
-  menu: [
-    'Home',
-    'Contributing',
-    'Installation',
-    'Components',
-    'APIs',
-    'Code of conduct',
-    'Changelog',
-  ],
+  menu: ['Home', 'Contributing', 'Installation', 'Components', 'APIs', 'Code of conduct'],
 
   themeConfig: {
     showPlaygroundEditor: true,
@@ -72,6 +64,8 @@ export default {
       },
     },
   },
+
+  filterComponents: files => files.filter(filepath => /[w-]*.(js|jsx|ts|tsx)$/.test(filepath)),
 
   modifyBundlerConfig: (config) => {
     config.module.rules.push({
