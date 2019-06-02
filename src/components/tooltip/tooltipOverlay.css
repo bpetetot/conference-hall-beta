@@ -1,4 +1,5 @@
 .cc-tooltip {
+  font-weight: 300;
   font-size: 1em;
   z-index: 100;
 }
@@ -48,7 +49,7 @@
 }
 
 .cc-tooltip .cc-tooltip-arrow  {
-  border-color: var(--primary-color);
+  border-color: var(--grey-color-dark);
   width: 0;
   height: 0;
   border-style: solid;
@@ -59,9 +60,8 @@
 .cc-tooltip .cc-tooltip-inner {
   margin: 5px;
   padding: .8em;
-  border: 1px solid var(--primary-color);
-  background-color: var(--background-color);
-  color: var(--primary-color);
+  border: 1px solid var(--grey-color-dark);
+  background-color: var(--grey-color-light);
   border-radius: .2em;
   max-width: 400px;
 }
