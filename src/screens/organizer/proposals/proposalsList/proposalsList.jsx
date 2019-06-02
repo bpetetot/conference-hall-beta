@@ -25,8 +25,6 @@ const Proposals = ({
           <Checkbox
             key={proposal.id}
             onClick={() => onAddProposalToSelection(proposal.id)}
-            label=""
-            name=""
             value={!!proposalsSelection.includes(proposal.id)}
             disabled={proposal.emailStatus === 'delivered'}
           />
