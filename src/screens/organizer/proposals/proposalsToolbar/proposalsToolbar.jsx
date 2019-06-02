@@ -32,12 +32,22 @@ class ProposalToolbar extends Component {
   constructor(props) {
     super(props)
     this.onChange = debounce(this.props.onChange, 200)
-    this.checkAll = props.selection.length
+  }
+
+  state = {
+    checkAll: this.props.selection.length,
   }
 
   debounceOnChange = (e) => {
     e.persist()
     this.onChange(e)
+  }
+
+  handleSelect = () => {
+    this.setState(
+      state => ({ checkAll: !state.checkAll }),
+      () => this.props.onSelectAll(this.state.checkAll),
+    )
   }
 
   render() {
@@ -57,16 +67,15 @@ class ProposalToolbar extends Component {
       selection,
       deliberationActive,
       isExporting,
-      onSelectAll,
     } = this.props
     return (
       <div className={cn(styles.proposalsToolbar, 'no-print')}>
         <div className={styles.proposalsFilters}>
           <Checkbox
-            onClick={() => { this.checkAll = !this.checkAll; onSelectAll(this.checkAll) }}
+            onClick={this.handleSelect}
             label="All pages"
             name="all-pages"
-            value={this.checkAll}
+            value={this.state.checkAll}
           />
           <input
             id="search"
@@ -124,7 +133,13 @@ class ProposalToolbar extends Component {
           </select>
         </div>
         <div className={styles.proposalsActions}>
-          <Dropdown action={<Button secondary><IconLabel icon="fa fa-angle-down" label="Do..." /></Button>}>
+          <Dropdown
+            action={(
+              <Button secondary>
+                <IconLabel icon="fa fa-angle-down" label="Do..." />
+              </Button>
+)}
+          >
             <button type="button" onClick={onExportProposals} disabled={isExporting}>
               {isExporting ? (
                 'Exporting...'
