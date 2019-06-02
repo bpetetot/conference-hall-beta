@@ -18,7 +18,6 @@ import {
 } from 'components/form'
 import { required } from 'components/form/validators'
 import './eventForm.css'
-import { Tooltip } from 'components/tooltip'
 
 const EventForm = ({
   isCreateForm, organizations, onSubmit, initialValues, submitting,
