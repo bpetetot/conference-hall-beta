@@ -4,9 +4,12 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/bpetetot/conference-hall.svg)](https://greenkeeper.io/)&nbsp;
 [![Gitter](https://badges.gitter.im/conference-hall.svg)](https://gitter.im/conference-hall)
 
-**[https://conference-hall.io](https://conference-hall.io)**
 
 **Conference Hall** is an opened SaaS platform to manage call for papers and speakers submissions for your conferences and meetups. Speaker writes a talk once and can submit it to every events of the platform.
+
+**Application:** **[https://conference-hall.io](https://conference-hall.io)**
+
+**Documentation:** **[https://contribute-conference-hall.netlify.com](https://contribute-conference-hall.netlify.com)**
 
 ## Features
 
@@ -37,6 +40,6 @@ Conference Hall is still in beta but already contains a large set of features.
 
 You want to contribute and make **Conference Hall** better, go there:
 
-**[https://dev.conference-hall.io](https://dev.conference-hall.io)**
+**[https://contribute-conference-hall.netlify.com](https://contribute-conference-hall.netlify.com)**
 
 

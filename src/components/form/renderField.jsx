@@ -9,12 +9,19 @@ import { DayPicker, DayRangePicker } from './dayPicker'
 import Label from './label'
 
 const renderField = component => ({
-  input, label, type, meta, placeholder, children, ...rest
+  input,
+  label,
+  tooltip,
+  type,
+  meta,
+  placeholder,
+  children,
+  ...rest
 }) => (
-  <Label name={input.name} label={label} error={meta.error}>
+  <Label name={input.name} label={label} tooltip={tooltip} error={meta.error}>
     {component === 'address' && <Address {...rest} {...input} autoComplete="nope" />}
     {component === 'input' && (
-      <input {...input} id={input.name} type={type} placeholder={placeholder} />
+      <input {...input} id={input.name} type={type || 'text'} placeholder={placeholder} />
     )}
     {component === 'select' && (
       <select {...input} id={input.name}>

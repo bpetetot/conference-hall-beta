@@ -4,12 +4,18 @@
   width: 100%;
 }
 
-.form-label > label {
+.form-label-label {
   overflow: hidden;
   text-overflow: ellipsis;
-  text-transform: uppercase;
   white-space: nowrap;
   min-width: 20%;
+  text-transform: uppercase;
+}
+
+.form-label-label .tooltip {
+  text-transform: none;
+  overflow: auto;
+  white-space: normal;
 }
 
 .form-label > div {
@@ -18,6 +24,10 @@
 
 .form-has-error > label {
   color: var(--error-color);
+}
+
+.form-label .tooltip {
+  margin-left: 0.5em;
 }
 
 .form-label .form-error {

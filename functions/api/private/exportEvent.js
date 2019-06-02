@@ -39,6 +39,7 @@ module.exports = async (req, res) => {
         'uid',
         'displayName',
         'bio',
+        'speakerReferences',
         'company',
         'photoURL',
         'twitter',
