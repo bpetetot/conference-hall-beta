@@ -11,8 +11,8 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
-    "doc": "docz dev",
-    "doc:build": "docz build"
+    "doc": "NODE_PATH=./src docz dev",
+    "doc:build": "NODE_PATH=./src docz build"
   },
   "dependencies": {
     "@k-ramel/react": "2.1.0",
@@ -58,9 +58,12 @@
     "eslint-plugin-react": "^7.12.4",
     "firebase-tools": "^6.10.0",
     "prettier": "^1.17.1",
-    "react-scripts": "2.1.8",
+    "react-scripts": "3.0.1",
     "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8"
+  },
+  "resolutions": {
+    "docz/**/webpack": "4.28.4"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -112,12 +115,19 @@
       "maxSize": "20 kB"
     }
   ],
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not ie <= 11",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "jest": {
     "snapshotSerializers": [
       "<rootDir>/node_modules/enzyme-to-json/serializer"

@@ -1,4 +1,4 @@
-import 'react-datepicker/dist/react-datepicker-cssmodules.css'
+import 'react-datepicker/dist/react-datepicker.css'
 import './reactPickerCustom.css'
 
 export { default as DayPicker } from './dayPicker'
