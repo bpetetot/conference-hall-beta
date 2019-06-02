@@ -76,12 +76,10 @@ const EventForm = ({
         )}
         <Field name="website" label="Website" type="text" component={input} />
         <Field name="contact" label="Conference mailing list" type="email" component={input} />
-        <Tooltip tooltip="Emails to cc deliberation, speaker's confirmation..." placement="left">
-          <Field name="emails" label="Send email to" component={Label}>
-            <Field name="emailcontact" label="conference mailing list" component={toggle} truthy="true" falsy="false" />
-            <Field name="emailorga" label="private orgas' emails" component={toggle} truthy="true" falsy="false" />
-          </Field>
-        </Tooltip>
+        <Field name="emails" label="Send email to" component={Label} tooltip="Emails to cc deliberation, speaker's confirmation...">
+          <Field name="emailcontact" label="conference mailing list" component={toggle} truthy="true" falsy="false" />
+          <Field name="emailorga" label="private orgas' emails" component={toggle} truthy="true" falsy="false" />
+        </Field>
         <SubmitButton
           handleSubmit={handleSubmit}
           pristine={pristine}
