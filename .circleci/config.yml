@@ -2,7 +2,7 @@ version: 2
 jobs:
   lint:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - restore_cache:
@@ -19,7 +19,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - restore_cache:
@@ -48,7 +48,7 @@ jobs:
 
   build:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - restore_cache:
@@ -69,8 +69,25 @@ jobs:
 
   deploy-dev:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:10.16.0
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run:
+          name: Install node dependencies
+          command: |
+            yarn
+            cd functions
+            yarn
+      - save_cache:
+          paths:
+            - node_modules
+            - functions/node_modules
+            - ~/.cache/yarn
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Set environment variables
           command: |
@@ -81,6 +98,17 @@ jobs:
             echo 'export REACT_APP_GOOGLE_ANALYTICS_ID=""' >> $BASH_ENV
             echo 'export PUBLIC_URL="https://$DEV_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
             echo 'export FIREBASE_DEPLOY_TOKEN="$DEV_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV
+      - run:
+          name: Build the app
+          command: yarn build
+      - run:
+          name: Deploy to Firebase
+          command: ./node_modules/.bin/firebase deploy --project=$DEV_FIREBASE_PROJECT_ID --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
+
+  deploy-prod:
+    docker:
+      - image: circleci/node:10.16.0
+    steps:
       - checkout
       - restore_cache:
           keys:
@@ -98,17 +126,6 @@ jobs:
             - functions/node_modules
             - ~/.cache/yarn
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Build the app
-          command: yarn build
-      - run:
-          name: Deploy to Firebase
-          command: ./node_modules/.bin/firebase deploy --project=$DEV_FIREBASE_PROJECT_ID --token=$FIREBASE_DEPLOY_TOKEN --non-interactive
-
-  deploy-prod:
-    docker:
-      - image: circleci/node:8
-    steps:
       - run:
           name: Set environment variables
           command: |
@@ -119,23 +136,6 @@ jobs:
             echo 'export REACT_APP_GOOGLE_ANALYTICS_ID="$PROD_GOOGLE_ANALYTICS_ID"' >> $BASH_ENV
             echo 'export PUBLIC_URL="https://$PROD_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
             echo 'export FIREBASE_DEPLOY_TOKEN="$PROD_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-      - run:
-          name: Install node dependencies
-          command: |
-            yarn
-            cd functions
-            yarn
-      - save_cache:
-          paths:
-            - node_modules
-            - functions/node_modules
-            - ~/.cache/yarn
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Build app
           command: yarn build
