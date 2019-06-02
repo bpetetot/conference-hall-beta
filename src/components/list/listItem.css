@@ -29,6 +29,7 @@
 .list-item .list-item-info {
   display: flex;
   flex-grow: 1;
+  justify-content: flex-end;
 }
 
 .list-item .list-item-info > * {
