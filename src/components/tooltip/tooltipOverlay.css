@@ -1,5 +1,5 @@
 .cc-tooltip {
-  font-size: .8em;
+  font-size: 1em;
   z-index: 100;
 }
 
@@ -59,7 +59,9 @@
 .cc-tooltip .cc-tooltip-inner {
   margin: 5px;
   padding: .8em;
-  background-color: var(--primary-color);
-  color: var(--primary-color-font);
+  border: 1px solid var(--primary-color);
+  background-color: var(--background-color);
+  color: var(--primary-color);
   border-radius: .2em;
+  max-width: 400px;
 }

@@ -2,16 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import './label.css'
 import Tooltip from 'components/tooltip/tooltip'
+import './label.css'
 
 const Label = ({
-  name, label, title, className, children, error, classNameInput,
+  name, label, tooltip, className, children, error, classNameInput,
 }) => (
   <div className={cn('form-label', { 'form-has-error': !!error }, className)}>
     {label && (
-      <label htmlFor={name}>
-        {title ? <Tooltip tooltip={title} placement="bottom">{label}</Tooltip> : label}
+      <label className="form-label-label" htmlFor={name}>
+        <span>{label}</span>
+        {tooltip && (
+          <Tooltip className="tooltip" tooltip={tooltip} inline>
+            <span>
+              <i className="fa fa-info-circle" />
+            </span>
+          </Tooltip>
+        )}
       </label>
     )}
     <div className={classNameInput}>
@@ -23,7 +30,7 @@ const Label = ({
 
 Label.propTypes = {
   label: PropTypes.string,
-  title: PropTypes.string,
+  tooltip: PropTypes.string,
   children: PropTypes.node.isRequired,
   name: PropTypes.string,
   error: PropTypes.string,
@@ -33,7 +40,7 @@ Label.propTypes = {
 
 Label.defaultProps = {
   label: undefined,
-  title: undefined,
+  tooltip: undefined,
   name: undefined,
   error: undefined,
   className: undefined,
