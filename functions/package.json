@@ -3,7 +3,7 @@
   "description": "Cloud Functions for Firebase",
   "private": true,
   "engines": {
-    "node": "10"
+    "node": "^8.13.0"
   },
   "scripts": {
     "api": "firebase serve --only hosting,functions",
