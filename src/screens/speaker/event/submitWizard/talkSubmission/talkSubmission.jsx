@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 
@@ -33,8 +33,6 @@ const TalkSubmission = ({
               type="error"
             />
           </div>
-
-
         )}
         <Titlebar icon="fa fa-microphone" title={talk.title}>
           {update && (
