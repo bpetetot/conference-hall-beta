@@ -40,10 +40,100 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
   }
 }
 
+/* Send email to a selection of proposals */
+export const sendEmails = async (action, store, { router }) => {
+  const { selection } = action.payload
+  if (!selection) return
+
+  const eventId = router.getParam('eventId')
+  for (let i = 0; i < selection.length; i += 1) {
+    const proposal = store.data.proposals.get(selection[i])
+    if (proposal.state === 'accepted' || proposal.state === 'rejected') {
+      proposal.emailStatus = 'sending'
+      firebase.updateProposal(eventId, proposal)
+    }
+  }
+  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+}
+
+/* reject several proposals */
+export const rejectProposals = async (action, store, { router }) => {
+  const { selection } = action.payload
+  if (!selection) return
+
+  const eventId = router.getParam('eventId')
+  for (let i = 0; i < selection.length; i += 1) {
+    const proposal = store.data.proposals.get(selection[i])
+    if (proposal.emailStatus !== 'sent') { // do not allow change of deliberation when email marked as sent
+      proposal.state = 'rejected'
+      firebase.updateProposal(eventId, proposal)
+    }
+  }
+  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+}
+
+/* accept several proposals */
+export const acceptProposals = async (action, store, { router }) => {
+  const { selection } = action.payload
+  if (!selection) return
+
+  const eventId = router.getParam('eventId')
+  for (let i = 0; i < selection.length; i += 1) {
+    const proposal = store.data.proposals.get(selection[i])
+    if (proposal.emailStatus !== 'sent') { // do not allow change of deliberation when email marked as sent
+      proposal.state = 'accepted'
+      firebase.updateProposal(eventId, proposal)
+    }
+  }
+  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+}
+
+/* select a proposal to send email */
+export const addProposalToSelection = async (action, store) => {
+  const proposalsSelection = store.ui.organizer.proposalsSelection.get()
+  const proposals = proposalsSelection.items
+  const { proposalId } = action.payload
+  if (proposals.includes(proposalId)) {
+    store.ui.organizer.proposalsSelection.update({
+      count: proposals.length - 1,
+      items: proposals.filter(val => val !== proposalId),
+    })
+  } else {
+    store.ui.organizer.proposalsSelection.update({
+      count: proposals.length + 1,
+      items: [...proposals, proposalId],
+    })
+  }
+}
+
+/* select a all proposal to send email */
+export const selectAllProposal = async (action, store) => {
+  const isChecked = action.payload.checkAll
+  if (isChecked) {
+    const proposalKeys = store.data.proposals.getKeys()
+    const emailNotSent = proposalKeys.filter(val => store.data.proposals.get(val).emailStatus !== 'delivered'
+       && store.data.proposals.get(val).emailStatus !== 'sending')
+    store.ui.organizer.proposalsSelection.update({
+      count: emailNotSent.length,
+      items: emailNotSent,
+    })
+  } else { // deselect all
+    store.ui.organizer.proposalsSelection.update({
+      count: 0,
+      items: [],
+    })
+  }
+  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+}
+
 /* load proposals */
 export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()
-  store.ui.organizer.proposalsPaging.update({ page: 1 })
+  let currentPage = store.ui.organizer.proposalsPaging.get()
+  if (!currentPage) {
+    currentPage = { page: 1 }
+  }
+  store.ui.organizer.proposalsPaging.update(currentPage)
 
   const eventId = router.getParam('eventId')
   const { uid } = store.auth.get()

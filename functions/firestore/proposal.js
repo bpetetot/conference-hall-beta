@@ -19,6 +19,14 @@ const addProposal = (eventId, proposal) => {
       createTimestamp: now,
     })
 }
+const getProposal = (eventId, proposalId) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('proposals')
+  .doc(proposalId)
+  .get()
+  .then(doc => doc.data())
 
 const updateProposal = (eventId, proposal) => {
   const updatedProposal = omit(proposal, 'submissions')
@@ -100,4 +108,5 @@ module.exports = {
   updateProposal,
   removeProposal,
   getEventProposals,
+  getProposal,
 }
