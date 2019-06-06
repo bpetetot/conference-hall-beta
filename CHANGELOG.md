@@ -1,5 +1,26 @@
 # Changelog
 
+<a name="0.12.0"></a>
+## 0.12.0 (2019-06-02)
+
+### Added
+
+- ✨ add speakers references on the profile  ([#567](https://github.com/bpetetot/conference-hall/issues/567)) [[9bdf487](https://github.com/bpetetot/conference-hall/commit/9bdf48734a0da55cd8e77e6486292776a3cff275)]
+
+### Changed
+
+- ⬆️ upgrade babel ([#561](https://github.com/bpetetot/conference-hall/issues/561)) [[f2442a0](https://github.com/bpetetot/conference-hall/commit/f2442a032ab085de2c7c08cd8a390a250ee7bef2)]
+- ⬆️ upgrade minor/patched dependencies ([#576](https://github.com/bpetetot/conference-hall/issues/576)) [[a6982c8](https://github.com/bpetetot/conference-hall/commit/a6982c8dd7a4cab4ca5cc1ae0925ba06a8d460a4)]
+- ⬆️ upgrade to node 10, react-final-form and react-sizes ([#577](https://github.com/bpetetot/conference-hall/issues/577)) [[bf7cb24](https://github.com/bpetetot/conference-hall/commit/bf7cb240c5c392d1049608012dc052b323fe01e0)]
+- ⬆️ upgrade docz ([#578](https://github.com/bpetetot/conference-hall/issues/578)) [[79e332b](https://github.com/bpetetot/conference-hall/commit/79e332b3a525b25b4bd9f0873e932f394d0368b3)]
+- ⬆️ upgrade firebase-admin, path-to-regex, nyc ([#579](https://github.com/bpetetot/conference-hall/issues/579)) [[4b429d0](https://github.com/bpetetot/conference-hall/commit/4b429d0b4b9827b97ae9959c3270d1f443f81f61)]
+- ⬆️ upgrade react-script ([#580](https://github.com/bpetetot/conference-hall/issues/580)) [[8dca74d](https://github.com/bpetetot/conference-hall/commit/8dca74dd648dffcebc2d9056810a6694c2d26944)]
+
+### Fixed
+
+- 🐛 remove unsued id in deliberation dropdown ([#553](https://github.com/bpetetot/conference-hall/issues/553)) [[8dae6cb](https://github.com/bpetetot/conference-hall/commit/8dae6cb59a79a820d620ba50e3fc9afd21c9b546)]
+
+
 <a name="0.11.0"></a>
 ## 0.11.0 (2019-04-30)
 
