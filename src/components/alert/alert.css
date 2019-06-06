@@ -1,7 +1,6 @@
 .alert {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
     color: black;
     padding: 13px 13px 13px 0;
