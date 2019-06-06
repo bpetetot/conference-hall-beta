@@ -21,7 +21,8 @@ const Alert = ({
         { 'alert-icon-info': type === 'info' },
         { 'alert-icon-error': type === 'error' },
         { 'alert-icon-sucess': type === 'success' },
-        { 'alert-icon-warning': type === 'warning' })}>
+        { 'alert-icon-warning': type === 'warning' })}
+      >
         <span>
           <i className={icon} />
         </span>
