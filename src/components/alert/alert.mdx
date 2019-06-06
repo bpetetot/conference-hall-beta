@@ -23,7 +23,7 @@ If no `type` prop given a default info type is given.
 ## With action button
 
 <Playground className="horizontal-separator">
-  <Alert title="An error occurs" type="success" actionButtons={(
+  <Alert title="Success" type="success" actionButtons={() => (
     <Fragment>
       <Button onClick={confirm} primary>ok</Button>
       <Button onClick={cancel} primary error>Cancel</Button>

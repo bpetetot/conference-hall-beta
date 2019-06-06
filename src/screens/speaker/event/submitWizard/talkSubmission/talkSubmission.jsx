@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 
 import Field from 'components/form/field'
 import Titlebar from 'components/titlebar'
 import {
-  input, markdownInput, radio, SubmitButton, RadioGroup,
+  markdownInput, radio, SubmitButton, RadioGroup,
 } from 'components/form'
+import Alert from 'components/alert'
 import isEmpty from 'lodash/isEmpty'
 
 import './talkSubmission.css'
@@ -26,7 +27,14 @@ const TalkSubmission = ({
     {({ handleSubmit }) => (
       <form className="talk-submission">
         {!isEmpty(error) && (
-          <div>{error} </div>
+          <div className="form-error">
+            <Alert
+              title={error}
+              type="error"
+            />
+          </div>
+
+
         )}
         <Titlebar icon="fa fa-microphone" title={talk.title}>
           {update && (

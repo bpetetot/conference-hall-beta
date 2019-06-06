@@ -1,14 +1,4 @@
 /* eslint-env jest */
-// import snap from 'tests/snapshot'
-// import Alert from './index.js'
-//
-// const snapshot = props => snap(Alert)({ ...props })
-//
-// describe('components/alert', () => {
-//   //it('should not render when no props', snapshot({}))
-//   it('should render with a title', snapshot({ title: 'boo' }))
-// })
-/* eslint-env jest */
 import React, { Fragment } from 'react'
 import { shallow } from 'enzyme'
 import Button from 'components/button'
@@ -36,18 +26,19 @@ describe('components/alert', () => {
     expect(wrapper.find('i.fa-check-circle').exists()).toBeTruthy()
   })
   it('should render with action buttons', () => {
+    const comp = () => (
+      <Fragment>
+        <Button primary>
+          I confirm my venue
+        </Button>
+        <Button primary error>
+          I cancel my venue
+        </Button>
+      </Fragment>
+    )
     const wrapper = shallow(<Alert
       title="boo"
-      actionButtons={(
-        <Fragment>
-          <Button primary>
-            I confirm my venue
-          </Button>
-          <Button primary error>
-            I cancel my venue
-          </Button>
-        </Fragment>
-    )}
+      actionButtons={comp}
     />)
     expect(wrapper).toMatchSnapshot()
   })

@@ -20,9 +20,7 @@ exports[`components/alert should render with a title only 1`] = `
   </span>
   <div
     className="actions"
-  >
-    <Component />
-  </div>
+  />
 </div>
 `;
 
