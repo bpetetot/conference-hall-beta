@@ -19,7 +19,15 @@
     margin: -14px 0 -14px 0;
     padding: 16px;
     font-size: 1.2em;
+    color: #ffffff;
+    width: 50px;
+    text-align: center;
 }
+
+.alert-icon > i {
+    opacity: 0.6;
+}
+
 .alert-icon-warning {
     background-color: var(--warning-color);
 }

@@ -20,12 +20,10 @@ const Alert = ({
       <span className={cn(className, 'alert-icon',
         { 'alert-icon-info': type === 'info' },
         { 'alert-icon-error': type === 'error' },
-        { 'alert-icon-sucess': type === 'success' },
+        { 'alert-icon-success': type === 'success' },
         { 'alert-icon-warning': type === 'warning' })}
       >
-        <span>
-          <i className={icon} />
-        </span>
+        <i className={icon} />
       </span>
       <span className="alert-title">
         {title}

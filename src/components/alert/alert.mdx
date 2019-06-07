@@ -3,8 +3,7 @@ name: Alert
 route: /components/alert
 menu: Components
 ---
-import { Fragment } from 'react'
-import Button from 'components/button'
+import Button from '../button'
 import { Playground, Props } from 'docz'
 import Alert from './alert'
 
@@ -12,7 +11,7 @@ import Alert from './alert'
 
 ## Basic usage
 
-<Playground className="horizontal-separator">
+<Playground className="vertical-separator">
   <Alert title="Check your email" type="info" />
   <Alert title="An error occurs" type="error" />
   <Alert title="Warning" type="warning" />
@@ -23,13 +22,13 @@ If no `type` prop given a default info type is given.
 
 ## With action button
 
-<Playground className="horizontal-separator">
+<Playground>
   <Alert title="Success" type="success" actionButtons={(
-    <Fragment>
-      <Button onClick={confirm} primary>ok</Button>
-      <Button onClick={cancel} primary error>Cancel</Button>
-    </Fragment>
+      <Button onClick={console.log} primary>confirm</Button>
   )}/>
 </Playground>
 
-Where `confirm` and `cancel` are the action functions of your own.
+## Properties
+
+<Props of={Alert} />
+
