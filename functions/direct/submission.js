@@ -68,7 +68,7 @@ const submitTalk = async ({
   if (event.maxProposals && proposals.length >= event.maxProposals && !isSubmitted(talk, eventId)) {
     throw new functions.https.HttpsError(
       'failed-precondition',
-      'Max number of submitted talks',
+      `Max number of submitted talks. ${event.name} limits at ${event.maxProposals} submissions per user. Please consider unsubmitting for a wise selection`,
     )
   }
   const submittedTalk = omit(talk, ['createTimestamp', 'updateTimestamp', 'submissions'])
