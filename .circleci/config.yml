@@ -55,7 +55,11 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-      - run: yarn
+      - run:
+          name: dependencies and rebuild
+          command:  |
+            yarn
+            npm rebuild
       - save_cache:
           paths:
             - node_modules
