@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.13.1"></a>
+## 0.13.1 (2019-06-07)
+
+### Fixed
+
+- 🐛 loading infinite after event creation ([#586](https://github.com/bpetetot/conference-hall/issues/586)) [[310a38a](https://github.com/bpetetot/conference-hall/commit/310a38a7de5c042a93386e437cc0fcf8f4f16107)]
+
+
 <a name="0.13.0"></a>
 ## 0.13.0 (2019-06-07)
 
