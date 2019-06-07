@@ -74,13 +74,13 @@ describe('Submission', () => {
   it('should add a proposal when the submitted talk hasn\'t been submitted already', async () => {
     // mock addProposal
     const setProposalStub = sinon.stub()
-    collectionProposalStub.withArgs('proposals').returns({ doc: docProposalStub })
+    collectionProposalStub.withArgs('proposals').returns({ doc: docProposalStub,  get: () => ({ docs: { map: () => ({ filter: () => {} }) } }) })
     docProposalStub.withArgs(talk.id).returns({ set: setProposalStub })
     setProposalStub.returns(() => {})
 
     const submitTalkWrapped = test.wrap(submission.submitTalk)
-    await submitTalkWrapped({ eventId, talk })
-    sinon.assert.match(docEventStub.calledTwice, true)
+    await submitTalkWrapped({ eventId, talk }, { auth: { id: 1 } })
+    sinon.assert.match(docEventStub.calledThrice, true)
     sinon.assert.match(updateTalkStub.calledOnce, true)
     sinon.assert.match(setProposalStub.calledOnce, true)
   })
@@ -90,13 +90,13 @@ describe('Submission', () => {
     talk.submissions = submissionsObject
     // mock updateProposal
     const updateProposalStub = sinon.stub()
-    collectionProposalStub.withArgs('proposals').returns({ doc: docProposalStub })
+    collectionProposalStub.withArgs('proposals').returns({ doc: docProposalStub, get: () => ({ docs: { map: () => ({ filter: () => {} }) } }) })
     docProposalStub.withArgs(talk.id).returns({ update: updateProposalStub })
     updateProposalStub.returns(() => {})
 
     const submitTalkWrapped = test.wrap(submission.submitTalk)
-    await submitTalkWrapped({ eventId, talk })
-    sinon.assert.match(docEventStub.calledTwice, true)
+    await submitTalkWrapped({ eventId, talk }, { auth: { id: 1 } })
+    sinon.assert.match(docEventStub.calledThrice, true)
     sinon.assert.match(updateTalkStub.calledOnce, true)
     sinon.assert.match(updateProposalStub.called, true)
   })
