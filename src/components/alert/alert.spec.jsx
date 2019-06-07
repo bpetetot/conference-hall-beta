@@ -26,19 +26,18 @@ describe('components/alert', () => {
     expect(wrapper.find('i.fa-check-circle').exists()).toBeTruthy()
   })
   it('should render with action buttons', () => {
-    const comp = () => (
-      <Fragment>
-        <Button primary>
-          I confirm my venue
-        </Button>
-        <Button primary error>
-          I cancel my venue
-        </Button>
-      </Fragment>
-    )
     const wrapper = shallow(<Alert
       title="boo"
-      actionButtons={comp}
+      actionButtons={(
+        <Fragment>
+          <Button primary>
+            I confirm my venue
+          </Button>
+          <Button primary error>
+            I cancel my venue
+          </Button>
+        </Fragment>
+      )}
     />)
     expect(wrapper).toMatchSnapshot()
   })

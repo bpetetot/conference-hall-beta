@@ -14,7 +14,7 @@ const Notification = ({
       type="info"
       className={className}
       title={title}
-      actionButtons={() => (
+      actionButtons={(
         <Fragment>
           <Button onClick={onConfirm} primary>
             I confirm my presence

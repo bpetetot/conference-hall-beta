@@ -31,7 +31,7 @@ const Alert = ({
         {title}
       </span>
       <div className="actions">
-        {actionButtons()}
+        {actionButtons}
       </div>
     </div>
   )
@@ -40,14 +40,14 @@ const Alert = ({
 Alert.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['info', 'error', 'warning', 'success']),
-  actionButtons: PropTypes.func,
+  actionButtons: PropTypes.node,
   className: PropTypes.string,
 }
 
 Alert.defaultProps = {
   className: undefined,
   type: 'info',
-  actionButtons: () => {},
+  actionButtons: undefined,
 }
 
 export default Alert
