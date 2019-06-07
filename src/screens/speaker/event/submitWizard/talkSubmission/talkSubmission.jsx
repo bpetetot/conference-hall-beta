@@ -26,14 +26,6 @@ const TalkSubmission = ({
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit }) => (
       <form className="talk-submission">
-        {!isEmpty(error) && (
-          <div className="form-error">
-            <Alert
-              title={error}
-              type="error"
-            />
-          </div>
-        )}
         <Titlebar icon="fa fa-microphone" title={talk.title}>
           {update && (
             <SubmitButton
@@ -49,6 +41,14 @@ const TalkSubmission = ({
             {update ? 'Update submission' : `Submit to ${event.name}`}
           </SubmitButton>
         </Titlebar>
+        {!isEmpty(error) && (
+          <div className="form-error">
+            <Alert
+              title={error}
+              type="error"
+            />
+          </div>
+        )}
         <div className="submit-talk-form card">
           {!isEmpty(event.categories) && (
             <RadioGroup name="categories" label="Talk categories" inline>
