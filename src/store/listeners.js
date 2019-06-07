@@ -63,6 +63,7 @@ export default [
   when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),
   when('@@ui/GO_TO_SELECT_SUBMISSION')(submissions.openSelectSubmission),
   when('@@ui/ON_SUBMIT_TALK_TO_EVENT')(submissions.submitTalkToEvent),
+  when('@@ui/ON_SUBMIT_TALK_TO_EVENT_ERROR')(submissions.errorInSubmitTalkToEvent),
   when('@@ui/ON_UNSUBMIT_TALK_FROM_EVENT')(submissions.unsubmitTalkFromEvent),
   /* proposals */
   when('@@ui/ON_LOAD_PROPOSAL')(proposals.getProposal),

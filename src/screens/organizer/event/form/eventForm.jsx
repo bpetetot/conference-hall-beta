@@ -73,6 +73,7 @@ const EventForm = ({
         <Field name="conferenceDates" label="Conference date" component={dayRangePicker} />
         )}
         <Field name="website" label="Website" type="text" component={input} />
+        <Field name="maxProposals" label="Max proposals" type="text" component={input} />
         <Field name="contact" label="Email contact" type="email" component={input} />
         <SubmitButton
           handleSubmit={handleSubmit}

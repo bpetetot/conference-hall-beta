@@ -8,7 +8,12 @@ const { flow, unset } = require('immutadot')
 const { getUser } = require('../firestore/user')
 const { getEvent } = require('../firestore/event')
 const { updateTalk } = require('../firestore/talk')
-const { addProposal, updateProposal, removeProposal } = require('../firestore/proposal')
+const {
+  addProposal,
+  updateProposal,
+  removeProposal,
+  getEventUserProposals,
+} = require('../firestore/proposal')
 
 const isSubmitted = (talk, eventId) => {
   if (talk && talk.submissions) {
@@ -58,7 +63,14 @@ const submitTalk = async ({
       "Can't submit, CFP is not opened anymore.",
     )
   }
-
+  // check limit of proposals when creating a new submission
+  const proposals = await getEventUserProposals(eventId, context.auth.uid)
+  if (event.maxProposals && proposals.length >= event.maxProposals && !isSubmitted(talk, eventId)) {
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      'Max number of submitted talks',
+    )
+  }
   const submittedTalk = omit(talk, ['createTimestamp', 'updateTimestamp', 'submissions'])
 
   await updateTalk(submittedTalk.id, { [`submissions.${eventId}`]: submittedTalk })

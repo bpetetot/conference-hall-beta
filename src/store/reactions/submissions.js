@@ -12,6 +12,11 @@ export const openEventSubmission = (action, store, { router }) => {
   router.push('speaker-event-submit-wizard', { eventId })
 }
 
+export const errorInSubmitTalkToEvent = async (action, store) => {
+  store.ui.loaders.update({ isTalkSubmitting: false })
+  store.ui.speaker.submission.update({ error: action.payload.error })
+}
+
 export const submitTalkToEvent = async (action, store) => {
   const { talkId, eventId, data } = action.payload
   const talk = store.data.talks.get(talkId)
@@ -28,7 +33,7 @@ export const submitTalkToEvent = async (action, store) => {
     store.ui.speaker.submission.update({ currentStep: currentStep + 1 })
     store.ui.loaders.update({ isTalkSubmitting: false })
   } catch (e) {
-    store.ui.loaders.update({ isTalkSubmitting: false })
+    store.dispatch({ type: '@@ui/ON_SUBMIT_TALK_TO_EVENT_ERROR', payload: { talkId, eventId, error: e.message } })
     console.error(e.message) // eslint-disable-line no-console
   }
 }

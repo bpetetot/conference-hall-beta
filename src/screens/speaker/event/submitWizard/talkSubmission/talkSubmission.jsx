@@ -5,7 +5,7 @@ import { Form } from 'react-final-form'
 import Field from 'components/form/field'
 import Titlebar from 'components/titlebar'
 import {
-  markdownInput, radio, SubmitButton, RadioGroup,
+  input, markdownInput, radio, SubmitButton, RadioGroup,
 } from 'components/form'
 import isEmpty from 'lodash/isEmpty'
 
@@ -13,6 +13,7 @@ import './talkSubmission.css'
 
 const TalkSubmission = ({
   talk,
+  error,
   event,
   update,
   onSubmit,
@@ -24,6 +25,9 @@ const TalkSubmission = ({
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit }) => (
       <form className="talk-submission">
+        {!isEmpty(error) && (
+          <div>{error} </div>
+        )}
         <Titlebar icon="fa fa-microphone" title={talk.title}>
           {update && (
             <SubmitButton
@@ -78,6 +82,7 @@ const TalkSubmission = ({
 TalkSubmission.propTypes = {
   update: PropTypes.bool,
   talk: PropTypes.objectOf(PropTypes.any),
+  error: PropTypes.string,
   event: PropTypes.objectOf(PropTypes.any),
   onSubmit: PropTypes.func.isRequired,
   unsubmitTalk: PropTypes.func.isRequired,
@@ -88,6 +93,7 @@ TalkSubmission.propTypes = {
 
 TalkSubmission.defaultProps = {
   update: false,
+  error: undefined,
   talk: {},
   event: {},
   initialValues: undefined,

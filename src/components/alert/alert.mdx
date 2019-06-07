@@ -1,0 +1,34 @@
+---
+name: Alert
+route: /components/alert
+menu: Components
+---
+
+import { Playground, Props } from 'docz'
+import Alert from './alert'
+
+# Alert
+
+## Basic usage
+
+<Playground className="horizontal-separator">
+  <Alert title="Check your email" type="info" />
+  <Alert title="An error occurs" type="error" />
+  <Alert title="Warning" type="warning" />
+  <Alert title="Done it" type="success" />
+</Playground>
+
+If no `type` prop given a default info type is given.
+
+## With action button
+
+<Playground className="horizontal-separator">
+  <Alert title="An error occurs" type="success" actionButtons={(
+    <Fragment>
+      <Button onClick={confirm} primary>ok</Button>
+      <Button onClick={cancel} primary error>Cancel</Button>
+    </Fragment>
+  )}/>
+</Playground>
+
+Where `confirm` and `cancel` are the action functions of your own.
