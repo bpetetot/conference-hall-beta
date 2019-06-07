@@ -27,7 +27,7 @@ export class DayPicker extends React.Component {
         id={id}
         selected={date}
         onChange={this.onDateChange}
-        dateFormat="MMMM do YYYY"
+        dateFormat="MMMM do yyyy"
         placeholderText="Date"
         withPortal={isMobile || isTablet}
         calendarClassName="day-picker-custom"
