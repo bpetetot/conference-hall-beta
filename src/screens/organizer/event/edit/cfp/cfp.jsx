@@ -5,7 +5,7 @@ import arrayMutators from 'final-form-arrays'
 
 import Field from 'components/form/field'
 import {
-  dayPicker, dayRangePicker, Label, SubmitButton, toggle,
+  input, dayPicker, dayRangePicker, Label, SubmitButton, toggle,
 } from 'components/form'
 import CategoriesField from './categories'
 import FormatsField from './formats'
@@ -23,6 +23,9 @@ const CFPForm = ({
         )}
         {type === 'conference' && (
           <Field name="deliberationDate" label="Deliberation date" component={dayPicker} />
+        )}
+        {type === 'conference' && (
+          <Field name="maxProposals" label="Max proposals" type="number" component={input} />
         )}
         {type === 'meetup' && (
           <Field name="cfpOpened" label="Open CFP" type="checkbox" component={toggle} />
