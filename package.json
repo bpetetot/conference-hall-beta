@@ -12,8 +12,7 @@
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
     "doc": "NODE_PATH=./src docz dev",
-    "doc:build": "NODE_PATH=./src docz build",
-    "changelog:update": "gitmoji-changelog"
+    "doc:build": "NODE_PATH=./src docz build"
   },
   "dependencies": {
     "@k-ramel/react": "2.1.0",
@@ -58,7 +57,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "firebase-tools": "^6.10.0",
-    "gitmoji-changelog": "^1.1.0",
     "prettier": "^1.17.1",
     "react-scripts": "3.0.1",
     "react-test-renderer": "^16.8.6",

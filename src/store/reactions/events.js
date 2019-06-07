@@ -15,6 +15,7 @@ export const createEvent = async (action, store, { router }) => {
   const ref = await eventCrud.create(event)
   store.ui.loaders.update({ isEventSaving: false })
 
+  store.data.events.add({ id: ref.id, ...event })
   router.push('organizer-event-page', { eventId: ref.id })
 }
 
