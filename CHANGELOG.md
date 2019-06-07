@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.14.0"></a>
+## 0.14.0 (2019-06-07)
+
+### Added
+
+- ✨ set max number of proposals by speaker ([#583](https://github.com/bpetetot/conference-hall/issues/583)) [[9a2c1f1](https://github.com/bpetetot/conference-hall/commit/9a2c1f11e174003a7ab94f1e6d2b594edc7d0f63)]
+
+
 <a name="0.13.2"></a>
 ## 0.13.2 (2019-06-07)
 
