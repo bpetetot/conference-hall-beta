@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="0.13.0"></a>
+## 0.13.0 (2019-06-07)
+
+### Added
+
+- ✨ split deliberation decision from email sending [[6105c54](https://github.com/bpetetot/conference-hall/commit/6105c546ea38e62649ec0fb2b0fa48dc8173e5ad)]
+
+### Fixed
+
+- 🐛 workaround GCF env variable not set in node10 ([#582](https://github.com/bpetetot/conference-hall/issues/582)) [[6b29e40](https://github.com/bpetetot/conference-hall/commit/6b29e40e5eca9b0f88cb66a2bbb3e8e0ec5d7253)]
+- 💚 use node 8 in all circle ci images ([#585](https://github.com/bpetetot/conference-hall/issues/585)) [[6a4bb05](https://github.com/bpetetot/conference-hall/commit/6a4bb05e56fa7d1278983bd2f128fab12404e3de)]
+
+
 <a name="0.12.0"></a>
 ## 0.12.0 (2019-06-02)
 
