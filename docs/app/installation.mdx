@@ -70,6 +70,16 @@ MailGun webhook.
 
 For each delivered email, the proposal in DB will have a `emailDelivered` field to `true`.
 
+### Configure In-App google actions (optional)
+
+If you want to configure the email template to be able to display one-click action in gmail so that speakers can confirm their presence with one-click:
+![confirmation](one-click_confirmation.gif)
+
+* send a request for your email's domain using [google form](https://docs.google.com/forms/d/e/1FAIpQLSfT5F1VJXtBjGw2mLxY2aX557ctPTsCrJpURiKJjYeVrugHBQ/viewform?pli=1)
+* send a test email (as described in above doc) to `schema.whitelisting+sample@gmail.com`
+
+NOTE: If you don't do the configuration the In-App confirmation will not be displayed but the speaker can still confirm his attendance within the content of the email.
+
 ### Configure Google Analytics (optional)
 
 You can add a Google Analytics by adding your Analytics ID in the environmenent variable `REACT_APP_GOOGLE_ANALYTICS_ID` in the `.env.local` file.
