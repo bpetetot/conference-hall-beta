@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.13.2"></a>
+## 0.13.2 (2019-06-07)
+
+### Fixed
+
+- 🐛 fix date picker year format [[ac50764](https://github.com/bpetetot/conference-hall/commit/ac50764b3c2325d5ea358f7004f7a4a55c02f100)]
+
+
 <a name="0.13.1"></a>
 ## 0.13.1 (2019-06-07)
 
