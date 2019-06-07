@@ -11,6 +11,9 @@
 
 .alert-title {
     padding: 0 1em;
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.1em;
 }
 .alert-icon {
     margin: -14px 0 -14px 0;
