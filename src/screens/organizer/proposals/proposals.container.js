@@ -10,9 +10,11 @@ const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
   const event = store.data.events.get(eventId)
   const nbProposals = store.data.proposals.getLength()
+  const { items } = store.ui.organizer.proposalsSelection.get()
   return {
     loaded: !!event,
     nbProposals,
+    proposalsSelection: items,
     eventId,
     load: () => store.dispatch('@@ui/ON_LOAD_EVENT'),
   }

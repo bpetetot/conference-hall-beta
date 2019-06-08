@@ -31,13 +31,15 @@ const Checkbox = (props) => {
 }
 
 Checkbox.propTypes = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  name: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
   info: PropTypes.string,
 }
 
 Checkbox.defaultProps = {
+  name: undefined,
+  label: undefined,
   value: false,
   info: undefined,
 }

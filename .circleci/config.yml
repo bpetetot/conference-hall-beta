@@ -2,7 +2,7 @@ version: 2
 jobs:
   lint:
     docker:
-      - image: circleci/node:10.16.0
+      - image: circleci/node:8.16.0
     steps:
       - checkout
       - restore_cache:
@@ -19,7 +19,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:10.16.0
+      - image: circleci/node:8.16.0
     steps:
       - checkout
       - restore_cache:
@@ -48,14 +48,18 @@ jobs:
 
   build:
     docker:
-      - image: circleci/node:10.16.0
+      - image: circleci/node:8.16.0
     steps:
       - checkout
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-      - run: yarn
+      - run:
+          name: dependencies and rebuild
+          command:  |
+            yarn
+            npm rebuild
       - save_cache:
           paths:
             - node_modules
@@ -69,7 +73,7 @@ jobs:
 
   deploy-dev:
     docker:
-      - image: circleci/node:10.16.0
+      - image: circleci/node:8.16.0
     steps:
       - checkout
       - restore_cache:
@@ -107,7 +111,7 @@ jobs:
 
   deploy-prod:
     docker:
-      - image: circleci/node:10.16.0
+      - image: circleci/node:8.16.0
     steps:
       - checkout
       - restore_cache:

@@ -1,5 +1,63 @@
 # Changelog
 
+<a name="0.14.0"></a>
+## 0.14.0 (2019-06-07)
+
+### Added
+
+- ✨ set max number of proposals by speaker ([#583](https://github.com/bpetetot/conference-hall/issues/583)) [[9a2c1f1](https://github.com/bpetetot/conference-hall/commit/9a2c1f11e174003a7ab94f1e6d2b594edc7d0f63)]
+
+
+<a name="0.13.2"></a>
+## 0.13.2 (2019-06-07)
+
+### Fixed
+
+- 🐛 fix date picker year format [[ac50764](https://github.com/bpetetot/conference-hall/commit/ac50764b3c2325d5ea358f7004f7a4a55c02f100)]
+
+
+<a name="0.13.1"></a>
+## 0.13.1 (2019-06-07)
+
+### Fixed
+
+- 🐛 loading infinite after event creation ([#586](https://github.com/bpetetot/conference-hall/issues/586)) [[310a38a](https://github.com/bpetetot/conference-hall/commit/310a38a7de5c042a93386e437cc0fcf8f4f16107)]
+
+
+<a name="0.13.0"></a>
+## 0.13.0 (2019-06-07)
+
+### Added
+
+- ✨ split deliberation decision from email sending [[6105c54](https://github.com/bpetetot/conference-hall/commit/6105c546ea38e62649ec0fb2b0fa48dc8173e5ad)]
+
+### Fixed
+
+- 🐛 workaround GCF env variable not set in node10 ([#582](https://github.com/bpetetot/conference-hall/issues/582)) [[6b29e40](https://github.com/bpetetot/conference-hall/commit/6b29e40e5eca9b0f88cb66a2bbb3e8e0ec5d7253)]
+- 💚 use node 8 in all circle ci images ([#585](https://github.com/bpetetot/conference-hall/issues/585)) [[6a4bb05](https://github.com/bpetetot/conference-hall/commit/6a4bb05e56fa7d1278983bd2f128fab12404e3de)]
+
+
+<a name="0.12.0"></a>
+## 0.12.0 (2019-06-02)
+
+### Added
+
+- ✨ add speakers references on the profile  ([#567](https://github.com/bpetetot/conference-hall/issues/567)) [[9bdf487](https://github.com/bpetetot/conference-hall/commit/9bdf48734a0da55cd8e77e6486292776a3cff275)]
+
+### Changed
+
+- ⬆️ upgrade babel ([#561](https://github.com/bpetetot/conference-hall/issues/561)) [[f2442a0](https://github.com/bpetetot/conference-hall/commit/f2442a032ab085de2c7c08cd8a390a250ee7bef2)]
+- ⬆️ upgrade minor/patched dependencies ([#576](https://github.com/bpetetot/conference-hall/issues/576)) [[a6982c8](https://github.com/bpetetot/conference-hall/commit/a6982c8dd7a4cab4ca5cc1ae0925ba06a8d460a4)]
+- ⬆️ upgrade to node 10, react-final-form and react-sizes ([#577](https://github.com/bpetetot/conference-hall/issues/577)) [[bf7cb24](https://github.com/bpetetot/conference-hall/commit/bf7cb240c5c392d1049608012dc052b323fe01e0)]
+- ⬆️ upgrade docz ([#578](https://github.com/bpetetot/conference-hall/issues/578)) [[79e332b](https://github.com/bpetetot/conference-hall/commit/79e332b3a525b25b4bd9f0873e932f394d0368b3)]
+- ⬆️ upgrade firebase-admin, path-to-regex, nyc ([#579](https://github.com/bpetetot/conference-hall/issues/579)) [[4b429d0](https://github.com/bpetetot/conference-hall/commit/4b429d0b4b9827b97ae9959c3270d1f443f81f61)]
+- ⬆️ upgrade react-script ([#580](https://github.com/bpetetot/conference-hall/issues/580)) [[8dca74d](https://github.com/bpetetot/conference-hall/commit/8dca74dd648dffcebc2d9056810a6694c2d26944)]
+
+### Fixed
+
+- 🐛 remove unsued id in deliberation dropdown ([#553](https://github.com/bpetetot/conference-hall/issues/553)) [[8dae6cb](https://github.com/bpetetot/conference-hall/commit/8dae6cb59a79a820d620ba50e3fc9afd21c9b546)]
+
+
 <a name="0.11.0"></a>
 ## 0.11.0 (2019-04-30)
 

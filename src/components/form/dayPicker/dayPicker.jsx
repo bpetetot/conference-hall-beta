@@ -52,7 +52,7 @@ DayPicker.propTypes = {
 
 DayPicker.defaultProps = {
   value: undefined,
-  dateFormat: 'MMMM do YYYY',
+  dateFormat: 'MMMM do yyyy',
   className: undefined,
   placeholderText: undefined,
 }

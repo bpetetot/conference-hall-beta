@@ -2,7 +2,7 @@
 
 exports[`components/dayPicker should render 1`] = `
 <DayPicker
-  dateFormat="MMMM do YYYY"
+  dateFormat="MMMM do yyyy"
   id="1"
   isMobile={false}
   isTablet={true}

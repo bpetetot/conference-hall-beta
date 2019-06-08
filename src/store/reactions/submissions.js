@@ -29,6 +29,7 @@ export const submitTalkToEvent = async (action, store) => {
     store.ui.loaders.update({ isTalkSubmitting: false })
   } catch (e) {
     store.ui.loaders.update({ isTalkSubmitting: false })
+    store.ui.speaker.submission.update({ error: e.message })
     console.error(e.message) // eslint-disable-line no-console
   }
 }

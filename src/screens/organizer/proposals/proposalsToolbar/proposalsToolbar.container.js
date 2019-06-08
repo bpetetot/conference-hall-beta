@@ -20,10 +20,19 @@ const mapStore = (store, props, { router }) => {
     filters,
     deliberationActive,
     isExporting,
+    onRefresh: () => {
+      store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+    },
     onChange: ({ target }) => {
       store.ui.organizer.proposals.update({ [target.id]: target.value })
     },
+    onSelectAll: (isChecked) => {
+      store.dispatch({ type: '@@ui/SELECT_ALL_PROPOSALS', payload: { checkAll: isChecked } })
+    },
     onExportProposals: () => store.dispatch('@@ui/EXPORT_PROPOSALS'),
+    onSendEmails: selection => store.dispatch({ type: '@@ui/SEND_EMAIL_FOR_PROPOSALS', payload: { selection } }),
+    onAcceptProposals: selection => store.dispatch({ type: '@@ui/ACCEPT_PROPOSALS', payload: { selection } }),
+    onRejectProposals: selection => store.dispatch({ type: '@@ui/REJECT_PROPOSALS', payload: { selection } }),
   }
 }
 
