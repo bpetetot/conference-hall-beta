@@ -4,6 +4,7 @@ import proposal from './proposal'
 import proposals from './proposals'
 import proposalsPaging from './proposalsPaging'
 import proposalsExport from './proposalsExport'
+import proposalsSelection from './proposalsSelection'
 import organizersThread from './organizersThread'
 
 export default {
@@ -13,5 +14,6 @@ export default {
   proposals,
   proposalsPaging,
   proposalsExport,
+  proposalsSelection,
   organizersThread,
 }

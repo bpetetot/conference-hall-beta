@@ -34,7 +34,9 @@
   align-items: center;
   flex-wrap: wrap;
 }
-
+.proposalsActions button {
+    margin-left: 1em;
+}
 @media only screen and (max-width: 480px) {
   .proposalsToolbar {
     display: none;

@@ -19,6 +19,14 @@ const addProposal = (eventId, proposal) => {
       createTimestamp: now,
     })
 }
+const getProposal = (eventId, proposalId) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('proposals')
+  .doc(proposalId)
+  .get()
+  .then(doc => doc.data())
 
 const updateProposal = (eventId, proposal) => {
   const updatedProposal = omit(proposal, 'submissions')
@@ -95,9 +103,27 @@ const getEventProposals = async (
   return proposals
 }
 
+// Get the list of proposals for a given user and a given event.
+const getEventUserProposals = async (
+  eventId,
+  userId,
+) => {
+  const query = firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+
+  const result = await query.get()
+  const proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  return proposals.filter(proposal => proposal.speakers[userId])
+}
+
 module.exports = {
   addProposal,
   updateProposal,
   removeProposal,
   getEventProposals,
+  getProposal,
+  getEventUserProposals
 }

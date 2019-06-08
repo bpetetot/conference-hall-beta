@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import debounce from 'lodash/debounce'
+import isEmpty from 'lodash/isEmpty'
 
+import Checkbox from 'components/form/checkbox'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
-
+import Dropdown from 'components/dropdown'
 import styles from './proposalsToolbar.module.css'
 
 const sortOrderLabel = sortOrder => ({
@@ -34,9 +36,20 @@ class ProposalToolbar extends Component {
     this.onChange = debounce(this.props.onChange, 200)
   }
 
+  state = {
+    checkAll: this.props.selection.length,
+  }
+
   debounceOnChange = (e) => {
     e.persist()
     this.onChange(e)
+  }
+
+  handleSelect = () => {
+    this.setState(
+      state => ({ checkAll: !state.checkAll }),
+      () => this.props.onSelectAll(this.state.checkAll),
+    )
   }
 
   render() {
@@ -48,14 +61,27 @@ class ProposalToolbar extends Component {
       sortOrders,
       filters,
       onChange,
+      onRefresh,
+      onSendEmails,
       onExportProposals,
+      onAcceptProposals,
+      onRejectProposals,
+      selection,
       deliberationActive,
       isExporting,
     } = this.props
 
+    const { checkAll } = this.state
+
     return (
       <div className={cn(styles.proposalsToolbar, 'no-print')}>
         <div className={styles.proposalsFilters}>
+          <Checkbox
+            onClick={this.handleSelect}
+            label="All pages"
+            name="all-pages"
+            value={checkAll}
+          />
           <input
             id="search"
             type="search"
@@ -112,12 +138,50 @@ class ProposalToolbar extends Component {
           </select>
         </div>
         <div className={styles.proposalsActions}>
-          <Button onClick={onExportProposals} secondary disabled={isExporting}>
-            {isExporting ? (
-              'Exporting...'
-            ) : (
-              <IconLabel icon="fa fa-cloud-download" label="Export to JSON" />
+          <Dropdown
+            action={(
+              <Button primary>
+                <IconLabel icon="fa fa-angle-down" label="Actions..." />
+              </Button>
             )}
+          >
+            <button type="button" onClick={onExportProposals} disabled={isExporting}>
+              {isExporting ? (
+                'Exporting...'
+              ) : (
+                <IconLabel icon="fa fa-cloud-download" label="Export to JSON" />
+              )}
+            </button>
+            {deliberationActive && (
+              <button
+                type="button"
+                onClick={() => onAcceptProposals(selection)}
+                disabled={isEmpty(selection)}
+              >
+                <IconLabel icon="fa fa-check" label="Accept proposals" />
+              </button>
+            )}
+            {deliberationActive && (
+              <button
+                type="button"
+                onClick={() => onRejectProposals(selection)}
+                disabled={isEmpty(selection)}
+              >
+                <IconLabel icon="fa fa-close" label="Reject proposals" />
+              </button>
+            )}
+            {deliberationActive && (
+              <button
+                type="button"
+                onClick={() => onSendEmails(selection)}
+                disabled={isEmpty(selection)}
+              >
+                <IconLabel icon="fa fa-rocket" label="Send emails" />
+              </button>
+            )}
+          </Dropdown>
+          <Button type="button" primary onClick={onRefresh}>
+            <i className="fa fa-refresh" />
           </Button>
         </div>
       </div>
@@ -127,19 +191,27 @@ class ProposalToolbar extends Component {
 
 ProposalToolbar.propTypes = {
   statuses: PropTypes.arrayOf(PropTypes.string),
+  selection: PropTypes.arrayOf(PropTypes.string),
   ratings: PropTypes.arrayOf(PropTypes.string),
   formats: PropTypes.arrayOf(PropTypes.object),
   categories: PropTypes.arrayOf(PropTypes.object),
   sortOrders: PropTypes.arrayOf(PropTypes.string),
   filters: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
+  onRefresh: PropTypes.func,
+  onSendEmails: PropTypes.func.isRequired,
+  onSelectAll: PropTypes.func.isRequired,
+  onAcceptProposals: PropTypes.func.isRequired,
+  onRejectProposals: PropTypes.func.isRequired,
   onExportProposals: PropTypes.func.isRequired,
   deliberationActive: PropTypes.bool,
   isExporting: PropTypes.bool,
 }
 
 ProposalToolbar.defaultProps = {
+  onRefresh: () => {},
   statuses: [],
+  selection: [],
   ratings: [],
   formats: [],
   categories: [],

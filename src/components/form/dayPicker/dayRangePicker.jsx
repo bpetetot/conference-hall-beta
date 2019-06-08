@@ -74,7 +74,7 @@ class DayRangePicker extends React.Component {
           endDate={end}
           selectsStart
           onChange={this.handleChangeStart}
-          dateFormat="MMMM do YYYY"
+          dateFormat="MMMM do yyyy"
           placeholderText="Start date"
           withPortal={isMobile || isTablet}
           calendarClassName="day-picker-custom"
@@ -90,7 +90,7 @@ class DayRangePicker extends React.Component {
           minDate={start}
           selectsEnd
           onChange={this.handleChangeEnd}
-          dateFormat="MMMM do YYYY"
+          dateFormat="MMMM do yyyy"
           placeholderText="End date"
           withPortal={isMobile || isTablet}
           calendarClassName="day-picker-custom"

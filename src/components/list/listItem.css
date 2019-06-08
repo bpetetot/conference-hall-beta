@@ -7,11 +7,11 @@
   min-height: 70px;
 }
 
-.list-item.clickable {
+.list-item-main.clickable {
   cursor: pointer;
 }
 
-.list-item.clickable:hover {
+.list-item:hover {
   background: var(--background-color);
 }
 
@@ -28,12 +28,21 @@
 
 .list-item .list-item-info {
   display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
 }
 
 .list-item .list-item-info > * {
   margin-left: 0.5em;
 }
 
+.list-item .list-item-actions {
+  flex-grow: 1;
+}
+
+.list-item .list-item-main {
+  flex-grow: 10;
+}
 @media only screen and (max-width: 480px) {
   .list-item {
     font-size: 1.1em;

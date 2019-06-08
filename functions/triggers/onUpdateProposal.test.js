@@ -12,6 +12,7 @@ describe('onUpdateProposal', () => {
   const eventId = 'wpYPL2EC3WzxUqY77rQZ'
   const before = {
     abstract: 'hello',
+    emailStatus: 'sending',
     id: 'iBTbrWOMWmsy85CNhkwF',
     owner: 'ibBeWNBzL3XVc0teerodftWdYzD2',
     rating: null,
@@ -22,7 +23,7 @@ describe('onUpdateProposal', () => {
   }
   const after = {
     abstract: 'hello',
-    emailSent: false,
+    emailStatus: 'sent',
     id: 'iBTbrWOMWmsy85CNhkwF',
     owner: 'ibBeWNBzL3XVc0teerodftWdYzD2',
     rating: null,
@@ -110,7 +111,7 @@ describe('onUpdateProposal', () => {
   it('should send email to speakers after submission is accepted', async () => {
     // given
     after.state = 'accepted'
-    after.emailSent = false
+    after.emailStatus = 'sending'
     // when
     const onUpdateProposalWrapped = test.wrap(onUpdateProposal)
     await onUpdateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: 'iBTbrWOMWmsy85CNhkwF' } })
@@ -133,7 +134,7 @@ describe('onUpdateProposal', () => {
   it('should send email to speakers after submission is rejected', async () => {
     // given
     after.state = 'rejected'
-    after.emailSent = false
+    after.emailStatus = 'sending'
     // when
     const onUpdateProposalWrapped = test.wrap(onUpdateProposal)
     await onUpdateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: 'iBTbrWOMWmsy85CNhkwF' } })
@@ -155,8 +156,10 @@ describe('onUpdateProposal', () => {
 
   it('should NOT send email to speakers after submission is accepted but the email is already sent', async () => {
     // given
+    before.state = 'accepted'
+    before.emailStatus = 'sent'
     after.state = 'accepted'
-    after.emailSent = true
+    after.emailStatus = 'sent'
     // when
     const onUpdateProposalWrapped = test.wrap(onUpdateProposal)
     await onUpdateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: 'iBTbrWOMWmsy85CNhkwF' } })
@@ -167,10 +170,12 @@ describe('onUpdateProposal', () => {
     sinon.assert.match(updateTalkStub.notCalled, true)
   })
 
-  it('should NOT send email to speakers after submission is rejected but the email is alreday sent', async () => {
+  it('should NOT send email to speakers after submission is rejected but the email is already sent', async () => {
     // given
+    before.state = 'rejected'
+    before.emailStatus = 'sent'
     after.state = 'rejected'
-    after.emailSent = true
+    after.emailStatus = 'sent'
     // when
     const onUpdateProposalWrapped = test.wrap(onUpdateProposal)
     await onUpdateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: 'iBTbrWOMWmsy85CNhkwF' } })
@@ -183,8 +188,10 @@ describe('onUpdateProposal', () => {
 
   it('should NOT send email to speakers after submission is neither accepted nor rejected', async () => {
     // given
+    before.state = 'somestate'
+    before.emailStatus = 'sending'
     after.state = 'somestate'
-    after.emailSent = false
+    after.emailStatus = 'sending'
     // when
     const onUpdateProposalWrapped = test.wrap(onUpdateProposal)
     await onUpdateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: 'iBTbrWOMWmsy85CNhkwF' } })
