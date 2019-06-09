@@ -27,7 +27,7 @@ const CustomizeForm = ({
       return
     }
 
-    const ref = firebase.storage().ref(`${eventId}/${file.name}`)
+    const ref = firebase.storage().ref(`${eventId}/banner.img`)
     const task = ref.put(file)
     task.on(
       'state_changed',
@@ -48,6 +48,7 @@ const CustomizeForm = ({
       <p>Upload your event banner to have a fancy style.</p>
       <ul>
         <li>Best resolution 1500px x 500px</li>
+        <li>Only jpeg or png format</li>
         <li>
           100kB max (you can optimize your image with{' '}
           <a href="https://squoosh.app" target="NEW">
