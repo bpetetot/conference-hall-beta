@@ -1,0 +1,80 @@
+.banner {
+  content: '';
+  position: relative;
+  background-image: url('./images/default.jpg');
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  color: #fff;
+  width: 100%;
+  padding-top: 33.33%;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #090909;
+  opacity: 0.3;
+}
+
+.rightSide {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.leftSide {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 3.5vw;
+  letter-spacing: 2px;
+  text-align: right;
+}
+
+.subtitle {
+  margin-top: 0.5em;
+  font-size: 1.2em;
+  font-weight: 300;
+  text-align: right;
+}
+
+.actions {
+  margin-top: 2em;
+  text-align: right;
+}
+
+@media only screen and (max-width: 480px) {
+  .form {
+    padding: 1em;
+  }
+
+  .uploadWrapper {
+    flex-direction: column;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 2em;
+  }
+
+  .subtitle {
+    font-size: 1em;
+  }
+}

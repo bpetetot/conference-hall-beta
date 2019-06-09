@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import cn from 'classnames'
 import PropTypes from 'prop-types'
 
 import Button from 'components/button'
@@ -17,9 +18,9 @@ class CopyInput extends PureComponent {
   }
 
   render() {
-    const { title, value } = this.props
+    const { title, value, className } = this.props
     return (
-      <div className="copy-input">
+      <div className={cn('copy-input', className)}>
         {title && (
           <label htmlFor="copy-input" className="copy-title">
             {title}
@@ -44,11 +45,13 @@ class CopyInput extends PureComponent {
 CopyInput.propTypes = {
   title: PropTypes.string,
   value: PropTypes.string,
+  className: PropTypes.string,
 }
 
 CopyInput.defaultProps = {
   title: undefined,
   value: undefined,
+  className: undefined,
 }
 
 export default CopyInput

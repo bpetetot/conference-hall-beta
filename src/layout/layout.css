@@ -16,16 +16,6 @@
   margin: 3em;
 }
 
-.layout-main.layout-main-full-width {
-  padding: 0 3em;
-}
-
-.layout-main.layout-main-full-width > * {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1400px;
-}
-
 .layout-brand {
   grid-area: brand;
 }

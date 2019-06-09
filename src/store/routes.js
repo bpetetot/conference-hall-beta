@@ -35,6 +35,7 @@ export default {
         isEventPage: true,
         '/edit': {
           code: 'organizer-event-edit',
+          '/custom': { code: 'organizer-event-edit-customize' },
           '/cfp': { code: 'organizer-event-edit-cfp' },
           '/survey': { code: 'organizer-event-edit-survey' },
           '/deliberation': { code: 'organizer-event-edit-deliberation' },
