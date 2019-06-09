@@ -26,30 +26,34 @@ const Event = ({
   formats,
   isOrganizer,
 }) => (
-  <div className="event-page">
-    <Banner className="event-page-header" eventId={id} />
-    <div className="event-page-content">
-      <Cfp eventId={id} className="event-page-cfp" />
-      <div>
-        {isOrganizer && (
-          <CopyInput
-            title="Share link"
-            className="event-share"
-            value={`${origin}/public/event/${id}`}
-          />
-        )}
-        <Markdown className="event-description" source={description} />
-        <List className="event-lists" title="Talk categories" list={categories} />
-        <List className="event-lists" title="Talk formats" list={formats} />
+  <div className="event-wrapper">
+    <Banner className="event-header" eventId={id} />
+    <div className="event-page">
+      <div className="event-page-content">
+        <Cfp eventId={id} className="event-page-cfp" />
+        <div>
+          {isOrganizer && (
+            <CopyInput
+              title="Share link"
+              className="event-share"
+              value={`${origin}/public/event/${id}`}
+            />
+          )}
+          <Markdown className="event-description" source={description} />
+          <div className="event-lists">
+            <List title="Talk categories" list={categories} />
+            <List title="Talk formats" list={formats} />
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="event-page-info">
-      {address && <Maps address={address.formattedAddress} />}
-      <div className="event-page-info-detail">
-        {type === 'conference' && <Dates dates={conferenceDates} large />}
-        {address && <Address address={address.formattedAddress} />}
-        {website && <Website website={website} />}
-        {contact && <Contact contact={contact} />}
+      <div className="event-page-info">
+        {address && <Maps address={address.formattedAddress} />}
+        <div className="event-page-info-detail">
+          {type === 'conference' && <Dates dates={conferenceDates} large />}
+          {address && <Address address={address.formattedAddress} />}
+          {website && <Website website={website} />}
+          {contact && <Contact contact={contact} />}
+        </div>
       </div>
     </div>
   </div>

@@ -25,17 +25,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.leftSide {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 2em;
+  padding: 4em;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -67,6 +57,10 @@
 
   .uploadWrapper {
     flex-direction: column;
+  }
+
+  .rightSide {
+    padding: 2em;
   }
 
   .title {
