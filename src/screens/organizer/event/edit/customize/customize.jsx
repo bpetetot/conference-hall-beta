@@ -7,7 +7,7 @@ import Button from 'components/button'
 import Banner from 'screens/components/event/banner'
 import styles from './customize.module.css'
 
-const MAX_SIZE = 100000 // 100kB
+const MAX_SIZE = 100 * 1024 // 100kB
 
 const CustomizeForm = ({
   eventId, onChangeBanner,
@@ -22,7 +22,6 @@ const CustomizeForm = ({
     const file = e.target.files[0]
 
     if (file.size > MAX_SIZE) {
-      // @todo add in security rules
       setError('Image weight too large, maximum size is 100kB')
       return
     }
