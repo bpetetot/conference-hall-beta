@@ -30,8 +30,8 @@ const saveEvent = async (id, event) => {
     const cfpStart = get(event, 'cfpDates.start')
     const cfpEnd = get(event, 'cfpDates.end')
     if (cfpStart && cfpEnd) {
-      event.cfpDates.start = dateToTimestamp(start)
-      event.cfpDates.end = dateToTimestamp(end)
+      event.cfpDates.start = dateToTimestamp(cfpStart)
+      event.cfpDates.end = dateToTimestamp(cfpEnd)
     }
   }
 

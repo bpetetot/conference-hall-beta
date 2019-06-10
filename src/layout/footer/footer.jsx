@@ -7,7 +7,7 @@ import styles from './footer.module.css'
 const Footer = ({ darkMode }) => (
   <footer className={cn(styles.footer, { [styles.dark]: darkMode })}>
     <p>
-      <a href="https://github/bpetetot/conference-hall" target="blank">
+      <a href="https://github.com/bpetetot/conference-hall" target="blank">
         <i className="fa fa-github fa-2x" />
       </a>
       <br />

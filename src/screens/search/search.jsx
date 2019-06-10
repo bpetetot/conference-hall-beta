@@ -9,11 +9,13 @@ import NoResult from './results/noResult'
 import styles from './search.module.css'
 
 const SearchResults = ({ total }) => (
-  <AppLayout>
-    <SearchFilters />
-    {total > 0 && <Results type="conference" />}
-    {total > 0 && <Results type="meetup" />}
-    {total === 0 && <NoResult type="event" className={styles.noResult} />}
+  <AppLayout className={styles.search}>
+    <div>
+      <SearchFilters />
+      {total > 0 && <Results type="conference" />}
+      {total > 0 && <Results type="meetup" />}
+      {total === 0 && <NoResult type="event" className={styles.noResult} />}
+    </div>
   </AppLayout>
 )
 

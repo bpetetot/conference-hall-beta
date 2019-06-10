@@ -13,11 +13,11 @@
 }
 
 .layout-main > * {
-  margin: 3em;
+  padding: 3em;
 }
 
 .layout-main.fullwidth > * {
-  margin: 0;
+  padding: 0;
 }
 
 .layout-screen {
@@ -43,10 +43,10 @@
   .layout-sidebar {
     display: none;
   }
-  .layout-main {
+  .layout-main > * {
     padding: 1em;
   }
-  .layout-main.fullwidth {
+  .layout-main.fullwidth > * {
     padding: 1em;
   }
 }
@@ -65,10 +65,10 @@
   .layout-sidebar {
     display: none;
   }
-  .layout-main {
-    margin: 1em;
+  .layout-main > * {
+    padding: 1em;
   }
-  .layout-main.fullwidth {
-    margin: 1em;
+  .layout-main.fullwidth > * {
+    padding: 1em;
   }
 }

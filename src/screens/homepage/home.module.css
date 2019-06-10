@@ -54,7 +54,7 @@
 
 
 .information {
-  background-image: url(./images/information.webp);
+  background-image: url('../../images/information.webp');
   background-position: left bottom;
   background-repeat: no-repeat;
   background-color: var(--secondary-color);
