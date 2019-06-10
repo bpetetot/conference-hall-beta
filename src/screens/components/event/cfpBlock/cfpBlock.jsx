@@ -33,12 +33,10 @@ class CfpBlock extends Component {
     const { type, cfpState, className } = this.props
     return (
       <div className={cn('cfp-block', className, `cfp-block-${cfpState}`)}>
-        <h2>
-          <div className="cfp-block-title">Call for paper {this.renderCfpLabel()}</div>
-          <div className="cfp-block-subtitle">
-            {type === 'conference' && this.renderConferenceDates()}
-          </div>
-        </h2>
+        <div className="cfp-block-title">Call for paper {this.renderCfpLabel()}</div>
+        <div className="cfp-block-subtitle">
+          {type === 'conference' && this.renderConferenceDates()}
+        </div>
       </div>
     )
   }

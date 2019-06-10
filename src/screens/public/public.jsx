@@ -7,7 +7,7 @@ import Contributors from 'screens/components/contributors'
 import Event from './event'
 
 const Public = () => (
-  <AppLayout>
+  <AppLayout fullwidth>
     <Event />
     <Contributors />
   </AppLayout>
