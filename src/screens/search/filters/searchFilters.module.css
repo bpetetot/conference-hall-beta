@@ -27,3 +27,24 @@
   width: 120px;
   height: 2.7em;
 }
+
+
+@media only screen and (max-width: 480px) {
+  .filters {
+    display: block;
+    margin-bottom: 0;
+    margin-top: 1em;
+  }
+
+  .text {
+    display: none;
+  }
+
+  .filter {
+    display: none;
+  }
+
+  .button {
+    display: none;
+  }
+}

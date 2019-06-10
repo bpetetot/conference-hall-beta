@@ -9,3 +9,8 @@
   grid-gap: 2rem;
 }
 
+@media only screen and (max-width: 480px) {
+  .block {
+    margin-top: 2em;
+  }
+}

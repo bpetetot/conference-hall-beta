@@ -1,21 +1,3 @@
 .noResult {
   margin-top: 3em;
 }
-
-@media only screen and (max-width: 1024px) {
-  .search {
-    margin: 3em;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .search {
-    margin: 2em;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .search {
-    margin: 1em;
-  }
-}
