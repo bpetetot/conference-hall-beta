@@ -1,39 +1,19 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React from 'react'
 
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
+import useScrollMonitor from 'components/hooks/useScrollMonitor'
 import Contributors from 'components/contributors'
 import IconLabel from 'components/iconLabel'
 
 import Navbar from 'layout/navbar'
+import Footer from 'layout/footer'
 import Hero from './hero'
 
 import styles from './home.module.css'
 
 const Home = () => {
-  const scrollWrapper = useRef(null)
-
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    let request = null
-    const wrapper = scrollWrapper.current
-    function handleScroll() {
-      if (request === null) {
-        request = window.requestAnimationFrame(() => {
-          if (wrapper.scrollTop >= 300 && !scrolled) {
-            setScrolled(true)
-          }
-          if (wrapper.scrollTop < 300 && scrolled) {
-            setScrolled(false)
-          }
-          request = null
-        })
-      }
-    }
-    wrapper.addEventListener('scroll', handleScroll)
-    return () => wrapper.removeEventListener('scroll', handleScroll)
-  })
+  const [scrollWrapper, scrolled] = useScrollMonitor(300)
 
   return (
     <div ref={scrollWrapper} className={styles.home}>
@@ -153,21 +133,7 @@ const Home = () => {
         <Contributors className={styles.contributorsList} />
       </div>
 
-      <footer className={styles.footer}>
-        <p>
-          <a
-            href="https://github/bpetetot/conference-hall"
-            target="blank"
-          >
-            <i className="fa fa-github fa-2x" />
-          </a><br />
-          Released under the MIT License <br />
-          Copyright © 2018-2019 by&nbsp;
-          <a href="https://twitter.com/bpetetot" target="blank">
-            Benjamin Petetot
-          </a>
-        </p>
-      </footer>
+      <Footer />
     </div>
   )
 }

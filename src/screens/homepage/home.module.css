@@ -199,15 +199,3 @@
     padding: 20px;
   }
 }
-
-.footer {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.footer p {
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 26px;
-  color: #4e4e4e;
-}
