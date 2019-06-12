@@ -56,7 +56,7 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
-    "firebase-tools": "^6.10.0",
+    "firebase-tools": "^7.0.0",
     "prettier": "^1.17.1",
     "react-scripts": "^3.0.1",
     "react-test-renderer": "^16.8.6",
