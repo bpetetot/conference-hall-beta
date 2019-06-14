@@ -42,13 +42,15 @@ You have to create a Mailgun account if you want to send those emails, if not th
 
 Mailgun API is used to send email through Cloud Functions, so you will have to add environment variables with firebase CLI :
 * The application URL: `app.url` (ex: `http://localhost:3000`)
+* (optional) The Google Cloud Function URL: `app.gcf_url` (ex: `https://us-central1-rivieradev-db8f5.cloudfunctions.net`).
+Used if you want to [Configure In-App google actions](#Configure_In-App_google_actions)
 * The API key: `mailgun.key`
 * The domain name: `mailgun.domain`
 
 Here the command to register those variables:
 
 ```
-firebase functions:config:set app.url="https://myserver.com" mailgun.key="MAILGUN API KEY" mailgun.domain="YOUR DOMAIN NAME"
+firebase functions:config:set app.url="https://myserver.com" app.gcf_url="https://us-central1-rivieradev-db8f5.cloudfunctions.net" mailgun.key="MAILGUN API KEY" mailgun.domain="YOUR DOMAIN NAME"
 ```
 
 To test cloud functions with Mailgun on local machine (with cloud function shell), you will need to generate `.runtimeconfig.json` file with environment variables :

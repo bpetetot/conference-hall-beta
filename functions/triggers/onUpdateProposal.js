@@ -61,7 +61,7 @@ module.exports = functions.firestore
         to: users.map(user => user.email),
         contact: event.contact,
         subject: `[${event.name}] Talk accepted!`,
-        html: talkAccepted(event, users, proposal, app.url),
+        html: talkAccepted(event, users, proposal, app),
         confName: event.name,
         webHookInfo: { type: 'deliberation_email', talkId: proposal.id, eventId },
       }))
@@ -79,7 +79,7 @@ module.exports = functions.firestore
         to: users.map(user => user.email),
         contact: event.contact,
         subject: `[${event.name}] Talk declined`,
-        html: talkRejected(event, users, proposal, app.url),
+        html: talkRejected(event, users, proposal, app),
         confName: event.name,
         webHookInfo: { type: 'deliberation_email', talkId: proposal.id, eventId },
       }))

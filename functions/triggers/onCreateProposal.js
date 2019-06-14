@@ -31,7 +31,7 @@ module.exports = functions.firestore
       to: users.map(user => user.email),
       contact: null,
       subject: `[${event.name}] Talk submitted`,
-      html: talkSubmitted(event, talk, app.url),
+      html: talkSubmitted(event, talk, app),
       confName: event.name,
     })
 
@@ -42,7 +42,7 @@ module.exports = functions.firestore
         to: organizers.map(user => user.email),
         contact: null,
         subject: `[${event.name}] New talk submitted`,
-        html: talkReceived(event, talk, app.url),
+        html: talkReceived(event, talk, app),
         confName: event.name,
       })
     }
