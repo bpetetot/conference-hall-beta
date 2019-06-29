@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "bundlesize": "^0.17.2",
+    "bundlesize": "^0.18.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "enzyme": "^3.9.0",
