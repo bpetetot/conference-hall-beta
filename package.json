@@ -28,7 +28,7 @@
     "immutadot": "^1.0.0",
     "k-ramel": "^2.1.0",
     "lodash": "^4.17.11",
-    "marked": "^0.6.2",
+    "marked": "^0.7.0",
     "normalize.css": "^8.0.1",
     "path-to-regexp": "^3.0.0",
     "popper.js": "^1.15.0",
