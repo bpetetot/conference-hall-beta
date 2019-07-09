@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="0.15.0"></a>
+## 0.15.0 (2019-07-09)
+
+### Added
+
+- ✨ customize your event with a banner ([#589](https://github.com/bpetetot/conference-hall/issues/589)) [[6bf17ed](https://github.com/bpetetot/conference-hall/commit/6bf17ed08bbaba3a54836881e52d730e164770ed)]
+
+### Changed
+
+- ⬆️ upgrade dependencies ([#600](https://github.com/bpetetot/conference-hall/issues/600)) [[523f780](https://github.com/bpetetot/conference-hall/commit/523f780d0bf6f006cc2d2db61a2aa535fbde731a)]
+
+
 <a name="0.14.0"></a>
 ## 0.14.0 (2019-06-07)
 
