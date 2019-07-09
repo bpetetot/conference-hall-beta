@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.15.1"></a>
+## 0.15.1 (2019-07-09)
+
+### Added
+
+- 👷 use storage env variables in CI ([#601](https://github.com/bpetetot/conference-hall/issues/601)) [[9dec235](https://github.com/bpetetot/conference-hall/commit/9dec2358dc4f9e2ac4b8b93dddd498b596669d40)]
+
+
 <a name="0.15.0"></a>
 ## 0.15.0 (2019-07-09)
 
