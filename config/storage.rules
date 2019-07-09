@@ -1,0 +1,10 @@
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && request.resource.size < 100 * 1024
+                   && request.resource.contentType.matches('image/.*');
+    }
+  }
+}

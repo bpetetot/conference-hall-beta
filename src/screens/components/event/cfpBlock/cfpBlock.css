@@ -1,5 +1,12 @@
 .cfp-block {
-  margin: 1em 0;
+  font-size: 2em;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.cfp-block .cfp-block-title {
+  margin-right: 0.5em;
 }
 
 .cfp-block .cfp-block-subtitle {
@@ -7,14 +14,14 @@
   margin-top: 1em;
 }
 
-.cfp-block.cfp-block-not-started * {
+.cfp-block.cfp-block-not-started {
   color: var(--grey-color-dark);
 }
 
-.cfp-block.cfp-block-opened * {
+.cfp-block.cfp-block-opened {
   color: var(--success-color);
 }
 
-.cfp-block.cfp-block-closed * {
+.cfp-block.cfp-block-closed {
   color: var(--error-color);
 }

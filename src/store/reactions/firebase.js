@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/functions'
+import 'firebase/storage'
 
 import { initFunctionCalls, preloadFunctions } from 'firebase/functionCalls'
 
@@ -10,6 +11,7 @@ const config = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE,
 }
 
 export const init = (action, store) => {
