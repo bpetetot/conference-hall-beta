@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.15.2"></a>
+## 0.15.2 (2019-07-09)
+
+### Changed
+
+- 🔧 add cloud storage rules ([#602](https://github.com/bpetetot/conference-hall/issues/602)) [[0d87c52](https://github.com/bpetetot/conference-hall/commit/0d87c522a66ba8af0575b157ff90aad5853b48b0)]
+
+
 <a name="0.15.1"></a>
 ## 0.15.1 (2019-07-09)
 
