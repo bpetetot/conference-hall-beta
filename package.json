@@ -39,6 +39,7 @@
     "react-dom": "^16.8.6",
     "react-final-form": "^6.3.0",
     "react-final-form-arrays": "^3.1.0",
+    "react-helmet": "^5.2.1",
     "react-places-autocomplete": "^7.2.1",
     "react-sizes": "^2.0.0",
     "redux": "^4.0.2",
