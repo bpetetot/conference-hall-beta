@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import Maps from 'components/maps'
 import Markdown from 'components/markdown'
 import CopyInput from 'components/copyInput'
+import Meta from 'components/meta'
+
 import Banner from './banner'
 import Address from './addressBlock'
 import List from './listBlock'
@@ -16,7 +18,9 @@ import './event.css'
 
 const Event = ({
   id,
+  name,
   type,
+  bannerUrl,
   address,
   conferenceDates,
   description,
@@ -27,6 +31,12 @@ const Event = ({
   isOrganizer,
 }) => (
   <div className="event-wrapper">
+    <Meta
+      title={`${name} | Conference Hall`}
+      description={type}
+      image={bannerUrl}
+      url={`${origin}/public/event/${id}`}
+    />
     <Banner className="event-header" eventId={id} />
     <div className="event-page">
       <div className="event-page-content">
@@ -61,6 +71,8 @@ const Event = ({
 
 Event.propTypes = {
   id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  bannerUrl: PropTypes.string,
   type: PropTypes.string,
   address: PropTypes.object,
   conferenceDates: PropTypes.objectOf(PropTypes.any),
@@ -75,6 +87,7 @@ Event.propTypes = {
 Event.defaultProps = {
   type: undefined,
   address: undefined,
+  bannerUrl: undefined,
   conferenceDates: {},
   description: undefined,
   website: undefined,

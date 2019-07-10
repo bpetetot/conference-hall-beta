@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import { provider } from '@k-ramel/react'
 
+import Meta from 'components/meta'
+
 import withTheme from 'styles/themes/withTheme'
 import NotFound from './screens/components/notFound'
 import Conference from './screens/conference'
@@ -15,6 +17,7 @@ import './styles'
 
 const App = ({ className }) => (
   <div className={cn('app', className)}>
+    <Meta />
     <Conference />
     <Organizer />
     <Speaker />
