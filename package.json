@@ -21,7 +21,7 @@
     "classnames": "^2.2.6",
     "date-fns": "^1.30.1",
     "final-form": "^4.16.1",
-    "final-form-arrays": "^1.1.2",
+    "final-form-arrays": "^2.0.0",
     "firebase": "^6.2.4",
     "font-awesome": "^4.7.0",
     "hoc-react-loader": "^6.3.0",
