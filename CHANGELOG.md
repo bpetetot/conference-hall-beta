@@ -1,5 +1,22 @@
 # Changelog
 
+<a name="0.16.0"></a>
+## 0.16.0 (2019-07-15)
+
+### Added
+
+- ✨ add status and date to proposal page ([#612](https://github.com/bpetetot/conference-hall/issues/612)) [[5a32ef1](https://github.com/bpetetot/conference-hall/commit/5a32ef193f168fa67d23b1231756ad8956969bc1)]
+- ✨ add tooltip for the message to organizers ([#611](https://github.com/bpetetot/conference-hall/issues/611)) [[b605173](https://github.com/bpetetot/conference-hall/commit/b605173401ab6d1de1194aa86ae1647020f59dff)]
+
+### Changed
+
+- ⬆️ upgrade dependencies lodash, firebase, final-form ([#610](https://github.com/bpetetot/conference-hall/issues/610)) [[26047f0](https://github.com/bpetetot/conference-hall/commit/26047f0048f8434a8734fed0b9eabde9d9ca3f34)]
+
+### Fixed
+
+- 🐛 fix rules for talks [[779df5b](https://github.com/bpetetot/conference-hall/commit/779df5b47b07bd8d78d5902145f0cc401121433e)]
+
+
 <a name="0.15.2"></a>
 ## 0.15.2 (2019-07-09)
 
