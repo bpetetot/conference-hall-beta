@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+}
+
+.selector {
+  min-width: 150px;
+}
+
+.email {
+  margin-left: 1em;
+}
