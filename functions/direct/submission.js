@@ -32,9 +32,19 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
     return 'not-started'
   }
 
-  const start = DateTime.fromJSDate(cfpDates.start.toDate()).startOf('day')
-  const end = DateTime.fromJSDate(cfpDates.end.toDate()).endOf('day')
-  const today = DateTime.local().setZone(userTimezone)
+  const start = DateTime.fromJSDate(cfpDates.start.toDate()).toUTC().setZone('Europe/Paris')
+  const end = DateTime.fromJSDate(cfpDates.end.toDate()).toUTC().setZone('Europe/Paris').plus({
+    hours: 23,
+    minutes: 59,
+    seconds: 59,
+  })
+  const today = DateTime.utc().setZone(userTimezone)
+
+  console.log({
+    start: start.toString(),
+    end: end.toString(),
+    today: today.toString(),
+  })
 
   if (today < start) {
     return 'not-started'
