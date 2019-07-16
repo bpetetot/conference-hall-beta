@@ -2,7 +2,7 @@ const functions = require('firebase-functions')
 
 const { DateTime } = require('luxon')
 
-const { isEmpty, omit } = require('lodash')
+const { get, isEmpty, omit } = require('lodash')
 const { flow, unset } = require('immutadot')
 
 const { getUser } = require('../firestore/user')
@@ -27,13 +27,16 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
     return event.cfpOpened ? 'opened' : 'closed'
   }
 
-  const { cfpDates } = event
+  const { address, cfpDates } = event
   if (isEmpty(cfpDates)) {
     return 'not-started'
   }
 
-  const start = DateTime.fromJSDate(cfpDates.start.toDate()).toUTC().setZone('Europe/Paris')
-  const end = DateTime.fromJSDate(cfpDates.end.toDate()).toUTC().setZone('Europe/Paris').plus({
+  // By default 'Europe/Paris' because now it should be mandatory
+  const eventTimezone = get(address, 'timezone.id', 'Europe/Paris')
+
+  const start = DateTime.fromJSDate(cfpDates.start.toDate()).setZone(eventTimezone)
+  const end = DateTime.fromJSDate(cfpDates.end.toDate()).setZone(eventTimezone).plus({
     hours: 23,
     minutes: 59,
     seconds: 59,
