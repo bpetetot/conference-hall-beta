@@ -1,8 +1,10 @@
 import { inject } from '@k-ramel/react'
 import get from 'lodash/get'
 
-import { toDate } from 'helpers/firebase'
+import { formatTimestamp } from 'helpers/firebase'
+import { formatDate } from 'helpers/date'
 import { getCfpState, getCfpOpeningDates } from 'store/reducers/data/events.selector'
+
 import CfpBlock from './cfpBlock'
 
 const mapStore = (store, { eventId }) => {
@@ -16,9 +18,9 @@ const mapStore = (store, { eventId }) => {
   return {
     cfpState: getCfpState(eventId)(store),
     type,
-    start: start && start.toJSDate(),
-    end: start && end.toJSDate(),
-    deliberationDate: toDate(deliberationDate),
+    start: start && formatDate(start.toJSDate(), 'large'),
+    end: end && formatDate(end.toJSDate(), 'large'),
+    deliberatiom: formatTimestamp(deliberationDate, 'large'),
   }
 }
 

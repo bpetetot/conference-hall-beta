@@ -3,12 +3,12 @@ import { DateTime } from 'luxon'
 
 const SMALL_FORMAT = 'DD ZZZZ'
 const MEDIUM_FORMAT = 'DDD ZZZZ'
-const LONG_FORMAT = 'fff'
+const LARGE_FORMAT = 'fff'
 
 /**
  * Format a date
  * @param {Date} date date to format
- * @param {String} size medium or large
+ * @param {String} size small, medium or large
  * @param {String} timezone display timezone
  */
 export const formatDate = (date, size, timezone = 'local') => {
@@ -19,7 +19,7 @@ export const formatDate = (date, size, timezone = 'local') => {
     case 'small':
       return dateInTimezone.setLocale('en').toFormat(SMALL_FORMAT)
     case 'large':
-      return dateInTimezone.setLocale('en').toFormat(LONG_FORMAT)
+      return dateInTimezone.setLocale('en').toFormat(LARGE_FORMAT)
     case 'medium':
     default:
       return dateInTimezone.setLocale('en').toFormat(MEDIUM_FORMAT)
