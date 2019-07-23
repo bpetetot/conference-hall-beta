@@ -24,7 +24,7 @@ const exportEventData = async (event, uid, filters = {}, attributes = {}) => {
   const proposalAttributes = pickProposalAttrs(attributes.proposal)
   const speakerAttributes = pickSpeakerAttrs(attributes.speaker)
 
-  const talks = await getEventProposals(event.id, uid, filters).then(proposalAttributes)
+  const talks = await getEventProposals(event.id, uid, filters, attributes).then(proposalAttributes)
 
   const speakerUids = getUids(talks)
   const speakers = await getUsers(speakerUids).then(speakerAttributes)

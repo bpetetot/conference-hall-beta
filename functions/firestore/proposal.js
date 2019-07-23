@@ -54,6 +54,7 @@ const getEventProposals = async (
   {
     categories, formats, state, sortOrder, ratings, search
   } = {},
+  attributes = {},
 ) => {
   let query = firebase
     .firestore()
@@ -86,6 +87,22 @@ const getEventProposals = async (
 
   const result = await query.get()
   let proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+
+  if (attributes.proposal && attributes.proposal.indexOf('organizersThread')) {
+    proposals = await Promise.all(
+      proposals.map(async (proposal) => {
+        const subCollectionDocs = await query
+          .doc(proposal.id)
+          .collection('organizersThread')
+          .get()
+
+        return {
+          ...proposal,
+          organizersThread: subCollectionDocs.docs.map(ref => ({ id: ref.id, ...ref.data() })),
+        }
+      }),
+    )
+  }
 
   // add search by title (client filter)
   if (search) {
