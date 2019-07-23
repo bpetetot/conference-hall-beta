@@ -28,6 +28,7 @@
     "immutadot": "^1.0.0",
     "k-ramel": "^2.1.0",
     "lodash": "^4.17.14",
+    "luxon": "^1.17.1",
     "marked": "^0.7.0",
     "normalize.css": "^8.0.1",
     "path-to-regexp": "^3.0.0",

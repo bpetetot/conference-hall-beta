@@ -37,7 +37,7 @@ const Talk = ({
         </Badge>
       </div>
       <div>
-        <small>Submitted on {formatTimestamp(proposal.createTimestamp)}</small>
+        <small>Submitted on {formatTimestamp(proposal.createTimestamp, 'large')}</small>
       </div>
     </div>
     <div className={styles.infos}>

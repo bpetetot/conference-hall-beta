@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 
-import { lgf, mdf } from './date'
+import { formatDate } from './date'
 
 export const isTimestamp = date => !!date && date instanceof firebase.firestore.Timestamp
 
@@ -11,12 +11,5 @@ export const toDate = (timestamp) => {
   return timestamp
 }
 
-export const formatTimestamp = (timestamp, format = 'large') => {
-  switch (format) {
-    case 'medium':
-      return mdf(toDate(timestamp))
-    case 'large':
-    default:
-      return lgf(toDate(timestamp))
-  }
-}
+// eslint-disable-next-line max-len
+export const formatTimestamp = (timestamp, size, timezone) => formatDate(toDate(timestamp), size, timezone)

@@ -2,7 +2,7 @@ const functions = require('firebase-functions')
 
 const { DateTime } = require('luxon')
 
-const { isEmpty, omit } = require('lodash')
+const { get, isEmpty, omit } = require('lodash')
 const { flow, unset } = require('immutadot')
 
 const { getUser } = require('../firestore/user')
@@ -27,14 +27,23 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
     return event.cfpOpened ? 'opened' : 'closed'
   }
 
-  const { cfpDates } = event
+  const { address, cfpDates } = event
   if (isEmpty(cfpDates)) {
     return 'not-started'
   }
 
-  const start = DateTime.fromJSDate(cfpDates.start.toDate()).startOf('day')
-  const end = DateTime.fromJSDate(cfpDates.end.toDate()).endOf('day')
-  const today = DateTime.local().setZone(userTimezone)
+  // By default 'Europe/Paris' because now it should be mandatory
+  const eventTimezone = get(address, 'timezone.id', 'Europe/Paris')
+
+  const start = DateTime.fromJSDate(cfpDates.start.toDate()).setZone(eventTimezone)
+  const end = DateTime.fromJSDate(cfpDates.end.toDate())
+    .setZone(eventTimezone)
+    .plus({
+      hours: 23,
+      minutes: 59,
+      seconds: 59,
+    })
+  const today = DateTime.utc().setZone(userTimezone)
 
   if (today < start) {
     return 'not-started'
@@ -45,9 +54,7 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
   return 'opened'
 }
 
-const submitTalk = async ({
-  eventId, talk, userTimezone, initialize,
-}, context) => {
+const submitTalk = async ({ eventId, talk, userTimezone, initialize }, context) => {
   if (initialize) {
     // get the user to fully preload the function
     await getUser(context.auth.uid)
@@ -82,9 +89,7 @@ const submitTalk = async ({
   }
 }
 
-const unsubmitTalk = async ({
-  eventId, talk, userTimezone, initialize,
-}, context) => {
+const unsubmitTalk = async ({ eventId, talk, userTimezone, initialize }, context) => {
   if (initialize) {
     // get the user to fully preload the function
     await getUser(context.auth.uid)
