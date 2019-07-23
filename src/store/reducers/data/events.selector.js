@@ -5,16 +5,21 @@ import { toDate } from 'helpers/firebase'
 
 const { DateTime } = require('luxon')
 
-export const getCfpOpeningDates = ({ start, end }, eventTimezone) => ({
-  start: DateTime.fromJSDate(toDate(start)).setZone(eventTimezone),
-  end: DateTime.fromJSDate(toDate(end))
-    .setZone(eventTimezone)
-    .plus({
-      hours: 23,
-      minutes: 59,
-      seconds: 59,
-    }),
-})
+export const getCfpOpeningDates = (cfpDates, eventTimezone) => {
+  if (isEmpty(cfpDates)) return null
+
+  const { start, end } = cfpDates
+  return {
+    start: DateTime.fromJSDate(toDate(start)).setZone(eventTimezone),
+    end: DateTime.fromJSDate(toDate(end))
+      .setZone(eventTimezone)
+      .plus({
+        hours: 23,
+        minutes: 59,
+        seconds: 59,
+      }),
+  }
+}
 
 /**
  * Compute if the state of the CFP according timezones.
@@ -36,14 +41,6 @@ export const getEventCfpState = (event, userTimezone = 'local') => {
 
   const { start, end } = getCfpOpeningDates(cfpDates, eventTimezone)
   const today = DateTime.utc().setZone(userTimezone)
-
-  // console.log({
-  //   start: start.toString(),
-  //   end: end.toString(),
-  //   today: today.toString(),
-  //   eventTimezone,
-  //   userTimezone,
-  // })
 
   if (today < start) {
     return 'not-started'

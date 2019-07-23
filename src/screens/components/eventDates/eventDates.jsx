@@ -21,11 +21,12 @@ const EventDates = ({
       className={className}
       label={
         isEqual(startDate, endDate) ? (
-          <span>{formatDate(startDate, 'large', timezone)}</span>
+          <span>{formatDate(startDate, 'medium', timezone)}</span>
         ) : (
           <span className="dates-block-range">
-            {formatDate(startDate, 'medium', timezone)} <i className="fa fa-caret-right" />{' '}
-            {formatDate(endDate, 'medium', timezone)}
+            <b>From</b> {formatDate(startDate, large ? 'medium' : 'small', timezone)}&nbsp;
+            {large && <br />}
+            <b>To</b> {formatDate(endDate, large ? 'medium' : 'small', timezone)}
           </span>
         )
       }

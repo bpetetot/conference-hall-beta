@@ -11,13 +11,13 @@ const mapStore = (store, { eventId }) => {
   } = store.data.events.get(eventId)
 
   const eventTimezone = get(address, 'timezone.id', 'Europe/Paris')
-  const { start, end } = getCfpOpeningDates(cfpDates, eventTimezone)
+  const { start, end } = getCfpOpeningDates(cfpDates, eventTimezone) || {}
 
   return {
     cfpState: getCfpState(eventId)(store),
     type,
-    start: start.toJSDate(),
-    end: end.toJSDate(),
+    start: start && start.toJSDate(),
+    end: start && end.toJSDate(),
     deliberationDate: toDate(deliberationDate),
   }
 }

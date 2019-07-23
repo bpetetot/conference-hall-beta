@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { DateTime } from 'luxon'
 
+const SMALL_FORMAT = 'DD ZZZZ'
 const MEDIUM_FORMAT = 'DDD ZZZZ'
 const LONG_FORMAT = 'fff'
 
@@ -15,6 +16,8 @@ export const formatDate = (date, size, timezone = 'local') => {
   const dateInTimezone = DateTime.fromJSDate(date).setZone(timezone)
 
   switch (size) {
+    case 'small':
+      return dateInTimezone.setLocale('en').toFormat(SMALL_FORMAT)
     case 'large':
       return dateInTimezone.setLocale('en').toFormat(LONG_FORMAT)
     case 'medium':

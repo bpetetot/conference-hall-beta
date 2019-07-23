@@ -20,8 +20,8 @@ class CfpBlock extends Component {
     } = this.props
     return (
       <div>
-        {cfpState === 'not-started' && !!start && `will open ${formatDate(start, 'large')}`}
-        {cfpState === 'opened' && !!end && `until ${formatDate(end, 'large')}`}
+        {cfpState === 'not-started' && !!start && `Will open ${formatDate(start, 'large')}`}
+        {cfpState === 'opened' && !!end && `Until ${formatDate(end, 'large')}`}
         {cfpState === 'closed'
           && deliberationDate
           && `Deliberation date will be ${formatDate(deliberationDate, 'large')}`}
@@ -34,9 +34,9 @@ class CfpBlock extends Component {
     return (
       <div className={cn('cfp-block', className, `cfp-block-${cfpState}`)}>
         <div className="cfp-block-title">Call for paper {this.renderCfpLabel()}</div>
-        <div className="cfp-block-subtitle">
-          {type === 'conference' && this.renderConferenceDates()}
-        </div>
+        {type === 'conference' && (
+          <div className="cfp-block-subtitle">{this.renderConferenceDates()}</div>
+        )}
       </div>
     )
   }
