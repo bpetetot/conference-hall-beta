@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import get from 'lodash/get'
 
 import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
@@ -17,34 +18,34 @@ const TalksSelection = ({ talkId, events, onSelect }) => (
     renderRow={({
       id, name, type, address, conferenceDates,
     }) => (
-      <ListItem
-        key={id}
-        title={(
-          <div className={styles.title}>
-            <span>{name}</span>
-            <Badge
-              pill
-              outline
-              success={type === 'meetup'}
-              info={type === 'conference'}
-              className={styles.type}
-            >
-              {type}
-            </Badge>
-          </div>
-        )}
-        subtitle={(
-          <Fragment>
-            {type === 'conference' && (
-              <EventDates dates={conferenceDates} className={styles.dates} />
-            )}
-            <IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />
-          </Fragment>
-        )}
-        info={<Status eventId={id} talkId={talkId} />}
-        onSelect={() => onSelect(id)}
-      />
-    )}
+        <ListItem
+          key={id}
+          title={(
+            <div className={styles.title}>
+              <span>{name}</span>
+              <Badge
+                pill
+                outline
+                success={type === 'meetup'}
+                info={type === 'conference'}
+                className={styles.type}
+              >
+                {type}
+              </Badge>
+            </div>
+          )}
+          subtitle={(
+            <Fragment>
+              {type === 'conference' && (
+                <EventDates dates={conferenceDates} className={styles.dates} timezone={get(address, 'timezone.id')} />
+              )}
+              <IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />
+            </Fragment>
+          )}
+          info={<Status eventId={id} talkId={talkId} />}
+          onSelect={() => onSelect(id)}
+        />
+      )}
   />
 )
 

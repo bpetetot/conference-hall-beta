@@ -36,18 +36,22 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
   const eventTimezone = get(address, 'timezone.id', 'Europe/Paris')
 
   const start = DateTime.fromJSDate(cfpDates.start.toDate()).setZone(eventTimezone)
-  const end = DateTime.fromJSDate(cfpDates.end.toDate()).setZone(eventTimezone).plus({
-    hours: 23,
-    minutes: 59,
-    seconds: 59,
-  })
+  const end = DateTime.fromJSDate(cfpDates.end.toDate())
+    .setZone(eventTimezone)
+    .plus({
+      hours: 23,
+      minutes: 59,
+      seconds: 59,
+    })
   const today = DateTime.utc().setZone(userTimezone)
 
-  console.log({
-    start: start.toString(),
-    end: end.toString(),
-    today: today.toString(),
-  })
+  // console.log({
+  //   start: start.toString(),
+  //   end: end.toString(),
+  //   today: today.toString(),
+  //   eventTimezone,
+  //   userTimezone,
+  // })
 
   if (today < start) {
     return 'not-started'
@@ -58,9 +62,7 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
   return 'opened'
 }
 
-const submitTalk = async ({
-  eventId, talk, userTimezone, initialize,
-}, context) => {
+const submitTalk = async ({ eventId, talk, userTimezone, initialize }, context) => {
   if (initialize) {
     // get the user to fully preload the function
     await getUser(context.auth.uid)
@@ -95,9 +97,7 @@ const submitTalk = async ({
   }
 }
 
-const unsubmitTalk = async ({
-  eventId, talk, userTimezone, initialize,
-}, context) => {
+const unsubmitTalk = async ({ eventId, talk, userTimezone, initialize }, context) => {
   if (initialize) {
     // get the user to fully preload the function
     await getUser(context.auth.uid)

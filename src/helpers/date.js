@@ -1,19 +1,23 @@
-import format from 'date-fns/format'
+import { DateTime } from 'luxon'
+
+const MEDIUM_FORMAT = 'DDD ZZZZ'
+const LONG_FORMAT = 'fff'
 
 /**
- * Large date formatting
+ * Format a date
  * @param {Date} date date to format
+ * @param {String} size medium or large
+ * @param {String} timezone display timezone
  */
-export const lgf = (date) => {
+export const formatDate = (date, size, timezone = 'local') => {
   if (!date) return undefined
-  return format(date, 'dddd Do MMMM YYYY')
-}
+  const dateInTimezone = DateTime.fromJSDate(date).setZone(timezone)
 
-/**
- * Medium date formatting
- * @param {Date} date date to format
- */
-export const mdf = (date) => {
-  if (!date) return undefined
-  return format(date, 'MMM. Do YYYY')
+  switch (size) {
+    case 'large':
+      return dateInTimezone.setLocale('en').toFormat(LONG_FORMAT)
+    case 'medium':
+    default:
+      return dateInTimezone.setLocale('en').toFormat(MEDIUM_FORMAT)
+  }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
+import get from 'lodash/get'
 
 import Badge from 'components/badge'
 import Titlebar from 'components/titlebar'
@@ -28,36 +29,36 @@ const MyEvents = ({ events, onSelect }) => (
       renderRow={({
         id, name, type, visibility, address, conferenceDates,
       }) => (
-        <ListItem
-          key={id}
-          title={<div className={styles.title}>{name}</div>}
-          subtitle={<IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />}
-          info={(
-            <div className={styles.infos}>
-              <div className={styles.badges}>
-                {visibility === 'private' && (
-                <Badge pill outline error={visibility === 'private'}>
-                  {visibility}
-                </Badge>
+          <ListItem
+            key={id}
+            title={<div className={styles.title}>{name}</div>}
+            subtitle={<IconLabel icon="fa fa-map-marker" label={get(address, 'formattedAddress')} />}
+            info={(
+              <div className={styles.infos}>
+                <div className={styles.badges}>
+                  {visibility === 'private' && (
+                    <Badge pill outline error={visibility === 'private'}>
+                      {visibility}
+                    </Badge>
+                  )}
+                  <Badge
+                    pill
+                    outline
+                    success={type === 'meetup'}
+                    info={type === 'conference'}
+                    className={styles.type}
+                  >
+                    {type}
+                  </Badge>
+                </div>
+                {type === 'conference' && (
+                  <EventDates dates={conferenceDates} className={styles.dates} timezone={get(address, 'timezone.id')} />
                 )}
-                <Badge
-                  pill
-                  outline
-                  success={type === 'meetup'}
-                  info={type === 'conference'}
-                  className={styles.type}
-                >
-                  {type}
-                </Badge>
               </div>
-              {type === 'conference' && (
-              <EventDates dates={conferenceDates} className={styles.dates} />
-              )}
-            </div>
-          )}
-          onSelect={() => onSelect(id)}
-        />
-      )}
+            )}
+            onSelect={() => onSelect(id)}
+          />
+        )}
     />
   </div>
 )

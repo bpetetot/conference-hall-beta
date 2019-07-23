@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import isEmpty from 'lodash/isEmpty'
 
-import { toDate } from 'helpers/firebase'
-import { lgf } from 'helpers/date'
+import { formatDate } from 'helpers/date'
+
 import './cfpBlock.css'
 
 class CfpBlock extends Component {
@@ -16,15 +16,14 @@ class CfpBlock extends Component {
   }
 
   renderConferenceDates = () => {
-    const { cfpState, cfpDates, deliberationDate } = this.props
-    const startDate = toDate(cfpDates.start)
-    const endDate = toDate(cfpDates.end)
-    const deliberation = toDate(deliberationDate)
+    const { cfpState, start, end, deliberationDate } = this.props
     return (
       <div>
-        {cfpState === 'not-started' && !isEmpty(cfpDates) && `will open ${lgf(startDate)}`}
-        {cfpState === 'opened' && !isEmpty(cfpDates) && `until ${lgf(endDate)}`}
-        {cfpState === 'closed' && deliberation && `Deliberation date will be ${lgf(deliberation)}`}
+        {cfpState === 'not-started' && !!start && `will open ${formatDate(start, 'large')}`}
+        {cfpState === 'opened' && !!end && `until ${formatDate(end, 'large')}`}
+        {cfpState === 'closed' &&
+          deliberationDate &&
+          `Deliberation date will be ${formatDate(deliberationDate, 'large')}`}
       </div>
     )
   }
@@ -45,7 +44,8 @@ class CfpBlock extends Component {
 CfpBlock.propTypes = {
   type: PropTypes.string,
   cfpState: PropTypes.oneOf(['not-started', 'opened', 'closed']),
-  cfpDates: PropTypes.objectOf(PropTypes.any),
+  start: PropTypes.any,
+  end: PropTypes.any,
   deliberationDate: PropTypes.any,
   className: PropTypes.string,
 }
@@ -53,7 +53,8 @@ CfpBlock.propTypes = {
 CfpBlock.defaultProps = {
   type: undefined,
   cfpState: 'closed',
-  cfpDates: {},
+  start: undefined,
+  end: undefined,
   deliberationDate: undefined,
   className: undefined,
 }

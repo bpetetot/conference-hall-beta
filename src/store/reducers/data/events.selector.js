@@ -1,33 +1,54 @@
 import isEmpty from 'lodash/isEmpty'
-import startOfDay from 'date-fns/start_of_day'
-import endOfDay from 'date-fns/end_of_day'
-import isAfter from 'date-fns/is_after'
-import isBefore from 'date-fns/is_before'
+import get from 'lodash/get'
+
 import { toDate } from 'helpers/firebase'
+
+const { DateTime } = require('luxon')
+
+export const getCfpOpeningDates = ({ start, end }, eventTimezone) => ({
+  start: DateTime.fromJSDate(toDate(start)).setZone(eventTimezone),
+  end: DateTime.fromJSDate(toDate(end))
+    .setZone(eventTimezone)
+    .plus({
+      hours: 23,
+      minutes: 59,
+      seconds: 59,
+    }),
+})
 
 /**
  * Compute if the state of the CFP according timezones.
  * TODO: CODE DUPLICATED in cloud function (share it when monorepo)
  * @param {*} event Event
  */
-export const getEventCfpState = (event) => {
+export const getEventCfpState = (event, userTimezone = 'local') => {
   if (event.type === 'meetup') {
     return event.cfpOpened ? 'opened' : 'closed'
   }
 
-  const { cfpDates } = event
+  const { address, cfpDates } = event
   if (isEmpty(cfpDates)) {
     return 'not-started'
   }
 
-  const start = startOfDay(toDate(cfpDates.start))
-  const end = endOfDay(toDate(cfpDates.end))
-  const today = new Date()
+  // By default 'Europe/Paris' because now it should be mandatory
+  const eventTimezone = get(address, 'timezone.id', 'Europe/Paris')
 
-  if (isBefore(today, start)) {
+  const { start, end } = getCfpOpeningDates(cfpDates, eventTimezone)
+  const today = DateTime.utc().setZone(userTimezone)
+
+  // console.log({
+  //   start: start.toString(),
+  //   end: end.toString(),
+  //   today: today.toString(),
+  //   eventTimezone,
+  //   userTimezone,
+  // })
+
+  if (today < start) {
     return 'not-started'
   }
-  if (isAfter(today, end)) {
+  if (today > end) {
     return 'closed'
   }
   return 'opened'
@@ -38,7 +59,7 @@ export const getEventCfpState = (event) => {
  * Values can be : not-started, opened, closed
  * @param {String} eventId event Id
  */
-export const getCfpState = eventId => (store) => {
+export const getCfpState = eventId => store => {
   const event = store.data.events.get(eventId) || {}
   return getEventCfpState(event)
 }
@@ -54,7 +75,7 @@ export const isCfpOpened = eventId => store => getCfpState(eventId)(store) === '
  * @param {string} eventId event id
  * @param {string} formatId format id
  */
-export const getFormat = (eventId, formatId) => (store) => {
+export const getFormat = (eventId, formatId) => store => {
   const { formats } = store.data.events.get(eventId) || {}
   if (formats) {
     return formats.find(f => f.id === formatId)
@@ -67,7 +88,7 @@ export const getFormat = (eventId, formatId) => (store) => {
  * @param {string} eventId event id
  * @param {string} categoryId category id
  */
-export const getCategory = (eventId, categoryId) => (store) => {
+export const getCategory = (eventId, categoryId) => store => {
   const { categories } = store.data.events.get(eventId) || {}
   if (categories) {
     return categories.find(c => c.id === categoryId)
