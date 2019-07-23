@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import isEmpty from 'lodash/isEmpty'
 
 import { formatDate } from 'helpers/date'
 
@@ -16,14 +15,16 @@ class CfpBlock extends Component {
   }
 
   renderConferenceDates = () => {
-    const { cfpState, start, end, deliberationDate } = this.props
+    const {
+      cfpState, start, end, deliberationDate,
+    } = this.props
     return (
       <div>
         {cfpState === 'not-started' && !!start && `will open ${formatDate(start, 'large')}`}
         {cfpState === 'opened' && !!end && `until ${formatDate(end, 'large')}`}
-        {cfpState === 'closed' &&
-          deliberationDate &&
-          `Deliberation date will be ${formatDate(deliberationDate, 'large')}`}
+        {cfpState === 'closed'
+          && deliberationDate
+          && `Deliberation date will be ${formatDate(deliberationDate, 'large')}`}
       </div>
     )
   }

@@ -29,36 +29,40 @@ const MyEvents = ({ events, onSelect }) => (
       renderRow={({
         id, name, type, visibility, address, conferenceDates,
       }) => (
-          <ListItem
-            key={id}
-            title={<div className={styles.title}>{name}</div>}
-            subtitle={<IconLabel icon="fa fa-map-marker" label={get(address, 'formattedAddress')} />}
-            info={(
-              <div className={styles.infos}>
-                <div className={styles.badges}>
-                  {visibility === 'private' && (
-                    <Badge pill outline error={visibility === 'private'}>
-                      {visibility}
-                    </Badge>
-                  )}
-                  <Badge
-                    pill
-                    outline
-                    success={type === 'meetup'}
-                    info={type === 'conference'}
-                    className={styles.type}
-                  >
-                    {type}
-                  </Badge>
-                </div>
-                {type === 'conference' && (
-                  <EventDates dates={conferenceDates} className={styles.dates} timezone={get(address, 'timezone.id')} />
+        <ListItem
+          key={id}
+          title={<div className={styles.title}>{name}</div>}
+          subtitle={<IconLabel icon="fa fa-map-marker" label={get(address, 'formattedAddress')} />}
+          info={(
+            <div className={styles.infos}>
+              <div className={styles.badges}>
+                {visibility === 'private' && (
+                <Badge pill outline error={visibility === 'private'}>
+                  {visibility}
+                </Badge>
                 )}
+                <Badge
+                  pill
+                  outline
+                  success={type === 'meetup'}
+                  info={type === 'conference'}
+                  className={styles.type}
+                >
+                  {type}
+                </Badge>
               </div>
-            )}
-            onSelect={() => onSelect(id)}
-          />
-        )}
+              {type === 'conference' && (
+              <EventDates
+                dates={conferenceDates}
+                className={styles.dates}
+                timezone={get(address, 'timezone.id')}
+              />
+              )}
+            </div>
+)}
+          onSelect={() => onSelect(id)}
+        />
+      )}
     />
   </div>
 )

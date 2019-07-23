@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { DateTime } from 'luxon'
 
 const MEDIUM_FORMAT = 'DDD ZZZZ'

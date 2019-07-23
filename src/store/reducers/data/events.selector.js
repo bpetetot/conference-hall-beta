@@ -59,7 +59,7 @@ export const getEventCfpState = (event, userTimezone = 'local') => {
  * Values can be : not-started, opened, closed
  * @param {String} eventId event Id
  */
-export const getCfpState = eventId => store => {
+export const getCfpState = eventId => (store) => {
   const event = store.data.events.get(eventId) || {}
   return getEventCfpState(event)
 }
@@ -75,7 +75,7 @@ export const isCfpOpened = eventId => store => getCfpState(eventId)(store) === '
  * @param {string} eventId event id
  * @param {string} formatId format id
  */
-export const getFormat = (eventId, formatId) => store => {
+export const getFormat = (eventId, formatId) => (store) => {
   const { formats } = store.data.events.get(eventId) || {}
   if (formats) {
     return formats.find(f => f.id === formatId)
@@ -88,7 +88,7 @@ export const getFormat = (eventId, formatId) => store => {
  * @param {string} eventId event id
  * @param {string} categoryId category id
  */
-export const getCategory = (eventId, categoryId) => store => {
+export const getCategory = (eventId, categoryId) => (store) => {
   const { categories } = store.data.events.get(eventId) || {}
   if (categories) {
     return categories.find(c => c.id === categoryId)
