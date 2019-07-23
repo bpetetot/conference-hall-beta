@@ -45,14 +45,6 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
     })
   const today = DateTime.utc().setZone(userTimezone)
 
-  // console.log({
-  //   start: start.toString(),
-  //   end: end.toString(),
-  //   today: today.toString(),
-  //   eventTimezone,
-  //   userTimezone,
-  // })
-
   if (today < start) {
     return 'not-started'
   }
