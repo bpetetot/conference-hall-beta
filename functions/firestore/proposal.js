@@ -54,7 +54,7 @@ const getEventProposals = async (
   {
     categories, formats, state, sortOrder, ratings, search
   } = {},
-  attributes = {},
+  options = { withOrganizersThread: false },
 ) => {
   let query = firebase
     .firestore()
@@ -88,17 +88,22 @@ const getEventProposals = async (
   const result = await query.get()
   let proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
 
-  if (attributes.proposal && attributes.proposal.indexOf('organizersThread')) {
+  // add organizer threads to export
+  if (options.withOrganizersThread) {
     proposals = await Promise.all(
       proposals.map(async (proposal) => {
-        const subCollectionDocs = await query
+        const organizersThread = await firebase
+          .firestore()
+          .collection('events')
+          .doc(eventId)
+          .collection('proposals')
           .doc(proposal.id)
           .collection('organizersThread')
           .get()
 
         return {
           ...proposal,
-          organizersThread: subCollectionDocs.docs.map(ref => ({ id: ref.id, ...ref.data() })),
+          organizersThread: organizersThread.docs.map(ref => ({ id: ref.id, ...ref.data() })),
         }
       }),
     )
@@ -121,10 +126,7 @@ const getEventProposals = async (
 }
 
 // Get the list of proposals for a given user and a given event.
-const getEventUserProposals = async (
-  eventId,
-  userId,
-) => {
+const getEventUserProposals = async (eventId, userId) => {
   const query = firebase
     .firestore()
     .collection('events')
@@ -142,5 +144,5 @@ module.exports = {
   removeProposal,
   getEventProposals,
   getProposal,
-  getEventUserProposals
+  getEventUserProposals,
 }
