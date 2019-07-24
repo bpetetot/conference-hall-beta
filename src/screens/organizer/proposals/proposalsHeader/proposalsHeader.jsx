@@ -7,11 +7,11 @@ import RatingsProgress from 'screens/organizer/components/ratingsProgress'
 
 import styles from './proposalsHeader.module.css'
 
-const ProposalsHeader = ({ eventId, title }) => (
+const ProposalsHeader = ({ eventId }) => (
   <div className={styles.header}>
     <Titlebar
       icon="fa fa-paper-plane"
-      title={title}
+      title="Proposals"
       className={classnames(styles.title, 'no-print')}
     />
     <RatingsProgress eventId={eventId} />
@@ -20,7 +20,6 @@ const ProposalsHeader = ({ eventId, title }) => (
 
 ProposalsHeader.propTypes = {
   eventId: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
 }
 
 export default ProposalsHeader
