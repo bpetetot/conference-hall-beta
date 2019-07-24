@@ -17,16 +17,12 @@ export const getRatingsProgress = (uid, store) => {
 
   if (isEmpty(proposals)) return {}
 
-  console.log(proposals)
-
   const rated = proposals.reduce((ratings, { usersRatings }) => {
     if (usersRatings && usersRatings[uid]) {
       return ratings + 1
     }
     return ratings
   }, 0)
-
-  console.log(rated)
 
   return {
     rated,
