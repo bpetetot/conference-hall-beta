@@ -11,7 +11,7 @@ import ProposalsPaging from './proposalsPaging'
 const Proposals = ({ eventId }) => (
   <div>
     <ProposalsHeader eventId={eventId} />
-    <ProposalsFilters eventId={eventId} />
+    <ProposalsFilters />
     <ProposalsToolbar eventId={eventId} />
     <ProposalsList eventId={eventId} />
     <ProposalsCards eventId={eventId} />

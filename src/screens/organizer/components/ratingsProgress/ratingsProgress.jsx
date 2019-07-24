@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 
 import styles from './ratingsProgress.module.css'
 
-const RatingsProgress = ({ deliberationActive, rated, total }) => {
-  if (!deliberationActive) return null
+const RatingsProgress = ({ rated, total }) => {
   if (total === 0) return null
   return (
     <div className={styles.wrapper}>
@@ -15,13 +14,11 @@ const RatingsProgress = ({ deliberationActive, rated, total }) => {
 }
 
 RatingsProgress.propTypes = {
-  deliberationActive: PropTypes.bool,
   rated: PropTypes.number,
   total: PropTypes.number,
 }
 
 RatingsProgress.defaultProps = {
-  deliberationActive: false,
   rated: 0,
   total: 0,
 }
