@@ -11,8 +11,8 @@ const Proposals = ({ eventId, proposalsSelection, nbProposals }) => {
   const title = nbProposals > 0 ? `Proposals (${nbProposals})` : 'Proposals'
   return (
     <div>
-      <ProposalsHeader title={title} />
-      <ProposalsToolbar selection={proposalsSelection} eventId={eventId} />
+      <ProposalsHeader eventId={eventId} title={title} />
+      <ProposalsToolbar eventId={eventId} selection={proposalsSelection} />
       <ProposalsList eventId={eventId} />
       <ProposalsCards eventId={eventId} />
       <ProposalsPaging />
