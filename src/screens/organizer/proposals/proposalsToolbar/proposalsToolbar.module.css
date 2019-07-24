@@ -1,8 +1,4 @@
 .proposalsToolbar {
-  margin-bottom: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
 }
 
@@ -11,6 +7,7 @@
   align-items: center;
   flex-wrap: wrap;
   flex-grow: 1;
+  margin-bottom: 1em;
 }
 
 .proposalsFilters > * {
@@ -32,11 +29,27 @@
 .proposalsActions {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  background: #fff;
+  border: 1px solid var(--grey-color);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  width: 100%;
+  padding: 0.5em 0;
 }
-.proposalsActions button {
-    margin-left: 1em;
+
+.leftActions {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 1.5em;
 }
+
+.rightActions {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
 @media only screen and (max-width: 480px) {
   .proposalsToolbar {
     display: none;

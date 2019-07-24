@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import debounce from 'lodash/debounce'
@@ -7,7 +7,6 @@ import isEmpty from 'lodash/isEmpty'
 import Checkbox from 'components/form/checkbox'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
-import Dropdown from 'components/dropdown'
 import styles from './proposalsToolbar.module.css'
 
 const sortOrderLabel = sortOrder => ({
@@ -61,7 +60,6 @@ class ProposalToolbar extends Component {
       sortOrders,
       filters,
       onChange,
-      onRefresh,
       onSendEmails,
       onExportProposals,
       onAcceptProposals,
@@ -69,6 +67,8 @@ class ProposalToolbar extends Component {
       selection,
       deliberationActive,
       isExporting,
+      nbSelected,
+      totalProposals,
     } = this.props
 
     const { checkAll } = this.state
@@ -76,12 +76,6 @@ class ProposalToolbar extends Component {
     return (
       <div className={cn(styles.proposalsToolbar, 'no-print')}>
         <div className={styles.proposalsFilters}>
-          <Checkbox
-            onClick={this.handleSelect}
-            label="All pages"
-            name="all-pages"
-            value={checkAll}
-          />
           <input
             id="search"
             type="search"
@@ -138,51 +132,49 @@ class ProposalToolbar extends Component {
           </select>
         </div>
         <div className={styles.proposalsActions}>
-          <Dropdown
-            action={(
-              <Button primary>
-                <IconLabel icon="fa fa-angle-down" label="Actions..." />
+          <div className={styles.leftActions}>
+            <Checkbox
+              onClick={this.handleSelect}
+              label={!nbSelected ? `${totalProposals} proposals` : `${nbSelected} selected`}
+              name="all-pages"
+              value={checkAll}
+            />
+          </div>
+          <div className={styles.rightActions}>
+            {nbSelected === 0 && (
+              <Button onClick={onExportProposals} tertiary disabled={isExporting}>
+                <IconLabel
+                  icon="fa fa-cloud-download"
+                  label={isExporting ? 'Exporting...' : 'Export to JSON'}
+                />
               </Button>
             )}
-          >
-            <button type="button" onClick={onExportProposals} disabled={isExporting}>
-              {isExporting ? (
-                'Exporting...'
-              ) : (
-                <IconLabel icon="fa fa-cloud-download" label="Export to JSON" />
-              )}
-            </button>
-            {deliberationActive && (
-              <button
-                type="button"
-                onClick={() => onAcceptProposals(selection)}
-                disabled={isEmpty(selection)}
-              >
-                <IconLabel icon="fa fa-check" label="Accept proposals" />
-              </button>
+            {deliberationActive && nbSelected > 0 && (
+              <Fragment>
+                <Button
+                  tertiary
+                  onClick={() => onAcceptProposals(selection)}
+                  disabled={isEmpty(selection)}
+                >
+                  <IconLabel icon="fa fa-check" label="Accept proposals" />
+                </Button>
+                <Button
+                  tertiary
+                  onClick={() => onRejectProposals(selection)}
+                  disabled={isEmpty(selection)}
+                >
+                  <IconLabel icon="fa fa-close" label="Reject proposals" />
+                </Button>
+                <Button
+                  tertiary
+                  onClick={() => onSendEmails(selection)}
+                  disabled={isEmpty(selection)}
+                >
+                  <IconLabel icon="fa fa-rocket" label="Send emails" />
+                </Button>
+              </Fragment>
             )}
-            {deliberationActive && (
-              <button
-                type="button"
-                onClick={() => onRejectProposals(selection)}
-                disabled={isEmpty(selection)}
-              >
-                <IconLabel icon="fa fa-close" label="Reject proposals" />
-              </button>
-            )}
-            {deliberationActive && (
-              <button
-                type="button"
-                onClick={() => onSendEmails(selection)}
-                disabled={isEmpty(selection)}
-              >
-                <IconLabel icon="fa fa-rocket" label="Send emails" />
-              </button>
-            )}
-          </Dropdown>
-          <Button type="button" primary onClick={onRefresh}>
-            <i className="fa fa-refresh" />
-          </Button>
+          </div>
         </div>
       </div>
     )
@@ -198,7 +190,6 @@ ProposalToolbar.propTypes = {
   sortOrders: PropTypes.arrayOf(PropTypes.string),
   filters: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
-  onRefresh: PropTypes.func,
   onSendEmails: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
   onAcceptProposals: PropTypes.func.isRequired,
@@ -206,10 +197,11 @@ ProposalToolbar.propTypes = {
   onExportProposals: PropTypes.func.isRequired,
   deliberationActive: PropTypes.bool,
   isExporting: PropTypes.bool,
+  nbSelected: PropTypes.number,
+  totalProposals: PropTypes.number,
 }
 
 ProposalToolbar.defaultProps = {
-  onRefresh: () => {},
   statuses: [],
   selection: [],
   ratings: [],
@@ -219,6 +211,8 @@ ProposalToolbar.defaultProps = {
   filters: {},
   deliberationActive: false,
   isExporting: false,
+  nbSelected: 0,
+  totalProposals: 0,
 }
 
 export default ProposalToolbar

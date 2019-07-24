@@ -10,6 +10,8 @@ const mapStore = (store, props, { router }) => {
   const { deliberationActive, formats, categories } = store.data.events.get(eventId) || {}
   const filters = store.ui.organizer.proposals.get()
   const { isExporting } = store.ui.organizer.proposalsExport.get()
+  const { count } = store.ui.organizer.proposalsSelection.get()
+  const totalProposals = store.data.proposals.getAsArray().length
 
   return {
     statuses,
@@ -20,9 +22,8 @@ const mapStore = (store, props, { router }) => {
     filters,
     deliberationActive,
     isExporting,
-    onRefresh: () => {
-      store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
-    },
+    nbSelected: count,
+    totalProposals,
     onChange: ({ target }) => {
       store.ui.organizer.proposals.update({ [target.id]: target.value })
     },

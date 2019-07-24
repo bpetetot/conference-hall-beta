@@ -8,7 +8,7 @@ const ListItem = ({
   onSelect, info, title, subtitle, renderCheckbox, renderActions,
 }) => (
   <div className={cn('list-item')}>
-    {renderCheckbox && <div className="list-item-actions">{renderCheckbox()}</div>}
+    {renderCheckbox && <div className="list-item-checkbox">{renderCheckbox()}</div>}
     <div className={cn('list-item-main', { clickable: onSelect })} onClick={onSelect} role="button">
       <div className="list-item-title">{title}</div>
       {subtitle && <div className=" list-item-subtitle">{subtitle}</div>}
