@@ -1,6 +1,6 @@
 {
   "name": "conference-hall",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "private": true,
   "bugs": "https://github.com/bpetetot/conference-hall/issues",
   "repository": "github:bpetetot/conference-hall",
@@ -12,7 +12,8 @@
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
     "doc": "NODE_PATH=./src docz dev",
-    "doc:build": "NODE_PATH=./src docz build"
+    "doc:build": "NODE_PATH=./src docz build",
+    "changelog": "gitmoji-changelog"
   },
   "dependencies": {
     "@k-ramel/react": "^2.1.0",
@@ -58,6 +59,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "firebase-tools": "^7.1.1",
+    "gitmoji-changelog": "^2.0.0-alpha.2",
     "prettier": "^1.18.2",
     "react-scripts": "^3.0.1",
     "react-test-renderer": "^16.8.6",
