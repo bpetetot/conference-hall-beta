@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.17.1"></a>
+## 0.17.1 (2019-07-25)
+
+### Changed
+
+- ⬇️ remove gitmoji-changelog [[acb5711](https://github.com/bpetetot/conference-hall/commit/acb5711eabaf69e9b837e796a1a0d37d8cfb1085)]
+
+
 <a name="0.17.0"></a>
 
 ## 0.17.0 (2019-07-25)
