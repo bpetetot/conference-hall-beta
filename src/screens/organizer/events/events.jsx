@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
+import get from 'lodash/get'
 
 import Badge from 'components/badge'
 import Titlebar from 'components/titlebar'
@@ -31,7 +32,7 @@ const MyEvents = ({ events, onSelect }) => (
         <ListItem
           key={id}
           title={<div className={styles.title}>{name}</div>}
-          subtitle={<IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />}
+          subtitle={<IconLabel icon="fa fa-map-marker" label={get(address, 'formattedAddress')} />}
           info={(
             <div className={styles.infos}>
               <div className={styles.badges}>
@@ -51,10 +52,14 @@ const MyEvents = ({ events, onSelect }) => (
                 </Badge>
               </div>
               {type === 'conference' && (
-              <EventDates dates={conferenceDates} className={styles.dates} />
+              <EventDates
+                dates={conferenceDates}
+                className={styles.dates}
+                timezone={get(address, 'timezone.id')}
+              />
               )}
             </div>
-          )}
+)}
           onSelect={() => onSelect(id)}
         />
       )}

@@ -54,6 +54,7 @@ export default [
   when('@@ui/ON_LOAD_EVENT')(events.fetchEvent),
   when('@@ui/ON_LOAD_ORGANIZER_EVENTS')(events.fetchOrganizerEvents),
   when('@@ui/ON_LOAD_SPEAKER_EVENTS')(events.fetchSpeakerEvents),
+  when('@@ui/ON_ORGANIZER_CHANGE_EVENT')(events.organizerChangeEvent),
   /* organizations */
   when('@@ui/ON_LOAD_ORGANIZATION')(organizations.get),
   when('@@ui/ON_LOAD_USER_ORGANIZATIONS')(organizations.ofUser),

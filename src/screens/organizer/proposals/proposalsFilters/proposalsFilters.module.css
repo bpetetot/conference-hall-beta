@@ -1,0 +1,28 @@
+.proposalsFilters {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  margin-bottom: 1em;
+}
+
+.proposalsFilters > select {
+  width: initial;
+  min-width: 10em;
+  max-width: 15em;
+  margin-left: 1em;
+}
+
+.proposalsFilters > input[type='search'] {
+  width: initial;
+  min-width: 10em;
+  width: initial;
+  flex-grow: 1;
+}
+
+@media only screen and (max-width: 1024px) {
+  .proposalsFilters > select {
+    display: none;
+  }
+}

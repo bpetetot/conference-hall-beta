@@ -12,18 +12,16 @@
   line-height: 1em;
 }
 
-
 /* Button sizes */
 .cc-button-small {
   padding: 8px 12px;
-  font-size: 0.7em;
+  font-size: 0.8em;
 }
 
 .cc-button-large {
   padding: 12px 18px;
   font-size: 1.2em;
 }
-
 
 /* Button hierarchy */
 .cc-button-primary {
@@ -66,7 +64,6 @@
   fill: var(--primary-color-dark);
 }
 
-
 /* Accent button by hierarchy */
 .cc-button-primary.cc-button-accent {
   background: var(--secondary-color);
@@ -105,7 +102,6 @@
   color: var(--secondary-color-dark);
   fill: var(--secondary-color-dark);
 }
-
 
 /* Error button by hierarchy */
 .cc-button-primary.cc-button-error {
@@ -146,7 +142,6 @@
   fill: var(--error-color);
 }
 
-
 /* button disabled */
 .cc-button:disabled {
   background: var(--grey-color-light);
@@ -183,13 +178,11 @@
   border: none;
 }
 
-
 /** block button */
 .cc-button-block {
   display: block;
   width: 100%;
 }
-
 
 /** simple button */
 .cc-button-simple {

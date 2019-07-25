@@ -10,6 +10,28 @@ import isEmpty from 'lodash/isEmpty'
 
 import './address.css'
 
+const TIMEZONE_API = 'https://maps.googleapis.com/maps/api/timezone/json'
+const API_KEY = process.env.REACT_APP_API_KEY
+
+const getTimezone = async ({ lat, lng }) => {
+  const timestamp = Date.now() / 1000
+  try {
+    const response = await fetch(
+      `${TIMEZONE_API}?location=${lat},${lng}&timestamp=${timestamp}&key=${API_KEY}`,
+    )
+    const result = await response.json()
+    if (result && result.status === 'OK') {
+      return {
+        id: result.timeZoneId,
+        name: result.timeZoneName,
+      }
+    }
+  } catch (e) {
+    console.error(e) // eslint-disable-line no-console
+  }
+  return null
+}
+
 const getAddressComponent = name => flow(
   filter(component => component.types.includes(name)),
   first,
@@ -38,11 +60,14 @@ const AddressInput = ({ placeholder, ...props }) => {
     const country = getAddressComponent('country')(result.address_components)
     const locality = getAddressComponent('locality')(result.address_components)
 
+    const timezone = await getTimezone(latLng)
+
     props.onChange({
       formattedAddress: selectedAddress,
       locality,
       country,
       latLng,
+      timezone,
     })
   }
 

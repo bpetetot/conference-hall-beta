@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
         'loves',
         'hates',
         'language',
+        'organizersThread',
       ],
       speaker: [
         'uid',

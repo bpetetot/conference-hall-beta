@@ -51,7 +51,7 @@
   }
 }
 
-@media print{
+@media print {
   .layout-screen {
     display: grid;
     grid-template-columns: auto;

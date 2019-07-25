@@ -1,33 +1,51 @@
 import isEmpty from 'lodash/isEmpty'
-import startOfDay from 'date-fns/start_of_day'
-import endOfDay from 'date-fns/end_of_day'
-import isAfter from 'date-fns/is_after'
-import isBefore from 'date-fns/is_before'
+import get from 'lodash/get'
+
 import { toDate } from 'helpers/firebase'
+
+const { DateTime } = require('luxon')
+
+export const getCfpOpeningDates = (cfpDates, eventTimezone) => {
+  if (isEmpty(cfpDates)) return null
+
+  const { start, end } = cfpDates
+  return {
+    start: DateTime.fromJSDate(toDate(start)).setZone(eventTimezone),
+    end: DateTime.fromJSDate(toDate(end))
+      .setZone(eventTimezone)
+      .plus({
+        hours: 23,
+        minutes: 59,
+        seconds: 59,
+      }),
+  }
+}
 
 /**
  * Compute if the state of the CFP according timezones.
  * TODO: CODE DUPLICATED in cloud function (share it when monorepo)
  * @param {*} event Event
  */
-export const getEventCfpState = (event) => {
+export const getEventCfpState = (event, userTimezone = 'local') => {
   if (event.type === 'meetup') {
     return event.cfpOpened ? 'opened' : 'closed'
   }
 
-  const { cfpDates } = event
+  const { address, cfpDates } = event
   if (isEmpty(cfpDates)) {
     return 'not-started'
   }
 
-  const start = startOfDay(toDate(cfpDates.start))
-  const end = endOfDay(toDate(cfpDates.end))
-  const today = new Date()
+  // By default 'Europe/Paris' because now it should be mandatory
+  const eventTimezone = get(address, 'timezone.id', 'Europe/Paris')
 
-  if (isBefore(today, start)) {
+  const { start, end } = getCfpOpeningDates(cfpDates, eventTimezone)
+  const today = DateTime.utc().setZone(userTimezone)
+
+  if (today < start) {
     return 'not-started'
   }
-  if (isAfter(today, end)) {
+  if (today > end) {
     return 'closed'
   }
   return 'opened'

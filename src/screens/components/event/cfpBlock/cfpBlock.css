@@ -3,10 +3,7 @@
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
-}
-
-.cfp-block .cfp-block-title {
-  margin-right: 0.5em;
+  flex-direction: column;
 }
 
 .cfp-block .cfp-block-subtitle {

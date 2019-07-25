@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import get from 'lodash/get'
 
 import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
@@ -32,15 +33,19 @@ const TalksSelection = ({ talkId, events, onSelect }) => (
               {type}
             </Badge>
           </div>
-        )}
+)}
         subtitle={(
           <Fragment>
             {type === 'conference' && (
-              <EventDates dates={conferenceDates} className={styles.dates} />
+            <EventDates
+              dates={conferenceDates}
+              className={styles.dates}
+              timezone={get(address, 'timezone.id')}
+            />
             )}
             <IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />
           </Fragment>
-        )}
+)}
         info={<Status eventId={id} talkId={talkId} />}
         onSelect={() => onSelect(id)}
       />
