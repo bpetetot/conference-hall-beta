@@ -36,6 +36,11 @@
   margin-left: 0.5em;
 }
 
+.list-item .list-item-checkbox {
+  align-self: flex-start;
+  padding: 0.3em;
+}
+
 .list-item .list-item-actions {
   flex-grow: 1;
 }

@@ -4,28 +4,18 @@ import ProposalToobar from './proposalsToolbar'
 
 const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
-  const sortOrders = router.getParam('sortOrders')
-  const ratings = router.getParam('ratings')
-  const statuses = router.getParam('statuses')
-  const { deliberationActive, formats, categories } = store.data.events.get(eventId) || {}
-  const filters = store.ui.organizer.proposals.get()
+  const { deliberationActive } = store.data.events.get(eventId) || {}
   const { isExporting } = store.ui.organizer.proposalsExport.get()
+  const { count } = store.ui.organizer.proposalsSelection.get()
+  const totalProposals = store.data.proposals.getAsArray().length
+  const { items } = store.ui.organizer.proposalsSelection.get()
 
   return {
-    statuses,
-    ratings,
-    formats,
-    categories,
-    sortOrders,
-    filters,
     deliberationActive,
     isExporting,
-    onRefresh: () => {
-      store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
-    },
-    onChange: ({ target }) => {
-      store.ui.organizer.proposals.update({ [target.id]: target.value })
-    },
+    nbSelected: count,
+    totalProposals,
+    selection: items,
     onSelectAll: (isChecked) => {
       store.dispatch({ type: '@@ui/SELECT_ALL_PROPOSALS', payload: { checkAll: isChecked } })
     },
