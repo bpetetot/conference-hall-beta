@@ -17,8 +17,8 @@ const displayRating = (rating) => {
 const getCards = ({
   speakers, formats, categories, talks,
 }) => talks.map((talk) => {
-  const format = formats.find(({ id }) => talk.formats === id)
-  const category = categories.find(({ id }) => talk.categories === id)
+  const format = formats && formats.find(({ id }) => talk.formats === id)
+  const category = categories && categories.find(({ id }) => talk.categories === id)
   const speakersTalk = speakers.filter(s => talk.speakers.includes(s.uid))
 
   return {
