@@ -5,7 +5,6 @@ import ProposalsHeader from './proposalsHeader'
 import ProposalsFilters from './proposalsFilters'
 import ProposalsToolbar from './proposalsToolbar'
 import ProposalsList from './proposalsList'
-import ProposalsCards from './proposalsCards'
 import ProposalsPaging from './proposalsPaging'
 
 const Proposals = ({ eventId }) => (
@@ -14,7 +13,6 @@ const Proposals = ({ eventId }) => (
     <ProposalsFilters />
     <ProposalsToolbar eventId={eventId} />
     <ProposalsList eventId={eventId} />
-    <ProposalsCards eventId={eventId} />
     <ProposalsPaging />
   </div>
 )
