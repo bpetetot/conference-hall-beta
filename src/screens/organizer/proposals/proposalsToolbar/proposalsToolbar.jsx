@@ -56,8 +56,8 @@ class ProposalToolbar extends Component {
               </Button>
               <Button onClick={onExportProposals('pdf')} tertiary disabled={!!exporting}>
                 <IconLabel
-                  icon="fa fa-cloud-download"
-                  label={exporting === 'pdf' ? 'Exporting...' : 'Export to PDF'}
+                  icon="fa fa-file-pdf-o"
+                  label={exporting === 'pdf' ? 'Exporting...' : 'Export to PDF cards'}
                 />
               </Button>
             </Fragment>
