@@ -47,12 +47,20 @@ class ProposalToolbar extends Component {
         </div>
         <div className={styles.rightActions}>
           {nbSelected === 0 && (
-            <Button onClick={onExportProposals} tertiary disabled={isExporting}>
-              <IconLabel
-                icon="fa fa-cloud-download"
-                label={isExporting ? 'Exporting...' : 'Export to JSON'}
-              />
-            </Button>
+            <Fragment>
+              <Button onClick={onExportProposals('json')} tertiary disabled={isExporting}>
+                <IconLabel
+                  icon="fa fa-cloud-download"
+                  label={isExporting ? 'Exporting...' : 'Export to JSON'}
+                />
+              </Button>
+              <Button onClick={onExportProposals('pdf')} tertiary disabled={isExporting}>
+                <IconLabel
+                  icon="fa fa-cloud-download"
+                  label={isExporting ? 'Exporting...' : 'Export to PDF'}
+                />
+              </Button>
+            </Fragment>
           )}
           {deliberationActive && nbSelected > 0 && (
             <Fragment>

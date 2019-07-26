@@ -19,7 +19,7 @@ const mapStore = (store, props, { router }) => {
     onSelectAll: (isChecked) => {
       store.dispatch({ type: '@@ui/SELECT_ALL_PROPOSALS', payload: { checkAll: isChecked } })
     },
-    onExportProposals: () => store.dispatch('@@ui/EXPORT_PROPOSALS'),
+    onExportProposals: output => () => store.dispatch({ type: '@@ui/EXPORT_PROPOSALS', payload: { output } }),
     onSendEmails: selection => store.dispatch({ type: '@@ui/SEND_EMAIL_FOR_PROPOSALS', payload: { selection } }),
     onAcceptProposals: selection => store.dispatch({ type: '@@ui/ACCEPT_PROPOSALS', payload: { selection } }),
     onRejectProposals: selection => store.dispatch({ type: '@@ui/REJECT_PROPOSALS', payload: { selection } }),

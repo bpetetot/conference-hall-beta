@@ -59,6 +59,7 @@ export const previousProposal = async (action, store, { router }) => {
 }
 
 export const exportProposals = async (action, store, { router }) => {
+  const { output } = action.payload
   const eventId = router.getParam('eventId')
   store.ui.organizer.proposalsExport.update({ isExporting: true })
 
@@ -66,7 +67,7 @@ export const exportProposals = async (action, store, { router }) => {
 
   // get proposal filters & sort from query params
   const queryParams = router.getQueryParams()
-  const query = encodeURI(Object.entries(queryParams)
+  const query = encodeURI(Object.entries({ ...queryParams, output })
     .map(([key, value]) => `${key}=${value}`)
     .join('&'))
 
