@@ -1,88 +1,257 @@
 {
   "indexes": [
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "state", "mode": "ASCENDING" },
-        { "fieldPath": "rating", "mode": "ASCENDING" }
+        {
+          "fieldPath": "categories",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createTimestamp",
+          "order": "ASCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "state", "mode": "ASCENDING" },
-        { "fieldPath": "rating", "mode": "DESCENDING" }
+        {
+          "fieldPath": "categories",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createTimestamp",
+          "order": "DESCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "state", "mode": "ASCENDING" },
-        { "fieldPath": "createTimestamp", "mode": "ASCENDING" }
+        {
+          "fieldPath": "categories",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "rating",
+          "order": "ASCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "state", "mode": "ASCENDING" },
-        { "fieldPath": "createTimestamp", "mode": "DESCENDING" }
+        {
+          "fieldPath": "categories",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "rating",
+          "order": "DESCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "categories", "mode": "ASCENDING" },
-        { "fieldPath": "rating", "mode": "ASCENDING" }
+        {
+          "fieldPath": "categories",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updateTimestamp",
+          "order": "ASCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "categories", "mode": "ASCENDING" },
-        { "fieldPath": "rating", "mode": "DESCENDING" }
+        {
+          "fieldPath": "categories",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updateTimestamp",
+          "order": "DESCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "categories", "mode": "ASCENDING" },
-        { "fieldPath": "createTimestamp", "mode": "ASCENDING" }
+        {
+          "fieldPath": "formats",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createTimestamp",
+          "order": "ASCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "categories", "mode": "ASCENDING" },
-        { "fieldPath": "createTimestamp", "mode": "DESCENDING" }
+        {
+          "fieldPath": "formats",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createTimestamp",
+          "order": "DESCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "formats", "mode": "ASCENDING" },
-        { "fieldPath": "rating", "mode": "ASCENDING" }
+        {
+          "fieldPath": "formats",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "rating",
+          "order": "ASCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "formats", "mode": "ASCENDING" },
-        { "fieldPath": "rating", "mode": "DESCENDING" }
+        {
+          "fieldPath": "formats",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "rating",
+          "order": "DESCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "formats", "mode": "ASCENDING" },
-        { "fieldPath": "createTimestamp", "mode": "ASCENDING" }
+        {
+          "fieldPath": "formats",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updateTimestamp",
+          "order": "ASCENDING"
+        }
       ]
     },
     {
-      "collectionId": "proposals",
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
       "fields": [
-        { "fieldPath": "formats", "mode": "ASCENDING" },
-        { "fieldPath": "createTimestamp", "mode": "DESCENDING" }
+        {
+          "fieldPath": "formats",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updateTimestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createTimestamp",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createTimestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "rating",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "rating",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updateTimestamp",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "proposals",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updateTimestamp",
+          "order": "DESCENDING"
+        }
       ]
     }
-  ]
+  ],
+  "fieldOverrides": []
 }
