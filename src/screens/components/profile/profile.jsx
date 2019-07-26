@@ -6,6 +6,7 @@ import Field from 'components/form/field'
 import {
   input, address, markdownInput, SubmitButton,
 } from 'components/form'
+import { required } from 'components/form/validators'
 import Avatar from 'components/avatar'
 
 import './profile.css'
@@ -23,11 +24,18 @@ const Profile = ({
     </div>
 
     <Form onSubmit={onSubmit} initialValues={initialValues}>
-      {({ handleSubmit, pristine }) => (
+      {({ handleSubmit, pristine, invalid }) => (
         <form className="profile-form card">
+          <Field
+            name="displayName"
+            label="Full name"
+            type="text"
+            component={input}
+            validate={required}
+          />
           <Field name="company" label="Company" type="text" component={input} />
           <Field name="phone" label="Phone" type="text" component={input} />
-          <Field name="language" label="Favorite language" type="text" component={input} />
+          <Field name="language" label="Spoken language" type="text" component={input} />
           <Field
             name="twitter"
             label="Twitter"
@@ -51,7 +59,12 @@ const Profile = ({
             component={markdownInput}
           />
 
-          <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
+          <SubmitButton
+            handleSubmit={handleSubmit}
+            pristine={pristine}
+            submitting={submitting}
+            invalid={invalid}
+          >
             Save profile
           </SubmitButton>
         </form>
