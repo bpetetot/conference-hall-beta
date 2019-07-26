@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="0.19.0"></a>
+
+## 0.19.0 (2019-07-26)
+
+### Added
+
+- ✨ update the fullname in the profile ([#632](https://github.com/bpetetot/conference-hall/issues/632)) [[109da0c](https://github.com/bpetetot/conference-hall/commit/109da0c3269c722b769e691634ee3f798bd0c86c)]
+
+### Fixed
+
+- 🐛 disable invite links for security reasons ([#631](https://github.com/bpetetot/conference-hall/issues/631)) [[4ca8e05](https://github.com/bpetetot/conference-hall/commit/4ca8e05508454de31d6a6ec67bbf06649123c3cc)]
+- 🐛 reset paging reloading proposals ([#630](https://github.com/bpetetot/conference-hall/issues/630)) [[7fb4029](https://github.com/bpetetot/conference-hall/commit/7fb4029f33f78060ec303fde991a573b50be2518)]
+
 <a name="0.18.0"></a>
 
 ## 0.18.0 (2019-07-26)
