@@ -1,12 +1,24 @@
 # Changelog
 
+<a name="0.18.0"></a>
+
+## 0.18.0 (2019-07-26)
+
+### Added
+
+- ✨ export card proposals in PDF ([#628](https://github.com/bpetetot/conference-hall/issues/628)) [[3e9ea45](https://github.com/bpetetot/conference-hall/commit/3e9ea45115228f083fced355671b22dc10cf3cff)]
+
+### Changed
+
+- 🗃️ new firestore indexes format ([#629](https://github.com/bpetetot/conference-hall/issues/629)) [[a747a64](https://github.com/bpetetot/conference-hall/commit/a747a644c20d1bd366413a5108ca641f791f0f3b)]
+
 <a name="0.17.1"></a>
+
 ## 0.17.1 (2019-07-25)
 
 ### Changed
 
 - ⬇️ remove gitmoji-changelog [[acb5711](https://github.com/bpetetot/conference-hall/commit/acb5711eabaf69e9b837e796a1a0d37d8cfb1085)]
-
 
 <a name="0.17.0"></a>
 
