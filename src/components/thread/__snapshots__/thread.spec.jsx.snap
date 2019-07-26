@@ -109,6 +109,7 @@ exports[`components/thread should render a message in the thread 1`] = `
         accent={false}
         block={false}
         error={false}
+        loading={false}
         onClick={[Function]}
         primary={true}
         secondary={false}

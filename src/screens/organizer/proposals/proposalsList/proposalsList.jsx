@@ -12,6 +12,7 @@ const Proposals = ({
   eventId,
   proposals,
   proposalsSelection,
+  deliberationActive,
   onSelect,
   onAddProposalToSelection,
   isMobile,
@@ -25,7 +26,7 @@ const Proposals = ({
         title={proposal.title}
         subtitle={!isMobile && <ProposalSubtitle eventId={eventId} proposal={proposal} />}
         info={<ProposalInfo proposal={proposal} isMobile={isMobile} />}
-        onSelect={() => onSelect(eventId, proposal.id)}
+        onSelect={() => onSelect(proposal.id)}
         renderCheckbox={() => {
           if (isMobile) return undefined
           return (
@@ -33,7 +34,7 @@ const Proposals = ({
               key={proposal.id}
               onClick={() => onAddProposalToSelection(proposal.id)}
               value={!!proposalsSelection.includes(proposal.id)}
-              disabled={proposal.emailStatus === 'delivered'}
+              disabled={!deliberationActive}
             />
           )
         }}
@@ -46,6 +47,7 @@ Proposals.propTypes = {
   eventId: PropTypes.string.isRequired,
   proposals: PropTypes.arrayOf(PropTypes.object),
   proposalsSelection: PropTypes.arrayOf(PropTypes.string),
+  deliberationActive: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
   onAddProposalToSelection: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
@@ -54,6 +56,7 @@ Proposals.propTypes = {
 Proposals.defaultProps = {
   proposals: [],
   proposalsSelection: [],
+  deliberationActive: false,
 }
 
 export default withSizes(Proposals)

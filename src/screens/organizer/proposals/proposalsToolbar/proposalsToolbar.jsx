@@ -6,6 +6,8 @@ import isEmpty from 'lodash/isEmpty'
 import Checkbox from 'components/form/checkbox'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
+import Dropdown from 'components/dropdown'
+
 import styles from './proposalsToolbar.module.css'
 
 class ProposalToolbar extends Component {
@@ -28,7 +30,7 @@ class ProposalToolbar extends Component {
       onRejectProposals,
       selection,
       deliberationActive,
-      isExporting,
+      exporting,
       nbSelected,
       totalProposals,
     } = this.props
@@ -43,16 +45,25 @@ class ProposalToolbar extends Component {
             label={!nbSelected ? `${totalProposals} proposals` : `${nbSelected} selected`}
             name="all-pages"
             value={checkAll}
+            disabled={!deliberationActive || totalProposals === 0}
           />
         </div>
         <div className={styles.rightActions}>
-          {nbSelected === 0 && (
-            <Button onClick={onExportProposals} tertiary disabled={isExporting}>
-              <IconLabel
-                icon="fa fa-cloud-download"
-                label={isExporting ? 'Exporting...' : 'Export to JSON'}
-              />
-            </Button>
+          {nbSelected === 0 && totalProposals > 0 && (
+            <Dropdown
+              action={(
+                <Button tertiary loading={!!exporting}>
+                  <IconLabel icon="fa fa-caret-down" label="Export..." right />
+                </Button>
+)}
+            >
+              <Button onClick={onExportProposals('json')} disabled={!!exporting}>
+                <IconLabel icon="fa fa-cloud-download" label="JSON file" />
+              </Button>
+              <Button onClick={onExportProposals('pdf')} disabled={!!exporting}>
+                <IconLabel icon="fa fa-file-pdf-o" label="PDF cards" />
+              </Button>
+            </Dropdown>
           )}
           {deliberationActive && nbSelected > 0 && (
             <Fragment>
@@ -93,7 +104,7 @@ ProposalToolbar.propTypes = {
   onRejectProposals: PropTypes.func.isRequired,
   onExportProposals: PropTypes.func.isRequired,
   deliberationActive: PropTypes.bool,
-  isExporting: PropTypes.bool,
+  exporting: PropTypes.string,
   nbSelected: PropTypes.number,
   totalProposals: PropTypes.number,
 }
@@ -101,7 +112,7 @@ ProposalToolbar.propTypes = {
 ProposalToolbar.defaultProps = {
   selection: [],
   deliberationActive: false,
-  isExporting: false,
+  exporting: null,
   nbSelected: 0,
   totalProposals: 0,
 }
