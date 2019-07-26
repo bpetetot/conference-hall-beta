@@ -45,10 +45,11 @@ class ProposalToolbar extends Component {
             label={!nbSelected ? `${totalProposals} proposals` : `${nbSelected} selected`}
             name="all-pages"
             value={checkAll}
+            disabled={!deliberationActive || totalProposals === 0}
           />
         </div>
         <div className={styles.rightActions}>
-          {nbSelected === 0 && (
+          {nbSelected === 0 && totalProposals > 0 && (
             <Dropdown
               action={(
                 <Button tertiary loading={!!exporting}>
