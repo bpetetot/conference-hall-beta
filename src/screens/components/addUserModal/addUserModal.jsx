@@ -50,10 +50,14 @@ const AddUserModal = ({
             }}
           />
         )}
-        <div className="user-search-separator">
-          <small>or send him/her an invitation link</small>
-        </div>
-        <CopyInput title="Invite link" value={inviteLink} />
+        {!!inviteLink && (
+          <Fragment>
+            <div className="user-search-separator">
+              <small>or send him/her an invitation link</small>
+            </div>
+            <CopyInput title="Invite link" value={inviteLink} />
+          </Fragment>
+        )}
       </Fragment>
     )}
   </Modal>
