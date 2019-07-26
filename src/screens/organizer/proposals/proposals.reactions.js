@@ -64,7 +64,8 @@ export const rejectProposals = async (action, store, { router }) => {
   const eventId = router.getParam('eventId')
   for (let i = 0; i < selection.length; i += 1) {
     const proposal = store.data.proposals.get(selection[i])
-    if (proposal.emailStatus !== 'sent') { // do not allow change of deliberation when email marked as sent
+    if (proposal.emailStatus !== 'sent') {
+      // do not allow change of deliberation when email marked as sent
       proposal.state = 'rejected'
       firebase.updateProposal(eventId, proposal)
     }
@@ -80,7 +81,8 @@ export const acceptProposals = async (action, store, { router }) => {
   const eventId = router.getParam('eventId')
   for (let i = 0; i < selection.length; i += 1) {
     const proposal = store.data.proposals.get(selection[i])
-    if (proposal.emailStatus !== 'sent') { // do not allow change of deliberation when email marked as sent
+    if (proposal.emailStatus !== 'sent') {
+      // do not allow change of deliberation when email marked as sent
       proposal.state = 'accepted'
       firebase.updateProposal(eventId, proposal)
     }
@@ -111,13 +113,16 @@ export const selectAllProposal = async (action, store) => {
   const isChecked = action.payload.checkAll
   if (isChecked) {
     const proposalKeys = store.data.proposals.getKeys()
-    const emailNotSent = proposalKeys.filter(val => store.data.proposals.get(val).emailStatus !== 'delivered'
-       && store.data.proposals.get(val).emailStatus !== 'sending')
+    const emailNotSent = proposalKeys.filter(
+      val => store.data.proposals.get(val).emailStatus !== 'delivered'
+        && store.data.proposals.get(val).emailStatus !== 'sending',
+    )
     store.ui.organizer.proposalsSelection.update({
       count: emailNotSent.length,
       items: emailNotSent,
     })
-  } else { // deselect all
+  } else {
+    // deselect all
     store.ui.organizer.proposalsSelection.update({
       count: 0,
       items: [],
@@ -129,38 +134,40 @@ export const selectAllProposal = async (action, store) => {
 /* load proposals */
 export const loadProposals = async (action, store, { router }) => {
   store.data.proposals.reset()
-  let currentPage = store.ui.organizer.proposalsPaging.get()
-  if (!currentPage) {
-    currentPage = { page: 1 }
-  }
-  store.ui.organizer.proposalsPaging.update(currentPage)
+  store.ui.organizer.proposalsPaging.reset()
 
   const eventId = router.getParam('eventId')
   const { uid } = store.auth.get()
 
   const filters = store.ui.organizer.proposals.get()
   const proposals = await firebase.fetchEventProposals(eventId, uid, filters)
-  let props = await Promise.all(proposals.map(async (proposal) => {
-    const prop = { ...proposal }
-    const speakerList = Object.keys(prop.speakers)
-    const speakerNameList = await Promise.all(speakerList.map(async (speakerUid) => {
-      // check if user already in the store
-      const userCache = store.data.users.get(speakerUid)
-      if (userCache) return userCache.displayName
-      // Not in the store so fetching user in database
-      const user = await userCrud.read(speakerUid)
-      store.data.users.add(user.data())
-      return user.data().displayName
-    }))
-    prop.speakerName = speakerNameList.join(' & ')
-    return prop
-  }))
+  let props = await Promise.all(
+    proposals.map(async (proposal) => {
+      const prop = { ...proposal }
+      const speakerList = Object.keys(prop.speakers)
+      const speakerNameList = await Promise.all(
+        speakerList.map(async (speakerUid) => {
+          // check if user already in the store
+          const userCache = store.data.users.get(speakerUid)
+          if (userCache) return userCache.displayName
+          // Not in the store so fetching user in database
+          const user = await userCrud.read(speakerUid)
+          store.data.users.add(user.data())
+          return user.data().displayName
+        }),
+      )
+      prop.speakerName = speakerNameList.join(' & ')
+      return prop
+    }),
+  )
   // Cross-fields search better handled in UI than firebase
   const { search } = filters
   if (search) {
     const searchQuery = deburr(toLower(search))
-    props = props.filter(proposal => deburr(toLower(proposal.title)).includes(searchQuery)
-      || deburr(toLower(proposal.speakerName)).includes(searchQuery))
+    props = props.filter(
+      proposal => deburr(toLower(proposal.title)).includes(searchQuery)
+        || deburr(toLower(proposal.speakerName)).includes(searchQuery),
+    )
   }
   store.data.proposals.set(props)
 }
@@ -174,11 +181,7 @@ export const selectProposal = async (action, store, { router }) => {
   if (proposalIndex !== -1) {
     store.ui.organizer.proposal.set({ proposalIndex })
     const filters = store.ui.organizer.proposals.get()
-    router.push(
-      'organizer-event-proposal-page',
-      { eventId, proposalId },
-      { ...filters },
-    )
+    router.push('organizer-event-proposal-page', { eventId, proposalId }, { ...filters })
   }
 }
 
