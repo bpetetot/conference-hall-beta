@@ -5,14 +5,14 @@ import ProposalToobar from './proposalsToolbar'
 const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
   const { deliberationActive } = store.data.events.get(eventId) || {}
-  const { isExporting } = store.ui.organizer.proposalsExport.get()
+  const { exporting } = store.ui.organizer.proposalsExport.get()
   const { count } = store.ui.organizer.proposalsSelection.get()
   const totalProposals = store.data.proposals.getAsArray().length
   const { items } = store.ui.organizer.proposalsSelection.get()
 
   return {
     deliberationActive,
-    isExporting,
+    exporting,
     nbSelected: count,
     totalProposals,
     selection: items,

@@ -28,7 +28,7 @@ class ProposalToolbar extends Component {
       onRejectProposals,
       selection,
       deliberationActive,
-      isExporting,
+      exporting,
       nbSelected,
       totalProposals,
     } = this.props
@@ -48,16 +48,16 @@ class ProposalToolbar extends Component {
         <div className={styles.rightActions}>
           {nbSelected === 0 && (
             <Fragment>
-              <Button onClick={onExportProposals('json')} tertiary disabled={isExporting}>
+              <Button onClick={onExportProposals('json')} tertiary disabled={!!exporting}>
                 <IconLabel
                   icon="fa fa-cloud-download"
-                  label={isExporting ? 'Exporting...' : 'Export to JSON'}
+                  label={exporting === 'json' ? 'Exporting...' : 'Export to JSON'}
                 />
               </Button>
-              <Button onClick={onExportProposals('pdf')} tertiary disabled={isExporting}>
+              <Button onClick={onExportProposals('pdf')} tertiary disabled={!!exporting}>
                 <IconLabel
                   icon="fa fa-cloud-download"
-                  label={isExporting ? 'Exporting...' : 'Export to PDF'}
+                  label={exporting === 'pdf' ? 'Exporting...' : 'Export to PDF'}
                 />
               </Button>
             </Fragment>
@@ -101,7 +101,7 @@ ProposalToolbar.propTypes = {
   onRejectProposals: PropTypes.func.isRequired,
   onExportProposals: PropTypes.func.isRequired,
   deliberationActive: PropTypes.bool,
-  isExporting: PropTypes.bool,
+  exporting: PropTypes.string,
   nbSelected: PropTypes.number,
   totalProposals: PropTypes.number,
 }
@@ -109,7 +109,7 @@ ProposalToolbar.propTypes = {
 ProposalToolbar.defaultProps = {
   selection: [],
   deliberationActive: false,
-  isExporting: false,
+  exporting: null,
   nbSelected: 0,
   totalProposals: 0,
 }
