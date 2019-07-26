@@ -6,6 +6,8 @@ import isEmpty from 'lodash/isEmpty'
 import Checkbox from 'components/form/checkbox'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
+import Dropdown from 'components/dropdown'
+
 import styles from './proposalsToolbar.module.css'
 
 class ProposalToolbar extends Component {
@@ -47,20 +49,20 @@ class ProposalToolbar extends Component {
         </div>
         <div className={styles.rightActions}>
           {nbSelected === 0 && (
-            <Fragment>
-              <Button onClick={onExportProposals('json')} tertiary disabled={!!exporting}>
-                <IconLabel
-                  icon="fa fa-cloud-download"
-                  label={exporting === 'json' ? 'Exporting...' : 'Export to JSON'}
-                />
+            <Dropdown
+              action={(
+                <Button tertiary loading={!!exporting}>
+                  <IconLabel icon="fa fa-caret-down" label="Export..." right />
+                </Button>
+)}
+            >
+              <Button onClick={onExportProposals('json')} disabled={!!exporting}>
+                <IconLabel icon="fa fa-cloud-download" label="JSON file" />
               </Button>
-              <Button onClick={onExportProposals('pdf')} tertiary disabled={!!exporting}>
-                <IconLabel
-                  icon="fa fa-file-pdf-o"
-                  label={exporting === 'pdf' ? 'Exporting...' : 'Export to PDF cards'}
-                />
+              <Button onClick={onExportProposals('pdf')} disabled={!!exporting}>
+                <IconLabel icon="fa fa-file-pdf-o" label="PDF cards" />
               </Button>
-            </Fragment>
+            </Dropdown>
           )}
           {deliberationActive && nbSelected > 0 && (
             <Fragment>
