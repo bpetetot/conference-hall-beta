@@ -8,7 +8,7 @@ const { printPDF } = require('./pdfCards')
 module.exports = async (req, res) => {
   const { eventId } = req.params
   const { uid } = req.user
-  const { output, filters } = req.query || {}
+  const { output, ...filters } = req.query || {}
 
   const event = await getEvent(eventId)
 
@@ -62,8 +62,8 @@ module.exports = async (req, res) => {
     }
 
     if (output === 'pdf') {
-      const pdf = printPDF(eventExport)
-      res.setHeader({ 'Content-Type': 'application/pdf', 'Content-Length': pdf.length })
+      const pdf = await printPDF(eventExport)
+      res.setHeader('Content-Type', 'application/pdf')
       res.send(pdf)
     } else {
       res.setHeader('Content-Type', 'application/json')

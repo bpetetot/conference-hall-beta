@@ -16,8 +16,8 @@ module.exports = `<div class="card">
     </div>
     <div class="card-rating">
       <div class="card-rating-details">
-        <div><%= card.loves %><span>❤️</span></div>
-        <div><%= card.hates %><span>☠️</span></div>
+        <div><%= card.loves || '-' %><span>❤️</span></div>
+        <div><%= card.hates || '-' %><span>☠️</span></div>
       </div>
       <div class="card-rating-rate"><%= card.rating %></div>
     </div>

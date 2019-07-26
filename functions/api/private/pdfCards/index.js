@@ -44,10 +44,10 @@ const printPDF = async (data) => {
   const cardsTemplateCompiled = template(cardsTemplate)
   const html = cardsTemplateCompiled({ pages })
 
-  const browser = await puppeteer.launch({ headless: true })
+  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] })
   const page = await browser.newPage()
   await page.setContent(html)
-  const pdf = await page.pdf({ path: 'export.pdf', format: 'A4' })
+  const pdf = await page.pdf({ format: 'A4' })
   await browser.close()
 
   return pdf
