@@ -35,10 +35,10 @@ service cloud.firestore {
 
     // ORGANIZATIONS
     match /organizations/{organization} {
-    	allow get: if authenticated(); // invite ?
+    	allow get: if authenticated();
     	allow list: if authenticated() && itsMyOrganizations();
       allow create: if authenticated();
-      allow update: if authenticated() && (itsMyOrganizations() || hasInviteCode()); // invite ?
+      allow update: if authenticated() && itsMyOrganizations();
     }
 
     // EVENTS
