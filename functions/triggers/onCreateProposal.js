@@ -31,7 +31,7 @@ module.exports = functions.firestore
       cc,
       bcc,
       subject: `[${event.name}] Talk submitted`,
-      html: talkSubmitted(event, talk, app.url),
+      html: talkSubmitted(event, talk, app),
       confName: event.name,
     })
   })
