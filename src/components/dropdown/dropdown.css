@@ -7,13 +7,13 @@
 .dropdown .dropdown-menu {
   position: absolute;
   right: 0;
-  background: var(--background-color);
+  background: #fff;
   border-radius: 3px;
   box-shadow: 0px 1px 5px 0px #111;
   min-width: 200px;
   display: flex;
   flex-direction: column;
-  margin-top: 1em;
+  margin-top: 0.5em;
   padding: 5px 0;
 }
 
@@ -65,7 +65,10 @@
   margin-left: 0;
   color: var(--primary-color);
   border: none;
-  background: var(--background-color);
+  background: #fff;
+  text-align: left;
+  align-items: flex-start;
+  border-radius: 0;
 }
 
 .dropdown.dark .dropdown-menu > button {

@@ -3,6 +3,9 @@
     "rules": "./config/firestore.rules",
     "indexes": "./config/firestore.indexes.json"
   },
+  "storage": {
+    "rules": "./config/storage.rules"
+  },
   "hosting": {
     "public": "build",
     "ignore": [

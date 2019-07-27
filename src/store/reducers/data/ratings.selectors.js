@@ -11,3 +11,21 @@ export const getFeelingsCount = feeling => (ratings) => {
   if (isEmpty(ratings)) return null
   return ratings.filter(r => r.feeling === feeling).length
 }
+
+export const getRatingsProgress = (uid, store) => {
+  const proposals = store.data.proposals.getAsArray()
+
+  if (isEmpty(proposals)) return {}
+
+  const rated = proposals.reduce((ratings, { usersRatings }) => {
+    if (usersRatings && usersRatings[uid]) {
+      return ratings + 1
+    }
+    return ratings
+  }, 0)
+
+  return {
+    rated,
+    total: proposals.length,
+  }
+}

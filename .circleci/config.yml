@@ -99,6 +99,7 @@ jobs:
             echo 'export REACT_APP_API_KEY="$DEV_FIREBASE_API_KEY"' >> $BASH_ENV
             echo 'export REACT_APP_AUTH_DOMAIN="$DEV_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
             echo 'export REACT_APP_PROJECT_ID="$DEV_FIREBASE_PROJECT_ID"' >> $BASH_ENV
+            echo 'export REACT_APP_STORAGE="$DEV_FIREBASE_APP_STORAGE"' >> $BASH_ENV
             echo 'export REACT_APP_GOOGLE_ANALYTICS_ID=""' >> $BASH_ENV
             echo 'export PUBLIC_URL="https://$DEV_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
             echo 'export FIREBASE_DEPLOY_TOKEN="$DEV_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV
@@ -137,6 +138,7 @@ jobs:
             echo 'export REACT_APP_API_KEY="$PROD_FIREBASE_API_KEY"' >> $BASH_ENV
             echo 'export REACT_APP_AUTH_DOMAIN="$PROD_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
             echo 'export REACT_APP_PROJECT_ID="$PROD_FIREBASE_PROJECT_ID"' >> $BASH_ENV
+            echo 'export REACT_APP_STORAGE="$PROD_FIREBASE_APP_STORAGE"' >> $BASH_ENV
             echo 'export REACT_APP_GOOGLE_ANALYTICS_ID="$PROD_GOOGLE_ANALYTICS_ID"' >> $BASH_ENV
             echo 'export PUBLIC_URL="https://$PROD_FIREBASE_AUTH_DOMAIN"' >> $BASH_ENV
             echo 'export FIREBASE_DEPLOY_TOKEN="$PROD_FIREBASE_DEPLOY_TOKEN"' >> $BASH_ENV

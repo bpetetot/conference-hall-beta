@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Tabs from './eventTabs'
 import EventForm from './eventForm'
+import CustomizeForm from './customize'
 import CfpForm from './cfp'
 import SurveyForm from './survey'
 import DeliberationForm from './deliberation'
@@ -12,6 +13,7 @@ const EventEdit = ({ eventId }) => (
   <div>
     <Tabs eventId={eventId} />
     <EventForm eventId={eventId} />
+    <CustomizeForm eventId={eventId} />
     <CfpForm eventId={eventId} />
     <SurveyForm eventId={eventId} />
     <DeliberationForm eventId={eventId} />

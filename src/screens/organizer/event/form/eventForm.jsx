@@ -45,6 +45,13 @@ const EventForm = ({
           component={markdownInput}
           validate={required}
         />
+        <Field
+          name="address"
+          label={values.type === 'conference' ? 'Venue address' : 'City'}
+          type="text"
+          component={address}
+          validate={required}
+        />
         {!isEmpty(organizations) && (
         <Field label="Organization" name="organization" component={select}>
           <option />
@@ -62,12 +69,6 @@ const EventForm = ({
           type="checkbox"
           truthy="private"
           falsy="public"
-        />
-        <Field
-          name="address"
-          label={values.type === 'conference' ? 'Venue address' : 'City'}
-          type="text"
-          component={address}
         />
         {values.type === 'conference' && (
         <Field name="conferenceDates" label="Conference date" component={dayRangePicker} />

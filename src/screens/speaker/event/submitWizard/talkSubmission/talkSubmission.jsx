@@ -43,10 +43,7 @@ const TalkSubmission = ({
         </Titlebar>
         {!isEmpty(error) && (
           <div className="form-error">
-            <Alert
-              title={error}
-              type="error"
-            />
+            <Alert title={error} type="error" />
           </div>
         )}
         <div className="submit-talk-form card">
@@ -78,7 +75,12 @@ const TalkSubmission = ({
               ))}
             </RadioGroup>
           )}
-          <Field name="comments" label="Message to organizers" component={markdownInput} />
+          <Field
+            name="comments"
+            label="Message to organizers"
+            tooltip="Ask special requirements to organizers or just thanks them."
+            component={markdownInput}
+          />
         </div>
       </form>
     )}

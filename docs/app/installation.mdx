@@ -16,14 +16,16 @@ route: /installation
 
 Create a firebase project with the [firebase console](https://console.firebase.google.com).
 
-- create a "Cloud Firestore" Database. It's okay to start in 'locked' mode. The rules will be overriden when you deploy.
-- activate "Google" as a sign-in provider for Authentication
+* Create a "Cloud Firestore" Database. It's okay to start in 'locked' mode. The rules will be overriden when you deploy.
+* Activate "Google" as a sign-in provider for Authentication
+* Activate "Storage" (used to store event images for banners)
 
 Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables. You can get all these variables from the homepage by clicking "Add an application" and selecting the web icon.
 
-- `REACT_APP_API_KEY=<API_KEY>`
-- `REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>`
-- `REACT_APP_PROJECT_ID=<PROJECT_ID>`
+* `REACT_APP_API_KEY=<API_KEY>`
+* `REACT_APP_AUTH_DOMAIN=<AUTH_DOMAIN>`
+* `REACT_APP_PROJECT_ID=<PROJECT_ID>`
+* `REACT_APP_STORAGE=<URL_STORAGE>`
 
 ### Configure Google APIs (optional)
 

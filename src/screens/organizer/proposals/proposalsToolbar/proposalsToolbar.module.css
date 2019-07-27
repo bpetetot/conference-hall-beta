@@ -1,44 +1,30 @@
-.proposalsToolbar {
-  margin-bottom: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.proposalsFilters {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-grow: 1;
-}
-
-.proposalsFilters > * {
-  margin-right: 1em;
-}
-
-.proposalsFilters > select {
-  width: initial;
-  min-width: 10em;
-  max-width: 15em;
-}
-
-.proposalsFilters > input {
-  width: initial;
-  min-width: 10em;
-  max-width: 15em;
-}
-
 .proposalsActions {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  background: #fff;
+  border: 1px solid var(--grey-color);
+  border-radius: 3px;
+  width: 100%;
+  padding: 0.5em 0;
+  height: 4em;
+  margin-bottom: 1em;
 }
-.proposalsActions button {
-    margin-left: 1em;
+
+.leftActions {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 1.5em;
 }
+
+.rightActions {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
 @media only screen and (max-width: 480px) {
-  .proposalsToolbar {
+  .proposalsActions {
     display: none;
   }
 }

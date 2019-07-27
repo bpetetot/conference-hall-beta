@@ -14,6 +14,7 @@ const mapStore = (store, props, { router }) => {
     loaded: !!proposal && !!event,
     proposal,
     eventId,
+    deliberationActive: !!event && event.deliberationActive,
     load: () => {
       store.dispatch('@@ui/ON_LOAD_PROPOSAL')
       store.dispatch('@@ui/ON_LOAD_EVENT')

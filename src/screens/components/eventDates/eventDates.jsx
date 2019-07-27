@@ -3,13 +3,15 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import { toDate } from 'helpers/firebase'
-import { lgf, mdf } from 'helpers/date'
+import { formatDate } from 'helpers/date'
 import IconLabel from 'components/iconLabel'
 import isEqual from 'date-fns/is_equal'
 
 import './eventDates.css'
 
-const EventDates = ({ dates: { start, end }, large, className }) => {
+const EventDates = ({
+  dates: { start, end }, timezone, large, className,
+}) => {
   if (!start && !end) return null
   const startDate = toDate(start)
   const endDate = toDate(end)
@@ -19,10 +21,12 @@ const EventDates = ({ dates: { start, end }, large, className }) => {
       className={className}
       label={
         isEqual(startDate, endDate) ? (
-          <span>{lgf(startDate)}</span>
+          <span>{formatDate(startDate, 'medium', timezone)}</span>
         ) : (
           <span className="dates-block-range">
-            {mdf(startDate)} <i className="fa fa-caret-right" /> {mdf(endDate)}
+            <b>From</b> {formatDate(startDate, large ? 'medium' : 'small', timezone)}&nbsp;
+            {large && <br />}
+            <b>To</b> {formatDate(endDate, large ? 'medium' : 'small', timezone)}
           </span>
         )
       }
@@ -33,6 +37,7 @@ const EventDates = ({ dates: { start, end }, large, className }) => {
 EventDates.propTypes = {
   dates: PropTypes.objectOf(PropTypes.any),
   large: PropTypes.bool,
+  timezone: PropTypes.string,
   className: PropTypes.string,
 }
 
@@ -40,6 +45,7 @@ EventDates.defaultProps = {
   dates: {},
   large: false,
   className: undefined,
+  timezone: 'Europe/Paris',
 }
 
 export default EventDates
