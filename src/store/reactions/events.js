@@ -15,6 +15,7 @@ export const createEvent = async (action, store, { router }) => {
   const ref = await eventCrud.create(event)
   store.ui.loaders.update({ isEventSaving: false })
 
+  store.data.events.add({ id: ref.id, ...event })
   router.push('organizer-event-page', { eventId: ref.id })
 }
 
@@ -75,10 +76,12 @@ export const fetchOrganizerEvents = async (action, store) => {
 
   const result = await fetchUserEvents(uid)
   const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
-  const organizationsEvents = await Promise.all(map(organizations, async (organizationId) => {
-    const organizationEvents = await fetchOrganizationEvents(organizationId)
-    return organizationEvents.docs.map(ref => ({ id: ref.id, ...ref.data() }))
-  }))
+  const organizationsEvents = await Promise.all(
+    map(organizations, async (organizationId) => {
+      const organizationEvents = await fetchOrganizationEvents(organizationId)
+      return organizationEvents.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+    }),
+  )
   const aggregatedEvents = uniqBy(events.concat(flatten(organizationsEvents)), 'id')
   // set events in the store
   store.data.events.set(aggregatedEvents)
@@ -95,4 +98,12 @@ export const fetchSpeakerEvents = async (action, store) => {
   // set events id to the organizer event store
   store.ui.speaker.myEvents.reset()
   store.ui.speaker.myEvents.set(events)
+}
+
+export const organizerChangeEvent = async (action, store, { router }) => {
+  const { eventId } = action.payload
+  store.ui.organizer.proposals.reset()
+  store.ui.organizer.proposalsPaging.reset()
+  store.ui.organizer.proposalsSelection.reset()
+  router.push('organizer-event-proposals', { eventId }, {})
 }

@@ -8,7 +8,6 @@ import {
   input,
   select,
   address,
-  Label,
   markdownInput,
   radio,
   SubmitButton,
@@ -46,6 +45,13 @@ const EventForm = ({
           component={markdownInput}
           validate={required}
         />
+        <Field
+          name="address"
+          label={values.type === 'conference' ? 'Venue address' : 'City'}
+          type="text"
+          component={address}
+          validate={required}
+        />
         {!isEmpty(organizations) && (
         <Field label="Organization" name="organization" component={select}>
           <option />
@@ -64,21 +70,11 @@ const EventForm = ({
           truthy="private"
           falsy="public"
         />
-        <Field
-          name="address"
-          label={values.type === 'conference' ? 'Venue address' : 'City'}
-          type="text"
-          component={address}
-        />
         {values.type === 'conference' && (
         <Field name="conferenceDates" label="Conference date" component={dayRangePicker} />
         )}
         <Field name="website" label="Website" type="text" component={input} />
         <Field name="contact" label="Conference mailing list" type="email" component={input} />
-        <Field name="emails" label="Send email to" component={Label} tooltip="Emails to cc deliberation, speaker's confirmation...">
-          <Field name="emailcontact" label="conference mailing list" component={toggle} truthy="true" falsy="false" />
-          <Field name="emailorga" label="private orgas' emails" component={toggle} truthy="true" falsy="false" />
-        </Field>
         <SubmitButton
           handleSubmit={handleSubmit}
           pristine={pristine}

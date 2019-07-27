@@ -42,9 +42,14 @@ export const redirectToNextUrl = (action, store, { router }) => {
   if (!router.isFound()) return
 
   const redirect = router.getParam('redirect')
+
   if (redirect) {
-    const params = router.getParam('params') ? JSON.parse(router.getParam('params')) : undefined
-    const query = router.getParam('query') ? JSON.parse(router.getParam('query')) : undefined
+    const rawParams = router.getParam('params') && decodeURIComponent(router.getParam('params'))
+    const rawQuery = router.getParam('query') && decodeURIComponent(router.getParam('query'))
+
+    const params = rawParams && JSON.parse(rawParams)
+    const query = rawQuery && JSON.parse(rawQuery)
+
     router.replace(redirect, params, query)
   }
 }

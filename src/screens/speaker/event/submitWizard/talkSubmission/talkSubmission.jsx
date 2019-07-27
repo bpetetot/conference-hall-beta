@@ -7,12 +7,14 @@ import Titlebar from 'components/titlebar'
 import {
   markdownInput, radio, SubmitButton, RadioGroup,
 } from 'components/form'
+import Alert from 'components/alert'
 import isEmpty from 'lodash/isEmpty'
 
 import './talkSubmission.css'
 
 const TalkSubmission = ({
   talk,
+  error,
   event,
   update,
   onSubmit,
@@ -39,6 +41,11 @@ const TalkSubmission = ({
             {update ? 'Update submission' : `Submit to ${event.name}`}
           </SubmitButton>
         </Titlebar>
+        {!isEmpty(error) && (
+          <div className="form-error">
+            <Alert title={error} type="error" />
+          </div>
+        )}
         <div className="submit-talk-form card">
           {!isEmpty(event.categories) && (
             <RadioGroup name="categories" label="Talk categories" inline>
@@ -68,7 +75,12 @@ const TalkSubmission = ({
               ))}
             </RadioGroup>
           )}
-          <Field name="comments" label="Message to organizers" component={markdownInput} />
+          <Field
+            name="comments"
+            label="Message to organizers"
+            tooltip="Ask special requirements to organizers or just thanks them."
+            component={markdownInput}
+          />
         </div>
       </form>
     )}
@@ -78,6 +90,7 @@ const TalkSubmission = ({
 TalkSubmission.propTypes = {
   update: PropTypes.bool,
   talk: PropTypes.objectOf(PropTypes.any),
+  error: PropTypes.string,
   event: PropTypes.objectOf(PropTypes.any),
   onSubmit: PropTypes.func.isRequired,
   unsubmitTalk: PropTypes.func.isRequired,
@@ -88,6 +101,7 @@ TalkSubmission.propTypes = {
 
 TalkSubmission.defaultProps = {
   update: false,
+  error: undefined,
   talk: {},
   event: {},
   initialValues: undefined,

@@ -18,6 +18,11 @@ const EventTabs = ({ eventId }) => (
       </Link>
     </li>
     <li>
+      <Link code="organizer-event-edit-customize" eventId={eventId} classNameActive="tab-active">
+        <IconLabel icon="fa fa-paint-brush" label="Customize" />
+      </Link>
+    </li>
+    <li>
       <Link code="organizer-event-edit-deliberation" eventId={eventId} classNameActive="tab-active">
         <IconLabel icon="fa fa-check-square-o" label="Deliberation" />
       </Link>

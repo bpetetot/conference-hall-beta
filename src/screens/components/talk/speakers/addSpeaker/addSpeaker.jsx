@@ -5,7 +5,7 @@ import AddUserModal from 'screens/components/addUserModal'
 
 import './addSpeaker.css'
 
-const AddSpeaker = ({ onSelectUser, inviteLink }) => (
+const AddSpeaker = ({ onSelectUser }) => (
   <AddUserModal
     title="co-speaker"
     renderTrigger={({ show }) => (
@@ -18,25 +18,25 @@ const AddSpeaker = ({ onSelectUser, inviteLink }) => (
     )}
     resultsMessage="Select a speaker for your talk"
     onSelectUser={onSelectUser}
-    inviteLink={inviteLink}
     description={(
       <Fragment>
         <p>
           Search and add a co-speaker to your talk, he/she will be also able to update it and submit
-          it to any event.<br />Your co-speaker must already have a Speaker Hall account.
+          it to any event.
+          <br />
+          Your co-speaker must already have a Conference Hall account.
         </p>
         <p>
           For security and privacy reasons, you can search a speaker only by his/her registered
           email address.
         </p>
       </Fragment>
-    )}
+)}
   />
 )
 
 AddSpeaker.propTypes = {
   onSelectUser: PropTypes.func.isRequired,
-  inviteLink: PropTypes.string.isRequired,
 }
 
 export default AddSpeaker

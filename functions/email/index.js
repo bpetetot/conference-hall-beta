@@ -4,7 +4,7 @@ const FormData = require('form-data')
 const { isEmpty } = require('lodash')
 
 module.exports.send = (config, {
-  to, cc, bcc, subject, html, confName,
+  to, cc, bcc, subject, html, confName, webHookInfo,
 }) => {
   if (!config || !config.key || !config.domain) {
     return Promise.reject(new Error('Mailgun configuration mailgun.key or mailgun.domain not found.'))
@@ -18,11 +18,16 @@ module.exports.send = (config, {
   const token = Buffer.from(`api:${key}`).toString('base64')
   const endpoint = `https://api.mailgun.net/v3/${domain}/messages`
   const from = `${confName} <no-reply@${domain}>`
-
   const form = new FormData()
   form.append('from', from)
   form.append('subject', subject)
   form.append('html', html)
+  if (webHookInfo) {
+    const keys = Object.keys(webHookInfo)
+    for (let i = 0; i < keys.length; i += 1) {
+      form.append(`v:${keys[i]}`, webHookInfo[keys[i]])
+    }
+  }
   to.forEach((dest) => {
     if (dest) form.append('to', dest)
   })

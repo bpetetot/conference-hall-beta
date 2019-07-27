@@ -13,7 +13,7 @@ const AvatarDropdown = ({
 }) => {
   const avatar = <Avatar src={photoURL} name={displayName} className="avatar-dropdown-button" />
   return (
-    <Dropdown className="avatar-dropdown" action={avatar}>
+    <Dropdown className="avatar-dropdown" action={avatar} darkMode>
       <div>{displayName}</div>
       <Link code="home">
         <IconLabel icon="fa fa-home" label="Conference Hall" />

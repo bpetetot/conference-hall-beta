@@ -29,7 +29,7 @@ class Dropdown extends Component {
 
   render() {
     const {
-      action, children, className, menuClassName,
+      action, children, darkMode, className, menuClassName,
     } = this.props
     return (
       <div
@@ -38,7 +38,7 @@ class Dropdown extends Component {
           this.dropdownRef = e
         }}
         tabIndex="0"
-        className={cn('dropdown', className)}
+        className={cn('dropdown', className, { dark: darkMode })}
         onClick={this.handleClick}
       >
         {action}
@@ -51,11 +51,13 @@ class Dropdown extends Component {
 Dropdown.propTypes = {
   action: PropTypes.node.isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
+  darkMode: PropTypes.bool,
   className: PropTypes.string,
   menuClassName: PropTypes.string,
 }
 
 Dropdown.defaultProps = {
+  darkMode: false,
   className: undefined,
   menuClassName: undefined,
 }

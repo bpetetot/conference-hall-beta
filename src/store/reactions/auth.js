@@ -44,7 +44,13 @@ export const signedIn = async (action, store) => {
   // check if user exists in database
   const userRef = await userCrud.read(user.uid)
   if (userRef.exists) {
-    user = { ...userRef.data(), ...user }
+    // update user photo if changed
+    const { uid, photoURL } = user
+    const userDB = userRef.data()
+    if (photoURL !== userDB.photoURL) {
+      await userCrud.update({ uid, photoURL })
+    }
+    user = { ...userDB, photoURL }
   } else {
     // first connexion, add user in database
     await userCrud.create(user)

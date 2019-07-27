@@ -1,0 +1,34 @@
+---
+name: Alert
+route: /components/alert
+menu: Components
+---
+import Button from '../button'
+import { Playground, Props } from 'docz'
+import Alert from './alert'
+
+# Alert
+
+## Basic usage
+
+<Playground className="vertical-separator">
+  <Alert title="Check your email" type="info" />
+  <Alert title="An error occurs" type="error" />
+  <Alert title="Warning" type="warning" />
+  <Alert title="Done it" type="success" />
+</Playground>
+
+If no `type` prop given a default info type is given.
+
+## With action button
+
+<Playground>
+  <Alert title="Success" type="success" actionButtons={(
+      <Button onClick={console.log} primary>confirm</Button>
+  )}/>
+</Playground>
+
+## Properties
+
+<Props of={Alert} />
+

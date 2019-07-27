@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/alert should render with a title only 1`] = `
+<div
+  className="alert"
+>
+  <span
+    className="alert-icon alert-icon-info"
+  >
+    <i
+      className="fa fa-info-circle fa-2x"
+    />
+  </span>
+  <span
+    className="alert-title"
+  >
+    boo
+  </span>
+  <div
+    className="actions"
+  />
+</div>
+`;
+
+exports[`components/alert should render with action buttons 1`] = `
+<div
+  className="alert"
+>
+  <span
+    className="alert-icon alert-icon-info"
+  >
+    <i
+      className="fa fa-info-circle fa-2x"
+    />
+  </span>
+  <span
+    className="alert-title"
+  >
+    boo
+  </span>
+  <div
+    className="actions"
+  >
+    <Button
+      accent={false}
+      block={false}
+      error={false}
+      loading={false}
+      primary={true}
+      secondary={false}
+      simple={false}
+      size="normal"
+      tertiary={false}
+    >
+      I confirm my venue
+    </Button>
+    <Button
+      accent={false}
+      block={false}
+      error={true}
+      loading={false}
+      primary={true}
+      secondary={false}
+      simple={false}
+      size="normal"
+      tertiary={false}
+    >
+      I cancel my venue
+    </Button>
+  </div>
+</div>
+`;

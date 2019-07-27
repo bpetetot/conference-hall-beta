@@ -15,6 +15,7 @@ const Button = ({
   block,
   href,
   simple,
+  loading,
   children,
   onClick,
   ...rest
@@ -42,6 +43,7 @@ const Button = ({
   if (href) {
     return (
       <a className={classes} href={href} {...rest}>
+        {loading && <i className="cc-button-loading fa fa-circle-o-notch fa-spin fa-fw" />}
         {children}
       </a>
     )
@@ -49,6 +51,7 @@ const Button = ({
 
   return (
     <button type="button" className={classes} onClick={onClick} {...rest}>
+      {loading && <i className="cc-button-loading fa fa-circle-o-notch fa-spin fa-fw" />}
       {children}
     </button>
   )
@@ -64,6 +67,7 @@ Button.propTypes = {
   accent: PropTypes.bool,
   error: PropTypes.bool,
   simple: PropTypes.bool,
+  loading: PropTypes.bool,
   href: PropTypes.string,
   onClick: PropTypes.func,
   className: PropTypes.string,
@@ -77,6 +81,7 @@ Button.defaultProps = {
   accent: false,
   error: false,
   simple: false,
+  loading: false,
   href: undefined,
   onClick: undefined,
   block: false,

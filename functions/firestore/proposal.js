@@ -19,6 +19,14 @@ const addProposal = (eventId, proposal) => {
       createTimestamp: now,
     })
 }
+const getProposal = (eventId, proposalId) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('proposals')
+  .doc(proposalId)
+  .get()
+  .then(doc => doc.data())
 
 const updateProposal = (eventId, proposal) => {
   const updatedProposal = omit(proposal, 'submissions')
@@ -46,6 +54,7 @@ const getEventProposals = async (
   {
     categories, formats, state, sortOrder, ratings, search
   } = {},
+  options = { withOrganizersThread: false },
 ) => {
   let query = firebase
     .firestore()
@@ -79,6 +88,27 @@ const getEventProposals = async (
   const result = await query.get()
   let proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
 
+  // add organizer threads to export
+  if (options.withOrganizersThread) {
+    proposals = await Promise.all(
+      proposals.map(async (proposal) => {
+        const organizersThread = await firebase
+          .firestore()
+          .collection('events')
+          .doc(eventId)
+          .collection('proposals')
+          .doc(proposal.id)
+          .collection('organizersThread')
+          .get()
+
+        return {
+          ...proposal,
+          organizersThread: organizersThread.docs.map(ref => ({ id: ref.id, ...ref.data() })),
+        }
+      }),
+    )
+  }
+
   // add search by title (client filter)
   if (search) {
     const searchQuery = deburr(toLower(search))
@@ -95,9 +125,24 @@ const getEventProposals = async (
   return proposals
 }
 
+// Get the list of proposals for a given user and a given event.
+const getEventUserProposals = async (eventId, userId) => {
+  const query = firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+
+  const result = await query.get()
+  const proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  return proposals.filter(proposal => proposal.speakers[userId])
+}
+
 module.exports = {
   addProposal,
   updateProposal,
   removeProposal,
   getEventProposals,
+  getProposal,
+  getEventUserProposals,
 }

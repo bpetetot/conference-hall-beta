@@ -2,13 +2,18 @@ const functions = require('firebase-functions')
 
 const { DateTime } = require('luxon')
 
-const { isEmpty, omit } = require('lodash')
+const { get, isEmpty, omit } = require('lodash')
 const { flow, unset } = require('immutadot')
 
 const { getUser } = require('../firestore/user')
 const { getEvent } = require('../firestore/event')
 const { updateTalk } = require('../firestore/talk')
-const { addProposal, updateProposal, removeProposal } = require('../firestore/proposal')
+const {
+  addProposal,
+  updateProposal,
+  removeProposal,
+  getEventUserProposals,
+} = require('../firestore/proposal')
 
 const isSubmitted = (talk, eventId) => {
   if (talk && talk.submissions) {
@@ -22,14 +27,23 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
     return event.cfpOpened ? 'opened' : 'closed'
   }
 
-  const { cfpDates } = event
+  const { address, cfpDates } = event
   if (isEmpty(cfpDates)) {
     return 'not-started'
   }
 
-  const start = DateTime.fromJSDate(cfpDates.start.toDate()).startOf('day')
-  const end = DateTime.fromJSDate(cfpDates.end.toDate()).endOf('day')
-  const today = DateTime.local().setZone(userTimezone)
+  // By default 'Europe/Paris' because now it should be mandatory
+  const eventTimezone = get(address, 'timezone.id', 'Europe/Paris')
+
+  const start = DateTime.fromJSDate(cfpDates.start.toDate()).setZone(eventTimezone)
+  const end = DateTime.fromJSDate(cfpDates.end.toDate())
+    .setZone(eventTimezone)
+    .plus({
+      hours: 23,
+      minutes: 59,
+      seconds: 59,
+    })
+  const today = DateTime.utc().setZone(userTimezone)
 
   if (today < start) {
     return 'not-started'
@@ -40,9 +54,7 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
   return 'opened'
 }
 
-const submitTalk = async ({
-  eventId, talk, userTimezone, initialize,
-}, context) => {
+const submitTalk = async ({ eventId, talk, userTimezone, initialize }, context) => {
   if (initialize) {
     // get the user to fully preload the function
     await getUser(context.auth.uid)
@@ -58,7 +70,14 @@ const submitTalk = async ({
       "Can't submit, CFP is not opened anymore.",
     )
   }
-
+  // check limit of proposals when creating a new submission
+  const proposals = await getEventUserProposals(eventId, context.auth.uid)
+  if (event.maxProposals && proposals.length >= event.maxProposals && !isSubmitted(talk, eventId)) {
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      `Max number of submitted talks. ${event.name} limits at ${event.maxProposals} submissions per user. Please consider unsubmitting for a wise selection`,
+    )
+  }
   const submittedTalk = omit(talk, ['createTimestamp', 'updateTimestamp', 'submissions'])
 
   await updateTalk(submittedTalk.id, { [`submissions.${eventId}`]: submittedTalk })
@@ -70,9 +89,7 @@ const submitTalk = async ({
   }
 }
 
-const unsubmitTalk = async ({
-  eventId, talk, userTimezone, initialize,
-}, context) => {
+const unsubmitTalk = async ({ eventId, talk, userTimezone, initialize }, context) => {
   if (initialize) {
     // get the user to fully preload the function
     await getUser(context.auth.uid)

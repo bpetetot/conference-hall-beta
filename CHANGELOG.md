@@ -1,11 +1,150 @@
 # Changelog
 
+<a name="0.19.0"></a>
+
+## 0.19.0 (2019-07-26)
+
+### Added
+
+- ✨ update the fullname in the profile ([#632](https://github.com/bpetetot/conference-hall/issues/632)) [[109da0c](https://github.com/bpetetot/conference-hall/commit/109da0c3269c722b769e691634ee3f798bd0c86c)]
+
+### Fixed
+
+- 🐛 disable invite links for security reasons ([#631](https://github.com/bpetetot/conference-hall/issues/631)) [[4ca8e05](https://github.com/bpetetot/conference-hall/commit/4ca8e05508454de31d6a6ec67bbf06649123c3cc)]
+- 🐛 reset paging reloading proposals ([#630](https://github.com/bpetetot/conference-hall/issues/630)) [[7fb4029](https://github.com/bpetetot/conference-hall/commit/7fb4029f33f78060ec303fde991a573b50be2518)]
+
+<a name="0.18.0"></a>
+
+## 0.18.0 (2019-07-26)
+
+### Added
+
+- ✨ export card proposals in PDF ([#628](https://github.com/bpetetot/conference-hall/issues/628)) [[3e9ea45](https://github.com/bpetetot/conference-hall/commit/3e9ea45115228f083fced355671b22dc10cf3cff)]
+
+### Changed
+
+- 🗃️ new firestore indexes format ([#629](https://github.com/bpetetot/conference-hall/issues/629)) [[a747a64](https://github.com/bpetetot/conference-hall/commit/a747a644c20d1bd366413a5108ca641f791f0f3b)]
+
+<a name="0.17.1"></a>
+
+## 0.17.1 (2019-07-25)
+
+### Changed
+
+- ⬇️ remove gitmoji-changelog [[acb5711](https://github.com/bpetetot/conference-hall/commit/acb5711eabaf69e9b837e796a1a0d37d8cfb1085)]
+
+<a name="0.17.0"></a>
+
+## 0.17.0 (2019-07-25)
+
+### Added
+
+- ✨ ratings progress indicator &amp; proposals page revamp ([#624](https://github.com/bpetetot/conference-hall/issues/624)) [[49e5c3b](https://github.com/bpetetot/conference-hall/commit/49e5c3bdec1bef2f07aa9ddcfb992b69b31aac8b)]
+- ✨ add the organizer thread in event export ([#617](https://github.com/bpetetot/conference-hall/issues/617)) [[a84a626](https://github.com/bpetetot/conference-hall/commit/a84a6260d3fcc6877128012b0d24a0c27b7ff7c3)]
+
+### Changed
+
+- ⬆️ upgrade dependencies ([#619](https://github.com/bpetetot/conference-hall/issues/619)) [[da9b16c](https://github.com/bpetetot/conference-hall/commit/da9b16cf4a187d35a2291bdc32870a6fd4137b5e)]
+
+### Fixed
+
+- 🐛 fix update of name and photo of the user when signed-in ([#623](https://github.com/bpetetot/conference-hall/issues/623)) [[ef8167e](https://github.com/bpetetot/conference-hall/commit/ef8167eaf5eb0420ffd36a597a53de88846f637e)]
+- 🐛 fix infinite loading on organizer invite redirections ([#622](https://github.com/bpetetot/conference-hall/issues/622)) [[3409641](https://github.com/bpetetot/conference-hall/commit/3409641b4b7053c755118f2034e41772830396a5)]
+- 🐛 fix timezone issues and date formats ([#618](https://github.com/bpetetot/conference-hall/issues/618)) [[1ebbaad](https://github.com/bpetetot/conference-hall/commit/1ebbaad87b283eac7f89e744f99c37ddd090e5b4)]
+
+### Miscellaneous
+
+- 🙈 add vscode settings folder in gitignore ([#621](https://github.com/bpetetot/conference-hall/issues/621)) [[c1aa427](https://github.com/bpetetot/conference-hall/commit/c1aa427ace9ae8ef2ec16f14545794ede072f939)]
+
+<a name="0.16.0"></a>
+
+## 0.16.0 (2019-07-15)
+
+### Added
+
+- ✨ add status and date to proposal page ([#612](https://github.com/bpetetot/conference-hall/issues/612)) [[5a32ef1](https://github.com/bpetetot/conference-hall/commit/5a32ef193f168fa67d23b1231756ad8956969bc1)]
+- ✨ add tooltip for the message to organizers ([#611](https://github.com/bpetetot/conference-hall/issues/611)) [[b605173](https://github.com/bpetetot/conference-hall/commit/b605173401ab6d1de1194aa86ae1647020f59dff)]
+
+### Changed
+
+- ⬆️ upgrade dependencies lodash, firebase, final-form ([#610](https://github.com/bpetetot/conference-hall/issues/610)) [[26047f0](https://github.com/bpetetot/conference-hall/commit/26047f0048f8434a8734fed0b9eabde9d9ca3f34)]
+
+### Fixed
+
+- 🐛 fix rules for talks [[779df5b](https://github.com/bpetetot/conference-hall/commit/779df5b47b07bd8d78d5902145f0cc401121433e)]
+
+<a name="0.15.2"></a>
+
+## 0.15.2 (2019-07-09)
+
+### Changed
+
+- 🔧 add cloud storage rules ([#602](https://github.com/bpetetot/conference-hall/issues/602)) [[0d87c52](https://github.com/bpetetot/conference-hall/commit/0d87c522a66ba8af0575b157ff90aad5853b48b0)]
+
+<a name="0.15.1"></a>
+
+## 0.15.1 (2019-07-09)
+
+### Added
+
+- 👷 use storage env variables in CI ([#601](https://github.com/bpetetot/conference-hall/issues/601)) [[9dec235](https://github.com/bpetetot/conference-hall/commit/9dec2358dc4f9e2ac4b8b93dddd498b596669d40)]
+
+<a name="0.15.0"></a>
+
+## 0.15.0 (2019-07-09)
+
+### Added
+
+- ✨ customize your event with a banner ([#589](https://github.com/bpetetot/conference-hall/issues/589)) [[6bf17ed](https://github.com/bpetetot/conference-hall/commit/6bf17ed08bbaba3a54836881e52d730e164770ed)]
+
+### Changed
+
+- ⬆️ upgrade dependencies ([#600](https://github.com/bpetetot/conference-hall/issues/600)) [[523f780](https://github.com/bpetetot/conference-hall/commit/523f780d0bf6f006cc2d2db61a2aa535fbde731a)]
+
+<a name="0.14.0"></a>
+
+## 0.14.0 (2019-06-07)
+
+### Added
+
+- ✨ set max number of proposals by speaker ([#583](https://github.com/bpetetot/conference-hall/issues/583)) [[9a2c1f1](https://github.com/bpetetot/conference-hall/commit/9a2c1f11e174003a7ab94f1e6d2b594edc7d0f63)]
+
+<a name="0.13.2"></a>
+
+## 0.13.2 (2019-06-07)
+
+### Fixed
+
+- 🐛 fix date picker year format [[ac50764](https://github.com/bpetetot/conference-hall/commit/ac50764b3c2325d5ea358f7004f7a4a55c02f100)]
+
+<a name="0.13.1"></a>
+
+## 0.13.1 (2019-06-07)
+
+### Fixed
+
+- 🐛 loading infinite after event creation ([#586](https://github.com/bpetetot/conference-hall/issues/586)) [[310a38a](https://github.com/bpetetot/conference-hall/commit/310a38a7de5c042a93386e437cc0fcf8f4f16107)]
+
+<a name="0.13.0"></a>
+
+## 0.13.0 (2019-06-07)
+
+### Added
+
+- ✨ split deliberation decision from email sending [[6105c54](https://github.com/bpetetot/conference-hall/commit/6105c546ea38e62649ec0fb2b0fa48dc8173e5ad)]
+
+### Fixed
+
+- 🐛 workaround GCF env variable not set in node10 ([#582](https://github.com/bpetetot/conference-hall/issues/582)) [[6b29e40](https://github.com/bpetetot/conference-hall/commit/6b29e40e5eca9b0f88cb66a2bbb3e8e0ec5d7253)]
+- 💚 use node 8 in all circle ci images ([#585](https://github.com/bpetetot/conference-hall/issues/585)) [[6a4bb05](https://github.com/bpetetot/conference-hall/commit/6a4bb05e56fa7d1278983bd2f128fab12404e3de)]
+
 <a name="0.12.0"></a>
+
 ## 0.12.0 (2019-06-02)
 
 ### Added
 
-- ✨ add speakers references on the profile  ([#567](https://github.com/bpetetot/conference-hall/issues/567)) [[9bdf487](https://github.com/bpetetot/conference-hall/commit/9bdf48734a0da55cd8e77e6486292776a3cff275)]
+- ✨ add speakers references on the profile ([#567](https://github.com/bpetetot/conference-hall/issues/567)) [[9bdf487](https://github.com/bpetetot/conference-hall/commit/9bdf48734a0da55cd8e77e6486292776a3cff275)]
 
 ### Changed
 
@@ -20,16 +159,16 @@
 
 - 🐛 remove unsued id in deliberation dropdown ([#553](https://github.com/bpetetot/conference-hall/issues/553)) [[8dae6cb](https://github.com/bpetetot/conference-hall/commit/8dae6cb59a79a820d620ba50e3fc9afd21c9b546)]
 
-
 <a name="0.11.0"></a>
+
 ## 0.11.0 (2019-04-30)
 
 ### Added
 
 - ✨ latitude, longitude and country for event address and user address ([#546](https://github.com/bpetetot/conference-hall/issues/546)) [[b6b5a7a](https://github.com/bpetetot/conference-hall/commit/b6b5a7a1996972be92597ae38aafb23138bd952a)]
 
-
 <a name="0.10.0"></a>
+
 ## 0.10.0 (2019-04-24)
 
 ### Added
@@ -51,8 +190,8 @@
 - 🐛 fix avatar zindex too high ([#529](https://github.com/bpetetot/conference-hall/issues/529)) [[debbc1c](https://github.com/bpetetot/conference-hall/commit/debbc1c7773663ad4883c6d9f9937090d0c1127c)]
 - ✏️ missing word in the email for rejected talks ([#541](https://github.com/bpetetot/conference-hall/issues/541)) [[432bd88](https://github.com/bpetetot/conference-hall/commit/432bd88d8c51a86f21cbe0584393d69b65204ce6)]
 
-
 <a name="0.9.0"></a>
+
 ## 0.9.0 (2019-04-04)
 
 ### Added
@@ -69,16 +208,16 @@
 - ⬆️ upgrade babel, react-datepicker, firebase, k-ramel, luxon ([#512](https://github.com/bpetetot/conference-hall/issues/512)) [[c038877](https://github.com/bpetetot/conference-hall/commit/c0388777374c69f17ea90bc0b5b511541c07c16d)]
 - 💄 enlarge total rating zone ([#509](https://github.com/bpetetot/conference-hall/issues/509)) [[c887918](https://github.com/bpetetot/conference-hall/commit/c887918bff037f4de75e33f488e841bfe36d95a3)]
 
-
 <a name="0.8.4"></a>
+
 ## 0.8.4 (2019-03-13)
 
 ### Changed
 
 - ♻️ replace auth popup by redirect ([#505](https://github.com/bpetetot/conference-hall/issues/505)) [[34464b2](https://github.com/bpetetot/conference-hall/commit/34464b2d7d5bfce5795e79005aa57ab93fe04171)]
 
-
 <a name="0.8.3"></a>
+
 ## 0.8.3 (2019-03-03)
 
 ### Changed
@@ -86,8 +225,8 @@
 - ⬆️ upgrade dependencies k-ramel, react, babel ([#495](https://github.com/bpetetot/conference-hall/issues/495)) [[5be0d8f](https://github.com/bpetetot/conference-hall/commit/5be0d8fd33398cf57e180077d7016581bd52a9d5)]
 - ⬆️ upgrade lodash and functions dependencies ([#496](https://github.com/bpetetot/conference-hall/issues/496)) [[90aa580](https://github.com/bpetetot/conference-hall/commit/90aa58032873d7bd19f2593e8582c5d431177d5e)]
 
-
 <a name="0.8.2"></a>
+
 ## 0.8.2 (2019-03-03)
 
 ### Changed
@@ -98,8 +237,8 @@
 
 - 🐛 fix code style in markdown display ([#493](https://github.com/bpetetot/conference-hall/issues/493)) [[fb7aa79](https://github.com/bpetetot/conference-hall/commit/fb7aa79e3cc12f566757fc2be145a3f03711a342)]
 
-
 <a name="0.8.1"></a>
+
 ## 0.8.1 (2019-02-21)
 
 ### Added
@@ -110,8 +249,8 @@
 
 - ✏️ fix typo in accepted talk email ([#474](https://github.com/bpetetot/conference-hall/issues/474)) [[2bffaf3](https://github.com/bpetetot/conference-hall/commit/2bffaf3c60454c749ca47991e7563d8f57a158d2)]
 
-
 <a name="0.8.0"></a>
+
 ## 0.8.0 (2019-02-20)
 
 ### Added
@@ -130,7 +269,6 @@
 
 - 🐛 fix event route access ([#473](https://github.com/bpetetot/conference-hall/issues/473)) [[4fa0c4d](https://github.com/bpetetot/conference-hall/commit/4fa0c4d20158c0f56e7c465a8c777c65a32ade2b)]
 
-
 <a name="0.7.2"></a>
 
 ## 0.7.2 (2019-02-01)
@@ -139,7 +277,6 @@
 
 - 🐛 fix ratings when get a slow connexion ([#455](https://github.com/bpetetot/conference-hall/issues/442))
 
-
 <a name="0.7.1"></a>
 
 ## 0.7.1 (2019-01-14)
@@ -147,7 +284,6 @@
 ### Fixed
 
 - 🐛 can&#x27;t reset of value a field in forms ([#442](https://github.com/bpetetot/conference-hall/issues/442)) [[88cdc46](https://github.com/bpetetot/conference-hall/commit/88cdc46b27716ad9fb3ea9edf0e2b4b6fe0e0765)]
-
 
 <a name="0.7.0"></a>
 
@@ -169,7 +305,6 @@
 ### Fixed
 
 - 🐛 speaker page should handle talk without submission ([#440](https://github.com/bpetetot/conference-hall/issues/440)) [[96c91ac](https://github.com/bpetetot/conference-hall/commit/96c91ac994d258cec98ce9812f16ea1be99876f5)]
-
 
 <a name="0.6.0"></a>
 
@@ -193,7 +328,6 @@
 
 - 📝 contribute documentation ([#418](https://github.com/bpetetot/conference-hall/issues/418)) [[02fd334](https://github.com/bpetetot/conference-hall/commit/02fd3344522a94e253b4c7f2f025fc7f323c33dc)]
 
-
 <a name="0.5.0"></a>
 
 ## 0.5.0 (2018-12-23)
@@ -215,7 +349,6 @@
 
 - 👷 add bundlesize as CI check ([#401](https://github.com/bpetetot/conference-hall/issues/401)) [[0f74882](https://github.com/bpetetot/conference-hall/commit/0f7488249f5b123709709dc9f560ae5318c5c245)]
 
-
 <a name="0.4.0"></a>
 
 ## 0.4.0 (2018-12-14)
@@ -232,7 +365,6 @@
 - ⬆️ update firebase, luxon for cloud functions ([#385](https://github.com/bpetetot/conference-hall/issues/385)) [[a652188](https://github.com/bpetetot/conference-hall/commit/a6521885e4fdd1b47b75206e6275bef3ee9d092f)]
 - ⬆️ update deps k-ramel, date-fns... ([#392](https://github.com/bpetetot/conference-hall/issues/392)) [[4b411d2](https://github.com/bpetetot/conference-hall/commit/4b411d2451dd786df7c5e1ed44587dc7302eedc5)]
 - ♻️ use of react-datepicker ([#378](https://github.com/bpetetot/conference-hall/issues/378)) [[5cd9e28](https://github.com/bpetetot/conference-hall/commit/5cd9e28a06386a2371554db6c8bd485734ceeb15)]
-
 
 <a name="0.3.0"></a>
 
@@ -253,7 +385,6 @@
 - 📝 improve install documentation [[0f9ccbf](https://github.com/bpetetot/conference-hall/commit/0f9ccbf4a0b1962ace9088f1133416af7d38d69d)]
 - 📝 list current app features ([#366](https://github.com/bpetetot/conference-hall/issues/366)) [[2b30163](https://github.com/bpetetot/conference-hall/commit/2b30163c7c670d53d898eb768052c10075293458)]
 - 📝 add gitter badge ([#375](https://github.com/bpetetot/conference-hall/issues/375)) [[68b95d5](https://github.com/bpetetot/conference-hall/commit/68b95d58236baea50e4648c72400342244f96aaa)]
-
 
 <a name="0.2.0"></a>
 
@@ -281,7 +412,6 @@
 
 - 💄 fix radio group overflow ([#352](https://github.com/bpetetot/conference-hall/issues/352)) [[d32b21c](https://github.com/bpetetot/conference-hall/commit/d32b21c3a1c7828afe3cd1e703ab5051fc66da14)]
 
-
 <a name="0.1.0"></a>
 
 ## 0.1.0 (2018-11-03)
@@ -294,7 +424,6 @@
 ### Changed
 
 - ⬆️ upgrade libs (react, firebase, docz, k-ramel) ([#332](https://github.com/bpetetot/conference-hall/issues/332)) [[154a732](https://github.com/bpetetot/conference-hall/commit/154a732b71a77652d6a8db27023c222782b2ec6a)]
-
 
 <a name="0.1.0-beta"></a>
 

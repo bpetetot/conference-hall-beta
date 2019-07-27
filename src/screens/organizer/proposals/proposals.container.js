@@ -9,10 +9,8 @@ import Proposals from './proposals'
 const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
   const event = store.data.events.get(eventId)
-  const nbProposals = store.data.proposals.getLength()
   return {
     loaded: !!event,
-    nbProposals,
     eventId,
     load: () => store.dispatch('@@ui/ON_LOAD_EVENT'),
   }

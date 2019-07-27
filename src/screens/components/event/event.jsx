@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import Maps from 'components/maps'
 import Markdown from 'components/markdown'
-import EventTitle from './eventTitle'
-import EventActions from './eventActions'
+import CopyInput from 'components/copyInput'
+import Banner from './banner'
 import Address from './addressBlock'
 import List from './listBlock'
 import Cfp from './cfpBlock'
@@ -15,9 +15,7 @@ import Dates from '../eventDates'
 import './event.css'
 
 const Event = ({
-  isOrganizer,
   id,
-  name,
   type,
   address,
   conferenceDates,
@@ -26,32 +24,43 @@ const Event = ({
   contact,
   categories,
   formats,
+  isOrganizer,
 }) => (
-  <div className="event-page">
-    <EventTitle name={name} type={type} subtitle="Call for paper" className="event-page-header" />
-    <Cfp eventId={id} className="event-page-cfp" />
-    <EventActions className="event-page-actions" eventId={id} isOrganizer={isOrganizer} />
-    <div className="event-page-content card">
-      <Markdown className="event-content" source={description} />
-      <List className="event-categories" title="Talk categories" list={categories} />
-      <List className="event-formats" title="Talk formats" list={formats} />
-    </div>
-    <div className="event-page-info card">
-      <Maps address={address && address.formattedAddress} />
-      <div className="event-page-info-detail">
-        {type === 'conference' && <Dates dates={conferenceDates} large />}
-        <Address address={address && address.formattedAddress} />
-        <Website website={website} />
-        <Contact contact={contact} />
+  <div className="event-wrapper">
+    <Banner className="event-header" eventId={id} />
+    <div className="event-page">
+      <div className="event-page-content">
+        <Cfp eventId={id} className="event-page-cfp" />
+        <div>
+          {isOrganizer && (
+            <CopyInput
+              title="Share link"
+              className="event-share"
+              value={`${origin}/public/event/${id}`}
+            />
+          )}
+          <Markdown className="event-description" source={description} />
+          <div className="event-lists">
+            <List title="Talk categories" list={categories} />
+            <List title="Talk formats" list={formats} />
+          </div>
+        </div>
+      </div>
+      <div className="event-page-info">
+        {address && <Maps address={address.formattedAddress} />}
+        <div className="event-page-info-detail">
+          {type === 'conference' && <Dates dates={conferenceDates} large />}
+          {address && <Address address={address.formattedAddress} />}
+          {website && <Website website={website} />}
+          {contact && <Contact contact={contact} />}
+        </div>
       </div>
     </div>
   </div>
 )
 
 Event.propTypes = {
-  isOrganizer: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired,
-  name: PropTypes.string,
   type: PropTypes.string,
   address: PropTypes.object,
   conferenceDates: PropTypes.objectOf(PropTypes.any),
@@ -60,10 +69,10 @@ Event.propTypes = {
   contact: PropTypes.string,
   categories: PropTypes.arrayOf(PropTypes.object),
   formats: PropTypes.arrayOf(PropTypes.object),
+  isOrganizer: PropTypes.bool.isRequired,
 }
 
 Event.defaultProps = {
-  name: undefined,
   type: undefined,
   address: undefined,
   conferenceDates: {},

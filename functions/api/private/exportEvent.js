@@ -3,11 +3,12 @@ const has = require('lodash/has')
 const { getEvent } = require('../../firestore/event')
 const { isUserEvent } = require('../../firestore/permissions')
 const { exportEventData } = require('../../firestore/exports')
+const { printPDF } = require('./pdfCards')
 
 module.exports = async (req, res) => {
   const { eventId } = req.params
   const { uid } = req.user
-  const filters = req.query
+  const { output, ...filters } = req.query || {}
 
   const event = await getEvent(eventId)
 
@@ -18,7 +19,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const eventJson = await exportEventData(event, uid, filters, {
+    const eventExport = await exportEventData(event, uid, filters, {
       event: ['name', 'categories', 'formats', 'address', 'conferenceDates'],
       proposal: [
         'title',
@@ -34,6 +35,7 @@ module.exports = async (req, res) => {
         'loves',
         'hates',
         'language',
+        'organizersThread',
       ],
       speaker: [
         'uid',
@@ -51,15 +53,22 @@ module.exports = async (req, res) => {
       ],
     })
 
-    if (has(eventJson, 'conferenceDates.start')) {
-      eventJson.conferenceDates.start = eventJson.conferenceDates.start.toDate().toISOString()
-    }
-    if (has(eventJson, 'conferenceDates.end')) {
-      eventJson.conferenceDates.end = eventJson.conferenceDates.end.toDate().toISOString()
+    if (has(eventExport, 'conferenceDates.start')) {
+      eventExport.conferenceDates.start = eventExport.conferenceDates.start.toDate().toISOString()
     }
 
-    res.setHeader('Content-Type', 'application/json')
-    res.send(JSON.stringify(eventJson))
+    if (has(eventExport, 'conferenceDates.end')) {
+      eventExport.conferenceDates.end = eventExport.conferenceDates.end.toDate().toISOString()
+    }
+
+    if (output === 'pdf') {
+      const pdf = await printPDF(eventExport)
+      res.setHeader('Content-Type', 'application/pdf')
+      res.send(pdf)
+    } else {
+      res.setHeader('Content-Type', 'application/json')
+      res.send(JSON.stringify(eventExport))
+    }
   } catch (error) {
     console.error(error) // eslint-disable-line no-console
     res.status(500).end()

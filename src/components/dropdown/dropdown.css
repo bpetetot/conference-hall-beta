@@ -7,14 +7,18 @@
 .dropdown .dropdown-menu {
   position: absolute;
   right: 0;
-  background: var(--primary-color);
+  background: #fff;
   border-radius: 3px;
   box-shadow: 0px 1px 5px 0px #111;
   min-width: 200px;
   display: flex;
   flex-direction: column;
-  margin-top: 1em;
+  margin-top: 0.5em;
   padding: 5px 0;
+}
+
+.dropdown.dark .dropdown-menu {
+  background: var(--primary-color);
 }
 
 .dropdown .dropdown-menu > * {
@@ -33,20 +37,42 @@
   letter-spacing: 1px;
 }
 
+.dropdown.dark .dropdown-menu > div {
+  color: var(--grey-color-dark);
+}
+
 .dropdown .dropdown-menu > a {
   text-decoration: none;
+  color: var(--primary-color);
+}
+
+.dropdown.dark .dropdown-menu > a {
   color: var(--grey-color-light);
 }
 
 .dropdown .dropdown-menu > a:hover {
-  color: var(--primary-color-font);
+  color: var(--primary-color);
   background: var(--primary-color-light);
   text-decoration: none;
 }
 
+.dropdown.dark .dropdown-menu > a:hover {
+  color: var(--primary-color-font);
+  background: var(--primary-color-light);
+}
+
 .dropdown .dropdown-menu > button {
-  color: var(--grey-color-light);
+  margin-left: 0;
+  color: var(--primary-color);
   border: none;
+  background: #fff;
+  text-align: left;
+  align-items: flex-start;
+  border-radius: 0;
+}
+
+.dropdown.dark .dropdown-menu > button {
+  color: var(--grey-color-light);
   background: var(--primary-color);
 }
 
@@ -56,6 +82,11 @@
 
 .dropdown .dropdown-menu > button:hover {
   cursor: pointer;
+  color: var(--primary-color-font);
+  background: var(--primary-color-light);
+}
+
+.dropdown.dark .dropdown-menu > button:hover {
   color: var(--primary-color-font);
   background: var(--primary-color-light);
 }

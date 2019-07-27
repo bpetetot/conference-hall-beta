@@ -16,7 +16,7 @@ service cloud.firestore {
     	return eventRes.data.owner == request.auth.uid || get(/databases/$(database)/documents/organizations/$(eventRes.data.organization)).data.members[request.auth.uid] == true
     }
     function itsMyMessage(message) { return request.auth.uid == message.data.uid }
- 
+
 		function itsMySurvey() { return request.path[6] == request.auth.uid }
     function hasInviteCode() { return request.resource.id == resource.id }
 
@@ -35,10 +35,10 @@ service cloud.firestore {
 
     // ORGANIZATIONS
     match /organizations/{organization} {
-    	allow get: if authenticated(); // invite ?
+    	allow get: if authenticated();
     	allow list: if authenticated() && itsMyOrganizations();
       allow create: if authenticated();
-      allow update: if authenticated() && (itsMyOrganizations() || hasInviteCode()); // invite ?
+      allow update: if authenticated() && itsMyOrganizations();
     }
 
     // EVENTS
@@ -78,10 +78,10 @@ service cloud.firestore {
 
     // TALKS
     match /talks/{talk} {
-    	allow get: if authenticated(); // invite ?
+    	allow get: if authenticated() && itsMyTalk();
     	allow list: if authenticated() && itsMyTalk();
     	allow create: if authenticated();
-    	allow update: if authenticated() && (itsMyTalk() || hasInviteCode());
+    	allow update: if authenticated() && itsMyTalk();
     	allow delete: if authenticated() && itsMyTalk();
     }
   }

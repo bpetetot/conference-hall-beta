@@ -17,7 +17,6 @@ const OrganizationPage = ({
   name,
   members,
   onSelectUser,
-  inviteLink,
   removeMember,
   owner,
   authUserId,
@@ -33,7 +32,6 @@ const OrganizationPage = ({
       </Button>
       <AddMember
         onSelectUser={onSelectUser}
-        inviteLink={inviteLink}
         resultsMessage="Select an organizer to add to your organization"
         description={(
           <Fragment>
@@ -41,7 +39,7 @@ const OrganizationPage = ({
               Search and add a member to your organization, he/she will be also able to update it,
               invite other members and create events for your organization.
               <br />
-              The member must already have a member Hall account.
+              The member must already have a Conference Hall account.
             </p>
             <p>
               For security and privacy reasons, you can search a member only by his/her registered
@@ -76,7 +74,6 @@ const OrganizationPage = ({
 OrganizationPage.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  inviteLink: PropTypes.string.isRequired,
   members: PropTypes.objectOf(PropTypes.bool),
   owner: PropTypes.string.isRequired,
   authUserId: PropTypes.string.isRequired,

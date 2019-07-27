@@ -12,7 +12,7 @@ const AppLayout = ({ children, sidebar }) => (
     <Brand className="layout-brand" sidebar={sidebar} />
     <Navbar className="layout-navbar" />
     {sidebar && <div className="layout-sidebar">{sidebar}</div>}
-    <div className={cn('layout-main', { 'layout-main-full-width': !sidebar })}>
+    <div className="layout-main">
       {children}
     </div>
   </div>

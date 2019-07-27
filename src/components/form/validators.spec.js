@@ -3,11 +3,11 @@ import { required } from './validators'
 
 describe('components/validators', () => {
   it('should validate to Required', () => {
-    const result = required(true)
+    const result = required('hello')
     expect(result).toEqual(undefined)
   })
   it('should validate to Required', () => {
-    const result = required(false)
+    const result = required(undefined)
     expect(result).toEqual('Required')
   })
 })

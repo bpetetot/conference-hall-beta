@@ -1,28 +1,33 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-
 import Badge from 'components/badge'
 
+import styles from './talkSelection.module.css'
+
 const TalkSelection = ({
-  onChange, state, isDeliberationDone,
+  onChange, state, emailStatus, isDeliberationDone,
 }) => (
-  <Fragment>
-    <div>
-      {state === 'accepted' && (
-        <Badge success outline>
-          Accepted proposal
-        </Badge>
-      )}
-      {state === 'rejected' && (
-        <Badge error outline>
-          Rejected proposal
-        </Badge>
-      )}
-      {state === 'confirmed' && <Badge success>Confirmed by speaker</Badge>}
-      {state === 'declined' && <Badge error>Declined by speaker</Badge>}
-    </div>
+  <div className={styles.wrapper}>
+    {isDeliberationDone && (
+      <div>
+        {state === 'accepted' && (
+          <Badge success outline>
+            Accepted proposal
+          </Badge>
+        )}
+        {state === 'rejected' && (
+          <Badge error outline>
+            Rejected proposal
+          </Badge>
+        )}
+        {state === 'confirmed' && <Badge success>Confirmed by speaker</Badge>}
+        {state === 'declined' && <Badge error>Declined by speaker</Badge>}
+      </div>
+    )}
+
     {!isDeliberationDone && (
       <select
+        className={styles.selector}
         onChange={onChange}
         onClick={e => e.stopPropagation()}
         defaultValue={state}
@@ -31,24 +36,46 @@ const TalkSelection = ({
           Deliberate...
         </option>
         <option key="accepted" value="accepted">
-          Accept proposal and send email
+          Accepted proposal
         </option>
         <option key="rejected" value="rejected">
-          Reject proposal and send email
+          Rejected proposal
         </option>
       </select>
     )}
-  </Fragment>
+
+    {emailStatus && emailStatus !== 'none' && (
+      <div className={styles.email}>
+        {emailStatus === 'sending' && (
+          <Badge light outline>
+            Sending email...
+          </Badge>
+        )}
+        {emailStatus === 'sent' && (
+          <Badge info outline>
+            Email sent
+          </Badge>
+        )}
+        {emailStatus === 'delivered' && (
+          <Badge success outline>
+            Email delivered
+          </Badge>
+        )}
+      </div>
+    )}
+  </div>
 )
 
 TalkSelection.propTypes = {
   onChange: PropTypes.func.isRequired,
   state: PropTypes.string,
+  emailStatus: PropTypes.string,
   isDeliberationDone: PropTypes.bool.isRequired,
 }
 
 TalkSelection.defaultProps = {
   state: undefined,
+  emailStatus: 'none',
 }
 
 export default TalkSelection
