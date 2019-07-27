@@ -1,3 +1,6 @@
+/* eslint-disable no-underscore-dangle, no-console */
+require('./helpers/initFirestore')
+
 const { updateEvents } = require('./helpers/updates')
 
 const main = async () => {

@@ -1,14 +1,9 @@
 /* eslint-disable no-underscore-dangle, no-console */
-const admin = require('firebase-admin')
+require('./helpers/initFirestore')
+
 const isString = require('lodash/isString')
 const pick = require('lodash/pick')
 const first = require('lodash/first')
-
-// ====================================
-// Configuration
-// ====================================
-
-// service account credentials (need to be downloaded from firebase console)
 
 /**
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -18,12 +13,6 @@ const first = require('lodash/first')
 const googleMapsClient = require('@google/maps').createClient({
   key: 'YOUR API KEY HERE',
   Promise,
-})
-const serviceAccount = require('./serviceAccount.json')
-
-// initialize app credentials
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
 })
 
 const { updateUsers, updateEvents } = require('./helpers/updates')
