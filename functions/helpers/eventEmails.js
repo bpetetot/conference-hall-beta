@@ -3,8 +3,8 @@ const { getEventOrganizers } = require('../firestore/event')
 const isEmailNotificationActive = (event, emailType) => event.emails && !!event.emails[emailType]
 
 const getEventEmails = async (event, emailType) => {
-  let cc = null
-  let bcc = null
+  let cc
+  let bcc
 
   const isActive = isEmailNotificationActive(event, emailType)
   if (!isActive) return {}

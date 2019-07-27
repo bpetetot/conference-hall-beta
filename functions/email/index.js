@@ -4,7 +4,7 @@ const FormData = require('form-data')
 const { isEmpty } = require('lodash')
 
 module.exports.send = (config, {
-  to, cc, bcc, subject, html, confName, webHookInfo,
+  to = [], cc = [], bcc = [], subject, html, confName, webHookInfo,
 }) => {
   if (!config || !config.key || !config.domain) {
     return Promise.reject(new Error('Mailgun configuration mailgun.key or mailgun.domain not found.'))
