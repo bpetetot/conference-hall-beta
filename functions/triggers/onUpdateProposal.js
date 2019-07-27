@@ -1,12 +1,15 @@
+/* eslint-disable no-console */
 const functions = require('firebase-functions')
 const pick = require('lodash/pick')
-const { getEvent, getEventOrganizers } = require('../firestore/event')
+
+const { getEvent } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 const { updateProposal } = require('../firestore/proposal')
 const { partialUpdateTalk } = require('../firestore/talk')
 const email = require('../email')
 const talkAccepted = require('../email/templates/talkAccepted')
 const talkRejected = require('../email/templates/talkRejected')
+const { getEventEmails } = require('../helpers/eventEmails')
 
 // onUpdateProposal is called when a submission is updated.
 // If this update include a change is the proposal's state, it means deliberations happened and the
@@ -26,10 +29,9 @@ module.exports = functions.firestore
       && previousProposal.emailStatus === proposal.emailStatus) {
       return null
     }
+
     // check mailgun configuration
     const { app, mailgun } = functions.config()
-    if (!app) return Promise.reject(new Error('You must provide the app.url variable'))
-
     const uids = Object.keys(proposal.speakers)
 
     // embedded submission in talk
@@ -53,20 +55,14 @@ module.exports = functions.firestore
 
     // send email to accepted or declined proposal
     if ((proposal.state === 'accepted' || proposal.state === 'rejected') && proposal.emailStatus === 'sending') {
+      console.info(`[${proposal.id}] send email to accepted or rejected proposal`)
+
       const event = await getEvent(eventId)
       proposal.emailSent = proposal.updateTimestamp
       proposal.emailStatus = 'sent'
 
       const status = proposal.state === 'accepted' ? 'accepted' : 'declined'
-      let cc
-      let bcc
-      if (event.emailorga) {
-        const organizers = await getEventOrganizers(event)
-        bcc = organizers.map(user => user.email)
-      }
-      if (event.emailcontact && event.contact) {
-        cc = [event.contact]
-      }
+      const { cc, bcc } = await getEventEmails(event, proposal.state)
 
       return Promise.all([
         getUsers(uids),
@@ -85,6 +81,7 @@ module.exports = functions.firestore
     }
 
     if (previousProposal.state !== proposal.state) {
+      console.info(`[${proposal.id}] update state`)
       return updateProposal(eventId, proposal)
     }
     return null

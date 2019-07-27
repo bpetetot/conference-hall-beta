@@ -6,12 +6,14 @@ import DeliberationForm from './deliberation'
 
 const mapStore = (store, { eventId }) => {
   const {
-    deliberationActive,
-    displayOrganizersRatings,
+    deliberationActive, displayOrganizersRatings, sendEmailsTo, emails,
   } = store.data.events.get(eventId) || {}
+
   return {
     deliberationActive,
     displayOrganizersRatings,
+    emails,
+    sendEmailsTo,
     onActiveDeliberation: checked => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_DELIBERATION',
       payload: {
@@ -21,6 +23,7 @@ const mapStore = (store, { eventId }) => {
         },
       },
     }),
+
     onDisplayOrganizersRatings: checked => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_DISPLAY_ORGANIZERS_RATINGS',
       payload: {
@@ -30,7 +33,36 @@ const mapStore = (store, { eventId }) => {
         },
       },
     }),
+
+    onChangeSendTo: e => store.dispatch({
+      type: '@@ui/ON_CHANGE_EMAIL_DESTINATION',
+      payload: {
+        event: {
+          id: eventId,
+          sendEmailsTo: {
+            ...sendEmailsTo,
+            [e.target.name]: e.target.checked,
+          },
+        },
+      },
+    }),
+
+    onChangeEmails: e => store.dispatch({
+      type: '@@ui/ON_CHANGE_EMAIL_NOTIFICATION',
+      payload: {
+        event: {
+          id: eventId,
+          emails: {
+            ...emails,
+            [e.target.name]: e.target.checked,
+          },
+        },
+      },
+    }),
   }
 }
 
-export default compose(forRoute.absolute('organizer-event-edit-deliberation'), inject(mapStore))(DeliberationForm)
+export default compose(
+  forRoute.absolute('organizer-event-edit-deliberation'),
+  inject(mapStore),
+)(DeliberationForm)

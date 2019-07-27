@@ -7,6 +7,7 @@ import Field from 'components/form/field'
 import {
   input, dayPicker, dayRangePicker, Label, SubmitButton, toggle,
 } from 'components/form'
+
 import CategoriesField from './categories'
 import FormatsField from './formats'
 
@@ -36,28 +37,6 @@ const CFPForm = ({
         <Label label="Talk Formats">
           <FormatsField />
         </Label>
-        <h2>Email notifications</h2>
-        <p>
-          When a speaker is accepted, rejected, or when he/she confirms or declines his/her presence
-          an email is sent. You can configure which email you want to receive the email
-          notification. You can set the contact email and/or the organizers emails.
-        </p>
-        <Field
-          name="emailcontact"
-          type="checkbox"
-          label="conference mailing list"
-          component={toggle}
-          truthy="true"
-          falsy="false"
-        />
-        <Field
-          name="emailorga"
-          type="checkbox"
-          label="private orgas' emails"
-          component={toggle}
-          truthy="true"
-          falsy="false"
-        />
         <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
           Save CFP settings
         </SubmitButton>

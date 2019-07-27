@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 const functions = require('firebase-functions')
 
-const { getEvent, getEventOrganizers } = require('../firestore/event')
+const { getEvent } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 
 const email = require('../email')
 const talkSubmitted = require('../email/templates/talkSubmitted')
+const { getEventEmails } = require('../helpers/eventEmails')
 
 // onCreateProposal is called when a talk is submitted. A new submission is created and
 // an email is sent to the speaker for a confirmation of her submission.
@@ -19,20 +20,9 @@ module.exports = functions.firestore
     const talk = snap.data()
     const { eventId } = context.params
     const { app, mailgun } = functions.config()
-    if (!app) {
-      throw new Error('You must provide the app.url variable')
-    }
-    const event = await getEvent(eventId)
 
-    let cc
-    let bcc
-    if (event.emailorga) {
-      const organizers = await getEventOrganizers(event)
-      bcc = organizers.map(user => user.email)
-    }
-    if (event.emailcontact && event.contact) {
-      cc = [event.contact]
-    }
+    const event = await getEvent(eventId)
+    const { cc, bcc } = await getEventEmails(event, 'submitted')
 
     // Send email to speaker after submission, bcc orga email, cc conference mailing list
     const users = await getUsers(Object.keys(talk.speakers))

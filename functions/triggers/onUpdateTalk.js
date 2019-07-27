@@ -1,13 +1,15 @@
+/* eslint-disable no-console */
 const functions = require('firebase-functions')
 
 const { updateProposal } = require('../firestore/proposal')
-const { getEvent, getEventOrganizers } = require('../firestore/event')
+const { getEvent } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 const email = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
 const talkDeclined = require('../email/templates/talkDeclined')
+const { getEventEmails } = require('../helpers/eventEmails')
 
-// onUpdateTalk is called when atalk is updated.
+// onUpdateTalk is called when a talk is updated.
 // If this update include a change is the submision.state, this is a confirmation of an accepted
 // submission.
 // To test this function online:
@@ -26,30 +28,22 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
 
     // Check if a submission has been confirmed or declined
     if ((state === 'confirmed' || state === 'declined') && state !== previousSubmittedTalk.state) {
+      console.info(`[${talk.id}] send email to confirmed or declined proposal`)
+
       // update state proposal
       await updateProposal(eventId, { id: talk.id, state })
 
       // Send email to organizers
       const { app, mailgun } = functions.config()
-      if (!app) {
-        throw new Error('You must provide the app.url variable')
-      }
 
       const event = await getEvent(eventId)
       const uids = Object.keys(talk.speakers)
-      const users = await getUsers(uids)
-      let cc
-      let bcc
-      const to = users.map(user => user.email)
-      if (event.emailorga) {
-        const organizers = await getEventOrganizers(event)
-        bcc = organizers.map(user => user.email)
-      }
-      if (event.emailcontact && event.contact) {
-        cc = [event.contact]
-      }
-      if ((cc || bcc || to) && state === 'confirmed') {
-        // send confirmation email to organizers
+      const speakers = await getUsers(uids)
+      const to = speakers.map(user => user.email)
+
+      // send confirmation email to organizers
+      if (state === 'confirmed') {
+        const { cc, bcc } = await getEventEmails(event, 'confirmed')
         await email.send(mailgun, {
           to,
           cc,
@@ -60,8 +54,9 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
         })
       }
 
-      if ((cc || bcc || to) && state === 'declined') {
-        // send decline email to organizers
+      // send decline email to organizers
+      if (state === 'declined') {
+        const { cc, bcc } = await getEventEmails(event, 'declined')
         await email.send(mailgun, {
           to,
           cc,

@@ -98,7 +98,13 @@ describe('onCreateProposal', () => {
 
   it('should send email to speakers and organizers after submission if events email orga is true', async () => {
     // given
-    event.emailorga = true
+    event.sendEmailsTo = {
+      contact: true,
+      organizers: true,
+    }
+    event.emails = {
+      submitted: true,
+    }
     event.emailcontact = true
     event.contact = 'contact@org.com'
     // when
