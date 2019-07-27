@@ -6,12 +6,13 @@ import DeliberationForm from './deliberation'
 
 const mapStore = (store, { eventId }) => {
   const {
-    deliberationActive, displayOrganizersRatings, sendEmailsTo, emails,
+    deliberationActive, displayOrganizersRatings, contact, sendEmailsTo, emails,
   } = store.data.events.get(eventId) || {}
 
   return {
     deliberationActive,
     displayOrganizersRatings,
+    contact,
     emails,
     sendEmailsTo,
     onActiveDeliberation: checked => store.dispatch({
