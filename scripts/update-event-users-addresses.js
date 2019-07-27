@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-underscore-dangle, no-console */
 const admin = require('firebase-admin')
 const isString = require('lodash/isString')
 const pick = require('lodash/pick')
@@ -26,7 +26,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 })
 
-const { updateUsers, updateEvents } = require('./updates')
+const { updateUsers, updateEvents } = require('./helpers/updates')
 
 // eslint-disable-next-line
 const getAddressComponent = (name, addressComponents) => pick(first(addressComponents.filter(component => component.types.includes(name))), [
@@ -72,7 +72,6 @@ const main = async () => {
 
     const response = await googleMapsClient.geocode({ address: event.address }).asPromise()
     const { results } = (response && response.json) || {}
-
 
     const result = first(results)
     if (!result) return null

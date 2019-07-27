@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // initialize firestore database
 const admin = require('firebase-admin')
 
@@ -46,7 +47,6 @@ const updateEvents = async (callback, eventId) => {
     }),
   )
 }
-
 
 const getProposals = async (eventId) => {
   const eventProposals = await db
