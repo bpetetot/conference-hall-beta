@@ -74,8 +74,9 @@ describe('onUpdateProposal', () => {
   }
   // mock email.send
   let emailSend
-  conf = { mailgun: { domain: 'somedomain.org', key: 'SOME-SECRET' }, app: { url: 'https://somefirebase.url' } }
+  let conf
   beforeEach(() => {
+    conf = { mailgun: { domain: 'somedomain.org', key: 'SOME-SECRET' }, app: { gcf_url: 'https://somefirebase.url', url: 'https://somefirebase.url' } }
     test.mockConfig(conf)
     // mock firestore DB static methods
     Object.defineProperty(admin, 'firestore', { get: () => databaseStub, configurable: true })

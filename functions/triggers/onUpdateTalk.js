@@ -43,7 +43,7 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
           to: organizers.map(user => user.email),
           contact: event.contact,
           subject: `[${event.name}] Talk confirmed by speaker`,
-          html: talkConfirmed(event, talk, app.url),
+          html: talkConfirmed(event, talk, app),
           confName: event.name,
         })
       }
@@ -54,7 +54,7 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
           to: organizers.map(user => user.email),
           contact: event.contact,
           subject: `[${event.name}] Talk declined by speaker`,
-          html: talkDeclined(event, talk, app.url),
+          html: talkDeclined(event, talk, app),
           confName: event.name,
         })
       }
