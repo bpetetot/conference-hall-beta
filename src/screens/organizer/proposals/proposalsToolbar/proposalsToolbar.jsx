@@ -21,6 +21,8 @@ const ProposalToolbar = ({
   exporting,
   nbSelected,
   totalProposals,
+  nbRejectedEmails,
+  nbAcceptedEmails,
 }) => (
   <div className={cn(styles.proposalsActions, 'no-print')}>
     <div className={styles.leftActions}>
@@ -61,10 +63,14 @@ const ProposalToolbar = ({
             <IconLabel icon="fa fa-close" label="Reject proposals" />
           </Button>
           <ConfirmationPopin
-            title="Send deliberation emails"
-            content={`You are going to send about ${messages('emails', {
-              count: nbSelected,
-            })} to speakers. Continue?`}
+            title="Send deliberation emails to speakers"
+            content={`You are going to send ${messages('emails', {
+              count: nbAcceptedEmails,
+              type: 'acceptation',
+            })} and ${messages('emails', {
+              count: nbRejectedEmails,
+              type: 'rejection',
+            })}. Continue?`}
             onOk={onSendEmails}
             withCancel
             renderTrigger={({ show }) => (
@@ -89,6 +95,8 @@ ProposalToolbar.propTypes = {
   exporting: PropTypes.string,
   nbSelected: PropTypes.number,
   totalProposals: PropTypes.number,
+  nbRejectedEmails: PropTypes.number,
+  nbAcceptedEmails: PropTypes.number,
 }
 
 ProposalToolbar.defaultProps = {
@@ -96,6 +104,8 @@ ProposalToolbar.defaultProps = {
   exporting: null,
   nbSelected: 0,
   totalProposals: 0,
+  nbRejectedEmails: 0,
+  nbAcceptedEmails: 0,
 }
 
 export default ProposalToolbar

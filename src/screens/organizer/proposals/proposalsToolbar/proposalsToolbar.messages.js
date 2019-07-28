@@ -7,9 +7,9 @@ const messages = {
     other {{count} proposals}
   }`,
   emails: `{count, plural,
-    =0 {No emails}
-    one {1 email}
-    other {{count} emails}
+    =0 {no {type} emails}
+    one {1 {type} email}
+    other {{count} {type} emails}
   }`,
 }
 

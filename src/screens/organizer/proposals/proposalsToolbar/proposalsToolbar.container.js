@@ -2,19 +2,29 @@ import { inject } from '@k-ramel/react'
 
 import ProposalToobar from './proposalsToolbar'
 
+const countEmailsToSend = (type, selection = [], proposals = []) => {
+  const result = proposals.filter(p => selection.includes(p.id) && p.state === type)
+  return result.length
+}
+
 const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
   const { deliberationActive } = store.data.events.get(eventId) || {}
   const { exporting } = store.ui.organizer.proposalsExport.get()
-  const { count } = store.ui.organizer.proposalsSelection.get()
-  const totalProposals = store.data.proposals.getAsArray().length
-  const { items: selection } = store.ui.organizer.proposalsSelection.get()
+  const proposals = store.data.proposals.getAsArray()
+  const totalProposals = proposals.length
+  const { count, items: selection } = store.ui.organizer.proposalsSelection.get()
+
+  const nbRejectedEmails = countEmailsToSend('rejected', selection, proposals)
+  const nbAcceptedEmails = countEmailsToSend('accepted', selection, proposals)
 
   return {
     deliberationActive,
     exporting,
     nbSelected: count,
     totalProposals,
+    nbRejectedEmails,
+    nbAcceptedEmails,
     onSelectAll: e => store.dispatch({
       type: '@@ui/SELECT_ALL_PROPOSALS',
       payload: { checkAll: e.target.checked },
