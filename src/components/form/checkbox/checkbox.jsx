@@ -9,13 +9,7 @@ const Checkbox = (props) => {
   } = props
   return (
     <div className="form-checkbox">
-      <input
-        name={name}
-        id={`${name}-${value}`}
-        type="checkbox"
-        defaultChecked={!!value}
-        {...props}
-      />
+      <input name={name} id={`${name}-${value}`} type="checkbox" checked={!!value} {...props} />
       {(label || info) && (
         <label htmlFor={`${name}-${value}`}>
           {label}

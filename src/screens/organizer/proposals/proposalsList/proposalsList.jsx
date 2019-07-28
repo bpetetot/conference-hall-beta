@@ -27,17 +27,9 @@ const Proposals = ({
         subtitle={!isMobile && <ProposalSubtitle eventId={eventId} proposal={proposal} />}
         info={<ProposalInfo proposal={proposal} isMobile={isMobile} />}
         onSelect={() => onSelect(proposal.id)}
-        renderCheckbox={() => {
-          if (isMobile) return undefined
-          return (
-            <Checkbox
-              key={proposal.id}
-              onClick={() => onAddProposalToSelection(proposal.id)}
-              value={!!proposalsSelection.includes(proposal.id)}
-              disabled={!deliberationActive}
-            />
-          )
-        }}
+        onCheckboxChange={() => onAddProposalToSelection(proposal.id)}
+        checked={!!proposalsSelection.includes(proposal.id)}
+        checkboxDisabled={!deliberationActive}
       />
     )}
   />
