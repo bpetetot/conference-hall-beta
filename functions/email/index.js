@@ -9,8 +9,8 @@ module.exports.send = (config, {
   if (!config || !config.key || !config.domain) {
     return Promise.reject(new Error('Mailgun configuration mailgun.key or mailgun.domain not found.'))
   }
-  if (!to || to.filter(t => !!t).length === 0) {
-    return Promise.reject(new Error('No destination email given.'))
+  if (isEmpty(to) && isEmpty(cc) && isEmpty(bcc)) {
+    return Promise.reject(new Error('No recipients given.'))
   }
 
   const { key, domain } = config

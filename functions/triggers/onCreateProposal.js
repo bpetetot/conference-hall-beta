@@ -6,6 +6,7 @@ const { getUsers } = require('../firestore/user')
 
 const email = require('../email')
 const talkSubmitted = require('../email/templates/talkSubmitted')
+const talkReceived = require('../email/templates/talkReceived')
 const { getEventEmails } = require('../helpers/eventEmails')
 
 // onCreateProposal is called when a talk is submitted. A new submission is created and
@@ -22,16 +23,25 @@ module.exports = functions.firestore
     const { app, mailgun } = functions.config()
 
     const event = await getEvent(eventId)
-    const { cc, bcc } = await getEventEmails(event, 'submitted')
 
-    // Send email to speaker after submission, bcc orga email, cc conference mailing list
+    // Send email to speaker after submission
     const users = await getUsers(Object.keys(talk.speakers))
     await email.send(mailgun, {
       to: users.map(user => user.email),
-      cc,
-      bcc,
       subject: `[${event.name}] Talk submitted`,
       html: talkSubmitted(event, talk, app),
       confName: event.name,
     })
+
+    // Send email to organizers after submission
+    const { cc, bcc } = await getEventEmails(event, 'submitted')
+    if (cc || bcc) {
+      await email.send(mailgun, {
+        cc,
+        bcc,
+        subject: `[${event.name}] Talk received`,
+        html: talkReceived(event, talk, app),
+        confName: event.name,
+      })
+    }
   })
