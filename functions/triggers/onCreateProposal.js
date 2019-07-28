@@ -26,6 +26,7 @@ module.exports = functions.firestore
 
     // Send email to speaker after submission
     const users = await getUsers(Object.keys(talk.speakers))
+    console.info('Send email to speaker after submission')
     await email.send(mailgun, {
       to: users.map(user => user.email),
       subject: `[${event.name}] Talk submitted`,
@@ -36,6 +37,7 @@ module.exports = functions.firestore
     // Send email to organizers after submission
     const { cc, bcc } = await getEventEmails(event, 'submitted')
     if (cc || bcc) {
+      console.info('Send email to organizers after submission')
       await email.send(mailgun, {
         cc,
         bcc,

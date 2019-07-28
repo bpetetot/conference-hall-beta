@@ -13,7 +13,7 @@ const getEventEmails = async (event, emailType) => {
     const organizers = await getEventOrganizers(event)
     bcc = organizers.map(user => user.email)
   }
-  if (event.sendEmailsTo && event.sendEmailsTo.contact) {
+  if (event.sendEmailsTo && event.sendEmailsTo.contact && event.contact) {
     cc = [event.contact]
   }
 

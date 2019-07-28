@@ -77,11 +77,11 @@ module.exports = functions.firestore
         html: status === 'accepted' ? talkAccepted(event, users, proposal, app) : talkRejected(event, users, proposal, app),
         confName: event.name,
         webHookInfo: { type: 'deliberation_email', talkId: proposal.id, eventId },
-      }))
+      })).then(() => null) // avoid cloud function error. see: https://stackoverflow.com/questions/44790496/cloud-functions-for-firebase-error-serializing-return-value
     }
 
     if (previousProposal.state !== proposal.state) {
-      console.info(`[${proposal.id}] update state`)
+      console.info(`[${proposal.id}] update proposal state`)
       return updateProposal(eventId, proposal)
     }
     return null

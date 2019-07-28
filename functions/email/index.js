@@ -39,6 +39,9 @@ module.exports.send = (config, {
     const ccEmail = !isEmpty(dest) && /\S+@\S+\.\S+/.test(dest) ? dest : null
     if (ccEmail) form.append('cc', ccEmail)
   })
+
+  console.info(`Send email "${subject}" to`, { to, cc, bcc })
+
   return fetch(endpoint, {
     headers: { Authorization: `Basic ${token}` },
     method: 'POST',
