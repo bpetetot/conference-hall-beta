@@ -7,6 +7,7 @@ import Field from 'components/form/field'
 import {
   input, dayPicker, dayRangePicker, Label, SubmitButton, toggle,
 } from 'components/form'
+
 import CategoriesField from './categories'
 import FormatsField from './formats'
 

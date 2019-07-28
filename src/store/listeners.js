@@ -45,6 +45,8 @@ export default [
   when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEventForm),
   when('@@ui/ON_EVENT_BANNER_UPLOADED')(events.updateEvent),
   when('@@ui/ON_TOGGLE_EVENT_SURVEY')(events.updateEvent),
+  when('@@ui/ON_CHANGE_EMAIL_DESTINATION')(events.updateEvent),
+  when('@@ui/ON_CHANGE_EMAIL_NOTIFICATION')(events.updateEvent),
   when('@@ui/ON_SELECT_SURVEY_QUESTION')(events.updateEvent),
   when('@@ui/ON_TOGGLE_EVENT_DELIBERATION')(events.updateEvent),
   when('@@ui/ON_TOGGLE_EVENT_DISPLAY_ORGANIZERS_RATINGS')(events.updateEvent),

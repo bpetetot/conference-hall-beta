@@ -8,9 +8,9 @@ module.exports = (event, talk, app) => `
   <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
 </head>
 <body>
-  <p>👌 The talk <strong>"${talk.title}"</strong> has been confirmed by speaker for <strong>${event.name}</strong></p>
+  <p>👌 Thanks for giving the talk <strong>"${talk.title}"</strong> at <strong>${event.name}</strong>.</p>
   <p>
-  <strong><a href="${app.url}/organizer/event/${event.id}/proposal/${talk.id}">Check it here!</a></strong>
+  <strong>See you there!</strong>
   </p>
   <p>
   Made with 💗 by <a href="${app.url}">conference-hall.io</a> – <i>"${event.name}" team</i>

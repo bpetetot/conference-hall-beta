@@ -45,7 +45,7 @@ Checkbox.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
-  info: PropTypes.string,
+  info: PropTypes.node,
   indeterminate: PropTypes.bool,
 }
 

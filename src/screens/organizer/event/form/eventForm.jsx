@@ -74,7 +74,7 @@ const EventForm = ({
         <Field name="conferenceDates" label="Conference date" component={dayRangePicker} />
         )}
         <Field name="website" label="Website" type="text" component={input} />
-        <Field name="contact" label="Email contact" type="email" component={input} />
+        <Field name="contact" label="Contact email" type="email" component={input} />
         <SubmitButton
           handleSubmit={handleSubmit}
           pristine={pristine}
