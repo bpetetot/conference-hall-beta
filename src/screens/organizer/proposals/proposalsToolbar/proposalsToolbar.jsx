@@ -9,6 +9,7 @@ import Dropdown from 'components/dropdown'
 
 import { ConfirmationPopin } from 'components/portals'
 import styles from './proposalsToolbar.module.css'
+import messages from './proposalsToolbar.messages'
 
 const ProposalToolbar = ({
   onSelectAll,
@@ -25,7 +26,9 @@ const ProposalToolbar = ({
     <div className={styles.leftActions}>
       <Checkbox
         onChange={onSelectAll}
-        label={!nbSelected ? `${totalProposals} proposals` : `${nbSelected} selected`}
+        label={
+          !nbSelected ? messages('proposals', { count: totalProposals }) : `${nbSelected} selected`
+        }
         name="all-pages"
         value={!!nbSelected}
         disabled={!deliberationActive || totalProposals === 0}
@@ -58,8 +61,10 @@ const ProposalToolbar = ({
             <IconLabel icon="fa fa-close" label="Reject proposals" />
           </Button>
           <ConfirmationPopin
-            title="Send emails to speakers"
-            content={`You are going to send about ${nbSelected} acceptation and/or rejection emails to speakers. Continue?`}
+            title="Send deliberation emails"
+            content={`You are going to send about ${messages('emails', {
+              count: nbSelected,
+            })} to speakers. Continue?`}
             onOk={onSendEmails}
             withCancel
             renderTrigger={({ show }) => (
