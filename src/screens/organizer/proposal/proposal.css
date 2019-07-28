@@ -1,7 +1,7 @@
 .proposal {
   display: grid;
   grid-gap: 1em;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr minmax(35%, 1fr);
   grid-template-rows: auto;
   grid-template-areas: 'proposal-actions proposal-actions' 'proposal-ratings proposal-ratings' 'proposal-talk proposal-speakers';
 }

@@ -28,3 +28,7 @@ h4 {
   font-weight: 600;
   margin-bottom: 0;
 }
+
+p {
+  word-wrap: break-word;
+}
