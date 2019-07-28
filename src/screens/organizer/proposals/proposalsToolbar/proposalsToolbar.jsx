@@ -41,11 +41,12 @@ class ProposalToolbar extends Component {
       <div className={cn(styles.proposalsActions, 'no-print')}>
         <div className={styles.leftActions}>
           <Checkbox
-            onClick={this.handleSelect}
+            onChange={this.handleSelect}
             label={!nbSelected ? `${totalProposals} proposals` : `${nbSelected} selected`}
             name="all-pages"
             value={checkAll}
             disabled={!deliberationActive || totalProposals === 0}
+            indeterminate={nbSelected !== totalProposals}
           />
         </div>
         <div className={styles.rightActions}>

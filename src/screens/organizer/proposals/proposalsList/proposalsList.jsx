@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { withSizes } from 'styles/utils'
 import { List, ListItem } from 'components/list'
-import Checkbox from 'components/form/checkbox'
 import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
 import './proposalsList.css'
@@ -27,17 +26,9 @@ const Proposals = ({
         subtitle={!isMobile && <ProposalSubtitle eventId={eventId} proposal={proposal} />}
         info={<ProposalInfo proposal={proposal} isMobile={isMobile} />}
         onSelect={() => onSelect(proposal.id)}
-        renderCheckbox={() => {
-          if (isMobile) return undefined
-          return (
-            <Checkbox
-              key={proposal.id}
-              onClick={() => onAddProposalToSelection(proposal.id)}
-              value={!!proposalsSelection.includes(proposal.id)}
-              disabled={!deliberationActive}
-            />
-          )
-        }}
+        onCheckboxChange={() => onAddProposalToSelection(proposal.id)}
+        checked={!!proposalsSelection.includes(proposal.id)}
+        checkboxDisabled={!deliberationActive}
       />
     )}
   />

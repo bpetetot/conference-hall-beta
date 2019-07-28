@@ -128,7 +128,6 @@ export const selectAllProposal = async (action, store) => {
       items: [],
     })
   }
-  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
 }
 
 /* load proposals */
