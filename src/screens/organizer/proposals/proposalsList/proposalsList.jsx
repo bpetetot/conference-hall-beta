@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { withSizes } from 'styles/utils'
 import { List, ListItem } from 'components/list'
-import Checkbox from 'components/form/checkbox'
 import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
 import './proposalsList.css'

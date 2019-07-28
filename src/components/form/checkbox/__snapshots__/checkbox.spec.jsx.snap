@@ -5,9 +5,8 @@ exports[`components/checkbox should render with children 1`] = `
   className="form-checkbox"
 >
   <input
-    defaultChecked={false}
+    checked={false}
     id="name-false"
-    label="label"
     name="name"
     type="checkbox"
     value={false}

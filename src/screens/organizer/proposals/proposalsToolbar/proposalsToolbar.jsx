@@ -46,6 +46,7 @@ class ProposalToolbar extends Component {
             name="all-pages"
             value={checkAll}
             disabled={!deliberationActive || totalProposals === 0}
+            indeterminate={nbSelected !== totalProposals}
           />
         </div>
         <div className={styles.rightActions}>

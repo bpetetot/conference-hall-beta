@@ -1,15 +1,32 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import './checkbox.css'
 
 const Checkbox = (props) => {
   const {
-    name, label, value, info,
+    name, label, value, info, indeterminate, ...rest
   } = props
+
+  const checkboxEl = useRef()
+
+  useEffect(() => {
+    if (checkboxEl && checkboxEl.current) {
+      checkboxEl.current.indeterminate = !!value && indeterminate
+    }
+  }, [value, indeterminate])
+
   return (
     <div className="form-checkbox">
-      <input name={name} id={`${name}-${value}`} type="checkbox" checked={!!value} {...props} />
+      <input
+        ref={checkboxEl}
+        name={name}
+        id={`${name}-${value}`}
+        type="checkbox"
+        checked={!!value}
+        value={value}
+        {...rest}
+      />
       {(label || info) && (
         <label htmlFor={`${name}-${value}`}>
           {label}
@@ -29,6 +46,7 @@ Checkbox.propTypes = {
   label: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
   info: PropTypes.string,
+  indeterminate: PropTypes.bool,
 }
 
 Checkbox.defaultProps = {
@@ -36,6 +54,7 @@ Checkbox.defaultProps = {
   label: undefined,
   value: false,
   info: undefined,
+  indeterminate: false,
 }
 
 export default Checkbox
