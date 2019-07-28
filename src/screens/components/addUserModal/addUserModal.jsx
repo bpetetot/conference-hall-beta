@@ -73,7 +73,7 @@ AddUserModal.propTypes = {
   resultsMessage: PropTypes.node.isRequired,
   onSearch: PropTypes.func.isRequired,
   onSelectUser: PropTypes.func.isRequired,
-  inviteLink: PropTypes.string.isRequired,
+  inviteLink: PropTypes.string,
   renderTrigger: PropTypes.func,
 }
 
@@ -84,6 +84,7 @@ AddUserModal.defaultProps = {
   initialized: false,
   users: [],
   renderTrigger: undefined,
+  inviteLink: undefined,
 }
 
 export default AddUserModal
