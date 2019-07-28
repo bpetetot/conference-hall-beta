@@ -111,15 +111,23 @@ describe('onCreateProposal', () => {
     const onCreateProposalWrapped = test.wrap(onCreateProposal)
     await onCreateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: '' } })
     // then
-    sinon.assert.match(emailSend.calledOnce, true)
+    sinon.assert.match(emailSend.calledTwice, true)
     sinon.assert.calledWith(emailSend.firstCall, sinon.match({
       domain: 'somedomain.org',
       key: 'SOME-SECRET',
     }), sinon.match({
       to: ['corinnekrych@gmail.com'],
+      subject: '[RivieraDEV 2019] Talk submitted',
+      html: sinon.match.any,
+      confName: 'RivieraDEV 2019',
+    }))
+    sinon.assert.calledWith(emailSend.secondCall, sinon.match({
+      domain: 'somedomain.org',
+      key: 'SOME-SECRET',
+    }), sinon.match({
       cc: ['contact@org.com'],
       bcc: ['corinnekrych@gmail.com'],
-      subject: '[RivieraDEV 2019] Talk submitted',
+      subject: '[RivieraDEV 2019] Talk received',
       html: sinon.match.any,
       confName: 'RivieraDEV 2019',
     }))
