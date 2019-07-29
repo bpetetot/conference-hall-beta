@@ -2,12 +2,12 @@
 const functions = require('firebase-functions')
 
 const { updateProposal } = require('../firestore/proposal')
-const { getEvent } = require('../firestore/event')
+const { getEvent, getEventSettings } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 const email = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
 const talkDeclined = require('../email/templates/talkDeclined')
-const { getEventEmails } = require('../helpers/eventEmails')
+const { getEmailRecipients } = require('../helpers/eventEmails')
 
 // onUpdateTalk is called when a talk is updated.
 // If this update include a change is the submision.state, this is a confirmation of an accepted
@@ -37,13 +37,14 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
       const { app, mailgun } = functions.config()
 
       const event = await getEvent(eventId)
+      const settings = await getEventSettings(eventId)
       const uids = Object.keys(talk.speakers)
       const speakers = await getUsers(uids)
       const to = speakers.map(user => user.email)
 
       // send confirmation email to organizers
       if (state === 'confirmed') {
-        const { cc, bcc } = await getEventEmails(event, 'confirmed')
+        const { cc, bcc } = await getEmailRecipients(event, settings, 'confirmed')
         await email.send(mailgun, {
           to,
           cc,
@@ -56,7 +57,7 @@ module.exports = functions.firestore.document('talks/{talkId}').onUpdate(async (
 
       // send decline email to organizers
       if (state === 'declined') {
-        const { cc, bcc } = await getEventEmails(event, 'declined')
+        const { cc, bcc } = await getEmailRecipients(event, settings, 'declined')
         await email.send(mailgun, {
           to,
           cc,

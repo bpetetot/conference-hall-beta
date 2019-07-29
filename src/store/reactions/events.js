@@ -2,9 +2,15 @@ import uuid from 'uuid/v4'
 import flatten from 'lodash/flatten'
 import map from 'lodash/map'
 import uniqBy from 'lodash/uniqBy'
+import get from 'lodash/get'
 
 import { fetchOrganizationEvents } from 'firebase/organizations'
-import eventCrud, { fetchPublicEvents, fetchUserEvents } from 'firebase/events'
+import eventCrud, {
+  fetchPublicEvents,
+  fetchUserEvents,
+  fetchSettings,
+  saveSettings,
+} from 'firebase/events'
 
 export const createEvent = async (action, store, { router }) => {
   const { uid } = store.auth.get()
@@ -36,25 +42,57 @@ export const updateEvent = (action, store) => {
 }
 
 export const toggleApi = (action, store) => {
-  const { event } = action.payload
-  const updated = { ...event }
-  if (event.apiActive && !event.apiKey) {
-    // generate api key
-    updated.apiKey = uuid()
-  }
-  // update event in store
-  store.data.events.update(updated)
-  // update event into database
-  eventCrud.update(updated)
+  const { eventId, enabled, apiKey } = action.payload
+  // update event settings
+  store.dispatch({
+    type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+    payload: {
+      eventId,
+      domain: 'api',
+      enabled,
+      apiKey: enabled && !apiKey ? uuid() : apiKey,
+    },
+  })
 }
 
 export const generateNewApiKey = (action, store) => {
   const { eventId } = action.payload
-  const updated = { id: eventId, apiKey: uuid() }
-  // update event in store
-  store.data.events.update(updated)
-  // update event into database
-  eventCrud.update(updated)
+  // update event settings
+  store.dispatch({
+    type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+    payload: {
+      eventId,
+      domain: 'api',
+      apiKey: uuid(),
+    },
+  })
+}
+
+export const saveEventSettings = async (action, store) => {
+  const { eventId, domain, ...newSettings } = action.payload
+  const oldSettings = get(store.data.eventsSettings.get(eventId), domain, {})
+
+  await saveSettings(eventId, { [domain]: newSettings })
+
+  console.log('save settings', { id: eventId, [domain]: newSettings })
+  store.data.eventsSettings.update({
+    id: eventId,
+    [domain]: { ...oldSettings, ...newSettings },
+  })
+}
+
+const fetchEventSettings = async (eventId, store, router) => {
+  const isOrganizer = router.getParam('root') === 'organizer'
+  if (!isOrganizer) return
+
+  console.log('fetch event settings for ', eventId)
+  const settings = store.data.eventsSettings.get(eventId)
+  if (!settings) {
+    const settingsRef = await fetchSettings(eventId)
+    if (settingsRef.exists) {
+      store.data.eventsSettings.addOrUpdate(settingsRef.data())
+    }
+  }
 }
 
 export const fetchEvent = async (action, store, { router }) => {
@@ -67,10 +105,12 @@ export const fetchEvent = async (action, store, { router }) => {
   const ref = await eventCrud.read(eventId)
   if (ref.exists) {
     store.data.events.add({ id: eventId, ...ref.data() })
+    // fetch event settings
+    await fetchEventSettings(eventId, store, router)
   }
 }
 
-export const fetchOrganizerEvents = async (action, store) => {
+export const fetchOrganizerEvents = async (action, store, { router }) => {
   const { uid } = store.auth.get()
   const organizations = store.data.organizations.getKeys()
 
@@ -88,6 +128,9 @@ export const fetchOrganizerEvents = async (action, store) => {
   // set events id to the organizer event store
   store.ui.organizer.myEvents.reset()
   store.ui.organizer.myEvents.set(aggregatedEvents)
+
+  // fetch events settings
+  await Promise.all(map(aggregatedEvents, event => fetchEventSettings(event.id, store, router)))
 }
 
 export const fetchSpeakerEvents = async (action, store) => {

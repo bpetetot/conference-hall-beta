@@ -2,14 +2,14 @@
 const functions = require('firebase-functions')
 const pick = require('lodash/pick')
 
-const { getEvent } = require('../firestore/event')
+const { getEvent, getEventSettings } = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 const { updateProposal } = require('../firestore/proposal')
 const { partialUpdateTalk } = require('../firestore/talk')
 const email = require('../email')
 const talkAccepted = require('../email/templates/talkAccepted')
 const talkRejected = require('../email/templates/talkRejected')
-const { getEventEmails } = require('../helpers/eventEmails')
+const { getEmailRecipients } = require('../helpers/eventEmails')
 
 // onUpdateProposal is called when a submission is updated.
 // If this update include a change is the proposal's state, it means deliberations happened and the
@@ -58,11 +58,12 @@ module.exports = functions.firestore
       console.info(`[${proposal.id}] send email to accepted or rejected proposal`)
 
       const event = await getEvent(eventId)
+      const settings = await getEventSettings(eventId)
       proposal.emailSent = proposal.updateTimestamp
       proposal.emailStatus = 'sent'
 
       const status = proposal.state === 'accepted' ? 'accepted' : 'declined'
-      const { cc, bcc } = await getEventEmails(event, proposal.state)
+      const { cc, bcc } = await getEmailRecipients(event, settings, proposal.state)
 
       return Promise.all([
         getUsers(uids),

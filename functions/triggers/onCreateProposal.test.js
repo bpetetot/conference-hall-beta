@@ -5,6 +5,7 @@ const admin = require('firebase-admin')
 // it will be initialized in an "offline mode".
 const test = require('firebase-functions-test')()
 
+const eventFirestore = require('../firestore/event')
 const onCreateProposal = require('./onCreateProposal')
 const email = require('../email')
 
@@ -46,6 +47,8 @@ describe('onCreateProposal', () => {
   const collectionProposalStub = sinon.stub()
   // mock getUsers
   const docUserStub = sinon.stub()
+  // mock getEventSettings
+  const getEventSettingsStub = sinon.stub(eventFirestore, 'getEventSettings')
   // mock snap.data()
   const snap = {
     data: () => talk,
@@ -53,6 +56,7 @@ describe('onCreateProposal', () => {
   // mock email.send
   let emailSend
   conf = { mailgun: { domain: 'somedomain.org', key: 'SOME-SECRET' }, app: { url: 'https://somefirebase.url' } }
+
   beforeEach(() => {
     test.mockConfig(conf)
     // mock firestore DB static methods
@@ -72,13 +76,16 @@ describe('onCreateProposal', () => {
     docUserStub.withArgs('ibBeWNBzL3XVc0teerodftWdYzD2').returns({ get: () => new Promise(resolve => resolve({ data: () => user, exists: true })) })
     emailSend = sinon.stub(email, 'send').callsFake(() => {})
   })
+
   afterEach(() => {
     sinon.reset()
     emailSend.restore()
+    getEventSettingsStub.reset()
   })
 
   it('should send email to speakers after submission for a conference', async () => {
     // given
+    getEventSettingsStub.returns({})
     // when
     const onCreateProposalWrapped = test.wrap(onCreateProposal)
     await onCreateProposalWrapped(snap, { params: { eventId: 'wpYPL2EC3WzxUqY77rQZ', proposalId: '' } })
@@ -98,13 +105,17 @@ describe('onCreateProposal', () => {
 
   it('should send email to speakers and organizers after submission if events email orga is true', async () => {
     // given
-    event.sendEmailsTo = {
-      contact: true,
-      organizers: true,
-    }
-    event.emails = {
-      submitted: true,
-    }
+    getEventSettingsStub.returns({
+      notifications: {
+        recipients: {
+          contact: true,
+          organizers: true,
+        },
+        emails: {
+          submitted: true,
+        },
+      },
+    })
     event.emailcontact = true
     event.contact = 'contact@org.com'
     // when

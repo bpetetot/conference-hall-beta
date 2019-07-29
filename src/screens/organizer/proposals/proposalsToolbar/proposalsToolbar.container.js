@@ -1,17 +1,18 @@
 import { inject } from '@k-ramel/react'
+import get from 'lodash/get'
 
 import ProposalToobar from './proposalsToolbar'
 
 const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
-  const { deliberationActive } = store.data.events.get(eventId) || {}
+  const settings = store.data.eventsSettings.get(eventId)
   const { exporting } = store.ui.organizer.proposalsExport.get()
   const { count } = store.ui.organizer.proposalsSelection.get()
   const totalProposals = store.data.proposals.getAsArray().length
   const { items } = store.ui.organizer.proposalsSelection.get()
 
   return {
-    deliberationActive,
+    deliberationActive: get(settings, 'deliberation.enabled'),
     exporting,
     nbSelected: count,
     totalProposals,

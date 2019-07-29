@@ -5,19 +5,17 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 import ApiForm from './api'
 
 const mapStore = (store, { eventId }) => {
-  const event = store.data.events.get(eventId) || {}
-  const { apiActive, apiKey } = event
+  const { api } = store.data.eventsSettings.get(eventId) || {}
+  const { enabled, apiKey } = api || {}
   return {
-    apiActive,
+    enabled,
     apiKey,
     onActiveApi: checked => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_API',
       payload: {
-        event: {
-          id: eventId,
-          apiActive: checked,
-          apiKey,
-        },
+        eventId,
+        enabled: checked,
+        apiKey,
       },
     }),
     onGenerateKey: () => store.dispatch({
@@ -27,4 +25,7 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(forRoute.absolute('organizer-event-edit-integrations'), inject(mapStore))(ApiForm)
+export default compose(
+  forRoute.absolute('organizer-event-edit-integrations'),
+  inject(mapStore),
+)(ApiForm)
