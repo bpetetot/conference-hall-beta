@@ -23,12 +23,11 @@ const sendSlackMessage = async (event, talk, speakers, app) => {
   const message = buildMessage(event, talk, speakers, app)
   try {
     console.info('send slack message', message)
-    const response = await fetch(url, {
+    await fetch(url, {
       method: 'post',
       body: JSON.stringify(message),
       headers: { 'Content-Type': 'application/json' },
     })
-    console.log(response)
   } catch (error) {
     console.error(error)
   }
