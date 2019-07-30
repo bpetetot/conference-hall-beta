@@ -40,6 +40,7 @@ module.exports = functions.firestore
     if (cc || bcc) {
       console.info('Send email to organizers after submission')
       await email.send(mailgun, {
+        to: [`no-reply@${mailgun.domain}`],
         cc,
         bcc,
         subject: `[${event.name}] Talk received`,
