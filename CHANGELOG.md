@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.20.1"></a>
+
+## 0.20.1 (2019-07-30)
+
+### Fixed
+
+- 🐛 set a default recipients for emails with only bcc ([#640](https://github.com/bpetetot/conference-hall/issues/640)) [[26d026d](https://github.com/bpetetot/conference-hall/commit/26d026d50ed0dd41ca84d1cf1e53d2d9c812568f)]
+
 <a name="0.20.0"></a>
 
 ## 0.20.0 (2019-07-30)
