@@ -1,5 +1,26 @@
 # Changelog
 
+<a name="0.20.0"></a>
+
+## 0.20.0 (2019-07-30)
+
+⚠️Need to execute script `scripts/update-event-new-settings.js` with your `accountSettings`.
+
+### Added
+
+- ✨ add confirmation popin when sending emails ([#637](https://github.com/bpetetot/conference-hall/issues/637)) [[addb307](https://github.com/bpetetot/conference-hall/commit/addb307f74925f7344d3480d1fa8989618886875)]
+- ✨ organizer recipients and email notifications by config [[27f30e4](https://github.com/bpetetot/conference-hall/commit/27f30e4bf369c610f7bddcb073287142e54382b8)]
+- ✨ rsvp action in email confirmation ([#571](https://github.com/bpetetot/conference-hall/issues/571)) [[ea70482](https://github.com/bpetetot/conference-hall/commit/ea704820caff92276208cf9cb12ec86e7e650f67)]
+
+### Changed
+
+- ♻️ add event settings collection ([#639](https://github.com/bpetetot/conference-hall/issues/639)) [[c65d15a](https://github.com/bpetetot/conference-hall/commit/c65d15a7cbc93a7fb6603ab91ed47a29367982f2)]
+
+### Fixed
+
+- 🐛 avoid proposals reloading when check all ([#636](https://github.com/bpetetot/conference-hall/issues/636)) [[99dbdbb](https://github.com/bpetetot/conference-hall/commit/99dbdbb5e34b049116e8f9eae17ecf145e0e7cfb)]
+- 🐛 fix the speaker block overflow in proposal page ([#634](https://github.com/bpetetot/conference-hall/issues/634)) [[7202f9b](https://github.com/bpetetot/conference-hall/commit/7202f9baee03a018128439222c6e6d2052483fbb)]
+
 <a name="0.19.0"></a>
 
 ## 0.19.0 (2019-07-26)
