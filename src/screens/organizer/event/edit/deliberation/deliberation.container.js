@@ -1,62 +1,63 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import { forRoute } from '@k-redux-router/react-k-ramel'
+import get from 'lodash/get'
 
 import DeliberationForm from './deliberation'
 
 const mapStore = (store, { eventId }) => {
-  const {
-    deliberationActive, displayOrganizersRatings, contact, sendEmailsTo, emails,
-  } = store.data.events.get(eventId) || {}
+  const { contact } = store.data.events.get(eventId) || {}
+  const settings = store.data.eventsSettings.get(eventId)
+
+  const deliberationEnabled = get(settings, 'deliberation.enabled')
+  const displayRatings = get(settings, 'deliberation.displayRatings')
+  const recipients = get(settings, 'notifications.recipients')
+  const emails = get(settings, 'notifications.emails')
 
   return {
-    deliberationActive,
-    displayOrganizersRatings,
+    deliberationEnabled,
+    displayRatings,
     contact,
+    recipients,
     emails,
-    sendEmailsTo,
-    onActiveDeliberation: checked => store.dispatch({
-      type: '@@ui/ON_TOGGLE_EVENT_DELIBERATION',
+    onToggleDeliberation: checked => store.dispatch({
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
       payload: {
-        event: {
-          id: eventId,
-          deliberationActive: checked,
+        eventId,
+        domain: 'deliberation',
+        enabled: checked,
+      },
+    }),
+
+    onToggleOrganizersRatings: checked => store.dispatch({
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+      payload: {
+        eventId,
+        domain: 'deliberation',
+        displayRatings: checked,
+      },
+    }),
+
+    onChangeRecipients: e => store.dispatch({
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+      payload: {
+        eventId,
+        domain: 'notifications',
+        recipients: {
+          ...recipients,
+          [e.target.name]: e.target.checked,
         },
       },
     }),
 
-    onDisplayOrganizersRatings: checked => store.dispatch({
-      type: '@@ui/ON_TOGGLE_EVENT_DISPLAY_ORGANIZERS_RATINGS',
+    onChangeNotifiedEmails: e => store.dispatch({
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
       payload: {
-        event: {
-          id: eventId,
-          displayOrganizersRatings: checked,
-        },
-      },
-    }),
-
-    onChangeSendTo: e => store.dispatch({
-      type: '@@ui/ON_CHANGE_EMAIL_DESTINATION',
-      payload: {
-        event: {
-          id: eventId,
-          sendEmailsTo: {
-            ...sendEmailsTo,
-            [e.target.name]: e.target.checked,
-          },
-        },
-      },
-    }),
-
-    onChangeEmails: e => store.dispatch({
-      type: '@@ui/ON_CHANGE_EMAIL_NOTIFICATION',
-      payload: {
-        event: {
-          id: eventId,
-          emails: {
-            ...emails,
-            [e.target.name]: e.target.checked,
-          },
+        eventId,
+        domain: 'notifications',
+        emails: {
+          ...emails,
+          [e.target.name]: e.target.checked,
         },
       },
     }),

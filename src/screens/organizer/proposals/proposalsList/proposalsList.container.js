@@ -1,12 +1,13 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import { forRoute } from '@k-redux-router/react-k-ramel'
+import get from 'lodash/get'
 
 import loader from 'components/loader'
 import ProposalsList from './proposalsList'
 
 const mapStore = (store, { eventId }) => {
-  const { deliberationActive } = store.data.events.get(eventId) || {}
+  const settings = store.data.eventsSettings.get(eventId)
   const { page, itemsPerPage } = store.ui.organizer.proposalsPaging.get()
   const { items } = store.ui.organizer.proposalsSelection.get()
   const startIndex = (page - 1) * itemsPerPage
@@ -19,7 +20,7 @@ const mapStore = (store, { eventId }) => {
     loaded: store.data.proposals.isInitialized(),
     proposals,
     proposalsSelection: items,
-    deliberationActive,
+    deliberationActive: get(settings, 'deliberation.enabled'),
     load: () => store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS'),
     onSelect: (proposalId) => {
       store.dispatch({ type: '@@ui/ON_SELECT_PROPOSAL', payload: { eventId, proposalId } })

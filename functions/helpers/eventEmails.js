@@ -1,19 +1,21 @@
+const { get } = require('lodash')
 const { getEventOrganizers } = require('../firestore/event')
 
-const isEmailNotificationActive = (event, emailType) => event.emails && !!event.emails[emailType]
-
-const getEventEmails = async (event, emailType) => {
+const getEmailRecipients = async (event, settings, emailType) => {
   let cc
   let bcc
 
-  const isActive = isEmailNotificationActive(event, emailType)
+  const isActive = get(settings, `notifications.emails.${emailType}`, false)
   if (!isActive) return {}
 
-  if (event.sendEmailsTo && event.sendEmailsTo.organizers) {
+  const isOrganizersRecipients = get(settings, 'notifications.recipients.organizers', false)
+  if (isOrganizersRecipients) {
     const organizers = await getEventOrganizers(event)
     bcc = organizers.map(user => user.email)
   }
-  if (event.sendEmailsTo && event.sendEmailsTo.contact && event.contact) {
+
+  const isContactRecipients = get(settings, 'notifications.recipients.contact', false)
+  if (isContactRecipients && event.contact) {
     cc = [event.contact]
   }
 
@@ -22,5 +24,5 @@ const getEventEmails = async (event, emailType) => {
 
 
 module.exports = {
-  getEventEmails,
+  getEmailRecipients,
 }

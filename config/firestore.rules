@@ -48,6 +48,13 @@ service cloud.firestore {
     	allow create: if authenticated();
     	allow update: if authenticated() && itsMyEvent();
 
+      // SETTINGS
+      match /settings/{id} {
+        allow get: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow update: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+      }
+
       // SURVEYS
       match /surveys/{survey} {
         allow get: if authenticated() && (itsMySurvey() || fromMyEvent(get(/databases/$(database)/documents/events/$(event))));

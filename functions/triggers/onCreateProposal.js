@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 const functions = require('firebase-functions')
 
-const { getEvent } = require('../firestore/event')
+const eventFirestore = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 
 const email = require('../email')
 const talkSubmitted = require('../email/templates/talkSubmitted')
 const talkReceived = require('../email/templates/talkReceived')
-const { getEventEmails } = require('../helpers/eventEmails')
+const { getEmailRecipients } = require('../helpers/eventEmails')
 
 // onCreateProposal is called when a talk is submitted. A new submission is created and
 // an email is sent to the speaker for a confirmation of her submission.
@@ -22,7 +22,8 @@ module.exports = functions.firestore
     const { eventId } = context.params
     const { app, mailgun } = functions.config()
 
-    const event = await getEvent(eventId)
+    const event = await eventFirestore.getEvent(eventId)
+    const settings = await eventFirestore.getEventSettings(eventId)
 
     // Send email to speaker after submission
     const users = await getUsers(Object.keys(talk.speakers))
@@ -35,7 +36,7 @@ module.exports = functions.firestore
     })
 
     // Send email to organizers after submission
-    const { cc, bcc } = await getEventEmails(event, 'submitted')
+    const { cc, bcc } = await getEmailRecipients(event, settings, 'submitted')
     if (cc || bcc) {
       console.info('Send email to organizers after submission')
       await email.send(mailgun, {

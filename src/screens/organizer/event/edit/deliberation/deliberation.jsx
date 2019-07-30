@@ -10,33 +10,29 @@ import IconLabel from 'components/iconLabel/iconLabel'
 import styles from './deliberation.module.css'
 
 const DeliberationForm = ({
-  deliberationActive,
-  onActiveDeliberation,
-  displayOrganizersRatings,
-  onDisplayOrganizersRatings,
+  deliberationEnabled,
+  displayRatings,
   contact,
-  sendEmailsTo,
-  onChangeSendTo,
+  recipients,
   emails,
-  onChangeEmails,
+  onToggleDeliberation,
+  onToggleOrganizersRatings,
+  onChangeRecipients,
+  onChangeNotifiedEmails,
 }) => {
   // eslint-disable-next-line max-len
-  const disabledEmails = !sendEmailsTo.organizers && (!sendEmailsTo.contact || (sendEmailsTo.contact && !contact))
+  const disabledEmails = !recipients.organizers && (!recipients.contact || (recipients.contact && !contact))
 
   return (
     <div className={cn(styles.form, 'card')}>
       <Label
-        name="deliberationActive"
+        name="enabled"
         label="Enable Deliberation"
         description="Active deliberation to mark proposals to accepted or rejected, and send confirmation emails to speakers."
         classNameInput={styles.label}
         right
       >
-        <Toggle
-          name="deliberationActive"
-          checked={deliberationActive}
-          onChange={onActiveDeliberation}
-        />
+        <Toggle name="enabled" checked={deliberationEnabled} onChange={onToggleDeliberation} />
       </Label>
 
       <Label
@@ -48,8 +44,8 @@ const DeliberationForm = ({
       >
         <Toggle
           name="displayOrganizersRatings"
-          checked={displayOrganizersRatings}
-          onChange={onDisplayOrganizersRatings}
+          checked={displayRatings}
+          onChange={onToggleOrganizersRatings}
         />
       </Label>
 
@@ -77,16 +73,16 @@ const DeliberationForm = ({
             />
           )
         }
-        onChange={onChangeSendTo}
-        value={sendEmailsTo.contact}
+        onChange={onChangeRecipients}
+        value={recipients.contact}
         disabled={!contact}
       />
       <Checkbox
         name="organizers"
         label="Send to organizer's emails"
         info="Sent emails will have organizer's email as BCC."
-        onChange={onChangeSendTo}
-        value={sendEmailsTo.organizers}
+        onChange={onChangeRecipients}
+        value={recipients.organizers}
       />
 
       <p>Configure which email you want to receive:</p>
@@ -94,7 +90,7 @@ const DeliberationForm = ({
         name="submitted"
         label="Submitted proposals"
         info="Receive an email when a speaker submit a talk."
-        onChange={onChangeEmails}
+        onChange={onChangeNotifiedEmails}
         value={emails.submitted}
         disabled={disabledEmails}
       />
@@ -102,7 +98,7 @@ const DeliberationForm = ({
         name="accepted"
         label="Accepted proposals"
         info="Have a copy of acceptation emails sent to speakers."
-        onChange={onChangeEmails}
+        onChange={onChangeNotifiedEmails}
         value={emails.accepted}
         disabled={disabledEmails}
       />
@@ -110,7 +106,7 @@ const DeliberationForm = ({
         name="rejected"
         label="Rejected proposals"
         info="Have a copy of rejection emails sent to speakers."
-        onChange={onChangeEmails}
+        onChange={onChangeNotifiedEmails}
         value={emails.rejected}
         disabled={disabledEmails}
       />
@@ -118,7 +114,7 @@ const DeliberationForm = ({
         name="confirmed"
         label="Confirmed proposals"
         info="Receive an email when a speaker confirm a talk."
-        onChange={onChangeEmails}
+        onChange={onChangeNotifiedEmails}
         value={emails.confirmed}
         disabled={disabledEmails}
       />
@@ -126,7 +122,7 @@ const DeliberationForm = ({
         name="declined"
         label="Declined proposals"
         info="Receive an email when a speaker decline a talk."
-        onChange={onChangeEmails}
+        onChange={onChangeNotifiedEmails}
         value={emails.declined}
         disabled={disabledEmails}
       />
@@ -135,22 +131,22 @@ const DeliberationForm = ({
 }
 
 DeliberationForm.propTypes = {
-  deliberationActive: PropTypes.bool,
-  onActiveDeliberation: PropTypes.func.isRequired,
-  displayOrganizersRatings: PropTypes.bool,
-  onDisplayOrganizersRatings: PropTypes.func.isRequired,
+  deliberationEnabled: PropTypes.bool,
+  displayRatings: PropTypes.bool,
   contact: PropTypes.string,
-  sendEmailsTo: PropTypes.object,
-  onChangeSendTo: PropTypes.func.isRequired,
+  recipients: PropTypes.object,
   emails: PropTypes.object,
-  onChangeEmails: PropTypes.func.isRequired,
+  onToggleDeliberation: PropTypes.func.isRequired,
+  onToggleOrganizersRatings: PropTypes.func.isRequired,
+  onChangeRecipients: PropTypes.func.isRequired,
+  onChangeNotifiedEmails: PropTypes.func.isRequired,
 }
 
 DeliberationForm.defaultProps = {
-  displayOrganizersRatings: false,
-  deliberationActive: false,
+  deliberationEnabled: false,
+  displayRatings: false,
   contact: undefined,
-  sendEmailsTo: {},
+  recipients: {},
   emails: {},
 }
 

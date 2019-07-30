@@ -1,4 +1,5 @@
 import { inject } from '@k-ramel/react'
+import get from 'lodash/get'
 
 import ProposalFilters from './proposalsFilters'
 
@@ -7,7 +8,8 @@ const mapStore = (store, props, { router }) => {
   const sortOrders = router.getParam('sortOrders')
   const ratings = router.getParam('ratings')
   const statuses = router.getParam('statuses')
-  const { deliberationActive, formats, categories } = store.data.events.get(eventId) || {}
+  const { formats, categories } = store.data.events.get(eventId) || {}
+  const settings = store.data.eventsSettings.get(eventId)
   const filters = store.ui.organizer.proposals.get()
 
   return {
@@ -17,7 +19,7 @@ const mapStore = (store, props, { router }) => {
     categories,
     sortOrders,
     filters,
-    deliberationActive,
+    deliberationActive: get(settings, 'deliberation.enabled'),
     onChange: ({ target }) => {
       store.ui.organizer.proposals.update({ [target.id]: target.value })
     },
