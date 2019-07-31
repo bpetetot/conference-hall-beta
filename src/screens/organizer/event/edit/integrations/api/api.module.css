@@ -1,53 +1,49 @@
-.api-form {
+.form {
   padding: 2em;
   margin-bottom: 1em;
 }
 
-.api-form > .api-form-title {
+.form > .title {
   display: flex;
   justify-content: space-between;
 }
 
-.api-form > .api-form-title > h2 {
+.form > .title > h2 {
   color: #000;
   text-transform: none;
   letter-spacing: 0;
   margin: 0;
 }
 
-.api-form-subtitle {
+.subtitle {
   display: block;
   max-width: 90%;
   margin-top: 1em;
 }
 
-.api-form-content {
+.content {
   display: flex;
   flex-direction: column;
   margin-top: 2em;
 }
 
-.api-form-content > * {
+.content > * {
   margin-bottom: 1em;
 }
 
-.api-form-content > *:last-child {
+.content > *:last-child {
   margin-bottom: 0;
 }
-.api-form-content > .generate-key-input > div {
+.content > .label > div {
   display: flex;
 }
 
-.api-form-content > .generate-key-input button {
+.content > .label button {
   margin-left: 1em;
 }
 
-.api-form .api-label {
-  color: var(--grey-color-dark);
-}
-
 @media only screen and (max-width: 480px) {
-  .api-form {
+  .form {
     padding: 1em;
   }
 }

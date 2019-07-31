@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
 
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
@@ -7,21 +8,21 @@ import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import ApiCard from './apiCard'
 
-import './api.css'
+import styles from './api.module.css'
 
 const Api = ({
   eventId, enabled, apiKey, onActiveApi, onGenerateKey,
 }) => {
   const { origin } = window.location
   return (
-    <div className="api-form card">
-      <div className="api-form-title">
+    <div className={cn(styles.form, 'card')}>
+      <div className={styles.title}>
         <h2>
           <IconLabel icon="fa fa-code" label="HTTP API" />
         </h2>
         <Toggle name="apiEnabled" checked={enabled} onChange={onActiveApi} />
       </div>
-      <small className="api-form-subtitle">
+      <small className={styles.subtitle}>
         Use the HTTP API if you want to connect a service to some Conference Hall event. Have a look
         at the Conference Hall{' '}
         <a href="https://contribute-conference-hall.netlify.com/" target="_NEW">
@@ -30,8 +31,8 @@ const Api = ({
         .
       </small>
       {enabled && (
-        <div className="api-form-content">
-          <Label name="apiKey" label="API key" className="generate-key-input">
+        <div className={styles.content}>
+          <Label name="apiKey" label="API key" className={styles.label}>
             <input type="text" value={apiKey} disabled />
             <Button secondary onClick={onGenerateKey} disabled={!enabled}>
               Generate API Key
