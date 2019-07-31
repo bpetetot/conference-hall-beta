@@ -7,7 +7,7 @@ const { getUsers } = require('../firestore/user')
 const email = require('../email')
 const talkConfirmed = require('../email/templates/talkConfirmed')
 const talkDeclined = require('../email/templates/talkDeclined')
-const { getEmailRecipients } = require('../helpers/eventEmails')
+const { getEmailRecipients } = require('../helpers/event')
 
 // onUpdateTalk is called when a talk is updated.
 // If this update include a change is the submision.state, this is a confirmation of an accepted

@@ -9,7 +9,7 @@ const { partialUpdateTalk } = require('../firestore/talk')
 const email = require('../email')
 const talkAccepted = require('../email/templates/talkAccepted')
 const talkRejected = require('../email/templates/talkRejected')
-const { getEmailRecipients } = require('../helpers/eventEmails')
+const { getEmailRecipients } = require('../helpers/event')
 
 // onUpdateProposal is called when a submission is updated.
 // If this update include a change is the proposal's state, it means deliberations happened and the

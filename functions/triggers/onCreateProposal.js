@@ -7,7 +7,7 @@ const { getUsers } = require('../firestore/user')
 const email = require('../email')
 const talkSubmitted = require('../email/templates/talkSubmitted')
 const talkReceived = require('../email/templates/talkReceived')
-const { getEmailRecipients } = require('../helpers/eventEmails')
+const { getEmailRecipients } = require('../helpers/event')
 const { sendSlackMessage } = require('../slack')
 
 // onCreateProposal is called when a talk is submitted. A new submission is created and
