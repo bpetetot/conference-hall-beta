@@ -1,5 +1,6 @@
 import { inject } from '@k-ramel/react'
 import get from 'lodash/get'
+import uuid from 'uuid/v4'
 
 import Api from './api'
 
@@ -12,16 +13,21 @@ const mapStore = (store, { eventId }) => {
     enabled,
     apiKey,
     onActiveApi: checked => store.dispatch({
-      type: '@@ui/ON_TOGGLE_EVENT_API',
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
       payload: {
         eventId,
+        domain: 'api',
         enabled: checked,
-        apiKey,
+        apiKey: checked && !apiKey ? uuid() : apiKey,
       },
     }),
     onGenerateKey: () => store.dispatch({
-      type: '@@ui/ON_GENERATE_EVENT_API_KEY',
-      payload: { eventId },
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+      payload: {
+        eventId,
+        domain: 'api',
+        apiKey: uuid(),
+      },
     }),
   }
 }
