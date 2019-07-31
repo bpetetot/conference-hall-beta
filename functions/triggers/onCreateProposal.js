@@ -51,5 +51,5 @@ module.exports = functions.firestore
     }
 
     // Send slack message to organizers
-    sendSlackMessage(event, talk, speakers, app)
+    sendSlackMessage(event, talk, speakers, settings, app, 'submitted')
   })

@@ -2,7 +2,10 @@
 const fetch = require('node-fetch')
 const { get, first } = require('lodash')
 
-const url = 'https://hooks.slack.com/services/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'
+const isSlackEnabled = (settings, type) => {
+  const { enabled, webhookUrl, notifications = {} } = get(settings, 'slack', {})
+  return enabled && !!webhookUrl && !!notifications[type]
+}
 
 const buildMessage = (event, talk, speakers, app) => ({
   attachments: [
@@ -19,11 +22,15 @@ const buildMessage = (event, talk, speakers, app) => ({
   ],
 })
 
-const sendSlackMessage = async (event, talk, speakers, app) => {
+const sendSlackMessage = async (event, talk, speakers, settings, app, type) => {
+  if (!isSlackEnabled(settings, type)) {
+    return
+  }
+
   const message = buildMessage(event, talk, speakers, app)
   try {
     console.info('send slack message', message)
-    await fetch(url, {
+    await fetch(settings.slack.webhookUrl, {
       method: 'post',
       body: JSON.stringify(message),
       headers: { 'Content-Type': 'application/json' },
