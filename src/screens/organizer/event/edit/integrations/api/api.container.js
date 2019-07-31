@@ -1,9 +1,7 @@
-import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 import get from 'lodash/get'
 
-import ApiForm from './api'
+import Api from './api'
 
 const mapStore = (store, { eventId }) => {
   const settings = store.data.eventsSettings.get(eventId)
@@ -28,7 +26,4 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(
-  forRoute.absolute('organizer-event-edit-integrations'),
-  inject(mapStore),
-)(ApiForm)
+export default inject(mapStore)(Api)

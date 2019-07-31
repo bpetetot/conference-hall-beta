@@ -7,7 +7,7 @@ import CustomizeForm from './customize'
 import CfpForm from './cfp'
 import SurveyForm from './survey'
 import DeliberationForm from './deliberation'
-import ApiForm from './api'
+import IntegrationsForm from './integrations'
 
 const EventEdit = ({ eventId }) => (
   <div>
@@ -17,7 +17,7 @@ const EventEdit = ({ eventId }) => (
     <CfpForm eventId={eventId} />
     <SurveyForm eventId={eventId} />
     <DeliberationForm eventId={eventId} />
-    <ApiForm eventId={eventId} />
+    <IntegrationsForm eventId={eventId} />
   </div>
 )
 
