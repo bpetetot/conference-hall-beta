@@ -13,6 +13,7 @@ const Agenda = ({ isMeetup }) => (
     {isMeetup ? (
       <MonthCalendar
         date={Date.now()}
+        addEventTitle="Create a meetup"
         renderAddEvent={date => (
           <Form date={date} />
         )}

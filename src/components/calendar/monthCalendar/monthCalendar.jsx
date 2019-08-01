@@ -75,7 +75,7 @@ class MonthCalendar extends Component {
   }
 
   render() {
-    const { date, renderAddEvent } = this.props
+    const { date, addEventTitle, renderAddEvent } = this.props
     const parsedDate = addMonths(date, this.state.offset)
 
     const weeks = this.generateWeeksForMonth(parsedDate)
@@ -112,7 +112,7 @@ class MonthCalendar extends Component {
                 const dayDate = new Date(parsedDate.getFullYear(), parsedDate.getMonth(), day)
                 return (
                   <Drawer
-                    title="Create a meetup"
+                    title={addEventTitle}
                     className="default-theme"
                     actions={({ hide }) => <Button onClick={hide}>Close</Button>}
                     renderTrigger={({ show }) => (
@@ -149,12 +149,14 @@ MonthCalendar.propTypes = {
   date: PropTypes.instanceOf(Date),
   renderDay: PropTypes.func,
   renderAddEvent: PropTypes.func,
+  addEventTitle: PropTypes.string,
 }
 
 MonthCalendar.defaultProps = {
   date: new Date(),
   renderDay: () => null,
   renderAddEvent: () => null,
+  addEventTitle: '',
 }
 
 export default MonthCalendar
