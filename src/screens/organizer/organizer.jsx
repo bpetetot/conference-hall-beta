@@ -19,7 +19,6 @@ import OrganizationCreate from './organization/form/organizationCreate.container
 import OrganizationEdit from './organization/form/organizationEdit.container'
 import OrganizationsList from './organization/list'
 import OrganizationInvite from './organization/invite'
-import MeetupCreate from './meetup/form/meetupCreate.container'
 import Agenda from './agenda'
 import Proposals from './proposals'
 import Proposal from './proposal'
@@ -36,7 +35,6 @@ const Organizer = () => (
     <OrganizationPage />
     <OrganizationsList />
     <OrganizationInvite />
-    <MeetupCreate />
     <Agenda />
     <Proposals />
     <Proposal />

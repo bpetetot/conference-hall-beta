@@ -12,6 +12,7 @@ import chunk from 'lodash/chunk'
 import isString from 'lodash/isString'
 import add from 'lodash/fp/add'
 import Button from '../../button'
+import Drawer from '../../portals/drawer'
 import DayModal from './dayModal'
 
 import './monthCalendar.css'
@@ -74,7 +75,7 @@ class MonthCalendar extends Component {
   }
 
   render() {
-    const { date, onDayClick } = this.props
+    const { date, renderAddEvent } = this.props
     const parsedDate = addMonths(date, this.state.offset)
 
     const weeks = this.generateWeeksForMonth(parsedDate)
@@ -110,21 +111,30 @@ class MonthCalendar extends Component {
               {days.map((day, index) => {
                 const dayDate = new Date(parsedDate.getFullYear(), parsedDate.getMonth(), day)
                 return (
-                  <div
-                    key={day === null ? index : dayDate}
-                    role="button"
-                    className={cn({ 'cc-month-day': day !== null })}
-                    onClick={() => onDayClick(dayDate)}
-                  >
-                    {day !== null && (
-                      <Fragment>
-                        <div className="cc-month-day-number">{day}</div>
-                        <div className="cc-month-day-content">
-                          {this.renderDayContent(dayDate)}
-                        </div>
-                      </Fragment>
+                  <Drawer
+                    title="Create a meetup"
+                    className="default-theme"
+                    actions={({ hide }) => <Button onClick={hide}>Close</Button>}
+                    renderTrigger={({ show }) => (
+                      <div
+                        key={day === null ? index : dayDate}
+                        role="button"
+                        className={cn({ 'cc-month-day': day !== null })}
+                        onClick={show}
+                      >
+                        {day !== null && (
+                          <Fragment>
+                            <div className="cc-month-day-number">{day}</div>
+                            <div className="cc-month-day-content">
+                              {this.renderDayContent(dayDate)}
+                            </div>
+                          </Fragment>
+                        )}
+                      </div>
                     )}
-                  </div>
+                  >
+                    {renderAddEvent(dayDate)}
+                  </Drawer>
                 )
               })}
             </div>
@@ -138,13 +148,13 @@ class MonthCalendar extends Component {
 MonthCalendar.propTypes = {
   date: PropTypes.instanceOf(Date),
   renderDay: PropTypes.func,
-  onDayClick: PropTypes.func,
+  renderAddEvent: PropTypes.func,
 }
 
 MonthCalendar.defaultProps = {
   date: new Date(),
   renderDay: () => null,
-  onDayClick: () => null,
+  renderAddEvent: () => null,
 }
 
 export default MonthCalendar

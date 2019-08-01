@@ -11,6 +11,16 @@
   align-self: flex-end;
 }
 
+.meetup-form .form-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.meetup-form .form-label label {
+  margin-bottom: 5px;
+}
+
 @media only screen and (max-width: 480px) {
   .meetup-form {
     padding: 1em;
