@@ -12,8 +12,6 @@ export const create = async (action, store, { router }) => {
   if (ref.exists) {
     store.data.meetups.add(ref.data())
   }
-
-  router.push('organizer-event-agenda', { eventId })
 }
 
 export const fetchMeetups = async (action, store, { router }) => {

@@ -34,4 +34,8 @@ Agenda.propTypes = {
   meetups: PropTypes.array,
 }
 
+Agenda.defaultProps = {
+  meetups: [],
+}
+
 export default Agenda
