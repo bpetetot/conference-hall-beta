@@ -28,12 +28,32 @@ class MonthCalendar extends Component {
 
   goToToday = () => this.setState({ offset: 0 })
 
-  renderDayItem = (item, customClassName = '') => (
-    <div key={item} className={cn('cc-month-day-item', customClassName)}><span>{item}</span></div>
+  renderDayItem = (item, form, customClassName = '') => (
+    <Drawer
+      className="default-theme"
+      actions={({ hide }) => <Button onClick={hide}>Close</Button>}
+      renderTrigger={({ show }) => (
+        <div
+          role="button"
+          onClick={(e) => {
+            e.stopPropagation()
+            show()
+          }}
+          key={item}
+          className={cn('cc-month-day-item', customClassName)}
+        >
+          <span>{item}</span>
+        </div>
+      )}
+    >
+      {form}
+    </Drawer>
+
   )
 
   renderDayContent = (date) => {
     const content = this.props.renderDay(date)
+    const makeForm = index => this.props.renderUpdateEvent(date, index)
     if (Array.isArray(content)) {
       content.forEach((item) => {
         if (!isString(item)) throw new Error('renderDay should return a string or an array of string')
@@ -44,14 +64,14 @@ class MonthCalendar extends Component {
         const directlyRendered = content.slice(0, 2)
         directlyRendered.push(modal)
 
-        return directlyRendered.map((item, index) => this.renderDayItem(item, index === 2 ? 'cc-month-day-item-white' : undefined))
+        return directlyRendered.map((item, index) => this.renderDayItem(item, makeForm(index), index === 2 ? 'cc-month-day-item-white' : undefined))
       }
 
-      return content.map(item => this.renderDayItem(item))
+      return content.map((item, index) => this.renderDayItem(item, makeForm(index)))
     }
 
     if (isString(content)) {
-      return this.renderDayItem(content)
+      return this.renderDayItem(content, makeForm(0))
     }
 
     return null
@@ -120,7 +140,14 @@ class MonthCalendar extends Component {
                         key={day === null ? index : dayDate}
                         role="button"
                         className={cn({ 'cc-month-day': day !== null })}
-                        onClick={show}
+                        onClick={(e) => {
+                          const node = e.target
+                          const attributeName = 'role'
+                          const hasNodeAButtonRole = node.hasAttribute(attributeName) && node.getAttribute(attributeName) === 'button'
+                          const hasParentNodeAButtonRole = node.parentNode.hasAttribute(attributeName) && node.parentNode.getAttribute(attributeName) === 'button'
+                          if (!hasNodeAButtonRole && !hasParentNodeAButtonRole) return
+                          show()
+                        }}
                       >
                         {day !== null && (
                           <Fragment>
@@ -149,6 +176,7 @@ MonthCalendar.propTypes = {
   date: PropTypes.instanceOf(Date),
   renderDay: PropTypes.func,
   renderAddEvent: PropTypes.func,
+  renderUpdateEvent: PropTypes.func,
   addEventTitle: PropTypes.string,
 }
 
@@ -156,6 +184,7 @@ MonthCalendar.defaultProps = {
   date: new Date(),
   renderDay: () => null,
   renderAddEvent: () => null,
+  renderUpdateEvent: () => null,
   addEventTitle: '',
 }
 

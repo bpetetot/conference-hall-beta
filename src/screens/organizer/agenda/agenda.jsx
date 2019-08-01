@@ -6,7 +6,8 @@ import Titlebar from 'components/titlebar'
 import MonthCalendar from 'components/calendar/monthCalendar'
 import DayCalendar from 'components/calendar/dayCalendar'
 
-import Form from '../meetup/form/meetupCreate.container'
+import CreateForm from '../meetup/form/meetupCreate.container'
+import EditForm from '../meetup/form/meetupEdit.container'
 
 const Agenda = ({ isMeetup, meetups }) => (
   <div>
@@ -20,8 +21,16 @@ const Agenda = ({ isMeetup, meetups }) => (
         }
         addEventTitle="Create a meetup"
         renderAddEvent={date => (
-          <Form date={date} />
+          <CreateForm date={date} />
         )}
+        renderUpdateEvent={(date, index) => {
+          const { id } = meetups
+            .filter(meetup => isSameDay(meetup.date.toDate(), date))[index]
+
+          return (
+            <EditForm id={id} />
+          )
+        }}
       />
     ) : (
       <DayCalendar sessions={[]} />

@@ -18,6 +18,22 @@ export const createMeetup = (eventId, data) => firebase
   })
 
 /**
+ * Update a meetup to a specific event
+ * @param {string} eventId event id
+ * @param {object} meetup
+ */
+// eslint-disable-next-line import/prefer-default-export
+export const updateMeetup = (eventId, data) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('meetups')
+  .add({
+    ...data,
+    updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  })
+
+/**
  * Fetch all meetups of an event
  * @param {string} eventId event id
  */
