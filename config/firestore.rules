@@ -57,6 +57,7 @@ service cloud.firestore {
       match /meetups/{meetup} {
       	allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
         allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow delete: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
       }
 
       // PROPOSALS

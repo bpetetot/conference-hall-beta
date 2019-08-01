@@ -1,4 +1,4 @@
-import { createMeetup, updateMeetup, fetchEventMeetups } from 'firebase/meetups'
+import { createMeetup, updateMeetup, removeMeetup, fetchEventMeetups } from 'firebase/meetups'
 
 // eslint-disable-next-line import/prefer-default-export
 export const create = async (action, store, { router }) => {
@@ -23,6 +23,15 @@ export const update = async (action, store, { router }) => {
   store.ui.loaders.update({ isMeetupSaving: false })
 
   store.data.meetups.update(data)
+}
+
+export const remove = async (action, store, { router }) => {
+  const eventId = router.getParam('eventId')
+  const { id } = action
+
+  await removeMeetup(eventId, id)
+
+  store.data.meetups.remove(id)
 }
 
 export const fetchMeetups = async (action, store, { router }) => {

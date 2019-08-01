@@ -8,6 +8,9 @@ const mapStore = (store, { id }) => {
   return {
     initialValues,
     submitting: store.ui.loaders.get().isMeetupSaving,
+    onDelete: () => {
+      store.dispatch({ type: '@@ui/ON_REMOVE_MEETUP', id })
+    },
     onSubmit: (payload) => {
       store.dispatch({ type: '@@ui/ON_UPDATE_MEETUP', payload: { ...payload } })
     },

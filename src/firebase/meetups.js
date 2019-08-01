@@ -34,6 +34,20 @@ export const updateMeetup = (eventId, data) => firebase
   }, { merge: true })
 
 /**
+ * Remove a meetup to a specific event
+ * @param {string} eventId event id
+ * @param {string} meetupId meetup id
+ */
+// eslint-disable-next-line import/prefer-default-export
+export const removeMeetup = (eventId, meetupId) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('meetups')
+  .doc(meetupId)
+  .delete()
+
+/**
  * Fetch all meetups of an event
  * @param {string} eventId event id
  */
