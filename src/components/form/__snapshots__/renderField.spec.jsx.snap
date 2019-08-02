@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/renderField should render 1`] = `
-<Label
+<WithSizes
   error="error"
   name="boo"
 >
@@ -10,5 +10,5 @@ exports[`components/renderField should render 1`] = `
     name="boo"
     type="radio"
   />
-</Label>
+</WithSizes>
 `;
