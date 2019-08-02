@@ -15,14 +15,11 @@ h2 {
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
 h4 {
-  letter-spacing: 0;
-  text-transform: none;
-  font-weight: 600;
   margin-bottom: 0;
 }
 
