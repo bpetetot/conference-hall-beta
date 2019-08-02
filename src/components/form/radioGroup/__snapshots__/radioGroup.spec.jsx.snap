@@ -4,7 +4,6 @@ exports[`components/radiogroup should render 1`] = `
 <RadioGroup
   inline={false}
   name="name"
-  noError={false}
   value="value"
 >
   <span>
