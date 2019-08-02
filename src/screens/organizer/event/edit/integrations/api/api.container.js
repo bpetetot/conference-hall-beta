@@ -1,9 +1,8 @@
-import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 import get from 'lodash/get'
+import uuid from 'uuid/v4'
 
-import ApiForm from './api'
+import Api from './api'
 
 const mapStore = (store, { eventId }) => {
   const settings = store.data.eventsSettings.get(eventId)
@@ -14,21 +13,23 @@ const mapStore = (store, { eventId }) => {
     enabled,
     apiKey,
     onActiveApi: checked => store.dispatch({
-      type: '@@ui/ON_TOGGLE_EVENT_API',
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
       payload: {
         eventId,
+        domain: 'api',
         enabled: checked,
-        apiKey,
+        apiKey: checked && !apiKey ? uuid() : apiKey,
       },
     }),
     onGenerateKey: () => store.dispatch({
-      type: '@@ui/ON_GENERATE_EVENT_API_KEY',
-      payload: { eventId },
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+      payload: {
+        eventId,
+        domain: 'api',
+        apiKey: uuid(),
+      },
     }),
   }
 }
 
-export default compose(
-  forRoute.absolute('organizer-event-edit-integrations'),
-  inject(mapStore),
-)(ApiForm)
+export default inject(mapStore)(Api)

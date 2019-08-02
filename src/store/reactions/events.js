@@ -1,4 +1,3 @@
-import uuid from 'uuid/v4'
 import flatten from 'lodash/flatten'
 import map from 'lodash/map'
 import uniqBy from 'lodash/uniqBy'
@@ -39,33 +38,6 @@ export const updateEvent = (action, store) => {
   const { event } = action.payload
   store.data.events.update(event)
   eventCrud.update(event)
-}
-
-export const toggleApi = (action, store) => {
-  const { eventId, enabled, apiKey } = action.payload
-  // update event settings
-  store.dispatch({
-    type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-    payload: {
-      eventId,
-      domain: 'api',
-      enabled,
-      apiKey: enabled && !apiKey ? uuid() : apiKey,
-    },
-  })
-}
-
-export const generateNewApiKey = (action, store) => {
-  const { eventId } = action.payload
-  // update event settings
-  store.dispatch({
-    type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-    payload: {
-      eventId,
-      domain: 'api',
-      apiKey: uuid(),
-    },
-  })
 }
 
 export const saveEventSettings = async (action, store) => {

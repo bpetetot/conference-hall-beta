@@ -23,6 +23,7 @@
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.15",
     "luxon": "^1.17.2",
+    "node-fetch": "^2.6.0",
     "puppeteer": "^1.19.0"
   },
   "devDependencies": {

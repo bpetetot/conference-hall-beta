@@ -5,7 +5,7 @@ import Button from 'components/button'
 import './apiCard.css'
 
 const ApiCard = ({ name, description, endpoint }) => (
-  <div className="api-card card">
+  <div className="api-card">
     <div>
       <code className="api-name">{name}</code>
       <div className="api-description">{description}</div>

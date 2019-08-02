@@ -7,7 +7,8 @@ const { getUsers } = require('../firestore/user')
 const email = require('../email')
 const talkSubmitted = require('../email/templates/talkSubmitted')
 const talkReceived = require('../email/templates/talkReceived')
-const { getEmailRecipients } = require('../helpers/eventEmails')
+const { getEmailRecipients } = require('../helpers/event')
+const { sendSlackMessage } = require('../slack')
 
 // onCreateProposal is called when a talk is submitted. A new submission is created and
 // an email is sent to the speaker for a confirmation of her submission.
@@ -26,10 +27,10 @@ module.exports = functions.firestore
     const settings = await eventFirestore.getEventSettings(eventId)
 
     // Send email to speaker after submission
-    const users = await getUsers(Object.keys(talk.speakers))
+    const speakers = await getUsers(Object.keys(talk.speakers))
     console.info('Send email to speaker after submission')
     await email.send(mailgun, {
-      to: users.map(user => user.email),
+      to: speakers.map(user => user.email),
       subject: `[${event.name}] Talk submitted`,
       html: talkSubmitted(event, talk, app),
       confName: event.name,
@@ -48,4 +49,7 @@ module.exports = functions.firestore
         confName: event.name,
       })
     }
+
+    // Send slack message to organizers
+    sendSlackMessage(event, talk, speakers, settings, app, 'submitted')
   })

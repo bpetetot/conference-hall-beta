@@ -1,4 +1,4 @@
-const { get } = require('lodash')
+const { get, isEmpty } = require('lodash')
 const { getEventOrganizers } = require('../firestore/event')
 
 const getEmailRecipients = async (event, settings, emailType) => {
@@ -22,7 +22,22 @@ const getEmailRecipients = async (event, settings, emailType) => {
   return { cc, bcc }
 }
 
+const getFormat = (id, event) => {
+  if (isEmpty(event.formats) || !id) {
+    return null
+  }
+  return event.formats.find(f => f.id === id)
+}
+
+const getCategory = (id, event) => {
+  if (isEmpty(event.categories) || !id) {
+    return null
+  }
+  return event.categories.find(c => c.id === id)
+}
 
 module.exports = {
   getEmailRecipients,
+  getFormat,
+  getCategory,
 }

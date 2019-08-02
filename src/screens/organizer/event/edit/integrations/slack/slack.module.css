@@ -1,0 +1,50 @@
+.form {
+  padding: 2em;
+  margin-bottom: 1em;
+}
+
+.form > .title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form > .title > h2 {
+  color: #000;
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.subtitle {
+  display: block;
+  max-width: 90%;
+  margin-top: 1em;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+}
+
+.content > * {
+  margin-bottom: 1em;
+}
+
+.content > *:last-child {
+  margin-bottom: 0;
+}
+
+.content > .label > div {
+  display: flex;
+}
+
+.content > .label button {
+  margin-left: 1em;
+}
+
+@media only screen and (max-width: 480px) {
+  .form {
+    padding: 1em;
+  }
+}
