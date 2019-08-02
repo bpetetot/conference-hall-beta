@@ -13,7 +13,7 @@ const RadioGroup = ({
     'form-radio-group-col': !inline,
   })
   return (
-    <Label name={name} label={label} noError={noError}>
+    <Label name={name} label={label} noError={noError} inline>
       <div className={classes}>{children}</div>
     </Label>
   )

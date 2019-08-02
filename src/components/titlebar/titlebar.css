@@ -7,9 +7,7 @@
 
 .titlebar .titlebar-title {
   font-size: 1.5em;
-  letter-spacing: 2px;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
   overflow: hidden;
 }
 
@@ -33,7 +31,6 @@
   }
 
   .titlebar .titlebar-actions {
-    flex-direction: column;
     width: 100%;
   }
 

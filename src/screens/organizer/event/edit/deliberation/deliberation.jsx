@@ -49,7 +49,7 @@ const DeliberationForm = ({
         />
       </Label>
 
-      <h2>Email notifications</h2>
+      <h3>Email notifications</h3>
 
       {disabledEmails && (
         <IconLabel
@@ -59,73 +59,77 @@ const DeliberationForm = ({
         />
       )}
 
-      <p>Configure emails recipients:</p>
-      <Checkbox
-        name="contact"
-        label="Send to the event contact email"
-        info={
-          contact ? (
-            'Sent emails will have the event contact email as CC.'
-          ) : (
-            <IconLabel
-              icon="fa fa-exclamation-circle"
-              label="No contact email defined for the event."
-            />
-          )
-        }
-        onChange={onChangeRecipients}
-        value={recipients.contact}
-        disabled={!contact}
-      />
-      <Checkbox
-        name="organizers"
-        label="Send to organizer's emails"
-        info="Sent emails will have organizer's email as BCC."
-        onChange={onChangeRecipients}
-        value={recipients.organizers}
-      />
+      <h4>Configure emails recipients:</h4>
+      <div className={styles.checkboxes}>
+        <Checkbox
+          name="contact"
+          label="Send to the event contact email"
+          info={
+            contact ? (
+              'Sent emails will have the event contact email as CC.'
+            ) : (
+              <IconLabel
+                icon="fa fa-exclamation-circle"
+                label="No contact email defined for the event."
+              />
+            )
+          }
+          onChange={onChangeRecipients}
+          value={recipients.contact}
+          disabled={!contact}
+        />
+        <Checkbox
+          name="organizers"
+          label="Send to organizer's emails"
+          info="Sent emails will have organizer's email as BCC."
+          onChange={onChangeRecipients}
+          value={recipients.organizers}
+        />
+      </div>
 
-      <p>Configure which email you want to receive:</p>
-      <Checkbox
-        name="submitted"
-        label="Submitted proposals"
-        info="Receive an email when a speaker submit a talk."
-        onChange={onChangeNotifiedEmails}
-        value={emails.submitted}
-        disabled={disabledEmails}
-      />
-      <Checkbox
-        name="accepted"
-        label="Accepted proposals"
-        info="Have a copy of acceptation emails sent to speakers."
-        onChange={onChangeNotifiedEmails}
-        value={emails.accepted}
-        disabled={disabledEmails}
-      />
-      <Checkbox
-        name="rejected"
-        label="Rejected proposals"
-        info="Have a copy of rejection emails sent to speakers."
-        onChange={onChangeNotifiedEmails}
-        value={emails.rejected}
-        disabled={disabledEmails}
-      />
-      <Checkbox
-        name="confirmed"
-        label="Confirmed proposals"
-        info="Receive an email when a speaker confirm a talk."
-        onChange={onChangeNotifiedEmails}
-        value={emails.confirmed}
-        disabled={disabledEmails}
-      />
-      <Checkbox
-        name="declined"
-        label="Declined proposals"
-        info="Receive an email when a speaker decline a talk."
-        onChange={onChangeNotifiedEmails}
-        value={emails.declined}
-        disabled={disabledEmails}
-      />
+      <h4>Configure which email you want to receive:</h4>
+      <div className={styles.checkboxes}>
+        <Checkbox
+          name="submitted"
+          label="Submitted proposals"
+          info="Receive an email when a speaker submit a talk."
+          onChange={onChangeNotifiedEmails}
+          value={emails.submitted}
+          disabled={disabledEmails}
+        />
+        <Checkbox
+          name="accepted"
+          label="Accepted proposals"
+          info="Have a copy of acceptation emails sent to speakers."
+          onChange={onChangeNotifiedEmails}
+          value={emails.accepted}
+          disabled={disabledEmails}
+        />
+        <Checkbox
+          name="rejected"
+          label="Rejected proposals"
+          info="Have a copy of rejection emails sent to speakers."
+          onChange={onChangeNotifiedEmails}
+          value={emails.rejected}
+          disabled={disabledEmails}
+        />
+        <Checkbox
+          name="confirmed"
+          label="Confirmed proposals"
+          info="Receive an email when a speaker confirm a talk."
+          onChange={onChangeNotifiedEmails}
+          value={emails.confirmed}
+          disabled={disabledEmails}
+        />
+        <Checkbox
+          name="declined"
+          label="Declined proposals"
+          info="Receive an email when a speaker decline a talk."
+          onChange={onChangeNotifiedEmails}
+          value={emails.declined}
+          disabled={disabledEmails}
+        />
+      </div>
     </div>
   )
 }

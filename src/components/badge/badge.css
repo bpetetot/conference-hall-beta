@@ -2,17 +2,17 @@
   display: inline-block;
   padding: 0.35em 0.5em;
   font-size: 85%;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   vertical-align: baseline;
   text-align: center;
   white-space: nowrap;
 }
 
 .cc-badge-pill {
-  padding-right: .6em;
-  padding-left: .6em;
+  padding-right: 0.6em;
+  padding-left: 0.6em;
   border-radius: 10rem;
 }
 
@@ -28,7 +28,7 @@
 
 .cc-badge-primary.cc-badge-outline {
   border: 1px solid var(--primary-color);
-  background-color: #FFF;
+  background-color: #fff;
   color: var(--primary-color);
 }
 
@@ -40,67 +40,67 @@
 
 .cc-badge-secondary.cc-badge-outline {
   border: 1px solid var(--secondary-color);
-  background-color: #FFF;
+  background-color: #fff;
   color: var(--secondary-color);
 }
 
 .cc-badge-success {
   border: 1px solid var(--success-color);
   background-color: var(--success-color);
-  color: #FFF;
+  color: #fff;
 }
 
 .cc-badge-success.cc-badge-outline {
   border: 1px solid var(--success-color);
-  background-color: #FFF;
+  background-color: #fff;
   color: var(--success-color);
 }
 
 .cc-badge-warning {
   border: 1px solid var(--warning-color);
   background-color: var(--warning-color);
-  color: #FFF;
+  color: #fff;
 }
 
 .cc-badge-warning.cc-badge-outline {
   border: 1px solid var(--warning-color);
-  background-color: #FFF;
+  background-color: #fff;
   color: var(--warning-color);
 }
 
 .cc-badge-error {
   border: 1px solid var(--error-color);
   background-color: var(--error-color);
-  color: #FFF;
+  color: #fff;
 }
 
 .cc-badge-error.cc-badge-outline {
   border: 1px solid var(--error-color);
-  background-color: #FFF;
+  background-color: #fff;
   color: var(--error-color);
 }
 
 .cc-badge-info {
   border: 1px solid var(--question-color);
   background-color: var(--question-color);
-  color: #FFF;
+  color: #fff;
 }
 
 .cc-badge-info.cc-badge-outline {
   border: 1px solid var(--question-color);
-  background-color: #FFF;
+  background-color: #fff;
   color: var(--question-color);
 }
 
 .cc-badge-dark {
   border: 1px solid #000;
   background-color: #000;
-  color: #FFF;
+  color: #fff;
 }
 
 .cc-badge-dark.cc-badge-outline {
   border: 1px solid #000;
-  background-color: #FFF;
+  background-color: #fff;
   color: #000;
 }
 
@@ -112,6 +112,6 @@
 
 .cc-badge-light.cc-badge-outline {
   border: 1px solid var(--grey-color-dark);
-  background-color: #FFF;
+  background-color: #fff;
   color: var(--grey-color-dark);
 }

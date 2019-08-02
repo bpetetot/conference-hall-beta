@@ -20,21 +20,21 @@ const CFPForm = ({
     {({ handleSubmit, pristine }) => (
       <form className="cfp-form card">
         {type === 'conference' && (
-          <Field name="cfpDates" label="CFP opening period" component={dayRangePicker} />
+          <Field name="cfpDates" label="CFP opening period" component={dayRangePicker} inline />
         )}
         {type === 'conference' && (
-          <Field name="deliberationDate" label="Deliberation date" component={dayPicker} />
+          <Field name="deliberationDate" label="Deliberation date" component={dayPicker} inline />
         )}
         {type === 'conference' && (
-          <Field name="maxProposals" label="Max proposals" type="number" component={input} />
+          <Field name="maxProposals" label="Max proposals" type="number" component={input} inline />
         )}
         {type === 'meetup' && (
-          <Field name="cfpOpened" label="Open CFP" type="checkbox" component={toggle} />
+          <Field name="cfpOpened" label="Enable CFP" type="checkbox" component={toggle} />
         )}
-        <Label label="Talk Categories">
+        <Label label="Talk Categories" inline>
           <CategoriesField />
         </Label>
-        <Label label="Talk Formats">
+        <Label label="Talk Formats" inline>
           <FormatsField />
         </Label>
         <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>

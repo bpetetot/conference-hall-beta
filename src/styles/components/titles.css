@@ -2,30 +2,24 @@ h1,
 h2,
 h3,
 h4 {
-  letter-spacing: 2px;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
   margin-top: 0;
-  color: var(--grey-color-dark);
 }
 
 h1 {
-  font-size: 1.8em;
+  font-size: 1.8rem;
 }
 
 h2 {
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 
 h3 {
-  letter-spacing: 1px;
-  font-size: 1.1em;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
 h4 {
-  letter-spacing: 0;
-  text-transform: none;
-  font-weight: 600;
   margin-bottom: 0;
 }
 

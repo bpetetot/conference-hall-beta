@@ -35,11 +35,12 @@
   margin-bottom: 0;
 }
 
-.content > .label > div {
+.input {
   display: flex;
+  margin-bottom: 1em;
 }
 
-.content > .label button {
+.input > button {
   margin-left: 1em;
 }
 

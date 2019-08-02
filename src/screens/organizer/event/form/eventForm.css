@@ -3,10 +3,6 @@
   flex-direction: column;
 }
 
-.event-form > * {
-  margin-bottom: 0.7em;
-}
-
 .event-form > button {
   align-self: flex-end;
 }

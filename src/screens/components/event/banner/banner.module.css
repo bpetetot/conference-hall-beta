@@ -32,7 +32,7 @@
 }
 
 .title {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 3.5vw;
   letter-spacing: 2px;
   text-align: right;
@@ -41,7 +41,7 @@
 .subtitle {
   margin-top: 0.5em;
   font-size: 1.2em;
-  font-weight: 300;
+  font-weight: 400;
   text-align: right;
 }
 
@@ -64,7 +64,7 @@
   }
 
   .title {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 2em;
   }
 

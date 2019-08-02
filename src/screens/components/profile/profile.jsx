@@ -32,16 +32,18 @@ const Profile = ({
             type="text"
             component={input}
             validate={required}
+            inline
           />
-          <Field name="company" label="Company" type="text" component={input} />
-          <Field name="phone" label="Phone" type="text" component={input} />
-          <Field name="language" label="Spoken language" type="text" component={input} />
+          <Field name="company" label="Company" type="text" component={input} inline />
+          <Field name="phone" label="Phone" type="text" component={input} inline />
+          <Field name="language" label="Spoken language" type="text" component={input} inline />
           <Field
             name="twitter"
             label="Twitter"
             type="text"
             component={input}
             placeholder="@username"
+            inline
           />
           <Field
             name="github"
@@ -49,14 +51,16 @@ const Profile = ({
             type="text"
             component={input}
             placeholder="username"
+            inline
           />
-          <Field name="address" label="City" type="text" component={address} />
-          <Field name="bio" label="Biography" component={markdownInput} />
+          <Field name="address" label="City" type="text" component={address} inline />
+          <Field name="bio" label="Biography" component={markdownInput} inline />
           <Field
             name="speakerReferences"
             label="Speaker references"
             tooltip="Give some information about your speaker experience: your already-given talks, conferences or meetups as speaker, video links..."
             component={markdownInput}
+            inline
           />
 
           <SubmitButton

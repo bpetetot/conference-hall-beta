@@ -33,6 +33,15 @@ export default (name, Form) => class extends React.Component {
         <FieldArray name={name} isEqual={isEqual}>
           {({ fields }) => (
             <div className="items-form">
+              <Modal
+                renderTrigger={({ show }) => (
+                  <Button onClick={show}>
+                    <i className="fa fa-plus" />
+                  </Button>
+                )}
+              >
+                {({ hide }) => <Form onSubmit={this.onAddItem(fields, hide)} />}
+              </Modal>
               {fields.map((item, index) => (
                 <div key={index}>
                   <Field
@@ -40,12 +49,13 @@ export default (name, Form) => class extends React.Component {
                     component={({ input }) => (
                       <Modal
                         renderTrigger={({ show }) => input.value && (
-                          <Item
-                            onEdit={show}
-                            onDelete={this.onRemoveItem(fields, index)}
-                            {...input.value}
-                          />
-                        )}
+                        <Item
+                          onEdit={show}
+                          onDelete={this.onRemoveItem(fields, index)}
+                          {...input.value}
+                        />
+                        )
+                        }
                       >
                         {({ hide }) => (
                           <Form
@@ -59,15 +69,6 @@ export default (name, Form) => class extends React.Component {
                   />
                 </div>
               ))}
-              <Modal
-                renderTrigger={({ show }) => (
-                  <Button onClick={show} type="button">
-                    <i className="fa fa-plus" />
-                  </Button>
-                )}
-              >
-                {({ hide }) => <Form onSubmit={this.onAddItem(fields, hide)} />}
-              </Modal>
             </div>
           )}
         </FieldArray>

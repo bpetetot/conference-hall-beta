@@ -16,7 +16,7 @@ const SurveyForm = ({
     <Label name="surveyActive" label="Enable Survey">
       <Toggle name="surveyActive" checked={surveyActive} onChange={onActiveSurvey} />
     </Label>
-    <p className="survey-label">Select questions that you want to ask to speakers :</p>
+    <h4>Select questions that you want to ask to speakers :</h4>
     {questions.map(question => (
       <Checkbox
         key={question.name}

@@ -23,9 +23,9 @@ const Slack = ({
   return (
     <div className={cn(styles.form, 'card')}>
       <div className={styles.title}>
-        <h2>
+        <h3>
           <IconLabel icon="fa fa-slack" label="Slack" />
-        </h2>
+        </h3>
         <Toggle name="slackEnabled" checked={enabled} onChange={onToggleSlack} />
       </div>
       <small className={styles.subtitle}>
@@ -38,13 +38,11 @@ const Slack = ({
       </small>
       {enabled && (
         <div className={styles.content}>
-          <Label name="webhookUrl" label="Web hook URL" className={styles.label}>
+          <Label name="webhookUrl" label="Web hook URL" classNameInput={styles.input}>
             <input type="text" defaultValue={url} onChange={e => setUrl(e.target.value)} />
-            <Button secondary onClick={() => onSaveUrl(url)}>
-              Save Web hook URL
-            </Button>
+            <Button onClick={() => onSaveUrl(url)}>Save Web hook URL</Button>
           </Label>
-          <p>Configure which notification you want to receive:</p>
+          <h4>Configure which notification you want to receive:</h4>
           <Checkbox
             name="submitted"
             label="Submitted proposals"

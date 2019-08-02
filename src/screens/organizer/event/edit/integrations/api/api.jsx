@@ -17,9 +17,9 @@ const Api = ({
   return (
     <div className={cn(styles.form, 'card')}>
       <div className={styles.title}>
-        <h2>
+        <h3>
           <IconLabel icon="fa fa-code" label="HTTP API" />
-        </h2>
+        </h3>
         <Toggle name="apiEnabled" checked={enabled} onChange={onActiveApi} />
       </div>
       <small className={styles.subtitle}>
@@ -32,9 +32,9 @@ const Api = ({
       </small>
       {enabled && (
         <div className={styles.content}>
-          <Label name="apiKey" label="API key" className={styles.label}>
+          <Label name="apiKey" label="API key" classNameInput={styles.input}>
             <input type="text" value={apiKey} disabled />
-            <Button secondary onClick={onGenerateKey} disabled={!enabled}>
+            <Button onClick={onGenerateKey} disabled={!enabled}>
               Generate API Key
             </Button>
           </Label>

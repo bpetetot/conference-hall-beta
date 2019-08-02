@@ -1,0 +1,63 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.inline {
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.inline > .label {
+  flex: 0 0 20%;
+  max-width: 20%;
+  margin-top: 0.5rem;
+  margin-bottom: 0px;
+}
+
+.hasHints > .label {
+  margin-top: 0;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 5px;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tooltip {
+  text-transform: none;
+  overflow: auto;
+  white-space: normal;
+  margin-left: 0.5em;
+}
+
+.hints {
+  font-size: 0.8rem;
+  color: var(--grey-color-dark);
+  white-space: normal;
+  margin-right: 1rem;
+}
+
+.errorMessage {
+  font-size: 0.8rem;
+  color: var(--error-color);
+  margin-top: 5px;
+}
+
+.field {
+  width: 100%;
+}
+
+.label .input-autocomplete {
+  z-index: 1;
+}

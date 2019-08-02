@@ -9,9 +9,7 @@ import styles from './customize.module.css'
 
 const MAX_SIZE = 100 * 1024 // 100kB
 
-const CustomizeForm = ({
-  eventId, onChangeBanner,
-}) => {
+const CustomizeForm = ({ eventId, onChangeBanner }) => {
   const [percentage, setPercentage] = useState()
   const [error, setError] = useState()
 
@@ -44,6 +42,7 @@ const CustomizeForm = ({
 
   return (
     <div className={cn(styles.form, 'card')}>
+      <h3>Customize event banner</h3>
       <p>Upload your event banner to have a fancy style.</p>
       <ul>
         <li>Best resolution 1500px x 500px</li>

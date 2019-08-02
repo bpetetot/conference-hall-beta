@@ -34,11 +34,12 @@
 .content > *:last-child {
   margin-bottom: 0;
 }
-.content > .label > div {
+
+.input {
   display: flex;
 }
 
-.content > .label button {
+.input > button {
   margin-left: 1em;
 }
 

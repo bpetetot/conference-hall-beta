@@ -49,7 +49,7 @@ SpeakerSurveys.propTypes = {
 }
 
 SpeakerSurveys.defaultProps = {
-  responses: {},
+  responses: [],
 }
 
 export default SpeakerSurveys
