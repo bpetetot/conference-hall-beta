@@ -4,6 +4,7 @@ import cn from 'classnames'
 
 import { withSizes } from 'styles/utils'
 import Tooltip from 'components/tooltip/tooltip'
+import IconLabel from 'components/iconLabel'
 import styles from './label.module.css'
 
 const Label = ({
@@ -25,7 +26,7 @@ const Label = ({
       {
         [styles.error]: !!error,
         [styles.inline]: inline && !isMobile && !isTablet,
-        [styles.hasHints]: !!hints,
+        [styles.hasHints]: !!hints || !!error,
       },
       className,
     )}
@@ -41,12 +42,12 @@ const Label = ({
           )}
         </div>
         {hints && <div className={styles.hints}>{hints}</div>}
+        {error && <IconLabel icon="fa fa-warning" label={error} className={styles.errorMessage} />}
       </label>
     )}
 
     <div className={styles.field}>
       <div className={classNameInput}>{children}</div>
-      {error && <span className={styles.errorMessage}>{error}</span>}
     </div>
   </div>
 )
