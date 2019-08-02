@@ -6,14 +6,14 @@ import Label from '../label'
 import './radioGroup.css'
 
 const RadioGroup = ({
-  name, label, children, inline, noError, className,
+  name, label, children, inline, error, className,
 }) => {
   const classes = cn('form-radio-group', className, {
     'form-radio-group-inline': inline,
     'form-radio-group-col': !inline,
   })
   return (
-    <Label name={name} label={label} noError={noError} inline>
+    <Label name={name} label={label} inline error={error}>
       <div className={classes}>{children}</div>
     </Label>
   )
@@ -24,14 +24,14 @@ RadioGroup.propTypes = {
   label: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
   inline: PropTypes.bool,
-  noError: PropTypes.bool,
+  error: PropTypes.string,
   className: PropTypes.string,
 }
 
 RadioGroup.defaultProps = {
   inline: false,
   label: undefined,
-  noError: false,
+  error: undefined,
   className: undefined,
 }
 

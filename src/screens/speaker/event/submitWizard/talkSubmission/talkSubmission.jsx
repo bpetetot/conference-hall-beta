@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
+import isEmpty from 'lodash/isEmpty'
+import get from 'lodash/get'
 
 import Field from 'components/form/field'
 import Titlebar from 'components/titlebar'
@@ -8,7 +10,7 @@ import {
   markdownInput, radio, SubmitButton, RadioGroup,
 } from 'components/form'
 import Alert from 'components/alert'
-import isEmpty from 'lodash/isEmpty'
+import { required } from 'components/form/validators'
 
 import './talkSubmission.css'
 
@@ -24,7 +26,7 @@ const TalkSubmission = ({
   isUnsubmitting,
 }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
-    {({ handleSubmit }) => (
+    {({ handleSubmit, invalid, errors }) => (
       <form className="talk-submission">
         <Titlebar icon="fa fa-microphone" title={talk.title}>
           {update && (
@@ -37,7 +39,7 @@ const TalkSubmission = ({
               Remove submission
             </SubmitButton>
           )}
-          <SubmitButton onClick={handleSubmit} submitting={isSubmitting}>
+          <SubmitButton onClick={handleSubmit} submitting={isSubmitting} invalid={invalid}>
             {update ? 'Update submission' : `Submit to ${event.name}`}
           </SubmitButton>
         </Titlebar>
@@ -48,7 +50,7 @@ const TalkSubmission = ({
         )}
         <div className="submit-talk-form card">
           {!isEmpty(event.categories) && (
-            <RadioGroup name="categories" label="Talk categories" inline>
+            <RadioGroup name="categories" label="Talk categories" error={errors.categories} inline>
               {event.categories.map(c => (
                 <Field
                   key={c.id}
@@ -57,12 +59,13 @@ const TalkSubmission = ({
                   label={c.name}
                   type="radio"
                   component={radio}
+                  validate={get(event, 'mandatoryFields.categories') ? required : undefined}
                 />
               ))}
             </RadioGroup>
           )}
           {!isEmpty(event.formats) && (
-            <RadioGroup name="formats" label="Talk formats" inline>
+            <RadioGroup name="formats" label="Talk formats" error={errors.formats} inline>
               {event.formats.map(f => (
                 <Field
                   key={f.id}
@@ -71,6 +74,7 @@ const TalkSubmission = ({
                   label={f.name}
                   type="radio"
                   component={radio}
+                  validate={get(event, 'mandatoryFields.formats') ? required : undefined}
                 />
               ))}
             </RadioGroup>
