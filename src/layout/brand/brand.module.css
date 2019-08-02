@@ -1,7 +1,7 @@
 .brand {
   background: var(--secondary-color);
   font-size: 1.2em;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 1px;
   color: var(--secondary-color-font);
   display: flex;

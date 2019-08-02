@@ -11,7 +11,7 @@
 .sidebar .sidebar-header {
   color: var(--grey-color-dark);
   font-size: 0.9em;
-  font-weight: bold;
+  font-weight: 600;
   letter-spacing: 1px;
   overflow: hidden;
   padding-bottom: 1em;

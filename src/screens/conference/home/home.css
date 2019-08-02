@@ -14,10 +14,8 @@
   color: var(--primary-color-font);
   display: flex;
   flex-direction: column;
-  font-size: 1.5em;
-  font-weight: 700;
   justify-content: center;
-  letter-spacing: 1px;
+  font-size: 1.3rem;
   margin: 2.5em;
   min-height: 12em;
   min-width: 12em;
@@ -32,8 +30,10 @@
 }
 
 .home .home-link > span {
-  margin-top: 1.5em;
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .home .home-link:hover {

@@ -3,10 +3,6 @@
   flex-direction: column;
 }
 
-.talk-form > * {
-  margin-bottom: 0.7em;
-}
-
 .talk-form > button {
   align-self: flex-end;
 }
