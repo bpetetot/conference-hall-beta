@@ -34,7 +34,7 @@ const EventTabs = ({ eventId }) => (
     </li>
     <li>
       <Link code="organizer-event-edit-integrations" eventId={eventId} classNameActive="tab-active">
-        <IconLabel icon="fa fa-rocket" label="API" />
+        <IconLabel icon="fa fa-rocket" label="Integrations" />
       </Link>
     </li>
   </ul>

@@ -1,4 +1,4 @@
-module.exports = (event, users, talk, url) => `
+module.exports = (event, users, talk, app) => `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,7 +15,7 @@ module.exports = (event, users, talk, url) => `
   Thank you very much for your submission and please consider resubmitting next year.
   </p>
   <p>
-  Made with 💗 by <a href="${url}">conference-hall.io</a> – <i>"${event.name}" team</i>
+  Made with 💗 by <a href="${app.url}">conference-hall.io</a> – <i>"${event.name}" team</i>
   </p>
   </body>
 </html>

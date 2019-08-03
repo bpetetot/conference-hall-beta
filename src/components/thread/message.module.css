@@ -26,7 +26,7 @@
 }
 
 .name {
-  font-weight: 700;
+  font-weight: 600;
   margin-right: 0.5em;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .edit:hover {
-  color: var( --primary-color-dark);
+  color: var(--primary-color-dark);
   cursor: pointer;
 }
 

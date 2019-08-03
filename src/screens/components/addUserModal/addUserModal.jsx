@@ -50,10 +50,14 @@ const AddUserModal = ({
             }}
           />
         )}
-        <div className="user-search-separator">
-          <small>or send him/her an invitation link</small>
-        </div>
-        <CopyInput title="Invite link" value={inviteLink} />
+        {!!inviteLink && (
+          <Fragment>
+            <div className="user-search-separator">
+              <small>or send him/her an invitation link</small>
+            </div>
+            <CopyInput title="Invite link" value={inviteLink} />
+          </Fragment>
+        )}
       </Fragment>
     )}
   </Modal>
@@ -69,7 +73,7 @@ AddUserModal.propTypes = {
   resultsMessage: PropTypes.node.isRequired,
   onSearch: PropTypes.func.isRequired,
   onSelectUser: PropTypes.func.isRequired,
-  inviteLink: PropTypes.string.isRequired,
+  inviteLink: PropTypes.string,
   renderTrigger: PropTypes.func,
 }
 
@@ -80,6 +84,7 @@ AddUserModal.defaultProps = {
   initialized: false,
   users: [],
   renderTrigger: undefined,
+  inviteLink: undefined,
 }
 
 export default AddUserModal

@@ -1,6 +1,6 @@
 {
   "name": "conference-hall",
-  "version": "0.17.1",
+  "version": "0.20.1",
   "private": true,
   "bugs": "https://github.com/bpetetot/conference-hall/issues",
   "repository": "github:bpetetot/conference-hall",
@@ -24,11 +24,11 @@
     "date-fns": "^1.30.1",
     "final-form": "^4.18.2",
     "final-form-arrays": "^3.0.1",
-    "firebase": "^6.3.1",
+    "firebase": "^6.3.3",
     "font-awesome": "^4.7.0",
     "hoc-react-loader": "^6.3.0",
     "immutadot": "^1.0.0",
-    "intl-messageformat": "^3.1.4",
+    "intl-messageformat": "^6.0.0",
     "k-ramel": "^2.1.0",
     "lodash": "^4.17.15",
     "luxon": "^1.17.2",
@@ -60,7 +60,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
-    "firebase-tools": "^7.1.1",
+    "firebase-tools": "^7.2.2",
     "prettier": "^1.18.2",
     "react-scripts": "^3.0.1",
     "react-test-renderer": "^16.8.6",
@@ -91,6 +91,7 @@
       "jsx-a11y/label-has-for": 0,
       "jsx-a11y/click-events-have-key-events": 0,
       "jsx-a11y/interactive-supports-focus": 0,
+      "jsx-a11y/label-has-associated-control": 0,
       "jsx-a11y/anchor-is-valid": [
         "error",
         {

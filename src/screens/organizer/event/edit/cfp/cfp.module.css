@@ -1,0 +1,28 @@
+.form {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.form > button {
+  align-self: flex-end;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkboxes > * {
+  margin-bottom: 0.5em;
+}
+
+.checkboxes input {
+  margin-right: 0.5em;
+}
+
+@media only screen and (max-width: 480px) {
+  .form {
+    padding: 1em;
+  }
+}

@@ -1,12 +1,66 @@
 # Changelog
 
+<a name="0.20.1"></a>
+
+## 0.20.1 (2019-07-30)
+
+### Fixed
+
+- 🐛 set a default recipients for emails with only bcc ([#640](https://github.com/bpetetot/conference-hall/issues/640)) [[26d026d](https://github.com/bpetetot/conference-hall/commit/26d026d50ed0dd41ca84d1cf1e53d2d9c812568f)]
+
+<a name="0.20.0"></a>
+
+## 0.20.0 (2019-07-30)
+
+⚠️Need to execute script `scripts/update-event-new-settings.js` with your `accountSettings`.
+
+### Added
+
+- ✨ add confirmation popin when sending emails ([#637](https://github.com/bpetetot/conference-hall/issues/637)) [[addb307](https://github.com/bpetetot/conference-hall/commit/addb307f74925f7344d3480d1fa8989618886875)]
+- ✨ organizer recipients and email notifications by config [[27f30e4](https://github.com/bpetetot/conference-hall/commit/27f30e4bf369c610f7bddcb073287142e54382b8)]
+- ✨ rsvp action in email confirmation ([#571](https://github.com/bpetetot/conference-hall/issues/571)) [[ea70482](https://github.com/bpetetot/conference-hall/commit/ea704820caff92276208cf9cb12ec86e7e650f67)]
+
+### Changed
+
+- ♻️ add event settings collection ([#639](https://github.com/bpetetot/conference-hall/issues/639)) [[c65d15a](https://github.com/bpetetot/conference-hall/commit/c65d15a7cbc93a7fb6603ab91ed47a29367982f2)]
+
+### Fixed
+
+- 🐛 avoid proposals reloading when check all ([#636](https://github.com/bpetetot/conference-hall/issues/636)) [[99dbdbb](https://github.com/bpetetot/conference-hall/commit/99dbdbb5e34b049116e8f9eae17ecf145e0e7cfb)]
+- 🐛 fix the speaker block overflow in proposal page ([#634](https://github.com/bpetetot/conference-hall/issues/634)) [[7202f9b](https://github.com/bpetetot/conference-hall/commit/7202f9baee03a018128439222c6e6d2052483fbb)]
+
+<a name="0.19.0"></a>
+
+## 0.19.0 (2019-07-26)
+
+### Added
+
+- ✨ update the fullname in the profile ([#632](https://github.com/bpetetot/conference-hall/issues/632)) [[109da0c](https://github.com/bpetetot/conference-hall/commit/109da0c3269c722b769e691634ee3f798bd0c86c)]
+
+### Fixed
+
+- 🐛 disable invite links for security reasons ([#631](https://github.com/bpetetot/conference-hall/issues/631)) [[4ca8e05](https://github.com/bpetetot/conference-hall/commit/4ca8e05508454de31d6a6ec67bbf06649123c3cc)]
+- 🐛 reset paging reloading proposals ([#630](https://github.com/bpetetot/conference-hall/issues/630)) [[7fb4029](https://github.com/bpetetot/conference-hall/commit/7fb4029f33f78060ec303fde991a573b50be2518)]
+
+<a name="0.18.0"></a>
+
+## 0.18.0 (2019-07-26)
+
+### Added
+
+- ✨ export card proposals in PDF ([#628](https://github.com/bpetetot/conference-hall/issues/628)) [[3e9ea45](https://github.com/bpetetot/conference-hall/commit/3e9ea45115228f083fced355671b22dc10cf3cff)]
+
+### Changed
+
+- 🗃️ new firestore indexes format ([#629](https://github.com/bpetetot/conference-hall/issues/629)) [[a747a64](https://github.com/bpetetot/conference-hall/commit/a747a644c20d1bd366413a5108ca641f791f0f3b)]
+
 <a name="0.17.1"></a>
+
 ## 0.17.1 (2019-07-25)
 
 ### Changed
 
 - ⬇️ remove gitmoji-changelog [[acb5711](https://github.com/bpetetot/conference-hall/commit/acb5711eabaf69e9b837e796a1a0d37d8cfb1085)]
-
 
 <a name="0.17.0"></a>
 

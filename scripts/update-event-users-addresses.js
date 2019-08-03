@@ -1,14 +1,9 @@
-/* eslint-disable no-underscore-dangle */
-const admin = require('firebase-admin')
+/* eslint-disable no-underscore-dangle, no-console */
+require('./helpers/initFirestore')
+
 const isString = require('lodash/isString')
 const pick = require('lodash/pick')
 const first = require('lodash/first')
-
-// ====================================
-// Configuration
-// ====================================
-
-// service account credentials (need to be downloaded from firebase console)
 
 /**
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -19,14 +14,8 @@ const googleMapsClient = require('@google/maps').createClient({
   key: 'YOUR API KEY HERE',
   Promise,
 })
-const serviceAccount = require('./serviceAccount.json')
 
-// initialize app credentials
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-})
-
-const { updateUsers, updateEvents } = require('./updates')
+const { updateUsers, updateEvents } = require('./helpers/updates')
 
 // eslint-disable-next-line
 const getAddressComponent = (name, addressComponents) => pick(first(addressComponents.filter(component => component.types.includes(name))), [
@@ -72,7 +61,6 @@ const main = async () => {
 
     const response = await googleMapsClient.geocode({ address: event.address }).asPromise()
     const { results } = (response && response.json) || {}
-
 
     const result = first(results)
     if (!result) return null

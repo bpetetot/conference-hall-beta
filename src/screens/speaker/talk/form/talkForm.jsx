@@ -13,9 +13,22 @@ const TalkForm = ({ onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit, pristine, invalid }) => (
       <form className="talk-form card">
-        <Field name="title" label="Title" type="text" component={input} validate={required} />
-        <Field name="abstract" label="Abstract" component={markdownInput} validate={required} />
-        <Field name="language" label="Talk language" type="text" component={input} />
+        <Field
+          name="title"
+          label="Title"
+          type="text"
+          component={input}
+          validate={required}
+          inline
+        />
+        <Field
+          name="abstract"
+          label="Abstract"
+          component={markdownInput}
+          validate={required}
+          inline
+        />
+        <Field name="language" label="Talk language" type="text" component={input} inline />
         <RadioGroup name="level" label="Level" inline>
           <Field name="level" value="beginner" label="Beginner" type="radio" component={radio} />
           <Field
@@ -32,6 +45,7 @@ const TalkForm = ({ onSubmit, initialValues, submitting }) => (
           label="Talk References"
           tooltip="Give more info about your talk: slides, workshop pre-requities, github repo, video, summary, steps of the talk, which conference or meetup where it has been already given?"
           component={markdownInput}
+          inline
         />
         <SubmitButton
           handleSubmit={handleSubmit}

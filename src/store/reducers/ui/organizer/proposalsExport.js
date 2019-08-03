@@ -1,7 +1,7 @@
 import { types } from 'k-ramel'
 
 const defaultData = {
-  isExporting: false,
+  exporting: null,
 }
 
 export default types.object({ defaultData })

@@ -74,8 +74,9 @@ describe('onUpdateProposal', () => {
   }
   // mock email.send
   let emailSend
-  conf = { mailgun: { domain: 'somedomain.org', key: 'SOME-SECRET' }, app: { url: 'https://somefirebase.url' } }
+  let conf
   beforeEach(() => {
+    conf = { mailgun: { domain: 'somedomain.org', key: 'SOME-SECRET' }, app: { gcf_url: 'https://somefirebase.url', url: 'https://somefirebase.url' } }
     test.mockConfig(conf)
     // mock firestore DB static methods
     Object.defineProperty(admin, 'firestore', { get: () => databaseStub, configurable: true })
@@ -122,7 +123,7 @@ describe('onUpdateProposal', () => {
       key: 'SOME-SECRET',
     }), sinon.match({
       to: ['corinnekrych@gmail.com'],
-      subject: '[RivieraDEV 2019] Talk accepted!',
+      subject: '[RivieraDEV 2019] Talk accepted',
       html: sinon.match.any,
       confName: 'RivieraDEV 2019',
     }))

@@ -11,6 +11,15 @@ const getEvent = eventId => admin
   .get()
   .then(doc => doc.data())
 
+const getEventSettings = eventId => admin
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('settings')
+  .doc(eventId)
+  .get()
+  .then(doc => doc.data())
+
 const getEventProposals = (eventId, state) => {
   let query = admin
     .firestore()
@@ -39,6 +48,7 @@ const getEventOrganizers = async (event) => {
 
 module.exports = {
   getEvent,
+  getEventSettings,
   getEventProposals,
   getEventOrganizers,
 }

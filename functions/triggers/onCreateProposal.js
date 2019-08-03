@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
 const functions = require('firebase-functions')
 
-const { getEvent, getEventOrganizers } = require('../firestore/event')
+const eventFirestore = require('../firestore/event')
 const { getUsers } = require('../firestore/user')
 
 const email = require('../email')
 const talkSubmitted = require('../email/templates/talkSubmitted')
 const talkReceived = require('../email/templates/talkReceived')
+const { getEmailRecipients } = require('../helpers/event')
+const { sendSlackMessage } = require('../slack')
 
 // onCreateProposal is called when a talk is submitted. A new submission is created and
 // an email is sent to the speaker for a confirmation of her submission.
@@ -20,30 +22,34 @@ module.exports = functions.firestore
     const talk = snap.data()
     const { eventId } = context.params
     const { app, mailgun } = functions.config()
-    if (!app) {
-      throw new Error('You must provide the app.url variable')
-    }
-    const event = await getEvent(eventId)
+
+    const event = await eventFirestore.getEvent(eventId)
+    const settings = await eventFirestore.getEventSettings(eventId)
 
     // Send email to speaker after submission
-    const users = await getUsers(Object.keys(talk.speakers))
+    const speakers = await getUsers(Object.keys(talk.speakers))
+    console.info('Send email to speaker after submission')
     await email.send(mailgun, {
-      to: users.map(user => user.email),
-      contact: null,
+      to: speakers.map(user => user.email),
       subject: `[${event.name}] Talk submitted`,
-      html: talkSubmitted(event, talk, app.url),
+      html: talkSubmitted(event, talk, app),
       confName: event.name,
     })
 
     // Send email to organizers after submission
-    if (event.type === 'meetup') {
-      const organizers = await getEventOrganizers(event)
+    const { cc, bcc } = await getEmailRecipients(event, settings, 'submitted')
+    if (cc || bcc) {
+      console.info('Send email to organizers after submission')
       await email.send(mailgun, {
-        to: organizers.map(user => user.email),
-        contact: null,
-        subject: `[${event.name}] New talk submitted`,
-        html: talkReceived(event, talk, app.url),
+        to: [`no-reply@${mailgun.domain}`],
+        cc,
+        bcc,
+        subject: `[${event.name}] Talk received`,
+        html: talkReceived(event, talk, app),
         confName: event.name,
       })
     }
+
+    // Send slack message to organizers
+    sendSlackMessage(event, talk, speakers, settings, app, 'submitted')
   })

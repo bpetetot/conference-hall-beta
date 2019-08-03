@@ -1,14 +1,16 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap);
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&display=swap");
 
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', Calibri, Arial, sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   height: 100%;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -18,19 +20,19 @@ body {
 
 .app {
   background: var(--background-color);
-  color: var(--primary-color);
   font-size: var(--font-size);
   height: 100%;
   overflow: hidden;
 }
 
-@media print{
+@media print {
   @page {
     size: A4;
     margin: 0;
   }
 
-  html, body {
+  html,
+  body {
     width: 210mm;
     height: 297mm;
   }

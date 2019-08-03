@@ -7,8 +7,8 @@ route: /installation
 
 ## Pre-requisites
 
-* node@10.16.0
-* yarn
+- node@10.16.0
+- yarn
 
 ## Setup
 
@@ -45,10 +45,10 @@ firebase functions:config:set algolia.id="<ID>" algolia.key="<ADMIN_KEY>"
 
 Activate the following APIs in the [Google developer console](https://console.developers.google.com/apis) :
 
-* Google Places API Web Service
-* Google Maps Embed API
-* Google Maps JavaScript API
-* Google Geocoding API
+- Google Places API Web Service
+- Google Maps Embed API
+- Google Maps JavaScript API
+- Google Geocoding API
 
 ### Configure Mailgun (optional)
 
@@ -57,14 +57,17 @@ The application sends emails through the [Mailgun API](https://www.mailgun.com/)
 You have to create a Mailgun account if you want to send those emails, if not the app will still works perfectly but without sending any email.
 
 Mailgun API is used to send email through Cloud Functions, so you will have to add environment variables with firebase CLI :
-* The application URL: `app.url` (ex: `http://localhost:3000`)
-* The API key: `mailgun.key`
-* The domain name: `mailgun.domain`
+
+- The application URL: `app.url` (ex: `http://localhost:3000`)
+- (optional) The Google Cloud Function URL: `app.gcf_url` (ex: `https://us-central1-conferencehall.cloudfunctions.net`).
+  Used if you want to [Configure In-App google actions](#Configure_In-App_google_actions)
+- The API key: `mailgun.key`
+- The domain name: `mailgun.domain`
 
 Here the command to register those variables:
 
 ```
-firebase functions:config:set app.url="https://myserver.com" mailgun.key="MAILGUN API KEY" mailgun.domain="YOUR DOMAIN NAME"
+firebase functions:config:set app.url="https://myserver.com" app.gcf_url="https://<CLOUD_REGION>-<YOUR_PROJECT_ID>.cloudfunctions.net" mailgun.key="MAILGUN API KEY" mailgun.domain="YOUR DOMAIN NAME"
 ```
 
 To test cloud functions with Mailgun on local machine (with cloud function shell), you will need to generate `.runtimeconfig.json` file with environment variables :
@@ -80,11 +83,21 @@ firebase functions:config:get > .runtimeconfig.json
 To guarantee the acceptance or refusal emails are sent to speakers after deliberation is done, you can configure a
 MailGun webhook.
 
-* go to MailGun dashboard https://app.mailgun.com/app/webhooks
-* log in to your MailGun account
-* in webhooks list select `Delivered Messages` add your firebase cloud function `https://us-central1-FIREBASE_PROJECT.cloudfunctions.net/delivered`
+- go to MailGun dashboard https://app.mailgun.com/app/webhooks
+- log in to your MailGun account
+- in webhooks list select `Delivered Messages` add your firebase cloud function `https://<CLOUD_REGION>-<YOUR_PROJECT_ID>.cloudfunctions.net/delivered`
 
 For each delivered email, the proposal in DB will have a `emailDelivered` field to `true`.
+
+### Configure In-App google actions (optional)
+
+If you want to configure the email template to be able to display one-click action in gmail so that speakers can confirm their presence with one-click:
+![confirmation](one-click_confirmation.gif)
+
+- send a request for your email's domain using [google form](https://docs.google.com/forms/d/e/1FAIpQLSfT5F1VJXtBjGw2mLxY2aX557ctPTsCrJpURiKJjYeVrugHBQ/viewform?pli=1)
+- send a test email (as described in above doc) to `schema.whitelisting+sample@gmail.com`
+
+NOTE: If you don't do the configuration the In-App confirmation will not be displayed but the speaker can still confirm his attendance within the content of the email.
 
 ### Configure Google Analytics (optional)
 
@@ -95,6 +108,7 @@ You can add a Google Analytics by adding your Analytics ID in the environmenent 
 ### Run the app in dev mode
 
 1. Clone the Conference Hall app and install dependencies:
+
 ```
 git clone https://github.com/bpetetot/conference-hall.git
 yarn
@@ -117,9 +131,10 @@ yarn test
 ```
 
 **Run tests with debug mode**
-* Debug test: `yarn test:debug`
-* Go to chrome: `chrome://inspect/#devices`
-* Let go the debugger and put `debugger` in your test.
+
+- Debug test: `yarn test:debug`
+- Go to chrome: `chrome://inspect/#devices`
+- Let go the debugger and put `debugger` in your test.
 
 For more details on debugger within IDE, consult [react-script documentation](https://github.com/facebook/create-react-app/blob/ed5c48c81b2139b4414810e1efe917e04c96ee8d/packages/react-scripts/template/README.md#debugging-tests-in-chrome).
 
@@ -130,6 +145,7 @@ The project uses cloud functions for severals features (send emails, export, api
 All commands must be done in `/functions` folder with **node@8**
 
 Cloud functions uses its own `package.json`, first install dependencies:
+
 ```
 yarn
 ```
@@ -153,7 +169,9 @@ yarn shell
 See [cloud functions documentation](https://firebase.google.com/docs/functions/local-emulator) for more info.
 
 ### Run unit test
+
 To run all cloud functions:
+
 ```
 cd functions
 yarn test
@@ -192,6 +210,7 @@ firebase deploy
 The application is still in beta mode for the organizer part, you will need to generate an access key in the database.
 
 **To do it:**
+
 - Go to the firebase console
 - Select your project
 - Go to the "Database" tab
@@ -206,5 +225,6 @@ If you want to use a custom domain, you will have to [configure Firebase accordi
 Then you will also need to configure Authentification providers to use your custom domain.
 
 **To do it:**
+
 - Change in your `.env.local` file, the `authDomain` property with your custom domain
 - Follow instruction in chapter ["Customizing the redirect domain for Google sign-in"](https://firebase.google.com/docs/auth/web/google-signin)

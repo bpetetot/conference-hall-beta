@@ -2,10 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 1em;
+  background: var(--grey-color-light);
+  padding: 1em;
 }
 
 .api-card .api-name {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.2em;
 }
 

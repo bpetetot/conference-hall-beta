@@ -19,11 +19,9 @@
 .speaker-surveys .questions .question .answer {
   margin-left: 1em;
   color: var(--grey-color-dark);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .speaker-surveys .not-answered {
   margin-top: 1.5em;
-  font-style: italic;
-  font-weight: 200;
 }

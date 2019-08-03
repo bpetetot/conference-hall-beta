@@ -200,3 +200,8 @@
   fill: var(--primary-color);
   opacity: 0.7;
 }
+
+/** loading */
+.cc-button-loading {
+  margin-right: 0.5em;
+}

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { withSizes } from 'styles/utils'
 import { List, ListItem } from 'components/list'
-import Checkbox from 'components/form/checkbox'
 import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
 import './proposalsList.css'
@@ -12,6 +11,7 @@ const Proposals = ({
   eventId,
   proposals,
   proposalsSelection,
+  deliberationActive,
   onSelect,
   onAddProposalToSelection,
   isMobile,
@@ -25,18 +25,10 @@ const Proposals = ({
         title={proposal.title}
         subtitle={!isMobile && <ProposalSubtitle eventId={eventId} proposal={proposal} />}
         info={<ProposalInfo proposal={proposal} isMobile={isMobile} />}
-        onSelect={() => onSelect(eventId, proposal.id)}
-        renderCheckbox={() => {
-          if (isMobile) return undefined
-          return (
-            <Checkbox
-              key={proposal.id}
-              onClick={() => onAddProposalToSelection(proposal.id)}
-              value={!!proposalsSelection.includes(proposal.id)}
-              disabled={proposal.emailStatus === 'delivered'}
-            />
-          )
-        }}
+        onSelect={() => onSelect(proposal.id)}
+        onCheckboxChange={() => onAddProposalToSelection(proposal.id)}
+        checked={!!proposalsSelection.includes(proposal.id)}
+        checkboxDisabled={!deliberationActive}
       />
     )}
   />
@@ -46,6 +38,7 @@ Proposals.propTypes = {
   eventId: PropTypes.string.isRequired,
   proposals: PropTypes.arrayOf(PropTypes.object),
   proposalsSelection: PropTypes.arrayOf(PropTypes.string),
+  deliberationActive: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
   onAddProposalToSelection: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
@@ -54,6 +47,7 @@ Proposals.propTypes = {
 Proposals.defaultProps = {
   proposals: [],
   proposalsSelection: [],
+  deliberationActive: false,
 }
 
 export default withSizes(Proposals)

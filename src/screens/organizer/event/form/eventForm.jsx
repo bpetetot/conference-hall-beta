@@ -38,12 +38,13 @@ const EventForm = ({
           <Field name="type" value="meetup" label="Meetup" type="radio" component={radio} />
         </RadioGroup>
         )}
-        <Field name="name" label="Name" type="text" component={input} validate={required} />
+        <Field name="name" label="Name" type="text" component={input} validate={required} inline />
         <Field
           name="description"
-          label="description"
+          label="Description"
           component={markdownInput}
           validate={required}
+          inline
         />
         <Field
           name="address"
@@ -51,9 +52,10 @@ const EventForm = ({
           type="text"
           component={address}
           validate={required}
+          inline
         />
         {!isEmpty(organizations) && (
-        <Field label="Organization" name="organization" component={select}>
+        <Field label="Organization" name="organization" component={select} inline>
           <option />
           {organizations.map(({ id, name }) => (
             <option key={id} value={id}>
@@ -69,12 +71,13 @@ const EventForm = ({
           type="checkbox"
           truthy="private"
           falsy="public"
+          inline
         />
         {values.type === 'conference' && (
-        <Field name="conferenceDates" label="Conference date" component={dayRangePicker} />
+        <Field name="conferenceDates" label="Conference date" component={dayRangePicker} inline />
         )}
-        <Field name="website" label="Website" type="text" component={input} />
-        <Field name="contact" label="Email contact" type="email" component={input} />
+        <Field name="website" label="Website" type="text" component={input} inline />
+        <Field name="contact" label="Contact email" type="email" component={input} inline />
         <SubmitButton
           handleSubmit={handleSubmit}
           pristine={pristine}

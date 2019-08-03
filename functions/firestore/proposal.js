@@ -2,6 +2,21 @@
 const firebase = require('firebase-admin')
 const { omit, toLower, deburr } = require('lodash')
 
+
+/**
+ * Return the proposal with the given id
+ * @param {string} eventId event id
+ * @param {string} proposalId proposal id
+ */
+const fetchProposal = async (eventId, proposalId) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('proposals')
+  .doc(proposalId)
+  .get()
+  .then(doc => doc.data())
+
 const addProposal = (eventId, proposal) => {
   const newProposal = omit(proposal, 'submissions')
   const now = firebase.firestore.FieldValue.serverTimestamp()
@@ -139,6 +154,7 @@ const getEventUserProposals = async (eventId, userId) => {
 }
 
 module.exports = {
+  fetchProposal,
   addProposal,
   updateProposal,
   removeProposal,

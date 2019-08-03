@@ -2,13 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import Checkbox from 'components/form/checkbox'
+
 import './listItem.css'
 
 const ListItem = ({
-  onSelect, info, title, subtitle, renderCheckbox, renderActions,
+  onSelect,
+  info,
+  title,
+  subtitle,
+  checked,
+  onCheckboxChange,
+  checkboxDisabled,
+  renderActions,
 }) => (
   <div className={cn('list-item')}>
-    {renderCheckbox && <div className="list-item-checkbox">{renderCheckbox()}</div>}
+    {onCheckboxChange && (
+      <div className="list-item-checkbox">
+        <Checkbox onChange={onCheckboxChange} value={checked} disabled={checkboxDisabled} />
+      </div>
+    )}
     <div className={cn('list-item-main', { clickable: onSelect })} onClick={onSelect} role="button">
       <div className="list-item-title">{title}</div>
       {subtitle && <div className=" list-item-subtitle">{subtitle}</div>}
@@ -20,7 +33,9 @@ const ListItem = ({
 
 ListItem.propTypes = {
   onSelect: PropTypes.func,
-  renderCheckbox: PropTypes.func,
+  onCheckboxChange: PropTypes.func,
+  checked: PropTypes.bool,
+  checkboxDisabled: PropTypes.bool,
   renderActions: PropTypes.func,
   title: PropTypes.node,
   subtitle: PropTypes.node,
@@ -29,7 +44,9 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   onSelect: undefined,
-  renderCheckbox: undefined,
+  onCheckboxChange: undefined,
+  checked: false,
+  checkboxDisabled: false,
   renderActions: undefined,
   title: undefined,
   subtitle: undefined,

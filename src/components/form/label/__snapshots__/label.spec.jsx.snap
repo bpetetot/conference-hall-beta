@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/label should render 1`] = `
-<Label
+<WithSizes
   className="blue"
   classNameInput="red"
   error="error"
@@ -9,5 +9,5 @@ exports[`components/label should render 1`] = `
   name="name"
 >
   children
-</Label>
+</WithSizes>
 `;

@@ -4,14 +4,6 @@
   flex-direction: column;
 }
 
-.form > * {
-  margin-bottom: 1em;
-}
-
-.form > *:last-child {
-  margin-bottom: 0;
-}
-
 .label {
   display: flex;
   align-items: center;
@@ -21,6 +13,23 @@
   margin-left: 2em;
   font-size: 0.9em;
   color: var(--grey-color-dark);
+}
+
+.error {
+  color: var(--error-color);
+  font-size: 0.9em;
+}
+
+.checkboxes > * {
+  margin-bottom: 0.5em;
+}
+
+.form h3 {
+  margin-top: 0.5rem;
+}
+
+.form h4 {
+  margin: 0.5em 0;
 }
 
 @media only screen and (max-width: 480px) {

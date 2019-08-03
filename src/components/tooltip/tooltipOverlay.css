@@ -1,10 +1,10 @@
 .cc-tooltip {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1em;
   z-index: 100;
 }
 
-.cc-tooltip[data-placement^="top"] .cc-tooltip-arrow  {
+.cc-tooltip[data-placement^='top'] .cc-tooltip-arrow {
   border-width: 5px 5px 0 5px;
   border-left-color: transparent;
   border-right-color: transparent;
@@ -15,7 +15,7 @@
   margin-bottom: 0;
 }
 
-.cc-tooltip[data-placement^="bottom"] .cc-tooltip-arrow  {
+.cc-tooltip[data-placement^='bottom'] .cc-tooltip-arrow {
   border-width: 0 5px 5px 5px;
   border-left-color: transparent;
   border-right-color: transparent;
@@ -26,7 +26,7 @@
   margin-bottom: 0;
 }
 
-.cc-tooltip[data-placement^="left"] .cc-tooltip-arrow  {
+.cc-tooltip[data-placement^='left'] .cc-tooltip-arrow {
   border-width: 5px 0 5px 5px;
   border-bottom-color: transparent;
   border-right-color: transparent;
@@ -37,7 +37,7 @@
   margin-bottom: 0;
 }
 
-.cc-tooltip[data-placement^="right"] .cc-tooltip-arrow  {
+.cc-tooltip[data-placement^='right'] .cc-tooltip-arrow {
   border-width: 5px 5px 5px 0;
   border-bottom-color: transparent;
   border-left-color: transparent;
@@ -48,7 +48,7 @@
   margin-bottom: 0;
 }
 
-.cc-tooltip .cc-tooltip-arrow  {
+.cc-tooltip .cc-tooltip-arrow {
   border-color: var(--grey-color-dark);
   width: 0;
   height: 0;
@@ -59,9 +59,9 @@
 
 .cc-tooltip .cc-tooltip-inner {
   margin: 5px;
-  padding: .8em;
+  padding: 0.8em;
   border: 1px solid var(--grey-color-dark);
   background-color: var(--grey-color-light);
-  border-radius: .2em;
+  border-radius: 0.2em;
   max-width: 400px;
 }

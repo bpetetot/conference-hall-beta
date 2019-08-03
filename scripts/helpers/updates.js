@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // initialize firestore database
 const admin = require('firebase-admin')
 
@@ -35,7 +36,7 @@ const updateEvents = async (callback, eventId) => {
 
   return Promise.all(
     events.map(async (oldEvent) => {
-      console.log(`- update event ${oldEvent.name} (${oldEvent.id})`)
+      console.log(`[update];${oldEvent.type};${oldEvent.name};${oldEvent.id}`)
       const updatedEvent = await callback(oldEvent)
       if (!updatedEvent) return Promise.resolve()
 
@@ -46,7 +47,6 @@ const updateEvents = async (callback, eventId) => {
     }),
   )
 }
-
 
 const getProposals = async (eventId) => {
   const eventProposals = await db

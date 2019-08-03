@@ -1,0 +1,43 @@
+---
+name: Label
+route: /components/form/label
+menu: Components
+---
+
+import { Playground, Props } from 'docz'
+import Label from './label'
+
+# Label
+
+## Basic usage
+
+<Playground>
+  <Label
+    name="myField"
+    label="Field label"
+    hints="Some hints about this field."
+    tooltip="Here some help"
+    error="Something bad happens."
+  >
+    <input name="myField" type="text" />
+  </Label>
+</Playground>
+
+## Inline
+
+<Playground>
+  <Label
+    name="myField"
+    label="Field label"
+    hints="Some hints about this field."
+    tooltip="Here some help"
+    error="Something bad happens."
+    inline
+  >
+    <input name="myField" type="text" />
+  </Label>
+</Playground>
+
+## Properties
+
+<Props of={Label} />

@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-.upload input[type=file] {
+.upload input[type='file'] {
   position: absolute;
   left: 0;
   top: 0;
@@ -29,7 +29,7 @@
 }
 
 .error {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--error-color);
 }
 
@@ -61,7 +61,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 3.5vw;
   padding: 0.8em;
 }

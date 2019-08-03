@@ -2,13 +2,13 @@ version: 2
 jobs:
   lint:
     docker:
-      - image: circleci/node:8.16.0
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run: yarn
       - save_cache:
           paths:
@@ -19,13 +19,13 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:8.16.0
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run:
           name: Install node dependencies
           command: |
@@ -48,16 +48,16 @@ jobs:
 
   build:
     docker:
-      - image: circleci/node:8.16.0
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run:
           name: dependencies and rebuild
-          command:  |
+          command: |
             yarn
             npm rebuild
       - save_cache:
@@ -67,19 +67,19 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Build and check bundle size
-          command:  |
+          command: |
             yarn build
             yarn size
 
   deploy-dev:
     docker:
-      - image: circleci/node:8.16.0
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run:
           name: Install node dependencies
           command: |
@@ -112,13 +112,13 @@ jobs:
 
   deploy-prod:
     docker:
-      - image: circleci/node:8.16.0
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run:
           name: Install node dependencies
           command: |
@@ -170,4 +170,3 @@ workflows:
           filters:
             branches:
               only: production
-

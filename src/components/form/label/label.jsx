@@ -2,49 +2,80 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import { withSizes } from 'styles/utils'
 import Tooltip from 'components/tooltip/tooltip'
-import './label.css'
+import IconLabel from 'components/iconLabel'
+import styles from './label.module.css'
 
 const Label = ({
-  name, label, tooltip, className, children, error, classNameInput,
+  name,
+  label,
+  hints,
+  tooltip,
+  children,
+  error,
+  inline,
+  isMobile,
+  isTablet,
+  className,
+  classNameInput,
 }) => (
-  <div className={cn('form-label', { 'form-has-error': !!error }, className)}>
+  <div
+    className={cn(
+      styles.wrapper,
+      {
+        [styles.error]: !!error,
+        [styles.inline]: inline && !isMobile && !isTablet,
+        [styles.hasHints]: !!hints || !!error,
+      },
+      className,
+    )}
+  >
     {label && (
-      <label className="form-label-label" htmlFor={name}>
-        <span>{label}</span>
-        {tooltip && (
-          <Tooltip className="tooltip" tooltip={tooltip} inline>
-            <span>
+      <label className={styles.label} htmlFor={name}>
+        <div>
+          <span className={styles.text}>{label}</span>
+          {tooltip && (
+            <Tooltip className={styles.tooltip} tooltip={tooltip} inline>
               <i className="fa fa-info-circle" />
-            </span>
-          </Tooltip>
-        )}
+            </Tooltip>
+          )}
+        </div>
+        {hints && <div className={styles.hints}>{hints}</div>}
+        {error && <IconLabel icon="fa fa-warning" label={error} className={styles.errorMessage} />}
       </label>
     )}
-    <div className={classNameInput}>
-      {children}
-      {error && <div className="form-error">{error || ''}</div>}
+
+    <div className={styles.field}>
+      <div className={classNameInput}>{children}</div>
     </div>
   </div>
 )
 
 Label.propTypes = {
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
+  hints: PropTypes.string,
   tooltip: PropTypes.string,
   children: PropTypes.node.isRequired,
-  name: PropTypes.string,
   error: PropTypes.string,
+  inline: PropTypes.bool,
+  isMobile: PropTypes.bool,
+  isTablet: PropTypes.bool,
   className: PropTypes.string,
   classNameInput: PropTypes.string,
 }
 
 Label.defaultProps = {
   label: undefined,
+  hints: undefined,
   tooltip: undefined,
-  name: undefined,
   error: undefined,
+  inline: false,
+  isMobile: false,
+  isTablet: false,
   className: undefined,
   classNameInput: undefined,
 }
 
-export default Label
+export default withSizes(Label)

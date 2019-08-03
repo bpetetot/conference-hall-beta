@@ -2,25 +2,27 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 0;
 }
 
 h1 {
-  font-size: 1.8em;
+  font-size: 1.8rem;
 }
 
 h2 {
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 
 h3 {
-  font-size: 1.1em;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
 h4 {
-  letter-spacing: 0;
-  text-transform: none;
-  font-weight: 600;
   margin-bottom: 0;
+}
+
+p {
+  word-wrap: break-word;
 }

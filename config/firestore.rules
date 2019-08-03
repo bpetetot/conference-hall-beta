@@ -35,10 +35,10 @@ service cloud.firestore {
 
     // ORGANIZATIONS
     match /organizations/{organization} {
-    	allow get: if authenticated(); // invite ?
+    	allow get: if authenticated();
     	allow list: if authenticated() && itsMyOrganizations();
       allow create: if authenticated();
-      allow update: if authenticated() && (itsMyOrganizations() || hasInviteCode()); // invite ?
+      allow update: if authenticated() && itsMyOrganizations();
     }
 
     // EVENTS
@@ -47,6 +47,13 @@ service cloud.firestore {
     	allow list: if authenticated() && (isPublicEvent() || itsMyEvent());
     	allow create: if authenticated();
     	allow update: if authenticated() && itsMyEvent();
+
+      // SETTINGS
+      match /settings/{id} {
+        allow get: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow update: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+      }
 
       // SURVEYS
       match /surveys/{survey} {
