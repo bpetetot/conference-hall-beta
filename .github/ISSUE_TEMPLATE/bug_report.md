@@ -1,21 +1,14 @@
 ---
-name: Bug report
+name: 🐛 Bug report
 about: Create a report to help us improve
-title: ''
-labels: ":bug: bug"
-assignees: ''
-
+labels: ':bug: bug'
 ---
 
-**Description**
-A clear and concise description of what the bug is.
+**What is the issue?**
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**What is the expected behavior?**
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**What is your environment?**
 
-**Environment:**
- - OS: 
- - Browse:
+- OS:
+- Browser:
