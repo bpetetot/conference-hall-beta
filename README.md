@@ -5,7 +5,7 @@
 [![Gitter](https://badges.gitter.im/conference-hall.svg)](https://gitter.im/conference-hall)
 
 
-**Conference Hall** is an opened SaaS platform to manage call for papers and speakers submissions for your conferences and meetups. Speaker writes a talk once and can submit it to every events of the platform.
+**Conference Hall** is an opened SaaS platform to manage call for papers and speaker submissions for your conferences and meetups. Any speaker writes a talk once and can submit it to every event of the platform.
 
 **Application:** **[https://conference-hall.io](https://conference-hall.io)**
 
@@ -36,9 +36,9 @@ Conference Hall is still in beta but already contains a large set of features.
 - 👌 Get speaker confirmations
 - 🌍 API to query proposals
 
-## You want to contribute ?
+## You want to contribute?
 
-You want to contribute and make **Conference Hall** better, go there:
+If you want to contribute and make **Conference Hall** better, go there:
 
 **[https://contribute-conference-hall.netlify.com](https://contribute-conference-hall.netlify.com)**
 
