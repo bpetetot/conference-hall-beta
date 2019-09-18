@@ -11,8 +11,8 @@ module.exports = (event, users, talk, app) => `
   <p>Dear ${users.map(user => user.displayName).join(', ')}</p>
   <p>Your talk <strong>"${talk.title}"</strong> has been declined.</p>
   <p>
-  We had lots of excellent talks this year and choosing has been heart-breaking 😓 
-  Thank you very much for your submission and please consider resubmitting next year.
+  We had lots of excellent talks this year and choosing among them has been heart-breaking. 😓 
+  Thank you very much for your submission and please consider submitting again next year.
   </p>
   <p>
   Made with 💗 by <a href="${app.url}">conference-hall.io</a> – <i>"${event.name}" team</i>

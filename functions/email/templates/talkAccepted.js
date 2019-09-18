@@ -18,7 +18,7 @@ module.exports = (event, users, talk, app) => `
 </script>
 </head>
 <body>
-  <p>Dear ${users.map(user => user.displayName).join(', ')}</p>
+  <p>Dear ${users.map(user => user.displayName).join(', ')},</p>
   <p>Your talk <strong>"${talk.title}"</strong> at <strong>"${event.name}"</strong> has been accepted! 🎉  🎊</p>
   <p>In order to help organizers for the selection and the event management, please confirm your participation:<p>
   <ul>
