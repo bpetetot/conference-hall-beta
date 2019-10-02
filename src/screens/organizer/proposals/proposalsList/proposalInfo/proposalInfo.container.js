@@ -6,7 +6,12 @@ import ProposalInfo from './proposalInfo'
 const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
   const settings = store.data.eventsSettings.get(eventId)
-  return { deliberationActive: get(settings, 'deliberation.enabled') }
+  const event = store.data.events.get(eventId)
+
+  return {
+    deliberationActive: get(settings, 'deliberation.enabled'),
+    hideRatings: get(event, 'hideRatings'),
+  }
 }
 
 export default inject(mapStore)(ProposalInfo)
