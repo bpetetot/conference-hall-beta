@@ -12,6 +12,10 @@ import MemberRow from './memberRow'
 
 import './organizationPage.css'
 
+function sortBy(attr) {
+  return (a, b) => (a[attr] > b[attr] ? 1 : -1)
+}
+
 const OrganizationPage = ({
   id: organizationId,
   name,
@@ -56,7 +60,7 @@ const OrganizationPage = ({
     </Titlebar>
     <List
       className="organization-content"
-      array={keys(members)}
+      array={keys(members).sort(sortBy('displayName'))}
       noResult="No users yet !"
       renderRow={uid => (
         <MemberRow
