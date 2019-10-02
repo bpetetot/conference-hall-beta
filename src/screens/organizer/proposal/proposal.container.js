@@ -12,11 +12,13 @@ const mapStore = (store, props, { router }) => {
   const proposal = store.data.proposals.get(proposalId)
   const event = store.data.events.get(eventId)
   const settings = store.data.eventsSettings.get(eventId)
+  const blindRating = get(event, 'blindRating')
 
   return {
     loaded: !!proposal && !!event,
     proposal,
     eventId,
+    blindRating,
     deliberationActive: get(settings, 'deliberation.enabled'),
     load: () => {
       store.dispatch('@@ui/ON_LOAD_PROPOSAL')
