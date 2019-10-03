@@ -3,6 +3,8 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Thread from './index'
 
+jest.mock('date-fns/distance_in_words_to_now', () => () => 'about 1 year ago')
+
 describe('components/thread', () => {
   it('should render a message in the thread', () => {
     const messages = [
