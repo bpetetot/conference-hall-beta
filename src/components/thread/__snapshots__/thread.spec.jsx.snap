@@ -81,7 +81,7 @@ exports[`components/thread should render a message in the thread 1`] = `
               <span
                 className="date"
               >
-                over 49 years ago
+                about 1 year ago
               </span>
               <span
                 className="modified"
