@@ -23,7 +23,13 @@ const Drawer = ({
               <div className="drawer-title">{title}</div>
               {subtitle && <div className="drawer-subtitle">{subtitle}</div>}
             </div>
-            <Button simple onClick={hide}>
+            <Button
+              simple
+              onClick={(e) => {
+                e.stopPropagation()
+                hide()
+              }}
+            >
               <CloseIcon />
             </Button>
           </div>
