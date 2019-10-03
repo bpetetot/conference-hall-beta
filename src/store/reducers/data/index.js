@@ -9,4 +9,5 @@ export default {
   users: types.keyValue({ key: 'uid' }),
   surveys: types.keyValue({ key: 'uid' }),
   eventsSettings: types.keyValue(),
+  meetups: types.keyValue(),
 }

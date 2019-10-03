@@ -44,6 +44,9 @@ export default {
         '/agenda': {
           code: 'organizer-event-agenda',
         },
+        '/meetups/create': {
+          code: 'organizer-create-meetup',
+        },
         '/proposals': {
           code: 'organizer-event-proposals',
           sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],

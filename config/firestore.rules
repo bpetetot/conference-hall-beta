@@ -62,6 +62,12 @@ service cloud.firestore {
         allow update: if authenticated() && itsMySurvey();
       }
 
+      // MEETUPS
+      match /meetups/{meetup} {
+      	allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+      }
+
       // PROPOSALS
       match /proposals/{proposal} {
       	allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
