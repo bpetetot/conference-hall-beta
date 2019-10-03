@@ -16,3 +16,20 @@ export const createMeetup = (eventId, data) => firebase
     createTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
   })
+
+/**
+ * Fetch all meetups of an event
+ * @param {string} eventId event id
+ */
+export const fetchEventMeetups = async (
+  eventId,
+) => {
+  const query = firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('meetups')
+
+  const result = await query.get()
+  return result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+}
