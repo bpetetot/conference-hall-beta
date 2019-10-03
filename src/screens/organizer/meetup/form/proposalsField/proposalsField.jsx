@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react'
 import Proptypes from 'prop-types'
 
-const ProposalsField = ({ proposals, input: { value: selectedProposals, onChange, ...otherProps } }) => {
+const ProposalsField = ({ proposals, input: { value: selectedProposals, onChange } }) => {
   const updateSelectedProposals = id => () => {
     const updatedSelectedProposals = [...selectedProposals]
 
@@ -18,7 +19,9 @@ const ProposalsField = ({ proposals, input: { value: selectedProposals, onChange
   return (
     <ul>
       {proposals.map(proposal => (
-        <li onClick={updateSelectedProposals(proposal.id)}>{proposal.title} {selectedProposals.includes(proposal.id) && (<span> - Added</span>)}</li>
+        <li onClick={updateSelectedProposals(proposal.id)}>
+          {proposal.title} {selectedProposals.includes(proposal.id) && <span> - Added</span>}
+        </li>
       ))}
     </ul>
   )
@@ -26,6 +29,7 @@ const ProposalsField = ({ proposals, input: { value: selectedProposals, onChange
 
 ProposalsField.propTypes = {
   proposals: Proptypes.array,
+  input: Proptypes.object.isRequired,
 }
 
 ProposalsField.defaultProps = {

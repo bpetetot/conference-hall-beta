@@ -6,7 +6,6 @@ import MeetupForm from './meetupForm'
 const mapStore = (store, { id }) => {
   const initialValues = store.data.meetups.get(id)
   if (initialValues.sessions) {
-    console.log(initialValues.sessions)
     initialValues.sessions = initialValues.sessions.map(session => session.proposalId)
   }
   return {

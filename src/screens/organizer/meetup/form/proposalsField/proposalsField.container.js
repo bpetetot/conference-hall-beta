@@ -17,8 +17,4 @@ const mapStore = (store, props, { router }) => {
   }
 }
 
-export default compose(
-  inject(mapStore),
-  listen(listeners, 'PROPOSALS'),
-  loader,
-)(ProposalsField)
+export default compose(inject(mapStore), listen(listeners, 'PROPOSALS'), loader)(ProposalsField)

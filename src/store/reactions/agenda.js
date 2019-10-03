@@ -6,13 +6,14 @@ import firebase from 'firebase/app'
  * @param {object} agenda
  */
 // eslint-disable-next-line import/prefer-default-export
-export const createAgenda = (eventId, data) => firebase
-  .firestore()
-  .collection('events')
-  .doc(eventId)
-  .collection('agenda')
-  .add({
-    ...data,
-    createTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  })
+export const createAgenda = (eventId, data) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('agenda')
+    .add({
+      ...data,
+      createTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })
