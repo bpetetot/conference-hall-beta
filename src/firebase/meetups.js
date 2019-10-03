@@ -5,7 +5,6 @@ import firebase from 'firebase/app'
  * @param {string} eventId event id
  * @param {object} meetup
  */
-// eslint-disable-next-line import/prefer-default-export
 export const createMeetup = (eventId, data) => firebase
   .firestore()
   .collection('events')
@@ -22,7 +21,6 @@ export const createMeetup = (eventId, data) => firebase
  * @param {string} eventId event id
  * @param {object} meetup
  */
-// eslint-disable-next-line import/prefer-default-export
 export const updateMeetup = (eventId, data) => firebase
   .firestore()
   .collection('events')
@@ -32,6 +30,19 @@ export const updateMeetup = (eventId, data) => firebase
     ...data,
     updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
   }, { merge: true })
+
+/**
+ * Remove a meetup to a specific event
+ * @param {string} eventId event id
+ * @param {string} meetupId meetup id
+ */
+export const removeMeetup = (eventId, meetupId) => firebase
+  .firestore()
+  .collection('events')
+  .doc(eventId)
+  .collection('meetups')
+  .doc(meetupId)
+  .delete()
 
 /**
  * Fetch all meetups of an event
