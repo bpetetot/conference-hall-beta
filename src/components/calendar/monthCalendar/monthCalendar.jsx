@@ -28,10 +28,19 @@ class MonthCalendar extends Component {
 
   goToToday = () => this.setState({ offset: 0 })
 
-  renderDayItem = (item, form, customClassName = '') => (
+  renderDayItem = (item, form, customClassName) => (
     <Drawer
       className="default-theme"
-      actions={({ hide }) => <Button onClick={hide}>Close</Button>}
+      actions={({ hide }) => (
+        <Button
+          onClick={(e) => {
+            e.stopPropagation()
+            hide()
+          }}
+        >
+          Close
+        </Button>
+      )}
       renderTrigger={({ show }) => (
         <div
           role="button"
@@ -48,7 +57,6 @@ class MonthCalendar extends Component {
     >
       {form}
     </Drawer>
-
   )
 
   renderDayContent = (date) => {
@@ -134,20 +142,22 @@ class MonthCalendar extends Component {
                   <Drawer
                     title={addEventTitle}
                     className="default-theme"
-                    actions={({ hide }) => <Button onClick={hide}>Close</Button>}
+                    actions={({ hide }) => (
+                      <Button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          hide()
+                        }}
+                      >
+                        Close
+                      </Button>
+                    )}
                     renderTrigger={({ show }) => (
                       <div
                         key={day === null ? index : dayDate}
                         role="button"
                         className={cn({ 'cc-month-day': day !== null })}
-                        onClick={(e) => {
-                          const node = e.target
-                          const attributeName = 'role'
-                          const hasNodeAButtonRole = node.hasAttribute(attributeName) && node.getAttribute(attributeName) === 'button'
-                          const hasParentNodeAButtonRole = node.parentNode.hasAttribute(attributeName) && node.parentNode.getAttribute(attributeName) === 'button'
-                          if (!hasNodeAButtonRole && !hasParentNodeAButtonRole) return
-                          show()
-                        }}
+                        onClick={show}
                       >
                         {day !== null && (
                           <Fragment>

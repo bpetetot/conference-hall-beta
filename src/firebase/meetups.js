@@ -28,10 +28,10 @@ export const updateMeetup = (eventId, data) => firebase
   .collection('events')
   .doc(eventId)
   .collection('meetups')
-  .add({
+  .set({
     ...data,
     updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  })
+  }, { merge: true })
 
 /**
  * Fetch all meetups of an event
