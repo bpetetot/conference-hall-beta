@@ -1,4 +1,3 @@
-import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 import parse from 'date-fns/parse'
 
@@ -11,6 +10,4 @@ const mapStore = (store, { date }) => ({
   },
 })
 
-export default compose(
-  inject(mapStore), //
-)(MeetupForm)
+export default inject(mapStore)(MeetupForm)

@@ -1,17 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
 import { Form } from 'react-final-form'
 
 import Field from 'components/form/field'
 import { input, textarea, SubmitButton } from 'components/form'
 import { required } from 'components/form/validators'
 
-import './meetupForm.css'
+import styles from './meetupForm.module.css'
 
 const MeetupForm = ({ onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit, pristine }) => (
-      <form className="meetup-form card">
+      <form className={cn(styles.form, 'card')}>
         <Field name="name" label="Name" type="text" component={input} validate={required} />
         <Field name="description" label="Description" type="text" component={textarea} />
         <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
