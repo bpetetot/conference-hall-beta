@@ -5,7 +5,6 @@ import firebase from 'firebase/app'
  * @param {string} eventId event id
  * @param {object} meetup
  */
-// eslint-disable-next-line import/prefer-default-export
 export const createMeetup = (eventId, data) => firebase
   .firestore()
   .collection('events')
@@ -22,7 +21,6 @@ export const createMeetup = (eventId, data) => firebase
  * @param {string} eventId event id
  * @param {object} meetup
  */
-// eslint-disable-next-line import/prefer-default-export
 export const updateMeetup = (eventId, data) => firebase
   .firestore()
   .collection('events')
@@ -38,7 +36,6 @@ export const updateMeetup = (eventId, data) => firebase
  * @param {string} eventId event id
  * @param {string} meetupId meetup id
  */
-// eslint-disable-next-line import/prefer-default-export
 export const removeMeetup = (eventId, meetupId) => firebase
   .firestore()
   .collection('events')
