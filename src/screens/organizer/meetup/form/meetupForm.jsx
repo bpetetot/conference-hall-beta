@@ -18,7 +18,7 @@ const MeetupForm = ({
       <form className={cn(styles.form, 'card')}>
         <Field name="name" label="Name" type="text" component={input} validate={required} />
         <Field name="description" label="Description" type="text" component={textarea} />
-        {initialValues && (
+        {(initialValues && onDelete) && (
           <Button error secondary onClick={onDelete}>
             Delete Meetup
           </Button>
@@ -40,7 +40,7 @@ MeetupForm.propTypes = {
 
 MeetupForm.defaultProps = {
   initialValues: undefined,
-  onDelete: () => {},
+  onDelete: undefined,
   submitting: false,
 }
 

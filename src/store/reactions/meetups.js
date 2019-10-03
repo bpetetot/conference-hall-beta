@@ -32,7 +32,7 @@ export const update = async (action, store, { router }) => {
 
 export const remove = async (action, store, { router }) => {
   const eventId = router.getParam('eventId')
-  const { id } = action
+  const { id } = action.payload
 
   await removeMeetup(eventId, id)
 
