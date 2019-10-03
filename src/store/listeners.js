@@ -62,6 +62,7 @@ export default [
   when('@@ui/REMOVE_ORGANIZATION_MEMBER')(organizations.removeMember),
   /* meetups */
   when('@@ui/ON_CREATE_MEETUP')(meetups.create),
+  when('@@ui/ON_UPDATE_MEETUP')(meetups.update),
   when('@@ui/ON_LOAD_MEETUPS')(meetups.fetchMeetups),
   /* submissions */
   when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),
