@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
-import keys from 'lodash/keys'
+import sortBy from 'lodash/sortBy'
 
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
@@ -11,10 +11,6 @@ import Button from 'components/button'
 import MemberRow from './memberRow'
 
 import './organizationPage.css'
-
-function sortBy(attr) {
-  return (a, b) => (a[attr] > b[attr] ? 1 : -1)
-}
 
 const OrganizationPage = ({
   id: organizationId,
@@ -60,14 +56,14 @@ const OrganizationPage = ({
     </Titlebar>
     <List
       className="organization-content"
-      array={keys(members).sort(sortBy('displayName'))}
+      array={sortBy(members, 'displayName')}
       noResult="No users yet !"
-      renderRow={uid => (
+      renderRow={member => (
         <MemberRow
-          key={uid}
-          uid={uid}
+          key={member.uid}
+          uid={member.uid}
           authUserId={authUserId}
-          removeMember={() => removeMember(uid)}
+          removeMember={() => removeMember(member.uid)}
           owner={owner}
         />
       )}
