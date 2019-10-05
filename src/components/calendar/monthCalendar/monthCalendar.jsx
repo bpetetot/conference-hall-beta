@@ -33,10 +33,7 @@ class MonthCalendar extends Component {
       className="default-theme"
       actions={({ hide }) => (
         <Button
-          onClick={(e) => {
-            e.stopPropagation()
-            hide()
-          }}
+          onClick={hide}
         >
           Close
         </Button>
@@ -144,10 +141,7 @@ class MonthCalendar extends Component {
                     className="default-theme"
                     actions={({ hide }) => (
                       <Button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          hide()
-                        }}
+                        onClick={hide}
                       >
                         Close
                       </Button>

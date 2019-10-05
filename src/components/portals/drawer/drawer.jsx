@@ -16,8 +16,17 @@ const Drawer = ({
   <OpenTrigger defaultOpen={defaultOpen} renderTrigger={renderTrigger}>
     {({ hide, show, isOpen }) => (
       <Portal>
-        <Backdrop onClick={hide} />
-        <div className={cn('drawer-sidebar', className)}>
+        <Backdrop
+          onClick={(e) => {
+            e.stopPropagation()
+            hide()
+          }}
+        />
+        <div
+          className={cn('drawer-sidebar', className)}
+          onClick={e => e.stopPropagation()}
+          role="presentation"
+        >
           <div className="drawer-header">
             <div className="drawer-titles">
               <div className="drawer-title">{title}</div>
@@ -25,10 +34,7 @@ const Drawer = ({
             </div>
             <Button
               simple
-              onClick={(e) => {
-                e.stopPropagation()
-                hide()
-              }}
+              onClick={hide}
             >
               <CloseIcon />
             </Button>
