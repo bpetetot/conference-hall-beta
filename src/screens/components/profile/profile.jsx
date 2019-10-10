@@ -34,6 +34,7 @@ const Profile = ({
             validate={required}
             inline
           />
+          <Field name="email" label="Email" type="text" component={input} validate={required} inline />
           <Field name="company" label="Company" type="text" component={input} inline />
           <Field name="phone" label="Phone" type="text" component={input} inline />
           <Field name="language" label="Spoken language" type="text" component={input} inline />
