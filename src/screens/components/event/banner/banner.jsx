@@ -12,7 +12,6 @@ const EventBanner = ({
   eventId, name, type, address, bannerUrl, className, isMobile,
 }) => {
   const bannerStyle = bannerUrl ? { backgroundImage: `url('${bannerUrl}')` } : {}
-
   return (
     <div className={cn(styles.banner, className)} style={bannerStyle}>
       <div className={styles.layer} />
@@ -21,11 +20,9 @@ const EventBanner = ({
         <div className={styles.subtitle}>
           {capitalize(type)}{address && ` • ${address.formattedAddress}`}
         </div>
-        {!isMobile && (
-          <div className={styles.actions}>
-            <SubmitTalkLink eventId={eventId} />
-          </div>
-        )}
+        <div className={styles.actions}>
+          <SubmitTalkLink eventId={eventId} size={isMobile ? 'small' : 'normal'} />
+        </div>
       </div>
     </div>
   )
