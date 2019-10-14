@@ -12,11 +12,13 @@ import styles from './deliberation.module.css'
 const DeliberationForm = ({
   deliberationEnabled,
   displayRatings,
+  hideRatings,
   contact,
   recipients,
   emails,
   onToggleDeliberation,
   onToggleOrganizersRatings,
+  onToggleHideRatings,
   onChangeRecipients,
   onChangeNotifiedEmails,
 }) => {
@@ -46,6 +48,19 @@ const DeliberationForm = ({
           name="displayOrganizersRatings"
           checked={displayRatings}
           onChange={onToggleOrganizersRatings}
+        />
+      </Label>
+
+      <Label
+        name="hideRatings"
+        label="Hide ratings from proposal list"
+        classNameInput={styles.label}
+        right
+      >
+        <Toggle
+          name="hideRatings"
+          checked={hideRatings}
+          onChange={onToggleHideRatings}
         />
       </Label>
 
@@ -137,11 +152,13 @@ const DeliberationForm = ({
 DeliberationForm.propTypes = {
   deliberationEnabled: PropTypes.bool,
   displayRatings: PropTypes.bool,
+  hideRatings: PropTypes.bool,
   contact: PropTypes.string,
   recipients: PropTypes.object,
   emails: PropTypes.object,
   onToggleDeliberation: PropTypes.func.isRequired,
   onToggleOrganizersRatings: PropTypes.func.isRequired,
+  onToggleHideRatings: PropTypes.func.isRequired,
   onChangeRecipients: PropTypes.func.isRequired,
   onChangeNotifiedEmails: PropTypes.func.isRequired,
 }
@@ -149,6 +166,7 @@ DeliberationForm.propTypes = {
 DeliberationForm.defaultProps = {
   deliberationEnabled: false,
   displayRatings: false,
+  hideRatings: false,
   contact: undefined,
   recipients: {},
   emails: {},
