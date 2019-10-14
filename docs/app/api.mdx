@@ -70,3 +70,43 @@ As organizer you can generate an API key for an event in Conference Hall through
   ]
 }
 ```
+
+## Accept proposal
+
+### Endpoint
+
+`PUT /api/v1/proposal/{event_id}/{proposal_id}/accept`
+
+### Parameters
+
+| parameter    | type      | description                                               | required |
+| ------------ | --------- | --------------------------------------------------------- | -------- |
+| `key`        | `string`  | API key                                                   | Yes      |
+
+### Exemple
+
+```js
+{
+  "result": "Proposal with ID aaaaaaaaaaaaaaaaaaaa is now accepted."
+}
+```
+
+## Reject proposal
+
+### Endpoint
+
+`PUT /api/v1/proposal/{event_id}/{proposal_id}/reject`
+
+### Parameters
+
+| parameter    | type      | description                                               | required |
+| ------------ | --------- | --------------------------------------------------------- | -------- |
+| `key`        | `string`  | API key                                                   | Yes      |
+
+### Exemple
+
+```js
+{
+  "result": "Proposal with ID aaaaaaaaaaaaaaaaaaaa is now rejected."
+}
+```
