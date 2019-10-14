@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
+import languages from 'helpers/language.json'
 
 import Field from 'components/form/field'
 import {
-  input, markdownInput, radio, SubmitButton, RadioGroup,
+  input, markdownInput, radio, SubmitButton, RadioGroup, select,
 } from 'components/form'
 import { required } from 'components/form/validators'
 import './talkForm.css'
@@ -28,7 +29,15 @@ const TalkForm = ({ onSubmit, initialValues, submitting }) => (
           validate={required}
           inline
         />
-        <Field name="language" label="Talk language" type="text" component={input} inline />
+        <Field name="language" label="Talk language" type="text" component={select} inline>
+          <option />
+          {Object.entries(languages).map(([id, name]) => (
+            <option key={id} value={name}>
+              {name}
+            </option>
+          ))}
+        </Field>
+
         <RadioGroup name="level" label="Level" inline>
           <Field name="level" value="beginner" label="Beginner" type="radio" component={radio} />
           <Field
