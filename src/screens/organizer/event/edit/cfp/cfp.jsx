@@ -64,15 +64,6 @@ const CFPForm = ({
             Talk formats
           </label>
         </Label>
-        <Field
-          component={toggle}
-          hints="Hide ratings from proposal list"
-          inline
-          label="Hide ratings"
-          name="hideRatings"
-          type="checkbox"
-        />
-
         <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
           Save CFP settings
         </SubmitButton>

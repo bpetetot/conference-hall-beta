@@ -11,12 +11,14 @@ const mapStore = (store, { eventId }) => {
 
   const deliberationEnabled = get(settings, 'deliberation.enabled')
   const displayRatings = get(settings, 'deliberation.displayRatings')
+  const hideRatings = get(settings, 'deliberation.hideRatings')
   const recipients = get(settings, 'notifications.recipients')
   const emails = get(settings, 'notifications.emails')
 
   return {
     deliberationEnabled,
     displayRatings,
+    hideRatings,
     contact,
     recipients,
     emails,
@@ -35,6 +37,15 @@ const mapStore = (store, { eventId }) => {
         eventId,
         domain: 'deliberation',
         displayRatings: checked,
+      },
+    }),
+
+    onToggleHideRatings: checked => store.dispatch({
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+      payload: {
+        eventId,
+        domain: 'deliberation',
+        hideRatings: checked,
       },
     }),
 
