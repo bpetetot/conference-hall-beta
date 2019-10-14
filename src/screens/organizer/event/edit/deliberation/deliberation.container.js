@@ -9,6 +9,7 @@ const mapStore = (store, { eventId }) => {
   const { contact } = store.data.events.get(eventId) || {}
   const settings = store.data.eventsSettings.get(eventId)
 
+  const blindRating = get(settings, 'deliberation.blindRating')
   const deliberationEnabled = get(settings, 'deliberation.enabled')
   const displayRatings = get(settings, 'deliberation.displayRatings')
   const hideRatings = get(settings, 'deliberation.hideRatings')
@@ -16,6 +17,7 @@ const mapStore = (store, { eventId }) => {
   const emails = get(settings, 'notifications.emails')
 
   return {
+    blindRating,
     deliberationEnabled,
     displayRatings,
     hideRatings,
@@ -28,6 +30,15 @@ const mapStore = (store, { eventId }) => {
         eventId,
         domain: 'deliberation',
         enabled: checked,
+      },
+    }),
+
+    onToggleBlindRating: checked => store.dispatch({
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+      payload: {
+        eventId,
+        domain: 'deliberation',
+        blindRating: checked,
       },
     }),
 

@@ -64,14 +64,6 @@ const CFPForm = ({
             Talk formats
           </label>
         </Label>
-        <Field
-          component={toggle}
-          hints="Hide speakers from proposal page"
-          inline
-          label="Blind rating"
-          name="blindRating"
-          type="checkbox"
-        />
         <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
           Save CFP settings
         </SubmitButton>

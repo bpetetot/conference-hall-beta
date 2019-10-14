@@ -10,12 +10,14 @@ import IconLabel from 'components/iconLabel/iconLabel'
 import styles from './deliberation.module.css'
 
 const DeliberationForm = ({
+  blindRating,
   deliberationEnabled,
   displayRatings,
   hideRatings,
   contact,
   recipients,
   emails,
+  onToggleBlindRating,
   onToggleDeliberation,
   onToggleOrganizersRatings,
   onToggleHideRatings,
@@ -61,6 +63,19 @@ const DeliberationForm = ({
           name="hideRatings"
           checked={hideRatings}
           onChange={onToggleHideRatings}
+        />
+      </Label>
+
+      <Label
+        name="blindRating"
+        label="Hide speakers from proposal page"
+        classNameInput={styles.label}
+        right
+      >
+        <Toggle
+          name="blindRating"
+          checked={blindRating}
+          onChange={onToggleBlindRating}
         />
       </Label>
 
@@ -150,6 +165,7 @@ const DeliberationForm = ({
 }
 
 DeliberationForm.propTypes = {
+  blindRating: PropTypes.bool,
   deliberationEnabled: PropTypes.bool,
   displayRatings: PropTypes.bool,
   hideRatings: PropTypes.bool,
@@ -159,11 +175,13 @@ DeliberationForm.propTypes = {
   onToggleDeliberation: PropTypes.func.isRequired,
   onToggleOrganizersRatings: PropTypes.func.isRequired,
   onToggleHideRatings: PropTypes.func.isRequired,
+  onToggleBlindRating: PropTypes.func.isRequired,
   onChangeRecipients: PropTypes.func.isRequired,
   onChangeNotifiedEmails: PropTypes.func.isRequired,
 }
 
 DeliberationForm.defaultProps = {
+  blindRating: false,
   deliberationEnabled: false,
   displayRatings: false,
   hideRatings: false,
