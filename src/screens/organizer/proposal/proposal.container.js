@@ -18,6 +18,7 @@ const mapStore = (store, props, { router }) => {
     proposal,
     eventId,
     deliberationActive: get(settings, 'deliberation.enabled'),
+    blindRating: get(settings, 'deliberation.blindRating'),
     load: () => {
       store.dispatch('@@ui/ON_LOAD_PROPOSAL')
       store.dispatch('@@ui/ON_LOAD_EVENT')
