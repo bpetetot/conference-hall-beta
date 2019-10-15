@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
           'speakers',
           'comments',
           'language',
+          'createTimestamp'
         ],
         speaker: ['uid', 'displayName', 'bio', 'speakerReferences', 'company', 'photoURL', 'twitter', 'github'],
       },
