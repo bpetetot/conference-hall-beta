@@ -20,6 +20,11 @@ Create a firebase project with the [firebase console](https://console.firebase.g
 * Activate "Google" as a sign-in provider for Authentication
 * Activate "Storage" (used to store event images for banners)
 
+Configure your Private Key :
+* Go to project's settings
+* Go to "Service accounts" tab, then go to "Firebase Admin SDK" section and click "Generate new private key"
+* Copy the downloaded file into your project root and rename it "serviceAccount.json"
+
 Create a `.env.local` file by copying `.env` file at root folder and set firebase environment variables. You can get all these variables from the homepage by clicking "Add an application" and selecting the web icon.
 
 * `REACT_APP_API_KEY=<API_KEY>`
