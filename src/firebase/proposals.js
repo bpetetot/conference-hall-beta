@@ -56,13 +56,17 @@ export const fetchEventProposals = async (
   }
 
   const result = await query.get()
-  let proposals = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  let proposals = result.docs.map((ref) => ({ id: ref.id, ...ref.data() }))
 
   // add ratings filter (client filter)
   if (ratings === 'rated') {
-    proposals = proposals.filter(proposal => proposal.usersRatings && !!proposal.usersRatings[uid])
+    proposals = proposals.filter(
+      (proposal) => proposal.usersRatings && !!proposal.usersRatings[uid],
+    )
   } else if (ratings === 'notRated') {
-    proposals = proposals.filter(proposal => !proposal.usersRatings || !proposal.usersRatings[uid])
+    proposals = proposals.filter(
+      (proposal) => !proposal.usersRatings || !proposal.usersRatings[uid],
+    )
   }
 
   return proposals
@@ -102,7 +106,7 @@ export const fetchOrganizersThread = async (eventId, proposalId) => {
     .collection('organizersThread')
     .orderBy('date', 'asc')
     .get()
-  return result.docs.map(ref => ({ messageId: ref.id, ...ref.data() }))
+  return result.docs.map((ref) => ({ messageId: ref.id, ...ref.data() }))
 }
 
 export const addOrganizersThreadMessage = async (eventId, proposalId, uid, message) => firebase
@@ -118,11 +122,7 @@ export const addOrganizersThreadMessage = async (eventId, proposalId, uid, messa
     date: firebase.firestore.FieldValue.serverTimestamp(),
   })
 
-export const updateOrganizersThreadMessage = async (
-  eventId,
-  proposalId,
-  messageId,
-  message) => {
+export const updateOrganizersThreadMessage = async (eventId, proposalId, messageId, message) => {
   await firebase
     .firestore()
     .collection('events')
@@ -137,10 +137,7 @@ export const updateOrganizersThreadMessage = async (
     })
 }
 
-export const deleteOrganizersThreadMessage = async (
-  eventId,
-  proposalId,
-  messageId) => {
+export const deleteOrganizersThreadMessage = async (eventId, proposalId, messageId) => {
   await firebase
     .firestore()
     .collection('events')

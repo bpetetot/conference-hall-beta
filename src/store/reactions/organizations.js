@@ -39,7 +39,7 @@ export const get = async (action, store, { router }) => {
 export const ofUser = async (action, store) => {
   const { uid } = store.auth.get()
   const organizations = await fetchUserOrganizations(uid)
-  store.data.organizations.set(organizations.docs.map(ref => ({ id: ref.id, ...ref.data() })))
+  store.data.organizations.set(organizations.docs.map((ref) => ({ id: ref.id, ...ref.data() })))
 }
 
 export const addMember = async (action, store, { router }) => {

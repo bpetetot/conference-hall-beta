@@ -12,7 +12,7 @@ const mapStore = (store) => {
     nbItems,
     page,
     nbPage,
-    onPageChange: newPage => store.ui.organizer.proposalsPaging.update({ page: newPage }),
+    onPageChange: (newPage) => store.ui.organizer.proposalsPaging.update({ page: newPage }),
   }
 }
 

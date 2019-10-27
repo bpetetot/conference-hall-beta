@@ -12,14 +12,14 @@ class TooltipOverlay extends Component {
     const display = !opened ? { display: 'none' } : {}
     return (
       <div
-        ref={r => (this.popperRef = r)}
+        ref={(r) => (this.popperRef = r)}
         style={{ ...display, ...popperStyle }}
         data-placement={placement}
         className="cc-tooltip"
         role="tooltip"
       >
         <div
-          ref={r => (this.arrowRef = r)}
+          ref={(r) => (this.arrowRef = r)}
           style={{ ...arrowStyle }}
           className="cc-tooltip-arrow"
         />

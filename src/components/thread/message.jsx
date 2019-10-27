@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
@@ -40,7 +40,7 @@ const Message = ({
     <ConfirmationPopin
       title="Delete a message"
       content={(
-        <Fragment>
+        <>
           Are you sure you want to delete this message ? This cannot be undone.
           <Message
             id={id}
@@ -51,7 +51,7 @@ const Message = ({
             modified={modified}
             className={styles.previewMessageDelete}
           />
-        </Fragment>
+        </>
       )}
       className="remove-member-modal"
       onOk={() => onDelete(id)}

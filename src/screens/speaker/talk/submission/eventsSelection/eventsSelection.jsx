@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
 
@@ -35,7 +35,7 @@ const TalksSelection = ({ talkId, events, onSelect }) => (
           </div>
 )}
         subtitle={(
-          <Fragment>
+          <>
             {type === 'conference' && (
             <EventDates
               dates={conferenceDates}
@@ -44,7 +44,7 @@ const TalksSelection = ({ talkId, events, onSelect }) => (
             />
             )}
             <IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />
-          </Fragment>
+          </>
 )}
         info={<Status eventId={id} talkId={talkId} />}
         onSelect={() => onSelect(id)}

@@ -12,7 +12,8 @@ class Contributors extends Component {
     contributors: [],
   }
 
-  async componentWillMount() {
+  // eslint-disable-next-line camelcase
+  async UNSAFE_componentWillMount() {
     const response = await fetch(CONTRIBUTORS_API)
     const contributors = await response.json()
     this.setState({ contributors })
@@ -27,7 +28,7 @@ class Contributors extends Component {
           <IconLabel icon="fa fa-github-alt" label={`Thanks to our ${count} contributors!`} />
         </h1>
         <div className="contributors-list">
-          {contributors.map(c => (
+          {contributors.map((c) => (
             <Contributor key={c.id} name={c.login} image={c.avatar_url} url={c.html_url} />
           ))}
         </div>

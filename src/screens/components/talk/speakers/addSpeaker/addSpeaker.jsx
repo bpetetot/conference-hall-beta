@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import AddUserModal from 'screens/components/addUserModal'
 
@@ -19,7 +19,7 @@ const AddSpeaker = ({ onSelectUser }) => (
     resultsMessage="Select a speaker for your talk"
     onSelectUser={onSelectUser}
     description={(
-      <Fragment>
+      <>
         <p>
           Search and add a co-speaker to your talk, he/she will be also able to update it and submit
           it to any event.
@@ -30,7 +30,7 @@ const AddSpeaker = ({ onSelectUser }) => (
           For security and privacy reasons, you can search a speaker only by his/her registered
           email address.
         </p>
-      </Fragment>
+      </>
 )}
   />
 )

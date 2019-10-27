@@ -54,8 +54,7 @@ export default (name, Form) => class extends React.Component {
                           onDelete={this.onRemoveItem(fields, index)}
                           {...input.value}
                         />
-                        )
-                        }
+                        )}
                       >
                         {({ hide }) => (
                           <Form

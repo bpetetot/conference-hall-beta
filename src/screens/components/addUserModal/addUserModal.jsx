@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Modal } from 'components/portals'
@@ -24,7 +24,7 @@ const AddUserModal = ({
 }) => (
   <Modal className="add-user-modal" renderTrigger={renderTrigger}>
     {({ hide }) => (
-      <Fragment>
+      <>
         <h1>{title}</h1>
         {description}
         {searching ? (
@@ -51,14 +51,14 @@ const AddUserModal = ({
           />
         )}
         {!!inviteLink && (
-          <Fragment>
+          <>
             <div className="user-search-separator">
               <small>or send him/her an invitation link</small>
             </div>
             <CopyInput title="Invite link" value={inviteLink} />
-          </Fragment>
+          </>
         )}
-      </Fragment>
+      </>
     )}
   </Modal>
 )

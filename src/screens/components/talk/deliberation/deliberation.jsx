@@ -5,7 +5,7 @@ import Notification from './notification'
 
 import styles from './deliberation.module.css'
 
-const filterAccepted = submissions => Object.keys(submissions).filter(eventId => submissions[eventId].state === 'accepted')
+const filterAccepted = (submissions) => Object.keys(submissions).filter((eventId) => submissions[eventId].state === 'accepted')
 
 const TalkDeliberationNotification = ({ submissions }) => {
   const acceptedSubmission = filterAccepted(submissions)
@@ -16,7 +16,7 @@ const TalkDeliberationNotification = ({ submissions }) => {
 
   return (
     <div className={styles.deliberation}>
-      {acceptedSubmission.map(eventId => (
+      {acceptedSubmission.map((eventId) => (
         <Notification key={eventId} eventId={eventId} talkId={submissions[eventId].id} />
       ))}
     </div>

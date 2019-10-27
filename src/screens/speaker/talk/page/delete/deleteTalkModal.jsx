@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import upperCase from 'lodash/upperCase'
 
@@ -19,7 +19,7 @@ class DeleteTalkModal extends Component {
     return this.setState({ disabled: upperCase(talkTitle) !== upperCase(e.target.value) })
   }
 
-  handleDelete = hide => () => {
+  handleDelete = (hide) => () => {
     this.props.deleteTalk()
     hide()
   }
@@ -35,7 +35,7 @@ class DeleteTalkModal extends Component {
         )}
       >
         {({ hide }) => (
-          <Fragment>
+          <>
             <h1>Danger!</h1>
             <p>Be careful, you are going to delete your talk. It&apos;s a definitive action!</p>
             {this.props.canDelete || (
@@ -53,7 +53,7 @@ class DeleteTalkModal extends Component {
               onChange={this.handleChange}
               disabled={this.state.disabled}
             />
-          </Fragment>
+          </>
         )}
       </Modal>
     )

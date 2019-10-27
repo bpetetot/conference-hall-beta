@@ -5,7 +5,7 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 import CustomizeForm from './customize'
 
 const mapStore = (store, { eventId }) => ({
-  onChangeBanner: url => store.dispatch({
+  onChangeBanner: (url) => store.dispatch({
     type: '@@ui/ON_EVENT_BANNER_UPLOADED',
     payload: {
       event: {

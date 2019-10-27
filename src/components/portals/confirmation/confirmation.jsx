@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
@@ -8,14 +8,14 @@ import Button from 'components/button'
 import './confirmation.css'
 
 class ConfirmationPopin extends Component {
-  handleOk = hide => (e) => {
+  handleOk = (hide) => (e) => {
     hide()
     if (this.props.onOk) {
       this.props.onOk(e)
     }
   }
 
-  handleCancel = hide => (e) => {
+  handleCancel = (hide) => (e) => {
     hide()
     if (this.props.onCancel) {
       this.props.onCancel(e)
@@ -46,7 +46,7 @@ class ConfirmationPopin extends Component {
         className={cn('confirmation-popin', className)}
       >
         {({ hide }) => (
-          <Fragment>
+          <>
             <div className="confirmation-text">
               {title && <div className="confirmation-title">{title}</div>}
               {content && <div className="confirmation-content">{content}</div>}
@@ -63,7 +63,7 @@ class ConfirmationPopin extends Component {
                 </Button>
               )}
             </div>
-          </Fragment>
+          </>
         )}
       </Modal>
     )

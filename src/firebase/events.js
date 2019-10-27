@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 
 import crud from './crud'
 
-export const fetchUserEvents = uid => firebase
+export const fetchUserEvents = (uid) => firebase
   .firestore()
   .collection('events')
   .where('owner', '==', uid)
@@ -14,7 +14,7 @@ export const fetchPublicEvents = () => firebase
   .where('visibility', '==', 'public')
   .get()
 
-export const fetchSettings = eventId => firebase
+export const fetchSettings = (eventId) => firebase
   .firestore()
   .collection('events')
   .doc(eventId)

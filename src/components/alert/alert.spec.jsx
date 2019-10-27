@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import React, { Fragment } from 'react'
+import React from 'react'
 import { shallow } from 'enzyme'
 import Button from 'components/button'
 import Alert from './index'
@@ -29,14 +29,14 @@ describe('components/alert', () => {
     const wrapper = shallow(<Alert
       title="boo"
       actionButtons={(
-        <Fragment>
+        <>
           <Button primary>
             I confirm my venue
           </Button>
           <Button primary error>
             I cancel my venue
           </Button>
-        </Fragment>
+        </>
       )}
     />)
     expect(wrapper).toMatchSnapshot()
