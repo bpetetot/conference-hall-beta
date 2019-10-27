@@ -4,7 +4,7 @@ import cn from 'classnames'
 import DatePicker from 'react-datepicker'
 import { toDate } from 'helpers/firebase'
 import { withSizes } from 'styles/utils'
-import isAfter from 'date-fns/is_after'
+import isAfter from 'date-fns/isAfter'
 
 import styles from './dayRangePicker.module.css'
 
