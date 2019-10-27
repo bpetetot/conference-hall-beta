@@ -4,7 +4,7 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import EventForm from '../form'
 
-const mapStore = store => ({
+const mapStore = (store) => ({
   submitting: store.ui.loaders.get().isEventSaving,
   isCreateForm: true,
   organizations: store.data.organizations.getAsArray(),

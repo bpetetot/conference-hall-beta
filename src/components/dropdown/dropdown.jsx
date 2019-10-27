@@ -18,7 +18,7 @@ class Dropdown extends Component {
   }
 
   handleClick = () => {
-    this.setState(state => ({ visible: !state.visible }))
+    this.setState((state) => ({ visible: !state.visible }))
   }
 
   handleClickOutside = (e) => {

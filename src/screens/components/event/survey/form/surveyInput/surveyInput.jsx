@@ -11,7 +11,7 @@ const SurveyInput = ({
   <div className="survey-input">
     <label>{label}</label>
     {answers ? (
-      answers.map(answer => (
+      answers.map((answer) => (
         <div key={answer.name}>
           <label>
             <Field

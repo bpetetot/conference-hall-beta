@@ -13,7 +13,7 @@ export const fetchUserTalks = async (uid) => {
     .collection('talks')
     .where(`speakers.${uid}`, '==', true)
     .get()
-  return result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  return result.docs.map((ref) => ({ id: ref.id, ...ref.data() }))
 }
 
 export default talksCrud

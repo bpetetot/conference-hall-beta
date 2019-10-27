@@ -35,7 +35,7 @@ class Tooltip extends Component {
     this.popperInstance.destroy()
   }
 
-  handleHover = type => () => {
+  handleHover = (type) => () => {
     this.setState(() => ({ opened: type === 'enter' }))
     this.popperInstance.update()
   }
@@ -55,14 +55,14 @@ class Tooltip extends Component {
     } = this.props
     return (
       <span
-        ref={r => (this.targetRef = r)}
+        ref={(r) => (this.targetRef = r)}
         onMouseEnter={this.handleHover('enter')}
         onMouseLeave={this.handleHover('leave')}
         className={className}
         style={{ display: inline ? 'inline' : 'block' }}
       >
         {children}
-        <TooltipOverlay ref={t => (this.tooltip = t)} content={tooltip} {...this.state} />
+        <TooltipOverlay ref={(t) => (this.tooltip = t)} content={tooltip} {...this.state} />
       </span>
     )
   }

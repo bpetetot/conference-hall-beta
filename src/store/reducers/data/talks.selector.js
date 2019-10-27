@@ -7,7 +7,7 @@ import isEmpty from 'lodash/isEmpty'
  * Check if the talk can be deleted
  * @param {String} talkId talk id
  */
-export const canBeDeleted = talkId => (store) => {
+export const canBeDeleted = (talkId) => (store) => {
   const talk = store.data.talks.get(talkId)
   return !!talk && isEmpty(talk.submissions)
 }
@@ -25,7 +25,7 @@ export const isSubmitted = (talkId, eventId) => (store) => {
   return false
 }
 
-const isEqualToStatus = status => (talkId, eventId) => (store) => {
+const isEqualToStatus = (status) => (talkId, eventId) => (store) => {
   const talk = store.data.talks.get(talkId)
   if (has(talk, `submissions[${eventId}].state`)) {
     return talk.submissions[eventId].state === status

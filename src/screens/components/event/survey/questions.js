@@ -70,7 +70,7 @@ const questions = [
   },
 ]
 
-export const getQuestion = name => find(questions, { name })
+export const getQuestion = (name) => find(questions, { name })
 
 export const getAnswer = (question, name) => find(question.answers, { name })
 
@@ -82,10 +82,10 @@ export const getAnswersLabel = (questionName, answer) => {
     return answer
   }
   if (question.type === 'checkbox') {
-    const validAnswers = omitBy(answer, value => !value)
+    const validAnswers = omitBy(answer, (value) => !value)
     if (isEmpty(validAnswers)) return undefined
     return Object.keys(validAnswers)
-      .map(a => getAnswer(question, a).label)
+      .map((a) => getAnswer(question, a).label)
       .join(', ')
   }
   return getAnswer(question, answer).label

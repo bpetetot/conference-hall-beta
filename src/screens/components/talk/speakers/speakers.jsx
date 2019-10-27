@@ -13,7 +13,7 @@ const TalkSpeakers = ({
 }) => (
   <div className={cn('talk-speakers card', className)}>
     <h3>Speakers</h3>
-    {Object.keys(speakers).map(key => (
+    {Object.keys(speakers).map((key) => (
       <div key={key} className="talk-speaker-row">
         <UserAvatar id={key} />
         {owner === key && <small>owner</small>}

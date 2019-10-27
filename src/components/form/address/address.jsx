@@ -32,8 +32,8 @@ const getTimezone = async ({ lat, lng }) => {
   return null
 }
 
-const getAddressComponent = name => flow(
-  filter(component => component.types.includes(name)),
+const getAddressComponent = (name) => flow(
+  filter((component) => component.types.includes(name)),
   first,
   pick(['short_name', 'long_name']),
 )

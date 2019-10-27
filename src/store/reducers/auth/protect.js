@@ -7,6 +7,7 @@ import LoadingIndicator from 'components/loader/loading'
 
 export default (Component) => {
   class ProtectedComponent extends React.Component {
+    // eslint-disable-next-line react/static-property-placement
     static propTypes = {
       authenticated: PropTypes.bool.isRequired,
       initialized: PropTypes.bool.isRequired,

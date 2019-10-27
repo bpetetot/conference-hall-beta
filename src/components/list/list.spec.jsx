@@ -10,7 +10,7 @@ describe('components/list', () => {
         <List
           className="event-proposals"
           array={[]}
-          renderRow={proposal => (
+          renderRow={(proposal) => (
             <div>{proposal}</div>
           )}
         />,
@@ -24,7 +24,7 @@ describe('components/list', () => {
           className="event-proposals"
           array={[]}
           noResult="😢"
-          renderRow={proposal => (
+          renderRow={(proposal) => (
             <div>{proposal}</div>
           )}
         />,
@@ -37,7 +37,7 @@ describe('components/list', () => {
         <List
           className="event-proposals"
           array={['hello']}
-          renderRow={proposal => (
+          renderRow={(proposal) => (
             <div key={proposal}>{proposal}</div>
           )}
         />,

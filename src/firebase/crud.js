@@ -35,7 +35,7 @@ const create = (collection, idAttr) => (data) => {
  * read document in the collection
  * @param {String} collection collection name
  */
-const read = collection => id => firebase
+const read = (collection) => (id) => firebase
   .firestore()
   .collection(collection)
   .doc(id)
@@ -46,7 +46,7 @@ const read = collection => id => firebase
  * @param {String} collection collection name
  * @param {String} idAttr attribute name of the id
  */
-const update = (collection, idAttr) => data => firebase
+const update = (collection, idAttr) => (data) => firebase
   .firestore()
   .collection(collection)
   .doc(data[idAttr])
@@ -59,7 +59,7 @@ const update = (collection, idAttr) => data => firebase
  * delete document in the collection
  * @param {String} collection collection name
  */
-const deleteDoc = collection => id => firebase
+const deleteDoc = (collection) => (id) => firebase
   .firestore()
   .collection(collection)
   .doc(id)

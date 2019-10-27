@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconLabel from 'components/iconLabel'
@@ -27,7 +27,7 @@ const MemberRow = ({
   const canLeave = owner !== authUserId && authUserId === uid
 
   return (
-    <Fragment>
+    <>
       <ListItem
         key={uid}
         title={<Avatar name={displayName} src={photoURL} withLabel />}
@@ -40,7 +40,7 @@ const MemberRow = ({
             onOk={removeMember}
             withCancel
             renderTrigger={({ show }) => (
-              <Fragment>
+              <>
                 {canRemove && (
                   <Button onClick={show} tertiary>
                     <IconLabel icon="fa fa-trash" label="Remove" />
@@ -51,12 +51,12 @@ const MemberRow = ({
                     <IconLabel icon="fa fa-sign-out" label="Leave" />
                   </Button>
                 )}
-              </Fragment>
+              </>
             )}
           />
         )}
       />
-    </Fragment>
+    </>
   )
 }
 

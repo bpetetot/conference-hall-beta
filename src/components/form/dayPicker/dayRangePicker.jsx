@@ -41,9 +41,9 @@ class DayRangePicker extends React.Component {
     })
   }
 
-  handleChangeStart = start => this.handleChange({ start })
+  handleChangeStart = (start) => this.handleChange({ start })
 
-  handleChangeEnd = end => this.handleChange({ end })
+  handleChangeEnd = (end) => this.handleChange({ end })
 
   onStartChange = (start) => {
     this.setState((state) => {

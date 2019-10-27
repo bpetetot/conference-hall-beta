@@ -85,11 +85,11 @@ export const fetchOrganizerEvents = async (action, store, { router }) => {
   const organizations = store.data.organizations.getKeys()
 
   const result = await fetchUserEvents(uid)
-  const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  const events = result.docs.map((ref) => ({ id: ref.id, ...ref.data() }))
   const organizationsEvents = await Promise.all(
     map(organizations, async (organizationId) => {
       const organizationEvents = await fetchOrganizationEvents(organizationId)
-      return organizationEvents.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+      return organizationEvents.docs.map((ref) => ({ id: ref.id, ...ref.data() }))
     }),
   )
   const aggregatedEvents = uniqBy(events.concat(flatten(organizationsEvents)), 'id')
@@ -100,12 +100,12 @@ export const fetchOrganizerEvents = async (action, store, { router }) => {
   store.ui.organizer.myEvents.set(aggregatedEvents)
 
   // fetch events settings
-  await Promise.all(map(aggregatedEvents, event => fetchEventSettings(event.id, store, router)))
+  await Promise.all(map(aggregatedEvents, (event) => fetchEventSettings(event.id, store, router)))
 }
 
 export const fetchSpeakerEvents = async (action, store) => {
   const result = await fetchPublicEvents()
-  const events = result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+  const events = result.docs.map((ref) => ({ id: ref.id, ...ref.data() }))
   // set events in the store
   store.data.events.set(events)
   // set events id to the organizer event store

@@ -4,7 +4,7 @@ import get from 'lodash/get'
 import ProposalToobar from './proposalsToolbar'
 
 const countEmailsToSend = (type, selection = [], proposals = []) => {
-  const result = proposals.filter(p => selection.includes(p.id) && p.state === type)
+  const result = proposals.filter((p) => selection.includes(p.id) && p.state === type)
   return result.length
 }
 
@@ -26,11 +26,11 @@ const mapStore = (store, props, { router }) => {
     totalProposals,
     nbRejectedEmails,
     nbAcceptedEmails,
-    onSelectAll: e => store.dispatch({
+    onSelectAll: (e) => store.dispatch({
       type: '@@ui/SELECT_ALL_PROPOSALS',
       payload: { checkAll: e.target.checked },
     }),
-    onExportProposals: output => () => store.dispatch({ type: '@@ui/EXPORT_PROPOSALS', payload: { output } }),
+    onExportProposals: (output) => () => store.dispatch({ type: '@@ui/EXPORT_PROPOSALS', payload: { output } }),
     onSendEmails: () => store.dispatch({ type: '@@ui/SEND_EMAIL_FOR_PROPOSALS', payload: { selection } }),
     onAcceptProposals: () => store.dispatch({ type: '@@ui/ACCEPT_PROPOSALS', payload: { selection } }),
     onRejectProposals: () => store.dispatch({ type: '@@ui/REJECT_PROPOSALS', payload: { selection } }),

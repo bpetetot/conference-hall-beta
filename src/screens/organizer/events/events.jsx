@@ -16,7 +16,7 @@ const MyEvents = ({ events, onSelect }) => (
   <div>
     <Titlebar icon="fa fa-calendar-o" title="My events">
       <Button>
-        {btn => (
+        {(btn) => (
           <Link code="organizer-event-create" className={btn}>
             <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
           </Link>

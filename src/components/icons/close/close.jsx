@@ -2,7 +2,7 @@ import React from 'react'
 
 import iconWrapper from 'components/icons/wrapper'
 
-const CloseIcon = props => (
+const CloseIcon = (props) => (
   <svg {...props} viewBox="0 0 512 512">
     <g>
       <g>

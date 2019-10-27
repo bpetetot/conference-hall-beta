@@ -12,7 +12,7 @@ class PreviewMarkdown extends Component {
 
   handleDisplay = () => {
     this.setState(
-      state => ({ display: !state.display }),
+      (state) => ({ display: !state.display }),
       () => this.props.onDisplay(this.state.display),
     )
   }

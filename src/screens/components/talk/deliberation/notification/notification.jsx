@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from 'components/button'
@@ -15,14 +15,14 @@ const Notification = ({
       className={className}
       title={title}
       actionButtons={(
-        <Fragment>
+        <>
           <Button onClick={onConfirm} primary>
             I confirm my presence
           </Button>
           <Button onClick={onDecline} primary error>
             I cancel my presence
           </Button>
-        </Fragment>
+        </>
       )}
     />
   )

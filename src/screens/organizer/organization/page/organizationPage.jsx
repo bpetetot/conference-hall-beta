@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
 import keys from 'lodash/keys'
@@ -24,7 +24,7 @@ const OrganizationPage = ({
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name}>
       <Button secondary>
-        {btn => (
+        {(btn) => (
           <Link code="organizer-organization-edit" organizationId={organizationId} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
@@ -34,7 +34,7 @@ const OrganizationPage = ({
         onSelectUser={onSelectUser}
         resultsMessage="Select an organizer to add to your organization"
         description={(
-          <Fragment>
+          <>
             <p>
               Search and add a member to your organization, he/she will be also able to update it,
               invite other members and create events for your organization.
@@ -45,7 +45,7 @@ const OrganizationPage = ({
               For security and privacy reasons, you can search a member only by his/her registered
               email address.
             </p>
-          </Fragment>
+          </>
 )}
         renderTrigger={({ show }) => (
           <Button onClick={show} secondary>
@@ -58,7 +58,7 @@ const OrganizationPage = ({
       className="organization-content"
       array={keys(members)}
       noResult="No users yet !"
-      renderRow={uid => (
+      renderRow={(uid) => (
         <MemberRow
           key={uid}
           uid={uid}
