@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 import Avatar from 'components/avatar'
 import Button from 'components/button'
@@ -69,7 +69,7 @@ const Message = ({
         <div className={styles.message}>
           <span className={styles.name}>{name}</span>
           <span className={styles.date}>
-            {distanceInWordsToNow(date, { addSuffix: true })}
+            {formatDistanceToNow(date, { addSuffix: true })}
           </span>
           <span className={styles.modified}>{modified && '(modified)'}</span>
           {allowEdit && <i role="button" className={cn('fa fa-pencil', styles.edit)} onClick={() => setEditable(!editable)} />}
