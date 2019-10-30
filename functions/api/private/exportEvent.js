@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
     const eventExport = await exportEventData(event, uid, filters, {
       event: ['name', 'categories', 'formats', 'address', 'conferenceDates'],
       proposal: [
+        'id',
         'title',
         'state',
         'level',

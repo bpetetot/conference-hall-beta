@@ -1,4 +1,4 @@
-import compareDesc from 'date-fns/compare_desc'
+import compareDesc from 'date-fns/compareDesc'
 import { set, unset } from 'immutadot'
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 

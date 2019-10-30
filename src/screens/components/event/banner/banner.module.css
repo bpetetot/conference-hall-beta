@@ -60,7 +60,7 @@
   }
 
   .rightSide {
-    padding: 2em;
+    padding: 1em;
   }
 
   .title {
@@ -71,4 +71,9 @@
   .subtitle {
     font-size: 1em;
   }
+
+  .actions {
+    margin-top: 1em;
+    text-align: right;
+  }  
 }

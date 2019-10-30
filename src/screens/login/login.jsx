@@ -35,7 +35,7 @@ const Login = ({
   return (
     <AppLayout className="login" fullwidth>
       <h1 className="login-title">Connexion</h1>
-      {providers.map(provider => (
+      {providers.map((provider) => (
         <Button
           key={provider}
           className={`btn-${provider}`}

@@ -1,10 +1,10 @@
 # Contributing
 
-Contributions, issues and feature requests are very welcome. If you are using this app and fixed a bug or improve it, please consider submitting a PR!
+Contributions, issues and feature requests are very welcome. If you are using this app and fixed a bug or improved it, please consider submitting a PR!
 
-You can contact other contributors on [Gitter](https://gitter.im/conference-hall) or ping me at [Twitter](https://twitter.com/bpetetot)
+You can contact other contributors on [Gitter](https://gitter.im/conference-hall) or ping me on [Twitter](https://twitter.com/bpetetot).
 
-If you want to contribute you must read and accept out [Code of Conduct](/code-of-conduct)
+If you want to contribute, you must read and accept our [Code of Conduct](/code-of-conduct).
 
 ## Guidelines
 
@@ -13,7 +13,7 @@ If you want to contribute you must read and accept out [Code of Conduct](/code-o
 - The master branch is where incoming new features are merged (the next coming release).
 - The production branch is a snapshot of the latest stable release.
 - All hotfix should be done in dedicated branch from the `production` branch.
-- All new features / bugs should be done in dedicated branch from the `master` branch.
+- All new features / bugs should be done in a dedicated branch from the `master` branch.
 - It's a very nice thing to have multiple small commits as you work on the PR. It's easier to review it. Then we will squash it before merging.
 
 ### Commit messages
@@ -22,6 +22,6 @@ This project uses [gitmoji](https://gitmoji.carloscuesta.me/) as commit conventi
 
 https://gitmoji.carloscuesta.me/
 
-### Adding new feature
+### Adding new features
 
 Ideally you should talk about it on [Gitter](https://gitter.im/conference-hall) with other contributors or open a suggestion issue on [GitHub](https://github.com/bpetetot/conference-hall).

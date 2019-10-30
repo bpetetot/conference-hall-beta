@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import { withSizes } from 'styles/utils'
@@ -31,7 +31,7 @@ const Navbar = ({
     <nav className={styles.rightSide}>
       <ul>
         {!isMobile && (
-          <Fragment>
+          <>
             <li>
               <Link code="search" classNameActive={styles.active} onlyRoot>
                 SEARCH
@@ -47,7 +47,7 @@ const Navbar = ({
                 ORGANIZER
               </Link>
             </li>
-          </Fragment>
+          </>
         )}
         <li>
           <Avatar />

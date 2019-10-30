@@ -17,7 +17,7 @@ const MyTalks = ({ talks, onSelect }) => (
   <div className="talks-page">
     <Titlebar icon="fa fa-microphone" title="My talks">
       <Button accent>
-        {btn => (
+        {(btn) => (
           <Link code="speaker-talk-create" className={btn}>
             <IconLabel icon="fa fa-calendar-plus-o" label="Create a new talk" />
           </Link>

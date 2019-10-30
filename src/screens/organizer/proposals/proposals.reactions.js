@@ -17,7 +17,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
 
   const pickTruthyValues = pickBy(Boolean)
   const pickFilterKeys = pick(['state', 'ratings', 'categories', 'formats', 'sortOrder', 'search'])
-  const ensureIncludedIn = values => value => (values.includes(value) ? value : values[0])
+  const ensureIncludedIn = (values) => (value) => (values.includes(value) ? value : values[0])
 
   const filtersFromRouterState = pickFilterKeys(query)
   const filtersFromUiState = pickTruthyValues(pickFilterKeys(store.ui.organizer.proposals.get()))
@@ -98,7 +98,7 @@ export const addProposalToSelection = async (action, store) => {
   if (proposals.includes(proposalId)) {
     store.ui.organizer.proposalsSelection.update({
       count: proposals.length - 1,
-      items: proposals.filter(val => val !== proposalId),
+      items: proposals.filter((val) => val !== proposalId),
     })
   } else {
     store.ui.organizer.proposalsSelection.update({
@@ -114,7 +114,7 @@ export const selectAllProposal = async (action, store) => {
   if (isChecked) {
     const proposalKeys = store.data.proposals.getKeys()
     const emailNotSent = proposalKeys.filter(
-      val => store.data.proposals.get(val).emailStatus !== 'delivered'
+      (val) => store.data.proposals.get(val).emailStatus !== 'delivered'
         && store.data.proposals.get(val).emailStatus !== 'sending',
     )
     store.ui.organizer.proposalsSelection.update({
@@ -164,7 +164,7 @@ export const loadProposals = async (action, store, { router }) => {
   if (search) {
     const searchQuery = deburr(toLower(search))
     props = props.filter(
-      proposal => deburr(toLower(proposal.title)).includes(searchQuery)
+      (proposal) => deburr(toLower(proposal.title)).includes(searchQuery)
         || deburr(toLower(proposal.speakerName)).includes(searchQuery),
     )
   }
@@ -188,16 +188,16 @@ export const selectProposal = async (action, store, { router }) => {
 export const changeFilter = async (action, store, { router }) => {
   const [removedFilters, addedOrModifiedFilters] = over([
     flow(
-      pickBy(filter => !filter),
+      pickBy((filter) => !filter),
       Object.keys,
     ),
-    pickBy(filter => filter),
+    pickBy((filter) => filter),
   ])(action.payload)
 
   const query = router.getQueryParams()
   const updatedQuery = flow(
     omit(removedFilters),
-    filters => ({
+    (filters) => ({
       ...filters,
       ...addedOrModifiedFilters,
     }),

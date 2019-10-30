@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
@@ -55,7 +55,7 @@ const ProposalToolbar = ({
         </Dropdown>
       )}
       {deliberationActive && nbSelected > 0 && (
-        <Fragment>
+        <>
           <Button tertiary onClick={onAcceptProposals} disabled={nbSelected === 0}>
             <IconLabel icon="fa fa-check" label="Accept proposals" />
           </Button>
@@ -79,7 +79,7 @@ const ProposalToolbar = ({
               </Button>
             )}
           />
-        </Fragment>
+        </>
       )}
     </div>
   </div>

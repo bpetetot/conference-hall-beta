@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import EventCard from './card'
@@ -9,16 +9,16 @@ import messages from './searchResults.messages'
 const SearchResults = ({ results, total, type }) => (
   <div className={styles.block}>
     {total !== 0 && (
-      <Fragment>
+      <>
         <h1>
           {messages(type, { itemCount: total })}
         </h1>
         <div className={styles.results}>
-          {results.map(e => (
+          {results.map((e) => (
             <EventCard key={e.objectID} {...e} />
           ))}
         </div>
-      </Fragment>
+      </>
     )}
     {total === 0 && <NoResult type={type} />}
   </div>

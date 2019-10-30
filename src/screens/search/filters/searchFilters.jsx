@@ -12,8 +12,8 @@ import styles from './searchFilters.module.css'
 const SearchFilters = ({
   onFilter, onReset, defaultLocation, defaultDate,
 }) => {
-  const handleLocation = location => onFilter({ location })
-  const handleDate = date => onFilter({ date })
+  const handleLocation = (location) => onFilter({ location })
+  const handleDate = (date) => onFilter({ date })
 
   return (
     <form className={styles.filters}>

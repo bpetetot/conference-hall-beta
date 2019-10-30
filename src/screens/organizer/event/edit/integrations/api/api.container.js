@@ -12,7 +12,7 @@ const mapStore = (store, { eventId }) => {
   return {
     enabled,
     apiKey,
-    onActiveApi: checked => store.dispatch({
+    onActiveApi: (checked) => store.dispatch({
       type: '@@ui/ON_SAVE_EVENT_SETTINGS',
       payload: {
         eventId,

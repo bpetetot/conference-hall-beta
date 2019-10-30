@@ -12,7 +12,7 @@ export const fetchUsersByEmail = async (email) => {
     .where('email', '==', email)
     .limit(1)
     .get()
-  return result.docs.map(ref => ({ uid: ref.id, ...ref.data() }))
+  return result.docs.map((ref) => ({ uid: ref.id, ...ref.data() }))
 }
 
 export default crud('users', 'uid')

@@ -14,7 +14,7 @@ const MyOrganizations = ({ organizations, onSelect }) => (
   <div className="organizations-page">
     <Titlebar className="organizations-header" icon="fa fa-users" title="My organizations">
       <Button>
-        {btn => (
+        {(btn) => (
           <Link code="organizer-organization-create" className={btn}>
             <IconLabel icon="fa fa-users" label="Create organization" />
           </Link>

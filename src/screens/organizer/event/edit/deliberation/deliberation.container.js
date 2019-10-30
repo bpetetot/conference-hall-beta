@@ -9,18 +9,22 @@ const mapStore = (store, { eventId }) => {
   const { contact } = store.data.events.get(eventId) || {}
   const settings = store.data.eventsSettings.get(eventId)
 
+  const blindRating = get(settings, 'deliberation.blindRating')
   const deliberationEnabled = get(settings, 'deliberation.enabled')
   const displayRatings = get(settings, 'deliberation.displayRatings')
+  const hideRatings = get(settings, 'deliberation.hideRatings')
   const recipients = get(settings, 'notifications.recipients')
   const emails = get(settings, 'notifications.emails')
 
   return {
+    blindRating,
     deliberationEnabled,
     displayRatings,
+    hideRatings,
     contact,
     recipients,
     emails,
-    onToggleDeliberation: checked => store.dispatch({
+    onToggleDeliberation: (checked) => store.dispatch({
       type: '@@ui/ON_SAVE_EVENT_SETTINGS',
       payload: {
         eventId,
@@ -29,7 +33,16 @@ const mapStore = (store, { eventId }) => {
       },
     }),
 
-    onToggleOrganizersRatings: checked => store.dispatch({
+    onToggleBlindRating: (checked) => store.dispatch({
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+      payload: {
+        eventId,
+        domain: 'deliberation',
+        blindRating: checked,
+      },
+    }),
+
+    onToggleOrganizersRatings: (checked) => store.dispatch({
       type: '@@ui/ON_SAVE_EVENT_SETTINGS',
       payload: {
         eventId,
@@ -38,7 +51,16 @@ const mapStore = (store, { eventId }) => {
       },
     }),
 
-    onChangeRecipients: e => store.dispatch({
+    onToggleHideRatings: (checked) => store.dispatch({
+      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+      payload: {
+        eventId,
+        domain: 'deliberation',
+        hideRatings: checked,
+      },
+    }),
+
+    onChangeRecipients: (e) => store.dispatch({
       type: '@@ui/ON_SAVE_EVENT_SETTINGS',
       payload: {
         eventId,
@@ -50,7 +72,7 @@ const mapStore = (store, { eventId }) => {
       },
     }),
 
-    onChangeNotifiedEmails: e => store.dispatch({
+    onChangeNotifiedEmails: (e) => store.dispatch({
       type: '@@ui/ON_SAVE_EVENT_SETTINGS',
       payload: {
         eventId,

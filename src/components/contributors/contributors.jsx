@@ -28,8 +28,8 @@ const Contributors = ({ className }) => {
   return (
     <div className={cn(styles.list, className)}>
       {contributors
-        .filter(c => !EXCLUDED_CONTRIBUTORS.includes(c.login))
-        .map(c => (
+        .filter((c) => !EXCLUDED_CONTRIBUTORS.includes(c.login))
+        .map((c) => (
           <div key={c.id} className={styles.wrapper}>
             <div className={styles.contributor}>
               <Avatar

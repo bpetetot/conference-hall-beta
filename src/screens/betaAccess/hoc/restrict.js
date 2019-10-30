@@ -5,12 +5,14 @@ import { inject } from '@k-ramel/react'
 
 export default (Component) => {
   class BetaRestricted extends React.Component {
+    // eslint-disable-next-line react/static-property-placement
     static propTypes = {
       betaAccess: PropTypes.string,
       skipBetaAccess: PropTypes.bool.isRequired,
       redirectBetaAccess: PropTypes.func.isRequired,
     }
 
+    // eslint-disable-next-line react/static-property-placement
     static defaultProps = {
       betaAccess: undefined,
     }

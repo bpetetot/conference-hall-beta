@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { toDate } from 'helpers/firebase'
 import { formatDate } from 'helpers/date'
 import IconLabel from 'components/iconLabel'
-import isEqual from 'date-fns/is_equal'
+import isEqual from 'date-fns/isEqual'
 
 import './eventDates.css'
 

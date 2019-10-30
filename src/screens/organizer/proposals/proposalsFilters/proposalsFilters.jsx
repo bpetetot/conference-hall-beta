@@ -5,19 +5,19 @@ import debounce from 'lodash/debounce'
 
 import styles from './proposalsFilters.module.css'
 
-const sortOrderLabel = sortOrder => ({
+const sortOrderLabel = (sortOrder) => ({
   newest: 'Newest',
   oldest: 'Oldest',
   highestRating: 'Highest Ratings',
   lowestRating: 'Lowest Ratings',
 }[sortOrder])
 
-const ratingsLabel = rating => ({
+const ratingsLabel = (rating) => ({
   rated: 'Rated',
   notRated: 'Not rated',
 }[rating])
 
-const statusLabel = status => ({
+const statusLabel = (status) => ({
   submitted: 'Not deliberated',
   accepted: 'Accepted',
   rejected: 'Rejected',
@@ -61,7 +61,7 @@ class ProposalFilters extends Component {
         {deliberationActive && (
           <select id="state" onChange={onChange} defaultValue={filters.state}>
             <option value="">All statuses</option>
-            {statuses.map(status => (
+            {statuses.map((status) => (
               <option key={status} value={status}>
                 {statusLabel(status)}
               </option>
@@ -71,7 +71,7 @@ class ProposalFilters extends Component {
 
         <select id="ratings" onChange={onChange} defaultValue={filters.ratings}>
           <option value="">All ratings</option>
-          {ratings.map(rating => (
+          {ratings.map((rating) => (
             <option key={rating} value={rating}>
               {ratingsLabel(rating)}
             </option>
@@ -98,7 +98,7 @@ class ProposalFilters extends Component {
 
         <select id="sortOrder" onChange={onChange} defaultValue={filters.sortOrder}>
           <option value="">Sort</option>
-          {sortOrders.map(sortOrder => (
+          {sortOrders.map((sortOrder) => (
             <option key={sortOrder} value={sortOrder}>
               {sortOrderLabel(sortOrder)}
             </option>

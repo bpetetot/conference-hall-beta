@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class OpenTrigger extends Component {
@@ -45,10 +45,10 @@ class OpenTrigger extends Component {
     const { show, hide } = this
 
     return (
-      <Fragment>
+      <>
         {renderTrigger && renderTrigger({ isOpen, show, hide })}
         {isOpen && children({ isOpen, show, hide })}
-      </Fragment>
+      </>
     )
   }
 }

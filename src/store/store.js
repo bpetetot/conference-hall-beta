@@ -16,7 +16,7 @@ const store = createStore(reducers, {
     router: router({
       routes,
       state: 'ui.router',
-      getState: state => state.ui.router,
+      getState: (state) => state.ui.router,
     }),
     algolia: algolia({
       id: process.env.REACT_APP_ALGOLIA_ID,

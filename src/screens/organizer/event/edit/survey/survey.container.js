@@ -9,7 +9,7 @@ const mapStore = (store, { eventId }) => {
   return {
     surveyActive,
     survey,
-    onActiveSurvey: checked => store.dispatch({
+    onActiveSurvey: (checked) => store.dispatch({
       type: '@@ui/ON_TOGGLE_EVENT_SURVEY',
       payload: {
         event: {
@@ -18,7 +18,7 @@ const mapStore = (store, { eventId }) => {
         },
       },
     }),
-    onSelectQuestion: e => store.dispatch({
+    onSelectQuestion: (e) => store.dispatch({
       type: '@@ui/ON_SELECT_SURVEY_QUESTION',
       payload: {
         event: {

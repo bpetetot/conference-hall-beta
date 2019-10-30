@@ -7,12 +7,12 @@ import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 
 const SubmitTalkLink = ({
-  label, displayed, onClick, className, classNameActive,
+  label, displayed, onClick, className, classNameActive, size,
 }) => {
   if (!displayed) return null
   return (
-    <Button primary accent>
-      {btn => (
+    <Button primary accent size={size}>
+      {(btn) => (
         <a onClick={onClick} role="button" className={cn(className, classNameActive) || btn}>
           {label || <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />}
         </a>
@@ -27,6 +27,7 @@ SubmitTalkLink.propTypes = {
   displayed: PropTypes.bool,
   className: PropTypes.string,
   classNameActive: PropTypes.string,
+  size: PropTypes.string,
 }
 
 SubmitTalkLink.defaultProps = {
@@ -34,6 +35,7 @@ SubmitTalkLink.defaultProps = {
   displayed: false,
   className: undefined,
   classNameActive: undefined,
+  size: 'normal',
 }
 
 export default SubmitTalkLink

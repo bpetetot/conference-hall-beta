@@ -60,7 +60,7 @@ export const signedIn = async (action, store) => {
 
   // get users organizations
   const organizations = await fetchUserOrganizations(user.uid)
-  store.data.organizations.set(organizations.docs.map(ref => ({ id: ref.id, ...ref.data() })))
+  store.data.organizations.set(organizations.docs.map((ref) => ({ id: ref.id, ...ref.data() })))
 
   // go to the redirect url if exists
   store.dispatch('@@router/REDIRECT_TO_NEXT_URL')
