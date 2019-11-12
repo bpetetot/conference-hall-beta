@@ -33,7 +33,7 @@
     "luxon": "^1.19.3",
     "marked": "^0.7.0",
     "normalize.css": "^8.0.1",
-    "path-to-regexp": "^3.1.0",
+    "path-to-regexp": "^4.0.0",
     "popper.js": "^1.16.0",
     "prop-types": "^15.7.2",
     "randomcolor": "^0.5.4",
