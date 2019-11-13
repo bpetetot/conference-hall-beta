@@ -1796,9 +1796,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@k-ramel/react@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-2.1.0.tgz#5517b229ce4663f19a05cc968c51819398cf7ea3"
+"@k-ramel/react@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@k-ramel/react/-/react-3.0.0.tgz#c2eca1844435c56fdc447cc51a2352ca452a9cf7"
+  integrity sha512-O2VYTFHTP1sqcqlETSv0gNgM2rK4NIje0YboIs1QiqkwAJc+72Uifi1jTwHeTx4AePfuFwtzGzbcYkYpcmEhnA==
   dependencies:
     fbjs "^1.0.0"
 
