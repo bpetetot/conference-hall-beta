@@ -72,9 +72,6 @@
     "react-test-renderer": "^16.12.0",
     "redux-devtools-extension": "^2.13.8"
   },
-  "resolutions": {
-    "docz/**/webpack": "4.28.4"
-  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
