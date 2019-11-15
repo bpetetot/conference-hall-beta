@@ -1,0 +1,88 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Badge from './badge'
+
+<Meta title="Components|Badge" component={Badge} />
+
+# Badge
+
+## Basic usage
+
+<Preview>
+  <Story name="Basic usage">
+    <>
+      <Badge>Darth Vader</Badge>
+      <Badge>Luke skywalker</Badge>
+      <Badge>Yoda</Badge>
+    </>
+  </Story>
+</Preview>
+
+## Badge status
+
+<Preview>
+  <Story name="Status">
+    <>
+      <Badge primary>Primary</Badge>
+      <Badge secondary>Secondary</Badge>
+      <Badge success>Success</Badge>
+      <Badge info>Info</Badge>
+      <Badge warning>Warning</Badge>
+      <Badge error>Error</Badge>
+      <Badge light>light</Badge>
+      <Badge dark>Dark</Badge>
+    </>
+  </Story>
+</Preview>
+
+## Outline badge
+
+<Preview>
+  <Story name="Outline">
+    <>
+      <Badge primary outline>Primary</Badge>
+      <Badge secondary outline>Secondary</Badge>
+      <Badge success outline>Success</Badge>
+      <Badge info outline>Info</Badge>
+      <Badge warning outline>Warning</Badge>
+      <Badge error outline>Error</Badge>
+      <Badge light outline>light</Badge>
+      <Badge dark outline>Dark</Badge>
+    </>
+  </Story>
+</Preview>
+
+## Pill badge
+
+<Preview>
+  <Story name="Pill">
+    <>
+      <Badge pill>Darth Vader</Badge>
+      <Badge pill>Luke skywalker</Badge>
+      <Badge pill>Yoda</Badge>
+      <Badge pill>9</Badge>
+      <Badge pill>100</Badge>
+    </>
+  </Story>
+</Preview>
+
+## Using Function As A Child
+
+Used to apply badge style to any element.
+
+<Preview>
+  <Story name="FaaC">
+    <>
+      <Badge outline pill>
+        {classes => (
+          <button className={classes}>
+            Apply Badge style to any element
+          </button>
+        )}
+      </Badge>
+    </>
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of={Badge} />

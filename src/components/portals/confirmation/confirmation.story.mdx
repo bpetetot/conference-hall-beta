@@ -1,0 +1,30 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Button from 'components/button'
+import ConfirmationPopin from './confirmation'
+
+<Meta title="Components|ConfirmationPopin" component={ConfirmationPopin} />
+
+# Confirmation Popin
+
+## Basic usage
+
+<Preview>
+  <Story name="Basic usage">
+    <ConfirmationPopin
+      title="Confirmation title"
+      content="Can you confirm by clicking on OK, else click Cancel ?"
+      withOk
+      withCancel
+      className="default-theme"
+      renderTrigger={({ show }) => (
+        <Button onClick={show}>
+          Open Confirmation Popin
+        </Button>
+      )}
+    />
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of={ConfirmationPopin} />
