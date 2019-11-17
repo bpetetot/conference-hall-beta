@@ -11,8 +11,8 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
-    "doc": "start-storybook -p 6006",
-    "doc:build": "build-storybook",
+    "doc": "start-storybook -p 6006 --docs",
+    "doc:build": "build-storybook --docs",
     "changelog": "gitmoji-changelog"
   },
   "dependencies": {

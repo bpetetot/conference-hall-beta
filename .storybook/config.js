@@ -1,5 +1,4 @@
-import { configure, addDecorator } from '@storybook/react';
-import { themes } from '@storybook/theming';
+import { configure, addDecorator, addParameters } from '@storybook/react';
 
 import React from 'react'
 
@@ -15,8 +14,8 @@ configure(
   [
     require.context('../docs/app', false, /home\.story\.mdx$/),
     require.context('../docs/app', false, /install\.story\.mdx$/),
-    require.context('../docs', true, /\.story\.mdx$/),
     require.context('../src', true, /\.story\.mdx$/),
+    require.context('../docs', true, /\.story\.mdx$/),
   ],
   module
 );
