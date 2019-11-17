@@ -1,0 +1,34 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import MonthCalendar from './monthCalendar'
+
+<Meta title="Components|Calendar/Month" component={MonthCalendar} />
+
+# MonthCalendar
+
+## Properties
+
+<Props of={MonthCalendar} />
+
+## Month calendar
+
+<Preview>
+  <Story name="Basic usage">
+    <MonthCalendar />
+  </Story>
+</Preview>
+
+## With items
+
+<Preview>
+  <Story name="With items">
+    <MonthCalendar renderDay={date => {
+      if (date.getDay() % 3 === 0) {
+        return ['Some awesome meetup', 'Some second meetup', 'Thrid meetup', 'Fourth meetup']
+      }
+      if (date.getDay() % 2 === 0) {
+        return 'Some awesome meetup'
+      }
+      return null
+    }} />
+  </Story>
+</Preview>

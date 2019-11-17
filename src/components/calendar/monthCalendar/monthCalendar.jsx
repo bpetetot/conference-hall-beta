@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import format from 'date-fns/format'
-import getDaysInMonth from 'date-fns/get_days_in_month'
-import startOfMonth from 'date-fns/start_of_month'
-import getDay from 'date-fns/get_day'
-import addMonths from 'date-fns/add_months'
+import getDaysInMonth from 'date-fns/getDaysInMonth'
+import startOfMonth from 'date-fns/startOfMonth'
+import getDay from 'date-fns/getDay'
+import addMonths from 'date-fns/addMonths'
 import { set } from 'immutadot'
 import range from 'lodash/range'
 import chunk from 'lodash/chunk'
@@ -108,7 +108,7 @@ class MonthCalendar extends Component {
     return (
       <div className="cc-month-calendar">
         <div className="cc-month-calendar-header">
-          <span className="cc-month-month">{format(parsedDate, 'MMMM YYYY')}</span>
+          <span className="cc-month-month">{format(parsedDate, 'MMMM yyyy')}</span>
           <div className="cc-month-buttons">
             <Button
               secondary

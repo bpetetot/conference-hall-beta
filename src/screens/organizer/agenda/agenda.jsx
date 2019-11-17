@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import isSameDay from 'date-fns/is_same_day'
+import isSameDay from 'date-fns/isSameDay'
 
 import Titlebar from 'components/titlebar'
 import MonthCalendar from 'components/calendar/monthCalendar'

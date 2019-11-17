@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import uniq from 'lodash/uniq'
 import format from 'date-fns/format'
-import addDays from 'date-fns/add_days'
-import isSameDay from 'date-fns/is_same_day'
+import addDays from 'date-fns/addDays'
+import isSameDay from 'date-fns/isSameDay'
 import Button from '../../button'
 
 import './dayCalendar.css'
@@ -43,7 +43,7 @@ class DayCalendar extends Component {
     return (
       <div className="cc-day-calendar">
         <div className="cc-day-calendar-header">
-          <span className="cc-day-day">{format(parsedDate, 'DD MMMM YYYY')}</span>
+          <span className="cc-day-day">{format(parsedDate, 'dd MMMM yyyy')}</span>
           <div className="cc-day-buttons">
             <Button
               secondary
