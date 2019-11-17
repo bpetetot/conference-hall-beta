@@ -13,7 +13,7 @@
     "size": "bundlesize",
     "doc": "start-storybook -p 6006 --docs",
     "doc:build": "build-storybook --docs",
-    "changelog": "gitmoji-changelog"
+    "changelog": "npx gitmoji-changelog@latest"
   },
   "dependencies": {
     "@k-ramel/react": "^3.0.0",
