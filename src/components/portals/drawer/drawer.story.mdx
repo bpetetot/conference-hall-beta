@@ -1,0 +1,36 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Button from 'components/button'
+import Drawer from './drawer'
+
+
+<Meta title="Components|Drawer" component={Drawer} />
+
+# Drawer
+
+## Basic usage
+
+<Preview>
+  <Story name="Basic usage">
+    <Drawer
+      title="Title"
+      subtitle="Subtitle"
+      className="default-theme"
+      actions={({ hide }) => (
+        <Button onClick={hide}>
+          Close
+        </Button>
+      )}
+      renderTrigger={({ show }) => (
+        <Button onClick={show}>
+          Open Drawer
+        </Button>
+      )}
+    >
+      This is a drawer!
+    </Drawer>
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of={Drawer} />

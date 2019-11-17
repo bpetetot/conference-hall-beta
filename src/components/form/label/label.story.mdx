@@ -1,0 +1,43 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Label from './label'
+
+<Meta title="Components|Label" component={Label} />
+
+# Label
+
+## Basic usage
+
+<Preview>
+  <Story name="Basic usage">
+    <Label
+      name="myField"
+      label="Field label"
+      hints="Some hints about this field."
+      tooltip="Here some help"
+      error="Something bad happens."
+    >
+      <input name="myField" type="text" />
+    </Label>
+  </Story>
+</Preview>
+
+## Inline
+
+<Preview>
+  <Story name="Inline">
+    <Label
+      name="myField"
+      label="Field label"
+      hints="Some hints about this field."
+      tooltip="Here some help"
+      error="Something bad happens."
+      inline
+    >
+      <input name="myField" type="text" />
+    </Label>
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of={Label} />

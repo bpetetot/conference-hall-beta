@@ -1,0 +1,26 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Toggle from './toggle'
+
+<Meta title="Components|Toggle" component={Toggle} />
+
+# Toggle
+
+## Basic usage
+
+<Preview>
+  <Story name="Basic usage">
+    <Toggle name="myToggle" onChange={console.log} />
+  </Story>
+</Preview>
+
+## With truthy and falsy value
+
+<Preview>
+  <Story name="Truthy and falsy">
+    <Toggle name="myToggle" truthy="enabled" falsy="disabled" onChange={console.log} />
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of={Toggle} />
