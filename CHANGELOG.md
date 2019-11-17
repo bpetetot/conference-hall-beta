@@ -1,5 +1,53 @@
 # Changelog
 
+<a name="0.21.0"></a>
+## 0.21.0 (2019-11-17)
+
+### Added
+
+- ✨ add the accept/reject proposal API ([#687](https://github.com/bpetetot/conference-hall/issues/687)) [[be23cdc](https://github.com/bpetetot/conference-hall/commit/be23cdce5f4501e40c45adc71d028a411124cd2f)]
+- ✨ add talk submission date to getEvent api ([#692](https://github.com/bpetetot/conference-hall/issues/692)) [[668fee1](https://github.com/bpetetot/conference-hall/commit/668fee13f1c2d9e5530e46da3ed8231f06d436c9)]
+- ✨ add a setting to activate blind rating ([#678](https://github.com/bpetetot/conference-hall/issues/678)) [[76c2d0d](https://github.com/bpetetot/conference-hall/commit/76c2d0dfcaa3e3a0a1e310e385cdeaa7bc0534f7)]
+- ✨ setting a pre defined list of languages ([#681](https://github.com/bpetetot/conference-hall/issues/681)) [[23270bd](https://github.com/bpetetot/conference-hall/commit/23270bdc8c2fa4ede1c84af55672db7a876c0fc1)]
+- ✨ add a setting to hide ratings in the proposal list ([#677](https://github.com/bpetetot/conference-hall/issues/677)) [[6a992a3](https://github.com/bpetetot/conference-hall/commit/6a992a3cc517d50f23b4e1cc57deae412ba0dd30)]
+- ✨ allow editing e-mail of the user in profile ([#686](https://github.com/bpetetot/conference-hall/issues/686)) [[fcd2c66](https://github.com/bpetetot/conference-hall/commit/fcd2c6642214c5c6a5e49d237ff54306dd674c85)]
+- ✨ add the ID in JSON export of proposals [[c9fb6eb](https://github.com/bpetetot/conference-hall/commit/c9fb6eb6162d5bd3541b51f73e9024442d10dd65)]
+- ✨ formats and categories mandatory by config ([#652](https://github.com/bpetetot/conference-hall/issues/652)) [[8dd3029](https://github.com/bpetetot/conference-hall/commit/8dd302921a9b067b78f7c04aa10fb085ede985ce)]
+- ✨ slack integration ([#638](https://github.com/bpetetot/conference-hall/issues/638)) [[ad928cb](https://github.com/bpetetot/conference-hall/commit/ad928cb67011d66f11866830aae51fb61b0eb755)]
+- ✨ add storybook ([#712](https://github.com/bpetetot/conference-hall/issues/712)) [[ce5ec1b](https://github.com/bpetetot/conference-hall/commit/ce5ec1bbebecddc597ac08d14cc535aac4f4db9b)]
+- ✅ use a mocked function to avoid date related issues in tests ([#679](https://github.com/bpetetot/conference-hall/issues/679)) [[a2f3eac](https://github.com/bpetetot/conference-hall/commit/a2f3eac56e915d44d8dc41093f87a073a1688163)]
+- ✅ update radio group tests [[1a323b3](https://github.com/bpetetot/conference-hall/commit/1a323b361911999b284a81bca773099d9f7b1de0)]
+
+### Changed
+
+- 💄 add &quot;submit talk&quot; button on mobile ([#675](https://github.com/bpetetot/conference-hall/issues/675)) [[ce3fe8c](https://github.com/bpetetot/conference-hall/commit/ce3fe8cd2ac9d9a3c78043f6cc07dffd3f32f897)]
+- 💄 change app style ([#650](https://github.com/bpetetot/conference-hall/issues/650)) [[0205b41](https://github.com/bpetetot/conference-hall/commit/0205b41f393d6a274d8c706001f0ad26ca8671ba)]
+- 💄 remove read-only style to select ([#713](https://github.com/bpetetot/conference-hall/issues/713)) [[a9ccb83](https://github.com/bpetetot/conference-hall/commit/a9ccb8320b3c3876368fc090fd03cba0fd8c3e98)]
+- ⬆️ upgrade dependencies ([#711](https://github.com/bpetetot/conference-hall/issues/711)) [[b281394](https://github.com/bpetetot/conference-hall/commit/b2813945e5c069ba028d67770bee3f3bf10b7fc8)]
+- ⬆️ upgrade mixin-deep from 1.3.1 to 1.3.2 ([#665](https://github.com/bpetetot/conference-hall/issues/665)) [[e3ffaad](https://github.com/bpetetot/conference-hall/commit/e3ffaad2a2fbeca7da91cafb3bbd3951436f642e)]
+- ⬆️ upgrade date-fns ([#704](https://github.com/bpetetot/conference-hall/issues/704)) [[f226e28](https://github.com/bpetetot/conference-hall/commit/f226e28f274213ee46c375fe1f18c2103443e964)]
+- ⬆️ upgrade babel core ([#703](https://github.com/bpetetot/conference-hall/issues/703)) [[f50fb43](https://github.com/bpetetot/conference-hall/commit/f50fb43ff221f2fd02649c93e64f4416688513d7)]
+- ⬆️ upgrade scripts dependencies ([#702](https://github.com/bpetetot/conference-hall/issues/702)) [[c5ded08](https://github.com/bpetetot/conference-hall/commit/c5ded089e164fd3f3d63d405d00fa48fcfe38966)]
+- ⬆️ upgrade functions dependencies ([#701](https://github.com/bpetetot/conference-hall/issues/701)) [[b5ab99e](https://github.com/bpetetot/conference-hall/commit/b5ab99e8d83e4827688386747d09d143400d5953)]
+- ⬆️ upgrade firebase ([#700](https://github.com/bpetetot/conference-hall/issues/700)) [[aa9c297](https://github.com/bpetetot/conference-hall/commit/aa9c297d574d9c130424f9e43144d4271e5e139d)]
+- ⬆️ upgrade eslint ([#699](https://github.com/bpetetot/conference-hall/issues/699)) [[be0a238](https://github.com/bpetetot/conference-hall/commit/be0a23821a8af55e8c5f4441273915fc772b0c36)]
+- ⬆️ upgrade some utils lib ([#698](https://github.com/bpetetot/conference-hall/issues/698)) [[fc0b470](https://github.com/bpetetot/conference-hall/commit/fc0b470188ed72522003426b9666c13c7e13b20b)]
+- ⬆️ upgrade react, react-script and enzyme ([#697](https://github.com/bpetetot/conference-hall/issues/697)) [[c2f9868](https://github.com/bpetetot/conference-hall/commit/c2f9868cd79d751579735e22bcd5e01b4a9142ef)]
+- ⬆️ upgrade final-form ([#694](https://github.com/bpetetot/conference-hall/issues/694)) [[d67368c](https://github.com/bpetetot/conference-hall/commit/d67368cced45531cd506200bcb27dee1ad23d410)]
+- 🔧 add github issue template ([#653](https://github.com/bpetetot/conference-hall/issues/653)) [[3cbb12a](https://github.com/bpetetot/conference-hall/commit/3cbb12afa414645cce60189ef2ad41b653316ae4)]
+- ⬆️ upgrade cloud functions to node 10 ([#645](https://github.com/bpetetot/conference-hall/issues/645)) [[46815eb](https://github.com/bpetetot/conference-hall/commit/46815eb3cf3cf30023dc14bff418657acfddfc99)]
+- ⬆️ upgrade dependencies ([#642](https://github.com/bpetetot/conference-hall/issues/642)) [[bc18854](https://github.com/bpetetot/conference-hall/commit/bc18854f9737a0dffb3ebd509761ea3e3b0b649a)]
+
+### Fixed
+
+- 🐛 use read-only instead disabled for API key input ([#705](https://github.com/bpetetot/conference-hall/issues/705)) [[5ed5022](https://github.com/bpetetot/conference-hall/commit/5ed502214eb258e5cee42018ae91a6fd6870bf81)]
+- ✏️ fix some typo in the documentation and email templates. ([#670](https://github.com/bpetetot/conference-hall/issues/670)) [[ab1f973](https://github.com/bpetetot/conference-hall/commit/ab1f973c974059305a936ad7ff38754db80cbe57)]
+
+### Miscellaneous
+
+- ❤️ add GitHub sponsoring [[fdfcfe1](https://github.com/bpetetot/conference-hall/commit/fdfcfe1fd4453130663b8979fa08705a0ed293d8)]
+
+
 <a name="0.20.1"></a>
 
 ## 0.20.1 (2019-07-30)
