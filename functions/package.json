@@ -17,19 +17,19 @@
     "algoliasearch": "^3.33.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "firebase-admin": "^8.6.1",
+    "firebase-admin": "^8.7.0",
     "firebase-functions": "^3.3.0",
-    "form-data": "^2.5.1",
+    "form-data": "^3.0.0",
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.15",
-    "luxon": "^1.19.3",
+    "luxon": "^1.21.1",
     "node-fetch": "^2.6.0",
     "puppeteer": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
-    "firebase-functions-test": "^0.1.6",
+    "firebase-functions-test": "^0.1.7",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
     "sinon": "^7.5.0"

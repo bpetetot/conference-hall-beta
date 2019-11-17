@@ -22,6 +22,7 @@ select:focus {
 }
 
 input:disabled,
+input:read-only,
 select:disabled {
   color: var(--grey-color);
 }
