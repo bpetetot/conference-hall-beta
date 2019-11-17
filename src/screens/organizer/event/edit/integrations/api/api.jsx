@@ -33,7 +33,7 @@ const Api = ({
       {enabled && (
         <div className={styles.content}>
           <Label name="apiKey" label="API key" classNameInput={styles.input}>
-            <input type="text" value={apiKey} disabled />
+            <input type="text" value={apiKey} readOnly />
             <Button onClick={onGenerateKey} disabled={!enabled}>
               Generate API Key
             </Button>
