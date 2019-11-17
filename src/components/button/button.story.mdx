@@ -1,0 +1,123 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Button from './button'
+
+<Meta title="Components|Button" component={Button} />
+
+# Button
+
+## Button hierarchy
+
+Define the hierarchy of the button, the default is `primary`
+<Preview>
+  <Story name="Hierarchy">
+    <>
+      <Button primary>Button</Button>
+      <Button secondary>Button</Button>
+      <Button tertiary>Button</Button>
+    </>
+  </Story>
+</Preview>
+
+## With accent color
+
+<Preview>
+  <Story name="Accent color">
+    <>
+      <Button accent primary>Button</Button>
+      <Button accent secondary>Button</Button>
+      <Button accent tertiary>Button</Button>
+    </>
+  </Story>
+</Preview>
+
+## With error state
+
+<Preview>
+  <Story name="Error state">
+    <>
+      <Button error primary>Button</Button>
+      <Button error secondary>Button</Button>
+      <Button error tertiary>Button</Button>
+    </>
+  </Story>
+</Preview>
+
+## With disabled state
+
+<Preview>
+  <Story name="Disabled state">
+    <>
+      <Button disabled primary>Button</Button>
+      <Button disabled secondary>Button</Button>
+      <Button disabled tertiary>Button</Button>
+    </>
+  </Story>
+</Preview>
+
+## Sizes
+
+<Preview>
+  <Story name="Sizes">
+    <>
+      <Button size="large">Button</Button>
+      <Button size="normal">Button</Button>
+      <Button size="small">Button</Button>
+    </>
+  </Story>
+</Preview>
+
+## With loading
+
+<Preview>
+  <Story name="Loading state">
+    <>
+      <Button primary loading>Button</Button>
+      <Button secondary loading>Button</Button>
+      <Button tertiary loading>Button</Button>
+    </>
+  </Story>
+</Preview>
+
+## Block
+
+<Preview>
+  <Story name="Block">
+    <Button block>Button</Button>
+  </Story>
+</Preview>
+
+## Simple
+
+Button without padding, border and background. The simpliest way to display it. Useful to display an icon button, like modals closing cross.
+
+<Preview>
+  <Story name="Simple">
+    <Button simple>Simple button</Button>
+  </Story>
+</Preview>
+
+## Link
+
+A hyperlink with a button style, just by setting `href` prop instead of `onClick`.
+
+<Preview>
+  <Story name="Link">
+    <Button href="https://www.google.fr" target="NEW">Link like a button</Button>
+  </Story>
+</Preview>
+
+## Using Function As A Child
+
+Used to apply button style to any element.
+
+<Preview>
+  <Story name="FaaC">
+    <Button secondary accent>
+      {btnClasses => <div className={btnClasses}>Apply button style to any element</div>}
+    </Button>
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of={Button} />

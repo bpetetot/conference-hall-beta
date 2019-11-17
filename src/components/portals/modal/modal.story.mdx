@@ -1,0 +1,29 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Button from 'components/button'
+import Modal from './modal'
+
+<Meta title="Components|Modal" component={Modal} />
+
+# Modal
+
+## Basic usage
+
+<Preview>
+  <Story name="Basic usage">
+    <Modal
+      onClose={() => console.log('close')}
+      className="default-theme"
+      renderTrigger={({ show }) => (
+        <Button onClick={show}>
+          Open Modal
+        </Button>
+      )}
+    >
+      {({ show, hide, isOpen }) => <div>Modal content</div>}
+    </Modal>
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of={Modal} />

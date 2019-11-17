@@ -33,8 +33,8 @@ firestore-debug.log*
 .firebase/
 serviceAccount.json
 
-# docz
-.docz/
+# storybook
+storybook-static/
 
 # IDE
 .idea/

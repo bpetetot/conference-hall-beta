@@ -1,0 +1,41 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Button from 'components/button'
+import Snackbar from './snackbar'
+
+<Meta title="Components|Snackbar" component={Snackbar} />
+
+# Snackbar
+
+## Basic usage
+
+<Preview className="vertical-separator">
+  <Story name="Basic usage">
+    <Snackbar
+      defaultOpen
+      content="Default Snackbar"
+    />
+  </Story>
+</Preview>
+
+## Auto-close
+
+<Preview>
+  <Story name="Auto-close">
+    <Snackbar
+      autoClose
+      delay={2000}
+      content="Snackbar automatically closed after 2 seconds"
+      renderTrigger={({ show, isOpen }) => (
+        !isOpen && (
+          <Button onClick={show}>
+            Open auto-close Snackbar
+          </Button>
+        )
+      )}
+    />
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of={Snackbar} />

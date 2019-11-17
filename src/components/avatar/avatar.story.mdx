@@ -1,0 +1,79 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Avatar from './avatar'
+
+<Meta title="Components|Avatar" component={Avatar} />
+
+# Avatar
+
+## Basic usage
+
+<Preview>
+  <Story name="Basic usage">
+    <>
+      <Avatar name="Darth Vader" />
+      <Avatar name="Luke Skywalker" />
+      <Avatar name="Yoda" />
+      <Avatar name="C3PO" color="#DA8E03" />
+    </>
+  </Story>
+</Preview>
+
+If no `color` prop given a color will be generated from the `name` prop.
+
+## With image
+
+<Preview>
+  <Story name="With image">
+    <>
+      <Avatar src="https://upload.wikimedia.org/wikipedia/en/7/76/Darth_Vader.jpg" />
+      <Avatar src="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png" />
+      <Avatar src="https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png" />
+    </>
+  </Story>
+</Preview>
+
+You can give images or SVG as `src` to `<Avatar>` component.
+
+## With different sizes
+
+<Preview>
+  <Story name="Sizes">
+    <>
+      <Avatar name="Yoda" size="small" />
+      <Avatar name="Yoda" size="medium" />
+      <Avatar name="Yoda" size="large" />
+    </>
+  </Story>
+</Preview>
+
+You can set `size` prop to `small`, `medium` or `large`. (`medium` by default)
+
+Or you can override CSS variable `--cc-avatar-height`, `--cc-avatar-width` and `--cc-avatar-font-size` through `className` prop.
+
+## Square avatar
+
+<Preview>
+  <Story name="Square">
+    <>
+      <Avatar name="Darth Vader" square />
+      <Avatar name="Luke Skywalker" square />
+      <Avatar name="Yoda" square />
+    </>
+  </Story>
+</Preview>
+
+## With label
+
+<Preview>
+  <Story name="Label">
+    <>
+      <Avatar name="Darth Vader" withLabel />
+      <Avatar name="Luke Skywalker" withLabel />
+      <Avatar name="Yoda" withLabel />
+    </>
+  </Story>
+</Preview>
+
+## Properties
+
+<Props of={Avatar} />
