@@ -1,10 +1,10 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="APIs|GET Event" />
+<Meta title="APIs|Event" />
 
 # APIs
 
-As organizer you can generate an API key for an event in Conference Hall through the event configuration page.
+As organizer, you can generate an API key for an event in Conference Hall through the event configuration page.
 
 ## Get event
 
@@ -67,45 +67,5 @@ As organizer you can generate an API key for an event in Conference Hall through
       "github": ""          // github username
     }
   ]
-}
-```
-
-## Accept proposal
-
-### Endpoint
-
-`PUT /api/v1/proposal/{event_id}/{proposal_id}/accept`
-
-### Parameters
-
-| parameter    | type      | description                                               | required |
-| ------------ | --------- | --------------------------------------------------------- | -------- |
-| `key`        | `string`  | API key                                                   | Yes      |
-
-### Exemple
-
-```js
-{
-  "result": "Proposal with ID aaaaaaaaaaaaaaaaaaaa is now accepted."
-}
-```
-
-## Reject proposal
-
-### Endpoint
-
-`PUT /api/v1/proposal/{event_id}/{proposal_id}/reject`
-
-### Parameters
-
-| parameter    | type      | description                                               | required |
-| ------------ | --------- | --------------------------------------------------------- | -------- |
-| `key`        | `string`  | API key                                                   | Yes      |
-
-### Exemple
-
-```js
-{
-  "result": "Proposal with ID aaaaaaaaaaaaaaaaaaaa is now rejected."
 }
 ```
