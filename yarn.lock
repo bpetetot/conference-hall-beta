@@ -10659,10 +10659,10 @@ path-to-regexp@^1.7.0:
   dependencies:
     isarray "0.0.1"
 
-path-to-regexp@^3.1.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-3.2.0.tgz#fa7877ecbc495c601907562222453c43cc204a5f"
-  integrity sha512-jczvQbCUS7XmS7o+y1aEO9OBVFeZBQ1MDSEqmO7xSoPgOPoowY/SxLpZ6Vh97/8qHZOteiCKb7gkG9gA2ZUxJA==
+path-to-regexp@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-6.0.0.tgz#8797c236ca80f62b9e36e39eb3ef5208ad6ab68e"
+  integrity sha512-/BtzpwyPV+/I4gL16q3r3xb73zcLyALoP+FPXfp1W60N+qCkKATnt9bihaYMBCSxHhttopoFPw7diGBqcOXkqA==
 
 path-type@^2.0.0:
   version "2.0.0"
