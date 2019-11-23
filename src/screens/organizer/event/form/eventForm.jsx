@@ -4,6 +4,8 @@ import { Form } from 'react-final-form'
 import isEmpty from 'lodash/isEmpty'
 
 import Field from 'components/form/field'
+import Button from 'components/button'
+import IconLabel from 'components/iconLabel'
 import {
   input,
   select,
@@ -19,7 +21,7 @@ import { required } from 'components/form/validators'
 import './eventForm.css'
 
 const EventForm = ({
-  isCreateForm, organizations, onSubmit, initialValues, submitting,
+  isCreateForm, organizations, onSubmit, initialValues, submitting, toggleArchive,
 }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues} keepDirtyOnReinitialize={isCreateForm}>
     {({
@@ -78,14 +80,25 @@ const EventForm = ({
         )}
         <Field name="website" label="Website" type="text" component={input} inline />
         <Field name="contact" label="Contact email" type="email" component={input} inline />
-        <SubmitButton
-          handleSubmit={handleSubmit}
-          pristine={pristine}
-          invalid={invalid}
-          submitting={submitting}
-        >
-          {isCreateForm ? 'Create event' : 'Save event'}
-        </SubmitButton>
+        <div className="event-form-actions">
+          {!isCreateForm && (
+            <Button secondary onClick={toggleArchive}>
+              {values.archived ? (
+                <IconLabel icon="fa fa-history" label="Restore" />
+              ) : (
+                <IconLabel icon="fa fa-archive" label="Archive" />
+              )}
+            </Button>
+          )}
+          <SubmitButton
+            handleSubmit={handleSubmit}
+            pristine={pristine}
+            invalid={invalid}
+            submitting={submitting}
+          >
+            {isCreateForm ? 'Create event' : 'Save event'}
+          </SubmitButton>
+        </div>
       </form>
     )}
   </Form>
@@ -95,6 +108,7 @@ EventForm.propTypes = {
   isCreateForm: PropTypes.bool,
   organizations: PropTypes.arrayOf(PropTypes.object),
   onSubmit: PropTypes.func.isRequired,
+  toggleArchive: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
   submitting: PropTypes.bool,
 }

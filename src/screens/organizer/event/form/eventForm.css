@@ -7,6 +7,15 @@
   align-self: flex-end;
 }
 
+.event-form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.event-form-actions button:last-child {
+  margin-left: 1em;
+}
+
 @media only screen and (max-width: 480px) {
   .event-form {
     padding: 1em;
