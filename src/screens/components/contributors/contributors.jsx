@@ -12,8 +12,7 @@ class Contributors extends Component {
     contributors: [],
   }
 
-  // eslint-disable-next-line camelcase
-  async UNSAFE_componentWillMount() {
+  async componentDidMount() {
     const response = await fetch(CONTRIBUTORS_API)
     const contributors = await response.json()
     this.setState({ contributors })
