@@ -45,7 +45,12 @@ const MyTalks = ({ talks, onSelect }) => {
       <List
         array={filteredTalks}
         noResult={<NoTalks />}
-        renderRow={({ id, title, submissions, updateTimestamp }) => (
+        renderRow={({
+          id,
+          title,
+          submissions,
+          updateTimestamp,
+        }) => (
           <ListItem
             key={id}
             title={title}
