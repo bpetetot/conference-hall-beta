@@ -2,8 +2,7 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Timer extends Component {
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     const { enabled, delay, onFinish } = this.props
     if (enabled) {
       this.timer = setTimeout(onFinish, delay)
