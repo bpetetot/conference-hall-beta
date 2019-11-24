@@ -84,9 +84,9 @@ const EventForm = ({
           {!isCreateForm && (
             <Button secondary onClick={toggleArchive}>
               {values.archived ? (
-                <IconLabel icon="fa fa-history" label="Restore" />
+                <IconLabel icon="fa fa-history" label="Restore event" />
               ) : (
-                <IconLabel icon="fa fa-archive" label="Archive" />
+                <IconLabel icon="fa fa-archive" label="Archive event" />
               )}
             </Button>
           )}

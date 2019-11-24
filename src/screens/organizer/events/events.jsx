@@ -41,7 +41,7 @@ const MyEvents = ({ events, onSelect }) => {
       </Titlebar>
       <List
         array={filteredEvents}
-        noResult="No event yet !"
+        noResult={status === 'archived' ? 'No archived event' : 'No event yet !'}
         renderRow={({
           id, name, type, visibility, address, conferenceDates,
         }) => (
