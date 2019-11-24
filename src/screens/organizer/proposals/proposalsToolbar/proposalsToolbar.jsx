@@ -40,11 +40,11 @@ const ProposalToolbar = ({
     <div className={styles.rightActions}>
       {nbSelected === 0 && totalProposals > 0 && (
         <Dropdown
-          action={(
+          action={
             <Button tertiary loading={!!exporting}>
               <IconLabel icon="fa fa-caret-down" label="Export..." right />
             </Button>
-)}
+          }
         >
           <Button onClick={onExportProposals('json')} disabled={!!exporting}>
             <IconLabel icon="fa fa-cloud-download" label="JSON file" />

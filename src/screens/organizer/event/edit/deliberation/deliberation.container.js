@@ -24,65 +24,71 @@ const mapStore = (store, { eventId }) => {
     contact,
     recipients,
     emails,
-    onToggleDeliberation: (checked) => store.dispatch({
-      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-      payload: {
-        eventId,
-        domain: 'deliberation',
-        enabled: checked,
-      },
-    }),
-
-    onToggleBlindRating: (checked) => store.dispatch({
-      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-      payload: {
-        eventId,
-        domain: 'deliberation',
-        blindRating: checked,
-      },
-    }),
-
-    onToggleOrganizersRatings: (checked) => store.dispatch({
-      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-      payload: {
-        eventId,
-        domain: 'deliberation',
-        displayRatings: checked,
-      },
-    }),
-
-    onToggleHideRatings: (checked) => store.dispatch({
-      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-      payload: {
-        eventId,
-        domain: 'deliberation',
-        hideRatings: checked,
-      },
-    }),
-
-    onChangeRecipients: (e) => store.dispatch({
-      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-      payload: {
-        eventId,
-        domain: 'notifications',
-        recipients: {
-          ...recipients,
-          [e.target.name]: e.target.checked,
+    onToggleDeliberation: checked =>
+      store.dispatch({
+        type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+        payload: {
+          eventId,
+          domain: 'deliberation',
+          enabled: checked,
         },
-      },
-    }),
+      }),
 
-    onChangeNotifiedEmails: (e) => store.dispatch({
-      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-      payload: {
-        eventId,
-        domain: 'notifications',
-        emails: {
-          ...emails,
-          [e.target.name]: e.target.checked,
+    onToggleBlindRating: checked =>
+      store.dispatch({
+        type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+        payload: {
+          eventId,
+          domain: 'deliberation',
+          blindRating: checked,
         },
-      },
-    }),
+      }),
+
+    onToggleOrganizersRatings: checked =>
+      store.dispatch({
+        type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+        payload: {
+          eventId,
+          domain: 'deliberation',
+          displayRatings: checked,
+        },
+      }),
+
+    onToggleHideRatings: checked =>
+      store.dispatch({
+        type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+        payload: {
+          eventId,
+          domain: 'deliberation',
+          hideRatings: checked,
+        },
+      }),
+
+    onChangeRecipients: e =>
+      store.dispatch({
+        type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+        payload: {
+          eventId,
+          domain: 'notifications',
+          recipients: {
+            ...recipients,
+            [e.target.name]: e.target.checked,
+          },
+        },
+      }),
+
+    onChangeNotifiedEmails: e =>
+      store.dispatch({
+        type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+        payload: {
+          eventId,
+          domain: 'notifications',
+          emails: {
+            ...emails,
+            [e.target.name]: e.target.checked,
+          },
+        },
+      }),
   }
 }
 

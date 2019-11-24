@@ -26,10 +26,12 @@ const Stepper = ({ steps, currentStep }) => (
 )
 
 Stepper.propTypes = {
-  steps: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string,
-    icon: PropTypes.string,
-  })).isRequired,
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      icon: PropTypes.string,
+    }),
+  ).isRequired,
   currentStep: PropTypes.number.isRequired,
 }
 

@@ -23,7 +23,7 @@ class OpenTrigger extends Component {
     return null
   }
 
-  handleKeydown = (e) => {
+  handleKeydown = e => {
     if (e.keyCode === 27) {
       this.hide()
     }

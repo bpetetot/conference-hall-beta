@@ -6,13 +6,11 @@ import { SubmitButton } from 'components/form'
 import questions from 'screens/components/event/survey/questions'
 import SurveyInput from './surveyInput'
 
-const SurveyForm = ({
-  survey, onSubmit, initialValues, submitting,
-}) => (
+const SurveyForm = ({ survey, onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit, pristine }) => (
       <form>
-        {questions.map((q) => survey[q.name] && <SurveyInput key={q.name} {...q} />)}
+        {questions.map(q => survey[q.name] && <SurveyInput key={q.name} {...q} />)}
         <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
           Save Survey
         </SubmitButton>

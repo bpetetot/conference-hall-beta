@@ -2,14 +2,15 @@ import firebase from 'firebase/app'
 
 const functions = {}
 
-const buildFunctionWithTimezone = (functionName) => {
+const buildFunctionWithTimezone = functionName => {
   const cloudFunction = firebase.functions().httpsCallable(functionName)
   const { timeZone } = Intl.DateTimeFormat().resolvedOptions()
 
-  return ({ userTimezone, ...rest }) => cloudFunction({
-    ...rest,
-    userTimezone: userTimezone || timeZone,
-  })
+  return ({ userTimezone, ...rest }) =>
+    cloudFunction({
+      ...rest,
+      userTimezone: userTimezone || timeZone,
+    })
 }
 
 export const initFunctionCalls = () => {

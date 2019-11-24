@@ -9,16 +9,14 @@ const UserResults = ({ users, message, onSelectUser }) => {
     return (
       <div className="users-no-result">
         <strong>No user found !</strong>
-        <div>
-          You may have a wrong email address or the user didn&apos;t signup yet
-        </div>
+        <div>You may have a wrong email address or the user didn&apos;t signup yet</div>
       </div>
     )
   }
   return (
     <div className="users-result">
       <h3>{message}</h3>
-      {users.map((uid) => (
+      {users.map(uid => (
         <div key={uid} onClick={() => onSelectUser(uid)} role="button">
           <UserAvatar id={uid} />
         </div>

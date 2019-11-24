@@ -17,9 +17,7 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const SubmitWizard = ({
-  eventId, cfpOpened, eventName, currentStep,
-}) => {
+const SubmitWizard = ({ eventId, cfpOpened, eventName, currentStep }) => {
   if (!eventId || !cfpOpened) return null
   return (
     <div className="submitWizard">

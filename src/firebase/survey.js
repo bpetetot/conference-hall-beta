@@ -5,13 +5,14 @@ import firebase from 'firebase/app'
  * @param {string} eventId event id
  * @param {string} uid user id
  */
-export const getSurvey = (eventId, uid) => firebase
-  .firestore()
-  .collection('events')
-  .doc(eventId)
-  .collection('surveys')
-  .doc(uid)
-  .get()
+export const getSurvey = (eventId, uid) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('surveys')
+    .doc(uid)
+    .get()
 
 /**
  * Add or update a user survey to an event
@@ -19,14 +20,15 @@ export const getSurvey = (eventId, uid) => firebase
  * @param {string} uid user id
  * @param {object} survey
  */
-export const saveSurvey = (eventId, uid, survey) => firebase
-  .firestore()
-  .collection('events')
-  .doc(eventId)
-  .collection('surveys')
-  .doc(uid)
-  .set({
-    uid,
-    ...survey,
-    updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  })
+export const saveSurvey = (eventId, uid, survey) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('surveys')
+    .doc(uid)
+    .set({
+      uid,
+      ...survey,
+      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })

@@ -6,9 +6,7 @@ import Avatar from 'components/avatar/avatar'
 import Button from 'components/button'
 import './inviteOrganizer.css'
 
-const InviteOrganizer = ({
-  displayName, photoURL, name, join, cancel,
-}) => (
+const InviteOrganizer = ({ displayName, photoURL, name, join, cancel }) => (
   <div className="invite-organizer">
     <Titlebar icon="fa fa-envelope-open" title="You're invite to join an organization">
       <Button onClick={cancel} secondary>
@@ -17,11 +15,7 @@ const InviteOrganizer = ({
     </Titlebar>
     <div className="card">
       <div className="invited-by">
-        <Avatar
-          name={displayName}
-          src={photoURL}
-          withLabel
-        />
+        <Avatar name={displayName} src={photoURL} withLabel />
         <div>&nbsp;{`invites you to join the organization : ${name}`}</div>
       </div>
       <p>You&apos;re will be able to update the organization and invite members</p>

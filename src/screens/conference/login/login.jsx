@@ -7,9 +7,7 @@ import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import './login.css'
 
-const Login = ({
-  authenticated, initialized, providers, signin,
-}) => {
+const Login = ({ authenticated, initialized, providers, signin }) => {
   const [authenticating, setAuthenticating] = useState(false)
   const [errorMessage, setErrorMessage] = useState()
 
@@ -21,7 +19,7 @@ const Login = ({
       .then(() => {
         setAuthenticating(false)
       })
-      .catch((error) => {
+      .catch(error => {
         setAuthenticating(false)
         setErrorMessage(error.message)
       })
@@ -34,7 +32,7 @@ const Login = ({
   return (
     <div className="login">
       <h1 className="login-title">Connexion</h1>
-      {providers.map((provider) => (
+      {providers.map(provider => (
         <Button key={provider} className={`btn-${provider}`} onClick={() => signin(provider)}>
           <IconLabel icon={`fa fa-${provider}`} label={`with ${provider}`} />
         </Button>

@@ -42,9 +42,4 @@ const Organizer = () => (
   </AppLayout>
 )
 
-export default compose(
-  forRoute('organizer'),
-  protect,
-  restrictBeta,
-  isEventAuthorized,
-)(Organizer)
+export default compose(forRoute('organizer'), protect, restrictBeta, isEventAuthorized)(Organizer)

@@ -6,15 +6,17 @@ import Badge from 'components/badge'
 import Markdown from 'components/markdown'
 import './abstract.css'
 
-const TalkAbstract = ({
-  abstract, references, language, level, className,
-}) => (
+const TalkAbstract = ({ abstract, references, language, level, className }) => (
   <div className={cn('talk-abstract card', className)}>
     <div className="talk-abstract-title">
       <h3>Abstract</h3>
       <div className="talk-abstract-more-info">
-        <Badge outline pill light>{level}</Badge>
-        <Badge outline pill light>{language}</Badge>
+        <Badge outline pill light>
+          {level}
+        </Badge>
+        <Badge outline pill light>
+          {language}
+        </Badge>
       </div>
     </div>
     <Markdown source={abstract} />

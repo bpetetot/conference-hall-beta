@@ -10,9 +10,7 @@ import CloseIcon from 'components/icons/close'
 
 import './drawer.css'
 
-const Drawer = ({
-  title, subtitle, className, actions, children, defaultOpen, renderTrigger,
-}) => (
+const Drawer = ({ title, subtitle, className, actions, children, defaultOpen, renderTrigger }) => (
   <OpenTrigger defaultOpen={defaultOpen} renderTrigger={renderTrigger}>
     {({ hide, show, isOpen }) => (
       <Portal>

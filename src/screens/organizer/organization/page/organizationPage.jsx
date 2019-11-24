@@ -24,7 +24,7 @@ const OrganizationPage = ({
   <div className="organization-page">
     <Titlebar className="organization-header" icon="fa fa-users" title={name}>
       <Button secondary>
-        {(btn) => (
+        {btn => (
           <Link code="organizer-organization-edit" organizationId={organizationId} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
@@ -33,7 +33,7 @@ const OrganizationPage = ({
       <AddMember
         onSelectUser={onSelectUser}
         resultsMessage="Select an organizer to add to your organization"
-        description={(
+        description={
           <>
             <p>
               Search and add a member to your organization, he/she will be also able to update it,
@@ -46,7 +46,7 @@ const OrganizationPage = ({
               email address.
             </p>
           </>
-)}
+        }
         renderTrigger={({ show }) => (
           <Button onClick={show} secondary>
             <IconLabel icon="fa fa-user" label="Add a member" />
@@ -58,7 +58,7 @@ const OrganizationPage = ({
       className="organization-content"
       array={keys(members)}
       noResult="No users yet !"
-      renderRow={(uid) => (
+      renderRow={uid => (
         <MemberRow
           key={uid}
           uid={uid}

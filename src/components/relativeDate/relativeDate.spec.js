@@ -5,7 +5,7 @@ import RelativeDate from './index.js'
 jest.mock('date-fns/formatDistanceToNow', () => () => '2 days ago')
 jest.mock('../iconLabel', () => 'IconLabel')
 
-const snapshot = (props) => snap(RelativeDate)({ ...props })
+const snapshot = props => snap(RelativeDate)({ ...props })
 
 describe('components/relativeDate', () => {
   it('should not render if no date', snapshot({}))

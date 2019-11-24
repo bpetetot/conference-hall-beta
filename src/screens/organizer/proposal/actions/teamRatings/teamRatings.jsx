@@ -11,9 +11,7 @@ import TotalRatings from 'screens/organizer/components/totalRatings'
 
 import './teamRatings.css'
 
-const TeamRatings = ({
-  total, loves, hates, noopinion, ratings,
-}) => (
+const TeamRatings = ({ total, loves, hates, noopinion, ratings }) => (
   <Drawer
     title="Team ratings"
     renderTrigger={({ show }) => (

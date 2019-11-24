@@ -2,7 +2,7 @@
 import snap from 'tests/snapshot'
 import Avatar from './index.js'
 
-const snapshot = (props) => snap(Avatar)({ ...props })
+const snapshot = props => snap(Avatar)({ ...props })
 
 describe('components/avatar', () => {
   it('should not render when no props', snapshot({}))
