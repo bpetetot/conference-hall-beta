@@ -6,9 +6,7 @@ import get from 'lodash/get'
 
 import Field from 'components/form/field'
 import Titlebar from 'components/titlebar'
-import {
-  markdownInput, radio, SubmitButton, RadioGroup,
-} from 'components/form'
+import { markdownInput, radio, SubmitButton, RadioGroup } from 'components/form'
 import Alert from 'components/alert'
 import { required } from 'components/form/validators'
 
@@ -51,7 +49,7 @@ const TalkSubmission = ({
         <div className="submit-talk-form card">
           {!isEmpty(event.categories) && (
             <RadioGroup name="categories" label="Talk categories" error={errors.categories} inline>
-              {event.categories.map((c) => (
+              {event.categories.map(c => (
                 <Field
                   key={c.id}
                   name="categories"
@@ -66,7 +64,7 @@ const TalkSubmission = ({
           )}
           {!isEmpty(event.formats) && (
             <RadioGroup name="formats" label="Talk formats" error={errors.formats} inline>
-              {event.formats.map((f) => (
+              {event.formats.map(f => (
                 <Field
                   key={f.id}
                   name="formats"

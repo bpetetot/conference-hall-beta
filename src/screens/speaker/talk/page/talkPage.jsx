@@ -15,20 +15,37 @@ import DeleteTalkButton from './delete'
 import './talkPage.css'
 
 const TalkPage = ({
-  id, title, abstract, level, owner, references, language, speakers, submissions,
+  id,
+  title,
+  abstract,
+  level,
+  owner,
+  references,
+  language,
+  speakers,
+  submissions,
+  toggleArchive,
+  archived,
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
       <DeleteTalkButton talkId={id} />
-      <Button secondary small>
-        {(btn) => (
+      <Button secondary onClick={toggleArchive}>
+        {archived ? (
+          <IconLabel icon="fa fa-history" label="Restore" />
+        ) : (
+          <IconLabel icon="fa fa-archive" label="Archive" />
+        )}
+      </Button>
+      <Button secondary>
+        {btn => (
           <Link code="speaker-talk-edit" talkId={id} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}
       </Button>
       <Button accent>
-        {(btn) => (
+        {btn => (
           <Link code="speaker-talk-submission" talkId={id} className={btn}>
             <IconLabel icon="fa fa-paper-plane" label="Submit" />
           </Link>
@@ -60,6 +77,8 @@ TalkPage.propTypes = {
   owner: PropTypes.string,
   references: PropTypes.string,
   language: PropTypes.string,
+  toggleArchive: PropTypes.func.isRequired,
+  archived: PropTypes.bool,
   speakers: PropTypes.objectOf(PropTypes.bool),
   submissions: PropTypes.objectOf(PropTypes.any),
 }
@@ -70,6 +89,7 @@ TalkPage.defaultProps = {
   owner: undefined,
   references: undefined,
   language: undefined,
+  archived: undefined,
   speakers: {},
   submissions: {},
 }

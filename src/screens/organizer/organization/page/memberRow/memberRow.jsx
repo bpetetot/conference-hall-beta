@@ -35,7 +35,9 @@ const MemberRow = ({
         renderActions={() => (
           <ConfirmationPopin
             title={canRemove ? 'Remove a member' : 'Leave organization'}
-            content={`Are you sure you want to ${canRemove ? `remove ${displayName} from` : 'leave'} organization ?`}
+            content={`Are you sure you want to ${
+              canRemove ? `remove ${displayName} from` : 'leave'
+            } organization ?`}
             className="remove-member-modal"
             onOk={removeMember}
             withCancel

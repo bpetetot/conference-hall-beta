@@ -12,9 +12,7 @@ export const loadMessages = async (action, store) => {
   store.ui.organizer.organizersThread.reset()
   const result = await fetchOrganizersThread(eventId, proposalId)
   const messages = await Promise.all(
-    result.map(async ({
-      uid, date, messageId, message, modified,
-    }) => {
+    result.map(async ({ uid, date, messageId, message, modified }) => {
       let user = store.data.users.get(uid)
       if (!user) {
         const ref = await userCrud.read(uid)
@@ -36,9 +34,7 @@ export const loadMessages = async (action, store) => {
 }
 
 export const saveMessage = async (action, store) => {
-  const {
-    eventId, proposalId, uid, message, messageId,
-  } = action.payload
+  const { eventId, proposalId, uid, message, messageId } = action.payload
   if (messageId) {
     updateOrganizersThreadMessage(eventId, proposalId, messageId, message)
     store.ui.organizer.organizersThread.update({
@@ -65,9 +61,7 @@ export const saveMessage = async (action, store) => {
 }
 
 export const deleteMessage = (action, store) => {
-  const {
-    eventId, proposalId, messageId,
-  } = action.payload
+  const { eventId, proposalId, messageId } = action.payload
   deleteOrganizersThreadMessage(eventId, proposalId, messageId)
   store.ui.organizer.organizersThread.remove(messageId)
 }

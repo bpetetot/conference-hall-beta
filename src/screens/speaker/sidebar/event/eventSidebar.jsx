@@ -20,7 +20,11 @@ const EventSidebar = ({ id, name, surveyActive }) => {
           <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
         </SideBarLink>
       )}
-      <SubmitTalksLink eventId={id} className="sidebar-link" classNameActive="sidebar-link-active" />
+      <SubmitTalksLink
+        eventId={id}
+        className="sidebar-link"
+        classNameActive="sidebar-link-active"
+      />
     </SideBarPanel>
   )
 }

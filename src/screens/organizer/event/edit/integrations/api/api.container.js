@@ -12,23 +12,25 @@ const mapStore = (store, { eventId }) => {
   return {
     enabled,
     apiKey,
-    onActiveApi: (checked) => store.dispatch({
-      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-      payload: {
-        eventId,
-        domain: 'api',
-        enabled: checked,
-        apiKey: checked && !apiKey ? uuid() : apiKey,
-      },
-    }),
-    onGenerateKey: () => store.dispatch({
-      type: '@@ui/ON_SAVE_EVENT_SETTINGS',
-      payload: {
-        eventId,
-        domain: 'api',
-        apiKey: uuid(),
-      },
-    }),
+    onActiveApi: checked =>
+      store.dispatch({
+        type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+        payload: {
+          eventId,
+          domain: 'api',
+          enabled: checked,
+          apiKey: checked && !apiKey ? uuid() : apiKey,
+        },
+      }),
+    onGenerateKey: () =>
+      store.dispatch({
+        type: '@@ui/ON_SAVE_EVENT_SETTINGS',
+        payload: {
+          eventId,
+          domain: 'api',
+          apiKey: uuid(),
+        },
+      }),
   }
 }
 

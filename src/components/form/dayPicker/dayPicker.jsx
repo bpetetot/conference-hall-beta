@@ -13,16 +13,14 @@ export class DayPicker extends React.Component {
     }
   }
 
-  onDateChange = (date) => {
+  onDateChange = date => {
     this.setState({ date })
     this.props.onChange(date)
   }
 
   render() {
     const { date } = this.state
-    const {
-      id, isMobile, isTablet, dateFormat, className, placeholderText,
-    } = this.props
+    const { id, isMobile, isTablet, dateFormat, className, placeholderText } = this.props
 
     return (
       <DatePicker

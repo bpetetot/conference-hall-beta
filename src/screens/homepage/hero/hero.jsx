@@ -23,14 +23,14 @@ const Hero = ({ isMobile }) => (
     {isMobile && (
       <div className={styles.mobileActions} size="large">
         <Button accent size="large">
-          {(className) => (
+          {className => (
             <Link code="speaker" className={className}>
               Speaker Hall
             </Link>
           )}
         </Button>
         <Button accent size="large">
-          {(className) => (
+          {className => (
             <Link code="organizer" className={className}>
               Organizer Hall
             </Link>

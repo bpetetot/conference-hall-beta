@@ -9,7 +9,11 @@ const props = {
 
 describe('components/radiogroup', () => {
   it('should render', () => {
-    expect(<RadioGroup {...props}><span>child1</span><span>child2</span></RadioGroup>)
-      .toMatchSnapshot()
+    expect(
+      <RadioGroup {...props}>
+        <span>child1</span>
+        <span>child2</span>
+      </RadioGroup>,
+    ).toMatchSnapshot()
   })
 })

@@ -4,9 +4,7 @@ import cn from 'classnames'
 
 import './iconLabel.css'
 
-const IconLabel = ({
-  icon, label, right, overflow, className,
-}) => {
+const IconLabel = ({ icon, label, right, overflow, className }) => {
   if (!label) return null
   return (
     <span className={cn(className, 'icon-label', { 'icon-label-right': right })}>

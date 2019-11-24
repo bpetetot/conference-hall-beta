@@ -16,7 +16,7 @@ export const searchEvents = async (action, store, { router, algolia }) => {
     const { lat, lng } = location.latLng
     geolocation.aroundLatLng = `${lat}, ${lng}`
     geolocation.aroundRadius = 1000000 // max 1000km around
-    geolocation.minimumAroundRadius = 50000// min 50km around
+    geolocation.minimumAroundRadius = 50000 // min 50km around
   }
 
   if (date) {

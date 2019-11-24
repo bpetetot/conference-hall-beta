@@ -67,19 +67,18 @@ export const exportProposals = async (action, store, { router }) => {
 
   // get proposal filters & sort from query params
   const queryParams = router.getQueryParams()
-  const query = encodeURI(Object.entries({ ...queryParams, output })
-    .map(([key, value]) => `${key}=${value}`)
-    .join('&'))
+  const query = encodeURI(
+    Object.entries({ ...queryParams, output })
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&'),
+  )
 
   // fetch proposal export
   try {
-    const response = await fetch(
-      `/api/private/export/${eventId}?${query}`,
-      {
-        method: 'GET',
-        headers: { Authorization: `Bearer ${token}` },
-      },
-    )
+    const response = await fetch(`/api/private/export/${eventId}?${query}`, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    })
     const blob = await response.blob()
     const filename = `export-${Date.now()}.${output}`
     downloadFile(filename, blob)

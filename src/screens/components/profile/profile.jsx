@@ -3,17 +3,13 @@ import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 import Field from 'components/form/field'
 
-import {
-  input, address, markdownInput, SubmitButton,
-} from 'components/form'
+import { input, address, markdownInput, SubmitButton } from 'components/form'
 import { required } from 'components/form/validators'
 import Avatar from 'components/avatar'
 
 import './profile.css'
 
-const Profile = ({
-  displayName, photoURL, email, onSubmit, initialValues, submitting,
-}) => (
+const Profile = ({ displayName, photoURL, email, onSubmit, initialValues, submitting }) => (
   <div className="profile">
     <div className="profile-header card">
       <Avatar name={displayName} src={photoURL} className="profile-avatar" square />
@@ -34,7 +30,14 @@ const Profile = ({
             validate={required}
             inline
           />
-          <Field name="email" label="Email" type="text" component={input} validate={required} inline />
+          <Field
+            name="email"
+            label="Email"
+            type="text"
+            component={input}
+            validate={required}
+            inline
+          />
           <Field name="company" label="Company" type="text" component={input} inline />
           <Field name="phone" label="Phone" type="text" component={input} inline />
           <Field name="language" label="Spoken language" type="text" component={input} inline />

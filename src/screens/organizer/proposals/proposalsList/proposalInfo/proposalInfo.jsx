@@ -8,12 +8,8 @@ import TalkSelection from 'screens/organizer/components/talkSelection'
 
 import './proposalInfo.css'
 
-const ProposalInfo = ({
-  proposal, isMobile, deliberationActive, hideRatings,
-}) => {
-  const {
-    id, rating, loves, hates, noopinion, usersRatings,
-  } = proposal
+const ProposalInfo = ({ proposal, isMobile, deliberationActive, hideRatings }) => {
+  const { id, rating, loves, hates, noopinion, usersRatings } = proposal
 
   const nbVotes = compact(values(usersRatings)).length
 

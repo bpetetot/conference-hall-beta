@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
-export default (scrollHeight) => {
+export default scrollHeight => {
   const scrollWrapper = useRef(null)
 
   const [scrolled, setScrolled] = useState(false)

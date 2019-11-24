@@ -32,24 +32,25 @@ const getTimezone = async ({ lat, lng }) => {
   return null
 }
 
-const getAddressComponent = (name) => flow(
-  filter((component) => component.types.includes(name)),
-  first,
-  pick(['short_name', 'long_name']),
-)
+const getAddressComponent = name =>
+  flow(
+    filter(component => component.types.includes(name)),
+    first,
+    pick(['short_name', 'long_name']),
+  )
 
 const AddressInput = ({ placeholder, ...props }) => {
   const [address, setAddress] = useState(props.value.formattedAddress || '')
   const inputRef = useRef()
 
-  const handleChange = (inputAddress) => {
+  const handleChange = inputAddress => {
     setAddress(inputAddress)
     if (isEmpty(inputAddress)) {
       props.onChange({})
     }
   }
 
-  const handleSelect = async (selectedAddress) => {
+  const handleSelect = async selectedAddress => {
     setAddress(selectedAddress)
 
     const results = await geocodeByAddress(selectedAddress)
@@ -93,7 +94,7 @@ const AddressInput = ({ placeholder, ...props }) => {
           />
 
           <div className="cc-address-input-suggestions">
-            {suggestions.map((suggestion) => {
+            {suggestions.map(suggestion => {
               const className = cn('cc-address-input-suggestion-item', {
                 'cc-address-input-suggestion-item-active': suggestion.active,
               })

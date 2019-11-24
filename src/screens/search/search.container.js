@@ -6,7 +6,7 @@ import loader from 'components/loader'
 
 import Search from './search'
 
-const mapStore = (store) => {
+const mapStore = store => {
   const search = store.ui.search.events.get()
   return {
     loaded: !search.loading,
@@ -18,8 +18,4 @@ const mapStore = (store) => {
   }
 }
 
-export default compose(
-  forRoute.absolute('search'),
-  inject(mapStore),
-  loader,
-)(Search)
+export default compose(forRoute.absolute('search'), inject(mapStore), loader)(Search)

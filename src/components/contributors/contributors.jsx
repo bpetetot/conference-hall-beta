@@ -9,7 +9,7 @@ import styles from './contributors.module.css'
 
 const EXCLUDED_CONTRIBUTORS = ['greenkeeper[bot]']
 
-const fetchContributors = async (callback) => {
+const fetchContributors = async callback => {
   try {
     const response = await fetch(CONTRIBUTORS_API)
     const result = await response.json()
@@ -28,16 +28,11 @@ const Contributors = ({ className }) => {
   return (
     <div className={cn(styles.list, className)}>
       {contributors
-        .filter((c) => !EXCLUDED_CONTRIBUTORS.includes(c.login))
-        .map((c) => (
+        .filter(c => !EXCLUDED_CONTRIBUTORS.includes(c.login))
+        .map(c => (
           <div key={c.id} className={styles.wrapper}>
             <div className={styles.contributor}>
-              <Avatar
-                name={c.login}
-                src={c.avatar_url}
-                size="large"
-                className={styles.avater}
-              />
+              <Avatar name={c.login} src={c.avatar_url} size="large" className={styles.avater} />
               <a
                 className={styles.name}
                 href={c.html_url}

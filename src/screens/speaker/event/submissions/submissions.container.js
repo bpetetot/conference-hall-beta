@@ -10,8 +10,8 @@ const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
   const talks = store.ui.speaker.myTalks
     .getAsArray()
-    .filter((talk) => talk.submissions && !!talk.submissions[eventId])
-    .map((talk) => talk.submissions[eventId])
+    .filter(talk => talk.submissions && !!talk.submissions[eventId])
+    .map(talk => talk.submissions[eventId])
 
   const { name: eventName } = store.data.events.get(eventId) || {}
 
@@ -23,7 +23,7 @@ const mapStore = (store, props, { router }) => {
     talks,
     loaded,
     load: () => store.dispatch('@@ui/ON_LOAD_SPEAKER_TALKS'),
-    onSelect: (talkId) => router.push('speaker-event-submission-page', { eventId, talkId }),
+    onSelect: talkId => router.push('speaker-event-submission-page', { eventId, talkId }),
   }
 }
 

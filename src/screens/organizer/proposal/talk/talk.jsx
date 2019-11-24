@@ -11,9 +11,7 @@ import { formatTimestamp } from 'helpers/firebase'
 
 import styles from './talk.module.css'
 
-const Talk = ({
-  eventId, proposal, deliberationActive, isMobile, className,
-}) => (
+const Talk = ({ eventId, proposal, deliberationActive, isMobile, className }) => (
   <div className={cn(className, 'card')}>
     <div className={styles.title}>
       <h2>{proposal.title}</h2>

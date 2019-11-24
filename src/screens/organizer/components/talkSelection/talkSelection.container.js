@@ -6,13 +6,15 @@ const mapStore = (store, { proposalId }, { router }) => {
   const currentProposalId = proposalId || router.getParam('proposalId')
   const { emailStatus, state } = store.data.proposals.get(currentProposalId) || {}
 
-  const isDeliberationDone = (!!emailStatus || emailStatus === 'none') && (state === 'accepted' || state === 'rejected' || state === 'confirmed' || state === 'declined')
+  const isDeliberationDone =
+    (!!emailStatus || emailStatus === 'none') &&
+    (state === 'accepted' || state === 'rejected' || state === 'confirmed' || state === 'declined')
 
   return {
     isDeliberationDone,
     emailStatus,
     state,
-    onChange: (e) => {
+    onChange: e => {
       store.dispatch({
         type: '@@ui/ON_UPDATE_PROPOSAL',
         payload: {

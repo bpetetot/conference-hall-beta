@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Badge from 'components/badge'
 
 class CfpBadge extends Component {
-  renderCfpLabel = (cfpState) => {
+  renderCfpLabel = cfpState => {
     if (cfpState === 'not-started') return 'not opened yet'
     if (cfpState === 'opened') return 'opened'
     return 'closed'

@@ -6,9 +6,7 @@ import Navbar from './navbar'
 
 import './layout.css'
 
-const AppLayout = ({
-  children, className, sidebar, fullwidth,
-}) => (
+const AppLayout = ({ children, className, sidebar, fullwidth }) => (
   <div className={cn('layout-screen', { nosidebar: !sidebar })}>
     <Navbar className="layout-navbar" sidebar={sidebar} />
     {sidebar && <div className="layout-sidebar">{sidebar}</div>}

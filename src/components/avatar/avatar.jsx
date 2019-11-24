@@ -27,16 +27,13 @@ const Avatar = ({
     bgColor = { background: generateColor(name) }
   }
 
-  const classes = cn(
-    'cc-avatar',
-    {
-      'cc-avatar-small': size === 'small',
-      'cc-avatar-large': size === 'large',
-      'cc-avatar-initials': !src,
-      'cc-avatar-image': src,
-      'cc-avatar-square': square,
-    },
-  )
+  const classes = cn('cc-avatar', {
+    'cc-avatar-small': size === 'small',
+    'cc-avatar-large': size === 'large',
+    'cc-avatar-initials': !src,
+    'cc-avatar-image': src,
+    'cc-avatar-square': square,
+  })
 
   return (
     <div className={cn('cc-avatar-wrapper', className)}>

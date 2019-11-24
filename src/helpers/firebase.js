@@ -2,9 +2,9 @@ import firebase from 'firebase/app'
 
 import { formatDate } from './date'
 
-export const isTimestamp = (date) => !!date && date instanceof firebase.firestore.Timestamp
+export const isTimestamp = date => !!date && date instanceof firebase.firestore.Timestamp
 
-export const toDate = (timestamp) => {
+export const toDate = timestamp => {
   if (isTimestamp(timestamp)) {
     return timestamp.toDate()
   }
@@ -15,4 +15,5 @@ export const toDate = (timestamp) => {
 }
 
 // eslint-disable-next-line max-len
-export const formatTimestamp = (timestamp, size, timezone) => formatDate(toDate(timestamp), size, timezone)
+export const formatTimestamp = (timestamp, size, timezone) =>
+  formatDate(toDate(timestamp), size, timezone)

@@ -25,7 +25,8 @@ const DeliberationForm = ({
   onChangeNotifiedEmails,
 }) => {
   // eslint-disable-next-line max-len
-  const disabledEmails = !recipients.organizers && (!recipients.contact || (recipients.contact && !contact))
+  const disabledEmails =
+    !recipients.organizers && (!recipients.contact || (recipients.contact && !contact))
 
   return (
     <div className={cn(styles.form, 'card')}>
@@ -59,11 +60,7 @@ const DeliberationForm = ({
         classNameInput={styles.label}
         right
       >
-        <Toggle
-          name="hideRatings"
-          checked={hideRatings}
-          onChange={onToggleHideRatings}
-        />
+        <Toggle name="hideRatings" checked={hideRatings} onChange={onToggleHideRatings} />
       </Label>
 
       <Label
@@ -72,11 +69,7 @@ const DeliberationForm = ({
         classNameInput={styles.label}
         right
       >
-        <Toggle
-          name="blindRating"
-          checked={blindRating}
-          onChange={onToggleBlindRating}
-        />
+        <Toggle name="blindRating" checked={blindRating} onChange={onToggleBlindRating} />
       </Label>
 
       <h3>Email notifications</h3>

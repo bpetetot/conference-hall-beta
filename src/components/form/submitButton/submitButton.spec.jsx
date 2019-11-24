@@ -9,7 +9,10 @@ const props = {
 
 describe('components/submitButton', () => {
   it('should render', () => {
-    expect(<SubmitButton {...props}><span>children</span></SubmitButton>)
-      .toMatchSnapshot()
+    expect(
+      <SubmitButton {...props}>
+        <span>children</span>
+      </SubmitButton>,
+    ).toMatchSnapshot()
   })
 })

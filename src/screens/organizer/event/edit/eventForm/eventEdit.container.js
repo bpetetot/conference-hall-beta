@@ -11,8 +11,14 @@ const mapStore = (store, { eventId }) => {
     submitting: store.ui.loaders.get().isEventSaving,
     organizations: store.data.organizations.getAsArray(),
     initialValues: { ...event },
-    onSubmit: (payload) => {
+    onSubmit: payload => {
       store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_DETAILS', payload })
+    },
+    toggleArchive: () => {
+      store.dispatch({
+        type: '@@ui/ON_UPDATE_EVENT_DETAILS',
+        payload: { id: event.id, archived: !event.archived },
+      })
     },
   }
 }

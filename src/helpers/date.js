@@ -30,4 +30,4 @@ export const formatDate = (date, size, timezone = 'local') => {
  * Date to a timestamp epoch
  * @param {Date} date instance of Date
  */
-export const dateToTimestamp = (date) => Number.parseInt(date.getTime() / 1000, 10)
+export const dateToTimestamp = date => Number.parseInt(date.getTime() / 1000, 10)

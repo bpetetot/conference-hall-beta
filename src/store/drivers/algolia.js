@@ -5,7 +5,7 @@ export default (config = {}) => {
 
   return {
     getDriver: () => ({
-      getIndex: (name) => client.initIndex(name),
+      getIndex: name => client.initIndex(name),
     }),
   }
 }

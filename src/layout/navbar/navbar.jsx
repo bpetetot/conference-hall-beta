@@ -10,9 +10,7 @@ import Brand from './brand'
 import Avatar from './avatar'
 import styles from './navbar.module.css'
 
-const Navbar = ({
-  fixed, transparent, withSearchInput, isMobile, sidebar, className,
-}) => (
+const Navbar = ({ fixed, transparent, withSearchInput, isMobile, sidebar, className }) => (
   <div
     className={cn(
       styles.navbar,

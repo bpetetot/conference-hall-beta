@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="0.22.0"></a>
+## 0.22.0 (2019-11-24)
+
+### Added
+
+- ✨ archive a talk ([#718](https://github.com/bpetetot/conference-hall/issues/718)) [[f67ef9b](https://github.com/bpetetot/conference-hall/commit/f67ef9b22ad3483e719701f23c83956d52a296c5)]
+- ✨ archive an event ([#719](https://github.com/bpetetot/conference-hall/issues/719)) [[9f75ca5](https://github.com/bpetetot/conference-hall/commit/9f75ca5763e65d53d89e074a0d4641d4b69d36da)]
+
+### Changed
+
+- ⬆️ upgrade minor dependencies ([#717](https://github.com/bpetetot/conference-hall/issues/717)) [[f55deaa](https://github.com/bpetetot/conference-hall/commit/f55deaa369c81616edbfd8873daa1ffe19c008b6)]
+
+
 <a name="0.21.0"></a>
 ## 0.21.0 (2019-11-17)
 

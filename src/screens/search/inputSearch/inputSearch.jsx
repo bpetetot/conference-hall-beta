@@ -6,16 +6,14 @@ import Button from 'components/button'
 
 import styles from './inputSearch.module.css'
 
-const SearchEventInput = ({
-  defaultValue, onSearch, className, darkMode,
-}) => {
+const SearchEventInput = ({ defaultValue, onSearch, className, darkMode }) => {
   const inputRef = useRef()
 
   const handleSearch = () => {
     onSearch(inputRef.current.value)
   }
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = e => {
     if (e.charCode === 13) handleSearch()
   }
 

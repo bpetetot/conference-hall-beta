@@ -10,11 +10,9 @@ const SearchResults = ({ results, total, type }) => (
   <div className={styles.block}>
     {total !== 0 && (
       <>
-        <h1>
-          {messages(type, { itemCount: total })}
-        </h1>
+        <h1>{messages(type, { itemCount: total })}</h1>
         <div className={styles.results}>
-          {results.map((e) => (
+          {results.map(e => (
             <EventCard key={e.objectID} {...e} />
           ))}
         </div>
