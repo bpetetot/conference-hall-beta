@@ -5,7 +5,7 @@ import { mount } from 'enzyme'
 import snap from 'tests/snapshot'
 import CopyInput from './index.js'
 
-const snapshot = (props) => snap(CopyInput)({ ...props })
+const snapshot = props => snap(CopyInput)({ ...props })
 
 describe('components/copyInput', () => {
   it('should render with all props', snapshot({ title: 't', value: 'v' }))

@@ -15,7 +15,7 @@ const store = createStore(reducers, {
     router: router({
       routes,
       state: 'ui.router',
-      getState: (state) => state.ui.router,
+      getState: state => state.ui.router,
     }),
   },
 })

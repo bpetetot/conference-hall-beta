@@ -6,20 +6,18 @@ import './tooltipOverlay.css'
 
 class TooltipOverlay extends Component {
   render() {
-    const {
-      content, opened, placement, popperStyle, arrowStyle,
-    } = this.props
+    const { content, opened, placement, popperStyle, arrowStyle } = this.props
     const display = !opened ? { display: 'none' } : {}
     return (
       <div
-        ref={(r) => (this.popperRef = r)}
+        ref={r => (this.popperRef = r)}
         style={{ ...display, ...popperStyle }}
         data-placement={placement}
         className="cc-tooltip"
         role="tooltip"
       >
         <div
-          ref={(r) => (this.arrowRef = r)}
+          ref={r => (this.arrowRef = r)}
           style={{ ...arrowStyle }}
           className="cc-tooltip-arrow"
         />

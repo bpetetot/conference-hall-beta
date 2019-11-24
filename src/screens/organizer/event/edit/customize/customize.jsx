@@ -13,7 +13,7 @@ const CustomizeForm = ({ eventId, onChangeBanner }) => {
   const [percentage, setPercentage] = useState()
   const [error, setError] = useState()
 
-  const handleUpload = (e) => {
+  const handleUpload = e => {
     setError()
     if (!e.target.files || e.target.files.length === 0) return
 

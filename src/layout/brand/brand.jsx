@@ -21,9 +21,7 @@ const SidebarWrapper = withTheme(({ className, onClick, content }) => (
   </Portal>
 ))
 
-const Brand = ({
-  title, baseRoute, isTablet, isMobile, sidebar, className,
-}) => (
+const Brand = ({ title, baseRoute, isTablet, isMobile, sidebar, className }) => (
   <div className={cn(styles.brand, className)}>
     {sidebar && (isMobile || isTablet) && (
       <OpenTrigger

@@ -21,24 +21,27 @@ import { required } from 'components/form/validators'
 import './eventForm.css'
 
 const EventForm = ({
-  isCreateForm, organizations, onSubmit, initialValues, submitting, toggleArchive,
+  isCreateForm,
+  organizations,
+  onSubmit,
+  initialValues,
+  submitting,
+  toggleArchive,
 }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues} keepDirtyOnReinitialize={isCreateForm}>
-    {({
-      values, handleSubmit, pristine, invalid,
-    }) => (
+    {({ values, handleSubmit, pristine, invalid }) => (
       <form className="event-form card">
         {isCreateForm && (
-        <RadioGroup name="type" label="Event type" value="conference" inline>
-          <Field
-            name="type"
-            value="conference"
-            label="Conference"
-            type="radio"
-            component={radio}
-          />
-          <Field name="type" value="meetup" label="Meetup" type="radio" component={radio} />
-        </RadioGroup>
+          <RadioGroup name="type" label="Event type" value="conference" inline>
+            <Field
+              name="type"
+              value="conference"
+              label="Conference"
+              type="radio"
+              component={radio}
+            />
+            <Field name="type" value="meetup" label="Meetup" type="radio" component={radio} />
+          </RadioGroup>
         )}
         <Field name="name" label="Name" type="text" component={input} validate={required} inline />
         <Field
@@ -57,14 +60,14 @@ const EventForm = ({
           inline
         />
         {!isEmpty(organizations) && (
-        <Field label="Organization" name="organization" component={select} inline>
-          <option />
-          {organizations.map(({ id, name }) => (
-            <option key={id} value={id}>
-              {name}
-            </option>
-          ))}
-        </Field>
+          <Field label="Organization" name="organization" component={select} inline>
+            <option />
+            {organizations.map(({ id, name }) => (
+              <option key={id} value={id}>
+                {name}
+              </option>
+            ))}
+          </Field>
         )}
         <Field
           name="visibility"
@@ -76,7 +79,7 @@ const EventForm = ({
           inline
         />
         {values.type === 'conference' && (
-        <Field name="conferenceDates" label="Conference date" component={dayRangePicker} inline />
+          <Field name="conferenceDates" label="Conference date" component={dayRangePicker} inline />
         )}
         <Field name="website" label="Website" type="text" component={input} inline />
         <Field name="contact" label="Contact email" type="email" component={input} inline />

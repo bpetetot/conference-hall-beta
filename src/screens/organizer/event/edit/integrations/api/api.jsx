@@ -10,9 +10,7 @@ import ApiCard from './apiCard'
 
 import styles from './api.module.css'
 
-const Api = ({
-  eventId, enabled, apiKey, onActiveApi, onGenerateKey,
-}) => {
+const Api = ({ eventId, enabled, apiKey, onActiveApi, onGenerateKey }) => {
   const { origin } = window.location
   return (
     <div className={cn(styles.form, 'card')}>

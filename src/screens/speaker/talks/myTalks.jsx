@@ -16,15 +16,16 @@ const MyTalks = ({ talks, onSelect }) => {
   const [status, setStatus] = useState('active')
 
   const filteredTalks = useMemo(
-    () => talks.filter((talk) => {
-      if (status === 'all') return true
-      if (status === 'archived') return talk.archived === true
-      return talk.archived !== true
-    }),
+    () =>
+      talks.filter(talk => {
+        if (status === 'all') return true
+        if (status === 'archived') return talk.archived === true
+        return talk.archived !== true
+      }),
     [talks, status],
   )
 
-  const onFilter = (e) => setStatus(e.target.value)
+  const onFilter = e => setStatus(e.target.value)
 
   return (
     <div className="talks-page">
@@ -35,7 +36,7 @@ const MyTalks = ({ talks, onSelect }) => {
           <option value="active">Active talks</option>
         </select>
         <Button accent>
-          {(btn) => (
+          {btn => (
             <Link code="speaker-talk-create" className={btn}>
               <IconLabel icon="fa fa-calendar-plus-o" label="Create a new talk" />
             </Link>
@@ -45,12 +46,7 @@ const MyTalks = ({ talks, onSelect }) => {
       <List
         array={filteredTalks}
         noResult={status === 'archived' ? 'No archived talk' : <NoTalks />}
-        renderRow={({
-          id,
-          title,
-          submissions,
-          updateTimestamp,
-        }) => (
+        renderRow={({ id, title, submissions, updateTimestamp }) => (
           <ListItem
             key={id}
             title={title}

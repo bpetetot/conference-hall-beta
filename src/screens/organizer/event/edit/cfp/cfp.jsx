@@ -5,18 +5,14 @@ import arrayMutators from 'final-form-arrays'
 import cn from 'classnames'
 
 import Field from 'components/form/field'
-import {
-  input, dayPicker, dayRangePicker, Label, SubmitButton, toggle,
-} from 'components/form'
+import { input, dayPicker, dayRangePicker, Label, SubmitButton, toggle } from 'components/form'
 
 import CategoriesField from './categories'
 import FormatsField from './formats'
 
 import styles from './cfp.module.css'
 
-const CFPForm = ({
-  type, onSubmit, initialValues, submitting,
-}) => (
+const CFPForm = ({ type, onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues} mutators={{ ...arrayMutators }}>
     {({ handleSubmit, pristine }) => (
       <form className={cn(styles.form, 'card')}>

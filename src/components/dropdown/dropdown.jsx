@@ -18,23 +18,21 @@ class Dropdown extends Component {
   }
 
   handleClick = () => {
-    this.setState((state) => ({ visible: !state.visible }))
+    this.setState(state => ({ visible: !state.visible }))
   }
 
-  handleClickOutside = (e) => {
+  handleClickOutside = e => {
     if (this.dropdownRef && !this.dropdownRef.contains(e.target)) {
       this.setState(() => ({ visible: false }))
     }
   }
 
   render() {
-    const {
-      action, children, darkMode, className, menuClassName,
-    } = this.props
+    const { action, children, darkMode, className, menuClassName } = this.props
     return (
       <div
         role="button"
-        ref={(e) => {
+        ref={e => {
           this.dropdownRef = e
         }}
         tabIndex="0"

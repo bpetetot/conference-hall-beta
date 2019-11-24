@@ -22,10 +22,10 @@ const mapStore = (store, { eventId }) => {
     proposalsSelection: items,
     deliberationActive: get(settings, 'deliberation.enabled'),
     load: () => store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS'),
-    onSelect: (proposalId) => {
+    onSelect: proposalId => {
       store.dispatch({ type: '@@ui/ON_SELECT_PROPOSAL', payload: { eventId, proposalId } })
     },
-    onAddProposalToSelection: (proposalId) => {
+    onAddProposalToSelection: proposalId => {
       store.dispatch({ type: '@@ui/ON_ADD_PROPOSAL_TO_SELECTION', payload: { proposalId } })
     },
   }

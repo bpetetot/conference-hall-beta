@@ -8,7 +8,7 @@ import './item.css'
 
 const Item = ({ name, onEdit, onDelete }) => (
   <Button secondary>
-    {(btn) => (
+    {btn => (
       <div role="button" onClick={onEdit} className={cn('item-box', btn)}>
         <div>{name}</div>
         <a role="button" onClick={onDelete}>

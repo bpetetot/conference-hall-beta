@@ -39,7 +39,7 @@ const Slack = ({
       {enabled && (
         <div className={styles.content}>
           <Label name="webhookUrl" label="Web hook URL" classNameInput={styles.input}>
-            <input type="text" defaultValue={url} onChange={(e) => setUrl(e.target.value)} />
+            <input type="text" defaultValue={url} onChange={e => setUrl(e.target.value)} />
             <Button onClick={() => onSaveUrl(url)}>Save Web hook URL</Button>
           </Label>
           <h4>Configure which notification you want to receive:</h4>

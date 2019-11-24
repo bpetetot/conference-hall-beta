@@ -18,7 +18,7 @@ const AddSpeaker = ({ onSelectUser }) => (
     )}
     resultsMessage="Select a speaker for your talk"
     onSelectUser={onSelectUser}
-    description={(
+    description={
       <>
         <p>
           Search and add a co-speaker to your talk, he/she will be also able to update it and submit
@@ -31,7 +31,7 @@ const AddSpeaker = ({ onSelectUser }) => (
           email address.
         </p>
       </>
-)}
+    }
   />
 )
 

@@ -5,7 +5,7 @@ import { mount } from 'enzyme'
 import snap from 'tests/snapshot'
 import Dropdown from './index.js'
 
-const snapshot = (props) => snap(Dropdown)({ ...props })
+const snapshot = props => snap(Dropdown)({ ...props })
 
 describe('components/dropdown', () => {
   it('should render with props', snapshot({ action: 'a', children: 'c' }))
@@ -24,7 +24,12 @@ describe('components/dropdown', () => {
       map[event] = cb
     })
     // mouting
-    const wrapper = mount(<div><div className="boo" /><Dropdown action="action">Element</Dropdown></div>)
+    const wrapper = mount(
+      <div>
+        <div className="boo" />
+        <Dropdown action="action">Element</Dropdown>
+      </div>,
+    )
     // action
     expect(wrapper.find(Dropdown).instance().state).toEqual({
       visible: false,
