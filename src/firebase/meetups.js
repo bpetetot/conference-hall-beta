@@ -5,52 +5,56 @@ import firebase from 'firebase/app'
  * @param {string} eventId event id
  * @param {object} meetup
  */
-export const createMeetup = (eventId, data) => firebase
-  .firestore()
-  .collection('events')
-  .doc(eventId)
-  .collection('meetups')
-  .add({
-    ...data,
-    createTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  })
+export const createMeetup = (eventId, data) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('meetups')
+    .add({
+      ...data,
+      createTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })
 
 /**
  * Update a meetup to a specific event
  * @param {string} eventId event id
  * @param {object} meetup
  */
-export const updateMeetup = (eventId, data) => firebase
-  .firestore()
-  .collection('events')
-  .doc(eventId)
-  .collection('meetups')
-  .set({
-    ...data,
-    updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  }, { merge: true })
+export const updateMeetup = (eventId, data) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('meetups')
+    .set(
+      {
+        ...data,
+        updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      },
+      { merge: true },
+    )
 
 /**
  * Remove a meetup to a specific event
  * @param {string} eventId event id
  * @param {string} meetupId meetup id
  */
-export const removeMeetup = (eventId, meetupId) => firebase
-  .firestore()
-  .collection('events')
-  .doc(eventId)
-  .collection('meetups')
-  .doc(meetupId)
-  .delete()
+export const removeMeetup = (eventId, meetupId) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('meetups')
+    .doc(meetupId)
+    .delete()
 
 /**
  * Fetch all meetups of an event
  * @param {string} eventId event id
  */
-export const fetchEventMeetups = async (
-  eventId,
-) => {
+export const fetchEventMeetups = async eventId => {
   const query = firebase
     .firestore()
     .collection('events')

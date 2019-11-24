@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import format from 'date-fns/format'
@@ -31,17 +31,11 @@ class MonthCalendar extends Component {
   renderDayItem = (item, form, customClassName) => (
     <Drawer
       className="default-theme"
-      actions={({ hide }) => (
-        <Button
-          onClick={hide}
-        >
-          Close
-        </Button>
-      )}
+      actions={({ hide }) => <Button onClick={hide}>Close</Button>}
       renderTrigger={({ show }) => (
         <div
           role="button"
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation()
             show()
           }}
@@ -56,20 +50,27 @@ class MonthCalendar extends Component {
     </Drawer>
   )
 
-  renderDayContent = (date) => {
+  renderDayContent = date => {
     const content = this.props.renderDay(date)
     const makeForm = index => this.props.renderUpdateEvent(date, index)
     if (Array.isArray(content)) {
-      content.forEach((item) => {
-        if (!isString(item)) throw new Error('renderDay should return a string or an array of string')
+      content.forEach(item => {
+        if (!isString(item))
+          throw new Error('renderDay should return a string or an array of string')
       })
 
       if (content.length > 3) {
-        const modal = (<DayModal content={content} />)
+        const modal = <DayModal content={content} />
         const directlyRendered = content.slice(0, 2)
         directlyRendered.push(modal)
 
-        return directlyRendered.map((item, index) => this.renderDayItem(item, makeForm(index), index === 2 ? 'cc-month-day-item-white' : undefined))
+        return directlyRendered.map((item, index) =>
+          this.renderDayItem(
+            item,
+            makeForm(index),
+            index === 2 ? 'cc-month-day-item-white' : undefined,
+          ),
+        )
       }
 
       return content.map((item, index) => this.renderDayItem(item, makeForm(index)))
@@ -82,21 +83,18 @@ class MonthCalendar extends Component {
     return null
   }
 
-  generateWeeksForMonth = (date) => {
+  generateWeeksForMonth = date => {
     const startDay = getDay(startOfMonth(date))
 
-    const weeks = chunk([
-      ...Array(startDay).fill(null),
-      ...range(getDaysInMonth(date)).map(add(1)),
-    ], 7)
+    const weeks = chunk(
+      [...Array(startDay).fill(null), ...range(getDaysInMonth(date)).map(add(1))],
+      7,
+    )
 
     const lastWeek = weeks[weeks.length - 1]
     const fillOffset = 7 - lastWeek.length
 
-    return set(weeks, weeks.length - 1, [
-      ...lastWeek,
-      ...Array(fillOffset).fill(null),
-    ])
+    return set(weeks, weeks.length - 1, [...lastWeek, ...Array(fillOffset).fill(null)])
   }
 
   render() {
@@ -110,22 +108,13 @@ class MonthCalendar extends Component {
         <div className="cc-month-calendar-header">
           <span className="cc-month-month">{format(parsedDate, 'MMMM yyyy')}</span>
           <div className="cc-month-buttons">
-            <Button
-              secondary
-              onClick={this.goToPreviousMonth}
-            >
+            <Button secondary onClick={this.goToPreviousMonth}>
               Previous
             </Button>
-            <Button
-              primary
-              onClick={this.goToToday}
-            >
+            <Button primary onClick={this.goToToday}>
               Today
             </Button>
-            <Button
-              secondary
-              onClick={this.gotToNextMonth}
-            >
+            <Button secondary onClick={this.gotToNextMonth}>
               Next
             </Button>
           </div>
@@ -139,13 +128,7 @@ class MonthCalendar extends Component {
                   <Drawer
                     title={addEventTitle}
                     className="default-theme"
-                    actions={({ hide }) => (
-                      <Button
-                        onClick={hide}
-                      >
-                        Close
-                      </Button>
-                    )}
+                    actions={({ hide }) => <Button onClick={hide}>Close</Button>}
                     renderTrigger={({ show }) => (
                       <div
                         key={day === null ? index : dayDate}
@@ -154,12 +137,12 @@ class MonthCalendar extends Component {
                         onClick={show}
                       >
                         {day !== null && (
-                          <Fragment>
+                          <>
                             <div className="cc-month-day-number">{day}</div>
                             <div className="cc-month-day-content">
                               {this.renderDayContent(dayDate)}
                             </div>
-                          </Fragment>
+                          </>
                         )}
                       </div>
                     )}

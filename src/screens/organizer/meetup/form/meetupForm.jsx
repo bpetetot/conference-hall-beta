@@ -10,15 +10,13 @@ import { required } from 'components/form/validators'
 
 import styles from './meetupForm.module.css'
 
-const MeetupForm = ({
-  onDelete, onSubmit, initialValues, submitting,
-}) => (
+const MeetupForm = ({ onDelete, onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit, pristine }) => (
       <form className={cn(styles.form, 'card')}>
         <Field name="name" label="Name" type="text" component={input} validate={required} />
         <Field name="description" label="Description" type="text" component={textarea} />
-        {(initialValues && onDelete) && (
+        {initialValues && onDelete && (
           <Button error secondary onClick={onDelete}>
             Delete Meetup
           </Button>

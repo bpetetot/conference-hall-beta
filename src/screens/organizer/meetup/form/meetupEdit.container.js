@@ -11,7 +11,7 @@ const mapStore = (store, { id }) => {
     onDelete: () => {
       store.dispatch({ type: '@@ui/ON_REMOVE_MEETUP', payload: { meetupId: id } })
     },
-    onSubmit: (payload) => {
+    onSubmit: payload => {
       store.dispatch({ type: '@@ui/ON_UPDATE_MEETUP', payload: { ...payload } })
     },
   }

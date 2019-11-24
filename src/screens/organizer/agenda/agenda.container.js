@@ -17,8 +17,4 @@ const mapStore = (store, props, { router }) => {
   }
 }
 
-export default compose(
-  inject(mapStore),
-  forRoute('organizer-event-agenda'),
-  loader,
-)(Agenda)
+export default compose(inject(mapStore), forRoute('organizer-event-agenda'), loader)(Agenda)

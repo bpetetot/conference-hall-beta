@@ -13,19 +13,14 @@ class DayCalendar extends Component {
     offset: 0,
   }
 
-  goToPreviousDay= () => this.setState(state => ({ offset: state.offset - 1 }))
+  goToPreviousDay = () => this.setState(state => ({ offset: state.offset - 1 }))
 
   gotToNextDay = () => this.setState(state => ({ offset: state.offset + 1 }))
 
   goToToday = () => this.setState({ offset: 0 })
 
   render() {
-    const {
-      date,
-      start,
-      end,
-      sessions,
-    } = this.props
+    const { date, start, end, sessions } = this.props
 
     const parsedDate = addDays(date, this.state.offset)
 
@@ -34,9 +29,10 @@ class DayCalendar extends Component {
       .map((_, index) => index)
       .filter(hour => hour >= start && hour <= end)
       // eslint-disable-next-line no-confusing-arrow
-      .map(hour => hour < 10 ? `0${hour}` : hour)
-    const daySessions = sessions
-      .filter(({ date: sessionDate }) => isSameDay(sessionDate, parsedDate))
+      .map(hour => (hour < 10 ? `0${hour}` : hour))
+    const daySessions = sessions.filter(({ date: sessionDate }) =>
+      isSameDay(sessionDate, parsedDate),
+    )
     const rooms = uniq(daySessions.flatMap(session => session.room))
     const columns = ['', ...rooms]
 
@@ -45,29 +41,22 @@ class DayCalendar extends Component {
         <div className="cc-day-calendar-header">
           <span className="cc-day-day">{format(parsedDate, 'dd MMMM yyyy')}</span>
           <div className="cc-day-buttons">
-            <Button
-              secondary
-              onClick={this.goToPreviousDay}
-            >
+            <Button secondary onClick={this.goToPreviousDay}>
               Previous
             </Button>
-            <Button
-              primary
-              onClick={this.goToToday}
-            >
+            <Button primary onClick={this.goToToday}>
               Today
             </Button>
-            <Button
-              secondary
-              onClick={this.gotToNextDay}
-            >
+            <Button secondary onClick={this.gotToNextDay}>
               Next
             </Button>
           </div>
         </div>
         <div className="cc-day-rooms">
           {columns.map(room => (
-            <div key={room} className="cc-day-room">{room}</div>
+            <div key={room} className="cc-day-room">
+              {room}
+            </div>
           ))}
         </div>
         <div className="cc-day-columns">
@@ -85,12 +74,7 @@ class DayCalendar extends Component {
               ))}
               {daySessions
                 .filter(({ room: sessionRoom }) => room === sessionRoom)
-                .map(({
-                  title,
-                  duration,
-                  date: sessionDate,
-                  speakers,
-                }) => {
+                .map(({ title, duration, date: sessionDate, speakers }) => {
                   const borderWidth = 1
                   return (
                     <div
@@ -101,7 +85,8 @@ class DayCalendar extends Component {
                       }}
                       className="cc-day-session"
                     >
-                      {title}<br />
+                      {title}
+                      <br />
                       <i className="cc-day-session-speakers">{speakers.join(', ')}</i>
                     </div>
                   )
@@ -118,12 +103,14 @@ DayCalendar.propTypes = {
   date: PropTypes.instanceOf(Date),
   start: PropTypes.number,
   end: PropTypes.number,
-  sessions: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    date: PropTypes.instanceOf(Date),
-    duration: PropTypes.number,
-    room: PropTypes.string,
-  })),
+  sessions: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      date: PropTypes.instanceOf(Date),
+      duration: PropTypes.number,
+      room: PropTypes.string,
+    }),
+  ),
 }
 
 DayCalendar.defaultProps = {

@@ -15,7 +15,7 @@ const Drawer = ({ title, subtitle, className, actions, children, defaultOpen, re
     {({ hide, show, isOpen }) => (
       <Portal>
         <Backdrop
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation()
             hide()
           }}
@@ -30,10 +30,7 @@ const Drawer = ({ title, subtitle, className, actions, children, defaultOpen, re
               <div className="drawer-title">{title}</div>
               {subtitle && <div className="drawer-subtitle">{subtitle}</div>}
             </div>
-            <Button
-              simple
-              onClick={hide}
-            >
+            <Button simple onClick={hide}>
               <CloseIcon />
             </Button>
           </div>

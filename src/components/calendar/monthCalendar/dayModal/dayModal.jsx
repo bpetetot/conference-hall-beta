@@ -7,20 +7,12 @@ import { List, ListItem } from '../../../list'
 const DayModal = ({ content }) => (
   <Modal
     renderTrigger={({ show }) => (
-      <Button simple onClick={show}>{content.length - 2} other elements</Button>
+      <Button simple onClick={show}>
+        {content.length - 2} other elements
+      </Button>
     )}
   >
-    {() => (
-      <List
-        array={content}
-        renderRow={item => (
-          <ListItem
-            key={item}
-            title={item}
-          />
-        )}
-      />
-    )}
+    {() => <List array={content} renderRow={item => <ListItem key={item} title={item} />} />}
   </Modal>
 )
 
