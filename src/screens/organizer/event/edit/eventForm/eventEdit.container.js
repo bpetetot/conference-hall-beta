@@ -14,6 +14,9 @@ const mapStore = (store, { eventId }) => {
     onSubmit: (payload) => {
       store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_DETAILS', payload })
     },
+    toggleArchive: () => {
+      store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_DETAILS', payload: { id: event.id, archived: !event.archived } })
+    },
   }
 }
 
