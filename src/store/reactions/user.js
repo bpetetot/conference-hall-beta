@@ -30,10 +30,10 @@ export const searchUserByEmail = async (action, store) => {
   store.ui.userAddModal.set({ searching: true, email, users: [] })
   const users = await fetchUsersByEmail(email)
   if (!isEmpty(users)) {
-    users.forEach((user) => store.data.users.addOrUpdate(user))
+    users.forEach(user => store.data.users.addOrUpdate(user))
     store.ui.userAddModal.update({
       searching: false,
-      users: users.map((user) => user.uid),
+      users: users.map(user => user.uid),
     })
   } else {
     store.ui.userAddModal.update({ searching: false })

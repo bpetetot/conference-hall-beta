@@ -22,12 +22,7 @@ class OrganizersThread extends Component {
   }
 
   render() {
-    const {
-      messages,
-      onSaveMessage,
-      onDeleteMessage,
-      currentUser,
-    } = this.props
+    const { messages, onSaveMessage, onDeleteMessage, currentUser } = this.props
     const nbMessages = !isEmpty(messages) ? ` (${messages.length})` : ''
     return (
       <Drawer

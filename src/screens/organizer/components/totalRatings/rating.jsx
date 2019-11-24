@@ -5,9 +5,7 @@ import { displayRating } from 'helpers/number'
 import IconLabel from 'components/iconLabel'
 import './rating.css'
 
-const Rating = ({
-  rating, loves, hates, noopinion, nbvotes,
-}) => (
+const Rating = ({ rating, loves, hates, noopinion, nbvotes }) => (
   <div className="rating-display">
     <div className="rating-display-rate">{displayRating(rating)}</div>
     <div className="rating-display-feelings">

@@ -13,9 +13,7 @@ class CfpBlock extends Component {
   }
 
   render() {
-    const {
-      type, cfpState, start, end, deliberation, className,
-    } = this.props
+    const { type, cfpState, start, end, deliberation, className } = this.props
 
     return (
       <div className={cn('cfp-block', className, `cfp-block-${cfpState}`)}>

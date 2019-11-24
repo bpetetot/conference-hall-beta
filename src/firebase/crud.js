@@ -6,7 +6,7 @@ import omit from 'lodash/omit'
  * @param {String} collection collection name
  * @param {String} idAttr attribute name of the id
  */
-const create = (collection, idAttr) => (data) => {
+const create = (collection, idAttr) => data => {
   const id = data[idAttr]
   if (id) {
     // create a document with the given ID
@@ -35,35 +35,38 @@ const create = (collection, idAttr) => (data) => {
  * read document in the collection
  * @param {String} collection collection name
  */
-const read = (collection) => (id) => firebase
-  .firestore()
-  .collection(collection)
-  .doc(id)
-  .get()
+const read = collection => id =>
+  firebase
+    .firestore()
+    .collection(collection)
+    .doc(id)
+    .get()
 
 /**
  * update the document in the collection
  * @param {String} collection collection name
  * @param {String} idAttr attribute name of the id
  */
-const update = (collection, idAttr) => (data) => firebase
-  .firestore()
-  .collection(collection)
-  .doc(data[idAttr])
-  .update({
-    ...omit(data, 'createTimestamp'),
-    updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  })
+const update = (collection, idAttr) => data =>
+  firebase
+    .firestore()
+    .collection(collection)
+    .doc(data[idAttr])
+    .update({
+      ...omit(data, 'createTimestamp'),
+      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })
 
 /**
  * delete document in the collection
  * @param {String} collection collection name
  */
-const deleteDoc = (collection) => (id) => firebase
-  .firestore()
-  .collection(collection)
-  .doc(id)
-  .delete()
+const deleteDoc = collection => id =>
+  firebase
+    .firestore()
+    .collection(collection)
+    .doc(id)
+    .delete()
 
 export default (collection, idAttr) => ({
   create: create(collection, idAttr),

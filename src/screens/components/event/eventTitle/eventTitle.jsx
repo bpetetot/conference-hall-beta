@@ -6,9 +6,7 @@ import Badge from 'components/badge'
 
 import styles from './eventTitle.module.css'
 
-const EventTitle = ({
-  name, type, subtitle, className,
-}) => (
+const EventTitle = ({ name, type, subtitle, className }) => (
   <h1 className={cn(styles.title, className)}>
     <div>
       <span className={styles.name}>{name}</span> • {subtitle}

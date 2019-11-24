@@ -8,7 +8,7 @@ const mapStore = (store, props, { router }) => {
   const talkId = router.getParam('talkId')
   return {
     inviteLink: `${origin}/speaker/talk/${talkId}/invite/${authId}`,
-    onSelectUser: (uid) => {
+    onSelectUser: uid => {
       store.dispatch({ type: '@@ui/ADD_SPEAKER_TO_TALK', payload: { uid, talkId } })
     },
   }

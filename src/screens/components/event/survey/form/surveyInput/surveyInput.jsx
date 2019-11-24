@@ -5,13 +5,11 @@ import Field from 'components/form/field'
 
 import './surveyInput.css'
 
-const SurveyInput = ({
-  name, label, type, answers,
-}) => (
+const SurveyInput = ({ name, label, type, answers }) => (
   <div className="survey-input">
     <label>{label}</label>
     {answers ? (
-      answers.map((answer) => (
+      answers.map(answer => (
         <div key={answer.name}>
           <label>
             <Field

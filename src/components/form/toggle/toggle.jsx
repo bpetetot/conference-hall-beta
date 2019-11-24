@@ -8,7 +8,7 @@ class Toggle extends Component {
     checked: this.props.checked,
   }
 
-  getValue = (checked) => {
+  getValue = checked => {
     const { truthy, falsy } = this.props
     if (checked && truthy) {
       return truthy
@@ -19,7 +19,7 @@ class Toggle extends Component {
     return checked
   }
 
-  getChecked = (value) => {
+  getChecked = value => {
     const { truthy, falsy } = this.props
     const { checked } = this.state
     if (!truthy && !falsy) {
@@ -34,10 +34,13 @@ class Toggle extends Component {
     return value
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { checked } = e.target
     const { onChange } = this.props
-    this.setState(() => ({ checked }), () => onChange(this.getValue(checked)))
+    this.setState(
+      () => ({ checked }),
+      () => onChange(this.getValue(checked)),
+    )
   }
 
   render() {
@@ -46,7 +49,14 @@ class Toggle extends Component {
 
     return (
       <label className="toggle" htmlFor={name}>
-        <input id={name} name={name} type="checkbox" {...rest} checked={checked} onChange={this.handleChange} />
+        <input
+          id={name}
+          name={name}
+          type="checkbox"
+          {...rest}
+          checked={checked}
+          onChange={this.handleChange}
+        />
         <span className="toggle-item" />
       </label>
     )

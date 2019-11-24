@@ -22,7 +22,7 @@ class DayRangePicker extends React.Component {
   }
 
   handleChange = ({ start, end }) => {
-    this.setState((state) => {
+    this.setState(state => {
       let startDate = start || state.start
       let endDate = end || state.end
 
@@ -41,20 +41,20 @@ class DayRangePicker extends React.Component {
     })
   }
 
-  handleChangeStart = (start) => this.handleChange({ start })
+  handleChangeStart = start => this.handleChange({ start })
 
-  handleChangeEnd = (end) => this.handleChange({ end })
+  handleChangeEnd = end => this.handleChange({ end })
 
-  onStartChange = (start) => {
-    this.setState((state) => {
+  onStartChange = start => {
+    this.setState(state => {
       const end = state.end || start
       this.props.onChange({ start, end })
       return { start, end }
     })
   }
 
-  onEndChange = (end) => {
-    this.setState((state) => {
+  onEndChange = end => {
+    this.setState(state => {
       const start = state.start || end
       this.props.onChange({ start, end })
       return { start, end }

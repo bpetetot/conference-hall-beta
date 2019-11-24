@@ -1,5 +1,5 @@
 import { types } from 'k-ramel'
 
-const defaultData = { }
+const defaultData = {}
 
 export default types.object({ defaultData })

@@ -14,7 +14,7 @@ export const getRatings = async (eventId, proposalId) => {
     .doc(proposalId)
     .collection('ratings')
     .get()
-  return result.docs.map((ref) => ref.data())
+  return result.docs.map(ref => ref.data())
 }
 
 /**
@@ -24,19 +24,20 @@ export const getRatings = async (eventId, proposalId) => {
  * @param {string} userId user id
  * @param {object} ratingObject complete rating object
  */
-export const addRating = (eventId, proposalId, userId, ratingObject) => firebase
-  .firestore()
-  .collection('events')
-  .doc(eventId)
-  .collection('proposals')
-  .doc(proposalId)
-  .collection('ratings')
-  .doc(userId)
-  .set({
-    uid: userId,
-    ...ratingObject,
-    updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  })
+export const addRating = (eventId, proposalId, userId, ratingObject) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(proposalId)
+    .collection('ratings')
+    .doc(userId)
+    .set({
+      uid: userId,
+      ...ratingObject,
+      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })
 
 /**
  * Delete user rating for a proposal
@@ -44,12 +45,13 @@ export const addRating = (eventId, proposalId, userId, ratingObject) => firebase
  * @param {String} proposalId proposal id
  * @param {String} userId rating id (uid)
  */
-export const deleteRating = (eventId, proposalId, userId) => firebase
-  .firestore()
-  .collection('events')
-  .doc(eventId)
-  .collection('proposals')
-  .doc(proposalId)
-  .collection('ratings')
-  .doc(userId)
-  .delete()
+export const deleteRating = (eventId, proposalId, userId) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(proposalId)
+    .collection('ratings')
+    .doc(userId)
+    .delete()

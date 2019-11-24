@@ -9,7 +9,7 @@ const mapStore = (store, ownProps, { router }) => ({
   loaded: store.data.organizations.isInitialized(),
   organizations: store.data.organizations.getAsArray(),
   load: () => store.dispatch('@@ui/ON_LOAD_USER_ORGANIZATIONS'),
-  onSelect: (organizationId) => router.push('organizer-organization-page', { organizationId }),
+  onSelect: organizationId => router.push('organizer-organization-page', { organizationId }),
 })
 
 export default compose(

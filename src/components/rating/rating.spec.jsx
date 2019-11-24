@@ -6,10 +6,7 @@ import Rating from './index.js'
 describe('components/rating', () => {
   it('should render', () => {
     const onRate = jest.fn()
-    const wrapper = shallow(<Rating
-      rating={0}
-      onRating={onRate}
-    />)
+    const wrapper = shallow(<Rating rating={0} onRating={onRate} />)
     expect(wrapper.state('rating')).toEqual(0)
     expect(wrapper).toMatchSnapshot()
     wrapper.find('i.fa-heart-o').simulate('click')

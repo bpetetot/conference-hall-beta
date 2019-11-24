@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 
 import './radioBox.css'
 
-const RadioBox = ({
-  name, value, children, ...rest
-}) => (
+const RadioBox = ({ name, value, children, ...rest }) => (
   <div className="form-radio">
     <input name={name} id={`${name}-${value}`} type="radio" value={value} {...rest} />
     <label htmlFor={`${name}-${value}`}>{children}</label>

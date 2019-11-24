@@ -6,9 +6,7 @@ import SubmitTalkLink from 'screens/components/submitTalksLink'
 import TalkStatus from 'screens/components/talk/status'
 import { List, ListItem } from 'components/list'
 
-const Submissions = ({
-  eventId, eventName, talks, onSelect,
-}) => (
+const Submissions = ({ eventId, eventName, talks, onSelect }) => (
   <div>
     <Titlebar icon="fa fa-inbox" title={`My submissions to "${eventName}"`}>
       <SubmitTalkLink eventId={eventId} />

@@ -17,7 +17,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
 
   const pickTruthyValues = pickBy(Boolean)
   const pickFilterKeys = pick(['state', 'ratings', 'categories', 'formats', 'sortOrder', 'search'])
-  const ensureIncludedIn = (values) => (value) => (values.includes(value) ? value : values[0])
+  const ensureIncludedIn = values => value => (values.includes(value) ? value : values[0])
 
   const filtersFromRouterState = pickFilterKeys(query)
   const filtersFromUiState = pickTruthyValues(pickFilterKeys(store.ui.organizer.proposals.get()))
@@ -98,7 +98,7 @@ export const addProposalToSelection = async (action, store) => {
   if (proposals.includes(proposalId)) {
     store.ui.organizer.proposalsSelection.update({
       count: proposals.length - 1,
-      items: proposals.filter((val) => val !== proposalId),
+      items: proposals.filter(val => val !== proposalId),
     })
   } else {
     store.ui.organizer.proposalsSelection.update({
@@ -114,8 +114,9 @@ export const selectAllProposal = async (action, store) => {
   if (isChecked) {
     const proposalKeys = store.data.proposals.getKeys()
     const emailNotSent = proposalKeys.filter(
-      (val) => store.data.proposals.get(val).emailStatus !== 'delivered'
-        && store.data.proposals.get(val).emailStatus !== 'sending',
+      val =>
+        store.data.proposals.get(val).emailStatus !== 'delivered' &&
+        store.data.proposals.get(val).emailStatus !== 'sending',
     )
     store.ui.organizer.proposalsSelection.update({
       count: emailNotSent.length,
@@ -141,11 +142,11 @@ export const loadProposals = async (action, store, { router }) => {
   const filters = store.ui.organizer.proposals.get()
   const proposals = await firebase.fetchEventProposals(eventId, uid, filters)
   let props = await Promise.all(
-    proposals.map(async (proposal) => {
+    proposals.map(async proposal => {
       const prop = { ...proposal }
       const speakerList = Object.keys(prop.speakers)
       const speakerNameList = await Promise.all(
-        speakerList.map(async (speakerUid) => {
+        speakerList.map(async speakerUid => {
           // check if user already in the store
           const userCache = store.data.users.get(speakerUid)
           if (userCache) return userCache.displayName
@@ -164,8 +165,9 @@ export const loadProposals = async (action, store, { router }) => {
   if (search) {
     const searchQuery = deburr(toLower(search))
     props = props.filter(
-      (proposal) => deburr(toLower(proposal.title)).includes(searchQuery)
-        || deburr(toLower(proposal.speakerName)).includes(searchQuery),
+      proposal =>
+        deburr(toLower(proposal.title)).includes(searchQuery) ||
+        deburr(toLower(proposal.speakerName)).includes(searchQuery),
     )
   }
   store.data.proposals.set(props)
@@ -188,20 +190,17 @@ export const selectProposal = async (action, store, { router }) => {
 export const changeFilter = async (action, store, { router }) => {
   const [removedFilters, addedOrModifiedFilters] = over([
     flow(
-      pickBy((filter) => !filter),
+      pickBy(filter => !filter),
       Object.keys,
     ),
-    pickBy((filter) => filter),
+    pickBy(filter => filter),
   ])(action.payload)
 
   const query = router.getQueryParams()
-  const updatedQuery = flow(
-    omit(removedFilters),
-    (filters) => ({
-      ...filters,
-      ...addedOrModifiedFilters,
-    }),
-  )(query)
+  const updatedQuery = flow(omit(removedFilters), filters => ({
+    ...filters,
+    ...addedOrModifiedFilters,
+  }))(query)
 
   if (!isEqual(query, updatedQuery)) {
     const route = router.getCurrentCode()

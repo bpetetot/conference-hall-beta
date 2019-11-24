@@ -10,13 +10,22 @@ import { ConfirmationPopin } from 'components/portals'
 import styles from './message.module.css'
 
 const Message = ({
-  id, img, name, message, date, className, modified, allowEdit, onSave, onDelete,
+  id,
+  img,
+  name,
+  message,
+  date,
+  className,
+  modified,
+  allowEdit,
+  onSave,
+  onDelete,
 }) => {
   const [inputMessageValue, setInputMessageValue] = useState(message)
 
   const [editable, setEditable] = useState(false)
 
-  const onChange = (event) => {
+  const onChange = event => {
     setInputMessageValue(event.target.value)
   }
 
@@ -30,7 +39,7 @@ const Message = ({
     setEditable(!editable)
   }
 
-  const handleKey = (event) => {
+  const handleKey = event => {
     if (event.keyCode === 13) {
       handleSave()
     }
@@ -39,7 +48,7 @@ const Message = ({
   const DeleteMessage = () => (
     <ConfirmationPopin
       title="Delete a message"
-      content={(
+      content={
         <>
           Are you sure you want to delete this message ? This cannot be undone.
           <Message
@@ -52,7 +61,7 @@ const Message = ({
             className={styles.previewMessageDelete}
           />
         </>
-      )}
+      }
       className="remove-member-modal"
       onOk={() => onDelete(id)}
       withCancel
@@ -68,30 +77,32 @@ const Message = ({
       <div className={styles.messageContent}>
         <div className={styles.message}>
           <span className={styles.name}>{name}</span>
-          <span className={styles.date}>
-            {formatDistanceToNow(date, { addSuffix: true })}
-          </span>
+          <span className={styles.date}>{formatDistanceToNow(date, { addSuffix: true })}</span>
           <span className={styles.modified}>{modified && '(modified)'}</span>
-          {allowEdit && <i role="button" className={cn('fa fa-pencil', styles.edit)} onClick={() => setEditable(!editable)} />}
+          {allowEdit && (
+            <i
+              role="button"
+              className={cn('fa fa-pencil', styles.edit)}
+              onClick={() => setEditable(!editable)}
+            />
+          )}
           {allowEdit && <DeleteMessage />}
         </div>
-        {!editable && (
-        <div className={styles.message}>
-          {message}
-        </div>
-        )}
+        {!editable && <div className={styles.message}>{message}</div>}
         {editable && (
-        <div className={styles.editInput}>
-          <input
-            type="text"
-            name="message"
-            value={inputMessageValue}
-            onChange={onChange}
-            onKeyUp={handleKey}
-          />
-          <Button secondary onClick={onCancel}>Cancel</Button>
-          <Button onClick={handleSave}>Save</Button>
-        </div>
+          <div className={styles.editInput}>
+            <input
+              type="text"
+              name="message"
+              value={inputMessageValue}
+              onChange={onChange}
+              onKeyUp={handleKey}
+            />
+            <Button secondary onClick={onCancel}>
+              Cancel
+            </Button>
+            <Button onClick={handleSave}>Save</Button>
+          </div>
         )}
       </div>
     </div>

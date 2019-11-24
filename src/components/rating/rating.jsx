@@ -33,9 +33,9 @@ class Rating extends Component {
 
   handleMouseLeaveRating = () => {
     if (isNil(this.state.validatedRating)) {
-      this.setState((state) => ({ ...state, rating: undefined, feeling: DEFAULT_FEELING }))
+      this.setState(state => ({ ...state, rating: undefined, feeling: DEFAULT_FEELING }))
     } else {
-      this.setState((state) => ({
+      this.setState(state => ({
         ...state,
         rating: state.validatedRating,
         feeling: state.validatedFeeling,
@@ -44,9 +44,7 @@ class Rating extends Component {
   }
 
   handleClick = () => {
-    const {
-      rating, validatedRating, feeling, validatedFeeling,
-    } = this.state
+    const { rating, validatedRating, feeling, validatedFeeling } = this.state
     let newRating = rating
     let newFeeling = feeling
     if (rating === validatedRating && feeling === validatedFeeling) {
@@ -64,9 +62,7 @@ class Rating extends Component {
 
   render() {
     const { stars, className } = this.props
-    const {
-      rating, feeling, validatedRating, validatedFeeling,
-    } = this.state
+    const { rating, feeling, validatedRating, validatedFeeling } = this.state
 
     const starsArray = Array.from(Array(stars), (_, i) => i + 1)
     return (
@@ -97,7 +93,7 @@ class Rating extends Component {
             role="button"
           />
         </Tooltip>
-        {starsArray.map((i) => (
+        {starsArray.map(i => (
           <i
             key={i}
             className={cn('fa fa-2x', {

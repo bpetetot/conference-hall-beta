@@ -6,13 +6,11 @@ import cn from 'classnames'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 
-const SubmitTalkLink = ({
-  label, displayed, onClick, className, classNameActive, size,
-}) => {
+const SubmitTalkLink = ({ label, displayed, onClick, className, classNameActive, size }) => {
   if (!displayed) return null
   return (
     <Button primary accent size={size}>
-      {(btn) => (
+      {btn => (
         <a onClick={onClick} role="button" className={cn(className, classNameActive) || btn}>
           {label || <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />}
         </a>

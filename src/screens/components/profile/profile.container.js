@@ -4,14 +4,14 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import Profile from './profile'
 
-const mapStore = (store) => {
+const mapStore = store => {
   const { uid } = store.auth.get()
   const user = store.data.users.get(uid)
   return {
     ...user,
     initialValues: user,
     submitting: store.ui.loaders.get().isProfileSaving,
-    onSubmit: (payload) => {
+    onSubmit: payload => {
       store.dispatch({ type: '@@ui/SAVE_PROFILE', payload })
     },
   }

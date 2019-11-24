@@ -3,7 +3,7 @@ import { inject } from '@k-ramel/react'
 
 import Ratings from './ratings'
 
-const mapStore = (store) => {
+const mapStore = store => {
   const { uid } = store.auth.get()
   const proposals = store.data.proposals.getKeys()
   const { proposalIndex } = store.ui.organizer.proposal.get()

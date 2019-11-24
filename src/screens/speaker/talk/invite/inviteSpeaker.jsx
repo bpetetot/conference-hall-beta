@@ -7,9 +7,7 @@ import UserAvatar from 'screens/components/userAvatar'
 import Button from 'components/button'
 import './inviteSpeaker.css'
 
-const InviteSpeaker = ({
-  uidInvite, title, join, cancel,
-}) => (
+const InviteSpeaker = ({ uidInvite, title, join, cancel }) => (
   <div className="invite-speaker">
     <Titlebar icon="fa fa-envelope-open" title="You're invite to be co-speaker">
       <Button secondary onClick={cancel}>
@@ -18,7 +16,9 @@ const InviteSpeaker = ({
     </Titlebar>
     <div className="card">
       <UserAvatar id={uidInvite} suffix="invites you to join the talk :" className="invited-by" />
-      <h2><IconLabel icon="fa fa-microphone" label={title} /></h2>
+      <h2>
+        <IconLabel icon="fa fa-microphone" label={title} />
+      </h2>
       <p>You&apos;re will be able to update it and submit to any event.</p>
       <Button accent onClick={join} className="invite-join-btn">
         Join as co-speaker

@@ -10,7 +10,16 @@ import TalkTitle from './talkTitle'
 import './talkPage.css'
 
 const TalkPage = ({
-  id, eventId, title, abstract, level, owner, references, language, speakers, onNext,
+  id,
+  eventId,
+  title,
+  abstract,
+  level,
+  owner,
+  references,
+  language,
+  speakers,
+  onNext,
 }) => {
   const titleComponent = <TalkTitle talkId={id} eventId={eventId} title={title} />
   return (

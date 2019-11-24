@@ -8,9 +8,7 @@ import SubmitTalkLink from 'screens/components/submitTalksLink'
 
 import styles from './banner.module.css'
 
-const EventBanner = ({
-  eventId, name, type, address, bannerUrl, className, isMobile,
-}) => {
+const EventBanner = ({ eventId, name, type, address, bannerUrl, className, isMobile }) => {
   const bannerStyle = bannerUrl ? { backgroundImage: `url('${bannerUrl}')` } : {}
   return (
     <div className={cn(styles.banner, className)} style={bannerStyle}>
@@ -18,7 +16,8 @@ const EventBanner = ({
       <div className={styles.rightSide}>
         <div className={styles.title}>{name}</div>
         <div className={styles.subtitle}>
-          {capitalize(type)}{address && ` • ${address.formattedAddress}`}
+          {capitalize(type)}
+          {address && ` • ${address.formattedAddress}`}
         </div>
         <div className={styles.actions}>
           <SubmitTalkLink eventId={eventId} size={isMobile ? 'small' : 'normal'} />

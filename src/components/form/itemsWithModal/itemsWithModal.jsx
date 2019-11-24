@@ -11,14 +11,15 @@ import Item from './item'
 
 import './itemsWithModal.css'
 
-export default (name, Form) => class extends React.Component {
-    onAddItem = (fields, hide) => (data) => {
+export default (name, Form) =>
+  class extends React.Component {
+    onAddItem = (fields, hide) => data => {
       const id = uuid(data.name, uuid.URL)
       fields.push({ id, ...data })
       hide()
     }
 
-    onUpdateItem = (fields, index, hide) => (data) => {
+    onUpdateItem = (fields, index, hide) => data => {
       const old = fields.value[index]
       fields.update(index, { ...old, ...data })
       hide()
@@ -48,13 +49,17 @@ export default (name, Form) => class extends React.Component {
                     name={item}
                     component={({ input }) => (
                       <Modal
-                        renderTrigger={({ show }) => input.value && (
-                        <Item
-                          onEdit={show}
-                          onDelete={this.onRemoveItem(fields, index)}
-                          {...input.value}
-                        />
-                        )}
+                        renderTrigger={({ show }) => {
+                          return (
+                            input.value && (
+                              <Item
+                                onEdit={show}
+                                onDelete={this.onRemoveItem(fields, index)}
+                                {...input.value}
+                              />
+                            )
+                          )
+                        }}
                       >
                         {({ hide }) => (
                           <Form
@@ -73,4 +78,4 @@ export default (name, Form) => class extends React.Component {
         </FieldArray>
       )
     }
-}
+  }

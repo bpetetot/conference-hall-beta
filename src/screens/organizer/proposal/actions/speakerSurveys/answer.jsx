@@ -18,10 +18,7 @@ const Answer = ({ question, answer }) => {
 
 Answer.propTypes = {
   question: PropTypes.string.isRequired,
-  answer: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  answer: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 Answer.defaultProps = {
