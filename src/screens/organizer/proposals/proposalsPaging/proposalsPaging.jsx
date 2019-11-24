@@ -5,17 +5,12 @@ import PropTypes from 'prop-types'
 import styles from './proposalsPaging.module.css'
 
 class ProposalsPaging extends Component {
-  goToPage = (page) => () => {
+  goToPage = page => () => {
     this.props.onPageChange(page)
   }
 
   render() {
-    const {
-      loaded,
-      nbItems,
-      nbPage,
-      page,
-    } = this.props
+    const { loaded, nbItems, nbPage, page } = this.props
 
     if (!loaded || nbPage <= 1) return null
 

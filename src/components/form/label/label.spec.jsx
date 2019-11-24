@@ -2,7 +2,6 @@
 import React from 'react'
 import Label from './index'
 
-
 const props = {
   label: 'label',
   name: 'name',

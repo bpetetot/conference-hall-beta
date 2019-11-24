@@ -4,17 +4,14 @@ import PropTypes from 'prop-types'
 import Button from 'components/button'
 import Alert from 'components/alert'
 
-
-const Notification = ({
-  name, onConfirm, onDecline, className,
-}) => {
+const Notification = ({ name, onConfirm, onDecline, className }) => {
   const title = `This talk has been accepted at ${name}.`
   return (
     <Alert
       type="info"
       className={className}
       title={title}
-      actionButtons={(
+      actionButtons={
         <>
           <Button onClick={onConfirm} primary>
             I confirm my presence
@@ -23,7 +20,7 @@ const Notification = ({
             I cancel my presence
           </Button>
         </>
-      )}
+      }
     />
   )
 }

@@ -4,9 +4,7 @@ import Badge from 'components/badge'
 
 import styles from './talkSelection.module.css'
 
-const TalkSelection = ({
-  onChange, state, emailStatus, isDeliberationDone,
-}) => (
+const TalkSelection = ({ onChange, state, emailStatus, isDeliberationDone }) => (
   <div className={styles.wrapper}>
     {isDeliberationDone && (
       <div>
@@ -29,7 +27,7 @@ const TalkSelection = ({
       <select
         className={styles.selector}
         onChange={onChange}
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
         defaultValue={state}
       >
         <option key="submitted" value="submitted">

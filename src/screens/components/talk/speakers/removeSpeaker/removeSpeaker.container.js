@@ -5,7 +5,8 @@ import RemoveSpeaker from './removeSpeaker'
 const mapStore = (store, { uid }, { router }) => {
   const talkId = router.getParam('talkId')
   return {
-    onRemoveSpeaker: () => store.dispatch({ type: '@@ui/REMOVE_SPEAKER_TO_TALK', payload: { uid, talkId } }),
+    onRemoveSpeaker: () =>
+      store.dispatch({ type: '@@ui/REMOVE_SPEAKER_TO_TALK', payload: { uid, talkId } }),
   }
 }
 

@@ -6,7 +6,7 @@ import randomColor from 'randomcolor'
 
 import './avatar.css'
 
-const generateColor = (seed) => {
+const generateColor = seed => {
   if (!seed) return {}
   return {
     background: randomColor({
@@ -37,16 +37,13 @@ const Avatar = ({
     bgColor = generateColor(name)
   }
 
-  const classes = cn(
-    'cc-avatar',
-    {
-      'cc-avatar-small': size === 'small',
-      'cc-avatar-large': size === 'large',
-      'cc-avatar-initials': !src,
-      'cc-avatar-image': src,
-      'cc-avatar-square': square,
-    },
-  )
+  const classes = cn('cc-avatar', {
+    'cc-avatar-small': size === 'small',
+    'cc-avatar-large': size === 'large',
+    'cc-avatar-initials': !src,
+    'cc-avatar-image': src,
+    'cc-avatar-square': square,
+  })
 
   return (
     <div className={cn('cc-avatar-wrapper', className)}>

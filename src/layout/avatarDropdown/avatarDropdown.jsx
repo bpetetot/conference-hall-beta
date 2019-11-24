@@ -8,9 +8,7 @@ import Dropdown from 'components/dropdown'
 
 import './avatarDropdown.css'
 
-const AvatarDropdown = ({
-  displayName, photoURL, contributorsRoute, signout,
-}) => {
+const AvatarDropdown = ({ displayName, photoURL, contributorsRoute, signout }) => {
   const avatar = <Avatar src={photoURL} name={displayName} className="avatar-dropdown-button" />
   return (
     <Dropdown className="avatar-dropdown" action={avatar} darkMode>

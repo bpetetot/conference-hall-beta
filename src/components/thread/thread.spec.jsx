@@ -19,12 +19,9 @@ describe('components/thread', () => {
       },
     ]
     const mock = jest.fn()
-    const wrapper = mount(<Thread
-      currentUser="Yoda"
-      messages={messages}
-      onSaveMessage={mock}
-      onDeleteMessage={mock}
-    />)
+    const wrapper = mount(
+      <Thread currentUser="Yoda" messages={messages} onSaveMessage={mock} onDeleteMessage={mock} />,
+    )
     expect(wrapper).toMatchSnapshot()
   })
 })

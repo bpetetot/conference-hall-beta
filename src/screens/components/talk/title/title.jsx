@@ -5,7 +5,9 @@ import './title.css'
 
 const TalkTitle = ({ name, className }) => (
   <h1 className={className}>
-    <span className="talk-title"><i className="fa fa-microphone" /> {name}</span>
+    <span className="talk-title">
+      <i className="fa fa-microphone" /> {name}
+    </span>
   </h1>
 )
 

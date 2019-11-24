@@ -38,14 +38,14 @@ const TalkPage = ({
         )}
       </Button>
       <Button secondary>
-        {(btn) => (
+        {btn => (
           <Link code="speaker-talk-edit" talkId={id} className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}
       </Button>
       <Button accent>
-        {(btn) => (
+        {btn => (
           <Link code="speaker-talk-submission" talkId={id} className={btn}>
             <IconLabel icon="fa fa-paper-plane" label="Submit" />
           </Link>

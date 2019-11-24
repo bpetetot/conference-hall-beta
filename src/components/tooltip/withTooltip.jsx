@@ -7,7 +7,7 @@ const DEFAULT_OPTIONS = {
   placement: 'auto',
 }
 
-const withTooltip = (options) => (Wrapped) => {
+const withTooltip = options => Wrapped => {
   const opts = { ...DEFAULT_OPTIONS, ...options }
 
   const TooltipWrapper = ({ tooltip, ...rest }) => (

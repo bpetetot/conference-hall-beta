@@ -4,9 +4,7 @@ import { Form } from 'react-final-form'
 import languages from 'helpers/language.json'
 
 import Field from 'components/form/field'
-import {
-  input, markdownInput, radio, SubmitButton, RadioGroup, select,
-} from 'components/form'
+import { input, markdownInput, radio, SubmitButton, RadioGroup, select } from 'components/form'
 import { required } from 'components/form/validators'
 import './talkForm.css'
 

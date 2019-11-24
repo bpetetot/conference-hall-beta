@@ -50,11 +50,7 @@ const Badge = ({
 }
 
 Badge.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.array,
-    PropTypes.func,
-  ]),
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array, PropTypes.func]),
   pill: PropTypes.bool,
   primary: PropTypes.bool,
   secondary: PropTypes.bool,

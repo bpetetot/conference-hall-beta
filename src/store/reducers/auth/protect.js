@@ -5,7 +5,7 @@ import { inject } from '@k-ramel/react'
 
 import LoadingIndicator from 'components/loader/loading'
 
-export default (Component) => {
+export default Component => {
   class ProtectedComponent extends React.Component {
     // eslint-disable-next-line react/static-property-placement
     static propTypes = {
@@ -24,9 +24,7 @@ export default (Component) => {
     }
 
     checkAuth = () => {
-      const {
-        authenticated, initialized, redirectLogin,
-      } = this.props
+      const { authenticated, initialized, redirectLogin } = this.props
       if (initialized && !authenticated) {
         redirectLogin()
       }
@@ -40,7 +38,7 @@ export default (Component) => {
     }
   }
 
-  return inject((store) => {
+  return inject(store => {
     const auth = store.auth.get()
     const userLoaded = store.data.users.hasKey(auth.uid)
     const orgaLoaded = store.data.organizations.isInitialized()
@@ -48,7 +46,8 @@ export default (Component) => {
     return {
       ...auth,
       userDataLoaded: userLoaded && orgaLoaded,
-      redirectLogin: () => store.dispatch({ type: '@@router/REPLACE_WITH_NEXT_URL', payload: 'login' }),
+      redirectLogin: () =>
+        store.dispatch({ type: '@@router/REPLACE_WITH_NEXT_URL', payload: 'login' }),
     }
   })(ProtectedComponent)
 }

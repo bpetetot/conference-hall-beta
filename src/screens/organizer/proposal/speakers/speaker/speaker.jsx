@@ -10,7 +10,15 @@ import Markdown from 'components/markdown'
 import styles from './speaker.module.css'
 
 const Speaker = ({
-  uid, email, github, twitter, company, language, address, bio, speakerReferences,
+  uid,
+  email,
+  github,
+  twitter,
+  company,
+  language,
+  address,
+  bio,
+  speakerReferences,
 }) => {
   let twitterUrl
   if (twitter) {

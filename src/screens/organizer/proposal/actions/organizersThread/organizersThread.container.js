@@ -29,7 +29,7 @@ const mapStore = (store, { eventId, proposalId }) => {
         },
       })
     },
-    onDeleteMessage: (messageId) => {
+    onDeleteMessage: messageId => {
       store.dispatch({
         type: '@@ui/ON_DELETE_PROPOSAL_ORGANIZERS_MESSAGE',
         payload: {
@@ -42,7 +42,4 @@ const mapStore = (store, { eventId, proposalId }) => {
   }
 }
 
-export default compose(
-  inject(mapStore),
-  listen(listeners, 'ORGANIZERS_THREAD'),
-)(OrganizersThread)
+export default compose(inject(mapStore), listen(listeners, 'ORGANIZERS_THREAD'))(OrganizersThread)

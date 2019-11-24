@@ -10,7 +10,12 @@ import OrganizersThread from './organizersThread'
 import styles from './actions.module.css'
 
 const Actions = ({
-  eventId, proposalId, title, surveyActive, displayOrganizersRatings, className,
+  eventId,
+  proposalId,
+  title,
+  surveyActive,
+  displayOrganizersRatings,
+  className,
 }) => (
   <Titlebar className={cn(styles.header, className)} title={title}>
     {displayOrganizersRatings && <TeamRatings proposalId={proposalId} />}

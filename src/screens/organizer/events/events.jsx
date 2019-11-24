@@ -15,13 +15,17 @@ import styles from './events.module.css'
 const MyEvents = ({ events, onSelect }) => {
   const [status, setStatus] = useState('active')
 
-  const filteredEvents = useMemo(() => events.filter((event) => {
-    if (status === 'all') return true
-    if (status === 'archived') return event.archived === true
-    return event.archived !== true
-  }), [status, events])
+  const filteredEvents = useMemo(
+    () =>
+      events.filter(event => {
+        if (status === 'all') return true
+        if (status === 'archived') return event.archived === true
+        return event.archived !== true
+      }),
+    [status, events],
+  )
 
-  const onFilter = (e) => setStatus(e.target.value)
+  const onFilter = e => setStatus(e.target.value)
 
   return (
     <div>
@@ -32,7 +36,7 @@ const MyEvents = ({ events, onSelect }) => {
           <option value="active">Active events</option>
         </select>
         <Button>
-          {(btn) => (
+          {btn => (
             <Link code="organizer-event-create" className={btn}>
               <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
             </Link>
@@ -42,20 +46,20 @@ const MyEvents = ({ events, onSelect }) => {
       <List
         array={filteredEvents}
         noResult={status === 'archived' ? 'No archived event' : 'No event yet !'}
-        renderRow={({
-          id, name, type, visibility, address, conferenceDates,
-        }) => (
+        renderRow={({ id, name, type, visibility, address, conferenceDates }) => (
           <ListItem
             key={id}
             title={<div className={styles.title}>{name}</div>}
-            subtitle={<IconLabel icon="fa fa-map-marker" label={get(address, 'formattedAddress')} />}
-            info={(
+            subtitle={
+              <IconLabel icon="fa fa-map-marker" label={get(address, 'formattedAddress')} />
+            }
+            info={
               <div className={styles.infos}>
                 <div className={styles.badges}>
                   {visibility === 'private' && (
-                  <Badge pill outline error={visibility === 'private'}>
-                    {visibility}
-                  </Badge>
+                    <Badge pill outline error={visibility === 'private'}>
+                      {visibility}
+                    </Badge>
                   )}
                   <Badge
                     pill
@@ -68,14 +72,14 @@ const MyEvents = ({ events, onSelect }) => {
                   </Badge>
                 </div>
                 {type === 'conference' && (
-                <EventDates
-                  dates={conferenceDates}
-                  className={styles.dates}
-                  timezone={get(address, 'timezone.id')}
-                />
+                  <EventDates
+                    dates={conferenceDates}
+                    className={styles.dates}
+                    timezone={get(address, 'timezone.id')}
+                  />
                 )}
               </div>
-  )}
+            }
             onSelect={() => onSelect(id)}
           />
         )}

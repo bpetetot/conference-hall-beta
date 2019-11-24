@@ -15,12 +15,10 @@ const TalksSelection = ({ talkId, events, onSelect }) => (
   <List
     array={events}
     noResult={<NoEvents />}
-    renderRow={({
-      id, name, type, address, conferenceDates,
-    }) => (
+    renderRow={({ id, name, type, address, conferenceDates }) => (
       <ListItem
         key={id}
-        title={(
+        title={
           <div className={styles.title}>
             <span>{name}</span>
             <Badge
@@ -33,19 +31,19 @@ const TalksSelection = ({ talkId, events, onSelect }) => (
               {type}
             </Badge>
           </div>
-)}
-        subtitle={(
+        }
+        subtitle={
           <>
             {type === 'conference' && (
-            <EventDates
-              dates={conferenceDates}
-              className={styles.dates}
-              timezone={get(address, 'timezone.id')}
-            />
+              <EventDates
+                dates={conferenceDates}
+                className={styles.dates}
+                timezone={get(address, 'timezone.id')}
+              />
             )}
             <IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />
           </>
-)}
+        }
         info={<Status eventId={id} talkId={talkId} />}
         onSelect={() => onSelect(id)}
       />
