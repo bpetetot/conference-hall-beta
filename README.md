@@ -16,12 +16,14 @@
 Conference Hall is still in beta but already contains a large set of features.
 
 **You are a Speaker:**
+
 - ✨ Write the abstract of your talk
 - 🚀 Submit your talks to events (meetups and conferences)
 - 🤝 Invite co-speakers to your talk
 - 🔒 Social login
 
 **You are an Organizer:**
+
 - ❤️ Create your conference or meetup
 - 📣 Call for papers opens and closes automatically
 - ⚡️ Make it public or private
