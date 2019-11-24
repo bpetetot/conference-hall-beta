@@ -44,7 +44,7 @@ const MyTalks = ({ talks, onSelect }) => {
       </Titlebar>
       <List
         array={filteredTalks}
-        noResult={<NoTalks />}
+        noResult={status === 'archived' ? 'No archived talk' : <NoTalks />}
         renderRow={({
           id,
           title,
