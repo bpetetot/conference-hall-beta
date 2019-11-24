@@ -10,6 +10,7 @@ export const createTalk = async (action, store, { router }) => {
   const ref = await talkCrud.create({
     ...talk,
     owner: uid,
+    archived: false,
     speakers: { [uid]: true },
   })
   store.ui.loaders.update({ isTalkSaving: false })

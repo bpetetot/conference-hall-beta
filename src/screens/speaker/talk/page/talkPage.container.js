@@ -12,6 +12,9 @@ const mapStore = (store, props, { router }) => {
     loaded: !!talk,
     ...talk,
     load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
+    toggleArchive: () => {
+      store.dispatch({ type: '@@ui/ON_UPDATE_TALK', payload: { id: talkId, archived: !talk.archived } })
+    },
   }
 }
 
