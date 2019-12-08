@@ -22,12 +22,12 @@
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.15",
-    "luxon": "^1.21.2",
+    "luxon": "^1.21.3",
     "node-fetch": "^2.6.0",
     "puppeteer": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.7.0",
+    "eslint": "^6.7.2",
     "firebase-functions-test": "^0.1.7",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
