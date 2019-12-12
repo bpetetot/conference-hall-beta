@@ -36,7 +36,7 @@
     "k-ramel": "^3.0.0",
     "lodash": "^4.17.15",
     "luxon": "^1.21.3",
-    "marked": "^0.7.0",
+    "marked": "^0.8.0",
     "normalize.css": "^8.0.1",
     "path-to-regexp": "^3.1.0",
     "popper.js": "^1.16.0",
