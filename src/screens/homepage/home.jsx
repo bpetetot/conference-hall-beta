@@ -51,13 +51,23 @@ const Home = () => {
             submissions for your conferences and meetups. Speaker writes a talk once and can submit
             it to every events of the platform.
           </p>
-          <a
-            href="https://github.com/bpetetot/conference-hall"
-            target="blank"
-            className={styleMedia.btn}
-          >
-            <IconLabel icon="fa fa-github" label="Contribute to Conference Hall" />
-          </a>
+          <div className={styles.informationButtons}>
+            <a
+              href="https://github.com/bpetetot/conference-hall"
+              target="blank"
+              className={styles.informationButton}
+            >
+              <IconLabel icon="fa fa-github" label="Contribute to Conference Hall" />
+            </a>
+
+            <a
+              href="https://github.com/sponsors/bpetetot"
+              target="blank"
+              className={styles.informationButton}
+            >
+              <IconLabel icon="fa fa-heart" label="Donate to help" />
+            </a>
+          </div>
         </div>
       </div>
 

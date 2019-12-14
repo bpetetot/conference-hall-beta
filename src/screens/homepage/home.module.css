@@ -83,7 +83,11 @@
   font-weight: 300;
 }
 
-.informationWrapper > a {
+.informationButtons {
+  display: flex;
+}
+
+.informationButton {
   display: inline-block;
   min-width: 200px;
   margin-top: 25px;
@@ -96,9 +100,10 @@
   padding: 14px 28px;
   border-radius: 30px;
   text-decoration: none;
+  margin-right: 1em;
 }
 
-.informationWrapper > a:hover {
+.informationButton:hover {
   background: var(--primary-color);
   border-color: var(--primary-color);
   color: #fff;
