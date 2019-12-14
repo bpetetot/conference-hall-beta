@@ -5,6 +5,12 @@
   background: #fff;
 }
 
+.algoliaLogo {
+  height: 1em;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
 .dark {
   background: var(--primary-color);
 }

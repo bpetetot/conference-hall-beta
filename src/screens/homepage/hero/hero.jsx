@@ -15,7 +15,7 @@ const Hero = ({ isMobile }) => (
         Find conferences and meetups all around the world to submit your talks, quickies or
         workshops.
       </h1>
-      <InputSearch className={styles.inputSearch} />
+      <InputSearch className={styles.inputSearch} withAlgoliaLogo />
       <div className={styles.actions}>
         <Link code="search">Explore events</Link>
       </div>

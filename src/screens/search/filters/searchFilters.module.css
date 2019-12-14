@@ -1,7 +1,6 @@
 .filters {
   display: flex;
   align-items: center;
-  margin-bottom: 1em;
 }
 
 .filters input[type=text] {
