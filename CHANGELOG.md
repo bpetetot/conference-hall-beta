@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.24.0"></a>
+## 0.24.0 (2019-12-14)
+
+### Security
+
+- 🔒 add DOMPurify to sanitize markdown ([#736](https://github.com/bpetetot/conference-hall/issues/736)) [[2f24465](https://github.com/bpetetot/conference-hall/commit/2f244651b00cf98bb7f9d37048eebc0467ad3449)]
+
+
 <a name="0.23.0"></a>
 ## 0.23.0 (2019-12-14)
 
