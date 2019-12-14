@@ -3,7 +3,7 @@ import { inject } from '@k-ramel/react'
 import AvatarDropdown from './avatarDropdown'
 
 const mapStore = (store, props, { router }) => {
-  const { uid } = store.auth.get()
+  const { uid, authenticated } = store.auth.get()
   const { displayName, photoURL } = store.data.users.get(uid) || {}
 
   let contributorsRoute = 'public-contributors'
@@ -14,6 +14,7 @@ const mapStore = (store, props, { router }) => {
   }
 
   return {
+    authenticated,
     displayName,
     photoURL,
     contributorsRoute,

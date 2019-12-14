@@ -8,8 +8,11 @@ import Dropdown from 'components/dropdown'
 
 import './avatarDropdown.css'
 
-const AvatarDropdown = ({ displayName, photoURL, contributorsRoute, signout }) => {
+const AvatarDropdown = ({ authenticated, displayName, photoURL, contributorsRoute, signout }) => {
+  if (!authenticated) return null
+
   const avatar = <Avatar src={photoURL} name={displayName} className="avatar-dropdown-button" />
+
   return (
     <Dropdown className="avatar-dropdown" action={avatar} darkMode>
       <div>{displayName}</div>
@@ -27,6 +30,7 @@ const AvatarDropdown = ({ displayName, photoURL, contributorsRoute, signout }) =
 }
 
 AvatarDropdown.propTypes = {
+  authenticated: PropTypes.bool,
   displayName: PropTypes.string,
   photoURL: PropTypes.string,
   contributorsRoute: PropTypes.string.isRequired,
@@ -34,6 +38,7 @@ AvatarDropdown.propTypes = {
 }
 
 AvatarDropdown.defaultProps = {
+  authenticated: false,
   displayName: undefined,
   photoURL: undefined,
 }
