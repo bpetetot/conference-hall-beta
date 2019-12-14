@@ -9,6 +9,7 @@ import Portal from 'components/portals/portal'
 import withTheme from 'styles/themes/withTheme'
 import { withSizes } from 'styles/utils'
 
+import { ReactComponent as Logo } from 'styles/icons/conference-hall.svg'
 import styles from './brand.module.css'
 
 const SidebarWrapper = withTheme(({ className, onClick, content }) => (
@@ -41,8 +42,10 @@ const Brand = ({ title, baseRoute, isTablet, isMobile, sidebar, className }) => 
         {({ hide }) => <SidebarWrapper content={sidebar} onClick={hide} />}
       </OpenTrigger>
     )}
-    <Link code="home">
-      {title} <span className={styles.subtitle}>Hall</span>
+    <Link code="home" className={styles.brandName}>
+      <Logo width="36px" height="36px" />
+      <span>{title}&nbsp;</span>
+      <span className={styles.subtitle}>Hall</span>
     </Link>
   </div>
 )

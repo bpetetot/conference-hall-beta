@@ -21,6 +21,15 @@
   color: var(--primary-color-font);
 }
 
+.brandName {
+  display: flex;
+  align-items: center;
+}
+
+.brandName > svg {
+  margin-right: 0.5em;
+}
+
 .subtitle {
   color: var(--secondary-color);
 }
