@@ -33,6 +33,7 @@ export const signin = action => {
 export const signout = (action, store, { router }) => {
   firebase.auth().signOut()
   router.push('home')
+  localStorage.removeItem('currentEventId')
 }
 
 export const signedIn = async (action, store) => {
