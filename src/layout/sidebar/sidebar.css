@@ -1,6 +1,17 @@
 .sidebar {
   background-color: var(--primary-color);
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.donate-button {
+  margin: 0.5em;
+  padding: 0.5em;
+  width: 100%;
+  color: var(--grey-color-light);
+  text-decoration: none;
 }
 
 .sidebar .sidebar-panel {
