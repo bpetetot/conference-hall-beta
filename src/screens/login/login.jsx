@@ -6,7 +6,7 @@ import AppLayout from 'layout'
 import { LoadingIndicator } from 'components/loader'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import './login.css'
+import styles from './login.module.css'
 
 const Login = ({ authenticated, initialized, providers, signin }) => {
   const [authenticating, setAuthenticating] = useState(false)
@@ -27,23 +27,25 @@ const Login = ({ authenticated, initialized, providers, signin }) => {
   }, [])
 
   if (!initialized || authenticating || authenticated) {
-    return <LoadingIndicator className="login-loading" />
+    return <LoadingIndicator />
   }
 
   return (
-    <AppLayout className="login" fullwidth>
-      <h1 className="login-title">Connexion</h1>
-      {providers.map(provider => (
-        <Button
-          key={provider}
-          className={`btn-${provider}`}
-          onClick={() => signin(provider)}
-          size="large"
-        >
-          <IconLabel icon={`fa fa-${provider}`} label={`with ${provider}`} />
-        </Button>
-      ))}
-      {errorMessage && <p className="login-error">{errorMessage}</p>}
+    <AppLayout className={styles.login} fullwidth>
+      <h1 className={styles.title}>Connexion</h1>
+      <div className={styles.buttons}>
+        {providers.map(provider => (
+          <Button
+            key={provider}
+            className={styles[`btn-${provider}`]}
+            onClick={() => signin(provider)}
+            size="large"
+          >
+            <IconLabel icon={`fa fa-${provider}`} label={`with ${provider}`} />
+          </Button>
+        ))}
+      </div>
+      {errorMessage && <p className={styles.error}>{errorMessage}</p>}
     </AppLayout>
   )
 }

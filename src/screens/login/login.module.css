@@ -5,19 +5,13 @@
   align-items: center;
 }
 
-.login .login-title {
+.title {
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 1em;
 }
 
-.login .login-back {
-  margin-top: 1em;
-  color: var(--secondary-color);
-  text-decoration: underline;
-}
-
-.login .login-error {
+.error {
   background: var(--background-color);
   color: var(--error-color);
   padding: 1em;
@@ -25,58 +19,65 @@
   border-radius: 3px;
 }
 
-.login > button {
-  margin: 1em;
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons > button {
+  margin: 0.5em;
   min-width: 20em;
   font-weight: 700;
 }
 
-.login button.btn-google {
+.btn-google {
   background: #ea2533;
   color: #fff;
   border-color: #ea2533;
 }
 
-.login button.btn-google:hover {
+.btn-google:hover {
   background: #fff;
   color: #ea2533;
   opacity: 1;
   border-color: #ea2533;
 }
 
-.login button.btn-twitter {
+.btn-twitter {
   background: #34ccfe;
   color: #fff;
   border-color: #34ccfe;
 }
 
-.login button.btn-twitter:hover {
+.btn-twitter:hover {
   background: #fff;
   color: #34ccfe;
   opacity: 1;
   border-color: #34ccfe;
 }
 
-.login button.btn-github {
+.btn-github {
   background: #000;
   color: #fff;
   border-color: #000;
 }
 
-.login button.btn-github:hover {
+.btn-github:hover {
   background: #fff;
   color: #000;
   opacity: 1;
   border-color: #000;
 }
 
-.login button.btn-facebook {
+.btn-facebook {
   background: #3b5998;
   color: #fff;
   border-color: #3b5998;
 }
 
-.login button.btn-facebook:hover {
+.btn-facebook:hover {
   background: #fff;
   color: #3b5998;
   opacity: 1;
