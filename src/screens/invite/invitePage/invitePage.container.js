@@ -9,7 +9,7 @@ const mapStore = (store, props, { router }) => {
   return {
     entity,
     inviteId,
-    invite: () => store.dispatch({ type: '@@ui/GO_TO_EVENT_SUBMISSION', payload: { inviteId } }),
+    push: router.push,
   }
 }
 
