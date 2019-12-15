@@ -1,37 +1,19 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import firebase from 'firebase/app'
 import { Link } from '@k-redux-router/react-k-ramel'
 
 import Button from 'components/button'
 import Titlebar from 'components/titlebar'
-import inviteReq from 'firebase/invites'
 
+import useValidationInvite from './useValidationInvite'
 import styles from './invitePage.module.css'
 
-const InvitePage = ({ entity, inviteId, push }) => {
-  const [invitation, setInvitation] = useState(null)
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    inviteReq.read(inviteId).then(ref => setInvitation(ref.data()))
-  }, [inviteId])
-
-  const validateInvite = useCallback(async () => {
-    setLoading(true)
-    const validate = firebase.functions().httpsCallable('validateInvite')
-    await validate({ inviteId })
-    setLoading(false)
-
-    if (entity === 'talk') {
-      push('speaker-talk-page', { talkId: invitation.entityId })
-    } else if (entity === 'organization') {
-      push('organizer-organization-page', { organizationId: invitation.entityId })
-    }
-  }, [invitation, push, entity, inviteId])
+const InvitePage = ({ inviteId, push }) => {
+  const { invitation, loading, validate } = useValidationInvite(inviteId, push)
 
   if (!invitation) return null
 
+  const { entity } = invitation
   return (
     <div className={styles.wrapper}>
       <div className="card">
@@ -57,7 +39,7 @@ const InvitePage = ({ entity, inviteId, push }) => {
               </Link>
             )}
           </Button>
-          <Button onClick={validateInvite} disabled={loading} loading={loading}>
+          <Button onClick={validate} disabled={loading} loading={loading}>
             {entity === 'talk' ? 'Be co-speaker' : 'Join organization'}
           </Button>
         </div>
@@ -67,7 +49,6 @@ const InvitePage = ({ entity, inviteId, push }) => {
 }
 
 InvitePage.propTypes = {
-  entity: PropTypes.string.isRequired,
   inviteId: PropTypes.string.isRequired,
   push: PropTypes.func.isRequired,
 }
