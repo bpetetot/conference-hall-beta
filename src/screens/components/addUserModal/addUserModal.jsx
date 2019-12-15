@@ -22,6 +22,7 @@ const AddUserModal = ({
   renderTrigger,
   inviteEntity,
   inviteEntityId,
+  inviteEntityTitle,
 }) => (
   <Modal renderTrigger={renderTrigger}>
     {({ hide }) => (
@@ -57,7 +58,11 @@ const AddUserModal = ({
             <div className={styles.separator}>
               <small>If you can&apos;t find the user, send him/her an invitation link</small>
             </div>
-            <InviteLink entity={inviteEntity} entityId={inviteEntityId} />
+            <InviteLink
+              entity={inviteEntity}
+              entityId={inviteEntityId}
+              entityTitle={inviteEntityTitle}
+            />
           </div>
         )}
       </>
@@ -78,6 +83,7 @@ AddUserModal.propTypes = {
   renderTrigger: PropTypes.func,
   inviteEntity: PropTypes.string,
   inviteEntityId: PropTypes.string,
+  inviteEntityTitle: PropTypes.string,
 }
 
 AddUserModal.defaultProps = {
@@ -89,6 +95,7 @@ AddUserModal.defaultProps = {
   renderTrigger: undefined,
   inviteEntity: undefined,
   inviteEntityId: undefined,
+  inviteEntityTitle: '',
 }
 
 export default AddUserModal

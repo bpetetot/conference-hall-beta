@@ -5,7 +5,7 @@ import AddUserModal from 'screens/components/addUserModal'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 
-const AddMember = ({ organizationId, onSelectUser }) => (
+const AddMember = ({ organizationId, organizationName, onSelectUser }) => (
   <AddUserModal
     onSelectUser={onSelectUser}
     resultsMessage="Select an organizer to add to your organization"
@@ -28,11 +28,13 @@ const AddMember = ({ organizationId, onSelectUser }) => (
     )}
     inviteEntity="organization"
     inviteEntityId={organizationId}
+    inviteEntityTitle={organizationName}
   />
 )
 
 AddMember.propTypes = {
   organizationId: PropTypes.string.isRequired,
+  organizationName: PropTypes.string.isRequired,
   onSelectUser: PropTypes.func.isRequired,
 }
 

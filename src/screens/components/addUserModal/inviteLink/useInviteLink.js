@@ -7,7 +7,7 @@ const createInviteLink = (inviteId, entity) => {
   return `${window.location.origin}/invite/${entity}/${inviteId}`
 }
 
-export default (entity, entityId, uid) => {
+export default (entity, entityId, entityTitle, uid) => {
   const [inviteId, setInviteId] = useState(null)
 
   const [loading, setLoading] = useState(true)
@@ -33,7 +33,7 @@ export default (entity, entityId, uid) => {
 
   const generate = async () => {
     setLoading(true)
-    const invite = { entity, entityId, creator: uid }
+    const invite = { entity, entityId, entityTitle, creator: uid }
     const ref = await invites.create(invite)
     setInviteId(ref.id)
     setLoading(false)

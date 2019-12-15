@@ -8,8 +8,13 @@ import IconLabel from 'components/iconLabel/iconLabel'
 import useInviteLink from './useInviteLink'
 import styles from './inviteLink.module.css'
 
-const InviteLink = ({ entity, entityId, uid }) => {
-  const { generate, revoke, loading, inviteLink } = useInviteLink(entity, entityId, uid)
+const InviteLink = ({ entity, entityId, entityTitle, uid }) => {
+  const { generate, revoke, loading, inviteLink } = useInviteLink(
+    entity,
+    entityId,
+    entityTitle,
+    uid,
+  )
 
   if (!inviteLink || loading) {
     return (
@@ -32,6 +37,7 @@ const InviteLink = ({ entity, entityId, uid }) => {
 InviteLink.propTypes = {
   entity: PropTypes.string.isRequired,
   entityId: PropTypes.string.isRequired,
+  entityTitle: PropTypes.string.isRequired,
   uid: PropTypes.string.isRequired,
 }
 

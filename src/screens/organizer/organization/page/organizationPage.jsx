@@ -30,7 +30,11 @@ const OrganizationPage = ({
           </Link>
         )}
       </Button>
-      <AddMember organizationId={organizationId} onSelectUser={onSelectUser} />
+      <AddMember
+        organizationId={organizationId}
+        organizationName={name}
+        onSelectUser={onSelectUser}
+      />
     </Titlebar>
     <List
       className="organization-content"
