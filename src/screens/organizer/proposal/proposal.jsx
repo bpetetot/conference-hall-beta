@@ -10,12 +10,7 @@ import './proposal.css'
 
 const Proposal = ({ eventId, proposal, deliberationActive, blindRating }) => (
   <div className="proposal">
-    <Actions
-      className="proposal-actions"
-      eventId={eventId}
-      proposalId={proposal.id}
-      title={proposal.title}
-    />
+    <Actions className="proposal-actions" eventId={eventId} proposal={proposal} />
     <Ratings className="proposal-ratings" eventId={eventId} proposal={proposal} />
     {!blindRating && (
       <Speakers className="proposal-speakers" eventId={eventId} proposal={proposal} />
