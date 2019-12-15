@@ -7,29 +7,24 @@ import Titlebar from 'components/titlebar'
 import TeamRatings from './teamRatings'
 import SpeakerSurveys from './speakerSurveys'
 import OrganizersThread from './organizersThread'
+import EditProposal from './editProposal'
 import styles from './actions.module.css'
 
-const Actions = ({
-  eventId,
-  proposalId,
-  title,
-  surveyActive,
-  displayOrganizersRatings,
-  className,
-}) => (
-  <Titlebar className={cn(styles.header, className)} title={title}>
-    {displayOrganizersRatings && <TeamRatings proposalId={proposalId} />}
+const Actions = ({ eventId, proposal, surveyActive, displayOrganizersRatings, className }) => (
+  <Titlebar className={cn(styles.header, className)} title={proposal.title}>
+    <EditProposal eventId={eventId} proposal={proposal} />
 
-    {surveyActive && <SpeakerSurveys eventId={eventId} proposalId={proposalId} />}
+    {displayOrganizersRatings && <TeamRatings proposalId={proposal.id} />}
 
-    <OrganizersThread eventId={eventId} proposalId={proposalId} />
+    {surveyActive && <SpeakerSurveys eventId={eventId} proposalId={proposal.id} />}
+
+    <OrganizersThread eventId={eventId} proposalId={proposal.id} />
   </Titlebar>
 )
 
 Actions.propTypes = {
   eventId: PropTypes.string.isRequired,
-  proposalId: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  proposal: PropTypes.object.isRequired,
   displayOrganizersRatings: PropTypes.bool,
   surveyActive: PropTypes.bool,
   className: PropTypes.string,

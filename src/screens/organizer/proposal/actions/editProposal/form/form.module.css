@@ -1,0 +1,13 @@
+.form {
+  padding: 1em;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttons> button:last-child {
+  margin-left: 1em;
+}

@@ -6,6 +6,7 @@
   background-color: #fff;
   font-size: var(--font-size);
   min-width: 50%;
+  max-height: 100%;
   overflow: auto;
   padding: 3em;
   z-index: 120;
