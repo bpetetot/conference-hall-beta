@@ -5,9 +5,9 @@ import AddUserModal from 'screens/components/addUserModal'
 
 import './addSpeaker.css'
 
-const AddSpeaker = ({ onSelectUser }) => (
+const AddSpeaker = ({ talkId, onSelectUser }) => (
   <AddUserModal
-    title="co-speaker"
+    title="Add a co-speaker"
     renderTrigger={({ show }) => (
       <a onClick={show} role="button" className="add-speaker-button">
         <span className="add-speaker-button-icon">
@@ -16,26 +16,27 @@ const AddSpeaker = ({ onSelectUser }) => (
         <span className="add-speaker-button-label">Add a co-speaker</span>
       </a>
     )}
-    resultsMessage="Select a speaker for your talk"
+    resultsMessage="Add a co-speaker to your talk"
     onSelectUser={onSelectUser}
     description={
       <>
         <p>
           Search and add a co-speaker to your talk, he/she will be also able to update it and submit
           it to any event.
-          <br />
-          Your co-speaker must already have a Conference Hall account.
         </p>
         <p>
           For security and privacy reasons, you can search a speaker only by his/her registered
-          email address.
+          email address. Your co-speaker must already have a Conference Hall account.
         </p>
       </>
     }
+    inviteEntity="talk"
+    inviteEntityId={talkId}
   />
 )
 
 AddSpeaker.propTypes = {
+  talkId: PropTypes.string.isRequired,
   onSelectUser: PropTypes.func.isRequired,
 }
 

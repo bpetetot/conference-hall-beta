@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Modal } from 'components/portals'
-import CopyInput from 'components/copyInput'
 import InputButton from 'components/form/inputButton'
 import { LoadingIndicator } from 'components/loader'
 import UserResults from './userResults'
 
-import './addUserModal.css'
+import InviteLink from './inviteLink'
+import styles from './addUserModal.module.css'
 
 const AddUserModal = ({
   title,
@@ -17,15 +17,16 @@ const AddUserModal = ({
   email,
   users,
   resultsMessage,
-  inviteLink,
   onSearch,
   onSelectUser,
   renderTrigger,
+  inviteEntity,
+  inviteEntityId,
 }) => (
-  <Modal className="add-user-modal" renderTrigger={renderTrigger}>
+  <Modal renderTrigger={renderTrigger}>
     {({ hide }) => (
       <>
-        <h1>{title}</h1>
+        <h1 className={styles.title}>{title}</h1>
         {description}
         {searching ? (
           <LoadingIndicator />
@@ -50,13 +51,14 @@ const AddUserModal = ({
             }}
           />
         )}
-        {!!inviteLink && (
-          <>
-            <div className="user-search-separator">
-              <small>or send him/her an invitation link</small>
+
+        {inviteEntity && inviteEntityId && (
+          <div className={styles.inviteLink}>
+            <div className={styles.separator}>
+              <small>If you can&apos;t find the user, send him/her an invitation link</small>
             </div>
-            <CopyInput title="Invite link" value={inviteLink} />
-          </>
+            <InviteLink entity={inviteEntity} entityId={inviteEntityId} />
+          </div>
         )}
       </>
     )}
@@ -73,8 +75,9 @@ AddUserModal.propTypes = {
   resultsMessage: PropTypes.node.isRequired,
   onSearch: PropTypes.func.isRequired,
   onSelectUser: PropTypes.func.isRequired,
-  inviteLink: PropTypes.string,
   renderTrigger: PropTypes.func,
+  inviteEntity: PropTypes.string,
+  inviteEntityId: PropTypes.string,
 }
 
 AddUserModal.defaultProps = {
@@ -84,7 +87,8 @@ AddUserModal.defaultProps = {
   initialized: false,
   users: [],
   renderTrigger: undefined,
-  inviteLink: undefined,
+  inviteEntity: undefined,
+  inviteEntityId: undefined,
 }
 
 export default AddUserModal
