@@ -68,6 +68,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "firebase-tools": "^7.10.0",
     "husky": "^3.1.0",
     "prettier": "^1.19.1",
@@ -78,6 +79,7 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
+    "plugins": ["react-hooks"],
     "extends": [
       "airbnb",
       "plugin:prettier/recommended"
@@ -104,6 +106,8 @@
       "jsx-a11y/interactive-supports-focus": 0,
       "jsx-a11y/label-has-associated-control": 0,
       "jsx-a11y/control-has-associated-label": 0,
+      "react-hooks/rules-of-hooks": 0,
+      "react-hooks/exhaustive-deps": 1,
       "jsx-a11y/anchor-is-valid": [
         "error",
         {
