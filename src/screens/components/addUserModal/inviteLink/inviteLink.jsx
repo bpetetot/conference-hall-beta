@@ -9,12 +9,12 @@ import useInviteLink from './useInviteLink'
 import styles from './inviteLink.module.css'
 
 const InviteLink = ({ entity, entityId, entityTitle, uid }) => {
-  const { generate, revoke, loading, inviteLink } = useInviteLink(
+  const { generate, revoke, loading, inviteLink } = useInviteLink({
     entity,
     entityId,
     entityTitle,
     uid,
-  )
+  })
 
   if (!inviteLink || loading) {
     return (

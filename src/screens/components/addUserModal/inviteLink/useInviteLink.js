@@ -7,7 +7,7 @@ const createInviteLink = (inviteId, entity) => {
   return `${window.location.origin}/invite/${entity}/${inviteId}`
 }
 
-export default (entity, entityId, entityTitle, uid) => {
+export default ({ entity, entityId, entityTitle, uid }) => {
   const [inviteId, setInviteId] = useState(null)
 
   const [loading, setLoading] = useState(true)
@@ -15,15 +15,13 @@ export default (entity, entityId, entityTitle, uid) => {
   useEffect(() => {
     fetchInviteByType(entity, entityId)
       .then(result => {
-        if (!result.length) {
+        if (!result) {
           setInviteId(null)
           setLoading(false)
+        } else {
+          setInviteId(result.docs[0].id)
+          setLoading(false)
         }
-        return setInviteId(result.docs[0].id)
-      })
-      .then(data => {
-        if (data) setInviteId('invite')
-        setLoading(false)
       })
       .catch(() => {
         setInviteId(null)
