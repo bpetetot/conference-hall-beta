@@ -8,6 +8,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:rules": "firebase emulators:exec --only firestore 'jest --roots config'",
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
     "doc": "start-storybook -p 6006 --docs",
@@ -20,6 +21,7 @@
     }
   },
   "dependencies": {
+    "@firebase/testing": "^0.16.3",
     "@k-ramel/react": "^3.0.0",
     "@k-redux-router/core": "^1.0.0",
     "@k-redux-router/react-k-ramel": "^1.2.0",
@@ -79,7 +81,9 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "plugins": ["react-hooks"],
+    "plugins": [
+      "react-hooks"
+    ],
     "extends": [
       "airbnb",
       "plugin:prettier/recommended"
