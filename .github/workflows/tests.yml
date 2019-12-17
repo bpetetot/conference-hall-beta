@@ -1,0 +1,25 @@
+name: Tests
+on:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+  
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+      - run: yarn test
+      - name: Run functions dependencies
+        run: |
+          cd functions
+          yarn install --frozen-lockfile
+          yarn test
+      - run: yarn build
+      - run: yarn size

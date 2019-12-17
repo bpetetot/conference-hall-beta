@@ -7,8 +7,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --maxWorkers=2",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "test": "react-scripts test",
+    "test:ci": "react-scripts test",
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
     "doc": "start-storybook -p 6006 --docs",
