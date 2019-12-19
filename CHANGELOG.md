@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="0.25.0"></a>
+## 0.25.0 (2019-12-19)
+
+### Added
+
+- 👷‍♂️ setup github actions ([#741](https://github.com/bpetetot/conference-hall/issues/741)) [[2861ac3](https://github.com/bpetetot/conference-hall/commit/2861ac3a3f0751bcd6c0976c91984354e11fef29)]
+- ✨ edit a proposal as organizer ([#737](https://github.com/bpetetot/conference-hall/issues/737)) [[590ad64](https://github.com/bpetetot/conference-hall/commit/590ad640076ff16c19751cbffca64f60b083376b)]
+
+
 <a name="0.24.0"></a>
 ## 0.24.0 (2019-12-14)
 
