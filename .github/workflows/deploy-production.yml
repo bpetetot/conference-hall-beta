@@ -18,7 +18,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn test
-      - name: Run functions dependencies
+      - name: Run function tests
         run: |
           cd functions
           yarn install --frozen-lockfile
