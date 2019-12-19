@@ -8,6 +8,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:emulator": "firebase emulators:exec --only firestore 'jest --roots config'",
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
     "doc": "start-storybook -p 6006 --docs",
@@ -54,9 +55,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
+    "@firebase/testing": "^0.16.3",
     "@storybook/addon-docs": "^5.2.8",
     "@storybook/addons": "^5.2.8",
     "@storybook/react": "^5.2.8",
+    "@testing-library/react-hooks": "^3.2.1",
     "babel-loader": "^8.0.6",
     "bundlesize": "^0.18.0",
     "enzyme": "^3.9.0",
@@ -68,6 +71,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "firebase-tools": "^7.10.0",
     "husky": "^3.1.0",
     "prettier": "^1.19.1",
@@ -78,6 +82,9 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
+    "plugins": [
+      "react-hooks"
+    ],
     "extends": [
       "airbnb",
       "plugin:prettier/recommended"
@@ -104,6 +111,8 @@
       "jsx-a11y/interactive-supports-focus": 0,
       "jsx-a11y/label-has-associated-control": 0,
       "jsx-a11y/control-has-associated-label": 0,
+      "react-hooks/rules-of-hooks": 0,
+      "react-hooks/exhaustive-deps": 1,
       "jsx-a11y/anchor-is-valid": [
         "error",
         {
@@ -125,7 +134,7 @@
   "bundlesize": [
     {
       "path": "./build/static/js/*.js",
-      "maxSize": "350 kB"
+      "maxSize": "360 kB"
     },
     {
       "path": "./build/static/css/*.css",

@@ -5,11 +5,11 @@ import keys from 'lodash/keys'
 
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
-import AddMember from 'screens/components/addUserModal'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import MemberRow from './memberRow'
 
+import AddMember from './addMember'
+import MemberRow from './memberRow'
 import './organizationPage.css'
 
 const OrganizationPage = ({
@@ -31,27 +31,9 @@ const OrganizationPage = ({
         )}
       </Button>
       <AddMember
+        organizationId={organizationId}
+        organizationName={name}
         onSelectUser={onSelectUser}
-        resultsMessage="Select an organizer to add to your organization"
-        description={
-          <>
-            <p>
-              Search and add a member to your organization, he/she will be also able to update it,
-              invite other members and create events for your organization.
-              <br />
-              The member must already have a Conference Hall account.
-            </p>
-            <p>
-              For security and privacy reasons, you can search a member only by his/her registered
-              email address.
-            </p>
-          </>
-        }
-        renderTrigger={({ show }) => (
-          <Button onClick={show} secondary>
-            <IconLabel icon="fa fa-user" label="Add a member" />
-          </Button>
-        )}
       />
     </Titlebar>
     <List

@@ -1,0 +1,14 @@
+.title {
+  margin-bottom: 1em;
+}
+
+.separator {
+  margin: 2em 0 1em 0;
+  text-align: center;
+}
+
+.inviteLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

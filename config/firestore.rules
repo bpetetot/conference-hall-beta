@@ -18,7 +18,6 @@ service cloud.firestore {
     function itsMyMessage(message) { return request.auth.uid == message.data.uid }
 
 		function itsMySurvey() { return request.path[6] == request.auth.uid }
-    function hasInviteCode() { return request.resource.id == resource.id }
 
   	// BETA ACCESS
   	match /betaAccess/{key} {
@@ -90,6 +89,28 @@ service cloud.firestore {
     	allow create: if authenticated();
     	allow update: if authenticated() && itsMyTalk();
     	allow delete: if authenticated() && itsMyTalk();
+    }
+
+    // INVITES
+    function canReadInvite() {
+    	return (resource.data.entity == 'talk' && get(/databases/$(database)/documents/talks/$(resource.data.entityId)).data.speakers[request.auth.uid] == true)
+      || (resource.data.entity == 'organization' && get(/databases/$(database)/documents/organizations/$(resource.data.entityId)).data.members[request.auth.uid] == true)
+    }
+
+    function canCreateInvite() {
+    	return (request.resource.data.entity == 'talk' && get(/databases/$(database)/documents/talks/$(request.resource.data.entityId)).data.speakers[request.auth.uid] == true)
+      || (request.resource.data.entity == 'organization' && get(/databases/$(database)/documents/organizations/$(request.resource.data.entityId)).data.members[request.auth.uid] == true)
+    }
+
+    function canDeleteInvite() {
+    	return resource.data.creator == request.auth.uid
+    }
+
+    match /invites/{invite} {
+      allow get: if authenticated();
+      allow list: if authenticated() && canReadInvite();
+    	allow create: if authenticated() && canCreateInvite();
+    	allow delete: if authenticated() && canDeleteInvite();
     }
   }
 }

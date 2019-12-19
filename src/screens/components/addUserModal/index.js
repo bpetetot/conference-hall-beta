@@ -1,1 +1,1 @@
-export { default } from './addUserModal.container'
+export { default } from './addUserModal'
