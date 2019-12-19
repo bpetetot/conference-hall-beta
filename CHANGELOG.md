@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.26.0"></a>
+## 0.26.0 (2019-12-19)
+
+### Added
+
+- ✨ add invitation link system ([#739](https://github.com/bpetetot/conference-hall/issues/739)) [[4746ddd](https://github.com/bpetetot/conference-hall/commit/4746ddd7bba647fc6d022ec5fd93537497526e00)]
+
+
 <a name="0.25.0"></a>
 ## 0.25.0 (2019-12-19)
 
