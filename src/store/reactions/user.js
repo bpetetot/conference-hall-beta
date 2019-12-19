@@ -1,6 +1,4 @@
-import isEmpty from 'lodash/isEmpty'
-
-import userCrud, { fetchUsersByEmail } from 'firebase/user'
+import userCrud from 'firebase/user'
 
 export const fetchUser = async (action, store) => {
   // check if user exists in the store
@@ -23,19 +21,4 @@ export const saveProfile = async (action, store) => {
   store.ui.loaders.update({ isProfileSaving: false })
 
   store.data.users.update(profile)
-}
-
-export const searchUserByEmail = async (action, store) => {
-  const email = action.payload
-  store.ui.userAddModal.set({ searching: true, email, users: [] })
-  const users = await fetchUsersByEmail(email)
-  if (!isEmpty(users)) {
-    users.forEach(user => store.data.users.addOrUpdate(user))
-    store.ui.userAddModal.update({
-      searching: false,
-      users: users.map(user => user.uid),
-    })
-  } else {
-    store.ui.userAddModal.update({ searching: false })
-  }
 }
