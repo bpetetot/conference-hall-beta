@@ -2,36 +2,29 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconLabel from 'components/iconLabel'
-import RelativeDate from 'components/relativeDate'
 import Button from 'components/button'
 import { ListItem } from 'components/list'
 import { ConfirmationPopin } from 'components/portals'
 import Avatar from 'components/avatar/avatar'
 
-import { toDate } from 'helpers/firebase'
-
 import './memberRow.css'
 
-const MemberRow = ({
-  uid,
-  displayName,
-  photoURL,
-  updateTimestamp,
-  owner,
-  removeMember,
-  authUserId,
-}) => {
+const MemberRow = ({ uid, displayName, photoURL, role, isOwner, removeMember, authUserId }) => {
   if (!displayName) return null
 
-  const canRemove = owner === authUserId && owner !== uid
-  const canLeave = owner !== authUserId && authUserId === uid
+  const canRemove = isOwner && authUserId !== uid
+  const canLeave = authUserId === uid
 
   return (
     <>
       <ListItem
         key={uid}
-        title={<Avatar name={displayName} src={photoURL} withLabel />}
-        subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
+        title={
+          <>
+            <Avatar name={displayName} src={photoURL} withLabel />
+            {role}
+          </>
+        }
         renderActions={() => (
           <ConfirmationPopin
             title={canRemove ? 'Remove a member' : 'Leave organization'}
@@ -66,8 +59,8 @@ MemberRow.propTypes = {
   uid: PropTypes.string.isRequired,
   displayName: PropTypes.string,
   photoURL: PropTypes.string,
-  updateTimestamp: PropTypes.any,
-  owner: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
+  isOwner: PropTypes.bool.isRequired,
   removeMember: PropTypes.func.isRequired,
   authUserId: PropTypes.string.isRequired,
 }
@@ -75,7 +68,6 @@ MemberRow.propTypes = {
 MemberRow.defaultProps = {
   displayName: undefined,
   photoURL: undefined,
-  updateTimestamp: undefined,
 }
 
 export default MemberRow
