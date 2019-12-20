@@ -13,6 +13,7 @@ const mapStore = (store, props, { router }) => {
   const filters = store.ui.organizer.proposals.get()
 
   return {
+    eventId,
     statuses,
     ratings,
     formats,

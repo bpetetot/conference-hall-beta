@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import HasRole from 'screens/components/hasRole'
+
 import ProposalsHeader from './proposalsHeader'
 import ProposalsFilters from './proposalsFilters'
 import ProposalsToolbar from './proposalsToolbar'
@@ -11,7 +13,9 @@ const Proposals = ({ eventId }) => (
   <div>
     <ProposalsHeader eventId={eventId} />
     <ProposalsFilters />
-    <ProposalsToolbar eventId={eventId} />
+    <HasRole of={['owner', 'member']} forEventId={eventId}>
+      <ProposalsToolbar eventId={eventId} />
+    </HasRole>
     <ProposalsList eventId={eventId} />
     <ProposalsPaging />
   </div>

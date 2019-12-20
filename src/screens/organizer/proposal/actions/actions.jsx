@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
+import HasRole from 'screens/components/hasRole'
 import Titlebar from 'components/titlebar'
 
 import TeamRatings from './teamRatings'
@@ -12,13 +13,15 @@ import styles from './actions.module.css'
 
 const Actions = ({ eventId, proposal, surveyActive, displayOrganizersRatings, className }) => (
   <Titlebar className={cn(styles.header, className)} title={proposal.title}>
-    <EditProposal eventId={eventId} proposal={proposal} />
+    <HasRole of={['owner', 'member']} forEventId={eventId}>
+      <EditProposal eventId={eventId} proposal={proposal} />
 
-    {displayOrganizersRatings && <TeamRatings proposalId={proposal.id} />}
+      {displayOrganizersRatings && <TeamRatings proposalId={proposal.id} />}
 
-    {surveyActive && <SpeakerSurveys eventId={eventId} proposalId={proposal.id} />}
+      {surveyActive && <SpeakerSurveys eventId={eventId} proposalId={proposal.id} />}
 
-    <OrganizersThread eventId={eventId} proposalId={proposal.id} />
+      <OrganizersThread eventId={eventId} proposalId={proposal.id} />
+    </HasRole>
   </Titlebar>
 )
 
