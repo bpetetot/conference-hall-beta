@@ -1,11 +1,11 @@
 import { flow, set, unset } from 'immutadot'
 
-import organizationCrud, { fetchUserOrganizations } from 'firebase/organizations'
+import organizationCrud, { fetchUserOrganizations, ROLES } from 'firebase/organizations'
 
 export const create = async (action, store, { router }) => {
   const data = action.payload
   const { uid } = store.auth.get()
-  const newUserOrganization = flow(set(`members.${uid}`, true), set('owner', uid))(data)
+  const newUserOrganization = flow(set(`members.${uid}`, ROLES.OWNER), set('owner', uid))(data)
 
   store.ui.loaders.update({ isOrganizationSaving: true })
   const ref = await organizationCrud.create(newUserOrganization)
@@ -39,13 +39,13 @@ export const get = async (action, store, { router }) => {
 export const ofUser = async (action, store) => {
   const { uid } = store.auth.get()
   const organizations = await fetchUserOrganizations(uid)
-  store.data.organizations.set(organizations.docs.map(ref => ({ id: ref.id, ...ref.data() })))
+  store.data.organizations.set(organizations)
 }
 
 export const addMember = async (action, store, { router }) => {
   const { uid, organizationId } = action.payload
   const organization = store.data.organizations.get(organizationId)
-  const updated = set(organization, `members.${uid}`, true)
+  const updated = set(organization, `members.${uid}`, ROLES.MEMBER)
   await organizationCrud.update(updated)
   store.data.organizations.update(updated)
   router.push('organizer-organization-page', { organizationId })
