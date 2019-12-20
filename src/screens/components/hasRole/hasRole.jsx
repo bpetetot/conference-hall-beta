@@ -1,7 +1,7 @@
 import { bool, node } from 'prop-types'
 
-const HasRole = ({ authorized, children }) => {
-  if (!authorized) return null
+const HasRole = ({ authorized, children, otherwise }) => {
+  if (!authorized) return otherwise
 
   return children
 }
@@ -9,10 +9,12 @@ const HasRole = ({ authorized, children }) => {
 HasRole.propTypes = {
   authorized: bool,
   children: node.isRequired,
+  otherwise: node,
 }
 
 HasRole.defaultProps = {
   authorized: false,
+  otherwise: null,
 }
 
 export default HasRole

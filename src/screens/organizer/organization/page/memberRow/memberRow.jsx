@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { ListItem } from 'components/list'
-import Avatar from 'components/avatar/avatar'
+import Avatar from 'components/avatar'
+import Badge from 'components/badge'
 import HasRole from 'screens/components/hasRole'
 
 import ChangeRole from '../changeRole'
@@ -19,15 +20,23 @@ const MemberRow = ({ organizationId, user, role, isOwner, removeMember, authUser
       title={<Avatar name={displayName} src={photoURL} withLabel />}
       renderActions={() => (
         <div className={styles.actions}>
-          <HasRole of={['owner']} forOrganizationId={organizationId}>
-            <ChangeRole organizationId={organizationId} user={user} role={role} />
-          </HasRole>
           <RemoveMemberButton
             user={user}
             isOwner={isOwner}
             removeMember={removeMember}
             authUserId={authUserId}
           />
+          <HasRole
+            of={['owner']}
+            forOrganizationId={organizationId}
+            otherwise={
+              <Badge light pill outline>
+                {role}
+              </Badge>
+            }
+          >
+            <ChangeRole organizationId={organizationId} user={user} role={role} />
+          </HasRole>
         </div>
       )}
     />
