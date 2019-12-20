@@ -16,7 +16,7 @@ const mapStore = (store, _, { router }) => {
     ...organization,
     authUserId: userId,
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),
-    onSelectUser: uid =>
+    addMember: uid =>
       store.dispatch({ type: '@@ui/ADD_ORGANIZATION_MEMBER', payload: { uid, organizationId } }),
     removeMember: uid =>
       store.dispatch({ type: '@@ui/REMOVE_ORGANIZATION_MEMBER', payload: { uid, organizationId } }),

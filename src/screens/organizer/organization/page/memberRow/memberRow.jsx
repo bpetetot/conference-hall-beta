@@ -9,16 +9,8 @@ import ChangeRole from '../changeRole'
 import RemoveMemberButton from '../removeMember'
 import styles from './memberRow.module.css'
 
-const MemberRow = ({
-  organizationId,
-  uid,
-  displayName,
-  photoURL,
-  role,
-  isOwner,
-  removeMember,
-  authUserId,
-}) => {
+const MemberRow = ({ organizationId, user, role, isOwner, removeMember, authUserId }) => {
+  const { uid, displayName, photoURL } = user
   if (!displayName) return null
 
   return (
@@ -28,11 +20,10 @@ const MemberRow = ({
       renderActions={() => (
         <div className={styles.actions}>
           <HasRole of={['owner']} forOrganizationId={organizationId}>
-            <ChangeRole organizationId={organizationId} uid={uid} role={role} />
+            <ChangeRole organizationId={organizationId} user={user} role={role} />
           </HasRole>
           <RemoveMemberButton
-            uid={uid}
-            displayName={displayName}
+            user={user}
             isOwner={isOwner}
             removeMember={removeMember}
             authUserId={authUserId}
@@ -45,18 +36,15 @@ const MemberRow = ({
 
 MemberRow.propTypes = {
   organizationId: PropTypes.string.isRequired,
-  uid: PropTypes.string.isRequired,
-  displayName: PropTypes.string,
-  photoURL: PropTypes.string,
-  role: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
+  role: PropTypes.string,
   isOwner: PropTypes.bool.isRequired,
   removeMember: PropTypes.func.isRequired,
   authUserId: PropTypes.string.isRequired,
 }
 
 MemberRow.defaultProps = {
-  displayName: undefined,
-  photoURL: undefined,
+  role: 'reviewer',
 }
 
 export default MemberRow

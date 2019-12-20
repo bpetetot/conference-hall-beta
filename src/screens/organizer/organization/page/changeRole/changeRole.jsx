@@ -5,7 +5,7 @@ import { ConfirmationPopin } from 'components/portals'
 
 import RoleText from './roleText'
 
-const ChangeRoleSelect = ({ displayName, role, isAuthenticatedUser, changeMemberRole }) => {
+const ChangeRoleSelect = ({ user, role, isAuthenticatedUser, changeMemberRole }) => {
   const [selectedRole, setSelectedRole] = useState(role)
 
   if (isAuthenticatedUser) return null
@@ -13,7 +13,7 @@ const ChangeRoleSelect = ({ displayName, role, isAuthenticatedUser, changeMember
   return (
     <ConfirmationPopin
       title="Change member role"
-      content={<RoleText displayName={displayName} role={selectedRole} />}
+      content={<RoleText displayName={user.displayName} role={selectedRole} />}
       onOk={() => changeMemberRole(selectedRole)}
       onCancel={() => setSelectedRole(role)}
       withCancel
@@ -42,14 +42,13 @@ const ChangeRoleSelect = ({ displayName, role, isAuthenticatedUser, changeMember
 }
 
 ChangeRoleSelect.propTypes = {
-  displayName: PropTypes.string,
+  user: PropTypes.object.isRequired,
   isAuthenticatedUser: PropTypes.bool.isRequired,
   role: PropTypes.string,
   changeMemberRole: PropTypes.func.isRequired,
 }
 
 ChangeRoleSelect.defaultProps = {
-  displayName: undefined,
   role: 'reviewer',
 }
 

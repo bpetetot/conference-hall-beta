@@ -5,7 +5,8 @@ import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { ConfirmationPopin } from 'components/portals'
 
-const RemoveMemberButton = ({ uid, displayName, isOwner, removeMember, authUserId }) => {
+const RemoveMemberButton = ({ user, isOwner, removeMember, authUserId }) => {
+  const { uid, displayName } = user
   const canRemove = isOwner && authUserId !== uid
   const canLeave = !isOwner && authUserId === uid
 
@@ -37,15 +38,10 @@ const RemoveMemberButton = ({ uid, displayName, isOwner, removeMember, authUserI
 }
 
 RemoveMemberButton.propTypes = {
-  uid: PropTypes.string.isRequired,
-  displayName: PropTypes.string,
+  user: PropTypes.object.isRequired,
   isOwner: PropTypes.bool.isRequired,
   removeMember: PropTypes.func.isRequired,
   authUserId: PropTypes.string.isRequired,
-}
-
-RemoveMemberButton.defaultProps = {
-  displayName: undefined,
 }
 
 export default RemoveMemberButton

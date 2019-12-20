@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
+import sortBy from 'lodash/sortBy'
 
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import HasRole from 'screens/components/hasRole'
+import { fetchUsersList } from 'firebase/user'
 
 import AddMember from './addMember'
 import MemberRow from './memberRow'
@@ -16,10 +18,18 @@ const OrganizationPage = ({
   id: organizationId,
   name,
   members,
-  onSelectUser,
+  addMember,
   removeMember,
   authUserId,
 }) => {
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetchUsersList(Object.keys(members)).then(result => {
+      setUsers(sortBy(result, 'displayName'))
+    })
+  }, [members])
+
   const isOwner = members[authUserId] === 'owner'
   return (
     <div className="organization-page">
@@ -39,21 +49,21 @@ const OrganizationPage = ({
           <AddMember
             organizationId={organizationId}
             organizationName={name}
-            onSelectUser={onSelectUser}
+            addMember={addMember}
           />
         </HasRole>
       </Titlebar>
       <List
         className="organization-content"
-        array={Object.entries(members)}
+        array={users}
         noResult="No users yet !"
-        renderRow={([uid, role]) => (
+        renderRow={user => (
           <MemberRow
-            key={uid}
-            uid={uid}
-            role={role}
+            key={user.uid}
+            user={user}
+            role={members[user.uid]}
             authUserId={authUserId}
-            removeMember={() => removeMember(uid)}
+            removeMember={() => removeMember(user.uid)}
             isOwner={isOwner}
           />
         )}
@@ -67,7 +77,7 @@ OrganizationPage.propTypes = {
   name: PropTypes.string.isRequired,
   members: PropTypes.objectOf(PropTypes.string),
   authUserId: PropTypes.string.isRequired,
-  onSelectUser: PropTypes.func.isRequired,
+  addMember: PropTypes.func.isRequired,
   removeMember: PropTypes.func.isRequired,
 }
 
