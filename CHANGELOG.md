@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.26.1"></a>
+## 0.26.1 (2019-12-20)
+
+### Fixed
+
+- 🐛 fix a bug avoiding event page reload ([#743](https://github.com/bpetetot/conference-hall/issues/743)) [[fdb12e9](https://github.com/bpetetot/conference-hall/commit/fdb12e9aa89d9aeb2625d4b932acc7c7eafce974)]
+
+
 <a name="0.26.0"></a>
 ## 0.26.0 (2019-12-19)
 
