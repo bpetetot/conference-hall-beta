@@ -11,7 +11,7 @@ const getInvite = inviteId =>
 
 const validateInvite = async ({ inviteId }, context) => {
   const { uid } = context.auth
-  const { entity, entityId } = await getInvite(inviteId)
+  const { entity, entityId, role = 'member' } = await getInvite(inviteId)
 
   // add to co-speaker
   if (entity === 'talk') {
@@ -28,7 +28,7 @@ const validateInvite = async ({ inviteId }, context) => {
       .firestore()
       .collection('organizations')
       .doc(entityId)
-      .update({ [`members.${uid}`]: true })
+      .update({ [`members.${uid}`]: role })
   }
 }
 
