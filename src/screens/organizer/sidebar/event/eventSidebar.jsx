@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { SideBarPanel, SideBarLink } from 'layout/sidebar'
 import IconLabel from 'components/iconLabel'
 import HasRole from 'screens/components/hasRole'
+import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
 const EventSidebar = ({ eventId, name }) => {
   if (!eventId) return null
@@ -12,7 +13,7 @@ const EventSidebar = ({ eventId, name }) => {
       <SideBarLink code="organizer-event-page" eventId={eventId}>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
-      <HasRole of={['owner', 'member']} forEventId={eventId}>
+      <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
         <SideBarLink code="organizer-event-edit" eventId={eventId}>
           <IconLabel icon="fa fa-gear" label="Configuration" />
         </SideBarLink>

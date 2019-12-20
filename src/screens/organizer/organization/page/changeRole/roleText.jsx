@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { ROLES } from 'firebase/constants'
+
 const RoleText = ({ displayName, role }) => {
   const title = `Set role “${role}” to “${displayName}” in the organization.`
   const subtitle = `The role “${role}” will allow to:`
@@ -9,19 +11,19 @@ const RoleText = ({ displayName, role }) => {
     <>
       <p>{title}</p>
       <p>{subtitle}</p>
-      {role === 'reviewer' && (
+      {role === ROLES.REVIEWER && (
         <ul>
           <li>Review proposals</li>
         </ul>
       )}
-      {role === 'member' && (
+      {role === ROLES.MEMBER && (
         <ul>
           <li>Mannage events of the organization</li>
           <li>Manage proposals</li>
           <li>Review proposals</li>
         </ul>
       )}
-      {role === 'owner' && (
+      {role === ROLES.OWNER && (
         <ul>
           <li>Manage the organization</li>
           <li>Mannage events of the organization</li>

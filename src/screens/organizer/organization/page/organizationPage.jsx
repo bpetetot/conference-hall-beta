@@ -9,6 +9,7 @@ import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import HasRole from 'screens/components/hasRole'
 import { fetchUsersList } from 'firebase/user'
+import { ROLES } from 'firebase/constants'
 
 import AddMember from './addMember'
 import MemberRow from './memberRow'
@@ -23,11 +24,11 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember, authUs
     })
   }, [members])
 
-  const isOwner = members[authUserId] === 'owner'
+  const isOwner = members[authUserId] === ROLES.OWNER
   return (
     <div className="organization-page">
       <Titlebar className="organization-header" icon="fa fa-users" title={name}>
-        <HasRole of={['owner']} forOrganizationId={organizationId}>
+        <HasRole of={ROLES.OWNER} forOrganizationId={organizationId}>
           <Button secondary>
             {btn => (
               <Link

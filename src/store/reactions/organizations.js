@@ -1,11 +1,12 @@
 import { flow, set, unset } from 'immutadot'
 
-import organizationCrud, { fetchUserOrganizations, ROLES } from 'firebase/organizations'
+import organizationCrud, { fetchUserOrganizations } from 'firebase/organizations'
+import { ROLES } from 'firebase/constants'
 
 export const create = async (action, store, { router }) => {
   const data = action.payload
   const { uid } = store.auth.get()
-  const newUserOrganization = flow(set(`members.${uid}`, ROLES.OWNER), set('owner', uid))(data)
+  const newUserOrganization = flow(set(`members.${uid}`, ROLES.OWNER), set(ROLES.OWNER, uid))(data)
 
   store.ui.loaders.update({ isOrganizationSaving: true })
   const ref = await organizationCrud.create(newUserOrganization)

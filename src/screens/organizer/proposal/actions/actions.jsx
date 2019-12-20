@@ -4,6 +4,7 @@ import cn from 'classnames'
 
 import HasRole from 'screens/components/hasRole'
 import Titlebar from 'components/titlebar'
+import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
 import TeamRatings from './teamRatings'
 import SpeakerSurveys from './speakerSurveys'
@@ -13,7 +14,7 @@ import styles from './actions.module.css'
 
 const Actions = ({ eventId, proposal, surveyActive, displayOrganizersRatings, className }) => (
   <Titlebar className={cn(styles.header, className)} title={proposal.title}>
-    <HasRole of={['owner', 'member']} forEventId={eventId}>
+    <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
       <EditProposal eventId={eventId} proposal={proposal} />
 
       {displayOrganizersRatings && <TeamRatings proposalId={proposal.id} />}

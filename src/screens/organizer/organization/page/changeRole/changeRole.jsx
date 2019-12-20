@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import capitalize from 'lodash/capitalize'
 
 import { ConfirmationPopin } from 'components/portals'
+import { ROLES } from 'firebase/constants'
 
 import RoleText from './roleText'
 
@@ -26,15 +28,11 @@ const ChangeRoleSelect = ({ user, role, isAuthenticatedUser, changeMemberRole })
             show()
           }}
         >
-          <option key="owner" value="owner">
-            Owner
-          </option>
-          <option key="member" value="member">
-            Member
-          </option>
-          <option key="reviewer" value="reviewer">
-            Reviewer
-          </option>
+          {Object.values(ROLES).map(roleOption => (
+            <option key={roleOption} value={roleOption}>
+              {capitalize(roleOption)}
+            </option>
+          ))}
         </select>
       )}
     />
@@ -49,7 +47,7 @@ ChangeRoleSelect.propTypes = {
 }
 
 ChangeRoleSelect.defaultProps = {
-  role: 'reviewer',
+  role: ROLES.REVIEWER,
 }
 
 export default ChangeRoleSelect

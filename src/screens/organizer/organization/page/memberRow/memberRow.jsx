@@ -5,6 +5,7 @@ import { ListItem } from 'components/list'
 import Avatar from 'components/avatar'
 import Badge from 'components/badge'
 import HasRole from 'screens/components/hasRole'
+import { ROLES } from 'firebase/constants'
 
 import ChangeRole from '../changeRole'
 import RemoveMemberButton from '../removeMember'
@@ -27,7 +28,7 @@ const MemberRow = ({ organizationId, user, role, isOwner, authUserId }) => {
             authUserId={authUserId}
           />
           <HasRole
-            of={['owner']}
+            of={ROLES.OWNER}
             forOrganizationId={organizationId}
             otherwise={
               <Badge light pill outline>
@@ -52,7 +53,7 @@ MemberRow.propTypes = {
 }
 
 MemberRow.defaultProps = {
-  role: 'reviewer',
+  role: ROLES.REVIEWER,
 }
 
 export default MemberRow

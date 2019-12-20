@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Badge from 'components/badge'
 import HasRole from 'screens/components/hasRole'
+import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
 import styles from './talkSelection.module.css'
 
 const TalkSelection = ({ eventId, onChange, state, emailStatus, isDeliberationDone }) => (
-  <HasRole of={['owner', 'member']} forEventId={eventId}>
+  <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
     <div className={styles.wrapper}>
       {isDeliberationDone && (
         <div>

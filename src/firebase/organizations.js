@@ -1,14 +1,9 @@
 import firebase from 'firebase/app'
 
+import { ROLES } from './constants'
 import crud from './crud'
 
 const organizationCrud = crud('organizations', 'id')
-
-export const ROLES = {
-  OWNER: 'owner',
-  MEMBER: 'member',
-  REVIEWER: 'reviewer',
-}
 
 export const fetchUserOrganizations = uid =>
   firebase

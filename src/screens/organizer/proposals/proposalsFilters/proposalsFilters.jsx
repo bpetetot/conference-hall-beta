@@ -4,6 +4,8 @@ import cn from 'classnames'
 import debounce from 'lodash/debounce'
 
 import HasRole from 'screens/components/hasRole'
+import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
+
 import styles from './proposalsFilters.module.css'
 
 const sortOrderLabel = sortOrder =>
@@ -64,7 +66,7 @@ class ProposalFilters extends Component {
         />
 
         {deliberationActive && (
-          <HasRole of={['owner', 'member']} forEventId={eventId}>
+          <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
             <select id="state" onChange={onChange} defaultValue={filters.state}>
               <option value="">All statuses</option>
               {statuses.map(status => (
