@@ -14,14 +14,7 @@ import AddMember from './addMember'
 import MemberRow from './memberRow'
 import './organizationPage.css'
 
-const OrganizationPage = ({
-  id: organizationId,
-  name,
-  members,
-  addMember,
-  removeMember,
-  authUserId,
-}) => {
+const OrganizationPage = ({ id: organizationId, name, members, addMember, authUserId }) => {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -63,7 +56,6 @@ const OrganizationPage = ({
             user={user}
             role={members[user.uid]}
             authUserId={authUserId}
-            removeMember={() => removeMember(user.uid)}
             isOwner={isOwner}
           />
         )}
@@ -78,7 +70,6 @@ OrganizationPage.propTypes = {
   members: PropTypes.objectOf(PropTypes.string),
   authUserId: PropTypes.string.isRequired,
   addMember: PropTypes.func.isRequired,
-  removeMember: PropTypes.func.isRequired,
 }
 
 OrganizationPage.defaultProps = {

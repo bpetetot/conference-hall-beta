@@ -4,9 +4,18 @@ import PropTypes from 'prop-types'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { ConfirmationPopin } from 'components/portals'
+import useLeaveOrganization from './useLeaveOrganization'
 
-const RemoveMemberButton = ({ user, isOwner, removeMember, authUserId }) => {
+const RemoveMemberButton = ({
+  organizationId,
+  user,
+  isOwner,
+  onRemoveMember,
+  onLeaveMember,
+  authUserId,
+}) => {
   const { uid, displayName } = user
+  const { leave } = useLeaveOrganization(organizationId, onLeaveMember)
   const canRemove = isOwner && authUserId !== uid
   const canLeave = !isOwner && authUserId === uid
 
@@ -17,7 +26,7 @@ const RemoveMemberButton = ({ user, isOwner, removeMember, authUserId }) => {
         canRemove ? `remove ${displayName} from` : 'leave'
       } organization ?`}
       className="remove-member-modal"
-      onOk={removeMember}
+      onOk={canRemove ? onRemoveMember : leave}
       withCancel
       renderTrigger={({ show }) => (
         <>
@@ -38,9 +47,11 @@ const RemoveMemberButton = ({ user, isOwner, removeMember, authUserId }) => {
 }
 
 RemoveMemberButton.propTypes = {
+  organizationId: PropTypes.string.isRequired,
   user: PropTypes.object.isRequired,
   isOwner: PropTypes.bool.isRequired,
-  removeMember: PropTypes.func.isRequired,
+  onRemoveMember: PropTypes.func.isRequired,
+  onLeaveMember: PropTypes.func.isRequired,
   authUserId: PropTypes.string.isRequired,
 }
 

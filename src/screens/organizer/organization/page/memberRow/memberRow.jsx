@@ -10,7 +10,7 @@ import ChangeRole from '../changeRole'
 import RemoveMemberButton from '../removeMember'
 import styles from './memberRow.module.css'
 
-const MemberRow = ({ organizationId, user, role, isOwner, removeMember, authUserId }) => {
+const MemberRow = ({ organizationId, user, role, isOwner, authUserId }) => {
   const { uid, displayName, photoURL } = user
   if (!displayName) return null
 
@@ -21,9 +21,9 @@ const MemberRow = ({ organizationId, user, role, isOwner, removeMember, authUser
       renderActions={() => (
         <div className={styles.actions}>
           <RemoveMemberButton
+            organizationId={organizationId}
             user={user}
             isOwner={isOwner}
-            removeMember={removeMember}
             authUserId={authUserId}
           />
           <HasRole
@@ -48,7 +48,6 @@ MemberRow.propTypes = {
   user: PropTypes.object.isRequired,
   role: PropTypes.string,
   isOwner: PropTypes.bool.isRequired,
-  removeMember: PropTypes.func.isRequired,
   authUserId: PropTypes.string.isRequired,
 }
 

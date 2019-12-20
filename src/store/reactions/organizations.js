@@ -52,10 +52,16 @@ export const setMember = async (action, store, { router }) => {
 }
 
 export const removeMember = async (action, store, { router }) => {
-  const { uid, organizationId } = action.payload
+  const { uid, organizationId, leave } = action.payload
   const organization = store.data.organizations.get(organizationId)
   const updated = unset(organization, `members.${uid}`)
-  await organizationCrud.update(updated)
+  if (!leave) {
+    await organizationCrud.update(updated)
+  }
   store.data.organizations.update(updated)
-  router.push('organizer-organization-page', { organizationId })
+  if (leave) {
+    router.push('organizer-organizations')
+  } else {
+    router.push('organizer-organization-page', { organizationId })
+  }
 }
