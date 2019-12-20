@@ -68,7 +68,7 @@ describe('validateInvite', () => {
     await firebase.assertSucceeds(organization)
 
     const { members } = await organization.data()
-    expect(members).toEqual({ alice: 'owner', marie: 'member' })
+    expect(members).toEqual({ alice: 'owner', marie: 'reviewer' })
   })
 })
 

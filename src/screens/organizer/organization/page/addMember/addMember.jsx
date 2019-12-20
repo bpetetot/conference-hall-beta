@@ -12,12 +12,13 @@ const AddMember = ({ organizationId, organizationName, onSelectUser }) => (
     description={
       <>
         <p>
-          Search and add a member to your organization, he/she will be also able to update it,
-          invite other members and create events for your organization.
+          Add or invite a member to your organization. By default, the new member will have{' '}
+          <strong>the role of &ldquo;Reviewer&rdquo;.</strong> You can changed it once the user is
+          added.
         </p>
         <p>
-          For security and privacy reasons, you can search a member only by his/her registered email
-          address. The member must already have a Conference Hall account.
+          For security and privacy reasons, you can search a member only by the registered email
+          address. <strong>The member must already have a Conference Hall account.</strong>
         </p>
       </>
     }

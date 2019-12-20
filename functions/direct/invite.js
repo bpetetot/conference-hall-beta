@@ -9,9 +9,11 @@ const getInvite = inviteId =>
     .get()
     .then(doc => doc.data())
 
+const DEFAULT_ORGA_ROLE = 'reviewer'
+
 const validateInvite = async ({ inviteId }, context) => {
   const { uid } = context.auth
-  const { entity, entityId, role = 'member' } = await getInvite(inviteId)
+  const { entity, entityId } = await getInvite(inviteId)
 
   // add to co-speaker
   if (entity === 'talk') {
@@ -28,7 +30,7 @@ const validateInvite = async ({ inviteId }, context) => {
       .firestore()
       .collection('organizations')
       .doc(entityId)
-      .update({ [`members.${uid}`]: role })
+      .update({ [`members.${uid}`]: DEFAULT_ORGA_ROLE })
   }
 }
 

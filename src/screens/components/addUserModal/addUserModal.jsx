@@ -55,7 +55,7 @@ const AddUserModal = ({
           {inviteEntity && inviteEntityId && (
             <div className={styles.inviteLink}>
               <div className={styles.separator}>
-                <small>If you can&apos;t find the user, send him/her an invitation link</small>
+                <small>If you can&apos;t find the user, share an invitation link</small>
               </div>
               <InviteLink
                 entity={inviteEntity}
