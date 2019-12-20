@@ -42,10 +42,10 @@ export const ofUser = async (action, store) => {
   store.data.organizations.set(organizations)
 }
 
-export const addMember = async (action, store, { router }) => {
-  const { uid, organizationId } = action.payload
+export const setMember = async (action, store, { router }) => {
+  const { uid, organizationId, role } = action.payload
   const organization = store.data.organizations.get(organizationId)
-  const updated = set(organization, `members.${uid}`, ROLES.REVIEWER)
+  const updated = set(organization, `members.${uid}`, role || ROLES.REVIEWER)
   await organizationCrud.update(updated)
   store.data.organizations.update(updated)
   router.push('organizer-organization-page', { organizationId })

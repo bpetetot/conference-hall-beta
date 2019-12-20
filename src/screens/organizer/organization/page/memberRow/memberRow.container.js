@@ -4,12 +4,10 @@ import loader from 'hoc-react-loader/build/core'
 
 import MemberRow from './memberRow'
 
-const mapStore = (store, { uid }) => ({
+const mapStore = (store, { uid }, { router }) => ({
+  organizationId: router.getParam('organizationId'),
   ...store.data.users.get(uid),
   load: () => store.dispatch({ type: '@@ui/FETCH_USER', payload: uid }),
 })
 
-export default compose(
-  inject(mapStore), //
-  loader(), //
-)(MemberRow)
+export default compose(inject(mapStore), loader())(MemberRow)
