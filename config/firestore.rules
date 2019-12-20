@@ -46,44 +46,45 @@ service cloud.firestore {
     }
 
     // EVENTS
-    function itsMyEvent() { return resource.data.owner == request.auth.uid || isOneOfRoles(get(/databases/$(database)/documents/organizations/$(resource.data.organization)), ['owner', 'member', 'reviewer']) }
-    function fromMyEvent(eventRes) { return eventRes.data.owner == request.auth.uid || isOneOfRoles(get(/databases/$(database)/documents/organizations/$(eventRes.data.organization)), ['owner', 'member', 'reviewer']) }
-    
+    function isValidNewEvent() { return authenticated() && request.resource.data.owner == request.auth.uid }
+    function itsMyEvent(rsc) { return rsc.data.owner == request.auth.uid || isOneOfRoles(get(/databases/$(database)/documents/organizations/$(rsc.data.organization)), ['owner', 'member', 'reviewer']) }
+    function canEditEvent(rsc) { return rsc.data.owner == request.auth.uid || isOneOfRoles(get(/databases/$(database)/documents/organizations/$(rsc.data.organization)), ['owner', 'member']) }
+  
     match /events/{event} {
     	allow get;
-    	allow list: if authenticated() && (isPublicEvent() || itsMyEvent());
-    	allow create: if authenticated();
-    	allow update: if authenticated() && itsMyEvent();
+    	allow list: if authenticated() && (isPublicEvent() || itsMyEvent(resource));
+    	allow create: if isValidNewEvent();
+    	allow update: if authenticated() && canEditEvent(resource);
 
       // SETTINGS
       match /settings/{id} {
-        allow get: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-        allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-        allow update: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow get: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow create: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow update: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
       }
 
       // SURVEYS
       match /surveys/{survey} {
-        allow get: if authenticated() && (itsMySurvey() || fromMyEvent(get(/databases/$(database)/documents/events/$(event))));
+        allow get: if authenticated() && (itsMySurvey() || itsMyEvent(get(/databases/$(database)/documents/events/$(event))));
         allow create: if authenticated() && itsMySurvey();
         allow update: if authenticated() && itsMySurvey();
       }
 
       // PROPOSALS
       match /proposals/{proposal} {
-      	allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-        allow write: if authenticated() && (itsMyProposal() || fromMyEvent(get(/databases/$(database)/documents/events/$(event))));
+      	allow read: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow write: if authenticated() && (itsMyProposal() || itsMyEvent(get(/databases/$(database)/documents/events/$(event))));
 
         // RATINGS
         match /ratings/{rating} {
-          allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-          allow write: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow read: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow write: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
         }
 
         // ORGANIZERS THREAD
         match /organizersThread/{message} {
-          allow list: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-          allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow list: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow create: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
           allow update: if authenticated() && itsMyMessage(get(/databases/$(database)/documents/events/$(event)/proposals/$(proposal)/organizersThread/$(message)));
           allow delete: if authenticated() && itsMyMessage(get(/databases/$(database)/documents/events/$(event)/proposals/$(proposal)/organizersThread/$(message)));
         }
