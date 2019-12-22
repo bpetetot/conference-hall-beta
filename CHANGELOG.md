@@ -1,5 +1,66 @@
 # Changelog
 
+<a name="0.27.0"></a>
+## 0.27.0 (2019-12-22)
+
+### Added
+
+- ✨ add organization roles ([#742](https://github.com/bpetetot/conference-hall/issues/742)) [[a5db214](https://github.com/bpetetot/conference-hall/commit/a5db2149139d6ac99c2c76f65431b9ebd1c01ac8)]
+
+
+<a name="0.26.1"></a>
+## 0.26.1 (2019-12-20)
+
+### Fixed
+
+- 🐛 fix a bug avoiding event page reload ([#743](https://github.com/bpetetot/conference-hall/issues/743)) [[fdb12e9](https://github.com/bpetetot/conference-hall/commit/fdb12e9aa89d9aeb2625d4b932acc7c7eafce974)]
+
+
+<a name="0.26.0"></a>
+## 0.26.0 (2019-12-19)
+
+### Added
+
+- ✨ add invitation link system ([#739](https://github.com/bpetetot/conference-hall/issues/739)) [[4746ddd](https://github.com/bpetetot/conference-hall/commit/4746ddd7bba647fc6d022ec5fd93537497526e00)]
+
+
+<a name="0.25.0"></a>
+## 0.25.0 (2019-12-19)
+
+### Added
+
+- 👷‍♂️ setup github actions ([#741](https://github.com/bpetetot/conference-hall/issues/741)) [[2861ac3](https://github.com/bpetetot/conference-hall/commit/2861ac3a3f0751bcd6c0976c91984354e11fef29)]
+- ✨ edit a proposal as organizer ([#737](https://github.com/bpetetot/conference-hall/issues/737)) [[590ad64](https://github.com/bpetetot/conference-hall/commit/590ad640076ff16c19751cbffca64f60b083376b)]
+
+
+<a name="0.24.0"></a>
+## 0.24.0 (2019-12-14)
+
+### Security
+
+- 🔒 add DOMPurify to sanitize markdown ([#736](https://github.com/bpetetot/conference-hall/issues/736)) [[2f24465](https://github.com/bpetetot/conference-hall/commit/2f244651b00cf98bb7f9d37048eebc0467ad3449)]
+
+
+<a name="0.23.0"></a>
+## 0.23.0 (2019-12-14)
+
+### Added
+
+- ✨ add donate link in sidebar ([#734](https://github.com/bpetetot/conference-hall/issues/734)) [[34a0175](https://github.com/bpetetot/conference-hall/commit/34a01757508c76fd9fc54f925faef7d506de65d8)]
+
+### Changed
+
+- ♻️ clear local storage when signed out ([#735](https://github.com/bpetetot/conference-hall/issues/735)) [[46b0242](https://github.com/bpetetot/conference-hall/commit/46b024251a0c2a3e11dcb45e281d33eb5b794693)]
+- ⬆️ upgrade dependencies ([#733](https://github.com/bpetetot/conference-hall/issues/733)) [[9b36547](https://github.com/bpetetot/conference-hall/commit/9b365479362fc88b226a84e653797b37cdda4d8f)] - ([#728](https://github.com/bpetetot/conference-hall/issues/728)) [[e93278d](https://github.com/bpetetot/conference-hall/commit/e93278de1de16473396c893748e8fd878fe9c4c9)]
+- 💄 add storybook theming ([#723](https://github.com/bpetetot/conference-hall/issues/723)) [[f843922](https://github.com/bpetetot/conference-hall/commit/f84392217d87cc432e2428fc326717d90c060b48)]
+- 🚨 fix linting and add lint on pre-push ([#722](https://github.com/bpetetot/conference-hall/issues/722)) [[12944bb](https://github.com/bpetetot/conference-hall/commit/12944bb753627e68fcad84f85d8039af1ed7a5ba)]
+
+### Fixed
+
+- ✏️ fix a typo in talk submission screen ([#731](https://github.com/bpetetot/conference-hall/issues/731)) [[a6baae2](https://github.com/bpetetot/conference-hall/commit/a6baae2e729d3b689e9510b27a5bc98fd99cbaab)]
+- ✏️ add changelog in documentation ([#724](https://github.com/bpetetot/conference-hall/issues/724)) [[60e66ce](https://github.com/bpetetot/conference-hall/commit/60e66ce0a0e544b00a268e9e9d5e1eca639ead1f)]
+
+
 <a name="0.22.0"></a>
 ## 0.22.0 (2019-11-24)
 

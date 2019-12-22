@@ -16,7 +16,7 @@ const UserResults = ({ users, message, onSelectUser }) => {
   return (
     <div className="users-result">
       <h3>{message}</h3>
-      {users.map(uid => (
+      {users.map(({ uid }) => (
         <div key={uid} onClick={() => onSelectUser(uid)} role="button">
           <UserAvatar id={uid} />
         </div>
@@ -26,7 +26,7 @@ const UserResults = ({ users, message, onSelectUser }) => {
 }
 
 UserResults.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.string).isRequired,
+  users: PropTypes.array.isRequired,
   onSelectUser: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
 }

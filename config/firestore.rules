@@ -5,20 +5,12 @@ service cloud.firestore {
     function limitOne() { return request.query.limit <= 1 }
     function userNotExists() { return !exists(/databases/$(database)/documents/users/$(request.auth.uid)) }
     function itsMe() { return request.resource.data.uid == request.auth.uid }
-    function itsMyOrganizations() { return resource.data.members[request.auth.uid] }
-    function itsMyEvent() { return resource.data.owner == request.auth.uid || get(/databases/$(database)/documents/organizations/$(resource.data.organization)).data.members[request.auth.uid] == true }
     function isPublicEvent() { return resource.data.visibility == 'public' }
     function itsMyTalk() { return resource.data.speakers[request.auth.uid] == true }
-    function itsMyProposal() {
-    	return get(/databases/$(database)/documents/talks/$(request.path[6])).data.speakers[request.auth.uid] == true
-    }
-    function fromMyEvent(eventRes) {
-    	return eventRes.data.owner == request.auth.uid || get(/databases/$(database)/documents/organizations/$(eventRes.data.organization)).data.members[request.auth.uid] == true
-    }
+    function itsMyProposal() { return get(/databases/$(database)/documents/talks/$(request.path[6])).data.speakers[request.auth.uid] == true }
     function itsMyMessage(message) { return request.auth.uid == message.data.uid }
 
 		function itsMySurvey() { return request.path[6] == request.auth.uid }
-    function hasInviteCode() { return request.resource.id == resource.id }
 
   	// BETA ACCESS
   	match /betaAccess/{key} {
@@ -34,30 +26,46 @@ service cloud.firestore {
     }
 
     // ORGANIZATIONS
+    function isValidNewOrganization() {
+      return authenticated() && request.resource.data.members[request.auth.uid] == 'owner';
+    }
+
+    function getRole(rsc) {
+      return rsc.data.members[request.auth.uid];
+    }
+
+    function isOneOfRoles(rsc, array) {
+      return authenticated() && (getRole(rsc) in array);
+    }
+
     match /organizations/{organization} {
-    	allow get: if authenticated();
-    	allow list: if authenticated() && itsMyOrganizations();
-      allow create: if authenticated();
-      allow update: if authenticated() && itsMyOrganizations();
+    	allow get: if isOneOfRoles(resource, ['owner', 'member', 'reviewer']);
+    	allow list: if isOneOfRoles(resource, ['owner', 'member', 'reviewer']);
+      allow create: if isValidNewOrganization();
+      allow update: if isOneOfRoles(resource, ['owner']);
     }
 
     // EVENTS
+    function isValidNewEvent() { return authenticated() && request.resource.data.owner == request.auth.uid }
+    function itsMyEvent(rsc) { return rsc.data.owner == request.auth.uid || isOneOfRoles(get(/databases/$(database)/documents/organizations/$(rsc.data.organization)), ['owner', 'member', 'reviewer']) }
+    function canEditEvent(rsc) { return rsc.data.owner == request.auth.uid || isOneOfRoles(get(/databases/$(database)/documents/organizations/$(rsc.data.organization)), ['owner', 'member']) }
+  
     match /events/{event} {
     	allow get;
-    	allow list: if authenticated() && (isPublicEvent() || itsMyEvent());
-    	allow create: if authenticated();
-    	allow update: if authenticated() && itsMyEvent();
+    	allow list: if authenticated() && (isPublicEvent() || itsMyEvent(resource));
+    	allow create: if isValidNewEvent();
+    	allow update: if authenticated() && canEditEvent(resource);
 
       // SETTINGS
       match /settings/{id} {
-        allow get: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-        allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-        allow update: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow get: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow create: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow update: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
       }
 
       // SURVEYS
       match /surveys/{survey} {
-        allow get: if authenticated() && (itsMySurvey() || fromMyEvent(get(/databases/$(database)/documents/events/$(event))));
+        allow get: if authenticated() && (itsMySurvey() || itsMyEvent(get(/databases/$(database)/documents/events/$(event))));
         allow create: if authenticated() && itsMySurvey();
         allow update: if authenticated() && itsMySurvey();
       }
@@ -70,19 +78,19 @@ service cloud.firestore {
 
       // PROPOSALS
       match /proposals/{proposal} {
-      	allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-        allow write: if authenticated() && (itsMyProposal() || fromMyEvent(get(/databases/$(database)/documents/events/$(event))));
+      	allow read: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow write: if authenticated() && (itsMyProposal() || itsMyEvent(get(/databases/$(database)/documents/events/$(event))));
 
         // RATINGS
         match /ratings/{rating} {
-          allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-          allow write: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow read: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow write: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
         }
 
         // ORGANIZERS THREAD
         match /organizersThread/{message} {
-          allow list: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-          allow create: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow list: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow create: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
           allow update: if authenticated() && itsMyMessage(get(/databases/$(database)/documents/events/$(event)/proposals/$(proposal)/organizersThread/$(message)));
           allow delete: if authenticated() && itsMyMessage(get(/databases/$(database)/documents/events/$(event)/proposals/$(proposal)/organizersThread/$(message)));
         }
@@ -96,6 +104,28 @@ service cloud.firestore {
     	allow create: if authenticated();
     	allow update: if authenticated() && itsMyTalk();
     	allow delete: if authenticated() && itsMyTalk();
+    }
+
+    // INVITES
+    function canReadInvite() {
+    	return (resource.data.entity == 'talk' && get(/databases/$(database)/documents/talks/$(resource.data.entityId)).data.speakers[request.auth.uid] == true)
+      || (resource.data.entity == 'organization' && isOneOfRoles(get(/databases/$(database)/documents/organizations/$(resource.data.entityId)), ['owner']))
+    }
+
+    function canCreateInvite() {
+    	return (request.resource.data.entity == 'talk' && get(/databases/$(database)/documents/talks/$(request.resource.data.entityId)).data.speakers[request.auth.uid] == true)
+      || (request.resource.data.entity == 'organization' && isOneOfRoles(get(/databases/$(database)/documents/organizations/$(request.resource.data.entityId)), ['owner']))
+    }
+
+    function canDeleteInvite() {
+    	return resource.data.creator == request.auth.uid
+    }
+
+    match /invites/{invite} {
+      allow get: if authenticated();
+      allow list: if authenticated() && canReadInvite();
+    	allow create: if authenticated() && canCreateInvite();
+    	allow delete: if authenticated() && canDeleteInvite();
     }
   }
 }

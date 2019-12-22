@@ -1,84 +1,76 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
-import keys from 'lodash/keys'
+import sortBy from 'lodash/sortBy'
 
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
-import AddMember from 'screens/components/addUserModal'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import MemberRow from './memberRow'
+import HasRole from 'screens/components/hasRole'
+import { fetchUsersList } from 'firebase/user'
+import { ROLES } from 'firebase/constants'
 
+import AddMember from './addMember'
+import MemberRow from './memberRow'
 import './organizationPage.css'
 
-const OrganizationPage = ({
-  id: organizationId,
-  name,
-  members,
-  onSelectUser,
-  removeMember,
-  owner,
-  authUserId,
-}) => (
-  <div className="organization-page">
-    <Titlebar className="organization-header" icon="fa fa-users" title={name}>
-      <Button secondary>
-        {btn => (
-          <Link code="organizer-organization-edit" organizationId={organizationId} className={btn}>
-            <IconLabel icon="fa fa-pencil" label="Edit" />
-          </Link>
-        )}
-      </Button>
-      <AddMember
-        onSelectUser={onSelectUser}
-        resultsMessage="Select an organizer to add to your organization"
-        description={
-          <>
-            <p>
-              Search and add a member to your organization, he/she will be also able to update it,
-              invite other members and create events for your organization.
-              <br />
-              The member must already have a Conference Hall account.
-            </p>
-            <p>
-              For security and privacy reasons, you can search a member only by his/her registered
-              email address.
-            </p>
-          </>
-        }
-        renderTrigger={({ show }) => (
-          <Button onClick={show} secondary>
-            <IconLabel icon="fa fa-user" label="Add a member" />
+const OrganizationPage = ({ id: organizationId, name, members, addMember, authUserId }) => {
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetchUsersList(Object.keys(members)).then(result => {
+      setUsers(sortBy(result, 'displayName'))
+    })
+  }, [members])
+
+  const isOwner = members[authUserId] === ROLES.OWNER
+  return (
+    <div className="organization-page">
+      <Titlebar className="organization-header" icon="fa fa-users" title={name}>
+        <HasRole of={ROLES.OWNER} forOrganizationId={organizationId}>
+          <Button secondary>
+            {btn => (
+              <Link
+                code="organizer-organization-edit"
+                organizationId={organizationId}
+                className={btn}
+              >
+                <IconLabel icon="fa fa-pencil" label="Edit" />
+              </Link>
+            )}
           </Button>
+          <AddMember
+            organizationId={organizationId}
+            organizationName={name}
+            addMember={addMember}
+          />
+        </HasRole>
+      </Titlebar>
+      <List
+        className="organization-content"
+        array={users}
+        noResult="No users yet !"
+        renderRow={user => (
+          <MemberRow
+            key={user.uid}
+            user={user}
+            role={members[user.uid]}
+            authUserId={authUserId}
+            isOwner={isOwner}
+          />
         )}
       />
-    </Titlebar>
-    <List
-      className="organization-content"
-      array={keys(members)}
-      noResult="No users yet !"
-      renderRow={uid => (
-        <MemberRow
-          key={uid}
-          uid={uid}
-          authUserId={authUserId}
-          removeMember={() => removeMember(uid)}
-          owner={owner}
-        />
-      )}
-    />
-  </div>
-)
+    </div>
+  )
+}
 
 OrganizationPage.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  members: PropTypes.objectOf(PropTypes.bool),
-  owner: PropTypes.string.isRequired,
+  members: PropTypes.objectOf(PropTypes.string),
   authUserId: PropTypes.string.isRequired,
-  onSelectUser: PropTypes.func.isRequired,
-  removeMember: PropTypes.func.isRequired,
+  addMember: PropTypes.func.isRequired,
 }
 
 OrganizationPage.defaultProps = {

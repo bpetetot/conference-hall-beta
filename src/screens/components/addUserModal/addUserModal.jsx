@@ -2,89 +2,91 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Modal } from 'components/portals'
-import CopyInput from 'components/copyInput'
 import InputButton from 'components/form/inputButton'
 import { LoadingIndicator } from 'components/loader'
 import UserResults from './userResults'
 
-import './addUserModal.css'
+import InviteLink from './inviteLink'
+import useSearchUsers from './useSearchUsers'
+import styles from './addUserModal.module.css'
 
 const AddUserModal = ({
   title,
   description,
-  searching,
-  initialized,
-  email,
-  users,
   resultsMessage,
-  inviteLink,
-  onSearch,
   onSelectUser,
   renderTrigger,
-}) => (
-  <Modal className="add-user-modal" renderTrigger={renderTrigger}>
-    {({ hide }) => (
-      <>
-        <h1>{title}</h1>
-        {description}
-        {searching ? (
-          <LoadingIndicator />
-        ) : (
-          <InputButton
-            type="search"
-            placeholder="Search a user by email"
-            btnLabel="Search"
-            btntitle="Search"
-            autoFocus
-            defaultValue={email}
-            onClick={onSearch}
-          />
-        )}
-        {initialized && !searching && (
-          <UserResults
-            message={resultsMessage}
-            users={users}
-            onSelectUser={uid => {
-              onSelectUser(uid)
-              hide()
-            }}
-          />
-        )}
-        {!!inviteLink && (
-          <>
-            <div className="user-search-separator">
-              <small>or send him/her an invitation link</small>
+  inviteEntity,
+  inviteEntityId,
+  inviteEntityTitle,
+}) => {
+  const { email, users, searchUsers, loading } = useSearchUsers()
+
+  return (
+    <Modal renderTrigger={renderTrigger}>
+      {({ hide }) => (
+        <>
+          <h1 className={styles.title}>{title}</h1>
+          {description}
+          {loading ? (
+            <LoadingIndicator />
+          ) : (
+            <InputButton
+              type="search"
+              placeholder="Search a user by email"
+              btnLabel="Search"
+              btntitle="Search"
+              autoFocus
+              onClick={searchUsers}
+              defaultValue={email}
+            />
+          )}
+          {!!users && !loading && (
+            <UserResults
+              message={resultsMessage}
+              users={users}
+              onSelectUser={uid => {
+                onSelectUser(uid)
+                hide()
+              }}
+            />
+          )}
+
+          {inviteEntity && inviteEntityId && (
+            <div className={styles.inviteLink}>
+              <div className={styles.separator}>
+                <small>If you can&apos;t find the user, share an invitation link</small>
+              </div>
+              <InviteLink
+                entity={inviteEntity}
+                entityId={inviteEntityId}
+                entityTitle={inviteEntityTitle}
+              />
             </div>
-            <CopyInput title="Invite link" value={inviteLink} />
-          </>
-        )}
-      </>
-    )}
-  </Modal>
-)
+          )}
+        </>
+      )}
+    </Modal>
+  )
+}
 
 AddUserModal.propTypes = {
   title: PropTypes.string,
   description: PropTypes.node.isRequired,
-  searching: PropTypes.bool,
-  initialized: PropTypes.bool,
-  email: PropTypes.string,
-  users: PropTypes.arrayOf(PropTypes.string),
   resultsMessage: PropTypes.node.isRequired,
-  onSearch: PropTypes.func.isRequired,
   onSelectUser: PropTypes.func.isRequired,
-  inviteLink: PropTypes.string,
   renderTrigger: PropTypes.func,
+  inviteEntity: PropTypes.string,
+  inviteEntityId: PropTypes.string,
+  inviteEntityTitle: PropTypes.string,
 }
 
 AddUserModal.defaultProps = {
   title: 'Add a member',
-  email: undefined,
-  searching: false,
-  initialized: false,
-  users: [],
   renderTrigger: undefined,
-  inviteLink: undefined,
+  inviteEntity: undefined,
+  inviteEntityId: undefined,
+  inviteEntityTitle: '',
 }
 
 export default AddUserModal

@@ -8,7 +8,10 @@ const db = admin.firestore()
 // Firebase update functions
 // ====================================
 
-const getEvent = async (id) => {
+// ------------------------------------
+// Events
+// ------------------------------------
+const getEvent = async id => {
   const doc = await db
     .collection('events')
     .doc(id)
@@ -35,7 +38,7 @@ const updateEvents = async (callback, eventId) => {
   }
 
   return Promise.all(
-    events.map(async (oldEvent) => {
+    events.map(async oldEvent => {
       console.log(`[update];${oldEvent.type};${oldEvent.name};${oldEvent.id}`)
       const updatedEvent = await callback(oldEvent)
       if (!updatedEvent) return Promise.resolve()
@@ -48,7 +51,10 @@ const updateEvents = async (callback, eventId) => {
   )
 }
 
-const getProposals = async (eventId) => {
+// ------------------------------------
+// Proposals
+// ------------------------------------
+const getProposals = async eventId => {
   const eventProposals = await db
     .collection('events')
     .doc(eventId)
@@ -75,12 +81,12 @@ const updateProposals = async (callback, eventId) => {
   const eventsProposalsList = await Promise.all(events.map(e => getProposals(e.id)))
 
   return Promise.all(
-    eventsProposalsList.map(async (eventProposals) => {
+    eventsProposalsList.map(async eventProposals => {
       console.log(`Update proposals for event ${eventProposals.eventId}:`)
       console.log(` > ${eventProposals.proposals.length} proposals`)
 
       return Promise.all(
-        eventProposals.proposals.map((oldProposal) => {
+        eventProposals.proposals.map(oldProposal => {
           const updatedProposal = callback(oldProposal) || {}
           console.log(`   - update proposal ${oldProposal.title} (${oldProposal.id})`)
           return db
@@ -95,7 +101,10 @@ const updateProposals = async (callback, eventId) => {
   )
 }
 
-const getUser = async (id) => {
+// ------------------------------------
+// Users
+// ------------------------------------
+const getUser = async id => {
   const doc = await db
     .collection('users')
     .doc(id)
@@ -122,7 +131,7 @@ const updateUsers = async (callback, userId) => {
   }
 
   return Promise.all(
-    users.map(async (oldUser) => {
+    users.map(async oldUser => {
       console.log(`- update user ${oldUser.email} (${oldUser.uid})`)
       const updatedUser = await callback(oldUser)
       if (!updatedUser) return Promise.resolve()
@@ -135,8 +144,52 @@ const updateUsers = async (callback, userId) => {
   )
 }
 
+// ------------------------------------
+// Organizations
+// ------------------------------------
+const getOrganization = async id => {
+  const doc = await db
+    .collection('organizations')
+    .doc(id)
+    .get()
+  return { id: doc.id, ...doc.data() }
+}
+
+const getAllOrganizations = async () => {
+  const organizations = await db.collection('organizations').get()
+  return organizations.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+}
+
+/**
+ * Function used to update all organizations or a specific one
+ * @param function callback organization updater
+ * @param string id (optional)
+ */
+const updateOrganizations = async (callback, organizationId) => {
+  let organizations = []
+  if (organizationId) {
+    organizations = [await getOrganization(organizationId)]
+  } else {
+    organizations = await getAllOrganizations()
+  }
+
+  return Promise.all(
+    organizations.map(async oldOrganization => {
+      console.log(`- update organization ${oldOrganization.name} (${oldOrganization.id})`)
+      const updatedOrg = await callback(oldOrganization)
+      if (!updatedOrg) return Promise.resolve()
+
+      return db
+        .collection('organizations')
+        .doc(oldOrganization.id)
+        .update(updatedOrg)
+    }),
+  )
+}
+
 module.exports = {
   updateProposals,
   updateUsers,
   updateEvents,
+  updateOrganizations,
 }

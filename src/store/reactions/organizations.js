@@ -1,11 +1,12 @@
 import { flow, set, unset } from 'immutadot'
 
 import organizationCrud, { fetchUserOrganizations } from 'firebase/organizations'
+import { ROLES } from 'firebase/constants'
 
 export const create = async (action, store, { router }) => {
   const data = action.payload
   const { uid } = store.auth.get()
-  const newUserOrganization = flow(set(`members.${uid}`, true), set('owner', uid))(data)
+  const newUserOrganization = flow(set(`members.${uid}`, ROLES.OWNER), set(ROLES.OWNER, uid))(data)
 
   store.ui.loaders.update({ isOrganizationSaving: true })
   const ref = await organizationCrud.create(newUserOrganization)
@@ -39,23 +40,29 @@ export const get = async (action, store, { router }) => {
 export const ofUser = async (action, store) => {
   const { uid } = store.auth.get()
   const organizations = await fetchUserOrganizations(uid)
-  store.data.organizations.set(organizations.docs.map(ref => ({ id: ref.id, ...ref.data() })))
+  store.data.organizations.set(organizations)
 }
 
-export const addMember = async (action, store, { router }) => {
-  const { uid, organizationId } = action.payload
+export const setMember = async (action, store, { router }) => {
+  const { uid, organizationId, role } = action.payload
   const organization = store.data.organizations.get(organizationId)
-  const updated = set(organization, `members.${uid}`, true)
+  const updated = set(organization, `members.${uid}`, role || ROLES.REVIEWER)
   await organizationCrud.update(updated)
   store.data.organizations.update(updated)
   router.push('organizer-organization-page', { organizationId })
 }
 
 export const removeMember = async (action, store, { router }) => {
-  const { uid, organizationId } = action.payload
+  const { uid, organizationId, leave } = action.payload
   const organization = store.data.organizations.get(organizationId)
   const updated = unset(organization, `members.${uid}`)
-  await organizationCrud.update(updated)
+  if (!leave) {
+    await organizationCrud.update(updated)
+  }
   store.data.organizations.update(updated)
-  router.push('organizer-organization-page', { organizationId })
+  if (leave) {
+    router.push('organizer-organizations')
+  } else {
+    router.push('organizer-organization-page', { organizationId })
+  }
 }

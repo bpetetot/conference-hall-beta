@@ -62,6 +62,7 @@ exports[`components/thread should render a message in the thread 1`] = `
               >
                 <img
                   alt="Luke Skywalker"
+                  loading="lazy"
                   src="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png"
                 />
               </div>

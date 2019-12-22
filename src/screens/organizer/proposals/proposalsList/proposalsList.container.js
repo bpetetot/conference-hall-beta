@@ -21,6 +21,7 @@ const mapStore = (store, { eventId }) => {
     proposals,
     proposalsSelection: items,
     deliberationActive: get(settings, 'deliberation.enabled'),
+    blindRating: get(settings, 'deliberation.blindRating'),
     load: () => store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS'),
     onSelect: proposalId => {
       store.dispatch({ type: '@@ui/ON_SELECT_PROPOSAL', payload: { eventId, proposalId } })

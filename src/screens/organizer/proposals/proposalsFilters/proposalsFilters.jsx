@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import debounce from 'lodash/debounce'
 
+import HasRole from 'screens/components/hasRole'
+import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
+
 import styles from './proposalsFilters.module.css'
 
 const sortOrderLabel = sortOrder =>
@@ -41,6 +44,7 @@ class ProposalFilters extends Component {
 
   render() {
     const {
+      eventId,
       statuses,
       ratings,
       formats,
@@ -62,14 +66,16 @@ class ProposalFilters extends Component {
         />
 
         {deliberationActive && (
-          <select id="state" onChange={onChange} defaultValue={filters.state}>
-            <option value="">All statuses</option>
-            {statuses.map(status => (
-              <option key={status} value={status}>
-                {statusLabel(status)}
-              </option>
-            ))}
-          </select>
+          <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
+            <select id="state" onChange={onChange} defaultValue={filters.state}>
+              <option value="">All statuses</option>
+              {statuses.map(status => (
+                <option key={status} value={status}>
+                  {statusLabel(status)}
+                </option>
+              ))}
+            </select>
+          </HasRole>
         )}
 
         <select id="ratings" onChange={onChange} defaultValue={filters.ratings}>
@@ -113,6 +119,7 @@ class ProposalFilters extends Component {
 }
 
 ProposalFilters.propTypes = {
+  eventId: PropTypes.string.isRequired,
   statuses: PropTypes.arrayOf(PropTypes.string),
   ratings: PropTypes.arrayOf(PropTypes.string),
   formats: PropTypes.arrayOf(PropTypes.object),

@@ -2,16 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import marked from 'marked'
+import DOMPurify from 'dompurify'
 
 import './markdown.css'
 
-const Markdown = ({ source, className }) => (
-  <div
-    className={cn('markdown', className)}
-    // eslint-disable-next-line react/no-danger
-    dangerouslySetInnerHTML={{ __html: marked(source || '') }}
-  />
-)
+const Markdown = ({ source, className }) => {
+  const html = marked(source || '')
+  const safeHtml = DOMPurify.sanitize(html)
+  return (
+    <div
+      className={cn('markdown', className)}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: safeHtml }}
+    />
+  )
+}
 
 Markdown.propTypes = {
   source: PropTypes.string,

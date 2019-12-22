@@ -1,81 +1,59 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import IconLabel from 'components/iconLabel'
-import RelativeDate from 'components/relativeDate'
-import Button from 'components/button'
 import { ListItem } from 'components/list'
-import { ConfirmationPopin } from 'components/portals'
-import Avatar from 'components/avatar/avatar'
+import Avatar from 'components/avatar'
+import Badge from 'components/badge'
+import HasRole from 'screens/components/hasRole'
+import { ROLES } from 'firebase/constants'
 
-import { toDate } from 'helpers/firebase'
+import ChangeRole from '../changeRole'
+import RemoveMemberButton from '../removeMember'
+import styles from './memberRow.module.css'
 
-import './memberRow.css'
-
-const MemberRow = ({
-  uid,
-  displayName,
-  photoURL,
-  updateTimestamp,
-  owner,
-  removeMember,
-  authUserId,
-}) => {
+const MemberRow = ({ organizationId, user, role, isOwner, authUserId }) => {
+  const { uid, displayName, photoURL } = user
   if (!displayName) return null
 
-  const canRemove = owner === authUserId && owner !== uid
-  const canLeave = owner !== authUserId && authUserId === uid
-
   return (
-    <>
-      <ListItem
-        key={uid}
-        title={<Avatar name={displayName} src={photoURL} withLabel />}
-        subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
-        renderActions={() => (
-          <ConfirmationPopin
-            title={canRemove ? 'Remove a member' : 'Leave organization'}
-            content={`Are you sure you want to ${
-              canRemove ? `remove ${displayName} from` : 'leave'
-            } organization ?`}
-            className="remove-member-modal"
-            onOk={removeMember}
-            withCancel
-            renderTrigger={({ show }) => (
-              <>
-                {canRemove && (
-                  <Button onClick={show} tertiary>
-                    <IconLabel icon="fa fa-trash" label="Remove" />
-                  </Button>
-                )}
-                {canLeave && (
-                  <Button onClick={show} tertiary>
-                    <IconLabel icon="fa fa-sign-out" label="Leave" />
-                  </Button>
-                )}
-              </>
-            )}
+    <ListItem
+      key={uid}
+      title={<Avatar name={displayName} src={photoURL} withLabel />}
+      renderActions={() => (
+        <div className={styles.actions}>
+          <RemoveMemberButton
+            organizationId={organizationId}
+            user={user}
+            isOwner={isOwner}
+            authUserId={authUserId}
           />
-        )}
-      />
-    </>
+          <HasRole
+            of={ROLES.OWNER}
+            forOrganizationId={organizationId}
+            otherwise={
+              <Badge light pill outline>
+                {role}
+              </Badge>
+            }
+          >
+            <ChangeRole organizationId={organizationId} user={user} role={role} />
+          </HasRole>
+        </div>
+      )}
+    />
   )
 }
 
 MemberRow.propTypes = {
-  uid: PropTypes.string.isRequired,
-  displayName: PropTypes.string,
-  photoURL: PropTypes.string,
-  updateTimestamp: PropTypes.any,
-  owner: PropTypes.string.isRequired,
-  removeMember: PropTypes.func.isRequired,
+  organizationId: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
+  role: PropTypes.string,
+  isOwner: PropTypes.bool.isRequired,
   authUserId: PropTypes.string.isRequired,
 }
 
 MemberRow.defaultProps = {
-  displayName: undefined,
-  photoURL: undefined,
-  updateTimestamp: undefined,
+  role: ROLES.REVIEWER,
 }
 
 export default MemberRow
