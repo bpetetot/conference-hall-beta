@@ -12,6 +12,7 @@ import BetaAccess from './screens/betaAccess'
 import Public from './screens/public'
 import Organizer from './screens/organizer'
 import Speaker from './screens/speaker'
+import Invite from './screens/invite'
 
 import store from './store'
 
@@ -26,6 +27,7 @@ const App = ({ className }) => (
     <Public />
     <Organizer />
     <Speaker />
+    <Invite />
     <NotFound />
   </div>
 )

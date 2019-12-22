@@ -31,7 +31,6 @@ export default [
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   when('@@ui/SAVE_PROFILE')(user.saveProfile),
-  when('@@ui/ON_SEARCH_USER')(user.searchUserByEmail),
   /* talks */
   when('@@ui/ON_CREATE_TALK')(talks.createTalk),
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
@@ -61,7 +60,8 @@ export default [
   when('@@ui/ON_LOAD_USER_ORGANIZATIONS')(organizations.ofUser),
   when('@@ui/ON_CREATE_ORGANIZATION')(organizations.create),
   when('@@ui/ON_UPDATE_ORGANIZATION')(organizations.update),
-  when('@@ui/ADD_ORGANIZATION_MEMBER')(organizations.addMember),
+  when('@@ui/ADD_ORGANIZATION_MEMBER')(organizations.setMember),
+  when('@@ui/CHANGE_ORGANIZATION_MEMBER_ROLE')(organizations.setMember),
   when('@@ui/REMOVE_ORGANIZATION_MEMBER')(organizations.removeMember),
   /* submissions */
   when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),

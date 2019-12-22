@@ -1,0 +1,16 @@
+.wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  margin-top: 2em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttons > *:last-child {
+  margin-left: 1em;
+}

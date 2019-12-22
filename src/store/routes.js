@@ -59,7 +59,6 @@ export default {
       '/:organizationId': {
         code: 'organizer-organization-page',
         '/edit': { code: 'organizer-organization-edit' },
-        '/invite/:uid': { code: 'organizer-organization-invite' },
       },
     },
     '/contributors': { code: 'organizer-contributors' },
@@ -76,7 +75,6 @@ export default {
       code: 'speaker-talk-page',
       '/edit': { code: 'speaker-talk-edit' },
       '/submission': { code: 'speaker-talk-submission' },
-      '/invite/:uid': { code: 'speaker-talk-invite' },
     },
     '/event/:eventId': {
       code: 'speaker-event-page',
@@ -92,5 +90,11 @@ export default {
       '/survey': { code: 'speaker-event-survey' },
     },
     '/contributors': { code: 'speaker-contributors' },
+  },
+
+  '/invite/:entity/:inviteId': {
+    code: 'invite',
+    root: 'home',
+    title: 'Conference Hall',
   },
 }

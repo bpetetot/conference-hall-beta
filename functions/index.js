@@ -14,8 +14,12 @@ exports.api = require('./api')
 
 // functions for direct calls
 const { submitTalk, unsubmitTalk } = require('./direct/submission')
+const { validateInvite } = require('./direct/invite')
+const { leaveOrganization } = require('./direct/organization')
 const { delivered } = require('./email/emailWebhooks')
 
 exports.submitTalk = submitTalk
 exports.unsubmitTalk = unsubmitTalk
 exports.delivered = delivered
+exports.validateInvite = validateInvite
+exports.leaveOrganization = leaveOrganization

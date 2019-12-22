@@ -80,7 +80,7 @@ const TalkSubmission = ({
           <Field
             name="comments"
             label="Message to organizers"
-            hints="Ask special requirements to organizers or just thanks them."
+            hints="Ask special requirements to organizers or just thank them."
             component={markdownInput}
           />
         </div>

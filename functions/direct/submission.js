@@ -106,10 +106,7 @@ const unsubmitTalk = async ({ eventId, talk, userTimezone, initialize }, context
     )
   }
 
-  const updatedTalk = flow(
-    unset(`submissions.${eventId}`),
-    unset('state'),
-  )(talk)
+  const updatedTalk = flow(unset(`submissions.${eventId}`), unset('state'))(talk)
 
   await updateTalk(updatedTalk.id, updatedTalk)
 

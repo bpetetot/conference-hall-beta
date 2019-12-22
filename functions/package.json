@@ -11,7 +11,7 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
     "test": "mocha --reporter spec ./**/*.test.js",
-    "test:coverage": "nyc --reporter=html --reporter=text mocha ./**/*.test.js"
+    "test:emulator": "firebase emulators:exec --only firestore \"jest --testMatch '**/?(*.)+(spec|test).emul.js'\""
   },
   "dependencies": {
     "algoliasearch": "^3.33.0",
@@ -23,13 +23,16 @@
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.15",
-    "luxon": "^1.21.2",
+    "luxon": "^1.21.3",
     "node-fetch": "^2.6.0",
     "puppeteer": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.7.0",
+    "@firebase/testing": "^0.16.3",
+    "eslint": "^6.7.2",
     "firebase-functions-test": "^0.1.7",
+    "firebase-tools": "^7.10.0",
+    "jest": "^24.9.0",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
     "sinon": "^7.5.0"
