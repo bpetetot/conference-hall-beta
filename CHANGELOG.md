@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.27.0"></a>
+## 0.27.0 (2019-12-22)
+
+### Added
+
+- ✨ add organization roles ([#742](https://github.com/bpetetot/conference-hall/issues/742)) [[a5db214](https://github.com/bpetetot/conference-hall/commit/a5db2149139d6ac99c2c76f65431b9ebd1c01ac8)]
+
+
 <a name="0.26.1"></a>
 ## 0.26.1 (2019-12-20)
 
