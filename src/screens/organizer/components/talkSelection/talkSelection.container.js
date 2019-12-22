@@ -3,6 +3,7 @@ import { inject } from '@k-ramel/react'
 import TalkSelection from './talkSelection'
 
 const mapStore = (store, { proposalId }, { router }) => {
+  const eventId = router.getParam('eventId')
   const currentProposalId = proposalId || router.getParam('proposalId')
   const { emailStatus, state } = store.data.proposals.get(currentProposalId) || {}
 
@@ -11,6 +12,7 @@ const mapStore = (store, { proposalId }, { router }) => {
     (state === 'accepted' || state === 'rejected' || state === 'confirmed' || state === 'declined')
 
   return {
+    eventId,
     isDeliberationDone,
     emailStatus,
     state,

@@ -12,6 +12,7 @@ const Proposals = ({
   proposals,
   proposalsSelection,
   deliberationActive,
+  blindRating,
   onSelect,
   onAddProposalToSelection,
   isMobile,
@@ -23,7 +24,11 @@ const Proposals = ({
       <ListItem
         key={proposal.id}
         title={proposal.title}
-        subtitle={!isMobile && <ProposalSubtitle eventId={eventId} proposal={proposal} />}
+        subtitle={
+          !isMobile && (
+            <ProposalSubtitle eventId={eventId} proposal={proposal} blindRating={blindRating} />
+          )
+        }
         info={<ProposalInfo proposal={proposal} isMobile={isMobile} />}
         onSelect={() => onSelect(proposal.id)}
         onCheckboxChange={() => onAddProposalToSelection(proposal.id)}
@@ -39,6 +44,7 @@ Proposals.propTypes = {
   proposals: PropTypes.arrayOf(PropTypes.object),
   proposalsSelection: PropTypes.arrayOf(PropTypes.string),
   deliberationActive: PropTypes.bool,
+  blindRating: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
   onAddProposalToSelection: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
@@ -48,6 +54,7 @@ Proposals.defaultProps = {
   proposals: [],
   proposalsSelection: [],
   deliberationActive: false,
+  blindRating: false,
 }
 
 export default withSizes(Proposals)

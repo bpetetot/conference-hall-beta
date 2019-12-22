@@ -25,7 +25,7 @@ function createOrganization({ organizationId, uid }) {
     .firestore()
     .collection('organizations')
     .doc(organizationId)
-    .set({ members: { [uid]: true } })
+    .set({ members: { [uid]: 'owner' } })
 }
 
 describe('validateInvite', () => {
@@ -68,7 +68,7 @@ describe('validateInvite', () => {
     await firebase.assertSucceeds(organization)
 
     const { members } = await organization.data()
-    expect(members).toEqual({ alice: true, marie: true })
+    expect(members).toEqual({ alice: 'owner', marie: 'reviewer' })
   })
 })
 

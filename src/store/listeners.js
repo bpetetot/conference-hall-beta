@@ -59,7 +59,8 @@ export default [
   when('@@ui/ON_LOAD_USER_ORGANIZATIONS')(organizations.ofUser),
   when('@@ui/ON_CREATE_ORGANIZATION')(organizations.create),
   when('@@ui/ON_UPDATE_ORGANIZATION')(organizations.update),
-  when('@@ui/ADD_ORGANIZATION_MEMBER')(organizations.addMember),
+  when('@@ui/ADD_ORGANIZATION_MEMBER')(organizations.setMember),
+  when('@@ui/CHANGE_ORGANIZATION_MEMBER_ROLE')(organizations.setMember),
   when('@@ui/REMOVE_ORGANIZATION_MEMBER')(organizations.removeMember),
   /* submissions */
   when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),

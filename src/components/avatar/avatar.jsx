@@ -48,7 +48,7 @@ const Avatar = ({
   return (
     <div className={cn('cc-avatar-wrapper', className)}>
       <div className={classes} style={{ ...bgColor, ...style }}>
-        {src && <img src={src} alt={name || 'avatar'} />}
+        {src && <img src={src} alt={name || 'avatar'} loading="lazy" />}
         {!src && name && <span>{name.charAt(0)}</span>}
       </div>
       {withLabel && <span className={cn('cc-avatar-label', labelClassName)}>{name}</span>}

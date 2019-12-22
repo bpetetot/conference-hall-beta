@@ -8,7 +8,7 @@ const db = admin.firestore()
 const { updateEvents } = require('./helpers/updates')
 
 const main = async () => {
-  await updateEvents(async (event) => {
+  await updateEvents(async event => {
     const settings = {
       id: event.id,
       api: {

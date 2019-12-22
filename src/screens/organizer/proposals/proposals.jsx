@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import HasRole from 'screens/components/hasRole'
+import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
+
 import ProposalsHeader from './proposalsHeader'
 import ProposalsFilters from './proposalsFilters'
 import ProposalsToolbar from './proposalsToolbar'
@@ -11,7 +14,9 @@ const Proposals = ({ eventId }) => (
   <div>
     <ProposalsHeader eventId={eventId} />
     <ProposalsFilters />
-    <ProposalsToolbar eventId={eventId} />
+    <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
+      <ProposalsToolbar eventId={eventId} />
+    </HasRole>
     <ProposalsList eventId={eventId} />
     <ProposalsPaging />
   </div>

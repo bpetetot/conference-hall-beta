@@ -35,6 +35,7 @@ exports[`components/avatar should render with photo 1`] = `
   >
     <img
       alt="Benjamin"
+      loading="lazy"
       src="https://p.url"
     />
   </div>
