@@ -4,10 +4,13 @@ import { Form } from 'react-final-form'
 import Field from 'components/form/field'
 
 import { input, address, markdownInput, SubmitButton } from 'components/form'
-import { required } from 'components/form/validators'
+import * as validators from 'components/form/validators'
 import Avatar from 'components/avatar'
 
 import './profile.css'
+
+const validateEmail = validators.validate([validators.required, validators.email])
+const validatePhoto = validators.validate([validators.required, validators.url])
 
 const Profile = ({ displayName, photoURL, email, onSubmit, initialValues, submitting }) => (
   <div className="profile">
@@ -27,7 +30,7 @@ const Profile = ({ displayName, photoURL, email, onSubmit, initialValues, submit
             label="Full name"
             type="text"
             component={input}
-            validate={required}
+            validate={validators.required}
             inline
           />
           <Field
@@ -35,7 +38,15 @@ const Profile = ({ displayName, photoURL, email, onSubmit, initialValues, submit
             label="Email"
             type="text"
             component={input}
-            validate={required}
+            validate={validateEmail}
+            inline
+          />
+          <Field
+            name="photoURL"
+            label="Photo URL"
+            type="text"
+            component={input}
+            validate={validatePhoto}
             inline
           />
           <Field name="company" label="Company" type="text" component={input} inline />
@@ -46,7 +57,7 @@ const Profile = ({ displayName, photoURL, email, onSubmit, initialValues, submit
             label="Twitter"
             type="text"
             component={input}
-            placeholder="@username"
+            placeholder="username"
             inline
           />
           <Field
