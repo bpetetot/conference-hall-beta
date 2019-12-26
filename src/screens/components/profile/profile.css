@@ -1,8 +1,13 @@
 .profile .profile-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 2em;
   padding: 0;
+}
+
+.profile-infos {
+  flex-grow: 1;
 }
 
 .profile .profile-avatar {

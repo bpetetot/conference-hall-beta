@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 import Field from 'components/form/field'
+import Button from 'components/button'
 
 import { input, address, markdownInput, SubmitButton } from 'components/form'
 import * as validators from 'components/form/validators'
@@ -12,13 +13,26 @@ import './profile.css'
 const validateEmail = validators.validate([validators.required, validators.email])
 const validatePhoto = validators.validate([validators.required, validators.url])
 
-const Profile = ({ displayName, photoURL, email, onSubmit, initialValues, submitting }) => (
+const Profile = ({
+  displayName,
+  photoURL,
+  email,
+  onSubmit,
+  initialValues,
+  submitting,
+  setDefault,
+}) => (
   <div className="profile">
     <div className="profile-header card">
       <Avatar name={displayName} src={photoURL} className="profile-avatar" square />
-      <div>
+      <div className="profile-infos">
         <h1>{displayName}</h1>
         <small>{email}</small>
+      </div>
+      <div>
+        <Button tertiary loading={submitting} disabled={submitting} onClick={setDefault}>
+          Set defaults from signin provider
+        </Button>
       </div>
     </div>
 
@@ -97,6 +111,7 @@ Profile.propTypes = {
   email: PropTypes.string,
   photoURL: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
+  setDefault: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
   submitting: PropTypes.bool,
 }
