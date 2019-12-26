@@ -29,9 +29,9 @@ const Profile = ({
         <h1>{displayName}</h1>
         <small>{email}</small>
       </div>
-      <div>
-        <Button tertiary loading={submitting} disabled={submitting} onClick={setDefault}>
-          Set defaults from signin provider
+      <div className="profile-button">
+        <Button secondary loading={submitting} disabled={submitting} onClick={setDefault}>
+          Set defaults from auth provider
         </Button>
       </div>
     </div>

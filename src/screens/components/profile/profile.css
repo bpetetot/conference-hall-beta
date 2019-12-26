@@ -10,6 +10,10 @@
   flex-grow: 1;
 }
 
+.profile-button {
+  padding-right: 2em;
+}
+
 .profile .profile-avatar {
   --cc-avatar-height: 100px;
   --cc-avatar-width: 100px;
@@ -40,6 +44,10 @@
 @media only screen and (max-width: 480px) {
   .profile .profile-header {
     margin-bottom: 1em;
+  }
+
+  .profile .profile-button {
+    display: none;
   }
 
   .profile .profile-header > img {
