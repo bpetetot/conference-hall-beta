@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty'
-import isEmail from 'validator/es/lib/isEmail'
-import isURL from 'validator/es/lib/isURL'
+import isEmail from 'validator/lib/isEmail'
+import isURL from 'validator/lib/isURL'
 
 export const required = value => {
   if (!value || isEmpty(value)) {
