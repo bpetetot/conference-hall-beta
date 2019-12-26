@@ -1,8 +1,17 @@
 .profile .profile-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 2em;
   padding: 0;
+}
+
+.profile-infos {
+  flex-grow: 1;
+}
+
+.profile-button {
+  padding-right: 2em;
 }
 
 .profile .profile-avatar {
@@ -35,6 +44,10 @@
 @media only screen and (max-width: 480px) {
   .profile .profile-header {
     margin-bottom: 1em;
+  }
+
+  .profile .profile-button {
+    display: none;
   }
 
   .profile .profile-header > img {
