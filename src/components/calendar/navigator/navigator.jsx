@@ -20,13 +20,13 @@ const Navigator = ({ date, type, onChangeDate }) => {
       <span className={styles.title}>{format(date, dateFormat)}</span>
       <div className={styles.buttons}>
         <Button secondary onClick={goToPreviousMonth}>
-          Previous
+          <i className="fa fa-chevron-left" />
         </Button>
-        <Button primary onClick={goToToday}>
+        <Button secondary onClick={goToToday}>
           Today
         </Button>
         <Button secondary onClick={gotToNextMonth}>
-          Next
+          <i className="fa fa-chevron-right" />
         </Button>
       </div>
     </div>

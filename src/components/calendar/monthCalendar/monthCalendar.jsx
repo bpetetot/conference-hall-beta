@@ -4,6 +4,7 @@ import cn from 'classnames'
 import getDaysInMonth from 'date-fns/getDaysInMonth'
 import startOfMonth from 'date-fns/startOfMonth'
 import getDay from 'date-fns/getDay'
+import isSameDay from 'date-fns/isSameDay'
 import { set } from 'immutadot'
 import range from 'lodash/range'
 import chunk from 'lodash/chunk'
@@ -13,6 +14,8 @@ import DayModal from './dayModal'
 
 import Navigator from '../navigator'
 import './monthCalendar.css'
+
+const TODAY = new Date()
 
 function generateWeeksForMonth(date) {
   const startDay = getDay(startOfMonth(date))
@@ -106,7 +109,13 @@ const MonthCalendar = ({ date, onClickDay, onClickItem, renderDay }) => {
                 >
                   {day !== null && (
                     <>
-                      <div className="cc-month-day-number">{day}</div>
+                      <div
+                        className={cn('cc-month-day-number', {
+                          'cc-month-today': isSameDay(dayDate, TODAY),
+                        })}
+                      >
+                        {day}
+                      </div>
                       <div className="cc-month-day-content">{renderDayContent(dayDate)}</div>
                     </>
                   )}

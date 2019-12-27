@@ -32,6 +32,11 @@
   flex-direction: column;
 }
 
+.cc-month-today {
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
 .cc-month-day:hover {
   background-color: var(--grey-color-light);
   cursor: pointer;
