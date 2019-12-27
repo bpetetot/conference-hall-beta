@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="0.28.0"></a>
+## 0.28.0 (2019-12-26)
+
+### Added
+
+- ✨ change photo url and reset in profile form ([#745](https://github.com/bpetetot/conference-hall/issues/745)) [[ba4368b](https://github.com/bpetetot/conference-hall/commit/ba4368b00433feb16595e9dae9e99c5d94c1f324)]
+- ✨ add link to request beta key ([#744](https://github.com/bpetetot/conference-hall/issues/744)) [[7b8f3c8](https://github.com/bpetetot/conference-hall/commit/7b8f3c808c6c4a063867e0ae58701ad9b3c979f3)]
+
+### Changed
+
+- ⬆️ upgrade dependencies ([#747](https://github.com/bpetetot/conference-hall/issues/747)) [[3a4ab4d](https://github.com/bpetetot/conference-hall/commit/3a4ab4d04dfae2a263356882fbe940c9bb9186b5)]
+
+
 <a name="0.27.0"></a>
 ## 0.27.0 (2019-12-22)
 
