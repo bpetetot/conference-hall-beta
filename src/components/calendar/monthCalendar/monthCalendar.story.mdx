@@ -13,7 +13,7 @@ import MonthCalendar from './monthCalendar'
 
 <Preview>
   <Story name="Basic usage">
-    <MonthCalendar />
+    <MonthCalendar onClickDay={console.log} />
   </Story>
 </Preview>
 
@@ -21,14 +21,18 @@ import MonthCalendar from './monthCalendar'
 
 <Preview>
   <Story name="With items">
-    <MonthCalendar renderDay={date => {
-      if (date.getDay() % 3 === 0) {
-        return ['Some awesome meetup', 'Some second meetup', 'Thrid meetup', 'Fourth meetup']
-      }
-      if (date.getDay() % 2 === 0) {
-        return 'Some awesome meetup'
-      }
-      return null
-    }} />
+    <MonthCalendar
+      onClickDay={console.log}
+      onClickItem={console.log}
+      renderDay={date => {
+        if (date.getDay() % 3 === 0) {
+          return ['Some awesome meetup', 'Some second meetup', 'Thrid meetup', 'Fourth meetup']
+        }
+        if (date.getDay() % 2 === 0) {
+          return 'Some awesome meetup'
+        }
+        return null
+      }}
+    />
   </Story>
 </Preview>

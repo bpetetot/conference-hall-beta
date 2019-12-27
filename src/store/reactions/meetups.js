@@ -1,19 +1,10 @@
 import { createMeetup, updateMeetup, removeMeetup, fetchEventMeetups } from 'firebase/meetups'
 
-// eslint-disable-next-line import/prefer-default-export
 export const create = async (action, store, { router }) => {
-  const { sessions, ...data } = action.payload
-
   const eventId = router.getParam('eventId')
 
   store.ui.loaders.update({ isMeetupSaving: true })
-  const result = await createMeetup(eventId, {
-    ...data,
-    sessions: sessions.map(proposalId => ({
-      proposalId,
-      duration: 15,
-    })),
-  })
+  const result = await createMeetup(eventId, action.payload)
   const ref = await result.get()
   store.ui.loaders.update({ isMeetupSaving: false })
 
@@ -24,27 +15,19 @@ export const create = async (action, store, { router }) => {
 
 export const update = async (action, store, { router }) => {
   const eventId = router.getParam('eventId')
-  const { sessions, ...data } = action.payload
+  const { id, data } = action.payload
 
   store.ui.loaders.update({ isMeetupSaving: true })
-  await updateMeetup(eventId, {
-    ...data,
-    sessions: sessions.map(proposalId => ({
-      proposalId,
-      duration: 15,
-    })),
-  })
+  await updateMeetup(eventId, id, data)
   store.ui.loaders.update({ isMeetupSaving: false })
 
-  store.data.meetups.update(data)
+  store.data.meetups.update(action.payload)
 }
 
 export const remove = async (action, store, { router }) => {
   const eventId = router.getParam('eventId')
   const { id } = action.payload
-
   await removeMeetup(eventId, id)
-
   store.data.meetups.remove(id)
 }
 

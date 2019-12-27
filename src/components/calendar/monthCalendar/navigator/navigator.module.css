@@ -1,0 +1,19 @@
+.header {
+  padding: 1em 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: var(--primary-color);
+}
+
+.buttons > button {
+  margin-right: 1em;
+}
+
+.buttons > button:last-of-type {
+  margin-right: 0;
+}

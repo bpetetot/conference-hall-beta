@@ -1,58 +1,42 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import format from 'date-fns/format'
 import getDaysInMonth from 'date-fns/getDaysInMonth'
 import startOfMonth from 'date-fns/startOfMonth'
 import getDay from 'date-fns/getDay'
-import addMonths from 'date-fns/addMonths'
 import { set } from 'immutadot'
 import range from 'lodash/range'
 import chunk from 'lodash/chunk'
 import isString from 'lodash/isString'
 import add from 'lodash/fp/add'
-import Button from '../../button'
-import Drawer from '../../portals/drawer'
 import DayModal from './dayModal'
 
+import Navigator from './navigator'
 import './monthCalendar.css'
 
-class MonthCalendar extends Component {
-  state = {
-    offset: 0,
-  }
+function generateWeeksForMonth(date) {
+  const startDay = getDay(startOfMonth(date))
 
-  goToPreviousMonth = () => this.setState(state => ({ offset: state.offset - 1 }))
-
-  gotToNextMonth = () => this.setState(state => ({ offset: state.offset + 1 }))
-
-  goToToday = () => this.setState({ offset: 0 })
-
-  renderDayItem = (item, form, customClassName) => (
-    <Drawer
-      className="default-theme"
-      actions={({ hide }) => <Button onClick={hide}>Close</Button>}
-      renderTrigger={({ show }) => (
-        <div
-          role="button"
-          onClick={e => {
-            e.stopPropagation()
-            show()
-          }}
-          key={item}
-          className={cn('cc-month-day-item', customClassName)}
-        >
-          <span>{item}</span>
-        </div>
-      )}
-    >
-      {form}
-    </Drawer>
+  const weeks = chunk(
+    [...Array(startDay).fill(null), ...range(getDaysInMonth(date)).map(add(1))],
+    7,
   )
 
-  renderDayContent = date => {
-    const content = this.props.renderDay(date)
-    const makeForm = index => this.props.renderUpdateEvent(date, index)
+  const lastWeek = weeks[weeks.length - 1]
+  const fillOffset = 7 - lastWeek.length
+
+  return set(weeks, weeks.length - 1, [...lastWeek, ...Array(fillOffset).fill(null)])
+}
+
+const MonthCalendar = ({ date, onClickDay, onClickItem, renderDay }) => {
+  const [currentDate, setCurrentDate] = useState(date)
+
+  const renderDayContent = dayDate => {
+    if (!renderDay) return null
+
+    const content = renderDay(dayDate)
+    if (!content) return null
+
     if (Array.isArray(content)) {
       content.forEach(item => {
         if (!isString(item))
@@ -64,115 +48,90 @@ class MonthCalendar extends Component {
         const directlyRendered = content.slice(0, 2)
         directlyRendered.push(modal)
 
-        return directlyRendered.map((item, index) =>
-          this.renderDayItem(
-            item,
-            makeForm(index),
-            index === 2 ? 'cc-month-day-item-white' : undefined,
-          ),
-        )
+        return directlyRendered.map((item, index) => (
+          <div
+            key={item}
+            onClick={e => {
+              e.stopPropagation()
+              onClickItem(dayDate, index)
+            }}
+            role="button"
+            className={cn('cc-month-day-item', { 'cc-month-day-item-white': index === 2 })}
+          >
+            {item}
+          </div>
+        ))
       }
-
-      return content.map((item, index) => this.renderDayItem(item, makeForm(index)))
+      return content.map(item => (
+        <div
+          key={item}
+          onClick={e => {
+            e.stopPropagation()
+            onClickItem(dayDate, 0)
+          }}
+          role="button"
+          className="cc-month-day-item"
+        >
+          {item}
+        </div>
+      ))
     }
-
-    if (isString(content)) {
-      return this.renderDayItem(content, makeForm(0))
-    }
-
-    return null
-  }
-
-  generateWeeksForMonth = date => {
-    const startDay = getDay(startOfMonth(date))
-
-    const weeks = chunk(
-      [...Array(startDay).fill(null), ...range(getDaysInMonth(date)).map(add(1))],
-      7,
-    )
-
-    const lastWeek = weeks[weeks.length - 1]
-    const fillOffset = 7 - lastWeek.length
-
-    return set(weeks, weeks.length - 1, [...lastWeek, ...Array(fillOffset).fill(null)])
-  }
-
-  render() {
-    const { date, addEventTitle, renderAddEvent } = this.props
-    const parsedDate = addMonths(date, this.state.offset)
-
-    const weeks = this.generateWeeksForMonth(parsedDate)
 
     return (
-      <div className="cc-month-calendar">
-        <div className="cc-month-calendar-header">
-          <span className="cc-month-month">{format(parsedDate, 'MMMM yyyy')}</span>
-          <div className="cc-month-buttons">
-            <Button secondary onClick={this.goToPreviousMonth}>
-              Previous
-            </Button>
-            <Button primary onClick={this.goToToday}>
-              Today
-            </Button>
-            <Button secondary onClick={this.gotToNextMonth}>
-              Next
-            </Button>
-          </div>
-        </div>
-        <div className="cc-month-weeks">
-          {weeks.map(days => (
-            <div key={days.join('')} className="cc-month-week">
-              {days.map((day, index) => {
-                const dayDate = new Date(parsedDate.getFullYear(), parsedDate.getMonth(), day)
-                return (
-                  <Drawer
-                    title={addEventTitle}
-                    className="default-theme"
-                    actions={({ hide }) => <Button onClick={hide}>Close</Button>}
-                    renderTrigger={({ show }) => (
-                      <div
-                        key={day === null ? index : dayDate}
-                        role="button"
-                        className={cn({ 'cc-month-day': day !== null })}
-                        onClick={show}
-                      >
-                        {day !== null && (
-                          <>
-                            <div className="cc-month-day-number">{day}</div>
-                            <div className="cc-month-day-content">
-                              {this.renderDayContent(dayDate)}
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    )}
-                  >
-                    {renderAddEvent(dayDate)}
-                  </Drawer>
-                )
-              })}
-            </div>
-          ))}
-        </div>
+      <div key={content} className="cc-month-day-item">
+        {content}
       </div>
     )
   }
+
+  const weeks = generateWeeksForMonth(currentDate)
+
+  return (
+    <div className="cc-month-calendar">
+      <Navigator date={currentDate} onChangeDate={setCurrentDate} />
+      <div className="cc-month-weeks">
+        {weeks.map(days => (
+          <div key={days.join('')} className="cc-month-week">
+            {days.map((day, index) => {
+              const dayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day)
+              return (
+                <div
+                  key={day === null ? index : dayDate}
+                  className={cn({ 'cc-month-day': day !== null })}
+                  onClick={e => {
+                    e.stopPropagation()
+                    onClickDay(dayDate)
+                  }}
+                  role="button"
+                >
+                  {day !== null && (
+                    <>
+                      <div className="cc-month-day-number">{day}</div>
+                      <div className="cc-month-day-content">{renderDayContent(dayDate)}</div>
+                    </>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 MonthCalendar.propTypes = {
   date: PropTypes.instanceOf(Date),
   renderDay: PropTypes.func,
-  renderAddEvent: PropTypes.func,
-  renderUpdateEvent: PropTypes.func,
-  addEventTitle: PropTypes.string,
+  onClickDay: PropTypes.func,
+  onClickItem: PropTypes.func,
 }
 
 MonthCalendar.defaultProps = {
   date: new Date(),
-  renderDay: () => null,
-  renderAddEvent: () => null,
-  renderUpdateEvent: () => null,
-  addEventTitle: '',
+  renderDay: undefined,
+  onClickDay: undefined,
+  onClickItem: undefined,
 }
 
 export default MonthCalendar
