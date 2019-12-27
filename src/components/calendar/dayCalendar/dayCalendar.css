@@ -1,27 +1,3 @@
-.cc-day-calendar-header {
-  padding: 20px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cc-day-calendar-header button {
-  margin-left: auto;
-}
-
-.cc-day-day {
-  color: var(--primary-color);
-}
-
-.cc-day-buttons button {
-  margin-right: 10px;
-}
-
-.cc-day-buttons button:last-child {
-  margin-right: 0;
-}
-
 .cc-day-calendar {
   display: flex;
   flex-direction: column;
@@ -29,6 +5,11 @@
 
 .cc-day-calendar * {
   box-sizing: border-box;
+}
+
+.cc-day-content {
+  background-color: #fff;
+  padding: 1em;
 }
 
 .cc-day-columns,
@@ -70,6 +51,11 @@
   padding: 10px 0;
   height: 125px;
   border-right: 1px solid var(--grey-color-light);
+}
+
+.cc-day-hour:hover {
+  background-color: var(--grey-color-light);
+  cursor: pointer;
 }
 
 .cc-day-hour:not(:first-child) {

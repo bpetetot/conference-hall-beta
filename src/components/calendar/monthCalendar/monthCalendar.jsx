@@ -11,7 +11,7 @@ import isString from 'lodash/isString'
 import add from 'lodash/fp/add'
 import DayModal from './dayModal'
 
-import Navigator from './navigator'
+import Navigator from '../navigator'
 import './monthCalendar.css'
 
 function generateWeeksForMonth(date) {
@@ -88,7 +88,7 @@ const MonthCalendar = ({ date, onClickDay, onClickItem, renderDay }) => {
 
   return (
     <div className="cc-month-calendar">
-      <Navigator date={currentDate} onChangeDate={setCurrentDate} />
+      <Navigator type="month" date={currentDate} onChangeDate={setCurrentDate} />
       <div className="cc-month-weeks">
         {weeks.map(days => (
           <div key={days.join('')} className="cc-month-week">

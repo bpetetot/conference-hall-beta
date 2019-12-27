@@ -1,57 +1,31 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
 import uniq from 'lodash/uniq'
 import format from 'date-fns/format'
-import addDays from 'date-fns/addDays'
 import isSameDay from 'date-fns/isSameDay'
-import Button from '../../button'
 
+import Navigator from '../navigator'
 import './dayCalendar.css'
 
-class DayCalendar extends Component {
-  state = {
-    offset: 0,
-  }
+const DayCalendar = ({ date, start, end, sessions }) => {
+  const [currentDate, setCurrentDate] = useState(date)
 
-  goToPreviousDay = () => this.setState(state => ({ offset: state.offset - 1 }))
+  const hours = Array(24)
+    .fill('')
+    .map((_, index) => index)
+    .filter(hour => hour >= start && hour <= end)
+    .map(hour => (hour < 10 ? `0${hour}` : hour))
 
-  gotToNextDay = () => this.setState(state => ({ offset: state.offset + 1 }))
+  const daySessions = sessions.filter(({ date: sessionDate }) =>
+    isSameDay(sessionDate, currentDate),
+  )
+  const rooms = uniq(daySessions.flatMap(session => session.room))
+  const columns = rooms.length === 0 ? ['', format(currentDate, 'dd MMMM yyyy')] : ['', ...rooms]
 
-  goToToday = () => this.setState({ offset: 0 })
-
-  render() {
-    const { date, start, end, sessions } = this.props
-
-    const parsedDate = addDays(date, this.state.offset)
-
-    const hours = Array(24)
-      .fill('')
-      .map((_, index) => index)
-      .filter(hour => hour >= start && hour <= end)
-      // eslint-disable-next-line no-confusing-arrow
-      .map(hour => (hour < 10 ? `0${hour}` : hour))
-    const daySessions = sessions.filter(({ date: sessionDate }) =>
-      isSameDay(sessionDate, parsedDate),
-    )
-    const rooms = uniq(daySessions.flatMap(session => session.room))
-    const columns = ['', ...rooms]
-
-    return (
-      <div className="cc-day-calendar">
-        <div className="cc-day-calendar-header">
-          <span className="cc-day-day">{format(parsedDate, 'dd MMMM yyyy')}</span>
-          <div className="cc-day-buttons">
-            <Button secondary onClick={this.goToPreviousDay}>
-              Previous
-            </Button>
-            <Button primary onClick={this.goToToday}>
-              Today
-            </Button>
-            <Button secondary onClick={this.gotToNextDay}>
-              Next
-            </Button>
-          </div>
-        </div>
+  return (
+    <div className="cc-day-calendar">
+      <Navigator type="day" date={currentDate} onChangeDate={setCurrentDate} />
+      <div className="cc-day-content">
         <div className="cc-day-rooms">
           {columns.map(room => (
             <div key={room} className="cc-day-room">
@@ -95,8 +69,8 @@ class DayCalendar extends Component {
           ))}
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 DayCalendar.propTypes = {
