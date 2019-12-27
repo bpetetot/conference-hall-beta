@@ -72,8 +72,14 @@ service cloud.firestore {
 
       // MEETUPS
       match /meetups/{meetup} {
-        allow read: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
-        allow write: if authenticated() && fromMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow read: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow write: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+      }
+
+      // AGENDA
+      match /agenda/{agenda} {
+        allow read: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+        allow write: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
       }
 
       // PROPOSALS

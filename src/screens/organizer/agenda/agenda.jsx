@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import isSameDay from 'date-fns/isSameDay'
 
@@ -6,10 +6,13 @@ import Titlebar from 'components/titlebar'
 import MonthCalendar from 'components/calendar/monthCalendar'
 import DayCalendar from 'components/calendar/dayCalendar'
 
-import CreateForm from '../meetup/form/meetupCreate.container'
-import EditForm from '../meetup/form/meetupEdit.container'
+import CreateMeetupModal from './createMeetup'
+import EditMeetupModal from './editMeetup'
 
 const Agenda = ({ isMeetup, meetups }) => {
+  const [createMeetup, setCreateMeetup] = useState({ date: null })
+  const [editMeetup, setEditMeetup] = useState({ id: null })
+
   const onRenderDay = date =>
     meetups.filter(meetup => isSameDay(meetup.date.toDate(), date)).map(meetup => meetup.name)
 
@@ -17,17 +20,28 @@ const Agenda = ({ isMeetup, meetups }) => {
     <div>
       <Titlebar icon="fa fa-calendar" title="Agenda" className="no-print" />
       {isMeetup ? (
-        <MonthCalendar
-          date={Date.now()}
-          renderDay={onRenderDay}
-          addEventTitle="Create a meetup"
-          renderAddEvent={date => <CreateForm date={date} />}
-          renderUpdateEvent={(date, index) => {
-            const { id } = meetups.filter(meetup => isSameDay(meetup.date.toDate(), date))[index]
-
-            return <EditForm id={id} />
-          }}
-        />
+        <CreateMeetupModal {...createMeetup}>
+          {({ show: openCreateMeetup }) => (
+            <EditMeetupModal {...editMeetup}>
+              {({ show: openEditMeetup }) => (
+                <MonthCalendar
+                  renderDay={onRenderDay}
+                  onClickDay={date => {
+                    setCreateMeetup({ date })
+                    openCreateMeetup()
+                  }}
+                  onClickItem={(date, index) => {
+                    const { id } = meetups.filter(meetup => isSameDay(meetup.date.toDate(), date))[
+                      index
+                    ]
+                    setEditMeetup({ id })
+                    openEditMeetup()
+                  }}
+                />
+              )}
+            </EditMeetupModal>
+          )}
+        </CreateMeetupModal>
       ) : (
         <DayCalendar sessions={[]} />
       )}

@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cn from 'classnames'
 import { Form } from 'react-final-form'
 
 import Button from 'components/button'
@@ -8,12 +7,10 @@ import Field from 'components/form/field'
 import { input, textarea, SubmitButton } from 'components/form'
 import { required } from 'components/form/validators'
 
-import styles from './meetupForm.module.css'
-
 const MeetupForm = ({ onDelete, onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit, pristine }) => (
-      <form className={cn(styles.form, 'card')}>
+      <form>
         <Field name="name" label="Name" type="text" component={input} validate={required} />
         <Field name="description" label="Description" type="text" component={textarea} />
         {initialValues && onDelete && (

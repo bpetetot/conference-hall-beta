@@ -22,19 +22,17 @@ export const createMeetup = (eventId, data) =>
  * @param {string} eventId event id
  * @param {object} meetup
  */
-export const updateMeetup = (eventId, data) =>
+export const updateMeetup = (eventId, meetupId, data) =>
   firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('meetups')
-    .set(
-      {
-        ...data,
-        updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      },
-      { merge: true },
-    )
+    .doc(meetupId)
+    .update({
+      ...data,
+      updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })
 
 /**
  * Remove a meetup to a specific event

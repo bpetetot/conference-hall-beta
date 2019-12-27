@@ -46,7 +46,7 @@ Drawer.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   children: PropTypes.node.isRequired,
-  actions: PropTypes.node,
+  actions: PropTypes.func,
   defaultOpen: PropTypes.bool,
   renderTrigger: PropTypes.func,
   className: PropTypes.string,

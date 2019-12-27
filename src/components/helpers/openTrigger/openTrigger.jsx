@@ -1,56 +1,48 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-class OpenTrigger extends Component {
-  state = { isOpen: this.props.defaultOpen }
+const OpenTrigger = ({
+  renderTrigger,
+  children,
+  defaultOpen,
+  withEscapeClose,
+  onOpen,
+  onClose,
+}) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen)
 
-  componentDidMount() {
-    if (this.props.withEscapeClose) {
-      document.addEventListener('keydown', this.handleKeydown)
+  const show = () => {
+    setIsOpen(true)
+    if (onOpen) onOpen()
+  }
+
+  const hide = () => {
+    setIsOpen(false)
+    if (onClose) onClose()
+  }
+
+  useEffect(() => {
+    const handleKeydown = e => {
+      if (e.keyCode === 27) hide()
     }
-  }
 
-  componentWillUnmount() {
-    if (this.props.withEscapeClose) {
-      document.removeEventListener('keydown', this.handleKeydown)
+    if (withEscapeClose) {
+      document.addEventListener('keydown', handleKeydown)
     }
-  }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.defaultOpen && !prevState.isOpen) {
-      return { isOpen: false }
+    return () => {
+      if (withEscapeClose) {
+        document.removeEventListener('keydown', handleKeydown)
+      }
     }
-    return null
-  }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  handleKeydown = e => {
-    if (e.keyCode === 27) {
-      this.hide()
-    }
-  }
-
-  show = () => {
-    this.setState({ isOpen: true })
-    if (this.props.onOpen) this.props.onOpen()
-  }
-
-  hide = () => {
-    this.setState({ isOpen: false })
-    if (this.props.onClose) this.props.onClose()
-  }
-
-  render() {
-    const { isOpen } = this.state
-    const { children, renderTrigger } = this.props
-    const { show, hide } = this
-
-    return (
-      <>
-        {renderTrigger && renderTrigger({ isOpen, show, hide })}
-        {isOpen && children({ isOpen, show, hide })}
-      </>
-    )
-  }
+  return (
+    <>
+      {renderTrigger && renderTrigger({ isOpen, show, hide })}
+      {isOpen && children({ isOpen, show, hide })}
+    </>
+  )
 }
 
 OpenTrigger.propTypes = {
