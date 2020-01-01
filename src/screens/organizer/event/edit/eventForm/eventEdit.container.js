@@ -10,9 +10,18 @@ const mapStore = (store, { eventId }) => {
   return {
     submitting: store.ui.loaders.get().isEventSaving,
     organizations: store.data.organizations.getAsArray(),
-    initialValues: { ...event },
-    onSubmit: payload => {
-      store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_DETAILS', payload })
+    initialValues: {
+      ...event,
+      visibility: event.visibility === 'private',
+    },
+    onSubmit: values => {
+      store.dispatch({
+        type: '@@ui/ON_UPDATE_EVENT_DETAILS',
+        payload: {
+          ...values,
+          visibility: values.visibility ? 'private' : 'public',
+        },
+      })
     },
     toggleArchive: () => {
       store.dispatch({

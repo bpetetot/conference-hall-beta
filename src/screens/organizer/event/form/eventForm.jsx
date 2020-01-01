@@ -69,15 +69,7 @@ const EventForm = ({
             ))}
           </Field>
         )}
-        <Field
-          name="visibility"
-          label="Private event"
-          component={toggle}
-          type="checkbox"
-          truthy="private"
-          falsy="public"
-          inline
-        />
+        <Field name="visibility" label="Private event" component={toggle} type="checkbox" inline />
         {values.type === 'conference' && (
           <Field name="conferenceDates" label="Conference date" component={dayRangePicker} inline />
         )}
@@ -111,7 +103,7 @@ EventForm.propTypes = {
   isCreateForm: PropTypes.bool,
   organizations: PropTypes.arrayOf(PropTypes.object),
   onSubmit: PropTypes.func.isRequired,
-  toggleArchive: PropTypes.func.isRequired,
+  toggleArchive: PropTypes.func,
   initialValues: PropTypes.object,
   submitting: PropTypes.bool,
 }
@@ -121,6 +113,7 @@ EventForm.defaultProps = {
   organizations: [],
   initialValues: undefined,
   submitting: false,
+  toggleArchive: undefined,
 }
 
 export default EventForm
