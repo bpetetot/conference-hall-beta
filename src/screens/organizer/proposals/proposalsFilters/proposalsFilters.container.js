@@ -3,6 +3,10 @@ import get from 'lodash/get'
 
 import ProposalFilters from './proposalsFilters'
 
+const filterSortOrders = (sortOrders, hideRatings) => {
+  return sortOrders.filter(order => !(/Rating/gm.test(order) && hideRatings))
+}
+
 const mapStore = (store, props, { router }) => {
   const eventId = router.getParam('eventId')
   const sortOrders = router.getParam('sortOrders')
@@ -11,6 +15,7 @@ const mapStore = (store, props, { router }) => {
   const { formats, categories } = store.data.events.get(eventId) || {}
   const settings = store.data.eventsSettings.get(eventId)
   const filters = store.ui.organizer.proposals.get()
+  const hideRatings = get(settings, 'deliberation.hideRatings')
 
   return {
     eventId,
@@ -18,8 +23,8 @@ const mapStore = (store, props, { router }) => {
     ratings,
     formats,
     categories,
-    sortOrders,
     filters,
+    sortOrders: filterSortOrders(sortOrders, hideRatings),
     deliberationActive: get(settings, 'deliberation.enabled'),
     onChange: ({ target }) => {
       store.ui.organizer.proposals.update({ [target.id]: target.value })
