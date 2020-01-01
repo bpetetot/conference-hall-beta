@@ -4,7 +4,8 @@
 
 .layout-sidebar {
   grid-area: sidebar;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .layout-main {
