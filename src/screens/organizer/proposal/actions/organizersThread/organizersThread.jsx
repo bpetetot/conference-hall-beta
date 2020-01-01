@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
@@ -7,56 +7,46 @@ import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import Thread from 'components/thread'
 
+import useOrganizerThreads from './useOrganizerThreads'
 import styles from './organizersThread.module.css'
 
-class OrganizersThread extends Component {
-  componentDidMount() {
-    this.props.loadMessages()
-  }
+const OrganizersThread = ({ eventId, proposalId, user }) => {
+  const { messages, saveMessage, deleteMessage } = useOrganizerThreads({
+    eventId,
+    proposalId,
+    user,
+  })
 
-  componentDidUpdate(prevProps) {
-    const { proposalId, loadMessages } = this.props
-    if (proposalId !== prevProps.proposalId) {
-      loadMessages()
-    }
-  }
-
-  render() {
-    const { messages, onSaveMessage, onDeleteMessage, currentUser } = this.props
-    const nbMessages = !isEmpty(messages) ? ` (${messages.length})` : ''
-    return (
-      <Drawer
-        title="Organizers thread"
-        renderTrigger={({ show }) => (
-          <Button secondary onClick={show}>
-            <IconLabel icon="fa fa-comments" label={`Organizers thread${nbMessages}`} />
-          </Button>
-        )}
-      >
-        <Thread
-          className={styles.organizersThread}
-          description="Discuss with other organizers about this proposal. The speaker WILL NOT see these comments."
-          currentUser={currentUser}
-          messages={messages}
-          onSaveMessage={onSaveMessage}
-          onDeleteMessage={onDeleteMessage}
-        />
-      </Drawer>
-    )
-  }
+  const nbMessages = !isEmpty(messages) ? ` (${messages.length})` : ''
+  return (
+    <Drawer
+      title="Organizers thread"
+      renderTrigger={({ show }) => (
+        <Button secondary onClick={show}>
+          <IconLabel icon="fa fa-comments" label={`Organizers thread${nbMessages}`} />
+        </Button>
+      )}
+    >
+      <Thread
+        className={styles.organizersThread}
+        description="Discuss with other organizers about this proposal. The speaker WILL NOT see these comments."
+        currentUser={user.uid}
+        messages={messages}
+        onSaveMessage={saveMessage}
+        onDeleteMessage={deleteMessage}
+      />
+    </Drawer>
+  )
 }
 
 OrganizersThread.propTypes = {
+  eventId: PropTypes.string.isRequired,
   proposalId: PropTypes.string.isRequired,
-  messages: Thread.propTypes.messages,
-  currentUser: PropTypes.string.isRequired,
-  onSaveMessage: PropTypes.func.isRequired,
-  onDeleteMessage: PropTypes.func.isRequired,
-  loadMessages: PropTypes.func.isRequired,
+  user: PropTypes.object,
 }
 
 OrganizersThread.defaultProps = {
-  messages: [],
+  user: {},
 }
 
 export default OrganizersThread
