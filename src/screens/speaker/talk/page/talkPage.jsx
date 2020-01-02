@@ -30,13 +30,11 @@ const TalkPage = ({
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
       <DeleteTalkButton talkId={id} />
-      <Button secondary onClick={toggleArchive}>
-        {archived ? (
-          <IconLabel icon="fa fa-history" label="Restore" />
-        ) : (
+      {!archived && (
+        <Button secondary onClick={toggleArchive}>
           <IconLabel icon="fa fa-archive" label="Archive" />
-        )}
-      </Button>
+        </Button>
+      )}
       <Button secondary>
         {btn => (
           <Link code="speaker-talk-edit" talkId={id} className={btn}>
@@ -44,13 +42,19 @@ const TalkPage = ({
           </Link>
         )}
       </Button>
-      <Button accent>
-        {btn => (
-          <Link code="speaker-talk-submission" talkId={id} className={btn}>
-            <IconLabel icon="fa fa-paper-plane" label="Submit" />
-          </Link>
-        )}
-      </Button>
+      {archived ? (
+        <Button primary onClick={toggleArchive}>
+          <IconLabel icon="fa fa-history" label="Restore" />
+        </Button>
+      ) : (
+        <Button accent>
+          {btn => (
+            <Link code="speaker-talk-submission" talkId={id} className={btn}>
+              <IconLabel icon="fa fa-paper-plane" label="Submit" />
+            </Link>
+          )}
+        </Button>
+      )}
     </Titlebar>
     <TalkDeliberationNotification submissions={submissions} />
     <div className="talk-page">
