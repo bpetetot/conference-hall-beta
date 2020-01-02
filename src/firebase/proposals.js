@@ -91,8 +91,8 @@ export const updateRating = (eventId, proposalId, uid, ratingUpdated, rated) => 
     .update({ ...ratingUpdated, [`usersRatings.${uid}`]: rated })
 }
 
-export const fetchOrganizersThread = async (eventId, proposalId) => {
-  const result = await firebase
+export const queryOrganizersThread = (eventId, proposalId) =>
+  firebase
     .firestore()
     .collection('events')
     .doc(eventId)
@@ -100,11 +100,8 @@ export const fetchOrganizersThread = async (eventId, proposalId) => {
     .doc(proposalId)
     .collection('organizersThread')
     .orderBy('date', 'asc')
-    .get()
-  return result.docs.map(ref => ({ messageId: ref.id, ...ref.data() }))
-}
 
-export const addOrganizersThreadMessage = async (eventId, proposalId, uid, message) =>
+export const addOrganizersThreadMessage = async (eventId, proposalId, message, user) =>
   firebase
     .firestore()
     .collection('events')
@@ -113,8 +110,10 @@ export const addOrganizersThreadMessage = async (eventId, proposalId, uid, messa
     .doc(proposalId)
     .collection('organizersThread')
     .add({
-      uid,
       message,
+      uid: user.uid,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
       date: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
