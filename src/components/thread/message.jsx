@@ -11,8 +11,8 @@ import styles from './message.module.css'
 
 const Message = ({
   id,
-  img,
-  name,
+  photoURL,
+  displayName,
   message,
   date,
   className,
@@ -53,8 +53,8 @@ const Message = ({
           Are you sure you want to delete this message ? This cannot be undone.
           <Message
             id={id}
-            img={img}
-            name={name}
+            photoURL={photoURL}
+            displayName={displayName}
             message={message}
             date={date}
             modified={modified}
@@ -73,10 +73,10 @@ const Message = ({
 
   return (
     <div className={cn(styles.wrapper, className)}>
-      <Avatar src={img} name={name} size="medium" className={styles.avatar} />
+      <Avatar src={photoURL} name={displayName} size="medium" className={styles.avatar} />
       <div className={styles.messageContent}>
         <div className={styles.message}>
-          <span className={styles.name}>{name}</span>
+          <span className={styles.name}>{displayName}</span>
           <span className={styles.date}>{formatDistanceToNow(date, { addSuffix: true })}</span>
           <span className={styles.modified}>{modified && '(modified)'}</span>
           {allowEdit && (
@@ -111,8 +111,8 @@ const Message = ({
 
 Message.propTypes = {
   id: PropTypes.string.isRequired,
-  img: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  photoURL: PropTypes.string,
+  displayName: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
   modified: PropTypes.bool,
@@ -123,7 +123,7 @@ Message.propTypes = {
 }
 
 Message.defaultProps = {
-  img: undefined,
+  photoURL: undefined,
   className: undefined,
   modified: false,
   onSave: undefined,

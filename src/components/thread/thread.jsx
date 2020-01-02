@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { Component } from 'react'
+import React, { useRef, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
@@ -8,74 +8,65 @@ import Button from 'components/button'
 import Message from './message'
 import styles from './thread.module.css'
 
-class Thread extends Component {
-  thread = React.createRef()
+const Thread = ({
+  description,
+  messages,
+  className,
+  onSaveMessage,
+  onDeleteMessage,
+  currentUser,
+}) => {
+  const thread = useRef()
+  const input = useRef()
 
-  input = React.createRef()
-
-  componentDidMount() {
-    this.scrollToBottom()
-  }
-
-  componentDidUpdate(oldProps) {
-    if (
-      this.props.messages
-      && oldProps.messages
-      && this.props.messages.length > oldProps.messages.length
-    ) {
-      this.scrollToBottom()
-    }
-  }
-
-  scrollToBottom = () => {
-    const { current } = this.thread
+  useEffect(() => {
+    const { current } = thread
     current.scrollTop = current.scrollHeight
-  }
+  }, [messages])
 
-  handleAddMessage = () => {
-    const message = this.input.current.value
+  const handleAddMessage = useCallback(() => {
+    const message = input.current.value
     if (message) {
-      this.props.onSaveMessage(message)
-      this.input.current.value = ''
+      onSaveMessage(message)
+      input.current.value = ''
     }
-  }
+  }, [onSaveMessage, input])
 
-  handleKey = (e) => {
-    if (e.keyCode === 13) {
-      this.handleAddMessage()
-    }
-  }
+  const handleKey = useCallback(
+    e => {
+      if (e.keyCode === 13) handleAddMessage()
+    },
+    [handleAddMessage],
+  )
 
-  render() {
-    const { description, messages, className, onSaveMessage, onDeleteMessage, currentUser } = this.props
-    return (
-      <div className={cn(styles.thread, className)}>
-        {description && <div className={styles.description}>{description}</div>}
-        <div ref={this.thread} className={styles.messages}>
-          {messages.map((message, index) => (
-            <Message 
-              allowEdit={currentUser === message.owner}
-              key={index} 
-              {...message} 
-              onSave={onSaveMessage}
-              onDelete={onDeleteMessage}
-              className={styles.message} 
-            />
-          ))}
-        </div>
-        <div className={styles.input}>
-          <input
-            ref={this.input}
-            type="text"
-            name="message"
-            placeholder="Send a message"
-            onKeyDown={this.handleKey}
+  return (
+    <div className={cn(styles.thread, className)}>
+      {description && <div className={styles.description}>{description}</div>}
+      <div ref={thread} className={styles.messages}>
+        {messages.map((message, index) => (
+          <Message
+            allowEdit={currentUser === message.owner}
+            key={index}
+            {...message}
+            onSave={onSaveMessage}
+            onDelete={onDeleteMessage}
+            className={styles.message}
           />
-          <Button onClick={this.handleAddMessage}>Send</Button>
-        </div>
+        ))}
       </div>
-    )
-  }
+      <div className={styles.input}>
+        <input
+          ref={input}
+          type="text"
+          name="message"
+          placeholder="Send a message"
+          onKeyDown={handleKey}
+          autocomplete="off"
+        />
+        <Button onClick={handleAddMessage}>Send</Button>
+      </div>
+    </div>
+  )
 }
 
 Thread.propTypes = {

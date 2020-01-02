@@ -23,8 +23,8 @@ export default ({ eventId, proposalId, user }) => {
             modified,
             date: toDate(date || new Date()),
             owner: uid,
-            name: displayName,
-            img: photoURL,
+            displayName,
+            photoURL,
           }
         }),
       )
