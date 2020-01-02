@@ -61,7 +61,7 @@ const Thread = ({
           name="message"
           placeholder="Send a message"
           onKeyDown={handleKey}
-          autocomplete="off"
+          autoComplete="off"
         />
         <Button onClick={handleAddMessage}>Send</Button>
       </div>
