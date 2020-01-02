@@ -13,21 +13,19 @@ export default ({ eventId, proposalId, user }) => {
 
   useEffect(() => {
     const query = queryOrganizersThread(eventId, proposalId)
-    const unsubscribe = query.onSnapshot(async snapshot => {
-      const newMessages = await Promise.all(
-        snapshot.docs.map(async doc => {
-          const { message, modified, uid, date, displayName, photoURL } = doc.data()
-          return {
-            id: doc.id,
-            message,
-            modified,
-            date: toDate(date || new Date()),
-            owner: uid,
-            displayName,
-            photoURL,
-          }
-        }),
-      )
+    const unsubscribe = query.onSnapshot(snapshot => {
+      const newMessages = snapshot.docs.map(doc => {
+        const { message, modified, uid, date, displayName, photoURL } = doc.data()
+        return {
+          id: doc.id,
+          message,
+          modified,
+          date: toDate(date || new Date()),
+          owner: uid,
+          displayName,
+          photoURL,
+        }
+      })
       setMessages(newMessages)
     })
 
