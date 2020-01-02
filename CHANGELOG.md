@@ -1,5 +1,21 @@
 # Changelog
 
+<a name="0.29.0"></a>
+## 0.29.0 (2020-01-01)
+
+### Added
+
+- ✨ hide sorting by rating in proposals list, when enabled for event ([#749](https://github.com/bpetetot/conference-hall/issues/749)) [[7b6480f](https://github.com/bpetetot/conference-hall/commit/7b6480f27d37c799950c9c00c36826c24bfa694f)]
+
+### Changed
+
+- 💄 remove scrolling-x in sidebar ([#748](https://github.com/bpetetot/conference-hall/issues/748)) [[47ed49b](https://github.com/bpetetot/conference-hall/commit/47ed49b7e862bcccab3396add8f86dea74d58d44)]
+
+### Fixed
+
+- 🐛 fix the visibility toggle in event form ([#750](https://github.com/bpetetot/conference-hall/issues/750)) [[9a3b4d0](https://github.com/bpetetot/conference-hall/commit/9a3b4d0c170edc7e953dd65c6da4fcbb189e4083)]
+
+
 <a name="0.28.0"></a>
 ## 0.28.0 (2019-12-26)
 
