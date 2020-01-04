@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="0.30.0"></a>
+## 0.30.0 (2020-01-02)
+
+### Added
+
+- ✨ makes organizers threads in realtime ([#752](https://github.com/bpetetot/conference-hall/issues/752)) [[6bf285a](https://github.com/bpetetot/conference-hall/commit/6bf285a7f45578f887bfb7f33962460509fcb8d3)]
+- ✨ archived talks must note be submitted ([#751](https://github.com/bpetetot/conference-hall/issues/751)) [[c47ce56](https://github.com/bpetetot/conference-hall/commit/c47ce56529070a49aaa8d859e694204a26228250)]
+
+
 <a name="0.29.0"></a>
 ## 0.29.0 (2020-01-01)
 
