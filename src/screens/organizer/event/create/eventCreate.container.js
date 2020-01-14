@@ -10,11 +10,17 @@ const mapStore = store => ({
   organizations: store.data.organizations.getAsArray(),
   initialValues: {
     type: 'conference',
-    visibility: 'private',
+    visibility: true,
     conferenceDates: {},
   },
-  onSubmit: payload => {
-    store.dispatch({ type: '@@ui/ON_CREATE_EVENT', payload })
+  onSubmit: values => {
+    store.dispatch({
+      type: '@@ui/ON_CREATE_EVENT',
+      payload: {
+        ...values,
+        visibility: values.visibility ? 'private' : 'public',
+      },
+    })
   },
 })
 

@@ -1,5 +1,43 @@
 # Changelog
 
+<a name="0.30.0"></a>
+## 0.30.0 (2020-01-02)
+
+### Added
+
+- ✨ makes organizers threads in realtime ([#752](https://github.com/bpetetot/conference-hall/issues/752)) [[6bf285a](https://github.com/bpetetot/conference-hall/commit/6bf285a7f45578f887bfb7f33962460509fcb8d3)]
+- ✨ archived talks must note be submitted ([#751](https://github.com/bpetetot/conference-hall/issues/751)) [[c47ce56](https://github.com/bpetetot/conference-hall/commit/c47ce56529070a49aaa8d859e694204a26228250)]
+
+
+<a name="0.29.0"></a>
+## 0.29.0 (2020-01-01)
+
+### Added
+
+- ✨ hide sorting by rating in proposals list, when enabled for event ([#749](https://github.com/bpetetot/conference-hall/issues/749)) [[7b6480f](https://github.com/bpetetot/conference-hall/commit/7b6480f27d37c799950c9c00c36826c24bfa694f)]
+
+### Changed
+
+- 💄 remove scrolling-x in sidebar ([#748](https://github.com/bpetetot/conference-hall/issues/748)) [[47ed49b](https://github.com/bpetetot/conference-hall/commit/47ed49b7e862bcccab3396add8f86dea74d58d44)]
+
+### Fixed
+
+- 🐛 fix the visibility toggle in event form ([#750](https://github.com/bpetetot/conference-hall/issues/750)) [[9a3b4d0](https://github.com/bpetetot/conference-hall/commit/9a3b4d0c170edc7e953dd65c6da4fcbb189e4083)]
+
+
+<a name="0.28.0"></a>
+## 0.28.0 (2019-12-26)
+
+### Added
+
+- ✨ change photo url and reset in profile form ([#745](https://github.com/bpetetot/conference-hall/issues/745)) [[ba4368b](https://github.com/bpetetot/conference-hall/commit/ba4368b00433feb16595e9dae9e99c5d94c1f324)]
+- ✨ add link to request beta key ([#744](https://github.com/bpetetot/conference-hall/issues/744)) [[7b8f3c8](https://github.com/bpetetot/conference-hall/commit/7b8f3c808c6c4a063867e0ae58701ad9b3c979f3)]
+
+### Changed
+
+- ⬆️ upgrade dependencies ([#747](https://github.com/bpetetot/conference-hall/issues/747)) [[3a4ab4d](https://github.com/bpetetot/conference-hall/commit/3a4ab4d04dfae2a263356882fbe940c9bb9186b5)]
+
+
 <a name="0.27.0"></a>
 ## 0.27.0 (2019-12-22)
 

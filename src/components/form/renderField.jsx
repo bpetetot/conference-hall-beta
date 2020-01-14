@@ -50,7 +50,7 @@ const renderField = component => ({
     {component === 'markdown-input' && <MarkdownInput {...input} />}
     {component === 'dayPicker' && <DayPicker id={input.name} {...input} />}
     {component === 'dayRangePicker' && <DayRangePicker id={input.name} {...input} />}
-    {component === 'toggle' && <Toggle {...rest} {...input} name={input.name} />}
+    {component === 'toggle' && <Toggle {...rest} {...input} />}
   </Label>
 )
 

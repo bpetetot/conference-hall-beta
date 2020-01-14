@@ -1,10 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
+import Badge from 'components/badge'
 
 import './talkInfo.css'
 
-const TalkInfo = ({ id, submissions }) => {
+const TalkInfo = ({ id, archived, submissions }) => {
+  if (archived) {
+    return (
+      <Badge light outline>
+        Archived
+      </Badge>
+    )
+  }
+
   let message
   if (!submissions) {
     message = 'Not submitted yet'
@@ -27,10 +36,12 @@ const TalkInfo = ({ id, submissions }) => {
 
 TalkInfo.propTypes = {
   id: PropTypes.string.isRequired,
+  archived: PropTypes.bool,
   submissions: PropTypes.objectOf(PropTypes.any),
 }
 
 TalkInfo.defaultProps = {
+  archived: false,
   submissions: undefined,
 }
 

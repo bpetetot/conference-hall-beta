@@ -46,12 +46,12 @@ const MyTalks = ({ talks, onSelect }) => {
       <List
         array={filteredTalks}
         noResult={status === 'archived' ? 'No archived talk' : <NoTalks />}
-        renderRow={({ id, title, submissions, updateTimestamp }) => (
+        renderRow={({ id, title, submissions, archived, updateTimestamp }) => (
           <ListItem
             key={id}
             title={title}
             subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
-            info={<TalkInfo id={id} submissions={submissions} />}
+            info={<TalkInfo id={id} submissions={submissions} archived={archived} />}
             onSelect={() => onSelect(id)}
           />
         )}

@@ -1,4 +1,4 @@
-.beta-access {
+.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,29 +9,38 @@
   color: var(--grey-color);
 }
 
-.beta-access h1.beta-access-title {
+.title {
   color: var(--primary-color-font);
   text-transform: uppercase;
   margin-bottom: 1em;
 }
 
-.beta-access .beta-access-form {
+.form {
   width: 50%;
 }
 
-.beta-access .beta-access-error {
+.error {
   margin-top: 1em;
   color: var(--error-color);
 }
 
+.request {
+  margin-top: 1em;
+}
+
+.request > a {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
 @media only screen and (max-width: 1024px) {
-  .beta-access .beta-access-form {
+  .form {
     width: 70%;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .beta-access .beta-access-form {
+  .form {
     width: 95%;
   }
 }
