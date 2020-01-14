@@ -41,9 +41,6 @@ export default {
           '/deliberation': { code: 'organizer-event-edit-deliberation' },
           '/integrations': { code: 'organizer-event-edit-integrations' },
         },
-        '/agenda': {
-          code: 'organizer-event-agenda',
-        },
         '/meetups/create': {
           code: 'organizer-create-meetup',
         },

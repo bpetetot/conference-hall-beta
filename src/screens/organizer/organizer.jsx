@@ -18,7 +18,6 @@ import OrganizationPage from './organization/page'
 import OrganizationCreate from './organization/form/organizationCreate.container'
 import OrganizationEdit from './organization/form/organizationEdit.container'
 import OrganizationsList from './organization/list'
-import Agenda from './agenda'
 import Proposals from './proposals'
 import Proposal from './proposal'
 
@@ -33,7 +32,6 @@ const Organizer = () => (
     <OrganizationEdit />
     <OrganizationPage />
     <OrganizationsList />
-    <Agenda />
     <Proposals />
     <Proposal />
     <Contributors />
