@@ -41,9 +41,6 @@ export default {
           '/deliberation': { code: 'organizer-event-edit-deliberation' },
           '/integrations': { code: 'organizer-event-edit-integrations' },
         },
-        '/meetups/create': {
-          code: 'organizer-create-meetup',
-        },
         '/proposals': {
           code: 'organizer-event-proposals',
           sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],
@@ -54,6 +51,12 @@ export default {
           },
         },
         '/proposal/:proposalId': { code: 'organizer-event-proposal-page' },
+        '/meetups': {
+          code: 'organizer-event-meetups',
+          '/create': {
+            code: 'organizer-meetups-create',
+          },
+        },
       },
     },
     '/organizations': {

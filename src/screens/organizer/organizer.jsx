@@ -20,6 +20,7 @@ import OrganizationEdit from './organization/form/organizationEdit.container'
 import OrganizationsList from './organization/list'
 import Proposals from './proposals'
 import Proposal from './proposal'
+import MeetupsList from './meetups/list'
 
 const Organizer = () => (
   <AppLayout sidebar={<Sidebar />}>
@@ -34,6 +35,7 @@ const Organizer = () => (
     <OrganizationsList />
     <Proposals />
     <Proposal />
+    <MeetupsList />
     <Contributors />
   </AppLayout>
 )

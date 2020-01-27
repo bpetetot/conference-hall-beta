@@ -21,8 +21,8 @@ const EventSidebar = ({ eventId, name }) => {
       <SideBarLink code="organizer-event-proposals" eventId={eventId}>
         <IconLabel icon="fa fa-paper-plane" label="Proposals" />
       </SideBarLink>
-      <SideBarLink code="organizer-event-manage-meetups" eventId={eventId}>
-        <IconLabel icon="fa fa-calendar" label="Manage meetups" />
+      <SideBarLink code="organizer-event-meetups" eventId={eventId}>
+        <IconLabel icon="fa fa-calendar" label="My meetups" />
       </SideBarLink>
     </SideBarPanel>
   )
