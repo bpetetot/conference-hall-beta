@@ -7,12 +7,16 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { List, ListItem } from 'components/list'
+import { LoadingIndicator } from 'components/loader'
 
 const MeetupsList = ({ eventId, push }) => {
   const [meetups, setMeetups] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchEventMeetups(eventId).then(setMeetups)
+    fetchEventMeetups(eventId)
+      .then(setMeetups)
+      .then(() => setLoading(false))
   }, [eventId])
 
   const goToEditMeetup = meetupId => {
@@ -20,7 +24,7 @@ const MeetupsList = ({ eventId, push }) => {
   }
 
   return (
-    <div>
+    <>
       <Titlebar icon="fa fa-calendar" title="My Meetups">
         <Button>
           {btn => (
@@ -30,14 +34,18 @@ const MeetupsList = ({ eventId, push }) => {
           )}
         </Button>
       </Titlebar>
-      <List
-        array={meetups}
-        noResult="No meetups yet !"
-        renderRow={({ id, name }) => (
-          <ListItem key={id} title={name} onSelect={() => goToEditMeetup(id)} />
-        )}
-      />
-    </div>
+      {loading ? (
+        <LoadingIndicator />
+      ) : (
+        <List
+          array={meetups}
+          noResult="No meetups yet !"
+          renderRow={({ id, name }) => (
+            <ListItem key={id} title={name} onSelect={() => goToEditMeetup(id)} />
+          )}
+        />
+      )}
+    </>
   )
 }
 
