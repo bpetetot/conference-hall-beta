@@ -35,11 +35,11 @@ export const updateMeetup = (eventId, meetupId, data) =>
     })
 
 /**
- * Remove a meetup to a specific event
+ * Delete a meetup to a specific event
  * @param {string} eventId event id
  * @param {string} meetupId meetup id
  */
-export const removeMeetup = (eventId, meetupId) =>
+export const deleteMeetup = (eventId, meetupId) =>
   firebase
     .firestore()
     .collection('events')
@@ -61,4 +61,19 @@ export const fetchEventMeetups = async eventId => {
 
   const result = await query.get()
   return result.docs.map(ref => ({ id: ref.id, ...ref.data() }))
+}
+
+/**
+ * Fetch a meetup of an event
+ * @param {string} eventId event id
+ * @param {string} meetupId meetup id
+ */
+export const fetchMeetup = async (eventId, meetupId) => {
+  return firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('meetups')
+    .doc(meetupId)
+    .get()
 }

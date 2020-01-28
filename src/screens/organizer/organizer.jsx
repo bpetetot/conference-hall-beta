@@ -21,6 +21,7 @@ import OrganizationsList from './organization/list'
 import Proposals from './proposals'
 import Proposal from './proposal'
 import MeetupsList from './meetups/list'
+import MeetupForm from './meetups/form'
 
 const Organizer = () => (
   <AppLayout sidebar={<Sidebar />}>
@@ -37,6 +38,7 @@ const Organizer = () => (
     <Proposal />
     <MeetupsList />
     <Contributors />
+    <MeetupForm />
   </AppLayout>
 )
 

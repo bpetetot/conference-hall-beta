@@ -6,7 +6,7 @@ import MeetupList from './meetupsList'
 
 const mapStore = (store, props, { router }) => ({
   eventId: router.getParam('eventId'),
-  onSelect: meetupId => router.push('organizer-event-meetups-page', { meetupId }),
+  push: router.push,
 })
 
 export default compose(forRoute.absolute('organizer-event-meetups'), inject(mapStore))(MeetupList)

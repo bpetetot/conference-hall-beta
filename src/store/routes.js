@@ -56,6 +56,9 @@ export default {
           '/create': {
             code: 'organizer-meetups-create',
           },
+          '/edit/:meetupId': {
+            code: 'organizer-meetups-edit',
+          },
         },
       },
     },

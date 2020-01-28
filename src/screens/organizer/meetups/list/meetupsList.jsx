@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@k-redux-router/react-k-ramel'
 
+import { fetchEventMeetups } from 'firebase/meetups'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { List, ListItem } from 'components/list'
 
-const MeetupsList = ({ eventId, meetups, onSelect }) => {
+const MeetupsList = ({ eventId, push }) => {
+  const [meetups, setMeetups] = useState([])
+
+  useEffect(() => {
+    fetchEventMeetups(eventId).then(setMeetups)
+  }, [eventId])
+
+  const goToEditMeetup = meetupId => {
+    push('organizer-meetups-edit', { eventId, meetupId })
+  }
+
   return (
     <div>
       <Titlebar icon="fa fa-calendar" title="My Meetups">
@@ -23,7 +34,7 @@ const MeetupsList = ({ eventId, meetups, onSelect }) => {
         array={meetups}
         noResult="No meetups yet !"
         renderRow={({ id, name }) => (
-          <ListItem key={id} title={name} onSelect={() => onSelect(id)} />
+          <ListItem key={id} title={name} onSelect={() => goToEditMeetup(id)} />
         )}
       />
     </div>
@@ -32,12 +43,7 @@ const MeetupsList = ({ eventId, meetups, onSelect }) => {
 
 MeetupsList.propTypes = {
   eventId: PropTypes.string.isRequired,
-  meetups: PropTypes.arrayOf(PropTypes.object),
-  onSelect: PropTypes.func.isRequired,
-}
-
-MeetupsList.defaultProps = {
-  meetups: [],
+  push: PropTypes.func.isRequired,
 }
 
 export default MeetupsList

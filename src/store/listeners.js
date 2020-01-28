@@ -8,7 +8,6 @@ import * as user from './reactions/user'
 import * as talks from './reactions/talks'
 import * as events from './reactions/events'
 import * as organizations from './reactions/organizations'
-import * as meetups from './reactions/meetups'
 import * as submissions from './reactions/submissions'
 import * as proposals from './reactions/proposals'
 import * as ratings from './reactions/ratings'
@@ -63,11 +62,6 @@ export default [
   when('@@ui/ADD_ORGANIZATION_MEMBER')(organizations.setMember),
   when('@@ui/CHANGE_ORGANIZATION_MEMBER_ROLE')(organizations.setMember),
   when('@@ui/REMOVE_ORGANIZATION_MEMBER')(organizations.removeMember),
-  /* meetups */
-  when('@@ui/ON_CREATE_MEETUP')(meetups.create),
-  when('@@ui/ON_UPDATE_MEETUP')(meetups.update),
-  when('@@ui/ON_REMOVE_MEETUP')(meetups.remove),
-  when('@@ui/ON_LOAD_MEETUPS')(meetups.fetchMeetups),
   /* submissions */
   when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),
   when('@@ui/GO_TO_SELECT_SUBMISSION')(submissions.openSelectSubmission),
