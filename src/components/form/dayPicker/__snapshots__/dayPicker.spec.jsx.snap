@@ -2,10 +2,12 @@
 
 exports[`components/dayPicker should render 1`] = `
 <DayPicker
+  dateFormat="MMMM do yyyy"
   id="1"
   isMobile={false}
   isTablet={true}
   onChange={[MockFunction]}
+  showTimeSelect={false}
   value=""
 />
 `;

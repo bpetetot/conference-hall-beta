@@ -10,12 +10,12 @@ export const required = value => {
 }
 
 export const email = value => {
-  if (value && isEmail(value)) return undefined
+  if (!value || isEmail(value)) return undefined
   return 'Invalid email'
 }
 
 export const url = value => {
-  if (value && isURL(value)) return undefined
+  if (!value || isURL(value)) return undefined
   return 'Invalid URL'
 }
 

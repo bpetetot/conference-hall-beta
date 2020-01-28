@@ -9,8 +9,8 @@ import Button from 'components/button'
 import { inject } from '@k-ramel/react'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 import Field from 'components/form/field'
-import { input, textarea, SubmitButton } from 'components/form'
-import { required } from 'components/form/validators'
+import { input, textarea, dayPicker, address, SubmitButton } from 'components/form'
+import { required, url } from 'components/form/validators'
 import { createMeetup, fetchMeetup, updateMeetup, deleteMeetup } from 'firebase/meetups'
 import Titlebar from 'components/titlebar/titlebar'
 import { LoadingIndicator } from 'components/loader'
@@ -75,6 +75,30 @@ const MeetupForm = ({ eventId, meetupId, push }) => {
                 type="text"
                 inline
                 component={textarea}
+              />
+              <Field
+                name="date"
+                label="Date"
+                component={dayPicker}
+                inline
+                showTimeSelect
+                dateFormat="MMM do yyyy hh:mm aa"
+              />
+              <Field
+                name="address"
+                label="Venue address"
+                type="text"
+                component={address}
+                validate={required}
+                inline
+              />
+              <Field
+                name="ticketingUrl"
+                label="Ticketing URL"
+                type="text"
+                component={input}
+                validate={url}
+                inline
               />
               <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
                 {!initialValues ? 'Create meetup' : 'Save meetup'}

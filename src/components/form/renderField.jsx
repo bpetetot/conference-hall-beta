@@ -48,8 +48,8 @@ const renderField = component => ({
       </textarea>
     )}
     {component === 'markdown-input' && <MarkdownInput {...input} />}
-    {component === 'dayPicker' && <DayPicker id={input.name} {...input} />}
-    {component === 'dayRangePicker' && <DayRangePicker id={input.name} {...input} />}
+    {component === 'dayPicker' && <DayPicker id={input.name} {...input} {...rest} />}
+    {component === 'dayRangePicker' && <DayRangePicker id={input.name} {...input} {...rest} />}
     {component === 'toggle' && <Toggle {...rest} {...input} />}
   </Label>
 )
