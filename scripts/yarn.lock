@@ -124,10 +124,10 @@
     through2 "^3.0.0"
     xdg-basedir "^4.0.0"
 
-"@google/maps@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@google/maps/-/maps-1.0.2.tgz#5100e29f3ef7f0384a9210c486dde8c6c8b4c8ea"
-  integrity sha512-iTsvIIgVjIicC+UdLCJOMSBnOmLnmgnOXrjTBUUQr/ffBMfH9GdnlrA9R+vH/kZSFEp9AZUDw0vJ5ES6avfTPQ==
+"@google/maps@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@google/maps/-/maps-1.1.0.tgz#038d8bf53d63f2ca0540c5d30c9136c8f70e0df1"
+  integrity sha512-mIU397T3H0Xlio1ftZvB11DQr+7aYEYTMeDuLfI8OTE0mMgvD3sAFWuAhXvCCLrfEy8FXvLxQp1fwYXyM+lRPA==
   dependencies:
     https-proxy-agent "^3.0.0"
     uuid ">=2.2.1"
@@ -441,10 +441,10 @@ faye-websocket@0.11.3:
   dependencies:
     websocket-driver ">=0.5.1"
 
-firebase-admin@^8.9.0:
-  version "8.9.0"
-  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-8.9.0.tgz#8a0b0178d0404b73f649e2af28adb210092701f7"
-  integrity sha512-ZslYhJeLm0GH6tZbDQanrnqqpMnvzWyVTygbT0Dde6ExkiJnYrFAEoxc8U7lbhMF13RHYH2Yj4x0hPoZyp/43A==
+firebase-admin@^8.9.2:
+  version "8.9.2"
+  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-8.9.2.tgz#248ba184dc13b4929b043870a2067787a0dd013e"
+  integrity sha512-ix4qcx+hHnr3mnc41Z8EzQa9Mr+2nhogLEv6ktkOCCpdKJ+9HxW9vikRCElSbC8ICHLD0KIH0GVOIZK80vbvqw==
   dependencies:
     "@firebase/database" "^0.5.17"
     "@types/node" "^8.10.59"
