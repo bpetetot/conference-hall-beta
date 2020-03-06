@@ -59,7 +59,7 @@
     "@firebase/testing": "^0.16.9",
     "@storybook/addon-docs": "^5.3.13",
     "@storybook/addons": "^5.3.13",
-    "@storybook/preset-create-react-app": "^1.5.2",
+    "@storybook/preset-create-react-app": "^2.0.0",
     "@storybook/react": "^5.3.13",
     "@testing-library/react-hooks": "^3.2.1",
     "babel-loader": "^8.0.6",
