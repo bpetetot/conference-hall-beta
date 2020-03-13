@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "@firebase/testing": "^0.16.9",
+    "@firebase/testing": "^0.17.0",
     "@storybook/addon-docs": "^5.3.13",
     "@storybook/addons": "^5.3.13",
     "@storybook/preset-create-react-app": "^1.5.2",
