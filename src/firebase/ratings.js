@@ -14,7 +14,7 @@ export const getRatings = async (eventId, proposalId) => {
     .doc(proposalId)
     .collection('ratings')
     .get()
-  return result.docs.map(ref => ref.data())
+  return result.docs.map((ref) => ref.data())
 }
 
 /**

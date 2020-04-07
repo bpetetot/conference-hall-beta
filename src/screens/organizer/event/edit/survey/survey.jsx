@@ -15,7 +15,7 @@ const SurveyForm = ({ surveyActive, survey, onActiveSurvey, onSelectQuestion }) 
       <Toggle name="surveyActive" checked={surveyActive} onChange={onActiveSurvey} />
     </Label>
     <h4>Select questions that you want to ask to speakers :</h4>
-    {questions.map(question => (
+    {questions.map((question) => (
       <Checkbox
         key={question.name}
         name={question.name}

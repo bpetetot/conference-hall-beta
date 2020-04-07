@@ -33,7 +33,7 @@ const InvitePage = ({ inviteId, push }) => {
         </p>
         <div className={styles.buttons}>
           <Button secondary>
-            {btn => (
+            {(btn) => (
               <Link code="home" className={btn}>
                 Cancel
               </Link>

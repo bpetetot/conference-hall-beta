@@ -28,7 +28,7 @@ export const init = (action, store) => {
     console.warn(error.code, error.message)
   }
 
-  firebase.auth().onAuthStateChanged(user => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       store.dispatch({ type: '@@firebase/SIGNED_IN', payload: user })
       preloadFunctions()

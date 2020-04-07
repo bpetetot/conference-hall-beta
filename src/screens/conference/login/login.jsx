@@ -19,7 +19,7 @@ const Login = ({ authenticated, initialized, providers, signin }) => {
       .then(() => {
         setAuthenticating(false)
       })
-      .catch(error => {
+      .catch((error) => {
         setAuthenticating(false)
         setErrorMessage(error.message)
       })
@@ -32,7 +32,7 @@ const Login = ({ authenticated, initialized, providers, signin }) => {
   return (
     <div className="login">
       <h1 className="login-title">Connexion</h1>
-      {providers.map(provider => (
+      {providers.map((provider) => (
         <Button key={provider} className={`btn-${provider}`} onClick={() => signin(provider)}>
           <IconLabel icon={`fa fa-${provider}`} label={`with ${provider}`} />
         </Button>

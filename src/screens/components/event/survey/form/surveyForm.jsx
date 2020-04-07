@@ -10,7 +10,7 @@ const SurveyForm = ({ survey, onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
     {({ handleSubmit, pristine }) => (
       <form>
-        {questions.map(q => survey[q.name] && <SurveyInput key={q.name} {...q} />)}
+        {questions.map((q) => survey[q.name] && <SurveyInput key={q.name} {...q} />)}
         <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
           Save Survey
         </SubmitButton>

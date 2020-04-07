@@ -5,7 +5,7 @@ import { mount } from 'enzyme'
 import Button from 'components/button'
 import ConfirmationPopin from './index.js'
 
-const snapshot = props => snap(ConfirmationPopin)({ ...props })
+const snapshot = (props) => snap(ConfirmationPopin)({ ...props })
 
 describe('components/confirmationPopin', () => {
   it('should render', snapshot({}))

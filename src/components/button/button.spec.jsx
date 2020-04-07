@@ -3,7 +3,7 @@ import snap from 'tests/snapshot'
 import React from 'react'
 import Button from './index.js'
 
-const snapshot = props => snap(Button)({ ...props })
+const snapshot = (props) => snap(Button)({ ...props })
 
 describe('components/button', () => {
   it(

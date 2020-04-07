@@ -12,7 +12,7 @@ const TalkSubmissions = ({ id, submissions, className }) => (
     {isEmpty(submissions) && <small>Not submitted yet</small>}
     {!isEmpty(submissions) && (
       <div className="talk-submissions">
-        {Object.keys(submissions).map(eventId => (
+        {Object.keys(submissions).map((eventId) => (
           <Submission key={eventId} eventId={eventId} talkId={id} />
         ))}
       </div>

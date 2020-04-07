@@ -6,7 +6,7 @@ import styles from './toggle.module.css'
 const Toggle = ({ name, checked, onChange, ...rest }) => {
   const [isChecked, setChecked] = useState(checked)
   const handleChange = useCallback(
-    e => {
+    (e) => {
       setChecked(e.target.checked)
       onChange(e.target.checked)
     },

@@ -6,13 +6,7 @@ import firebase from 'firebase/app'
  * @param {string} uid user id
  */
 export const getSurvey = (eventId, uid) =>
-  firebase
-    .firestore()
-    .collection('events')
-    .doc(eventId)
-    .collection('surveys')
-    .doc(uid)
-    .get()
+  firebase.firestore().collection('events').doc(eventId).collection('surveys').doc(uid).get()
 
 /**
  * Add or update a user survey to an event

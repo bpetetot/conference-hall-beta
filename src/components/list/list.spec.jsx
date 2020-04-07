@@ -10,7 +10,7 @@ describe('components/list', () => {
         <List
           className="event-proposals"
           array={[]}
-          renderRow={proposal => <div>{proposal}</div>}
+          renderRow={(proposal) => <div>{proposal}</div>}
         />,
       ),
     ).toMatchSnapshot()
@@ -22,7 +22,7 @@ describe('components/list', () => {
           className="event-proposals"
           array={[]}
           noResult="😢"
-          renderRow={proposal => <div>{proposal}</div>}
+          renderRow={(proposal) => <div>{proposal}</div>}
         />,
       ),
     ).toMatchSnapshot()
@@ -33,7 +33,7 @@ describe('components/list', () => {
         <List
           className="event-proposals"
           array={['hello']}
-          renderRow={proposal => <div key={proposal}>{proposal}</div>}
+          renderRow={(proposal) => <div key={proposal}>{proposal}</div>}
         />,
       ),
     ).toMatchSnapshot()

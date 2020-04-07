@@ -11,13 +11,11 @@ export const getCfpOpeningDates = (cfpDates, eventTimezone) => {
   const { start, end } = cfpDates
   return {
     start: DateTime.fromJSDate(toDate(start)).setZone(eventTimezone),
-    end: DateTime.fromJSDate(toDate(end))
-      .setZone(eventTimezone)
-      .plus({
-        hours: 23,
-        minutes: 59,
-        seconds: 59,
-      }),
+    end: DateTime.fromJSDate(toDate(end)).setZone(eventTimezone).plus({
+      hours: 23,
+      minutes: 59,
+      seconds: 59,
+    }),
   }
 }
 
@@ -56,7 +54,7 @@ export const getEventCfpState = (event, userTimezone = 'local') => {
  * Values can be : not-started, opened, closed
  * @param {String} eventId event Id
  */
-export const getCfpState = eventId => store => {
+export const getCfpState = (eventId) => (store) => {
   const event = store.data.events.get(eventId) || {}
   return getEventCfpState(event)
 }
@@ -65,17 +63,17 @@ export const getCfpState = eventId => store => {
  * Return true if CFP is opened
  * @param {string} eventId event id
  */
-export const isCfpOpened = eventId => store => getCfpState(eventId)(store) === 'opened'
+export const isCfpOpened = (eventId) => (store) => getCfpState(eventId)(store) === 'opened'
 
 /**
  * Return the format
  * @param {string} eventId event id
  * @param {string} formatId format id
  */
-export const getFormat = (eventId, formatId) => store => {
+export const getFormat = (eventId, formatId) => (store) => {
   const { formats } = store.data.events.get(eventId) || {}
   if (formats) {
-    return formats.find(f => f.id === formatId)
+    return formats.find((f) => f.id === formatId)
   }
   return undefined
 }
@@ -85,10 +83,10 @@ export const getFormat = (eventId, formatId) => store => {
  * @param {string} eventId event id
  * @param {string} categoryId category id
  */
-export const getCategory = (eventId, categoryId) => store => {
+export const getCategory = (eventId, categoryId) => (store) => {
   const { categories } = store.data.events.get(eventId) || {}
   if (categories) {
-    return categories.find(c => c.id === categoryId)
+    return categories.find((c) => c.id === categoryId)
   }
   return undefined
 }

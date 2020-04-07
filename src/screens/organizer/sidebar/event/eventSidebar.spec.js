@@ -8,7 +8,7 @@ jest.mock('layout/sidebar', () => ({
   SideBarPanel: () => 'SideBarPanel',
 }))
 
-const snapshot = props => snap(EventSidebar)({ ...props })
+const snapshot = (props) => snap(EventSidebar)({ ...props })
 
 describe('screens/organizer/sidebar/event', () => {
   it('should not render without event id', snapshot({}))

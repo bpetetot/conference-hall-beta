@@ -17,7 +17,7 @@ const MyTalks = ({ talks, onSelect }) => {
 
   const filteredTalks = useMemo(
     () =>
-      talks.filter(talk => {
+      talks.filter((talk) => {
         if (status === 'all') return true
         if (status === 'archived') return talk.archived === true
         return talk.archived !== true
@@ -25,7 +25,7 @@ const MyTalks = ({ talks, onSelect }) => {
     [talks, status],
   )
 
-  const onFilter = e => setStatus(e.target.value)
+  const onFilter = (e) => setStatus(e.target.value)
 
   return (
     <div className="talks-page">
@@ -36,7 +36,7 @@ const MyTalks = ({ talks, onSelect }) => {
           <option value="active">Active talks</option>
         </select>
         <Button accent>
-          {btn => (
+          {(btn) => (
             <Link code="speaker-talk-create" className={btn}>
               <IconLabel icon="fa fa-calendar-plus-o" label="Create a new talk" />
             </Link>

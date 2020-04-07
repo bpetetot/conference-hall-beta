@@ -18,10 +18,10 @@ class Dropdown extends Component {
   }
 
   handleClick = () => {
-    this.setState(state => ({ visible: !state.visible }))
+    this.setState((state) => ({ visible: !state.visible }))
   }
 
-  handleClickOutside = e => {
+  handleClickOutside = (e) => {
     if (this.dropdownRef && !this.dropdownRef.contains(e.target)) {
       this.setState(() => ({ visible: false }))
     }
@@ -32,7 +32,7 @@ class Dropdown extends Component {
     return (
       <div
         role="button"
-        ref={e => {
+        ref={(e) => {
           this.dropdownRef = e
         }}
         tabIndex="0"

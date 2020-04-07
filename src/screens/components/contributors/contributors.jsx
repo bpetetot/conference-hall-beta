@@ -27,7 +27,7 @@ class Contributors extends Component {
           <IconLabel icon="fa fa-github-alt" label={`Thanks to our ${count} contributors!`} />
         </h1>
         <div className="contributors-list">
-          {contributors.map(c => (
+          {contributors.map((c) => (
             <Contributor key={c.id} name={c.login} image={c.avatar_url} url={c.html_url} />
           ))}
         </div>

@@ -16,7 +16,7 @@ const mapStore = (store, _, { router }) => {
     ...organization,
     authUserId: userId,
     load: () => store.dispatch('@@ui/ON_LOAD_ORGANIZATION'),
-    addMember: uid =>
+    addMember: (uid) =>
       store.dispatch({ type: '@@ui/ADD_ORGANIZATION_MEMBER', payload: { uid, organizationId } }),
   }
 }

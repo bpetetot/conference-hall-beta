@@ -4,7 +4,7 @@ import pick from 'lodash/pick'
 import userCrud from 'firebase/user'
 import { fetchUserOrganizations } from 'firebase/organizations'
 
-export const signin = action => {
+export const signin = (action) => {
   const providerId = action.payload
   let provider
   switch (providerId) {

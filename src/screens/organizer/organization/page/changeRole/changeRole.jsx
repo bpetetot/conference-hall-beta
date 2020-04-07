@@ -22,13 +22,13 @@ const ChangeRoleSelect = ({ user, role, isAuthenticatedUser, changeMemberRole })
       renderTrigger={({ show }) => (
         <select
           value={selectedRole}
-          onChange={e => {
+          onChange={(e) => {
             e.stopPropagation()
             setSelectedRole(e.target.value)
             show()
           }}
         >
-          {Object.values(ROLES).map(roleOption => (
+          {Object.values(ROLES).map((roleOption) => (
             <option key={roleOption} value={roleOption}>
               {capitalize(roleOption)}
             </option>

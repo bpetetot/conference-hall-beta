@@ -19,7 +19,7 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember, authUs
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    fetchUsersList(Object.keys(members)).then(result => {
+    fetchUsersList(Object.keys(members)).then((result) => {
       setUsers(sortBy(result, 'displayName'))
     })
   }, [members])
@@ -30,7 +30,7 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember, authUs
       <Titlebar className="organization-header" icon="fa fa-users" title={name}>
         <HasRole of={ROLES.OWNER} forOrganizationId={organizationId}>
           <Button secondary>
-            {btn => (
+            {(btn) => (
               <Link
                 code="organizer-organization-edit"
                 organizationId={organizationId}
@@ -51,7 +51,7 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember, authUs
         className="organization-content"
         array={users}
         noResult="No users yet !"
-        renderRow={user => (
+        renderRow={(user) => (
           <MemberRow
             key={user.uid}
             user={user}

@@ -27,7 +27,7 @@ const TalkInfo = ({ id, archived, submissions }) => {
     <small>
       <span>{message}</span>
       <span className="talk-info-space">|</span>
-      <Link code="speaker-talk-submission" talkId={id} onClick={e => e.stopPropagation()}>
+      <Link code="speaker-talk-submission" talkId={id} onClick={(e) => e.stopPropagation()}>
         Submit
       </Link>
     </small>

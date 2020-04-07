@@ -14,7 +14,7 @@ const mapStore = (store, { eventId }) => {
       ...event,
       visibility: event.visibility === 'private',
     },
-    onSubmit: values => {
+    onSubmit: (values) => {
       store.dispatch({
         type: '@@ui/ON_UPDATE_EVENT_DETAILS',
         payload: {

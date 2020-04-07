@@ -4,9 +4,9 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import Login from './login'
 
-const mapStore = store => ({
+const mapStore = (store) => ({
   ...store.auth.get(),
-  signin: provider => store.dispatch({ type: '@@ui/SIGN_IN', payload: provider }),
+  signin: (provider) => store.dispatch({ type: '@@ui/SIGN_IN', payload: provider }),
 })
 
 export default compose(

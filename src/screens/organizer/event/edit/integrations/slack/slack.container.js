@@ -13,7 +13,7 @@ const mapStore = (store, { eventId }) => {
     enabled,
     webhookUrl,
     notifications,
-    onToggleSlack: checked =>
+    onToggleSlack: (checked) =>
       store.dispatch({
         type: '@@ui/ON_SAVE_EVENT_SETTINGS',
         payload: {
@@ -22,7 +22,7 @@ const mapStore = (store, { eventId }) => {
           enabled: checked,
         },
       }),
-    onSaveUrl: url =>
+    onSaveUrl: (url) =>
       store.dispatch({
         type: '@@ui/ON_SAVE_EVENT_SETTINGS',
         payload: {
@@ -31,7 +31,7 @@ const mapStore = (store, { eventId }) => {
           webhookUrl: url,
         },
       }),
-    onChangeNotification: e =>
+    onChangeNotification: (e) =>
       store.dispatch({
         type: '@@ui/ON_SAVE_EVENT_SETTINGS',
         payload: {

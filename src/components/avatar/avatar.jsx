@@ -6,7 +6,7 @@ import randomColor from 'randomcolor'
 
 import './avatar.css'
 
-const generateColor = seed => {
+const generateColor = (seed) => {
   if (!seed) return {}
   return {
     background: randomColor({

@@ -8,7 +8,7 @@ const mapStore = (store, props, { router }) => {
   return {
     talkId,
     talkName: title,
-    onSelectUser: uid => {
+    onSelectUser: (uid) => {
       store.dispatch({ type: '@@ui/ADD_SPEAKER_TO_TALK', payload: { uid, talkId } })
     },
   }
