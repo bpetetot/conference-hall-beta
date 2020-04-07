@@ -13,8 +13,8 @@ export default ({ eventId, proposalId, user }) => {
 
   useEffect(() => {
     const query = queryOrganizersThread(eventId, proposalId)
-    const unsubscribe = query.onSnapshot(snapshot => {
-      const newMessages = snapshot.docs.map(doc => {
+    const unsubscribe = query.onSnapshot((snapshot) => {
+      const newMessages = snapshot.docs.map((doc) => {
         const { message, modified, uid, date, displayName, photoURL } = doc.data()
         return {
           id: doc.id,
@@ -40,7 +40,7 @@ export default ({ eventId, proposalId, user }) => {
     }
   }
 
-  const deleteMessage = messageId => {
+  const deleteMessage = (messageId) => {
     deleteOrganizersThreadMessage(eventId, proposalId, messageId)
   }
 

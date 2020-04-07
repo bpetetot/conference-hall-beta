@@ -12,7 +12,7 @@ const mapState = (store, { uid }, { router }) => {
     survey,
     initialValues: speakerSurvey,
     submitting: store.ui.loaders.get().isSurveySaving,
-    onSubmit: data => {
+    onSubmit: (data) => {
       store.dispatch({ type: '@@ui/SAVE_SPEAKER_SURVEY', payload: { eventId, uid, data } })
     },
     load: () => {

@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16'
 configure({ adapter: new Adapter() })
 
 // Make console.error a real failure
-console.error = message => {
+console.error = (message) => {
   throw new Error(message)
 }
 

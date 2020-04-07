@@ -30,7 +30,7 @@ const TalkSelection = ({ eventId, onChange, state, emailStatus, isDeliberationDo
         <select
           className={styles.selector}
           onChange={onChange}
-          onClick={e => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
           defaultValue={state}
         >
           <option key="submitted" value="submitted">

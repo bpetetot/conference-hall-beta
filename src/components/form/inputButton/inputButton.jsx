@@ -8,14 +8,14 @@ import './inputButton.css'
 class InputButton extends Component {
   state = { value: this.props.defaultValue }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ value: e.target.value })
     if (this.props.onChange) this.props.onChange(e)
   }
 
   handleClick = () => this.props.onClick(this.state.value)
 
-  handleKeyPress = e => {
+  handleKeyPress = (e) => {
     if (e.charCode === 13) {
       this.props.onClick(this.state.value)
     }

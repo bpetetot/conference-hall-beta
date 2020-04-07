@@ -33,9 +33,9 @@ class Rating extends Component {
 
   handleMouseLeaveRating = () => {
     if (isNil(this.state.validatedRating)) {
-      this.setState(state => ({ ...state, rating: undefined, feeling: DEFAULT_FEELING }))
+      this.setState((state) => ({ ...state, rating: undefined, feeling: DEFAULT_FEELING }))
     } else {
-      this.setState(state => ({
+      this.setState((state) => ({
         ...state,
         rating: state.validatedRating,
         feeling: state.validatedFeeling,
@@ -93,7 +93,7 @@ class Rating extends Component {
             role="button"
           />
         </Tooltip>
-        {starsArray.map(i => (
+        {starsArray.map((i) => (
           <i
             key={i}
             className={cn('fa fa-2x', {

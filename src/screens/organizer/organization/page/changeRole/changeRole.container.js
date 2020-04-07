@@ -8,7 +8,7 @@ const mapStore = (store, { user, organizationId }) => {
 
   return {
     isAuthenticatedUser: userId === user.uid,
-    changeMemberRole: role =>
+    changeMemberRole: (role) =>
       store.dispatch({
         type: '@@ui/CHANGE_ORGANIZATION_MEMBER_ROLE',
         payload: { uid: user.uid, role, organizationId },

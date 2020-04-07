@@ -23,7 +23,7 @@ describe('useOrganizerThreads', () => {
 
   it('should return default values of the hook', async () => {
     queryOrganizersThread.mockReturnValue({
-      onSnapshot: callback => {
+      onSnapshot: (callback) => {
         callback({ docs: [] })
         return () => jest.fn()
       },
@@ -39,7 +39,7 @@ describe('useOrganizerThreads', () => {
   it('should return messages', async () => {
     toDate.mockReturnValue('date')
     queryOrganizersThread.mockReturnValue({
-      onSnapshot: callback => {
+      onSnapshot: (callback) => {
         callback({
           docs: [
             {
@@ -76,7 +76,7 @@ describe('useOrganizerThreads', () => {
 
   it('should add a message', async () => {
     queryOrganizersThread.mockReturnValue({
-      onSnapshot: callback => {
+      onSnapshot: (callback) => {
         callback({ docs: [] })
         return () => jest.fn()
       },
@@ -95,7 +95,7 @@ describe('useOrganizerThreads', () => {
 
   it('should update a message', async () => {
     queryOrganizersThread.mockReturnValue({
-      onSnapshot: callback => {
+      onSnapshot: (callback) => {
         callback({ docs: [] })
         return () => jest.fn()
       },
@@ -119,7 +119,7 @@ describe('useOrganizerThreads', () => {
 
   it('should delete a message', async () => {
     queryOrganizersThread.mockReturnValue({
-      onSnapshot: callback => {
+      onSnapshot: (callback) => {
         callback({ docs: [] })
         return () => jest.fn()
       },

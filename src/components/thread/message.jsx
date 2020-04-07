@@ -25,7 +25,7 @@ const Message = ({
 
   const [editable, setEditable] = useState(false)
 
-  const onChange = event => {
+  const onChange = (event) => {
     setInputMessageValue(event.target.value)
   }
 
@@ -39,7 +39,7 @@ const Message = ({
     setEditable(!editable)
   }
 
-  const handleKey = event => {
+  const handleKey = (event) => {
     if (event.keyCode === 13) {
       handleSave()
     }

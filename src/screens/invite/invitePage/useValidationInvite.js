@@ -8,7 +8,7 @@ export default (inviteId, push) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    inviteReq.read(inviteId).then(ref => setInvitation(ref.data()))
+    inviteReq.read(inviteId).then((ref) => setInvitation(ref.data()))
   }, [inviteId])
 
   const validate = useCallback(async () => {

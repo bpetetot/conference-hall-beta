@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty'
 import './inline.css'
 
 class Inline extends React.Component {
-  join = children =>
+  join = (children) =>
     children.reduce((result, child, index) => {
       if (!child) return result
       if (index === 0 || isEmpty(result)) return [this.renderItem(child, index)]
@@ -19,7 +19,7 @@ class Inline extends React.Component {
     </span>
   )
 
-  renderSeparator = key => (
+  renderSeparator = (key) => (
     <span key={key} className="inline-items-separator">
       •
     </span>

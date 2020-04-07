@@ -16,7 +16,7 @@ jest.mock(
     },
 )
 
-const snapshot = props =>
+const snapshot = (props) =>
   snap(Tooltip)({ tooltip: 'my content', children: <div>Wrapped</div>, ...props })
 
 describe('tooltip', () => {

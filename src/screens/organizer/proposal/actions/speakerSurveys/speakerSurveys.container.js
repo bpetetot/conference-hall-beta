@@ -8,12 +8,12 @@ const mapState = (store, { eventId, proposalId }) => {
   const { survey } = store.data.events.get(eventId) || {}
   const { speakers } = store.data.proposals.get(proposalId) || {}
   const uids = Object.keys(speakers)
-  const responses = uids.map(uid => ({ uid, response: store.data.surveys.get(uid) }))
+  const responses = uids.map((uid) => ({ uid, response: store.data.surveys.get(uid) }))
   return {
     survey,
     responses,
     load: () => {
-      uids.forEach(uid =>
+      uids.forEach((uid) =>
         store.dispatch({ type: '@@ui/ON_LOAD_SURVEY', payload: { eventId, uid } }),
       )
     },

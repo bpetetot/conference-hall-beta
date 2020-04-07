@@ -8,7 +8,7 @@ import { DayPicker, DayRangePicker } from './dayPicker'
 
 import Label from './label'
 
-const renderField = component => ({
+const renderField = (component) => ({
   input,
   label,
   tooltip,

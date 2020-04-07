@@ -51,7 +51,7 @@ const EditProposalForm = ({ onSubmit, onClose, initialValues, categories, format
         </RadioGroup>
         {!isEmpty(categories) && (
           <RadioGroup name="categories" label="Talk categories" inline>
-            {categories.map(c => (
+            {categories.map((c) => (
               <Field
                 key={c.id}
                 name="categories"
@@ -65,7 +65,7 @@ const EditProposalForm = ({ onSubmit, onClose, initialValues, categories, format
         )}
         {!isEmpty(formats) && (
           <RadioGroup name="formats" label="Talk formats" inline>
-            {formats.map(f => (
+            {formats.map((f) => (
               <Field
                 key={f.id}
                 name="formats"

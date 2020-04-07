@@ -14,7 +14,7 @@ export default ({ entity, entityId, entityTitle, uid }) => {
 
   useEffect(() => {
     fetchInviteByType(entity, entityId)
-      .then(result => {
+      .then((result) => {
         if (!result) {
           setInviteId(null)
           setLoading(false)

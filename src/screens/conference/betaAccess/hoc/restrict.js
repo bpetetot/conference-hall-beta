@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { inject } from '@k-ramel/react'
 
-export default Component => {
+export default (Component) => {
   class BetaRestricted extends React.Component {
     // eslint-disable-next-line react/static-property-placement
     static propTypes = {
@@ -37,7 +37,7 @@ export default Component => {
     }
   }
 
-  return inject(store => {
+  return inject((store) => {
     const { uid } = store.auth.get() || {}
     const { betaAccess } = store.data.users.get(uid) || {}
 

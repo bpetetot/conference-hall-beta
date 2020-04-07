@@ -10,7 +10,7 @@ const hasAccessEvent = (uid, event, organization) => {
   return organization && organization.members && organization.members[uid]
 }
 
-export default Component => {
+export default (Component) => {
   const AuthorizedEventComponent = ({ canAccess, isEventPage, ...rest }) => {
     if (isEventPage && !canAccess) return <LoadingIndicator />
     return <Component {...rest} />

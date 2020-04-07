@@ -4,7 +4,7 @@ import Titlebar from './index.js'
 
 jest.mock('../iconLabel', () => 'IconLabel')
 
-const snapshot = props => snap(Titlebar)({ ...props })
+const snapshot = (props) => snap(Titlebar)({ ...props })
 
 describe('components/titlebar', () => {
   it(

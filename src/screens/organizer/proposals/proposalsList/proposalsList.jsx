@@ -20,7 +20,7 @@ const Proposals = ({
   <List
     className="event-proposals"
     array={proposals}
-    renderRow={proposal => (
+    renderRow={(proposal) => (
       <ListItem
         key={proposal.id}
         title={proposal.title}

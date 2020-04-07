@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import styles from './proposalsPaging.module.css'
 
 class ProposalsPaging extends Component {
-  goToPage = page => () => {
+  goToPage = (page) => () => {
     this.props.onPageChange(page)
   }
 

@@ -45,7 +45,7 @@ const AddUserModal = ({
             <UserResults
               message={resultsMessage}
               users={users}
-              onSelectUser={uid => {
+              onSelectUser={(uid) => {
                 onSelectUser(uid)
                 hide()
               }}

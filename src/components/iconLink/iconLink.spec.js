@@ -4,7 +4,7 @@ import IconLink from './index.js'
 
 jest.mock('../iconLabel', () => 'IconLabel')
 
-const snapshot = props => snap(IconLink)({ ...props })
+const snapshot = (props) => snap(IconLink)({ ...props })
 
 describe('components/iconLink', () => {
   it('should not render if no label', snapshot({ icon: 'i', href: 'h' }))

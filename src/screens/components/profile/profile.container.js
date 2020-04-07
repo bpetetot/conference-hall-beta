@@ -6,7 +6,7 @@ import pick from 'lodash/pick'
 
 import Profile from './profile'
 
-const mapStore = store => {
+const mapStore = (store) => {
   const { uid } = store.auth.get()
   const user = store.data.users.get(uid)
   return {
@@ -17,7 +17,7 @@ const mapStore = store => {
       const payload = pick(firebase.auth().currentUser, ['uid', 'email', 'displayName', 'photoURL'])
       store.dispatch({ type: '@@ui/SAVE_PROFILE', payload })
     },
-    onSubmit: payload => {
+    onSubmit: (payload) => {
       store.dispatch({ type: '@@ui/SAVE_PROFILE', payload })
     },
   }

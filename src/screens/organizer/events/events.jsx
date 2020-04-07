@@ -17,7 +17,7 @@ const MyEvents = ({ events, onSelect }) => {
 
   const filteredEvents = useMemo(
     () =>
-      events.filter(event => {
+      events.filter((event) => {
         if (status === 'all') return true
         if (status === 'archived') return event.archived === true
         return event.archived !== true
@@ -25,7 +25,7 @@ const MyEvents = ({ events, onSelect }) => {
     [status, events],
   )
 
-  const onFilter = e => setStatus(e.target.value)
+  const onFilter = (e) => setStatus(e.target.value)
 
   return (
     <div>
@@ -36,7 +36,7 @@ const MyEvents = ({ events, onSelect }) => {
           <option value="active">Active events</option>
         </select>
         <Button>
-          {btn => (
+          {(btn) => (
             <Link code="organizer-event-create" className={btn}>
               <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
             </Link>

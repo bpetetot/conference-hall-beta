@@ -2,7 +2,7 @@
 import snap from 'tests/snapshot'
 import IconLabel from './index.js'
 
-const snapshot = props => snap(IconLabel)({ ...props })
+const snapshot = (props) => snap(IconLabel)({ ...props })
 
 describe('components/iconLabel', () => {
   it('should not render if no label', snapshot({ icon: 'i' }))

@@ -16,7 +16,7 @@ const mapStore = (store, { proposalId }, { router }) => {
     isDeliberationDone,
     emailStatus,
     state,
-    onChange: e => {
+    onChange: (e) => {
       store.dispatch({
         type: '@@ui/ON_UPDATE_PROPOSAL',
         payload: {

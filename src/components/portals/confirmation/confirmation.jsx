@@ -8,14 +8,14 @@ import Button from 'components/button'
 import './confirmation.css'
 
 class ConfirmationPopin extends Component {
-  handleOk = hide => e => {
+  handleOk = (hide) => (e) => {
     hide()
     if (this.props.onOk) {
       this.props.onOk(e)
     }
   }
 
-  handleCancel = hide => e => {
+  handleCancel = (hide) => (e) => {
     hide()
     if (this.props.onCancel) {
       this.props.onCancel(e)

@@ -6,7 +6,7 @@ import Button from 'components/button'
 import './copyInput.css'
 
 class CopyInput extends PureComponent {
-  setInput = element => {
+  setInput = (element) => {
     this.input = element
   }
 

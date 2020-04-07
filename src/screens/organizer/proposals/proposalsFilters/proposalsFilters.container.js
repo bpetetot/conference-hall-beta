@@ -4,7 +4,7 @@ import get from 'lodash/get'
 import ProposalFilters from './proposalsFilters'
 
 const filterSortOrders = (sortOrders, hideRatings) => {
-  return sortOrders.filter(order => !(/Rating/gm.test(order) && hideRatings))
+  return sortOrders.filter((order) => !(/Rating/gm.test(order) && hideRatings))
 }
 
 const mapStore = (store, props, { router }) => {

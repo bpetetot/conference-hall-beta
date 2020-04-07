@@ -10,7 +10,7 @@ const mapStore = (store, { eventId }) => {
     submitting: store.ui.loaders.get().isEventSaving,
     type: event && event.type,
     initialValues: event,
-    onSubmit: payload => {
+    onSubmit: (payload) => {
       store.dispatch({ type: '@@ui/ON_UPDATE_EVENT_CFP', payload })
     },
   }

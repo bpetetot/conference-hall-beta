@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import React from 'react'
 import Timer from './index'
 
-const snapshot = props => snap(Timer)({ ...props })
+const snapshot = (props) => snap(Timer)({ ...props })
 
 describe('components/timer', () => {
   const props = {

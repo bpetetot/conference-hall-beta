@@ -5,7 +5,7 @@ import { inject } from '@k-ramel/react'
 
 import LoadingIndicator from 'components/loader/loading'
 
-export default Component => {
+export default (Component) => {
   class ProtectedComponent extends React.Component {
     // eslint-disable-next-line react/static-property-placement
     static propTypes = {
@@ -38,7 +38,7 @@ export default Component => {
     }
   }
 
-  return inject(store => {
+  return inject((store) => {
     const auth = store.auth.get()
     const userLoaded = store.data.users.hasKey(auth.uid)
     const orgaLoaded = store.data.organizations.isInitialized()

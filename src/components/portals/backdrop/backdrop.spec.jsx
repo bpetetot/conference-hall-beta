@@ -4,7 +4,7 @@ import snap from 'tests/snapshot'
 import { shallow } from 'enzyme'
 import Backdrop from './index.js'
 
-const snapshot = props => snap(Backdrop)({ ...props })
+const snapshot = (props) => snap(Backdrop)({ ...props })
 
 describe('components/backdrop', () => {
   it('should render', snapshot({}))

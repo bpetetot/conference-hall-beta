@@ -8,9 +8,9 @@ import './markdownInput.css'
 class MarkdownInput extends Component {
   state = { focus: false }
 
-  toggleFocus = focus => () => this.setState({ focus })
+  toggleFocus = (focus) => () => this.setState({ focus })
 
-  handlePreview = preview => !preview && this.textarea.focus()
+  handlePreview = (preview) => !preview && this.textarea.focus()
 
   render() {
     const { name, value } = this.props
@@ -19,7 +19,7 @@ class MarkdownInput extends Component {
       <div className="markdown-input">
         <textarea
           id={name}
-          ref={e => {
+          ref={(e) => {
             this.textarea = e
           }}
           {...this.props}

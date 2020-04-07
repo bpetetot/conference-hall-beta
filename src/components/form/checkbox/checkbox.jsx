@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './checkbox.css'
 
-const Checkbox = props => {
+const Checkbox = (props) => {
   const { name, label, value, info, indeterminate, ...rest } = props
 
   const checkboxEl = useRef()

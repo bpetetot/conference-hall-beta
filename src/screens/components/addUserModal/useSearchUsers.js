@@ -7,7 +7,7 @@ export default () => {
   const [users, setUsers] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  const searchUsers = useCallback(async searchedEmail => {
+  const searchUsers = useCallback(async (searchedEmail) => {
     setLoading(true)
     setEmail(searchedEmail)
     const results = await fetchUsersByEmail(searchedEmail)

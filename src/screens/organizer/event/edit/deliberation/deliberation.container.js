@@ -24,7 +24,7 @@ const mapStore = (store, { eventId }) => {
     contact,
     recipients,
     emails,
-    onToggleDeliberation: checked =>
+    onToggleDeliberation: (checked) =>
       store.dispatch({
         type: '@@ui/ON_SAVE_EVENT_SETTINGS',
         payload: {
@@ -34,7 +34,7 @@ const mapStore = (store, { eventId }) => {
         },
       }),
 
-    onToggleBlindRating: checked =>
+    onToggleBlindRating: (checked) =>
       store.dispatch({
         type: '@@ui/ON_SAVE_EVENT_SETTINGS',
         payload: {
@@ -44,7 +44,7 @@ const mapStore = (store, { eventId }) => {
         },
       }),
 
-    onToggleOrganizersRatings: checked =>
+    onToggleOrganizersRatings: (checked) =>
       store.dispatch({
         type: '@@ui/ON_SAVE_EVENT_SETTINGS',
         payload: {
@@ -54,7 +54,7 @@ const mapStore = (store, { eventId }) => {
         },
       }),
 
-    onToggleHideRatings: checked =>
+    onToggleHideRatings: (checked) =>
       store.dispatch({
         type: '@@ui/ON_SAVE_EVENT_SETTINGS',
         payload: {
@@ -64,7 +64,7 @@ const mapStore = (store, { eventId }) => {
         },
       }),
 
-    onChangeRecipients: e =>
+    onChangeRecipients: (e) =>
       store.dispatch({
         type: '@@ui/ON_SAVE_EVENT_SETTINGS',
         payload: {
@@ -77,7 +77,7 @@ const mapStore = (store, { eventId }) => {
         },
       }),
 
-    onChangeNotifiedEmails: e =>
+    onChangeNotifiedEmails: (e) =>
       store.dispatch({
         type: '@@ui/ON_SAVE_EVENT_SETTINGS',
         payload: {

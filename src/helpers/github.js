@@ -1,5 +1,5 @@
 /** Github repository */
-export const getGitHubUserRepo = user => `https://github.com/${user}`
+export const getGitHubUserRepo = (user) => `https://github.com/${user}`
 
 export const GITHUB_REPO = `${getGitHubUserRepo(process.env.REACT_APP_REPO_USER)}/${
   process.env.REACT_APP_REPO_NAME
