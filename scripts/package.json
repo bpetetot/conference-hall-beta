@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@google/maps": "^1.1.0",
-    "firebase-admin": "^8.9.2",
+    "firebase-admin": "^8.10.0",
     "lodash": "^4.17.15"
   }
 }

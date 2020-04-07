@@ -16,24 +16,24 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "firebase-admin": "^8.9.2",
-    "firebase-functions": "^3.3.0",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.0",
     "form-data": "^3.0.0",
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.15",
-    "luxon": "^1.22.0",
+    "luxon": "^1.23.0",
     "node-fetch": "^2.6.0",
     "puppeteer": "^2.1.1"
   },
   "devDependencies": {
-    "@firebase/testing": "^0.16.9",
+    "@firebase/testing": "^0.18.2",
     "eslint": "^6.8.0",
-    "firebase-functions-test": "^0.1.7",
-    "firebase-tools": "^7.13.0",
-    "jest": "^25.1.0",
-    "mocha": "^7.0.1",
-    "nyc": "^15.0.0",
-    "sinon": "^8.1.1"
+    "firebase-functions-test": "^0.2.0",
+    "firebase-tools": "^8.0.2",
+    "jest": "^25.2.7",
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.1",
+    "sinon": "^9.0.1"
   }
 }
