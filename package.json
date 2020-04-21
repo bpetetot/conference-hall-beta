@@ -76,7 +76,7 @@
     "eslint-plugin-react-hooks": "3.0.0",
     "firebase-tools": "8.0.2",
     "husky": "4.2.3",
-    "prettier": "2.0.4",
+    "prettier": "2.0.5",
     "react-is": "16.13.1",
     "react-scripts": "3.4.1",
     "react-test-renderer": "16.13.1",
