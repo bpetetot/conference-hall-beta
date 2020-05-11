@@ -3268,7 +3268,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@storybook/node-logger@5.3.18", "@storybook/node-logger@^5.3.17":
+"@storybook/node-logger@*", "@storybook/node-logger@5.3.18":
   version "5.3.18"
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-5.3.18.tgz#ee278acb8b6f10d456a24c0ff6d59818a0c3ad94"
   integrity sha512-Go/hdtaPTtjgJP+GYk8VXcOmecrdG7cXm0yyTlatd6s8xXI0txHme1/0MOZmEPows1Ec7KAQ20+NnaCGUPZUUg==
@@ -3287,12 +3287,12 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/preset-create-react-app@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-2.1.1.tgz#6e4249d4c594596bdced74213e4c9238505c085c"
-  integrity sha512-ywnpCr7gHuIv/fv8yiQHLY8RikQRqn401CPTKh5nsWwkUbIOQ47Cyewjo2QuVTpivOLLuyJiIpq1jAAS1iW2Ow==
+"@storybook/preset-create-react-app@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-2.1.2.tgz#7fd563768c5a4441ce8550e117cc435722e772fe"
+  integrity sha512-bynFJDAVDzyfu+NEPXYMNUBRxm6ib4FgPBWComW+f+ULVWDjv8Mmq5qKMI/vPhixXAvffYRt9HB49V0f8kFxiw==
   dependencies:
-    "@storybook/node-logger" "^5.3.17"
+    "@storybook/node-logger" "*"
     "@types/babel__core" "^7.1.6"
     "@types/webpack" "^4.41.7"
     pnp-webpack-plugin "^1.6.4"
