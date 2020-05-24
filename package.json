@@ -60,7 +60,7 @@
     "@storybook/addon-docs": "5.3.18",
     "@storybook/addons": "5.3.19",
     "@storybook/preset-create-react-app": "2.1.1",
-    "@storybook/react": "5.3.18",
+    "@storybook/react": "5.3.19",
     "@testing-library/react-hooks": "3.2.1",
     "babel-loader": "8.1.0",
     "bundlesize": "0.18.0",
