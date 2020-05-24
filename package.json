@@ -58,7 +58,7 @@
     "@babel/core": "7.9.0",
     "@firebase/testing": "0.18.2",
     "@storybook/addon-docs": "5.3.18",
-    "@storybook/addons": "5.3.18",
+    "@storybook/addons": "5.3.19",
     "@storybook/preset-create-react-app": "2.1.1",
     "@storybook/react": "5.3.18",
     "@testing-library/react-hooks": "3.2.1",
