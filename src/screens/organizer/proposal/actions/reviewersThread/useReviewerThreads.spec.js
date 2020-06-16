@@ -3,26 +3,26 @@ import { act } from 'react-test-renderer'
 import { renderHook } from '@testing-library/react-hooks'
 
 import {
-  queryOrganizersThread,
-  addOrganizersThreadMessage,
-  updateOrganizersThreadMessage,
-  deleteOrganizersThreadMessage,
+  queryReviewersThread,
+  addReviewersThreadMessage,
+  updateReviewersThreadMessage,
+  deleteReviewersThreadMessage,
 } from 'firebase/proposals'
 import { toDate } from 'helpers/firebase'
 
-import useOrganizerThreads from './useOrganizerThreads'
+import useReviewerThreads from './useReviewerThreads'
 
-describe('useOrganizerThreads', () => {
+describe('useReviewerThreads', () => {
   beforeEach(() => {
-    queryOrganizersThread.mockReset()
-    addOrganizersThreadMessage.mockReset()
-    updateOrganizersThreadMessage.mockReset()
-    deleteOrganizersThreadMessage.mockReset()
+    queryReviewersThread.mockReset()
+    addReviewersThreadMessage.mockReset()
+    updateReviewersThreadMessage.mockReset()
+    deleteReviewersThreadMessage.mockReset()
     toDate.mockReset()
   })
 
   it('should return default values of the hook', async () => {
-    queryOrganizersThread.mockReturnValue({
+    queryReviewersThread.mockReturnValue({
       onSnapshot: (callback) => {
         callback({ docs: [] })
         return () => jest.fn()
@@ -30,7 +30,7 @@ describe('useOrganizerThreads', () => {
     })
 
     const { result } = renderHook(() =>
-      useOrganizerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: {} }),
+      useReviewerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: {} }),
     )
 
     expect(result.current.messages).toEqual([])
@@ -38,7 +38,7 @@ describe('useOrganizerThreads', () => {
 
   it('should return messages', async () => {
     toDate.mockReturnValue('date')
-    queryOrganizersThread.mockReturnValue({
+    queryReviewersThread.mockReturnValue({
       onSnapshot: (callback) => {
         callback({
           docs: [
@@ -58,7 +58,7 @@ describe('useOrganizerThreads', () => {
     })
 
     const { result } = renderHook(() =>
-      useOrganizerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: { uid: 'alice' } }),
+      useReviewerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: { uid: 'alice' } }),
     )
 
     expect(result.current.messages).toEqual([
@@ -75,7 +75,7 @@ describe('useOrganizerThreads', () => {
   })
 
   it('should add a message', async () => {
-    queryOrganizersThread.mockReturnValue({
+    queryReviewersThread.mockReturnValue({
       onSnapshot: (callback) => {
         callback({ docs: [] })
         return () => jest.fn()
@@ -83,18 +83,18 @@ describe('useOrganizerThreads', () => {
     })
 
     const { result } = renderHook(() =>
-      useOrganizerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: {} }),
+      useReviewerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: {} }),
     )
 
     await act(async () => {
       await result.current.saveMessage('hello')
     })
 
-    expect(addOrganizersThreadMessage.mock.calls[0]).toEqual(['eventId', 'proposalId', 'hello', {}])
+    expect(addReviewersThreadMessage.mock.calls[0]).toEqual(['eventId', 'proposalId', 'hello', {}])
   })
 
   it('should update a message', async () => {
-    queryOrganizersThread.mockReturnValue({
+    queryReviewersThread.mockReturnValue({
       onSnapshot: (callback) => {
         callback({ docs: [] })
         return () => jest.fn()
@@ -102,14 +102,14 @@ describe('useOrganizerThreads', () => {
     })
 
     const { result } = renderHook(() =>
-      useOrganizerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: {} }),
+      useReviewerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: {} }),
     )
 
     await act(async () => {
       await result.current.saveMessage('hello', 'message1')
     })
 
-    expect(updateOrganizersThreadMessage.mock.calls[0]).toEqual([
+    expect(updateReviewersThreadMessage.mock.calls[0]).toEqual([
       'eventId',
       'proposalId',
       'message1',
@@ -118,7 +118,7 @@ describe('useOrganizerThreads', () => {
   })
 
   it('should delete a message', async () => {
-    queryOrganizersThread.mockReturnValue({
+    queryReviewersThread.mockReturnValue({
       onSnapshot: (callback) => {
         callback({ docs: [] })
         return () => jest.fn()
@@ -126,14 +126,14 @@ describe('useOrganizerThreads', () => {
     })
 
     const { result } = renderHook(() =>
-      useOrganizerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: {} }),
+      useReviewerThreads({ eventId: 'eventId', proposalId: 'proposalId', user: {} }),
     )
 
     await act(async () => {
       await result.current.deleteMessage('message1')
     })
 
-    expect(deleteOrganizersThreadMessage.mock.calls[0]).toEqual([
+    expect(deleteReviewersThreadMessage.mock.calls[0]).toEqual([
       'eventId',
       'proposalId',
       'message1',
@@ -143,10 +143,10 @@ describe('useOrganizerThreads', () => {
 
 jest.mock('firebase/proposals', () => ({
   __esModule: true,
-  queryOrganizersThread: jest.fn(),
-  addOrganizersThreadMessage: jest.fn(),
-  updateOrganizersThreadMessage: jest.fn(),
-  deleteOrganizersThreadMessage: jest.fn(),
+  queryReviewersThread: jest.fn(),
+  addReviewersThreadMessage: jest.fn(),
+  updateReviewersThreadMessage: jest.fn(),
+  deleteReviewersThreadMessage: jest.fn(),
 }))
 
 jest.mock('helpers/firebase', () => ({
