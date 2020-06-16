@@ -28,7 +28,7 @@ const ReviewersThread = ({ eventId, proposalId, user }) => {
       )}
     >
       <Thread
-        className={styles.organizersThread}
+        className={styles.reviewersThread}
         description="Discuss with other reviewers about this proposal. The speaker WILL NOT see these comments."
         currentUser={user.uid}
         messages={messages}
