@@ -22,14 +22,18 @@ exports[`components/mardown should render correct html for advanced markdown 1`]
 <h2 id=\\"download-tarball\\">Download tarball</h2>
 <p>You can download the latest release tarball directly from <a href=\\"https://github.com/showdownjs/showdown/releases\\">releases</a></p>
 <h2 id=\\"bower\\">Bower</h2>
-<pre><code>bower install showdown</code></pre><h2 id=\\"npm-server-side\\">npm (server-side)</h2>
-<pre><code>npm install showdown</code></pre><h2 id=\\"cdn\\">CDN</h2>
+<pre><code>bower install showdown</code></pre>
+<h2 id=\\"npm-server-side\\">npm (server-side)</h2>
+<pre><code>npm install showdown</code></pre>
+<h2 id=\\"cdn\\">CDN</h2>
 <p>You can also use one of several CDNs available: </p>
 <ul>
 <li><p>rawgit CDN</p>
-<pre><code>  https://cdn.rawgit.com/showdownjs/showdown/&lt;version tag&gt;/dist/showdown.min.js</code></pre></li>
+<pre><code>  https://cdn.rawgit.com/showdownjs/showdown/&lt;version tag&gt;/dist/showdown.min.js</code></pre>
+</li>
 <li><p>cdnjs</p>
-<pre><code>  https://cdnjs.cloudflare.com/ajax/libs/showdown/&lt;version tag&gt;/showdown.min.js</code></pre></li>
+<pre><code>  https://cdnjs.cloudflare.com/ajax/libs/showdown/&lt;version tag&gt;/showdown.min.js</code></pre>
+</li>
 </ul>
 <hr>
 <h1 id=\\"syntax\\">Syntax</h1>
@@ -103,7 +107,7 @@ participated in an assault on a destroyer near the city of Los Angeles.</code></
 long line
 of text</code></pre>
 <p>If you DO want to add soft line breaks (which translate to <code>&lt;br&gt;</code> in HTML) to a paragraph, 
-you can do so by adding 3 space characters to the end of the line (<code></code>).</p>
+you can do so by adding 3 space characters to the end of the line (<code>  </code>).</p>
 <p>You can also force every line break in paragraphs to translate to <code>&lt;br&gt;</code> (as Github does) by
 enabling the option <strong><code>simpleLineBreaks</code></strong>.</p>
 <h2 id=\\"headings\\">Headings</h2>
@@ -157,8 +161,10 @@ This is an H2
 <h2 id=\\"bold-and-italic\\">Bold and Italic</h2>
 <p>You can make text bold or italic.</p>
 <pre><code>*This text will be italic*
-**This text will be bold**</code></pre><p>Both bold and italic can use either a * or an _ around the text for styling. This allows you to combine both bold and italic if needed.</p>
-<pre><code>**Everyone _must_ attend the meeting at 5 o'clock today.**</code></pre><h2 id=\\"strikethrough\\">Strikethrough</h2>
+**This text will be bold**</code></pre>
+<p>Both bold and italic can use either a * or an _ around the text for styling. This allows you to combine both bold and italic if needed.</p>
+<pre><code>**Everyone _must_ attend the meeting at 5 o'clock today.**</code></pre>
+<h2 id=\\"strikethrough\\">Strikethrough</h2>
 <p>With the option <strong><code>strikethrough</code></strong> enabled, Showdown supports strikethrough elements.
 The syntax is the same as GFM, that is, by adding two tilde (<code>~~</code>) characters around
 a word or groups of words.</p>
@@ -185,7 +191,8 @@ a word or groups of words.</p>
 x = 0
 x = 2 + 2
 what is x
-\`\`\`</code></pre><h2 id=\\"lists\\">Lists</h2>
+\`\`\`</code></pre>
+<h2 id=\\"lists\\">Lists</h2>
 <p>Showdown supports ordered (numbered) and unordered (bulleted) lists.</p>
 <h3 id=\\"unordered-lists\\">Unordered lists</h3>
 <p>You can make an unordered list by preceding list items with either a *, a - or a +. Markers are interchangeable too.</p>
@@ -410,7 +417,8 @@ _   underscore
 +   plus sign
 -   minus sign (hyphen)
 .   dot
-!   exclamation mark</code></pre><h3 id=\\"escaping-html-tags\\">Escaping HTML tags</h3>
+!   exclamation mark</code></pre>
+<h3 id=\\"escaping-html-tags\\">Escaping HTML tags</h3>
 <p>Since <a href=\\"https://github.com/showdownjs/showdown/tree/1.7.2\\">version 1.7.2</a> backslash escaping HTML tags is supported when <code>backslashEscapesHTMLTags</code> option is enabled.</p>
 <pre><code class=\\"language-md\\">\\\\&lt;div&gt;a literal div\\\\&lt;/div&gt;</code></pre>
 <h2 id=\\"known-differences-and-gotchas\\">Known differences and Gotchas</h2>
@@ -419,26 +427,28 @@ _   underscore
 <li><p><strong>Since version 1.4.0, showdown supports the markdown=\\"1\\" attribute</strong>, but for older versions, this attribute is ignored. This means:</p>
 <pre><code>  &lt;div markdown=\\"1\\"&gt;
        Markdown does *not* work in here.
-  &lt;/div&gt;</code></pre></li>
+  &lt;/div&gt;</code></pre>
+</li>
 </ul>
 <ul>
 <li><p>You can only nest square brackets in link titles to a depth of two levels:</p>
 <pre><code>  [[fine]](http://www.github.com/)
-  [[[broken]]](http://www.github.com/)</code></pre><p>  If you need more, you can escape them with backslashes.</p>
+  [[[broken]]](http://www.github.com/)</code></pre>
+<p>  If you need more, you can escape them with backslashes.</p>
 </li>
 </ul>
 <ul>
 <li><p>A list is <strong>single paragraph</strong> if it has only <strong>1 line-break separating items</strong> and it becomes <strong>multi paragraph if ANY of its items is separated by 2 line-breaks</strong>:</p>
-<pre><code class=\\"language-md\\">  - foo
+<pre><code class=\\"language-md\\"> - foo
 
-  - bar
-  - baz</code></pre>
+ - bar
+ - baz</code></pre>
 <p> becomes</p>
-<pre><code class=\\"language-html\\">  &lt;ul&gt;
-    &lt;li&gt;&lt;p&gt;foo&lt;/p&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;p&gt;bar&lt;/p&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;p&gt;baz&lt;/p&gt;&lt;/li&gt;
-  &lt;/ul&gt;</code></pre>
+<pre><code class=\\"language-html\\">&lt;ul&gt;
+  &lt;li&gt;&lt;p&gt;foo&lt;/p&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;p&gt;bar&lt;/p&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;p&gt;baz&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 </li>
 </ul>
 <p>This new ruleset is based on the comments of Markdown's author John Gruber in the <a href=\\"https://pairlist6.pair.net/mailman/listinfo/markdown-discuss\\">Markdown discussion list</a>.</p>

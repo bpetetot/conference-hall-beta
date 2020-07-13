@@ -9,11 +9,11 @@ import Badge from './badge'
 
 <Preview>
   <Story name="Basic usage">
-    <>
+    <React.Fragment>
       <Badge>Darth Vader</Badge>
       <Badge>Luke skywalker</Badge>
       <Badge>Yoda</Badge>
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
@@ -21,7 +21,7 @@ import Badge from './badge'
 
 <Preview>
   <Story name="Status">
-    <>
+    <React.Fragment>
       <Badge primary>Primary</Badge>
       <Badge secondary>Secondary</Badge>
       <Badge success>Success</Badge>
@@ -30,7 +30,7 @@ import Badge from './badge'
       <Badge error>Error</Badge>
       <Badge light>light</Badge>
       <Badge dark>Dark</Badge>
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
@@ -38,7 +38,7 @@ import Badge from './badge'
 
 <Preview>
   <Story name="Outline">
-    <>
+    <React.Fragment>
       <Badge primary outline>Primary</Badge>
       <Badge secondary outline>Secondary</Badge>
       <Badge success outline>Success</Badge>
@@ -47,7 +47,7 @@ import Badge from './badge'
       <Badge error outline>Error</Badge>
       <Badge light outline>light</Badge>
       <Badge dark outline>Dark</Badge>
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
@@ -55,13 +55,13 @@ import Badge from './badge'
 
 <Preview>
   <Story name="Pill">
-    <>
+    <React.Fragment>
       <Badge pill>Darth Vader</Badge>
       <Badge pill>Luke skywalker</Badge>
       <Badge pill>Yoda</Badge>
       <Badge pill>9</Badge>
       <Badge pill>100</Badge>
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
@@ -71,7 +71,7 @@ Used to apply badge style to any element.
 
 <Preview>
   <Story name="FaaC">
-    <>
+    <React.Fragment>
       <Badge outline pill>
         {classes => (
           <button className={classes}>
@@ -79,7 +79,7 @@ Used to apply badge style to any element.
           </button>
         )}
       </Badge>
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
