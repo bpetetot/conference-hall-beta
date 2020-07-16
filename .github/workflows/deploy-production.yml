@@ -48,7 +48,7 @@ jobs:
           REACT_APP_STORAGE: ${{ secrets.PROD_FIREBASE_APP_STORAGE }}
           PUBLIC_URL: https://${{ secrets.PROD_FIREBASE_AUTH_DOMAIN }}
           REACT_APP_GOOGLE_ANALYTICS_ID: ${{ secrets.PROD_GOOGLE_ANALYTICS_ID }}
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v2
         with:
           name: build
           path: build
@@ -62,9 +62,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v2
         with:
           name: build
+          path: build
       - run: |
           cd functions
           yarn install --frozen-lockfile
