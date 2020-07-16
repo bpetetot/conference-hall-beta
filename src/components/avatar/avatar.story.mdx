@@ -9,12 +9,12 @@ import Avatar from './avatar'
 
 <Preview>
   <Story name="Basic usage">
-    <>
+    <React.Fragment>
       <Avatar name="Darth Vader" />
       <Avatar name="Luke Skywalker" />
       <Avatar name="Yoda" />
       <Avatar name="C3PO" color="#DA8E03" />
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
@@ -24,11 +24,11 @@ If no `color` prop given a color will be generated from the `name` prop.
 
 <Preview>
   <Story name="With image">
-    <>
+    <React.Fragment>
       <Avatar src="https://upload.wikimedia.org/wikipedia/en/7/76/Darth_Vader.jpg" />
       <Avatar src="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png" />
       <Avatar src="https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png" />
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
@@ -38,11 +38,11 @@ You can give images or SVG as `src` to `<Avatar>` component.
 
 <Preview>
   <Story name="Sizes">
-    <>
+    <React.Fragment>
       <Avatar name="Yoda" size="small" />
       <Avatar name="Yoda" size="medium" />
       <Avatar name="Yoda" size="large" />
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
@@ -54,11 +54,11 @@ Or you can override CSS variable `--cc-avatar-height`, `--cc-avatar-width` and `
 
 <Preview>
   <Story name="Square">
-    <>
+    <React.Fragment>
       <Avatar name="Darth Vader" square />
       <Avatar name="Luke Skywalker" square />
       <Avatar name="Yoda" square />
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
@@ -66,11 +66,11 @@ Or you can override CSS variable `--cc-avatar-height`, `--cc-avatar-width` and `
 
 <Preview>
   <Story name="Label">
-    <>
+    <React.Fragment>
       <Avatar name="Darth Vader" withLabel />
       <Avatar name="Luke Skywalker" withLabel />
       <Avatar name="Yoda" withLabel />
-    </>
+    </React.Fragment>
   </Story>
 </Preview>
 
