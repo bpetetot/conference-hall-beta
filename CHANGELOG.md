@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="0.31.0"></a>
+## 0.31.0 (2020-07-16)
+
+### Changed
+
+- ⬆️ freeze dependency versions [[1fe2928](https://github.com/bpetetot/conference-hall/commit/1fe2928b1894056319ee7bf4782ace4606b1523c)]
+- 🔧 fix download artifact github action ([#814](https://github.com/bpetetot/conference-hall/issues/814)) [[cfb6694](https://github.com/bpetetot/conference-hall/commit/cfb66948bd24d9233cfe148e29136483d27ee3d7)]
+- 🚨 fix linting after linter upgrade [[633c76c](https://github.com/bpetetot/conference-hall/commit/633c76cbe5526524dc29df1255fe83883d7a6229)]
+- ⬆️ upgrade dependencies ([#765](https://github.com/bpetetot/conference-hall/issues/765)) ([#813](https://github.com/bpetetot/conference-hall/issues/813)) [[4487871](https://github.com/bpetetot/conference-hall/commit/44878711ed38268fc881f833f0733f28b034c254)] [[54ea00a](https://github.com/bpetetot/conference-hall/commit/54ea00aed8811f71781060c7eb34c0b77944cb1f)] [[6e37cf1](https://github.com/bpetetot/conference-hall/commit/6e37cf1cc665aed8663e727fb1cb6169c7b78162)]
+
+
 <a name="0.30.0"></a>
 ## 0.30.0 (2020-01-02)
 

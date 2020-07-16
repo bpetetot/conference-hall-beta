@@ -2,7 +2,7 @@
 import React from 'react'
 import { Field } from 'react-final-form'
 import { FieldArray } from 'react-final-form-arrays'
-import uuid from 'uuid/v5'
+import { v5 as uuid } from 'uuid'
 import isEqual from 'lodash/isEqual'
 
 import { Modal } from 'components/portals'
