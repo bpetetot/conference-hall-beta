@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react'
 
 import { toDate } from 'helpers/firebase'
 import {
-  queryOrganizersThread,
-  addOrganizersThreadMessage,
-  updateOrganizersThreadMessage,
-  deleteOrganizersThreadMessage,
+  queryReviewersThread,
+  addReviewersThreadMessage,
+  updateReviewersThreadMessage,
+  deleteReviewersThreadMessage,
 } from 'firebase/proposals'
 
 export default ({ eventId, proposalId, user }) => {
   const [messages, setMessages] = useState([])
 
   useEffect(() => {
-    const query = queryOrganizersThread(eventId, proposalId)
+    const query = queryReviewersThread(eventId, proposalId)
     const unsubscribe = query.onSnapshot((snapshot) => {
       const newMessages = snapshot.docs.map((doc) => {
         const { message, modified, uid, date, displayName, photoURL } = doc.data()
@@ -34,14 +34,14 @@ export default ({ eventId, proposalId, user }) => {
 
   const saveMessage = async (message, messageId) => {
     if (messageId) {
-      await updateOrganizersThreadMessage(eventId, proposalId, messageId, message)
+      await updateReviewersThreadMessage(eventId, proposalId, messageId, message)
     } else {
-      await addOrganizersThreadMessage(eventId, proposalId, message, user)
+      await addReviewersThreadMessage(eventId, proposalId, message, user)
     }
   }
 
   const deleteMessage = (messageId) => {
-    deleteOrganizersThreadMessage(eventId, proposalId, messageId)
+    deleteReviewersThreadMessage(eventId, proposalId, messageId)
   }
 
   return { messages, saveMessage, deleteMessage }

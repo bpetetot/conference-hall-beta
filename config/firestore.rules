@@ -83,8 +83,8 @@ service cloud.firestore {
 
         // ORGANIZERS THREAD
         match /organizersThread/{message} {
-          allow list: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
-          allow create: if authenticated() && canEditEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow list: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
+          allow create: if authenticated() && itsMyEvent(get(/databases/$(database)/documents/events/$(event)));
           allow update: if authenticated() && itsMyMessage(get(/databases/$(database)/documents/events/$(event)/proposals/$(proposal)/organizersThread/$(message)));
           allow delete: if authenticated() && itsMyMessage(get(/databases/$(database)/documents/events/$(event)/proposals/$(proposal)/organizersThread/$(message)));
         }

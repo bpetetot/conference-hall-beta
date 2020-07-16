@@ -7,11 +7,11 @@ import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import Thread from 'components/thread'
 
-import useOrganizerThreads from './useOrganizerThreads'
-import styles from './organizersThread.module.css'
+import useReviewerThreads from './useReviewerThreads'
+import styles from './reviewersThread.module.css'
 
-const OrganizersThread = ({ eventId, proposalId, user }) => {
-  const { messages, saveMessage, deleteMessage } = useOrganizerThreads({
+const ReviewersThread = ({ eventId, proposalId, user }) => {
+  const { messages, saveMessage, deleteMessage } = useReviewerThreads({
     eventId,
     proposalId,
     user,
@@ -20,16 +20,16 @@ const OrganizersThread = ({ eventId, proposalId, user }) => {
   const nbMessages = !isEmpty(messages) ? ` (${messages.length})` : ''
   return (
     <Drawer
-      title="Organizers thread"
+      title="Reviewers thread"
       renderTrigger={({ show }) => (
         <Button secondary onClick={show}>
-          <IconLabel icon="fa fa-comments" label={`Organizers thread${nbMessages}`} />
+          <IconLabel icon="fa fa-comments" label={`Reviewers thread${nbMessages}`} />
         </Button>
       )}
     >
       <Thread
-        className={styles.organizersThread}
-        description="Discuss with other organizers about this proposal. The speaker WILL NOT see these comments."
+        className={styles.reviewersThread}
+        description="Discuss with other reviewers about this proposal. The speaker WILL NOT see these comments."
         currentUser={user.uid}
         messages={messages}
         onSaveMessage={saveMessage}
@@ -39,14 +39,14 @@ const OrganizersThread = ({ eventId, proposalId, user }) => {
   )
 }
 
-OrganizersThread.propTypes = {
+ReviewersThread.propTypes = {
   eventId: PropTypes.string.isRequired,
   proposalId: PropTypes.string.isRequired,
   user: PropTypes.object,
 }
 
-OrganizersThread.defaultProps = {
+ReviewersThread.defaultProps = {
   user: {},
 }
 
-export default OrganizersThread
+export default ReviewersThread
