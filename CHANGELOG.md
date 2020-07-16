@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.32.0"></a>
+## 0.32.0 (2020-07-16)
+
+### Added
+
+- ✨ change organizer thread to reviewers thread ([#809](https://github.com/bpetetot/conference-hall/issues/809)) [[34fe2bf](https://github.com/bpetetot/conference-hall/commit/34fe2bf6b21c7fafac1ed3930f8ff7911b990a95)]
+
+
 <a name="0.31.0"></a>
 ## 0.31.0 (2020-07-16)
 
