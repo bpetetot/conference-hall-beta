@@ -3,28 +3,31 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import { provider } from '@k-ramel/react'
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import withTheme from 'styles/themes/withTheme'
+
 import { AuthProvider } from './features/auth'
-import NotFound from './screens/components/notFound'
-import Conference from './screens/conference'
-import Organizer from './screens/organizer'
-import Speaker from './screens/speaker'
-import Invite from './screens/invite'
+import Home from './screens/conference/home'
+import Login from './screens/conference/login'
+import BetaAccess from './screens/conference/betaAccess'
 
 import store from './store'
 
 import './styles'
 
 const App = ({ className }) => (
-  <AuthProvider>
-    <div className={cn('app', className)}>
-      <Conference />
-      <Organizer />
-      <Speaker />
-      <Invite />
-      <NotFound />
-    </div>
-  </AuthProvider>
+  <div className={cn('app', className)}>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/beta-access" element={<BetaAccess />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
+  </div>
 )
 
 App.propTypes = {
