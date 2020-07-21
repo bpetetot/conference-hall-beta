@@ -1,5 +1,15 @@
 # Changelog
 
+<a name="0.33.0"></a>
+## 0.33.0 (2020-07-21)
+
+### Changed
+
+- ⬆️ migrate to storage rules v2 ([#818](https://github.com/bpetetot/conference-hall/issues/818)) [[afe6242](https://github.com/bpetetot/conference-hall/commit/afe624271d738d93921384d3269ac53957c7b5a4)]
+- ⬆️ migrate to firestore rules v2 ([#817](https://github.com/bpetetot/conference-hall/issues/817)) [[14044b6](https://github.com/bpetetot/conference-hall/commit/14044b63bd862c8a763ba895f0159fe7b164911c)]
+- ⬆️ migrate to node 12 ([#816](https://github.com/bpetetot/conference-hall/issues/816)) [[ee17a00](https://github.com/bpetetot/conference-hall/commit/ee17a00502aebcf82851c80361c264499bf857ef)]
+
+
 <a name="0.32.0"></a>
 ## 0.32.0 (2020-07-16)
 
