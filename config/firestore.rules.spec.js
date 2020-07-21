@@ -17,10 +17,7 @@ function createTalk(app, talkId, uid) {
 }
 
 function createOrganization(app, organizationId, members) {
-  return app
-    .collection('organizations')
-    .doc(organizationId)
-    .set({ members })
+  return app.collection('organizations').doc(organizationId).set({ members })
 }
 
 function createInvite(app, entity, entityId, uid) {
@@ -39,7 +36,7 @@ describe('Firestore rules', () => {
   })
 
   afterAll(async () => {
-    await Promise.all(firebase.apps().map(app => app.delete()))
+    await Promise.all(firebase.apps().map((app) => app.delete()))
   })
 
   beforeEach(async () => {
@@ -62,10 +59,7 @@ describe('Firestore rules', () => {
     it('can update an organization as owner', async () => {
       const alice = authedApp({ uid: 'alice' })
       await createOrganization(alice, 'org1', { alice: 'owner' })
-      const organization = alice
-        .collection('organizations')
-        .doc('org1')
-        .set({ name: 'new name' })
+      const organization = alice.collection('organizations').doc('org1').set({ name: 'new name' })
       await firebase.assertSucceeds(organization)
     })
 
@@ -74,15 +68,9 @@ describe('Firestore rules', () => {
       const bob = authedApp({ uid: 'bob' })
       const tom = authedApp({ uid: 'tom' })
       await createOrganization(alice, 'org1', { alice: 'owner', bob: 'member', tom: 'reviewer' })
-      const update1 = bob
-        .collection('organizations')
-        .doc('org1')
-        .set({ name: 'new name' })
+      const update1 = bob.collection('organizations').doc('org1').set({ name: 'new name' })
       await firebase.assertFails(update1)
-      const update2 = tom
-        .collection('organizations')
-        .doc('org1')
-        .set({ name: 'new name' })
+      const update2 = tom.collection('organizations').doc('org1').set({ name: 'new name' })
       await firebase.assertFails(update2)
     })
 
@@ -91,20 +79,11 @@ describe('Firestore rules', () => {
       const bob = authedApp({ uid: 'bob' })
       const tom = authedApp({ uid: 'tom' })
       await createOrganization(alice, 'org1', { alice: 'owner', bob: 'member', tom: 'reviewer' })
-      const readByOwner = alice
-        .collection('organizations')
-        .doc('org1')
-        .get()
+      const readByOwner = alice.collection('organizations').doc('org1').get()
       await firebase.assertSucceeds(readByOwner)
-      const readByMember = bob
-        .collection('organizations')
-        .doc('org1')
-        .get()
+      const readByMember = bob.collection('organizations').doc('org1').get()
       await firebase.assertSucceeds(readByMember)
-      const readByReviewer = tom
-        .collection('organizations')
-        .doc('org1')
-        .get()
+      const readByReviewer = tom.collection('organizations').doc('org1').get()
       await firebase.assertSucceeds(readByReviewer)
     })
 
@@ -112,10 +91,7 @@ describe('Firestore rules', () => {
       const alice = authedApp({ uid: 'alice' })
       const stranger = authedApp({ uid: 'stranger' })
       await createOrganization(alice, 'org1', { alice: 'owner' })
-      const readByStranger = stranger
-        .collection('organizations')
-        .doc('org1')
-        .get()
+      const readByStranger = stranger.collection('organizations').doc('org1').get()
       await firebase.assertFails(readByStranger)
     })
 
@@ -132,7 +108,11 @@ describe('Firestore rules', () => {
         .get()
       const result = await firebase.assertSucceeds(listOrgs)
       expect(result.docs.length).toEqual(3)
-      expect(result.docs.map(org => org.id)).toEqual(['orgAsMember', 'orgAsOwner', 'orgAsReviewer'])
+      expect(result.docs.map((org) => org.id)).toEqual([
+        'orgAsMember',
+        'orgAsOwner',
+        'orgAsReviewer',
+      ])
     })
 
     it("can't list organizations if no roles", async () => {
@@ -195,12 +175,7 @@ describe('Firestore rules', () => {
       const alice = authedApp({ uid: 'alice' })
       await createTalk(alice, 'talk1', 'alice')
       const { id } = await createInvite(alice, 'talk', 'talk1', 'alice')
-      await firebase.assertSucceeds(
-        alice
-          .collection('invites')
-          .doc(id)
-          .delete(),
-      )
+      await firebase.assertSucceeds(alice.collection('invites').doc(id).delete())
     })
 
     it("can't delete someone else invite", async () => {
@@ -208,12 +183,7 @@ describe('Firestore rules', () => {
       const marie = authedApp({ uid: 'marie' })
       await createTalk(marie, 'talk1', 'marie')
       const { id } = await createInvite(marie, 'talk', 'talk1', 'marie')
-      await firebase.assertFails(
-        alice
-          .collection('invites')
-          .doc(id)
-          .delete(),
-      )
+      await firebase.assertFails(alice.collection('invites').doc(id).delete())
     })
 
     it("everybody can access invite by it's id", async () => {
@@ -280,12 +250,7 @@ describe('Firestore rules', () => {
       const alice = authedApp({ uid: 'alice' })
       await createOrganization(alice, 'organization1', { alice: 'owner' })
       const { id } = await createInvite(alice, 'organization', 'organization1', 'alice')
-      await firebase.assertSucceeds(
-        alice
-          .collection('invites')
-          .doc(id)
-          .delete(),
-      )
+      await firebase.assertSucceeds(alice.collection('invites').doc(id).delete())
     })
 
     it("can't delete someone else invite", async () => {
@@ -293,12 +258,7 @@ describe('Firestore rules', () => {
       const marie = authedApp({ uid: 'marie' })
       await createOrganization(marie, 'organization1', { marie: 'owner' })
       const { id } = await createInvite(marie, 'organization', 'organization1', 'marie')
-      await firebase.assertFails(
-        alice
-          .collection('invites')
-          .doc(id)
-          .delete(),
-      )
+      await firebase.assertFails(alice.collection('invites').doc(id).delete())
     })
 
     it("everybody can access invite by it's id", async () => {
