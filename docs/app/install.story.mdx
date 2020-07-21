@@ -6,7 +6,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ## Pre-requisites
 
-- node@10.21.0
+- node@12
 - yarn
 
 ## Setup
@@ -126,7 +126,9 @@ For more details on debugger within IDE, consult [react-script documentation](ht
 
 The project uses cloud functions for severals features (send emails, export, apis...). Before deploying the application, you need to resolve cloud functions dependencies.
 
-All commands must be done in `/functions` folder with **node@8**
+All commands must be done in `/functions` folder with **node@12**
+
+> Note: The node 12 runtimes require you to enable the Blaze pay-as-you-go billing plan for your Firebase project. This plan provides amounts of invocations, compute time, and internet traffic free of charge.
 
 Cloud functions uses its own `package.json`, first install dependencies:
 
