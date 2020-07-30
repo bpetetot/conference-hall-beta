@@ -2,8 +2,6 @@ import { when } from 'k-ramel'
 
 import * as app from './reactions/app'
 import * as router from './reactions/router'
-import * as auth from './reactions/auth'
-import * as firebase from './reactions/firebase'
 import * as user from './reactions/user'
 import * as talks from './reactions/talks'
 import * as events from './reactions/events'
@@ -15,18 +13,11 @@ import * as survey from './reactions/survey'
 
 export default [
   /* app loaded */
-  when('@@krml/INIT')(firebase.init),
   when('@@krml/INIT')(app.init),
   /* router */
   when('@@router/ROUTE_FOUND')(router.onRouteChanged),
   when('@@router/REPLACE_WITH_NEXT_URL')(router.replaceWithNextUrl),
   when('@@router/REDIRECT_TO_NEXT_URL')(router.redirectToNextUrl),
-  /* firebase actions */
-  when('@@firebase/SIGNED_IN')(auth.signedIn),
-  when('@@firebase/SIGNED_OUT')(auth.signedOut),
-  /* authentication */
-  when('@@ui/SIGN_IN')(auth.signin),
-  when('@@ui/SIGN_OUT')(auth.signout),
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   when('@@ui/SAVE_PROFILE')(user.saveProfile),
