@@ -5,10 +5,13 @@ import { Link } from '@k-redux-router/react-k-ramel'
 import IconLabel from 'components/iconLabel'
 import Avatar from 'components/avatar'
 import Dropdown from 'components/dropdown'
+import { useAuth } from 'features/auth'
 
 import './avatarDropdown.css'
 
-const AvatarDropdown = ({ displayName, photoURL, contributorsRoute, signout }) => {
+const AvatarDropdown = ({ contributorsRoute }) => {
+  const { user, signout } = useAuth()
+  const { displayName, photoURL } = user
   const avatar = <Avatar src={photoURL} name={displayName} className="avatar-dropdown-button" />
   return (
     <Dropdown className="avatar-dropdown" action={avatar} darkMode>
@@ -27,15 +30,7 @@ const AvatarDropdown = ({ displayName, photoURL, contributorsRoute, signout }) =
 }
 
 AvatarDropdown.propTypes = {
-  displayName: PropTypes.string,
-  photoURL: PropTypes.string,
   contributorsRoute: PropTypes.string.isRequired,
-  signout: PropTypes.func.isRequired,
-}
-
-AvatarDropdown.defaultProps = {
-  displayName: undefined,
-  photoURL: undefined,
 }
 
 export default AvatarDropdown

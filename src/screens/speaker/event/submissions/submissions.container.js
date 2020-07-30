@@ -6,7 +6,7 @@ import loader from 'components/loader'
 
 import Submissions from './submissions'
 
-const mapStore = (store, props, { router }) => {
+const mapStore = (store, { userId }, { router }) => {
   const eventId = router.getParam('eventId')
   const talks = store.ui.speaker.myTalks
     .getAsArray()
@@ -22,7 +22,7 @@ const mapStore = (store, props, { router }) => {
     eventName,
     talks,
     loaded,
-    load: () => store.dispatch('@@ui/ON_LOAD_SPEAKER_TALKS'),
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_SPEAKER_TALKS', payload: { userId } }),
     onSelect: (talkId) => router.push('speaker-event-submission-page', { eventId, talkId }),
   }
 }

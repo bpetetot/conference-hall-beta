@@ -4,9 +4,11 @@ import organizationCrud, { fetchUserOrganizations } from 'firebase/organizations
 import { ROLES } from 'firebase/constants'
 
 export const create = async (action, store, { router }) => {
-  const data = action.payload
-  const { uid } = store.auth.get()
-  const newUserOrganization = flow(set(`members.${uid}`, ROLES.OWNER), set(ROLES.OWNER, uid))(data)
+  const { userId, data } = action.payload
+  const newUserOrganization = flow(
+    set(`members.${userId}`, ROLES.OWNER),
+    set(ROLES.OWNER, userId),
+  )(data)
 
   store.ui.loaders.update({ isOrganizationSaving: true })
   const ref = await organizationCrud.create(newUserOrganization)
@@ -38,8 +40,8 @@ export const get = async (action, store, { router }) => {
 }
 
 export const ofUser = async (action, store) => {
-  const { uid } = store.auth.get()
-  const organizations = await fetchUserOrganizations(uid)
+  const { userId } = action.payload
+  const organizations = await fetchUserOrganizations(userId)
   store.data.organizations.set(organizations)
 }
 

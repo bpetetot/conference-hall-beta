@@ -11,5 +11,5 @@ export default [
   when('@@ui/ACCEPT_PROPOSALS')(reactions.acceptProposals),
   when('@@ui/REJECT_PROPOSALS')(reactions.rejectProposals),
   when('@@ui/ON_ADD_PROPOSAL_TO_SELECTION')(reactions.addProposalToSelection),
-  when('@@krf/UPDATE>UI_ORGANIZER>PROPOSALS')(reactions.changeFilter),
+  when('@@ui/CHANGE_PROPOSAL_FILTER')(reactions.changeFilter),
 ]

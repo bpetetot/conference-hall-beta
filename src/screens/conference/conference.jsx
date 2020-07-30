@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { memo } from 'react'
+import { compose } from 'redux'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import Home from './home'
@@ -15,4 +16,4 @@ const Conference = () => (
   </>
 )
 
-export default forRoute('home')(Conference)
+export default compose(memo, forRoute('home'))(Conference)

@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { useAuth } from 'features/auth'
+
 import Talk from './talk'
 import Speakers from './speakers'
 import Ratings from './ratings'
@@ -8,21 +10,23 @@ import Actions from './actions'
 
 import './proposal.css'
 
-const Proposal = ({ eventId, proposal, deliberationActive, blindRating }) => (
-  <div className="proposal">
-    <Actions className="proposal-actions" eventId={eventId} proposal={proposal} />
-    <Ratings className="proposal-ratings" eventId={eventId} proposal={proposal} />
-    {!blindRating && (
-      <Speakers className="proposal-speakers" eventId={eventId} proposal={proposal} />
-    )}
-    <Talk
-      className="proposal-talk"
-      eventId={eventId}
-      proposal={proposal}
-      deliberationActive={deliberationActive}
-    />
-  </div>
-)
+const Proposal = ({ eventId, proposal, deliberationActive, blindRating }) => {
+  const { user } = useAuth()
+
+  return (
+    <div className="proposal">
+      <Actions className="proposal-actions" eventId={eventId} proposal={proposal} />
+      <Ratings className="proposal-ratings" userId={user.uid} />
+      {!blindRating && <Speakers className="proposal-speakers" proposal={proposal} />}
+      <Talk
+        className="proposal-talk"
+        eventId={eventId}
+        proposal={proposal}
+        deliberationActive={deliberationActive}
+      />
+    </div>
+  )
+}
 
 Proposal.propTypes = {
   eventId: PropTypes.string.isRequired,

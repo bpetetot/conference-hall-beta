@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { compose } from 'redux'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
-import { protect } from 'store/reducers/auth'
 import AppLayout from 'layout'
 import Contributors from 'screens/components/contributors'
 import Profile from 'screens/components/profile'
+import { useAuth, protect } from 'features/auth'
+
 import Sidebar from './sidebar'
 import MyTalks from './talks'
 import { TalkEdit, TalkCreate } from './talk/form'
@@ -17,21 +18,24 @@ import EventSubmissions from './event/submissions'
 import EventSubmissionPage from './event/submission'
 import EventSurvey from './event/survey'
 
-const Speaker = () => (
-  <AppLayout sidebar={<Sidebar />}>
-    <Profile />
-    <TalkCreate />
-    <TalkEdit />
-    <TalkSubmission />
-    <Talk />
-    <MyTalks />
-    <EventPage />
-    <EventSubmitWizard />
-    <EventSubmissions />
-    <EventSubmissionPage />
-    <EventSurvey />
-    <Contributors />
-  </AppLayout>
-)
+const Speaker = () => {
+  const { user } = useAuth()
+  return (
+    <AppLayout sidebar={<Sidebar />}>
+      <Profile />
+      <TalkCreate userId={user.uid} />
+      <TalkEdit />
+      <TalkSubmission />
+      <Talk />
+      <MyTalks userId={user.uid} />
+      <EventPage />
+      <EventSubmitWizard userId={user.uid} />
+      <EventSubmissions userId={user.uid} />
+      <EventSubmissionPage />
+      <EventSurvey />
+      <Contributors />
+    </AppLayout>
+  )
+}
 
-export default compose(forRoute('speaker'), protect)(Speaker)
+export default compose(memo, forRoute('speaker'), protect)(Speaker)

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
+import { useAuth } from 'features/auth'
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
@@ -10,7 +11,9 @@ import Thread from 'components/thread'
 import useReviewerThreads from './useReviewerThreads'
 import styles from './reviewersThread.module.css'
 
-const ReviewersThread = ({ eventId, proposalId, user }) => {
+const ReviewersThread = ({ eventId, proposalId }) => {
+  const { user } = useAuth()
+
   const { messages, saveMessage, deleteMessage } = useReviewerThreads({
     eventId,
     proposalId,
@@ -42,11 +45,6 @@ const ReviewersThread = ({ eventId, proposalId, user }) => {
 ReviewersThread.propTypes = {
   eventId: PropTypes.string.isRequired,
   proposalId: PropTypes.string.isRequired,
-  user: PropTypes.object,
-}
-
-ReviewersThread.defaultProps = {
-  user: {},
 }
 
 export default ReviewersThread

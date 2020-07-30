@@ -3,6 +3,7 @@ import React from 'react'
 import { inject } from '@k-ramel/react'
 
 import LoadingIndicator from 'components/loader/loading'
+import { useAuth } from 'features/auth'
 
 const hasAccessEvent = (uid, event, organization) => {
   if (!event) return false
@@ -11,7 +12,10 @@ const hasAccessEvent = (uid, event, organization) => {
 }
 
 export default (Component) => {
-  const AuthorizedEventComponent = ({ canAccess, isEventPage, ...rest }) => {
+  const AuthorizedEventComponent = ({ event, organization, isEventPage, ...rest }) => {
+    const { user } = useAuth()
+    const canAccess = hasAccessEvent(user.uid, event, organization)
+
     if (isEventPage && !canAccess) return <LoadingIndicator />
     return <Component {...rest} />
   }
@@ -19,7 +23,6 @@ export default (Component) => {
   return inject((store, props, { router }) => {
     const eventId = router.getParam('eventId')
     const isEventPage = router.getParam('isEventPage')
-    const { uid } = store.auth.get()
     const event = store.data.events.get(eventId)
     let organization = null
     if (event && event.organization) {
@@ -28,7 +31,8 @@ export default (Component) => {
 
     return {
       isEventPage,
-      canAccess: hasAccessEvent(uid, event, organization),
+      event,
+      organization,
     }
   })(AuthorizedEventComponent)
 }

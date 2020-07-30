@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { memo } from 'react'
+import { compose } from 'redux'
 
 import { forRoute, Link } from '@k-redux-router/react-k-ramel'
 
@@ -11,4 +12,4 @@ const PageNotFound = () => (
   </div>
 )
 
-export default forRoute.notFound()(PageNotFound)
+export default compose(memo, forRoute.notFound())(PageNotFound)

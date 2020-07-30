@@ -7,11 +7,7 @@ import pick from 'lodash/pick'
 import Profile from './profile'
 
 const mapStore = (store) => {
-  const { uid } = store.auth.get()
-  const user = store.data.users.get(uid)
   return {
-    ...user,
-    initialValues: user,
     submitting: store.ui.loaders.get().isProfileSaving,
     setDefault: () => {
       const payload = pick(firebase.auth().currentUser, ['uid', 'email', 'displayName', 'photoURL'])

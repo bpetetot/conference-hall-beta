@@ -10,12 +10,14 @@ import Button from 'components/button'
 import HasRole from 'screens/components/hasRole'
 import { fetchUsersList } from 'firebase/user'
 import { ROLES } from 'firebase/constants'
+import { useAuth } from 'features/auth'
 
 import AddMember from './addMember'
 import MemberRow from './memberRow'
 import './organizationPage.css'
 
-const OrganizationPage = ({ id: organizationId, name, members, addMember, authUserId }) => {
+const OrganizationPage = ({ id: organizationId, name, members, addMember }) => {
+  const { user } = useAuth()
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember, authUs
     })
   }, [members])
 
-  const isOwner = members[authUserId] === ROLES.OWNER
+  const isOwner = members[user.uid] === ROLES.OWNER
   return (
     <div className="organization-page">
       <Titlebar className="organization-header" icon="fa fa-users" title={name}>
@@ -51,12 +53,12 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember, authUs
         className="organization-content"
         array={users}
         noResult="No users yet !"
-        renderRow={(user) => (
+        renderRow={(member) => (
           <MemberRow
-            key={user.uid}
-            user={user}
-            role={members[user.uid]}
-            authUserId={authUserId}
+            key={member.uid}
+            user={member}
+            role={members[member.uid]}
+            authUserId={user.uid}
             isOwner={isOwner}
           />
         )}
@@ -69,7 +71,6 @@ OrganizationPage.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   members: PropTypes.objectOf(PropTypes.string),
-  authUserId: PropTypes.string.isRequired,
   addMember: PropTypes.func.isRequired,
 }
 

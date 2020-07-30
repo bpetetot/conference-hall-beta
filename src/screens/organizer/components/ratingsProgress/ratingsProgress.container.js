@@ -4,9 +4,8 @@ import { getRatingsProgress } from 'store/reducers/data/ratings.selectors'
 
 import RatingsProgress from './ratingsProgress'
 
-const mapStore = (store) => {
-  const { uid } = store.auth.get()
-  const progress = getRatingsProgress(uid, store)
+const mapStore = (store, { userId }) => {
+  const progress = getRatingsProgress(userId, store)
   return progress
 }
 
