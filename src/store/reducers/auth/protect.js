@@ -10,7 +10,6 @@ export default (Component) => {
     // eslint-disable-next-line react/static-property-placement
     static propTypes = {
       authenticated: PropTypes.bool.isRequired,
-      initialized: PropTypes.bool.isRequired,
       userDataLoaded: PropTypes.bool.isRequired,
       redirectLogin: PropTypes.func.isRequired,
     }
@@ -24,8 +23,8 @@ export default (Component) => {
     }
 
     checkAuth = () => {
-      const { authenticated, initialized, redirectLogin } = this.props
-      if (initialized && !authenticated) {
+      const { authenticated, redirectLogin } = this.props
+      if (!authenticated) {
         redirectLogin()
       }
     }

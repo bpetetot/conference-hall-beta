@@ -7,7 +7,7 @@ import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import './login.css'
 
-const Login = ({ authenticated, initialized, providers, signin }) => {
+const Login = ({ authenticated, providers, signin }) => {
   const [authenticating, setAuthenticating] = useState(false)
   const [errorMessage, setErrorMessage] = useState()
 
@@ -25,7 +25,7 @@ const Login = ({ authenticated, initialized, providers, signin }) => {
       })
   }, [])
 
-  if (!initialized || authenticating || authenticated) {
+  if (authenticating || authenticated) {
     return <LoadingIndicator className="login-loading" />
   }
 
@@ -43,7 +43,6 @@ const Login = ({ authenticated, initialized, providers, signin }) => {
 }
 
 Login.propTypes = {
-  initialized: PropTypes.bool,
   authenticated: PropTypes.bool,
   providers: PropTypes.arrayOf(PropTypes.string),
   signin: PropTypes.func.isRequired,
@@ -51,7 +50,6 @@ Login.propTypes = {
 
 Login.defaultProps = {
   providers: [],
-  initialized: false,
   authenticated: false,
 }
 

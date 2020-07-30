@@ -5,29 +5,9 @@ import 'firebase/firestore'
 import 'firebase/functions'
 import 'firebase/storage'
 
-import { initFunctionCalls, preloadFunctions } from 'firebase/functionCalls'
-
-const config = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE,
-}
+import { preloadFunctions } from 'firebase/functionCalls'
 
 export const init = (action, store) => {
-  try {
-    firebase.initializeApp(config)
-
-    // enable firestore
-    firebase.firestore()
-
-    // enable function calls
-    firebase.functions()
-    initFunctionCalls()
-  } catch (error) {
-    console.warn(error.code, error.message)
-  }
-
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       store.dispatch({ type: '@@firebase/SIGNED_IN', payload: user })
