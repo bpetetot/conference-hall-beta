@@ -1,51 +1,33 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { inject } from '@k-ramel/react'
+import { useAuth } from 'features/auth'
+
+const SKIP_BETA_ACCESS = process.env.NODE_ENV === 'development'
 
 export default (Component) => {
-  class BetaRestricted extends React.Component {
-    // eslint-disable-next-line react/static-property-placement
-    static propTypes = {
-      betaAccess: PropTypes.string,
-      skipBetaAccess: PropTypes.bool.isRequired,
-      redirectBetaAccess: PropTypes.func.isRequired,
-    }
+  const BetaRestricted = ({ redirectBetaAccess, ...rest }) => {
+    const { user = {} } = useAuth()
+    const { betaAccess } = user
 
-    // eslint-disable-next-line react/static-property-placement
-    static defaultProps = {
-      betaAccess: undefined,
-    }
-
-    componentDidMount() {
-      this.checkAccess()
-    }
-
-    componentDidUpdate() {
-      this.checkAccess()
-    }
-
-    checkAccess = () => {
-      const { betaAccess, skipBetaAccess, redirectBetaAccess } = this.props
-      if (skipBetaAccess) return
+    useEffect(() => {
+      if (SKIP_BETA_ACCESS) return
       if (!betaAccess) redirectBetaAccess()
-    }
+    }, [betaAccess]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    render() {
-      const { betaAccess, skipBetaAccess, ...rest } = this.props
-      return skipBetaAccess || betaAccess ? <Component {...rest} /> : null
-    }
+    return SKIP_BETA_ACCESS || betaAccess ? <Component {...rest} /> : null
+  }
+
+  BetaRestricted.propTypes = {
+    redirectBetaAccess: PropTypes.func.isRequired,
   }
 
   return inject((store) => {
-    const { uid } = store.auth.get() || {}
-    const { betaAccess } = store.data.users.get(uid) || {}
-
     return {
-      betaAccess,
-      skipBetaAccess: process.env.NODE_ENV === 'development',
-      redirectBetaAccess: () =>
-        store.dispatch({ type: '@@router/REPLACE_WITH_NEXT_URL', payload: 'beta-access' }),
+      redirectBetaAccess: () => {
+        store.dispatch({ type: '@@router/REPLACE_WITH_NEXT_URL', payload: 'beta-access' })
+      },
     }
   })(BetaRestricted)
 }

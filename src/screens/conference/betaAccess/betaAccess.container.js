@@ -7,7 +7,8 @@ import BetaAccess from './betaAccess'
 
 const mapStore = (store) => ({
   error: store.ui.beta.get().error,
-  validateAccessKey: (key) => store.dispatch({ type: '@@ui/CHECK_BETA_ACCESS_KEY', payload: key }),
+  validateAccessKey: (uid, key) =>
+    store.dispatch({ type: '@@ui/CHECK_BETA_ACCESS_KEY', payload: { uid, key } }),
 })
 
 export default compose(

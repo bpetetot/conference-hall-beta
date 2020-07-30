@@ -5,11 +5,10 @@ import userCrud from 'firebase/user'
 
 export default [
   when('@@ui/CHECK_BETA_ACCESS_KEY')(async (action, store) => {
-    const key = action.payload
+    const { uid, key } = action.payload
     const accessRef = await betaAccess.read(key)
 
     if (accessRef.exists) {
-      const { uid } = store.auth.get()
       await userCrud.update({ uid, betaAccess: key })
       store.data.users.update({ uid, betaAccess: key })
       store.ui.beta.reset()
