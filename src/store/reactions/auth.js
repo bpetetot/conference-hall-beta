@@ -39,8 +39,8 @@ export const signout = (action, store, { router }) => {
 export const signedIn = async (action, store) => {
   let user = pick(action.payload, ['uid', 'displayName', 'photoURL', 'email'])
 
-  // set auth initialized and authenticated
-  store.auth.update({ initialized: true, authenticated: true, uid: user.uid })
+  // set auth authenticated
+  store.auth.update({ authenticated: true, uid: user.uid })
 
   // check if user exists in database
   const userRef = await userCrud.read(user.uid)
@@ -63,6 +63,6 @@ export const signedIn = async (action, store) => {
 }
 
 export const signedOut = (action, store) => {
-  store.auth.update({ initialized: true, authenticated: false, uid: undefined })
+  store.auth.update({ authenticated: false, uid: undefined })
   store.data.users.reset()
 }
