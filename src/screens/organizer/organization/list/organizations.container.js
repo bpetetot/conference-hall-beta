@@ -5,10 +5,10 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 import loader from 'components/loader'
 import Organizations from './organizations'
 
-const mapStore = (store, ownProps, { router }) => ({
+const mapStore = (store, { userId }, { router }) => ({
   loaded: store.data.organizations.isInitialized(),
   organizations: store.data.organizations.getAsArray(),
-  load: () => store.dispatch('@@ui/ON_LOAD_USER_ORGANIZATIONS'),
+  load: () => store.dispatch({ type: '@@ui/ON_LOAD_USER_ORGANIZATIONS', payload: { userId } }),
   onSelect: (organizationId) => router.push('organizer-organization-page', { organizationId }),
 })
 

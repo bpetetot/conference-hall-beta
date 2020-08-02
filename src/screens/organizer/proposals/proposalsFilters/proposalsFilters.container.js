@@ -7,7 +7,7 @@ const filterSortOrders = (sortOrders, hideRatings) => {
   return sortOrders.filter((order) => !(/Rating/gm.test(order) && hideRatings))
 }
 
-const mapStore = (store, props, { router }) => {
+const mapStore = (store, { userId }, { router }) => {
   const eventId = router.getParam('eventId')
   const sortOrders = router.getParam('sortOrders')
   const ratings = router.getParam('ratings')
@@ -26,8 +26,11 @@ const mapStore = (store, props, { router }) => {
     filters,
     sortOrders: filterSortOrders(sortOrders, hideRatings),
     deliberationActive: get(settings, 'deliberation.enabled'),
-    onChange: ({ target }) => {
-      store.ui.organizer.proposals.update({ [target.id]: target.value })
+    onChange: (event) => {
+      store.dispatch({
+        type: '@@ui/CHANGE_PROPOSAL_FILTER',
+        payload: { userId, key: event.target.id, value: event.target.value },
+      })
     },
   }
 }

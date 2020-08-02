@@ -4,6 +4,7 @@ import cn from 'classnames'
 import { provider } from '@k-ramel/react'
 
 import withTheme from 'styles/themes/withTheme'
+import { AuthProvider } from './features/auth'
 import NotFound from './screens/components/notFound'
 import Conference from './screens/conference'
 import Organizer from './screens/organizer'
@@ -15,13 +16,15 @@ import store from './store'
 import './styles'
 
 const App = ({ className }) => (
-  <div className={cn('app', className)}>
-    <Conference />
-    <Organizer />
-    <Speaker />
-    <Invite />
-    <NotFound />
-  </div>
+  <AuthProvider>
+    <div className={cn('app', className)}>
+      <Conference />
+      <Organizer />
+      <Speaker />
+      <Invite />
+      <NotFound />
+    </div>
+  </AuthProvider>
 )
 
 App.propTypes = {

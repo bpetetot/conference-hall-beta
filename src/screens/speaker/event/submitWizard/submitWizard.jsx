@@ -17,13 +17,13 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const SubmitWizard = ({ eventId, cfpOpened, eventName, currentStep }) => {
+const SubmitWizard = ({ eventId, userId, cfpOpened, eventName, currentStep }) => {
   if (!eventId || !cfpOpened) return null
   return (
     <div className="submitWizard">
       <EventTitle name={eventName} subtitle="Talk submission" />
       <Stepper steps={steps} currentStep={currentStep} />
-      {currentStep === 0 && <Selection eventId={eventId} eventName={eventName} />}
+      {currentStep === 0 && <Selection eventId={eventId} eventName={eventName} userId={userId} />}
       {currentStep === 1 && <TalkDetails eventId={eventId} eventName={eventName} />}
       {currentStep === 2 && <TalkSubmission eventId={eventId} eventName={eventName} />}
       {currentStep === 3 && <TalkSubmitted eventId={eventId} eventName={eventName} />}
@@ -32,6 +32,7 @@ const SubmitWizard = ({ eventId, cfpOpened, eventName, currentStep }) => {
 }
 
 SubmitWizard.propTypes = {
+  userId: PropTypes.string,
   eventId: PropTypes.string,
   cfpOpened: PropTypes.bool,
   eventName: PropTypes.string,
@@ -39,6 +40,7 @@ SubmitWizard.propTypes = {
 }
 
 SubmitWizard.defaultProps = {
+  userId: undefined,
   eventId: undefined,
   cfpOpened: false,
   eventName: undefined,

@@ -4,10 +4,10 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import TalkForm from './talkForm'
 
-const mapStore = (store) => ({
+const mapStore = (store, { userId }) => ({
   submitting: store.ui.loaders.get().isTalkSaving,
-  onSubmit: (payload) => {
-    store.dispatch({ type: '@@ui/ON_CREATE_TALK', payload })
+  onSubmit: (data) => {
+    store.dispatch({ type: '@@ui/ON_CREATE_TALK', payload: { userId, data } })
   },
 })
 

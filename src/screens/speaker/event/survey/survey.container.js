@@ -6,13 +6,11 @@ import loader from 'components/loader'
 import SpeakerSurvey from './survey'
 
 const mapState = (store, props, { router }) => {
-  const { uid } = store.auth.get()
   const eventId = router.getParam('eventId')
   const { name } = store.data.events.get(eventId) || {}
   return {
-    loaded: store.data.events.hasKey(eventId),
-    uid,
     name,
+    loaded: store.data.events.hasKey(eventId),
     load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId }),
   }
 }

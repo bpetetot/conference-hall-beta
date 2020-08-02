@@ -4,10 +4,14 @@ import capitalize from 'lodash/capitalize'
 
 import { ConfirmationPopin } from 'components/portals'
 import { ROLES } from 'firebase/constants'
+import { useAuth } from 'features/auth'
 
 import RoleText from './roleText'
 
-const ChangeRoleSelect = ({ user, role, isAuthenticatedUser, changeMemberRole }) => {
+const ChangeRoleSelect = ({ user, role, changeMemberRole }) => {
+  const { user: authUser } = useAuth()
+  const isAuthenticatedUser = authUser.uid === user.uid
+
   const [selectedRole, setSelectedRole] = useState(role)
 
   if (isAuthenticatedUser) return null
@@ -41,7 +45,6 @@ const ChangeRoleSelect = ({ user, role, isAuthenticatedUser, changeMemberRole })
 
 ChangeRoleSelect.propTypes = {
   user: PropTypes.object.isRequired,
-  isAuthenticatedUser: PropTypes.bool.isRequired,
   role: PropTypes.string,
   changeMemberRole: PropTypes.func.isRequired,
 }

@@ -1,10 +1,8 @@
-import flow from 'lodash/fp/flow'
 import isEqual from 'lodash/fp/isEqual'
-import omit from 'lodash/fp/omit'
-import over from 'lodash/fp/over'
 import pick from 'lodash/fp/pick'
 import update from 'lodash/fp/update'
 import pickBy from 'lodash/fp/pickBy'
+import omitBy from 'lodash/omitBy'
 import toLower from 'lodash/toLower'
 import deburr from 'lodash/deburr'
 
@@ -42,7 +40,7 @@ export const setProposalFiltersFromRouter = (action, store, { router }) => {
 
 /* Send email to a selection of proposals */
 export const sendEmails = async (action, store, { router }) => {
-  const { selection } = action.payload
+  const { selection, userId } = action.payload
   if (!selection) return
 
   const eventId = router.getParam('eventId')
@@ -53,12 +51,12 @@ export const sendEmails = async (action, store, { router }) => {
       firebase.updateProposal(eventId, proposal)
     }
   }
-  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+  store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } })
 }
 
 /* reject several proposals */
 export const rejectProposals = async (action, store, { router }) => {
-  const { selection } = action.payload
+  const { selection, userId } = action.payload
   if (!selection) return
 
   const eventId = router.getParam('eventId')
@@ -70,12 +68,12 @@ export const rejectProposals = async (action, store, { router }) => {
       firebase.updateProposal(eventId, proposal)
     }
   }
-  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+  store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } })
 }
 
 /* accept several proposals */
 export const acceptProposals = async (action, store, { router }) => {
-  const { selection } = action.payload
+  const { selection, userId } = action.payload
   if (!selection) return
 
   const eventId = router.getParam('eventId')
@@ -87,7 +85,7 @@ export const acceptProposals = async (action, store, { router }) => {
       firebase.updateProposal(eventId, proposal)
     }
   }
-  store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+  store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } })
 }
 
 /* select a proposal to send email */
@@ -137,10 +135,10 @@ export const loadProposals = async (action, store, { router }) => {
   store.ui.organizer.proposalsPaging.reset()
 
   const eventId = router.getParam('eventId')
-  const { uid } = store.auth.get()
+  const { userId } = action.payload
 
   const filters = store.ui.organizer.proposals.get()
-  const proposals = await firebase.fetchEventProposals(eventId, uid, filters)
+  const proposals = await firebase.fetchEventProposals(eventId, userId, filters)
   let props = await Promise.all(
     proposals.map(async (proposal) => {
       const prop = { ...proposal }
@@ -188,24 +186,20 @@ export const selectProposal = async (action, store, { router }) => {
 
 /* when filters changes synchronize filters with url and load proposals */
 export const changeFilter = async (action, store, { router }) => {
-  const [removedFilters, addedOrModifiedFilters] = over([
-    flow(
-      pickBy((filter) => !filter),
-      Object.keys,
-    ),
-    pickBy((filter) => filter),
-  ])(action.payload)
+  const { userId, key, value } = action.payload
 
-  const query = router.getQueryParams()
-  const updatedQuery = flow(omit(removedFilters), (filters) => ({
-    ...filters,
-    ...addedOrModifiedFilters,
-  }))(query)
+  store.ui.organizer.proposals.update({ [key]: value })
 
-  if (!isEqual(query, updatedQuery)) {
+  const oldQuery = router.getQueryParams()
+  let newQuery = { ...oldQuery, [key]: value }
+  if (!value) {
+    newQuery = omitBy(newQuery, key)
+  }
+
+  if (!isEqual(oldQuery, newQuery)) {
     const route = router.getCurrentCode()
     const pathParams = router.getPathParams()
-    router.replace(route, pathParams, updatedQuery)
-    store.dispatch('@@ui/ON_LOAD_EVENT_PROPOSALS')
+    router.replace(route, pathParams, newQuery)
+    store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } })
   }
 }

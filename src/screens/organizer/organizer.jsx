@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { compose } from 'redux'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
-import { protect } from 'store/reducers/auth'
 import AppLayout from 'layout'
 import Contributors from 'screens/components/contributors'
 import Profile from 'screens/components/profile'
+import { useAuth, protect } from 'features/auth'
+import { restrictBeta } from 'features/beta'
+
 import Sidebar from './sidebar'
 import isEventAuthorized from './isEventAutorized'
-
-import { restrictBeta } from '../conference/betaAccess'
 import EventCreate from './event/create'
 import EventEdit from './event/edit'
 import Event from './event/page'
@@ -21,21 +21,30 @@ import OrganizationsList from './organization/list'
 import Proposals from './proposals'
 import Proposal from './proposal'
 
-const Organizer = () => (
-  <AppLayout sidebar={<Sidebar />}>
-    <Profile />
-    <EventCreate />
-    <EventEdit />
-    <Event />
-    <MyEvents />
-    <OrganizationCreate />
-    <OrganizationEdit />
-    <OrganizationPage />
-    <OrganizationsList />
-    <Proposals />
-    <Proposal />
-    <Contributors />
-  </AppLayout>
-)
+const Organizer = () => {
+  const { user } = useAuth()
+  return (
+    <AppLayout sidebar={<Sidebar />}>
+      <Profile />
+      <EventCreate userId={user.uid} />
+      <EventEdit />
+      <Event />
+      <MyEvents userId={user.uid} />
+      <OrganizationCreate userId={user.uid} />
+      <OrganizationEdit />
+      <OrganizationPage />
+      <OrganizationsList userId={user.uid} />
+      <Proposals />
+      <Proposal />
+      <Contributors />
+    </AppLayout>
+  )
+}
 
-export default compose(forRoute('organizer'), protect, restrictBeta, isEventAuthorized)(Organizer)
+export default compose(
+  memo,
+  forRoute('organizer'),
+  protect,
+  restrictBeta,
+  isEventAuthorized,
+)(Organizer)

@@ -12,9 +12,8 @@ import eventCrud, {
 } from 'firebase/events'
 
 export const createEvent = async (action, store, { router }) => {
-  const { uid } = store.auth.get()
-  const eventData = action.payload
-  const event = { ...eventData, owner: uid }
+  const { userId, data } = action.payload
+  const event = { ...data, owner: userId }
 
   store.ui.loaders.update({ isEventSaving: true })
   const ref = await eventCrud.create(event)
@@ -81,10 +80,10 @@ export const fetchEvent = async (action, store, { router }) => {
 }
 
 export const fetchOrganizerEvents = async (action, store, { router }) => {
-  const { uid } = store.auth.get()
+  const { userId } = action.payload
   const organizations = store.data.organizations.getKeys()
 
-  const result = await fetchUserEvents(uid)
+  const result = await fetchUserEvents(userId)
   const events = result.docs.map((ref) => ({ id: ref.id, ...ref.data() }))
   const organizationsEvents = await Promise.all(
     map(organizations, async (organizationId) => {

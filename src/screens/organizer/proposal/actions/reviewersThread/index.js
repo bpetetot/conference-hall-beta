@@ -1,1 +1,1 @@
-export { default } from './reviewersThread.container'
+export { default } from './reviewersThread'

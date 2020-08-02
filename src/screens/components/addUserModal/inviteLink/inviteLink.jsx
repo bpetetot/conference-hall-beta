@@ -4,16 +4,19 @@ import PropTypes from 'prop-types'
 import CopyInput from 'components/copyInput'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel/iconLabel'
+import { useAuth } from 'features/auth'
 
 import useInviteLink from './useInviteLink'
 import styles from './inviteLink.module.css'
 
-const InviteLink = ({ entity, entityId, entityTitle, uid }) => {
+const InviteLink = ({ entity, entityId, entityTitle }) => {
+  const { user } = useAuth()
+
   const { generate, revoke, loading, inviteLink } = useInviteLink({
     entity,
     entityId,
     entityTitle,
-    uid,
+    uid: user.uid,
   })
 
   if (!inviteLink || loading) {
@@ -38,7 +41,6 @@ InviteLink.propTypes = {
   entity: PropTypes.string.isRequired,
   entityId: PropTypes.string.isRequired,
   entityTitle: PropTypes.string.isRequired,
-  uid: PropTypes.string.isRequired,
 }
 
 export default InviteLink

@@ -4,7 +4,7 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import EventForm from '../form'
 
-const mapStore = (store) => ({
+const mapStore = (store, { userId }) => ({
   submitting: store.ui.loaders.get().isEventSaving,
   isCreateForm: true,
   organizations: store.data.organizations.getAsArray(),
@@ -17,8 +17,11 @@ const mapStore = (store) => ({
     store.dispatch({
       type: '@@ui/ON_CREATE_EVENT',
       payload: {
-        ...values,
-        visibility: values.visibility ? 'private' : 'public',
+        userId,
+        data: {
+          ...values,
+          visibility: values.visibility ? 'private' : 'public',
+        },
       },
     })
   },

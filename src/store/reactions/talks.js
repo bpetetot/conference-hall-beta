@@ -3,15 +3,14 @@ import { set, unset } from 'immutadot'
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 
 export const createTalk = async (action, store, { router }) => {
-  const talk = action.payload
-  const { uid } = store.auth.get()
+  const { userId, data } = action.payload
 
   store.ui.loaders.update({ isTalkSaving: true })
   const ref = await talkCrud.create({
-    ...talk,
-    owner: uid,
+    ...data,
+    owner: userId,
     archived: false,
-    speakers: { [uid]: true },
+    speakers: { [userId]: true },
   })
   store.ui.loaders.update({ isTalkSaving: false })
 
@@ -51,8 +50,8 @@ export const fetchTalk = async (action, store, { router }) => {
 }
 
 export const fetchSpeakerTalks = async (action, store) => {
-  const { uid } = store.auth.get()
-  const talks = await fetchUserTalks(uid)
+  const { userId } = action.payload
+  const talks = await fetchUserTalks(userId)
   // set talks in the store
   store.data.talks.set(talks)
   // set talks id to the speaker talk store

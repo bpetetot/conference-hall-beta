@@ -1,1 +1,1 @@
-export { default } from './inviteLink.container'
+export { default } from './inviteLink'

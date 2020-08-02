@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { compose } from 'redux'
 import { forRoute } from '@k-redux-router/react-k-ramel'
 
-import { protect } from 'store/reducers/auth'
+import { protect } from 'features/auth'
 import AppLayout from 'layout'
 
 import InvitePage from './invitePage'
@@ -13,4 +13,4 @@ const Invite = () => (
   </AppLayout>
 )
 
-export default compose(forRoute.absolute('invite'), protect)(Invite)
+export default compose(memo, forRoute.absolute('invite'), protect)(Invite)

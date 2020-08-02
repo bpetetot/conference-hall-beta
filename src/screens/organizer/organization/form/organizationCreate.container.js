@@ -4,10 +4,10 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import OrganizationForm from './organizationForm'
 
-const mapStore = (store) => ({
+const mapStore = (store, { userId }) => ({
   submitting: store.ui.loaders.get().isOrganizationSaving,
-  onSubmit: (payload) => {
-    store.dispatch({ type: '@@ui/ON_CREATE_ORGANIZATION', payload })
+  onSubmit: (data) => {
+    store.dispatch({ type: '@@ui/ON_CREATE_ORGANIZATION', payload: { userId, data } })
   },
 })
 

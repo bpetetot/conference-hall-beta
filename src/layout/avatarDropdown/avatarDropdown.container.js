@@ -3,9 +3,6 @@ import { inject } from '@k-ramel/react'
 import AvatarDropdown from './avatarDropdown'
 
 const mapStore = (store, props, { router }) => {
-  const { uid } = store.auth.get()
-  const { displayName, photoURL } = store.data.users.get(uid) || {}
-
   let contributorsRoute = 'public-contributors'
   if (router.getParam('root') === 'speaker') {
     contributorsRoute = 'speaker-contributors'
@@ -13,12 +10,7 @@ const mapStore = (store, props, { router }) => {
     contributorsRoute = 'organizer-contributors'
   }
 
-  return {
-    displayName,
-    photoURL,
-    contributorsRoute,
-    signout: () => store.dispatch('@@ui/SIGN_OUT'),
-  }
+  return { contributorsRoute }
 }
 
 export default inject(mapStore)(AvatarDropdown)
