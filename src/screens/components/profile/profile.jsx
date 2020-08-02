@@ -1,5 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { forRoute } from '@k-redux-router/react-k-ramel'
+
 import { Form } from 'react-final-form'
 import Field from 'components/form/field'
 import Button from 'components/button'
@@ -14,27 +15,31 @@ import { useAuth } from 'features/auth'
 const validateEmail = validators.validate([validators.required, validators.email])
 const validatePhoto = validators.validate([validators.required, validators.url])
 
-const Profile = ({ onSubmit, submitting, setDefault }) => {
-  const { user } = useAuth()
+const Profile = () => {
+  const { user, updateUser, resetUserFromProvider } = useAuth()
   const { displayName, photoURL, email } = user
 
   return (
-    <div className="profile">
-      <div className="profile-header card">
-        <Avatar name={displayName} src={photoURL} className="profile-avatar" square />
-        <div className="profile-infos">
-          <h1>{displayName}</h1>
-          <small>{email}</small>
-        </div>
-        <div className="profile-button">
-          <Button secondary loading={submitting} disabled={submitting} onClick={setDefault}>
-            Set defaults from auth provider
-          </Button>
-        </div>
-      </div>
-
-      <Form onSubmit={onSubmit} initialValues={user}>
-        {({ handleSubmit, pristine, invalid }) => (
+    <Form onSubmit={updateUser} initialValues={user}>
+      {({ handleSubmit, pristine, invalid, submitting }) => (
+        <div className="profile">
+          <div className="profile-header card">
+            <Avatar name={displayName} src={photoURL} className="profile-avatar" square />
+            <div className="profile-infos">
+              <h1>{displayName}</h1>
+              <small>{email}</small>
+            </div>
+            <div className="profile-button">
+              <Button
+                secondary
+                loading={submitting}
+                disabled={submitting}
+                onClick={resetUserFromProvider}
+              >
+                Set defaults from auth provider
+              </Button>
+            </div>
+          </div>
           <form className="profile-form card">
             <Field
               name="displayName"
@@ -98,20 +103,10 @@ const Profile = ({ onSubmit, submitting, setDefault }) => {
               Save profile
             </SubmitButton>
           </form>
-        )}
-      </Form>
-    </div>
+        </div>
+      )}
+    </Form>
   )
 }
 
-Profile.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  setDefault: PropTypes.func.isRequired,
-  submitting: PropTypes.bool,
-}
-
-Profile.defaultProps = {
-  submitting: false,
-}
-
-export default Profile
+export default forRoute(['speaker-profile', 'organizer-profile'])(Profile)

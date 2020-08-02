@@ -20,7 +20,6 @@ export default [
   when('@@router/REDIRECT_TO_NEXT_URL')(router.redirectToNextUrl),
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
-  when('@@ui/SAVE_PROFILE')(user.saveProfile),
   /* talks */
   when('@@ui/ON_CREATE_TALK')(talks.createTalk),
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
