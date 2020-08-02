@@ -2,6 +2,7 @@
 import React from 'react'
 import { inject } from '@k-ramel/react'
 
+import loader from 'components/loader'
 import LoadingIndicator from 'components/loader/loading'
 import { useAuth } from 'features/auth'
 
@@ -20,7 +21,7 @@ export default (Component) => {
     return <Component {...rest} />
   }
 
-  return inject((store, props, { router }) => {
+  return inject((store, { userId }, { router }) => {
     const eventId = router.getParam('eventId')
     const isEventPage = router.getParam('isEventPage')
     const event = store.data.events.get(eventId)
@@ -30,9 +31,11 @@ export default (Component) => {
     }
 
     return {
+      loaded: store.data.organizations.isInitialized(),
+      load: () => store.dispatch({ type: '@@ui/ON_LOAD_USER_ORGANIZATIONS', payload: { userId } }),
       isEventPage,
       event,
       organization,
     }
-  })(AuthorizedEventComponent)
+  })(loader(AuthorizedEventComponent))
 }

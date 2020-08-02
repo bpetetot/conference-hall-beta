@@ -24,7 +24,7 @@ export default (Component) => {
       return null
     }
 
-    return <Component {...rest} />
+    return <Component userId={user.uid} {...rest} />
   }
 
   ProtectedComponent.propTypes = {
