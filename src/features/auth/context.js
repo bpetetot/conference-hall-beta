@@ -12,7 +12,7 @@ const AuthContext = React.createContext()
 
 export const useAuth = () => useContext(AuthContext)
 
-export const AuthContextProvider = ({ children, resetStore }) => {
+export const AuthContextProvider = ({ children, resetStore, goToHome }) => {
   const [user, setUser] = useState()
   const [loading, setLoading] = useState(true)
 
@@ -70,9 +70,9 @@ export const AuthContextProvider = ({ children, resetStore }) => {
   const signout = useCallback(async () => {
     setLoading(true)
     firebase.auth().signOut()
-    // TODO router.push('home')
+    goToHome()
     localStorage.removeItem('currentEventId')
-  }, [])
+  }, [goToHome])
 
   const updateUser = useCallback(
     async (data) => {
@@ -98,11 +98,13 @@ export const AuthContextProvider = ({ children, resetStore }) => {
 
 AuthContextProvider.propTypes = {
   resetStore: PropTypes.func.isRequired,
+  goToHome: PropTypes.func.isRequired,
   children: PropTypes.any.isRequired,
 }
 
-export const AuthProvider = inject((store) => {
+export const AuthProvider = inject((store, props, { router }) => {
   return {
     resetStore: () => store.data.reset(),
+    goToHome: () => router.push('home'),
   }
 })(AuthContextProvider)
