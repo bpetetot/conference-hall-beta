@@ -1,19 +1,28 @@
-import React, { useCallback } from 'react'
-import PropTypes from 'prop-types'
+import React, { useCallback, useState } from 'react'
+import { func } from 'prop-types'
 
-import InputButton from 'components/form/inputButton'
+import { isValidBetaAccessKey } from 'firebase/betaAccess'
 import { useAuth } from 'features/auth'
+import InputButton from 'components/form/inputButton'
 
 import styles from './betaAccess.module.css'
 
-const BetaAccess = ({ validateAccessKey, error }) => {
-  const { user } = useAuth()
-  const { uid } = user
+const BetaAccess = ({ redirectToNextUrl }) => {
+  const { updateUser } = useAuth()
+  const [error, setError] = useState()
 
-  const handleAccess = useCallback((value) => validateAccessKey(uid, value), [
-    uid,
-    validateAccessKey,
-  ])
+  const onValidateBetaKey = useCallback(
+    async (betaAccess) => {
+      const valid = await isValidBetaAccessKey(betaAccess)
+      if (valid) {
+        await updateUser({ betaAccess })
+        redirectToNextUrl(betaAccess)
+      } else {
+        setError('Sorry, invalid beta access key.')
+      }
+    },
+    [redirectToNextUrl, updateUser],
+  )
 
   return (
     <div className={styles.wrapper}>
@@ -24,7 +33,7 @@ const BetaAccess = ({ validateAccessKey, error }) => {
           btnLabel="Access beta"
           type="text"
           placeholder="Please type your beta access key here"
-          onClick={handleAccess}
+          onClick={onValidateBetaKey}
         />
       </div>
       <div className={styles.request}>
@@ -38,12 +47,7 @@ const BetaAccess = ({ validateAccessKey, error }) => {
 }
 
 BetaAccess.propTypes = {
-  validateAccessKey: PropTypes.func.isRequired,
-  error: PropTypes.string,
-}
-
-BetaAccess.defaultProps = {
-  error: undefined,
+  redirectToNextUrl: func.isRequired,
 }
 
 export default BetaAccess

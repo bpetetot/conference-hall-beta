@@ -8,13 +8,13 @@ const SKIP_BETA_ACCESS = process.env.NODE_ENV === 'development'
 
 export default (Component) => {
   const BetaRestricted = ({ redirectBetaAccess, ...rest }) => {
-    const { user = {} } = useAuth()
+    const { user } = useAuth()
     const { betaAccess } = user
 
     useEffect(() => {
       if (SKIP_BETA_ACCESS) return
       if (!betaAccess) redirectBetaAccess()
-    }, [betaAccess]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [betaAccess, redirectBetaAccess])
 
     return SKIP_BETA_ACCESS || betaAccess ? <Component {...rest} /> : null
   }

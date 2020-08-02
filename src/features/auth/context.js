@@ -72,10 +72,14 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('currentEventId')
   }, [])
 
-  const updateUser = useCallback(async (updatedUser) => {
-    setUser(updatedUser)
-    return userCrud.update(updatedUser)
-  }, [])
+  const updateUser = useCallback(
+    async (data) => {
+      const updatedUser = { ...user, ...data }
+      setUser(updatedUser)
+      return userCrud.update(updatedUser)
+    },
+    [user],
+  )
 
   const resetUserFromProvider = useCallback(async () => {
     const data = pick(firebase.auth().currentUser, ['uid', 'email', 'displayName', 'photoURL'])
