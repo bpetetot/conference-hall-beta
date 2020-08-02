@@ -11,8 +11,12 @@ import './avatarDropdown.css'
 
 const AvatarDropdown = ({ contributorsRoute }) => {
   const { user, signout } = useAuth()
+
+  if (!user) return null
+
   const { displayName, photoURL } = user
   const avatar = <Avatar src={photoURL} name={displayName} className="avatar-dropdown-button" />
+
   return (
     <Dropdown className="avatar-dropdown" action={avatar} darkMode>
       <div>{displayName}</div>
