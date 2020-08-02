@@ -1,10 +1,8 @@
-import flow from 'lodash/fp/flow'
 import isEqual from 'lodash/fp/isEqual'
-import omit from 'lodash/fp/omit'
-import over from 'lodash/fp/over'
 import pick from 'lodash/fp/pick'
 import update from 'lodash/fp/update'
 import pickBy from 'lodash/fp/pickBy'
+import omitBy from 'lodash/omitBy'
 import toLower from 'lodash/toLower'
 import deburr from 'lodash/deburr'
 
@@ -192,24 +190,16 @@ export const changeFilter = async (action, store, { router }) => {
 
   store.ui.organizer.proposals.update({ [key]: value })
 
-  const [removedFilters, addedOrModifiedFilters] = over([
-    flow(
-      pickBy((filter) => !filter),
-      Object.keys,
-    ),
-    pickBy((filter) => filter),
-  ])(action.payload)
+  const oldQuery = router.getQueryParams()
+  let newQuery = { ...oldQuery, [key]: value }
+  if (!value) {
+    newQuery = omitBy(newQuery, key)
+  }
 
-  const query = router.getQueryParams()
-  const updatedQuery = flow(omit(removedFilters), (filters) => ({
-    ...filters,
-    ...addedOrModifiedFilters,
-  }))(query)
-
-  if (!isEqual(query, updatedQuery)) {
+  if (!isEqual(oldQuery, newQuery)) {
     const route = router.getCurrentCode()
     const pathParams = router.getPathParams()
-    router.replace(route, pathParams, updatedQuery)
+    router.replace(route, pathParams, newQuery)
     store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } })
   }
 }
