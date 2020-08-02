@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect, useContext, useCallback, useMemo } from 'react'
+import { inject } from '@k-ramel/react'
 import PropTypes from 'prop-types'
 import firebase from 'firebase/app'
 import pick from 'lodash/pick'
@@ -11,7 +12,7 @@ const AuthContext = React.createContext()
 
 export const useAuth = () => useContext(AuthContext)
 
-export const AuthProvider = ({ children }) => {
+export const AuthContextProvider = ({ children, resetStore }) => {
   const [user, setUser] = useState()
   const [loading, setLoading] = useState(true)
 
@@ -33,10 +34,11 @@ export const AuthProvider = ({ children }) => {
         preloadFunctions()
       } else {
         setUser(null)
+        resetStore()
       }
       setLoading(false)
     })
-  }, [])
+  }, [resetStore])
 
   const signin = useCallback(async (providerName) => {
     setLoading(true)
@@ -94,6 +96,13 @@ export const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-AuthProvider.propTypes = {
+AuthContextProvider.propTypes = {
+  resetStore: PropTypes.func.isRequired,
   children: PropTypes.any.isRequired,
 }
+
+export const AuthProvider = inject((store) => {
+  return {
+    resetStore: () => store.data.reset(),
+  }
+})(AuthContextProvider)

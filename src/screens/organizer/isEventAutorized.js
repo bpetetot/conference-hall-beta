@@ -16,7 +16,6 @@ export default (Component) => {
   const AuthorizedEventComponent = ({ event, organization, isEventPage, ...rest }) => {
     const { user } = useAuth()
     const canAccess = hasAccessEvent(user.uid, event, organization)
-
     if (isEventPage && !canAccess) return <LoadingIndicator />
     return <Component {...rest} />
   }
@@ -32,7 +31,10 @@ export default (Component) => {
 
     return {
       loaded: store.data.organizations.isInitialized(),
-      load: () => store.dispatch({ type: '@@ui/ON_LOAD_USER_ORGANIZATIONS', payload: { userId } }),
+      load: () => {
+        store.dispatch('@@ui/ON_LOAD_EVENT')
+        store.dispatch({ type: '@@ui/ON_LOAD_USER_ORGANIZATIONS', payload: { userId } })
+      },
       isEventPage,
       event,
       organization,
