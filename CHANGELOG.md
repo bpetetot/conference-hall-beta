@@ -1,5 +1,15 @@
 # Changelog
 
+<a name="0.34.0"></a>
+## 0.34.0 (2020-08-02)
+
+### Changed
+
+- ⬆️ upgrade dependencies ([#823](https://github.com/bpetetot/conference-hall/issues/823)) [[85f71b3](https://github.com/bpetetot/conference-hall/commit/85f71b3bef9c16716341f3b3c1f67090dc127c38)]
+- ♻️ refactor authentication with hooks ([#822](https://github.com/bpetetot/conference-hall/issues/822)) [[69d6bda](https://github.com/bpetetot/conference-hall/commit/69d6bda2d1033d35dfe37dbc74f2220078e36753)]
+- ♻️ initialize firebase on app start ([#820](https://github.com/bpetetot/conference-hall/issues/820)) [[15dfe22](https://github.com/bpetetot/conference-hall/commit/15dfe228c9303ecfb80abf55a8950a12c96fa303)]
+
+
 <a name="0.33.0"></a>
 ## 0.33.0 (2020-07-21)
 
