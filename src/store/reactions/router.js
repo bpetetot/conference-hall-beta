@@ -36,20 +36,3 @@ export const replaceWithNextUrl = (action, store, { router }) => {
 
   return router.replace(route, null, nextParams)
 }
-
-// go to the redirect url if exists
-export const redirectToNextUrl = (action, store, { router }) => {
-  if (!router.isFound()) return
-
-  const redirect = router.getParam('redirect')
-
-  if (redirect) {
-    const rawParams = router.getParam('params') && decodeURIComponent(router.getParam('params'))
-    const rawQuery = router.getParam('query') && decodeURIComponent(router.getParam('query'))
-
-    const params = rawParams && JSON.parse(rawParams)
-    const query = rawQuery && JSON.parse(rawQuery)
-
-    router.replace(redirect, params, query)
-  }
-}

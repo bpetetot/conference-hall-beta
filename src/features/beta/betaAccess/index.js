@@ -1,1 +1,1 @@
-export { default } from './betaAccess.container'
+export { default } from './betaAccess'

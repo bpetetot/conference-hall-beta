@@ -12,6 +12,7 @@ const AuthContext = React.createContext()
 
 export const useAuth = () => useContext(AuthContext)
 
+// TODO Add Unit Tests
 export const AuthContextProvider = ({ children, resetStore, goToHome }) => {
   const [user, setUser] = useState()
   const [loading, setLoading] = useState(true)

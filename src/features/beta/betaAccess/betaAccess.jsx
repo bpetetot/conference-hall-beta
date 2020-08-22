@@ -1,27 +1,28 @@
 import React, { useCallback, useState } from 'react'
-import { func } from 'prop-types'
 
 import { isValidBetaAccessKey } from 'firebase/betaAccess'
 import { useAuth } from 'features/auth'
 import InputButton from 'components/form/inputButton'
+import useRedirectNext from 'features/router/useRedirectNext'
 
 import styles from './betaAccess.module.css'
 
-const BetaAccess = ({ redirectToNextUrl }) => {
+const BetaAccess = () => {
   const { updateUser } = useAuth()
   const [error, setError] = useState()
+  const redirectNext = useRedirectNext()
 
   const onValidateBetaKey = useCallback(
     async (betaAccess) => {
       const valid = await isValidBetaAccessKey(betaAccess)
       if (valid) {
         await updateUser({ betaAccess })
-        redirectToNextUrl(betaAccess)
+        redirectNext()
       } else {
         setError('Sorry, invalid beta access key.')
       }
     },
-    [redirectToNextUrl, updateUser],
+    [redirectNext, updateUser],
   )
 
   return (
@@ -44,10 +45,6 @@ const BetaAccess = ({ redirectToNextUrl }) => {
       {error && <div className={styles.error}>{error}</div>}
     </div>
   )
-}
-
-BetaAccess.propTypes = {
-  redirectToNextUrl: func.isRequired,
 }
 
 export default BetaAccess
