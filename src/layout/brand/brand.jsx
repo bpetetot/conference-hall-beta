@@ -2,8 +2,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import { Link } from '@k-redux-router/react-k-ramel'
+import { useLocation, Link } from 'react-router-dom'
 
+import { getAppTitle } from 'features/router/utils'
 import OpenTrigger from 'components/helpers/openTrigger'
 import Portal from 'components/portals/portal'
 import withTheme from 'styles/themes/withTheme'
@@ -21,29 +22,31 @@ const SidebarWrapper = withTheme(({ className, onClick, content }) => (
   </Portal>
 ))
 
-const Brand = ({ title, baseRoute, isTablet, isMobile, sidebar, className }) => (
-  <div className={cn(styles.brand, className)}>
-    {sidebar && (isMobile || isTablet) && (
-      <OpenTrigger
-        renderTrigger={({ show, hide, isOpen }) => (
-          <a onClick={isOpen ? hide : show} role="button" className={styles.burgerLink}>
-            <i className={`fa ${isOpen ? 'fa-arrow-left' : 'fa-bars'}`} />
-          </a>
-        )}
-      >
-        {({ hide }) => <SidebarWrapper content={sidebar} onClick={hide} />}
-      </OpenTrigger>
-    )}
-    <Link code={baseRoute}>{title}</Link>
-    {sidebar && (isMobile || isTablet) && <AvatarDropdown classname={styles.avatar} />}
-  </div>
-)
+const Brand = ({ isTablet, isMobile, sidebar, className }) => {
+  const { pathname } = useLocation()
+
+  return (
+    <div className={cn(styles.brand, className)}>
+      {sidebar && (isMobile || isTablet) && (
+        <OpenTrigger
+          renderTrigger={({ show, hide, isOpen }) => (
+            <a onClick={isOpen ? hide : show} role="button" className={styles.burgerLink}>
+              <i className={`fa ${isOpen ? 'fa-arrow-left' : 'fa-bars'}`} />
+            </a>
+          )}
+        >
+          {({ hide }) => <SidebarWrapper content={sidebar} onClick={hide} />}
+        </OpenTrigger>
+      )}
+      <Link to={pathname}>{getAppTitle(pathname)}</Link>
+      {sidebar && (isMobile || isTablet) && <AvatarDropdown classname={styles.avatar} />}
+    </div>
+  )
+}
 
 Brand.propTypes = {
-  title: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
   isTablet: PropTypes.bool.isRequired,
-  baseRoute: PropTypes.string.isRequired,
   sidebar: PropTypes.node,
   className: PropTypes.string,
 }

@@ -1,1 +1,1 @@
-export { default } from './brand.container'
+export { default } from './brand'
