@@ -8,9 +8,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import withTheme from 'styles/themes/withTheme'
 
 import { AuthProvider } from './features/auth'
-import Home from './screens/conference/home'
-import Login from './screens/conference/login'
-import BetaAccess from './screens/conference/betaAccess'
+import Home from './features/home'
+import Login from './features/auth/login'
+import BetaAccess from './features/beta/betaAccess'
 
 import store from './store'
 

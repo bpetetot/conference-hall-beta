@@ -5,10 +5,11 @@ import { forRoute } from '@k-redux-router/react-k-ramel'
 import { inject } from '@k-ramel/react'
 import split from 'lodash/split'
 
-import { useAuth } from 'features/auth'
 import { LoadingIndicator } from 'components/loader'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
+
+import { useAuth } from '../context'
 import './login.css'
 
 const PROVIDERS = split(process.env.REACT_APP_AUTH_PROVIDERS, ',') || []
