@@ -7,6 +7,7 @@ import Profile from 'features/profile/profile'
 import Sidebar from './sidebar'
 import Talks from './talks'
 import Talk from './talk'
+import TalkCreate from './talk/form/talkCreate'
 
 const Speaker = () => {
   const { user } = useAuth()
@@ -15,7 +16,8 @@ const Speaker = () => {
       <Routes>
         <Route path="/" element={<Talks userId={user.uid} />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="talk/:talkId" element={<Talk />} />
+        <Route path="talk/create" element={<TalkCreate />} />
+        <Route path="talk/:talkId/*" element={<Talk />} />
       </Routes>
     </AppLayout>
   )

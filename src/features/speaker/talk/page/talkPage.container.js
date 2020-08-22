@@ -9,7 +9,7 @@ const mapStore = (store, { talkId }) => {
   return {
     loaded: !!talk,
     ...talk,
-    load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_TALK', payload: talkId }),
     toggleArchive: () => {
       store.dispatch({
         type: '@@ui/ON_UPDATE_TALK',

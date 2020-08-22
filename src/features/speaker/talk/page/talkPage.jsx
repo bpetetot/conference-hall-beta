@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from '@k-redux-router/react-k-ramel'
+import { Link } from 'react-router-dom'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
@@ -37,7 +37,7 @@ const TalkPage = ({
       )}
       <Button secondary>
         {(btn) => (
-          <Link code="speaker-talk-edit" talkId={id} className={btn}>
+          <Link to="edit" className={btn}>
             <IconLabel icon="fa fa-pencil" label="Edit" />
           </Link>
         )}
@@ -49,7 +49,7 @@ const TalkPage = ({
       ) : (
         <Button accent>
           {(btn) => (
-            <Link code="speaker-talk-submission" talkId={id} className={btn}>
+            <Link to="submission" className={btn}>
               <IconLabel icon="fa fa-paper-plane" label="Submit" />
             </Link>
           )}

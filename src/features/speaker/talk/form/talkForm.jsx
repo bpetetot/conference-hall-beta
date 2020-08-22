@@ -8,9 +8,9 @@ import { input, markdownInput, radio, SubmitButton, RadioGroup, select } from 'c
 import { required } from 'components/form/validators'
 import './talkForm.css'
 
-const TalkForm = ({ onSubmit, initialValues, submitting }) => (
+const TalkForm = ({ onSubmit, initialValues }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>
-    {({ handleSubmit, pristine, invalid }) => (
+    {({ handleSubmit, pristine, invalid, submitting }) => (
       <form className="talk-form card">
         <Field
           name="title"
@@ -70,12 +70,10 @@ const TalkForm = ({ onSubmit, initialValues, submitting }) => (
 TalkForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
-  submitting: PropTypes.bool,
 }
 
 TalkForm.defaultProps = {
   initialValues: undefined,
-  submitting: false,
 }
 
 export default TalkForm

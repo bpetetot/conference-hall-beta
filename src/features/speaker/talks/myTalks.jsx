@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { useNavigate } from 'react-router-dom'
-import { Link } from '@k-redux-router/react-k-ramel'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { toDate } from 'helpers/firebase'
 import { List, ListItem } from 'components/list'
@@ -39,7 +38,7 @@ const MyTalks = ({ talks }) => {
         </select>
         <Button accent>
           {(btn) => (
-            <Link code="speaker-talk-create" className={btn}>
+            <Link to="talk/create" className={btn}>
               <IconLabel icon="fa fa-calendar-plus-o" label="Create a new talk" />
             </Link>
           )}
