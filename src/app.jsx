@@ -26,8 +26,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/beta" element={<Beta />} />
-          <PrivateRoute path="/speaker" element={<Speaker />} />
-          <PrivateRoute path="/organizer" element={<Organizer />} betaAccess />
+          <PrivateRoute path="/speaker/*" element={<Speaker />} />
+          <PrivateRoute path="/organizer/*" element={<Organizer />} betaAccess />
         </Routes>
       </AuthProvider>
     </div>

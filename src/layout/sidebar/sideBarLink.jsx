@@ -1,16 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'components/link'
+import cn from 'classnames'
+import { Link, useMatch } from 'react-router-dom'
 
-const SideBarLink = ({ children, code, ...rest }) => (
-  <Link code={code} className="sidebar-link" classNameActive="sidebar-link-active" {...rest}>
-    {children}
-  </Link>
-)
+const SideBarLink = ({ children, to, exact }) => {
+  const match = useMatch({ path: to, end: exact })
+
+  return (
+    <Link to={to} className={cn('sidebar-link', { 'sidebar-link-active': match })}>
+      {children}
+    </Link>
+  )
+}
 
 SideBarLink.propTypes = {
   children: PropTypes.node.isRequired,
-  code: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  exact: PropTypes.bool,
+}
+
+SideBarLink.defaultProps = {
+  exact: false,
 }
 
 export default SideBarLink

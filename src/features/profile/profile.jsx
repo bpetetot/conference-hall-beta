@@ -1,16 +1,14 @@
 import React from 'react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
-
 import { Form } from 'react-final-form'
-import Field from 'components/form/field'
-import Button from 'components/button'
 
+import { useAuth } from 'features/auth'
+import Button from 'components/button'
+import Field from 'components/form/field'
 import { input, address, markdownInput, SubmitButton } from 'components/form'
 import * as validators from 'components/form/validators'
 import Avatar from 'components/avatar'
 
 import './profile.css'
-import { useAuth } from 'features/auth'
 
 const validateEmail = validators.validate([validators.required, validators.email])
 const validatePhoto = validators.validate([validators.required, validators.url])
@@ -109,4 +107,4 @@ const Profile = () => {
   )
 }
 
-export default forRoute(['speaker-profile', 'organizer-profile'])(Profile)
+export default Profile
