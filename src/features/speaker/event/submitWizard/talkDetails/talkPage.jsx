@@ -37,7 +37,13 @@ const TalkPage = ({
           language={language}
           level={level}
         />
-        <TalkSpeakers className="talk-info" owner={owner} speakers={speakers} />
+        <TalkSpeakers
+          className="talk-info"
+          talkId={id}
+          talkTitle={title}
+          owner={owner}
+          speakers={speakers}
+        />
       </div>
     </div>
   )

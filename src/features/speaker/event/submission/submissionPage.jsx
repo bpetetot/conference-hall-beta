@@ -59,7 +59,7 @@ const SubmissionPage = ({
         level={level}
       />
       <div className={styles.info}>
-        <TalkSpeakers speakers={speakers} owner={owner} />
+        <TalkSpeakers talkId={id} talkTitle={title} speakers={speakers} owner={owner} />
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
 import { Link } from '@k-redux-router/react-k-ramel'
 
 import { toDate } from 'helpers/firebase'
@@ -12,9 +13,10 @@ import NoTalks from 'screens/components/talk/noTalks'
 
 import TalkInfo from './talkInfo'
 
-const MyTalks = ({ talks, onSelect }) => {
-  const [status, setStatus] = useState('active')
+const MyTalks = ({ talks }) => {
+  const navigate = useNavigate()
 
+  const [status, setStatus] = useState('active')
   const filteredTalks = useMemo(
     () =>
       talks.filter((talk) => {
@@ -52,7 +54,7 @@ const MyTalks = ({ talks, onSelect }) => {
             title={title}
             subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
             info={<TalkInfo id={id} submissions={submissions} archived={archived} />}
-            onSelect={() => onSelect(id)}
+            onSelect={() => navigate(`/speaker/talk/${id}`)}
           />
         )}
       />
@@ -62,7 +64,6 @@ const MyTalks = ({ talks, onSelect }) => {
 
 MyTalks.propTypes = {
   talks: PropTypes.arrayOf(PropTypes.object),
-  onSelect: PropTypes.func.isRequired,
 }
 
 MyTalks.defaultProps = {

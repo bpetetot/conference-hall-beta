@@ -5,7 +5,7 @@ import AddUserModal from 'screens/components/addUserModal'
 
 import './addSpeaker.css'
 
-const AddSpeaker = ({ talkId, talkName, onSelectUser }) => (
+const AddSpeaker = ({ talkId, talkTitle, onSelectUser }) => (
   <AddUserModal
     title="Add a co-speaker"
     renderTrigger={({ show }) => (
@@ -32,13 +32,13 @@ const AddSpeaker = ({ talkId, talkName, onSelectUser }) => (
     }
     inviteEntity="talk"
     inviteEntityId={talkId}
-    inviteEntityTitle={talkName}
+    inviteEntityTitle={talkTitle}
   />
 )
 
 AddSpeaker.propTypes = {
   talkId: PropTypes.string.isRequired,
-  talkName: PropTypes.string.isRequired,
+  talkTitle: PropTypes.string.isRequired,
   onSelectUser: PropTypes.func.isRequired,
 }
 

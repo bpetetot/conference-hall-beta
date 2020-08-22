@@ -8,21 +8,23 @@ import AddSpeaker from './addSpeaker'
 import RemoveSpeaker from './removeSpeaker'
 import './speakers.css'
 
-const TalkSpeakers = ({ speakers, owner, className, edit }) => (
+const TalkSpeakers = ({ talkId, talkTitle, speakers, owner, className, edit }) => (
   <div className={cn('talk-speakers card', className)}>
     <h3>Speakers</h3>
     {Object.keys(speakers).map((key) => (
       <div key={key} className="talk-speaker-row">
         <UserAvatar id={key} />
         {owner === key && <small>owner</small>}
-        {edit && owner !== key && <RemoveSpeaker uid={key} />}
+        {edit && owner !== key && <RemoveSpeaker uid={key} talkId={talkId} />}
       </div>
     ))}
-    {edit && <AddSpeaker />}
+    {edit && <AddSpeaker talkId={talkId} talkTitle={talkTitle} />}
   </div>
 )
 
 TalkSpeakers.propTypes = {
+  talkId: PropTypes.string.isRequired,
+  talkTitle: PropTypes.string.isRequired,
   speakers: PropTypes.objectOf(PropTypes.bool),
   owner: PropTypes.string,
   edit: PropTypes.bool,
