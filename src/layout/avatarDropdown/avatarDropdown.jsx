@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from '@k-redux-router/react-k-ramel'
+import { Link } from 'react-router-dom'
 
 import IconLabel from 'components/iconLabel'
 import Avatar from 'components/avatar'
@@ -9,7 +8,7 @@ import { useAuth } from 'features/auth'
 
 import './avatarDropdown.css'
 
-const AvatarDropdown = ({ contributorsRoute }) => {
+const AvatarDropdown = () => {
   const { user, signout } = useAuth()
 
   if (!user) return null
@@ -20,10 +19,10 @@ const AvatarDropdown = ({ contributorsRoute }) => {
   return (
     <Dropdown className="avatar-dropdown" action={avatar} darkMode>
       <div>{displayName}</div>
-      <Link code="home">
+      <Link to="/">
         <IconLabel icon="fa fa-home" label="Conference Hall" />
       </Link>
-      <Link code={contributorsRoute}>
+      <Link to="/contributors">
         <IconLabel icon="fa fa-github-alt" label="Contributors" />
       </Link>
       <button onClick={signout} type="button">
@@ -31,10 +30,6 @@ const AvatarDropdown = ({ contributorsRoute }) => {
       </button>
     </Dropdown>
   )
-}
-
-AvatarDropdown.propTypes = {
-  contributorsRoute: PropTypes.string.isRequired,
 }
 
 export default AvatarDropdown

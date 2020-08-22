@@ -1,1 +1,1 @@
-export { default } from './avatarDropdown.container'
+export { default } from './avatarDropdown'
