@@ -1,11 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import cn from 'classnames'
+import { Routes, Route } from 'react-router-dom'
 import { provider } from '@k-ramel/react'
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-import withTheme from 'styles/themes/withTheme'
+import useTheme from 'styles/themes/useTheme'
 
 import { AuthProvider } from './features/auth'
 import Home from './features/home'
@@ -19,9 +17,10 @@ import store from './store'
 
 import './styles'
 
-const App = ({ className }) => (
-  <div className={cn('app', className)}>
-    <BrowserRouter>
+const App = () => {
+  const theme = useTheme()
+  return (
+    <div className={cn('app', theme)}>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -31,16 +30,8 @@ const App = ({ className }) => (
           <PrivateRoute path="/organizer" element={<Organizer />} />
         </Routes>
       </AuthProvider>
-    </BrowserRouter>
-  </div>
-)
-
-App.propTypes = {
-  className: PropTypes.string,
+    </div>
+  )
 }
 
-App.defaultProps = {
-  className: 'default-theme',
-}
-
-export default provider(store)(withTheme(App))
+export default provider(store)(App)

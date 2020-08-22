@@ -1,9 +1,3 @@
-import withTheme from 'styles/themes/withTheme'
-
-import DumbModal from './modal'
-import DumbDrawer from './drawer'
-import DumbConfirmationPopin from './confirmation'
-
-export const Modal = withTheme(DumbModal)
-export const Drawer = withTheme(DumbDrawer)
-export const ConfirmationPopin = withTheme(DumbConfirmationPopin)
+export { default as Modal } from './modal'
+export { default as Drawer } from './drawer'
+export { default as ConfirmationPopin } from './confirmation'

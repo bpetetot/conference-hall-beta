@@ -7,31 +7,36 @@ import Backdrop from 'components/portals/backdrop'
 import OpenTrigger from 'components/helpers/openTrigger'
 import Button from 'components/button'
 import CloseIcon from 'components/icons/close'
+import useTheme from 'styles/themes/useTheme'
 
 import './drawer.css'
 
-const Drawer = ({ title, subtitle, className, actions, children, defaultOpen, renderTrigger }) => (
-  <OpenTrigger defaultOpen={defaultOpen} renderTrigger={renderTrigger}>
-    {({ hide, show, isOpen }) => (
-      <Portal>
-        <Backdrop onClick={hide} />
-        <div className={cn('drawer-sidebar', className)}>
-          <div className="drawer-header">
-            <div className="drawer-titles">
-              <div className="drawer-title">{title}</div>
-              {subtitle && <div className="drawer-subtitle">{subtitle}</div>}
+const Drawer = ({ title, subtitle, className, actions, children, defaultOpen, renderTrigger }) => {
+  const theme = useTheme()
+
+  return (
+    <OpenTrigger defaultOpen={defaultOpen} renderTrigger={renderTrigger}>
+      {({ hide, show, isOpen }) => (
+        <Portal>
+          <Backdrop onClick={hide} />
+          <div className={cn('drawer-sidebar', theme, className)}>
+            <div className="drawer-header">
+              <div className="drawer-titles">
+                <div className="drawer-title">{title}</div>
+                {subtitle && <div className="drawer-subtitle">{subtitle}</div>}
+              </div>
+              <Button simple onClick={hide}>
+                <CloseIcon />
+              </Button>
             </div>
-            <Button simple onClick={hide}>
-              <CloseIcon />
-            </Button>
+            <div className="drawer-content">{children}</div>
+            {actions && <div className="drawer-actions">{actions({ hide, show, isOpen })}</div>}
           </div>
-          <div className="drawer-content">{children}</div>
-          {actions && <div className="drawer-actions">{actions({ hide, show, isOpen })}</div>}
-        </div>
-      </Portal>
-    )}
-  </OpenTrigger>
-)
+        </Portal>
+      )}
+    </OpenTrigger>
+  )
+}
 
 Drawer.propTypes = {
   title: PropTypes.string.isRequired,

@@ -7,20 +7,28 @@ import { useLocation, Link } from 'react-router-dom'
 import { getAppTitle } from 'features/router/utils'
 import OpenTrigger from 'components/helpers/openTrigger'
 import Portal from 'components/portals/portal'
-import withTheme from 'styles/themes/withTheme'
+import useTheme from 'styles/themes/useTheme'
 import { withSizes } from 'styles/utils'
 
 import AvatarDropdown from '../avatarDropdown'
 
 import styles from './brand.module.css'
 
-const SidebarWrapper = withTheme(({ className, onClick, content }) => (
-  <Portal className={cn(className, styles.mobileSidebarPortal)}>
-    <div className={styles.mobileSidebar} onClick={onClick} role="button">
-      {content}
-    </div>
-  </Portal>
-))
+const SidebarWrapper = ({ onClick, content }) => {
+  const theme = useTheme()
+  return (
+    <Portal className={cn(theme, styles.mobileSidebarPortal)}>
+      <div className={styles.mobileSidebar} onClick={onClick} role="button">
+        {content}
+      </div>
+    </Portal>
+  )
+}
+
+SidebarWrapper.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  content: PropTypes.node.isRequired,
+}
 
 const Brand = ({ isTablet, isMobile, sidebar, className }) => {
   const { pathname } = useLocation()
