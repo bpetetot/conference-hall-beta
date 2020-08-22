@@ -4,6 +4,7 @@ import { inject } from '@k-ramel/react'
 import PropTypes from 'prop-types'
 import firebase from 'firebase/app'
 import pick from 'lodash/pick'
+import { useNavigate } from 'react-router-dom'
 
 import userCrud from 'firebase/user'
 import { preloadFunctions } from 'firebase/functionCalls'
@@ -13,9 +14,10 @@ const AuthContext = React.createContext()
 export const useAuth = () => useContext(AuthContext)
 
 // TODO Add Unit Tests
-export const AuthContextProvider = ({ children, resetStore, goToHome }) => {
+export const AuthContextProvider = ({ children, resetStore }) => {
   const [user, setUser] = useState()
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (authUser) => {
@@ -71,9 +73,9 @@ export const AuthContextProvider = ({ children, resetStore, goToHome }) => {
   const signout = useCallback(async () => {
     setLoading(true)
     firebase.auth().signOut()
-    goToHome()
     localStorage.removeItem('currentEventId')
-  }, [goToHome])
+    navigate('/')
+  }, [navigate])
 
   const updateUser = useCallback(
     async (data) => {
@@ -99,13 +101,11 @@ export const AuthContextProvider = ({ children, resetStore, goToHome }) => {
 
 AuthContextProvider.propTypes = {
   resetStore: PropTypes.func.isRequired,
-  goToHome: PropTypes.func.isRequired,
   children: PropTypes.any.isRequired,
 }
 
-export const AuthProvider = inject((store, props, { router }) => {
+export const AuthProvider = inject((store) => {
   return {
     resetStore: () => store.data.reset(),
-    goToHome: () => router.push('home'),
   }
 })(AuthContextProvider)

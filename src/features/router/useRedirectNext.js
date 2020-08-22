@@ -10,8 +10,11 @@ export default function useRedirectNext() {
   const next = params.get('next')
 
   const redirectNext = useCallback(() => {
-    if (!next) return
-    navigate(next, { replace: true })
+    if (!next) {
+      navigate('/', { replace: true })
+    } else {
+      navigate(next, { replace: true })
+    }
   }, [navigate, next])
 
   return redirectNext

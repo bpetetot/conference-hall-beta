@@ -41,7 +41,6 @@ const Login = () => {
   return (
     <div className="login">
       <h1 className="login-title">Connexion</h1>
-      <h2>{user?.displayName}</h2>
       {PROVIDERS.map((provider) => (
         <Button key={provider} className={`btn-${provider}`} onClick={() => signin(provider)}>
           <IconLabel icon={`fa fa-${provider}`} label={`with ${provider}`} />
