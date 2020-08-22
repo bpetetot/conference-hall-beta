@@ -1,6 +1,5 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 import MyTalks from './myTalks'
@@ -12,4 +11,4 @@ const mapStore = (store, { userId }, { router }) => ({
   onSelect: (talkId) => router.push('speaker-talk-page', { talkId }),
 })
 
-export default compose(forRoute.absolute('speaker'), inject(mapStore), loader)(MyTalks)
+export default compose(inject(mapStore), loader)(MyTalks)
