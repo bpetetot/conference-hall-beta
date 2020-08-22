@@ -8,7 +8,7 @@ import useTheme from 'styles/themes/useTheme'
 import { AuthProvider } from './features/auth'
 import Home from './features/home'
 import Login from './features/auth/login'
-import BetaAccess from './features/beta/betaAccess'
+import Beta from './features/beta/Beta'
 import PrivateRoute from './features/router/PrivateRoute'
 import Speaker from './features/speaker'
 import Organizer from './features/organizer'
@@ -25,9 +25,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/beta-access" element={<BetaAccess />} />
+          <Route path="/beta" element={<Beta />} />
           <PrivateRoute path="/speaker" element={<Speaker />} />
-          <PrivateRoute path="/organizer" element={<Organizer />} />
+          <PrivateRoute path="/organizer" element={<Organizer />} betaAccess />
         </Routes>
       </AuthProvider>
     </div>

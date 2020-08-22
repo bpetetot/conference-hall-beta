@@ -5,7 +5,7 @@ import { useAuth } from 'features/auth'
 import InputButton from 'components/form/inputButton'
 import useRedirectNext from 'features/router/useRedirectNext'
 
-import styles from './betaAccess.module.css'
+import styles from './Beta.module.css'
 
 const BetaAccess = () => {
   const { updateUser } = useAuth()
