@@ -3,7 +3,7 @@ import { inject } from '@k-ramel/react'
 import loader from 'components/loader'
 import TalksSelection from './talksSelection'
 
-const mapStore = (store, { userId, eventId }) => {
+const mapStore = (store, { userId }) => {
   const talks = store.ui.speaker.myTalks.getAsArray().filter((talk) => !talk.archived)
 
   return {
@@ -11,7 +11,7 @@ const mapStore = (store, { userId, eventId }) => {
     talks,
     load: () => store.dispatch({ type: '@@ui/ON_LOAD_SPEAKER_TALKS', payload: { userId } }),
     onSelect: (talkId) => {
-      store.dispatch({ type: '@@ui/GO_TO_EVENT_SUBMISSION', payload: { eventId, talkId } })
+      store.ui.speaker.submission.set({ talkId, currentStep: 1 })
     },
   }
 }

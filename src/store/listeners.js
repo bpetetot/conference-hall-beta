@@ -51,7 +51,6 @@ export default [
   when('@@ui/CHANGE_ORGANIZATION_MEMBER_ROLE')(organizations.setMember),
   when('@@ui/REMOVE_ORGANIZATION_MEMBER')(organizations.removeMember),
   /* submissions */
-  when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),
   when('@@ui/ON_SUBMIT_TALK_TO_EVENT')(submissions.submitTalkToEvent),
   when('@@ui/ON_UNSUBMIT_TALK_FROM_EVENT')(submissions.unsubmitTalkFromEvent),
   /* proposals */

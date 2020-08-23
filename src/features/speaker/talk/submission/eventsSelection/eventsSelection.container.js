@@ -8,8 +8,8 @@ const mapStore = (store, { talkId }) => ({
   loaded: store.ui.speaker.myEvents.isInitialized(),
   events: getMyEvents(store),
   load: () => store.dispatch('@@ui/ON_LOAD_SPEAKER_EVENTS'),
-  onSelect: (eventId) => {
-    store.dispatch({ type: '@@ui/GO_TO_EVENT_SUBMISSION', payload: { eventId, talkId } })
+  onSelect: () => {
+    store.ui.speaker.submission.set({ talkId, currentStep: 1 })
   },
 })
 
