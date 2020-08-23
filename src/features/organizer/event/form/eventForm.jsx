@@ -20,16 +20,9 @@ import {
 import { required } from 'components/form/validators'
 import './eventForm.css'
 
-const EventForm = ({
-  isCreateForm,
-  organizations,
-  onSubmit,
-  initialValues,
-  submitting,
-  toggleArchive,
-}) => (
+const EventForm = ({ isCreateForm, organizations, onSubmit, initialValues, toggleArchive }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues} keepDirtyOnReinitialize={isCreateForm}>
-    {({ values, handleSubmit, pristine, invalid }) => (
+    {({ values, handleSubmit, pristine, invalid, submitting }) => (
       <form className="event-form card">
         {isCreateForm && (
           <RadioGroup name="type" label="Event type" value="conference" inline>
@@ -105,14 +98,12 @@ EventForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   toggleArchive: PropTypes.func,
   initialValues: PropTypes.object,
-  submitting: PropTypes.bool,
 }
 
 EventForm.defaultProps = {
   isCreateForm: false,
   organizations: [],
   initialValues: undefined,
-  submitting: false,
   toggleArchive: undefined,
 }
 

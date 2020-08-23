@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from '@k-redux-router/react-k-ramel'
 import get from 'lodash/get'
+import { Link } from 'react-router-dom'
 
 import Badge from 'components/badge'
 import Titlebar from 'components/titlebar'
@@ -37,7 +37,7 @@ const MyEvents = ({ events, onSelect }) => {
         </select>
         <Button>
           {(btn) => (
-            <Link code="organizer-event-create" className={btn}>
+            <Link to="/organizer/event/create" className={btn}>
               <IconLabel icon="fa fa-calendar-plus-o" label="Create event" />
             </Link>
           )}
