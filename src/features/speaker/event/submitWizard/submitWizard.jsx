@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { useAuth } from 'features/auth'
 import Stepper from 'components/stepper'
-import EventTitle from 'screens/components/event/eventTitle'
+import EventTitle from 'features/event/eventTitle'
 import Selection from './talksSelection'
 import TalkDetails from './talkDetails'
 import TalkSubmission from './talkSubmission'

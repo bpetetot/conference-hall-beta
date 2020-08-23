@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
 import IconLabel from 'components/iconLabel'
-import NoEvents from 'screens/components/event/noEvents'
+import NoEvents from 'features/event/noEvents'
 import Status from 'screens/components/talk/status'
 import EventDates from 'screens/components/eventDates'
 

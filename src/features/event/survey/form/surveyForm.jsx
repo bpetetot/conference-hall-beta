@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 
 import { SubmitButton } from 'components/form'
-import questions from 'screens/components/event/survey/questions'
 import SurveyInput from './surveyInput'
+import questions from '../questions'
 
 const SurveyForm = ({ survey, onSubmit, initialValues, submitting }) => (
   <Form onSubmit={onSubmit} initialValues={initialValues}>

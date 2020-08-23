@@ -10,7 +10,7 @@ import List from './listBlock'
 import Cfp from './cfpBlock'
 import Website from './websiteBlock'
 import Contact from './contactBlock'
-import Dates from '../eventDates'
+import Dates from './eventDates'
 
 import './event.css'
 
