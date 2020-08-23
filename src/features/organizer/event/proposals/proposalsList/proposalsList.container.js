@@ -1,9 +1,6 @@
-import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 import get from 'lodash/get'
 
-import loader from 'components/loader'
 import ProposalsList from './proposalsList'
 
 const mapStore = (store, { eventId, userId }) => {
@@ -17,12 +14,16 @@ const mapStore = (store, { eventId, userId }) => {
     .filter((_, index) => index >= startIndex && index <= endIndex)
 
   return {
-    loaded: store.data.proposals.isInitialized(),
     proposals,
     proposalsSelection: items,
     deliberationActive: get(settings, 'deliberation.enabled'),
     blindRating: get(settings, 'deliberation.blindRating'),
-    load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } }),
+    onLoad: ({ filters }) => {
+      store.dispatch({
+        type: '@@ui/ON_LOAD_EVENT_PROPOSALS',
+        payload: { userId, eventId, filters },
+      })
+    },
     onSelect: (proposalId) => {
       store.dispatch({ type: '@@ui/ON_SELECT_PROPOSAL', payload: { eventId, proposalId } })
     },
@@ -32,8 +33,4 @@ const mapStore = (store, { eventId, userId }) => {
   }
 }
 
-export default compose(
-  forRoute.absolute('organizer-event-proposals'), //
-  inject(mapStore), //
-  loader, //
-)(ProposalsList)
+export default inject(mapStore)(ProposalsList)

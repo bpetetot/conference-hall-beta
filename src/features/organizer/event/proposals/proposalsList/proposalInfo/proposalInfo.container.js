@@ -3,8 +3,7 @@ import get from 'lodash/get'
 
 import ProposalInfo from './proposalInfo'
 
-const mapStore = (store, props, { router }) => {
-  const eventId = router.getParam('eventId')
+const mapStore = (store, { eventId }) => {
   const settings = store.data.eventsSettings.get(eventId)
 
   return {

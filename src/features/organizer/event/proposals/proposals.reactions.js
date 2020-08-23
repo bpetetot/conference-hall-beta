@@ -1,49 +1,14 @@
-import isEqual from 'lodash/fp/isEqual'
-import pick from 'lodash/fp/pick'
-import update from 'lodash/fp/update'
-import pickBy from 'lodash/fp/pickBy'
-import omitBy from 'lodash/omitBy'
 import toLower from 'lodash/toLower'
 import deburr from 'lodash/deburr'
 
 import * as firebase from 'firebase/proposals'
 import userCrud from 'firebase/user'
 
-/* set proposal filters from URL query params */
-export const setProposalFiltersFromRouter = (action, store, { router }) => {
-  const query = router.getQueryParams()
-
-  const pickTruthyValues = pickBy(Boolean)
-  const pickFilterKeys = pick(['state', 'ratings', 'categories', 'formats', 'sortOrder', 'search'])
-  const ensureIncludedIn = (values) => (value) => (values.includes(value) ? value : values[0])
-
-  const filtersFromRouterState = pickFilterKeys(query)
-  const filtersFromUiState = pickTruthyValues(pickFilterKeys(store.ui.organizer.proposals.get()))
-  const filtersFromBothStates = { ...filtersFromUiState, ...filtersFromRouterState }
-
-  const availableSortOrders = router.getParam('sortOrders')
-  const validFilters = update(
-    'sortOrder',
-    ensureIncludedIn(availableSortOrders),
-    filtersFromBothStates,
-  )
-
-  if (!isEqual(validFilters, filtersFromRouterState)) {
-    const route = router.getCurrentCode()
-    const pathParams = router.getPathParams()
-    router.replace(route, pathParams, { ...query, ...validFilters })
-  }
-  if (!isEqual(validFilters, filtersFromUiState)) {
-    store.ui.organizer.proposals.update(validFilters)
-  }
-}
-
 /* Send email to a selection of proposals */
-export const sendEmails = async (action, store, { router }) => {
-  const { selection, userId } = action.payload
+export const sendEmails = async (action, store) => {
+  const { eventId, selection } = action.payload
   if (!selection) return
 
-  const eventId = router.getParam('eventId')
   for (let i = 0; i < selection.length; i += 1) {
     const proposal = store.data.proposals.get(selection[i])
     if (proposal.state === 'accepted' || proposal.state === 'rejected') {
@@ -51,15 +16,13 @@ export const sendEmails = async (action, store, { router }) => {
       firebase.updateProposal(eventId, proposal)
     }
   }
-  store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } })
 }
 
 /* reject several proposals */
-export const rejectProposals = async (action, store, { router }) => {
-  const { selection, userId } = action.payload
+export const rejectProposals = async (action, store) => {
+  const { eventId, selection } = action.payload
   if (!selection) return
 
-  const eventId = router.getParam('eventId')
   for (let i = 0; i < selection.length; i += 1) {
     const proposal = store.data.proposals.get(selection[i])
     if (proposal.emailStatus !== 'sent') {
@@ -68,15 +31,13 @@ export const rejectProposals = async (action, store, { router }) => {
       firebase.updateProposal(eventId, proposal)
     }
   }
-  store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } })
 }
 
 /* accept several proposals */
-export const acceptProposals = async (action, store, { router }) => {
-  const { selection, userId } = action.payload
+export const acceptProposals = async (action, store) => {
+  const { eventId, selection } = action.payload
   if (!selection) return
 
-  const eventId = router.getParam('eventId')
   for (let i = 0; i < selection.length; i += 1) {
     const proposal = store.data.proposals.get(selection[i])
     if (proposal.emailStatus !== 'sent') {
@@ -85,7 +46,6 @@ export const acceptProposals = async (action, store, { router }) => {
       firebase.updateProposal(eventId, proposal)
     }
   }
-  store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } })
 }
 
 /* select a proposal to send email */
@@ -130,14 +90,12 @@ export const selectAllProposal = async (action, store) => {
 }
 
 /* load proposals */
-export const loadProposals = async (action, store, { router }) => {
+export const loadProposals = async (action, store) => {
   store.data.proposals.reset()
   store.ui.organizer.proposalsPaging.reset()
 
-  const eventId = router.getParam('eventId')
-  const { userId } = action.payload
+  const { userId, eventId, filters } = action.payload
 
-  const filters = store.ui.organizer.proposals.get()
   const proposals = await firebase.fetchEventProposals(eventId, userId, filters)
   let props = await Promise.all(
     proposals.map(async (proposal) => {
@@ -181,25 +139,5 @@ export const selectProposal = async (action, store, { router }) => {
     store.ui.organizer.proposal.set({ proposalIndex })
     const filters = store.ui.organizer.proposals.get()
     router.push('organizer-event-proposal-page', { eventId, proposalId }, { ...filters })
-  }
-}
-
-/* when filters changes synchronize filters with url and load proposals */
-export const changeFilter = async (action, store, { router }) => {
-  const { userId, key, value } = action.payload
-
-  store.ui.organizer.proposals.update({ [key]: value })
-
-  const oldQuery = router.getQueryParams()
-  let newQuery = { ...oldQuery, [key]: value }
-  if (!value) {
-    newQuery = omitBy(newQuery, key)
-  }
-
-  if (!isEqual(oldQuery, newQuery)) {
-    const route = router.getCurrentCode()
-    const pathParams = router.getPathParams()
-    router.replace(route, pathParams, newQuery)
-    store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId } })
   }
 }

@@ -8,8 +8,7 @@ const countEmailsToSend = (type, selection = [], proposals = []) => {
   return result.length
 }
 
-const mapStore = (store, { userId }, { router }) => {
-  const eventId = router.getParam('eventId')
+const mapStore = (store, { userId, eventId }) => {
   const settings = store.data.eventsSettings.get(eventId)
   const { exporting } = store.ui.organizer.proposalsExport.get()
   const proposals = store.data.proposals.getAsArray()
@@ -34,11 +33,14 @@ const mapStore = (store, { userId }, { router }) => {
     onExportProposals: (output) => () =>
       store.dispatch({ type: '@@ui/EXPORT_PROPOSALS', payload: { output } }),
     onSendEmails: () =>
-      store.dispatch({ type: '@@ui/SEND_EMAIL_FOR_PROPOSALS', payload: { userId, selection } }),
+      store.dispatch({
+        type: '@@ui/SEND_EMAIL_FOR_PROPOSALS',
+        payload: { userId, eventId, selection },
+      }),
     onAcceptProposals: () =>
-      store.dispatch({ type: '@@ui/ACCEPT_PROPOSALS', payload: { userId, selection } }),
+      store.dispatch({ type: '@@ui/ACCEPT_PROPOSALS', payload: { userId, eventId, selection } }),
     onRejectProposals: () =>
-      store.dispatch({ type: '@@ui/REJECT_PROPOSALS', payload: { userId, selection } }),
+      store.dispatch({ type: '@@ui/REJECT_PROPOSALS', payload: { userId, eventId, selection } }),
   }
 }
 
