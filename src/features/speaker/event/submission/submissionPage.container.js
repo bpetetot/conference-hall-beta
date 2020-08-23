@@ -1,14 +1,11 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import { isCfpOpened } from 'store/reducers/data/events.selector'
 import loader from 'components/loader'
 import SubmissionPage from './submissionPage'
 
-const mapStore = (store, props, { router }) => {
-  const eventId = router.getParam('eventId')
-  const talkId = router.getParam('talkId')
+const mapStore = (store, { eventId, talkId }) => {
   const talk = store.data.talks.get(talkId) || {}
   const submission = talk.submissions && talk.submissions[eventId]
 
@@ -17,15 +14,11 @@ const mapStore = (store, props, { router }) => {
     eventId,
     ...submission,
     cfpOpened: isCfpOpened(eventId)(store),
-    load: () => store.dispatch('@@ui/ON_LOAD_TALK'),
-    opUpdateSubmission: () => {
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_TALK', payload: talkId }),
+    onUpdateSubmission: () => {
       store.ui.speaker.submission.set({ talkId, currentStep: 2 })
     },
   }
 }
 
-export default compose(
-  forRoute.absolute('speaker-event-submission-page'),
-  inject(mapStore),
-  loader,
-)(SubmissionPage)
+export default compose(inject(mapStore), loader)(SubmissionPage)

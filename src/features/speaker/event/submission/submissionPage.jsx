@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from '@k-redux-router/react-k-ramel'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
+import { FormatBadge, CategoryBadge } from 'features/event/badges'
 import { TalkAbstract, TalkSpeakers, TalkStatus } from 'screens/components/talk'
-import { FormatBadge, CategoryBadge } from 'screens/components/event/badges'
 import Notification from 'screens/components/talk/deliberation/notification'
 
 import styles from './submissionPage.module.css'
@@ -24,46 +24,55 @@ const SubmissionPage = ({
   formats,
   speakers,
   categories,
-  opUpdateSubmission,
+  onUpdateSubmission,
   cfpOpened,
-}) => (
-  <div>
-    <Titlebar icon="fa fa-microphone" title={title}>
-      <Link code="speaker-talk-page" talkId={id}>
-        <IconLabel icon="fa fa-history" label="Show current version" />
-      </Link>
-      {cfpOpened && (
-        <Button accent onClick={opUpdateSubmission}>
-          Update submission
-        </Button>
-      )}
-    </Titlebar>
-    <div className={styles.submission}>
-      <div className={styles.header}>
-        {state === 'accepted' && (
-          <div className={styles.notification}>
-            <Notification eventId={eventId} talkId={id} />
-          </div>
+}) => {
+  const navigate = useNavigate()
+
+  const handleUpdateSubmission = useCallback(() => {
+    onUpdateSubmission()
+    navigate(`/speaker/event/${eventId}/submission`)
+  }, [onUpdateSubmission, navigate, eventId])
+
+  return (
+    <div>
+      <Titlebar icon="fa fa-microphone" title={title}>
+        <Link to={`/speaker/talk/${id}`}>
+          <IconLabel icon="fa fa-history" label="Show current version" />
+        </Link>
+        {cfpOpened && (
+          <Button accent onClick={handleUpdateSubmission}>
+            Update submission
+          </Button>
         )}
-        <div className={styles.status}>
-          {state !== 'accepted' && <TalkStatus talkId={id} eventId={eventId} />}
-          <FormatBadge outline eventId={eventId} formatId={formats} />
-          <CategoryBadge outline eventId={eventId} categoryId={categories} />
+      </Titlebar>
+      <div className={styles.submission}>
+        <div className={styles.header}>
+          {state === 'accepted' && (
+            <div className={styles.notification}>
+              <Notification eventId={eventId} talkId={id} />
+            </div>
+          )}
+          <div className={styles.status}>
+            {state !== 'accepted' && <TalkStatus talkId={id} eventId={eventId} />}
+            <FormatBadge outline eventId={eventId} formatId={formats} />
+            <CategoryBadge outline eventId={eventId} categoryId={categories} />
+          </div>
+        </div>
+        <TalkAbstract
+          className={styles.content}
+          abstract={abstract}
+          references={references}
+          language={language}
+          level={level}
+        />
+        <div className={styles.info}>
+          <TalkSpeakers talkId={id} talkTitle={title} speakers={speakers} owner={owner} />
         </div>
       </div>
-      <TalkAbstract
-        className={styles.content}
-        abstract={abstract}
-        references={references}
-        language={language}
-        level={level}
-      />
-      <div className={styles.info}>
-        <TalkSpeakers talkId={id} talkTitle={title} speakers={speakers} owner={owner} />
-      </div>
     </div>
-  </div>
-)
+  )
+}
 
 SubmissionPage.propTypes = {
   eventId: PropTypes.string.isRequired,
@@ -78,7 +87,7 @@ SubmissionPage.propTypes = {
   formats: PropTypes.string,
   categories: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
-  opUpdateSubmission: PropTypes.func.isRequired,
+  onUpdateSubmission: PropTypes.func.isRequired,
   cfpOpened: PropTypes.bool,
 }
 

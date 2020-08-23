@@ -1,13 +1,11 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 
 import Submissions from './submissions'
 
-const mapStore = (store, { userId }, { router }) => {
-  const eventId = router.getParam('eventId')
+const mapStore = (store, { userId, eventId }) => {
   const talks = store.ui.speaker.myTalks
     .getAsArray()
     .filter((talk) => talk.submissions && !!talk.submissions[eventId])
@@ -18,17 +16,11 @@ const mapStore = (store, { userId }, { router }) => {
   const loaded = store.ui.speaker.myTalks.isInitialized() && store.data.events.hasKey(eventId)
 
   return {
-    eventId,
     eventName,
     talks,
     loaded,
     load: () => store.dispatch({ type: '@@ui/ON_LOAD_SPEAKER_TALKS', payload: { userId } }),
-    onSelect: (talkId) => router.push('speaker-event-submission-page', { eventId, talkId }),
   }
 }
 
-export default compose(
-  forRoute.absolute('speaker-event-submissions'),
-  inject(mapStore),
-  loader,
-)(Submissions)
+export default compose(inject(mapStore), loader)(Submissions)

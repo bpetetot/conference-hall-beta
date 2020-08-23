@@ -13,7 +13,4 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(
-  inject(mapStore), //
-  loader(), //
-)(Submission)
+export default compose(inject(mapStore), loader())(Submission)
