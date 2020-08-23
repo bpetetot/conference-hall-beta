@@ -26,7 +26,6 @@ export default [
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
   when('@@ui/ON_LOAD_SPEAKER_TALKS')(talks.fetchSpeakerTalks),
   when(/@@ui\/(.*)_SPEAKER_TO_TALK/g)(talks.updateSpeakerToTalk),
-  when('@@ui/DELETE_TALK')(talks.deleteTalk),
   /* events */
   when('@@ui/ON_CREATE_EVENT')(events.createEvent),
   when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEventForm),

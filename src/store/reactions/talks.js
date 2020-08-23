@@ -76,13 +76,3 @@ export const updateSpeakerToTalk = async (action, store) => {
     }
   }
 }
-
-export const deleteTalk = async (action, store, { router }) => {
-  const { talkId } = action.payload
-
-  await talkCrud.delete(talkId)
-  store.data.talks.remove([talkId])
-  store.ui.speaker.myTalks.remove([talkId])
-
-  router.push('speaker')
-}

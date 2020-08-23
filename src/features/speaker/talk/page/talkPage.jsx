@@ -29,7 +29,7 @@ const TalkPage = ({
 }) => (
   <div>
     <Titlebar icon="fa fa-microphone" title={title}>
-      <DeleteTalkButton talkId={id} />
+      <DeleteTalkButton talkId={id} talkTitle={title} />
       {!archived && (
         <Button secondary onClick={toggleArchive}>
           <IconLabel icon="fa fa-archive" label="Archive" />

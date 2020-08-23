@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import upperCase from 'lodash/upperCase'
 
@@ -8,67 +8,62 @@ import IconLabel from 'components/iconLabel'
 import InputButton from 'components/form/inputButton'
 
 import './deleteTalkModal.css'
+import { useNavigate } from 'react-router-dom'
 
-class DeleteTalkModal extends Component {
-  state = {
-    disabled: true,
-  }
+function DeleteTalkModal({ talkTitle, deleteTalk }) {
+  const [disabled, setDisabled] = useState(true)
+  const navigate = useNavigate()
 
-  handleChange = (e) => {
-    const { talkTitle } = this.props
-    return this.setState({ disabled: upperCase(talkTitle) !== upperCase(e.target.value) })
-  }
+  const handleChange = useCallback(
+    (e) => {
+      return setDisabled(upperCase(talkTitle) !== upperCase(e.target.value))
+    },
+    [talkTitle],
+  )
 
-  handleDelete = (hide) => () => {
-    this.props.deleteTalk()
-    hide()
-  }
+  const handleDelete = useCallback(
+    (hide) => async () => {
+      hide()
+      await deleteTalk()
+      navigate('/speaker')
+    },
+    [deleteTalk, navigate],
+  )
 
-  render() {
-    return (
-      <Modal
-        className="delete-talk-modal"
-        renderTrigger={({ show }) => (
-          <Button onClick={show} secondary>
-            <IconLabel icon="fa fa-trash" label="Delete" />
-          </Button>
-        )}
-      >
-        {({ hide }) => (
-          <>
-            <h1>Danger!</h1>
-            <p>Be careful, you are going to delete your talk. It&apos;s a definitive action!</p>
-            {this.props.canDelete || (
-              <p>
-                Your talk has been already submitted to events, organizer will still have a copy of
-                the submitted talk. You should unsubmit it if the call for paper is still open else
-                you should contact organizer to remove the talk from the event.
-              </p>
-            )}
-            <InputButton
-              type="text"
-              placeholder="Type the talk name to delete"
-              btnLabel="Delete!"
-              onClick={this.handleDelete(hide)}
-              onChange={this.handleChange}
-              disabled={this.state.disabled}
-            />
-          </>
-        )}
-      </Modal>
-    )
-  }
+  return (
+    <Modal
+      className="delete-talk-modal"
+      renderTrigger={({ show }) => (
+        <Button onClick={show} secondary>
+          <IconLabel icon="fa fa-trash" label="Delete" />
+        </Button>
+      )}
+    >
+      {({ hide }) => (
+        <>
+          <h1>Danger!</h1>
+          <p>Be careful, you are going to delete your talk. It&apos;s a definitive action!</p>
+          <InputButton
+            type="text"
+            placeholder="Type the talk name to delete"
+            btnLabel="Delete!"
+            onClick={handleDelete(hide)}
+            onChange={handleChange}
+            disabled={disabled}
+          />
+        </>
+      )}
+    </Modal>
+  )
 }
 
 DeleteTalkModal.propTypes = {
   talkTitle: PropTypes.string,
   deleteTalk: PropTypes.func.isRequired,
-  canDelete: PropTypes.bool,
 }
 
 DeleteTalkModal.defaultProps = {
   talkTitle: undefined,
-  canDelete: false,
 }
 
 export default DeleteTalkModal
