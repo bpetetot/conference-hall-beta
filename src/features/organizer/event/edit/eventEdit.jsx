@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Route, Routes } from 'react-router-dom'
 
 import HasRole from 'screens/components/hasRole'
 import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
@@ -16,12 +17,14 @@ const EventEdit = ({ eventId }) => (
   <div>
     <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
       <Tabs eventId={eventId} />
-      <EventForm eventId={eventId} />
-      <CustomizeForm eventId={eventId} />
-      <CfpForm eventId={eventId} />
-      <SurveyForm eventId={eventId} />
-      <DeliberationForm eventId={eventId} />
-      <IntegrationsForm eventId={eventId} />
+      <Routes>
+        <Route path="/" element={<EventForm eventId={eventId} />} />
+        <Route path="cfp" element={<CfpForm eventId={eventId} />} />
+        <Route path="deliberation" element={<DeliberationForm eventId={eventId} />} />
+        <Route path="custom" element={<CustomizeForm eventId={eventId} />} />
+        <Route path="survey" element={<SurveyForm eventId={eventId} />} />
+        <Route path="integrations" element={<IntegrationsForm eventId={eventId} />} />
+      </Routes>
     </HasRole>
   </div>
 )

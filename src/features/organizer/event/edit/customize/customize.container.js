@@ -1,6 +1,4 @@
-import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import CustomizeForm from './customize'
 
@@ -17,7 +15,4 @@ const mapStore = (store, { eventId }) => ({
     }),
 })
 
-export default compose(
-  forRoute.absolute('organizer-event-edit-customize'),
-  inject(mapStore),
-)(CustomizeForm)
+export default inject(mapStore)(CustomizeForm)

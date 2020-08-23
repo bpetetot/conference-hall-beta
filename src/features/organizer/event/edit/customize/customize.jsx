@@ -4,7 +4,7 @@ import cn from 'classnames'
 import firebase from 'firebase/app'
 
 import Button from 'components/button'
-import Banner from 'screens/components/event/banner'
+import Banner from 'features/event/banner'
 import styles from './customize.module.css'
 
 const MAX_SIZE = 100 * 1024 // 100kB

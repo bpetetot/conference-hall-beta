@@ -5,7 +5,7 @@ import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import Checkbox from 'components/form/checkbox'
 
-import questions from 'screens/components/event/survey/questions'
+import questions from 'features/event/survey/questions'
 
 import './survey.css'
 

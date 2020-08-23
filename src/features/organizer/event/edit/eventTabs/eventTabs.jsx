@@ -1,41 +1,56 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'components/link'
+import cn from 'classnames'
+import { Link, useMatch } from 'react-router-dom'
 
 import IconLabel from 'components/iconLabel'
 import './eventTabs.css'
 
+const TabLink = ({ to, children }) => {
+  const match = useMatch({ path: to, end: true })
+  return (
+    <Link to={to} className={cn({ 'tab-active': match })}>
+      {children}
+    </Link>
+  )
+}
+
+TabLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+}
+
 const EventTabs = ({ eventId }) => (
   <ul className="event-tabs tabs card">
     <li>
-      <Link code="organizer-event-edit" eventId={eventId} classNameActive="tab-active">
+      <TabLink to={`/organizer/event/${eventId}/edit`}>
         <IconLabel icon="fa fa-calendar-check-o" label="Event" />
-      </Link>
+      </TabLink>
     </li>
     <li>
-      <Link code="organizer-event-edit-cfp" eventId={eventId} classNameActive="tab-active">
+      <TabLink to={`/organizer/event/${eventId}/edit/cfp`}>
         <IconLabel icon="fa fa-gear" label="CFP Settings" />
-      </Link>
+      </TabLink>
     </li>
     <li>
-      <Link code="organizer-event-edit-customize" eventId={eventId} classNameActive="tab-active">
+      <TabLink to={`/organizer/event/${eventId}/edit/custom`}>
         <IconLabel icon="fa fa-paint-brush" label="Customize" />
-      </Link>
+      </TabLink>
     </li>
     <li>
-      <Link code="organizer-event-edit-deliberation" eventId={eventId} classNameActive="tab-active">
+      <TabLink to={`/organizer/event/${eventId}/edit/deliberation`}>
         <IconLabel icon="fa fa-check-square-o" label="Deliberation" />
-      </Link>
+      </TabLink>
     </li>
     <li>
-      <Link code="organizer-event-edit-survey" eventId={eventId} classNameActive="tab-active">
+      <TabLink to={`/organizer/event/${eventId}/edit/survey`}>
         <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
-      </Link>
+      </TabLink>
     </li>
     <li>
-      <Link code="organizer-event-edit-integrations" eventId={eventId} classNameActive="tab-active">
+      <TabLink to={`/organizer/event/${eventId}/edit/integrations`}>
         <IconLabel icon="fa fa-rocket" label="Integrations" />
-      </Link>
+      </TabLink>
     </li>
   </ul>
 )

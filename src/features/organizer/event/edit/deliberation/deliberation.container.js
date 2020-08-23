@@ -1,6 +1,4 @@
-import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 import get from 'lodash/get'
 
 import DeliberationForm from './deliberation'
@@ -92,7 +90,4 @@ const mapStore = (store, { eventId }) => {
   }
 }
 
-export default compose(
-  forRoute.absolute('organizer-event-edit-deliberation'),
-  inject(mapStore),
-)(DeliberationForm)
+export default inject(mapStore)(DeliberationForm)

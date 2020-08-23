@@ -39,10 +39,7 @@ export const saveEventSettings = async (action, store) => {
   })
 }
 
-const fetchEventSettings = async (eventId, store, router) => {
-  const isOrganizer = router.getParam('root') === 'organizer'
-  if (!isOrganizer) return
-
+const fetchEventSettings = async (eventId, store) => {
   const settings = store.data.eventsSettings.get(eventId)
   if (!settings) {
     const settingsRef = await fetchSettings(eventId)
