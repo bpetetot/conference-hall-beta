@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { withSizes } from 'styles/utils'
@@ -13,7 +14,6 @@ const Proposals = ({
   proposalsSelection,
   deliberationActive,
   blindRating,
-  onSelect,
   onAddProposalToSelection,
   onLoad,
   filters,
@@ -23,6 +23,16 @@ const Proposals = ({
     onLoad({ filters })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
+
+  const navigate = useNavigate()
+  const { search } = useLocation()
+  const handleSelect = useCallback(
+    (proposalId) => {
+      const params = new URLSearchParams(search)
+      navigate(`/organizer/event/${eventId}/proposals/${proposalId}?${params.toString()}`)
+    },
+    [navigate, eventId, search],
+  )
 
   return (
     <List
@@ -38,7 +48,7 @@ const Proposals = ({
             )
           }
           info={<ProposalInfo eventId={eventId} proposal={proposal} isMobile={isMobile} />}
-          onSelect={() => onSelect(proposal.id)}
+          onSelect={() => handleSelect(proposal.id)}
           onCheckboxChange={() => onAddProposalToSelection(proposal.id)}
           checked={!!proposalsSelection.includes(proposal.id)}
           checkboxDisabled={!deliberationActive}
@@ -54,7 +64,6 @@ Proposals.propTypes = {
   proposalsSelection: PropTypes.arrayOf(PropTypes.string),
   deliberationActive: PropTypes.bool,
   blindRating: PropTypes.bool,
-  onSelect: PropTypes.func.isRequired,
   onAddProposalToSelection: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,

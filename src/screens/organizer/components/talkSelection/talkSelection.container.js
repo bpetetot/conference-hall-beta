@@ -2,8 +2,7 @@ import { inject } from '@k-ramel/react'
 
 import TalkSelection from './talkSelection'
 
-const mapStore = (store, { proposalId }, { router }) => {
-  const eventId = router.getParam('eventId')
+const mapStore = (store, { eventId, proposalId }, { router }) => {
   const currentProposalId = proposalId || router.getParam('proposalId')
   const { emailStatus, state } = store.data.proposals.get(currentProposalId) || {}
 
@@ -20,6 +19,7 @@ const mapStore = (store, { proposalId }, { router }) => {
       store.dispatch({
         type: '@@ui/ON_UPDATE_PROPOSAL',
         payload: {
+          eventId,
           proposal: {
             id: currentProposalId,
             state: e.target.value,

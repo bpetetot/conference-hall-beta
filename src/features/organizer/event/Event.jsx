@@ -4,6 +4,7 @@ import { Route, Routes, useParams } from 'react-router-dom'
 import EventPage from 'features/event'
 import EventEdit from './edit'
 import EventProposals from './proposals'
+import Proposal from './proposal'
 
 const Event = () => {
   const { eventId } = useParams()
@@ -12,6 +13,7 @@ const Event = () => {
       <Route path="/" element={<EventPage eventId={eventId} />} />
       <Route path="/edit/*" element={<EventEdit eventId={eventId} />} />
       <Route path="/proposals" element={<EventProposals eventId={eventId} />} />
+      <Route path="/proposals/:proposalId" element={<Proposal eventId={eventId} />} />
     </Routes>
   )
 }

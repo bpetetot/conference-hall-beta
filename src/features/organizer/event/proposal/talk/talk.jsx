@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { withSizes } from 'styles/utils'
 import Badge from 'components/badge'
 import Markdown from 'components/markdown'
-import { FormatBadge, CategoryBadge } from 'screens/components/event/badges'
+import { FormatBadge, CategoryBadge } from 'features/event/badges'
 import TalkSelection from 'screens/organizer/components/talkSelection'
 import { formatTimestamp } from 'helpers/firebase'
 
@@ -18,7 +18,7 @@ const Talk = ({ eventId, proposal, deliberationActive, isMobile, className }) =>
       <div>
         {!isMobile && deliberationActive && (
           <div>
-            <TalkSelection proposalId={proposal.id} />
+            <TalkSelection eventId={eventId} proposalId={proposal.id} />
           </div>
         )}
       </div>

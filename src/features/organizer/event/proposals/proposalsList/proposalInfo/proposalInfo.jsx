@@ -8,14 +8,14 @@ import TalkSelection from 'screens/organizer/components/talkSelection'
 
 import './proposalInfo.css'
 
-const ProposalInfo = ({ proposal, isMobile, deliberationActive, hideRatings }) => {
+const ProposalInfo = ({ eventId, proposal, isMobile, deliberationActive, hideRatings }) => {
   const { id, rating, loves, hates, noopinion, usersRatings } = proposal
 
   const nbVotes = compact(values(usersRatings)).length
 
   return (
     <div className="proposal-item-info">
-      {!isMobile && deliberationActive && <TalkSelection proposalId={id} />}
+      {!isMobile && deliberationActive && <TalkSelection eventId={eventId} proposalId={id} />}
       {!hideRatings && (
         <TotalRatings
           rating={rating}
@@ -30,6 +30,7 @@ const ProposalInfo = ({ proposal, isMobile, deliberationActive, hideRatings }) =
 }
 
 ProposalInfo.propTypes = {
+  eventId: PropTypes.string.isRequired,
   proposal: PropTypes.objectOf(PropTypes.any),
   isMobile: PropTypes.bool.isRequired,
   deliberationActive: PropTypes.bool,

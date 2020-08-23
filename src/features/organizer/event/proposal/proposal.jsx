@@ -16,7 +16,12 @@ const Proposal = ({ eventId, proposal, deliberationActive, blindRating }) => {
   return (
     <div className="proposal">
       <Actions className="proposal-actions" eventId={eventId} proposal={proposal} />
-      <Ratings className="proposal-ratings" userId={user.uid} />
+      <Ratings
+        className="proposal-ratings"
+        userId={user.uid}
+        eventId={eventId}
+        proposalId={proposal.id}
+      />
       {!blindRating && <Speakers className="proposal-speakers" proposal={proposal} />}
       <Talk
         className="proposal-talk"

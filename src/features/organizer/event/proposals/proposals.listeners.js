@@ -4,7 +4,6 @@ import * as reactions from './proposals.reactions'
 
 export default [
   when('@@ui/ON_LOAD_EVENT_PROPOSALS')(reactions.loadProposals),
-  when('@@ui/ON_SELECT_PROPOSAL')(reactions.selectProposal),
   when('@@ui/SELECT_ALL_PROPOSALS')(reactions.selectAllProposal),
   when('@@ui/SEND_EMAIL_FOR_PROPOSALS')(reactions.sendEmails),
   when('@@ui/ACCEPT_PROPOSALS')(reactions.acceptProposals),

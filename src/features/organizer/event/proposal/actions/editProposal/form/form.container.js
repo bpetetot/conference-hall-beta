@@ -8,7 +8,7 @@ const mapState = (store, { eventId, onClose }) => {
     categories,
     formats,
     onSubmit: (proposal) => {
-      store.dispatch({ type: '@@ui/ON_UPDATE_PROPOSAL', payload: { proposal } })
+      store.dispatch({ type: '@@ui/ON_UPDATE_PROPOSAL', payload: { eventId, proposal } })
       onClose()
     },
   }

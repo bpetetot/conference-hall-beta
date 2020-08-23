@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { getQuestion, getAnswersLabel } from 'screens/components/event/survey/questions'
+import { getQuestion, getAnswersLabel } from 'features/event/survey/questions'
 
 const Answer = ({ question, answer }) => {
   const answerLabel = getAnswersLabel(question, answer)

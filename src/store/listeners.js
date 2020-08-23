@@ -53,8 +53,6 @@ export default [
   /* proposals */
   when('@@ui/ON_LOAD_PROPOSAL')(proposals.getProposal),
   when('@@ui/ON_UPDATE_PROPOSAL')(proposals.updateProposal),
-  when('@@ui/ON_NEXT_PROPOSAL')(proposals.nextProposal),
-  when('@@ui/ON_PREVIOUS_PROPOSAL')(proposals.previousProposal),
   when('@@ui/EXPORT_PROPOSALS')(proposals.exportProposals),
   /* ratings */
   when('@@ui/ON_LOAD_RATINGS')(ratings.fetchRatings),

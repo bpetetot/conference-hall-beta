@@ -128,16 +128,3 @@ export const loadProposals = async (action, store) => {
   }
   store.data.proposals.set(props)
 }
-
-/* select a proposal */
-export const selectProposal = async (action, store, { router }) => {
-  const { eventId, proposalId } = action.payload
-  const proposalKeys = store.data.proposals.getKeys()
-  const proposalIndex = proposalKeys.indexOf(proposalId)
-
-  if (proposalIndex !== -1) {
-    store.ui.organizer.proposal.set({ proposalIndex })
-    const filters = store.ui.organizer.proposals.get()
-    router.push('organizer-event-proposal-page', { eventId, proposalId }, { ...filters })
-  }
-}
