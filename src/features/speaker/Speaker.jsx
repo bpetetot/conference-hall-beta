@@ -8,6 +8,7 @@ import Sidebar from './sidebar'
 import Talks from './talks'
 import Talk from './talk'
 import TalkCreate from './talk/form/talkCreate'
+import Event from './event'
 
 const Speaker = () => {
   const { user } = useAuth()
@@ -18,6 +19,7 @@ const Speaker = () => {
         <Route path="profile" element={<Profile />} />
         <Route path="talk/create" element={<TalkCreate />} />
         <Route path="talk/:talkId/*" element={<Talk />} />
+        <Route path="event/:eventId/*" element={<Event />} />
       </Routes>
     </AppLayout>
   )

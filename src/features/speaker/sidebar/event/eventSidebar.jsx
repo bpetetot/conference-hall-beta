@@ -9,14 +9,14 @@ const EventSidebar = ({ id, name, surveyActive }) => {
   if (!id) return null
   return (
     <SideBarPanel label={name}>
-      <SideBarLink to={`/speaker/event/${id}`}>
+      <SideBarLink to={`/speaker/event/${id}`} exact>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
-      <SideBarLink to={`/speaker/event/${id}/submissions`}>
+      <SideBarLink to={`/speaker/event/${id}/submissions`} exact>
         <IconLabel icon="fa fa-inbox" label="My submissions" />
       </SideBarLink>
       {surveyActive && (
-        <SideBarLink to={`/speaker/event/${id}/survey`}>
+        <SideBarLink to={`/speaker/event/${id}/survey`} exact>
           <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
         </SideBarLink>
       )}

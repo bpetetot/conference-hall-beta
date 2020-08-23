@@ -7,7 +7,7 @@ import { useAuth } from 'features/auth'
 
 import './survey.css'
 
-const SpeakerSurvey = ({ name }) => {
+const SpeakerSurvey = ({ eventId, name }) => {
   const { user } = useAuth()
   return (
     <div className="speaker-survey">
@@ -17,13 +17,14 @@ const SpeakerSurvey = ({ name }) => {
           Organizers need some information about you in order to make a better event experience for
           speakers. Please fill the following survey to help them.
         </p>
-        <SurveyForm uid={user.uid} />
+        <SurveyForm eventId={eventId} uid={user.uid} />
       </div>
     </div>
   )
 }
 
 SpeakerSurvey.propTypes = {
+  eventId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 }
 
