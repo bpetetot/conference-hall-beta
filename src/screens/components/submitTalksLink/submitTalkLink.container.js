@@ -3,14 +3,10 @@ import { inject } from '@k-ramel/react'
 import { isCfpOpened } from 'store/reducers/data/events.selector'
 import SubmitTalkLink from './submitTalkLink'
 
-const mapStore = (store, { eventId, classNameActive }, { router }) => {
-  const cfpOpened = isCfpOpened(eventId)(store)
-  const isActive = router.getCurrentCode() === 'speaker-event-submit-wizard'
+const mapStore = (store, { eventId }) => {
   return {
-    eventId,
-    displayed: eventId && cfpOpened,
-    classNameActive: isActive ? classNameActive : undefined,
-    onClick: () => store.dispatch({ type: '@@ui/GO_TO_SELECT_SUBMISSION', payload: { eventId } }),
+    displayed: eventId && isCfpOpened(eventId)(store),
+    onClick: () => store.ui.speaker.submission.reset(),
   }
 }
 

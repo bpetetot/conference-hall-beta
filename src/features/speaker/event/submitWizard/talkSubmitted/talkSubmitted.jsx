@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from '@k-redux-router/react-k-ramel'
+import { Link } from 'react-router-dom'
 
 import SubmitTalksLink from 'screens/components/submitTalksLink'
 import './talkSubmitted.css'
@@ -13,14 +13,12 @@ const TalkSubmitted = ({ eventId, eventName, surveyActive }) => (
       forget to fill
     </p>
     <h2>
-      <Link code="speaker-profile">Your profile</Link>
+      <Link to="/speaker/profile">Your profile</Link>
     </h2>
     {surveyActive && <p>and</p>}
     {surveyActive && (
       <h2>
-        <Link code="speaker-event-survey" eventId={eventId}>
-          The speaker survey
-        </Link>
+        <Link to={`/speaker/event/${eventId}/survey`}>The speaker survey</Link>
       </h2>
     )}
     <i className="fa fa-paper-plane-o" />
