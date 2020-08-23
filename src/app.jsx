@@ -12,6 +12,7 @@ import Beta from './features/beta/Beta'
 import PrivateRoute from './features/router/PrivateRoute'
 import Speaker from './features/speaker'
 import Organizer from './features/organizer'
+import Invite from './features/invite'
 
 import store from './store'
 
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/beta" element={<Beta />} />
           <PrivateRoute path="/speaker/*" element={<Speaker />} />
           <PrivateRoute path="/organizer/*" element={<Organizer />} betaAccess />
+          <PrivateRoute path="/invite/:inviteId" element={<Invite />} />
         </Routes>
       </AuthProvider>
     </div>

@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 
 import invites, { fetchInviteByType } from 'firebase/invites'
 
-const createInviteLink = (inviteId, entity) => {
+const createInviteLink = (inviteId) => {
   if (!inviteId) return null
-  return `${window.location.origin}/invite/${entity}/${inviteId}`
+  return `${window.location.origin}/invite/${inviteId}`
 }
 
 export default ({ entity, entityId, entityTitle, uid }) => {
@@ -48,6 +48,6 @@ export default ({ entity, entityId, entityTitle, uid }) => {
     generate,
     revoke,
     loading,
-    inviteLink: createInviteLink(inviteId, entity),
+    inviteLink: createInviteLink(inviteId),
   }
 }

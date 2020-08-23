@@ -46,7 +46,7 @@ describe('useInviteLink', () => {
     await waitForNextUpdate()
 
     expect(result.current.loading).toEqual(false)
-    expect(result.current.inviteLink).toEqual('http://localhost/invite/talk/invite1')
+    expect(result.current.inviteLink).toEqual('http://localhost/invite/invite1')
   })
 
   it('should generate an invite link', async () => {
@@ -75,7 +75,7 @@ describe('useInviteLink', () => {
       creator: 'alice',
     })
     expect(result.current.loading).toEqual(false)
-    expect(result.current.inviteLink).toEqual('http://localhost/invite/talk/invite1')
+    expect(result.current.inviteLink).toEqual('http://localhost/invite/invite1')
   })
 
   it('should revoke an invite link', async () => {
@@ -93,7 +93,7 @@ describe('useInviteLink', () => {
     await waitForNextUpdate()
 
     expect(result.current.loading).toEqual(false)
-    expect(result.current.inviteLink).toEqual('http://localhost/invite/talk/invite1')
+    expect(result.current.inviteLink).toEqual('http://localhost/invite/invite1')
 
     await act(async () => {
       await result.current.revoke()

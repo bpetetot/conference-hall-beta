@@ -3,7 +3,8 @@ import firebase from 'firebase/app'
 
 import inviteReq from 'firebase/invites'
 
-export default (inviteId, push) => {
+// TODO Add unit tests
+export default (inviteId, navigate) => {
   const [invitation, setInvitation] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -19,11 +20,11 @@ export default (inviteId, push) => {
 
     const { entity, entityId } = invitation
     if (entity === 'talk') {
-      push('speaker-talk-page', { talkId: entityId })
+      navigate(`/speaker/talk/${entityId}`)
     } else if (entity === 'organization') {
-      push('organizer-organization-page', { organizationId: entityId })
+      navigate(`/organizer/organization/${entityId}`)
     }
-  }, [inviteId, invitation, push])
+  }, [inviteId, invitation, navigate])
 
   return { invitation, loading, validate }
 }
