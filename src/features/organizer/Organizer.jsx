@@ -8,6 +8,7 @@ import Contributors from 'features/contributors'
 import Events from './events'
 import Sidebar from './sidebar'
 import EventCreate from './event/create'
+import Event from './event'
 
 const Organizer = () => {
   const { user } = useAuth()
@@ -18,6 +19,7 @@ const Organizer = () => {
         <Route path="profile" element={<Profile />} />
         <Route path="contributors" element={<Contributors />} />
         <Route path="event/create" element={<EventCreate />} />
+        <Route path="event/:eventId/*" element={<Event />} />
       </Routes>
     </AppLayout>
   )

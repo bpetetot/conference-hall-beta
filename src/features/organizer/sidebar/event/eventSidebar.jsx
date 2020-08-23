@@ -10,7 +10,7 @@ const EventSidebar = ({ eventId, name }) => {
   if (!eventId) return null
   return (
     <SideBarPanel label={name}>
-      <SideBarLink to="/organizer">
+      <SideBarLink to={`/organizer/event/${eventId}`}>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
       <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
