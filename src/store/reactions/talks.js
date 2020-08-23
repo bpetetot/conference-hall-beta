@@ -2,22 +2,7 @@ import compareDesc from 'date-fns/compareDesc'
 import { set, unset } from 'immutadot'
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 
-export const createTalk = async (action, store, { router }) => {
-  const { userId, data } = action.payload
-
-  store.ui.loaders.update({ isTalkSaving: true })
-  const ref = await talkCrud.create({
-    ...data,
-    owner: userId,
-    archived: false,
-    speakers: { [userId]: true },
-  })
-  store.ui.loaders.update({ isTalkSaving: false })
-
-  router.push('speaker-talk-page', { talkId: ref.id })
-}
-
-export const updateTalk = async (action, store, { router }) => {
+export const updateTalk = async (action, store) => {
   const talk = action.payload
 
   store.ui.loaders.update({ isTalkSaving: true })
@@ -25,7 +10,6 @@ export const updateTalk = async (action, store, { router }) => {
   store.ui.loaders.update({ isTalkSaving: false })
 
   store.data.talks.update(talk)
-  router.push('speaker-talk-page', { talkId: talk.id })
 }
 
 export const updateTalkSubmissionState = (action, store) => {

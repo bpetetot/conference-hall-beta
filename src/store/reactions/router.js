@@ -1,5 +1,4 @@
-import isEmpty from 'lodash/isEmpty'
-
+// eslint-disable-next-line import/prefer-default-export
 export const onRouteChanged = (action, store, { router }) => {
   // when speaker route get last eventId in localstorage
   const isSpeakerRoute = router.getParam('root') === 'speaker'
@@ -20,19 +19,4 @@ export const onRouteChanged = (action, store, { router }) => {
       store.ui.app.update({ currentEventId: eventId })
     }
   }
-}
-
-// redirect to a route with next url in query params
-export const replaceWithNextUrl = (action, store, { router }) => {
-  const route = action.payload
-  const nextParams = { redirect: router.getCurrentCode() }
-
-  if (!isEmpty(router.getPathParams())) {
-    nextParams.params = JSON.stringify(router.getPathParams())
-  }
-  if (!isEmpty(router.getQueryParams())) {
-    nextParams.query = JSON.stringify(router.getQueryParams())
-  }
-
-  return router.replace(route, null, nextParams)
 }

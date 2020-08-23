@@ -16,11 +16,9 @@ export default [
   when('@@krml/INIT')(app.init),
   /* router */
   when('@@router/ROUTE_FOUND')(router.onRouteChanged),
-  when('@@router/REPLACE_WITH_NEXT_URL')(router.replaceWithNextUrl),
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   /* talks */
-  when('@@ui/ON_CREATE_TALK')(talks.createTalk),
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
   when('@@ui/ON_UPDATE_TALK_SUBMISSION_STATE')(talks.updateTalkSubmissionState),
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
