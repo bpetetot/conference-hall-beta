@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from '@k-redux-router/react-k-ramel'
 import Badge from 'components/badge'
 
 import './talkInfo.css'
+import { Link } from 'react-router-dom'
 
 const TalkInfo = ({ id, archived, submissions }) => {
   if (archived) {
@@ -27,9 +27,7 @@ const TalkInfo = ({ id, archived, submissions }) => {
     <small>
       <span>{message}</span>
       <span className="talk-info-space">|</span>
-      <Link code="speaker-talk-submission" talkId={id} onClick={(e) => e.stopPropagation()}>
-        Submit
-      </Link>
+      <Link to={`/speaker/talk/${id}/submission`}>Submit</Link>
     </small>
   )
 }

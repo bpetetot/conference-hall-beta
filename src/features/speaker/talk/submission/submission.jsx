@@ -32,7 +32,7 @@ Submission.propTypes = {
 
 Submission.defaultProps = {
   talkId: undefined,
-  talkTitle: undefined,
+  talkTitle: '',
 }
 
 export default Submission
