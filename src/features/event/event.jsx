@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useLocation } from 'react-router-dom'
 
+import { isOrganizerApp } from 'features/router/utils'
 import Maps from 'components/maps'
 import Markdown from 'components/markdown'
 import CopyInput from 'components/copyInput'
@@ -24,40 +26,43 @@ const Event = ({
   contact,
   categories,
   formats,
-  isOrganizer,
-}) => (
-  <div className="event-wrapper">
-    <Banner className="event-header" eventId={id} />
-    <div className="event-page">
-      <div className="event-page-content">
-        <Cfp eventId={id} className="event-page-cfp" />
-        <div>
-          {isOrganizer && (
-            <CopyInput
-              title="Share link"
-              className="event-share"
-              value={`${origin}/public/event/${id}`}
-            />
-          )}
-          <Markdown className="event-description" source={description} />
-          <div className="event-lists">
-            <List title="Talk categories" list={categories} />
-            <List title="Talk formats" list={formats} />
+}) => {
+  const { pathname } = useLocation()
+
+  return (
+    <div className="event-wrapper">
+      <Banner className="event-header" eventId={id} />
+      <div className="event-page">
+        <div className="event-page-content">
+          <Cfp eventId={id} className="event-page-cfp" />
+          <div>
+            {isOrganizerApp(pathname) && (
+              <CopyInput
+                title="Share link"
+                className="event-share"
+                value={`${origin}/public/event/${id}`}
+              />
+            )}
+            <Markdown className="event-description" source={description} />
+            <div className="event-lists">
+              <List title="Talk categories" list={categories} />
+              <List title="Talk formats" list={formats} />
+            </div>
+          </div>
+        </div>
+        <div className="event-page-info">
+          {address && <Maps address={address.formattedAddress} />}
+          <div className="event-page-info-detail">
+            {type === 'conference' && <Dates dates={conferenceDates} large />}
+            {address && <Address address={address.formattedAddress} />}
+            {website && <Website website={website} />}
+            {contact && <Contact contact={contact} />}
           </div>
         </div>
       </div>
-      <div className="event-page-info">
-        {address && <Maps address={address.formattedAddress} />}
-        <div className="event-page-info-detail">
-          {type === 'conference' && <Dates dates={conferenceDates} large />}
-          {address && <Address address={address.formattedAddress} />}
-          {website && <Website website={website} />}
-          {contact && <Contact contact={contact} />}
-        </div>
-      </div>
     </div>
-  </div>
-)
+  )
+}
 
 Event.propTypes = {
   id: PropTypes.string.isRequired,
@@ -69,7 +74,6 @@ Event.propTypes = {
   contact: PropTypes.string,
   categories: PropTypes.arrayOf(PropTypes.object),
   formats: PropTypes.arrayOf(PropTypes.object),
-  isOrganizer: PropTypes.bool.isRequired,
 }
 
 Event.defaultProps = {

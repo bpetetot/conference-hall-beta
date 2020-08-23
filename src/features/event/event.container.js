@@ -4,11 +4,10 @@ import { compose } from 'redux'
 import loader from 'components/loader'
 import Event from './event'
 
-const mapStore = (store, { eventId }, { router }) => {
+const mapStore = (store, { eventId }) => {
   const event = store.data.events.get(eventId)
   return {
     loaded: !!event,
-    isOrganizer: router.getParam('root') === 'organizer',
     ...event,
     load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId }),
   }
