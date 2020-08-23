@@ -8,7 +8,7 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { List, ListItem } from 'components/list'
-import EventDates from 'screens/components/eventDates'
+import EventDates from 'features/event/eventDates'
 
 import styles from './events.module.css'
 

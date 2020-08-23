@@ -11,13 +11,13 @@ const OrganizerSideBar = ({ className }) => {
   return (
     <SideBar className={className}>
       <SideBarPanel label={user.displayName}>
-        <SideBarLink to="/organizer/profile">
+        <SideBarLink to="/organizer/profile" exact>
           <IconLabel icon="fa fa-user-o" label="Profile" />
         </SideBarLink>
-        <SideBarLink to="/organizer/events">
+        <SideBarLink to="/organizer" exact>
           <IconLabel icon="fa fa-calendar-o" label="My events" />
         </SideBarLink>
-        <SideBarLink to="/organizer/organizations">
+        <SideBarLink to="/organizer/organizations" exact>
           <IconLabel icon="fa fa-users" label="My organizations" />
         </SideBarLink>
       </SideBarPanel>
