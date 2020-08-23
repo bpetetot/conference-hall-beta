@@ -3,7 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 
 import { useAuth } from 'features/auth'
 import AppLayout from 'layout'
-import Profile from 'features/profile/profile'
+import Profile from 'features/profile'
+import Contributors from 'features/contributors'
 import Sidebar from './sidebar'
 import Talks from './talks'
 import Talk from './talk'
@@ -17,6 +18,7 @@ const Speaker = () => {
       <Routes>
         <Route path="/" element={<Talks userId={user.uid} />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="contributors" element={<Contributors />} />
         <Route path="talk/create" element={<TalkCreate />} />
         <Route path="talk/:talkId/*" element={<Talk />} />
         <Route path="event/:eventId/*" element={<Event />} />

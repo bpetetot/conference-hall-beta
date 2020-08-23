@@ -16,3 +16,13 @@ export function getAppTitle(pathname) {
   }
   return 'Conference Hall'
 }
+
+export function getTopRoute(pathname) {
+  if (isSpeakerApp(pathname)) {
+    return '/speaker'
+  }
+  if (isOrganizerApp(pathname)) {
+    return '/organizer'
+  }
+  return 'public'
+}

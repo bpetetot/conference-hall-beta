@@ -1,15 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import IconLabel from 'components/iconLabel'
 import Avatar from 'components/avatar'
 import Dropdown from 'components/dropdown'
 import { useAuth } from 'features/auth'
+import { getTopRoute } from 'features/router/utils'
 
 import './avatarDropdown.css'
 
 const AvatarDropdown = () => {
   const { user, signout } = useAuth()
+
+  const location = useLocation()
+  const topRoute = getTopRoute(location.pathname)
 
   if (!user) return null
 
@@ -22,7 +26,7 @@ const AvatarDropdown = () => {
       <Link to="/">
         <IconLabel icon="fa fa-home" label="Conference Hall" />
       </Link>
-      <Link to="/contributors">
+      <Link to={`${topRoute}/contributors`}>
         <IconLabel icon="fa fa-github-alt" label="Contributors" />
       </Link>
       <button onClick={signout} type="button">
