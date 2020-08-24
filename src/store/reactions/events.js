@@ -65,7 +65,7 @@ export const fetchEvent = async (action, store) => {
   }
 }
 
-export const fetchOrganizerEvents = async (action, store, { router }) => {
+export const fetchOrganizerEvents = async (action, store) => {
   const { userId } = action.payload
   const organizations = store.data.organizations.getKeys()
 
@@ -85,7 +85,7 @@ export const fetchOrganizerEvents = async (action, store, { router }) => {
   store.ui.organizer.myEvents.set(aggregatedEvents)
 
   // fetch events settings
-  await Promise.all(map(aggregatedEvents, (event) => fetchEventSettings(event.id, store, router)))
+  await Promise.all(map(aggregatedEvents, (event) => fetchEventSettings(event.id, store)))
 }
 
 export const fetchSpeakerEvents = async (action, store) => {

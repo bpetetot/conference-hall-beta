@@ -29,7 +29,7 @@ const mapStore = (store, { talkId }) => {
   return {
     loaded: !!talk,
     initialValues: talk,
-    load: () => store.dispatch({ type: '@@ui/ON_LOAD_TALK', payload: talkId }),
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_TALK', payload: { talkId } }),
     updateCache: (data) => store.data.talks.update(data),
   }
 }

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from '@k-redux-router/react-k-ramel'
+import { Link } from 'react-router-dom'
 
 const NoTalks = () => (
   <>
     <span>No talk yet! </span>
-    <Link code="speaker-talk-create">You should create your first talk</Link>
+    <Link to="/speaker/talk/create">You should create your first talk</Link>
   </>
 )
 

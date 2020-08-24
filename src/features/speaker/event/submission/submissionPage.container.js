@@ -14,7 +14,7 @@ const mapStore = (store, { eventId, talkId }) => {
     eventId,
     ...submission,
     cfpOpened: isCfpOpened(eventId)(store),
-    load: () => store.dispatch({ type: '@@ui/ON_LOAD_TALK', payload: talkId }),
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_TALK', payload: { talkId } }),
     onUpdateSubmission: () => {
       store.ui.speaker.submission.set({ talkId, currentStep: 2 })
     },

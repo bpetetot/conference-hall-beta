@@ -20,8 +20,8 @@ export const updateTalkSubmissionState = (action, store) => {
   store.data.talks.update(updatedTalk)
 }
 
-export const fetchTalk = async (action, store, { router }) => {
-  const talkId = action.payload || router.getParam('talkId')
+export const fetchTalk = async (action, store) => {
+  const { talkId } = action.payload
   if (!talkId) return
   // check if already in the store
   const current = store.data.talks.get(talkId)
