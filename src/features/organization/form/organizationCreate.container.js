@@ -1,6 +1,4 @@
-import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import OrganizationForm from './organizationForm'
 
@@ -11,7 +9,4 @@ const mapStore = (store, { userId }) => ({
   },
 })
 
-export default compose(
-  forRoute.absolute('organizer-organization-create'), //
-  inject(mapStore), //
-)(OrganizationForm)
+export default inject(mapStore)(OrganizationForm)

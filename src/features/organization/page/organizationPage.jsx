@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from '@k-redux-router/react-k-ramel'
 import sortBy from 'lodash/sortBy'
+import { Link } from 'react-router-dom'
 
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
@@ -33,11 +33,7 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember }) => {
         <HasRole of={ROLES.OWNER} forOrganizationId={organizationId}>
           <Button secondary>
             {(btn) => (
-              <Link
-                code="organizer-organization-edit"
-                organizationId={organizationId}
-                className={btn}
-              >
+              <Link to={`/organizer/organization/${organizationId}/edit`} className={btn}>
                 <IconLabel icon="fa fa-pencil" label="Edit" />
               </Link>
             )}
@@ -56,6 +52,7 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember }) => {
         renderRow={(member) => (
           <MemberRow
             key={member.uid}
+            organizationId={organizationId}
             user={member}
             role={members[member.uid]}
             authUserId={user.uid}

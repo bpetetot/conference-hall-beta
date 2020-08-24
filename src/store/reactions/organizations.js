@@ -29,8 +29,8 @@ export const update = async (action, store, { router }) => {
   router.push('organizer-organization-page', { organizationId: data.id })
 }
 
-export const get = async (action, store, { router }) => {
-  const organizationId = action.payload || router.getParam('organizationId')
+export const get = async (action, store) => {
+  const { organizationId } = action.payload
   if (!organizationId) return
   if (!store.data.organizations.hasKey(organizationId)) {
     const ref = await organizationCrud.read(organizationId)
@@ -45,16 +45,15 @@ export const ofUser = async (action, store) => {
   store.data.organizations.set(organizations)
 }
 
-export const setMember = async (action, store, { router }) => {
+export const setMember = async (action, store) => {
   const { uid, organizationId, role } = action.payload
   const organization = store.data.organizations.get(organizationId)
   const updated = set(organization, `members.${uid}`, role || ROLES.REVIEWER)
   await organizationCrud.update(updated)
   store.data.organizations.update(updated)
-  router.push('organizer-organization-page', { organizationId })
 }
 
-export const removeMember = async (action, store, { router }) => {
+export const removeMember = async (action, store) => {
   const { uid, organizationId, leave } = action.payload
   const organization = store.data.organizations.get(organizationId)
   const updated = unset(organization, `members.${uid}`)
@@ -62,9 +61,4 @@ export const removeMember = async (action, store, { router }) => {
     await organizationCrud.update(updated)
   }
   store.data.organizations.update(updated)
-  if (leave) {
-    router.push('organizer-organizations')
-  } else {
-    router.push('organizer-organization-page', { organizationId })
-  }
 }

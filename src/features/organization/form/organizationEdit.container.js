@@ -1,13 +1,11 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
-import { forRoute } from '@k-redux-router/react-k-ramel'
 
 import loader from 'components/loader'
 
 import OrganizationForm from './organizationForm'
 
-const mapStore = (store, ownProps, { router }) => {
-  const organizationId = router.getParam('organizationId')
+const mapStore = (store, { organizationId }) => {
   const organization = store.data.organizations.get(organizationId)
   return {
     loaded: !!organization,
@@ -16,14 +14,8 @@ const mapStore = (store, ownProps, { router }) => {
     onSubmit: (payload) => {
       store.dispatch({ type: '@@ui/ON_UPDATE_ORGANIZATION', payload })
     },
-    load: () => {
-      store.dispatch('@@ui/ON_LOAD_ORGANIZATION')
-    },
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_ORGANIZATION', payload: { organizationId } }),
   }
 }
 
-export default compose(
-  forRoute.absolute('organizer-organization-edit'), //
-  inject(mapStore), //
-  loader,
-)(OrganizationForm)
+export default compose(inject(mapStore), loader)(OrganizationForm)
