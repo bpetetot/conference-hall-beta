@@ -10,6 +10,7 @@ import Home from './features/home'
 import Login from './features/auth/login'
 import Beta from './features/beta/Beta'
 import PrivateRoute from './features/router/PrivateRoute'
+import Public from './features/public'
 import Speaker from './features/speaker'
 import Organizer from './features/organizer'
 import Invite from './features/invite'
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/beta" element={<Beta />} />
+          <Route path="/public/*" element={<Public />} />
           <PrivateRoute path="/speaker/*" element={<Speaker />} />
           <PrivateRoute path="/organizer/*" element={<Organizer />} betaAccess />
           <PrivateRoute path="/invite/:inviteId" element={<Invite />} />

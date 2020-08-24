@@ -9,7 +9,7 @@ const mapStore = (store, { eventId, talkId }) => {
   return {
     name,
     load: () => {
-      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
+      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId } })
     },
     onConfirm: () => {
       store.dispatch({

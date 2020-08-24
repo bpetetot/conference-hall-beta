@@ -8,7 +8,7 @@ const mapStore = (store, { eventId }) => {
   const event = store.data.events.get(eventId)
   return {
     loaded: !!event,
-    load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId }),
+    load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId } }),
   }
 }
 

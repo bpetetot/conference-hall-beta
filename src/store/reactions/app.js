@@ -5,6 +5,6 @@ export const init = (action, store) => {
   const currentEventId = localStorage.getItem('currentEventId')
   if (currentEventId) {
     store.ui.app.update({ currentEventId })
-    store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: currentEventId })
+    store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId: currentEventId } })
   }
 }

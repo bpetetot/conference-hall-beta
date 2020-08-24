@@ -21,7 +21,7 @@ const mapStore = (store, { eventId, proposalId }) => {
     blindRating: get(settings, 'deliberation.blindRating'),
     load: () => {
       store.dispatch({ type: '@@ui/ON_LOAD_PROPOSAL', payload: { eventId, proposalId } })
-      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId })
+      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId } })
     },
   }
 }

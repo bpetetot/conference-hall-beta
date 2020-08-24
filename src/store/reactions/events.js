@@ -49,8 +49,8 @@ const fetchEventSettings = async (eventId, store) => {
   }
 }
 
-export const fetchEvent = async (action, store, { router }) => {
-  const eventId = action.payload || router.getParam('eventId')
+export const fetchEvent = async (action, store) => {
+  const { eventId, loadSettings = true } = action.payload
   if (!eventId) return
   // check if already in the store
   const current = store.data.events.get(eventId)
@@ -59,8 +59,9 @@ export const fetchEvent = async (action, store, { router }) => {
   const ref = await eventCrud.read(eventId)
   if (ref.exists) {
     store.data.events.add({ id: eventId, ...ref.data() })
-    // fetch event settings
-    await fetchEventSettings(eventId, store, router)
+    if (loadSettings) {
+      await fetchEventSettings(eventId, store)
+    }
   }
 }
 
@@ -97,10 +98,8 @@ export const fetchSpeakerEvents = async (action, store) => {
   store.ui.speaker.myEvents.set(events)
 }
 
-export const organizerChangeEvent = async (action, store, { router }) => {
-  const { eventId } = action.payload
+export const organizerChangeEvent = async (action, store) => {
   store.ui.organizer.proposals.reset()
   store.ui.organizer.proposalsPaging.reset()
   store.ui.organizer.proposalsSelection.reset()
-  router.push('organizer-event-proposals', { eventId }, {})
 }

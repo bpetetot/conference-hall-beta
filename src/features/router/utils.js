@@ -24,5 +24,5 @@ export function getTopRoute(pathname) {
   if (isOrganizerApp(pathname)) {
     return '/organizer'
   }
-  return 'public'
+  return '/public'
 }

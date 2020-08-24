@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Badge from 'components/badge'
 import Titlebar from 'components/titlebar'
@@ -12,7 +12,7 @@ import EventDates from 'features/event/eventDates'
 
 import styles from './events.module.css'
 
-const MyEvents = ({ events, onSelect }) => {
+const MyEvents = ({ events, onChangeEvent }) => {
   const [status, setStatus] = useState('active')
 
   const filteredEvents = useMemo(
@@ -26,6 +26,15 @@ const MyEvents = ({ events, onSelect }) => {
   )
 
   const onFilter = (e) => setStatus(e.target.value)
+
+  const navigate = useNavigate()
+  const handleSelect = useCallback(
+    (eventId) => {
+      onChangeEvent()
+      navigate(`/organizer/event/${eventId}/proposals`)
+    },
+    [navigate, onChangeEvent],
+  )
 
   return (
     <div>
@@ -80,7 +89,7 @@ const MyEvents = ({ events, onSelect }) => {
                 )}
               </div>
             }
-            onSelect={() => onSelect(id)}
+            onSelect={() => handleSelect(id)}
           />
         )}
       />
@@ -89,7 +98,7 @@ const MyEvents = ({ events, onSelect }) => {
 }
 MyEvents.propTypes = {
   events: PropTypes.arrayOf(PropTypes.object),
-  onSelect: PropTypes.func.isRequired,
+  onChangeEvent: PropTypes.func.isRequired,
 }
 
 MyEvents.defaultProps = {

@@ -9,7 +9,9 @@ const mapState = (store, { eventId }) => {
   return {
     name,
     loaded: store.data.events.hasKey(eventId),
-    load: () => store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: eventId }),
+    load: () => {
+      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId } })
+    },
   }
 }
 

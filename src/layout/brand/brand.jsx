@@ -46,7 +46,7 @@ const Brand = ({ isTablet, isMobile, sidebar, className }) => {
           {({ hide }) => <SidebarWrapper content={sidebar} onClick={hide} />}
         </OpenTrigger>
       )}
-      <Link to={pathname}>{getAppTitle(pathname)}</Link>
+      <Link to="/">{getAppTitle(pathname)}</Link>
       {sidebar && (isMobile || isTablet) && <AvatarDropdown classname={styles.avatar} />}
     </div>
   )
