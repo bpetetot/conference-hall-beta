@@ -49,5 +49,7 @@
 
   .home .home-link {
     font-size: 0.9em;
+    min-height: 18em;
+    min-width: 18em;
   }
 }
