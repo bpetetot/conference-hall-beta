@@ -28,6 +28,10 @@
   grid-area: proposal-talk / proposal-talk / proposal-speakers / proposal-speakers;
 }
 
+.proposal-talk img {
+  max-width: 100%;
+}
+
 .proposal-speakers {
   grid-area: proposal-speakers;
 }
