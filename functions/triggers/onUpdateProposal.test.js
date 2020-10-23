@@ -123,7 +123,7 @@ describe('onUpdateProposal', () => {
       key: 'SOME-SECRET',
     }), sinon.match({
       to: ['corinnekrych@gmail.com'],
-      subject: '[RivieraDEV 2019] Talk accepted',
+      subject: '[RivieraDEV 2019] [Action required] Talk accepted! Please confirm your presence',
       html: sinon.match.any,
       confName: 'RivieraDEV 2019',
     }))
