@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import HasRole from 'screens/components/hasRole'
+import HasRole from 'features/organization/hasRole'
 import Titlebar from 'components/titlebar'
 import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 

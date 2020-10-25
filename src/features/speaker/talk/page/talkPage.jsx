@@ -10,7 +10,7 @@ import {
   TalkSpeakers,
   TalkSubmissions,
   TalkDeliberationNotification,
-} from 'screens/components/talk'
+} from 'features/talk'
 import DeleteTalkButton from './delete'
 import './talkPage.css'
 

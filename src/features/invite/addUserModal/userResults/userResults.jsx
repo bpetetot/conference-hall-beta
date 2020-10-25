@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import UserAvatar from 'screens/components/userAvatar'
+import UserAvatar from 'features/auth/userAvatar'
 import './userResults.css'
 
 const UserResults = ({ users, message, onSelectUser }) => {

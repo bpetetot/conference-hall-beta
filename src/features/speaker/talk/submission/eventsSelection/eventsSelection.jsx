@@ -7,7 +7,7 @@ import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
 import IconLabel from 'components/iconLabel'
 import NoEvents from 'features/event/noEvents'
-import Status from 'screens/components/talk/status'
+import Status from 'features/talk/status'
 import EventDates from 'features/event/eventDates'
 
 import styles from './eventsSelection.module.css'

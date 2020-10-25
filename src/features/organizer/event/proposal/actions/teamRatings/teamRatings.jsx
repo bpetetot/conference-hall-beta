@@ -6,8 +6,8 @@ import { displayRating } from 'helpers/number'
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel/iconLabel'
-import UserAvatar from 'screens/components/userAvatar'
-import TotalRatings from 'screens/organizer/components/totalRatings'
+import UserAvatar from 'features/auth/userAvatar'
+import TotalRatings from 'features/ratings/totalRatings'
 
 import './teamRatings.css'
 

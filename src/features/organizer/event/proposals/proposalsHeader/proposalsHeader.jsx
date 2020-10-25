@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import Titlebar from 'components/titlebar'
-import RatingsProgress from 'screens/organizer/components/ratingsProgress'
+import RatingsProgress from 'features/ratings/ratingsProgress'
 import { useAuth } from 'features/auth'
 
 import styles from './proposalsHeader.module.css'

@@ -8,7 +8,7 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import RelativeDate from 'components/relativeDate'
-import NoTalks from 'screens/components/talk/noTalks'
+import NoTalks from 'features/talk/noTalks'
 
 import TalkInfo from './talkInfo'
 

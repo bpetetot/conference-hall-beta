@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { SideBarPanel, SideBarLink } from 'layout/sidebar'
 import IconLabel from 'components/iconLabel'
-import HasRole from 'screens/components/hasRole'
+import HasRole from 'features/organization/hasRole'
 import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
 const EventSidebar = ({ eventId, name }) => {

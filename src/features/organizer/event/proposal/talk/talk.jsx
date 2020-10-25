@@ -6,7 +6,7 @@ import { withSizes } from 'styles/utils'
 import Badge from 'components/badge'
 import Markdown from 'components/markdown'
 import { FormatBadge, CategoryBadge } from 'features/event/badges'
-import TalkSelection from 'screens/organizer/components/talkSelection'
+import TalkSelection from 'features/organizer/event/talkSelection'
 import { formatTimestamp } from 'helpers/firebase'
 
 import styles from './talk.module.css'

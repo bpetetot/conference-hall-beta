@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { TalkStatus } from 'screens/components/talk'
+import { TalkStatus } from 'features/talk'
 import './talkTitle.css'
 
 const TalkTitle = ({ talkId, title, eventId }) => (

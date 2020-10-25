@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
-import UserAvatar from 'screens/components/userAvatar'
+import UserAvatar from 'features/auth/userAvatar'
 
 import Answer from './answer'
 

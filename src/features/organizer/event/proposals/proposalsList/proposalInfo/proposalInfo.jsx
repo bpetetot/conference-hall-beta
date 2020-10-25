@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import values from 'lodash/values'
 import compact from 'lodash/compact'
 
-import TotalRatings from 'screens/organizer/components/totalRatings'
-import TalkSelection from 'screens/organizer/components/talkSelection'
+import TotalRatings from 'features/ratings/totalRatings'
+import TalkSelection from 'features/organizer/event/talkSelection'
 
 import './proposalInfo.css'
 

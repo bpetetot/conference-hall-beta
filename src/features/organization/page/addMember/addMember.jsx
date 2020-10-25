@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import AddUserModal from 'screens/components/addUserModal'
+import AddUserModal from 'features/invite/addUserModal'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 

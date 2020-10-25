@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { getGitHubUserRepo } from 'helpers/github'
-import UserAvatar from 'screens/components/userAvatar'
+import UserAvatar from 'features/auth/userAvatar'
 import IconLabel from 'components/iconLabel'
 import IconLink from 'components/iconLink'
 import Markdown from 'components/markdown'

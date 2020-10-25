@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Stepper from 'components/stepper'
-import { TalkTitle } from 'screens/components/talk'
+import { TalkTitle } from 'features/talk'
 import EventsSelection from './eventsSelection'
 
 import './submission.css'

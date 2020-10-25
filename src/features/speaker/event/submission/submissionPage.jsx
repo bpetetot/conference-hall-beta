@@ -6,8 +6,8 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { FormatBadge, CategoryBadge } from 'features/event/badges'
-import { TalkAbstract, TalkSpeakers, TalkStatus } from 'screens/components/talk'
-import Notification from 'screens/components/talk/deliberation/notification'
+import { TalkAbstract, TalkSpeakers, TalkStatus } from 'features/talk'
+import Notification from 'features/talk/deliberation/notification'
 
 import styles from './submissionPage.module.css'
 

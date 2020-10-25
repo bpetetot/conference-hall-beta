@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import { TalkAbstract, TalkSpeakers } from 'screens/components/talk'
+import { TalkAbstract, TalkSpeakers } from 'features/talk'
 import TalkTitle from './talkTitle'
 
 import './talkPage.css'

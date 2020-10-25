@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
 import Titlebar from 'components/titlebar'
-import SubmitTalkLink from 'screens/components/submitTalksLink'
-import TalkStatus from 'screens/components/talk/status'
+import SubmitTalkLink from 'features/talk/submitTalksLink'
+import TalkStatus from 'features/talk/status'
 import { List, ListItem } from 'components/list'
 
 const Submissions = ({ eventId, eventName, talks }) => {

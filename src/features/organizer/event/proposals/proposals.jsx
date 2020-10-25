@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 
-import HasRole from 'screens/components/hasRole'
+import HasRole from 'features/organization/hasRole'
 import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 import { useAuth } from 'features/auth'
 
