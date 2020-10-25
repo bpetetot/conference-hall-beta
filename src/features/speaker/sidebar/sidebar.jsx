@@ -2,12 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { useAuth } from 'features/auth'
+import { useCurrentEventId } from 'features/event/currentEventContext'
 import { SideBar, SideBarPanel, SideBarLink } from 'layout/sidebar'
 import IconLabel from 'components/iconLabel'
 import EventSidebar from './event'
 
 const SpeakerSideBar = ({ className }) => {
   const { user } = useAuth()
+  const eventId = useCurrentEventId()
 
   return (
     <SideBar className={className}>
@@ -19,7 +21,7 @@ const SpeakerSideBar = ({ className }) => {
           <IconLabel icon="fa fa-microphone" label="My talks" />
         </SideBarLink>
       </SideBarPanel>
-      <EventSidebar />
+      <EventSidebar eventId={eventId} />
     </SideBar>
   )
 }

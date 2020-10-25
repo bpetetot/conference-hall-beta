@@ -1,7 +1,5 @@
 import { when } from 'k-ramel'
 
-import * as app from './reactions/app'
-import * as router from './reactions/router'
 import * as user from './reactions/user'
 import * as talks from './reactions/talks'
 import * as events from './reactions/events'
@@ -12,10 +10,6 @@ import * as ratings from './reactions/ratings'
 import * as survey from './reactions/survey'
 
 export default [
-  /* app loaded */
-  when('@@krml/INIT')(app.init),
-  /* router */
-  when('@@router/ROUTE_FOUND')(router.onRouteChanged),
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   /* talks */

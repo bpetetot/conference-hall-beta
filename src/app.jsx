@@ -5,6 +5,7 @@ import { provider } from '@k-ramel/react'
 
 import useTheme from 'styles/themes/useTheme'
 
+import { CurrentEventProvider } from 'features/event/currentEventContext'
 import { AuthProvider } from './features/auth'
 import Home from './features/home'
 import Login from './features/auth/login'
@@ -24,15 +25,17 @@ const App = () => {
   return (
     <div className={cn('app', theme)}>
       <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/beta" element={<Beta />} />
-          <Route path="/public/*" element={<Public />} />
-          <PrivateRoute path="/speaker/*" element={<Speaker />} />
-          <PrivateRoute path="/organizer/*" element={<Organizer />} betaAccess />
-          <PrivateRoute path="/invite/:inviteId" element={<Invite />} />
-        </Routes>
+        <CurrentEventProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/beta" element={<Beta />} />
+            <Route path="/public/*" element={<Public />} />
+            <PrivateRoute path="/speaker/*" element={<Speaker />} />
+            <PrivateRoute path="/organizer/*" element={<Organizer />} betaAccess />
+            <PrivateRoute path="/invite/:inviteId" element={<Invite />} />
+          </Routes>
+        </CurrentEventProvider>
       </AuthProvider>
     </div>
   )

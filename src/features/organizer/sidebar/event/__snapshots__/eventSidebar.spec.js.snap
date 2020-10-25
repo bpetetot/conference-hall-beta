@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`screens/organizer/sidebar/event should not render without event id 1`] = `null`;
-
-exports[`screens/organizer/sidebar/event should render with event data 1`] = `"SideBarPanel"`;
