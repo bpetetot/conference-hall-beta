@@ -13,7 +13,6 @@ export const updateProposal = async (action, store) => {
 }
 
 export const getProposal = async (action, store) => {
-  // get event & proposal id from router
   const { eventId, proposalId } = action.payload
   // check if already in the store
   const inStore = store.data.proposals.get(proposalId)
@@ -28,17 +27,15 @@ export const getProposal = async (action, store) => {
   store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
 }
 
-export const exportProposals = async (action, store, { router }) => {
-  const { output } = action.payload
-  const eventId = router.getParam('eventId')
+export const exportProposals = async (action, store) => {
+  const { eventId, filters, output } = action.payload
   store.ui.organizer.proposalsExport.update({ exporting: output })
 
   const token = await firebase.auth().currentUser.getIdToken()
 
   // get proposal filters & sort from query params
-  const queryParams = router.getQueryParams()
   const query = encodeURI(
-    Object.entries({ ...queryParams, output })
+    Object.entries({ ...filters, output })
       .map(([key, value]) => `${key}=${value}`)
       .join('&'),
   )

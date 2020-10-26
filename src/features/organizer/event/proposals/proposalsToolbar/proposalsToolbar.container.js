@@ -8,7 +8,7 @@ const countEmailsToSend = (type, selection = [], proposals = []) => {
   return result.length
 }
 
-const mapStore = (store, { userId, eventId }) => {
+const mapStore = (store, { userId, eventId, filters }) => {
   const settings = store.data.eventsSettings.get(eventId)
   const { exporting } = store.ui.organizer.proposalsExport.get()
   const proposals = store.data.proposals.getAsArray()
@@ -31,7 +31,7 @@ const mapStore = (store, { userId, eventId }) => {
         payload: { checkAll: e.target.checked },
       }),
     onExportProposals: (output) => () =>
-      store.dispatch({ type: '@@ui/EXPORT_PROPOSALS', payload: { output } }),
+      store.dispatch({ type: '@@ui/EXPORT_PROPOSALS', payload: { eventId, filters, output } }),
     onSendEmails: () =>
       store.dispatch({
         type: '@@ui/SEND_EMAIL_FOR_PROPOSALS',

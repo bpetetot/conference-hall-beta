@@ -31,7 +31,7 @@ const Proposals = ({ eventId }) => {
       <ProposalsHeader eventId={eventId} />
       <ProposalsFilters eventId={eventId} />
       <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
-        <ProposalsToolbar eventId={eventId} userId={user.uid} />
+        <ProposalsToolbar eventId={eventId} userId={user.uid} filters={filters} />
       </HasRole>
       <ProposalsList eventId={eventId} userId={user.uid} filters={filters} />
       <ProposalsPaging />
