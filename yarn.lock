@@ -3099,16 +3099,6 @@
   dependencies:
     fbjs "^1.0.0"
 
-"@k-redux-router/core@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@k-redux-router/core/-/core-1.1.0.tgz#83382c8b8c26635a103c4a9afd3fa8090c7e7900"
-  integrity sha512-29hV37RcK5yxnjwLqf8YILogCSvuSxq4BRyykDmv9O2YWx1ZrHFC8wc5QbkASKa0MHatxzkgnQGWUxG5O39uxg==
-
-"@k-redux-router/react-k-ramel@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@k-redux-router/react-k-ramel/-/react-k-ramel-1.2.0.tgz#0a2468771c73f14077768e85ea27597aaba46614"
-  integrity sha512-icrjQg8oln1wjH8Gxf1If2mu1AdWBLLPcmvcNjaSU88mpmElqQKylZPLBHu/MoL5gNBEXwR6W9iUwt/DwS3cOw==
-
 "@mdx-js/loader@^1.5.1":
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-1.5.5.tgz#b658534153b3faab8f93ffc790c868dacc5b43d3"

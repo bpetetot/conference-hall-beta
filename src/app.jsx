@@ -15,6 +15,7 @@ import Public from './features/public'
 import Speaker from './features/speaker'
 import Organizer from './features/organizer'
 import Invite from './features/invite'
+import PageNotFound from './features/router/notFound'
 
 import store from './store'
 
@@ -34,6 +35,7 @@ const App = () => {
             <PrivateRoute path="/speaker/*" element={<Speaker />} />
             <PrivateRoute path="/organizer/*" element={<Organizer />} betaAccess />
             <PrivateRoute path="/invite/:inviteId" element={<Invite />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </CurrentEventProvider>
       </AuthProvider>

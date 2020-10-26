@@ -22,8 +22,6 @@
   },
   "dependencies": {
     "@k-ramel/react": "3.0.1",
-    "@k-redux-router/core": "1.1.0",
-    "@k-redux-router/react-k-ramel": "1.2.0",
     "classnames": "2.2.6",
     "date-fns": "2.15.0",
     "dompurify": "2.0.12",
