@@ -91,9 +91,6 @@ export const selectAllProposal = async (action, store) => {
 
 /* load proposals */
 export const loadProposals = async (action, store) => {
-  store.data.proposals.reset()
-  store.ui.organizer.proposalsPaging.reset()
-
   const { userId, eventId, filters } = action.payload
 
   const proposals = await firebase.fetchEventProposals(eventId, userId, filters)
@@ -126,5 +123,6 @@ export const loadProposals = async (action, store) => {
         deburr(toLower(proposal.speakerName)).includes(searchQuery),
     )
   }
+  store.ui.organizer.proposalsPaging.reset()
   store.data.proposals.set(props)
 }
