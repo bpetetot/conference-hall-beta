@@ -6,8 +6,8 @@ import useRedirectNext from 'features/router/useRedirectNext'
 import { LoadingIndicator } from 'components/loader'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-
 import { useAuth } from '../context'
+
 import './login.css'
 
 const PROVIDERS = split(process.env.REACT_APP_AUTH_PROVIDERS, ',') || []

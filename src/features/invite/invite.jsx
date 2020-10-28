@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-import AppLayout from 'layout'
+import AppLayout from 'app/layout'
 import Button from 'components/button'
 import Titlebar from 'components/titlebar'
 

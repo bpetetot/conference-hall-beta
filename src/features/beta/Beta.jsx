@@ -2,8 +2,8 @@ import React, { useCallback, useState } from 'react'
 
 import { isValidBetaAccessKey } from 'firebase/betaAccess'
 import { useAuth } from 'features/auth'
-import InputButton from 'components/form/inputButton'
 import useRedirectNext from 'features/router/useRedirectNext'
+import InputButton from 'components/form/inputButton'
 
 import styles from './Beta.module.css'
 
