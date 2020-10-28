@@ -64,6 +64,10 @@ module.exports = functions.firestore
 
       const status = proposal.state === 'accepted' ? 'accepted' : 'declined'
       const { cc, bcc } = await getEmailRecipients(event, settings, proposal.state)
+      const subject =
+        status === 'accepted'
+          ? `[${event.name}] [Action required] Talk ${status}! Please confirm your presence`
+          : `[${event.name}] Talk ${status}`
 
       return Promise.all([
         getUsers(uids),
@@ -74,7 +78,7 @@ module.exports = functions.firestore
         cc,
         bcc,
         contact: event.contact,
-        subject: `[${event.name}] Talk ${status}`,
+        subject,
         html: status === 'accepted' ? talkAccepted(event, users, proposal, app) : talkRejected(event, users, proposal, app),
         confName: event.name,
         webHookInfo: { type: 'deliberation_email', talkId: proposal.id, eventId },
