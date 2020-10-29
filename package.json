@@ -8,7 +8,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:emulator": "firebase emulators:exec --only firestore 'jest --roots config'",
+    "test:emulator": "firebase emulators:exec --only firestore 'jest --roots config --env=./config/tests/custom.js'",
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize",
     "doc": "start-storybook -p 6006 --docs",
