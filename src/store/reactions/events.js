@@ -3,7 +3,7 @@ import map from 'lodash/map'
 import uniqBy from 'lodash/uniqBy'
 import get from 'lodash/get'
 
-import { fetchOrganizationEvents } from 'firebase/organizations'
+import { fetchOrganizationEvents, fetchUserOrganizations } from 'firebase/organizations'
 import eventCrud, {
   fetchPublicEvents,
   fetchUserEvents,
@@ -67,12 +67,17 @@ export const fetchEvent = async (action, store) => {
 
 export const fetchOrganizerEvents = async (action, store) => {
   const { userId } = action.payload
-  const organizations = store.data.organizations.getKeys()
+  let organizationsKeys = store.data.organizations.getKeys()
+  if (!organizationsKeys.length) {
+    const organizations = await fetchUserOrganizations(userId)
+    store.data.organizations.set(organizations)
+    organizationsKeys = store.data.organizations.getKeys()
+  }
 
   const result = await fetchUserEvents(userId)
   const events = result.docs.map((ref) => ({ id: ref.id, ...ref.data() }))
   const organizationsEvents = await Promise.all(
-    map(organizations, async (organizationId) => {
+    map(organizationsKeys, async (organizationId) => {
       const organizationEvents = await fetchOrganizationEvents(organizationId)
       return organizationEvents.docs.map((ref) => ({ id: ref.id, ...ref.data() }))
     }),
