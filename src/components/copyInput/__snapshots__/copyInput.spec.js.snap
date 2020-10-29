@@ -1,13 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/copyInput should copy the value in clipboard when button clicked 1`] = `
-Array [
-  Array [
-    "Copy",
-  ],
-]
-`;
-
 exports[`components/copyInput should render with all props 1`] = `
 <div
   className="copy-input"
