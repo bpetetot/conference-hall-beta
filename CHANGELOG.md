@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.35.1"></a>
+## 0.35.1 (2020-10-29)
+
+### Fixed
+
+- 🐛 fix events list from organization ([#838](https://github.com/bpetetot/conference-hall/issues/838)) [[09eae29](https://github.com/bpetetot/conference-hall/commit/09eae29cf6e8f0e7924a82ac743ab2a49c134589)]
+
+
 <a name="0.35.0"></a>
 ## 0.35.0 (2020-10-29)
 
