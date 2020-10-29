@@ -15,7 +15,7 @@ export const useAuth = () => useContext(AuthContext)
 
 // TODO Add Unit Tests
 export const AuthContextProvider = ({ children, resetStore }) => {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
@@ -41,7 +41,7 @@ export const AuthContextProvider = ({ children, resetStore }) => {
       }
       setLoading(false)
     })
-  }, [resetStore])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const signin = useCallback(async (providerName) => {
     setLoading(true)
