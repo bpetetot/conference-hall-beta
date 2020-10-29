@@ -82,9 +82,8 @@ const AddressInput = (props) => {
               const className = cn('cc-address-input-suggestion-item', {
                 'cc-address-input-suggestion-item-active': suggestion.active,
               })
-
               return (
-                <div {...getSuggestionItemProps(suggestion, { className })}>
+                <div {...getSuggestionItemProps(suggestion, { className })} key={suggestion.index}>
                   <span>{suggestion.description}</span>
                 </div>
               )

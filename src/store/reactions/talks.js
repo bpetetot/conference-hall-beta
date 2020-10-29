@@ -2,22 +2,7 @@ import compareDesc from 'date-fns/compareDesc'
 import { set, unset } from 'immutadot'
 import talkCrud, { fetchUserTalks } from 'firebase/talks'
 
-export const createTalk = async (action, store, { router }) => {
-  const { userId, data } = action.payload
-
-  store.ui.loaders.update({ isTalkSaving: true })
-  const ref = await talkCrud.create({
-    ...data,
-    owner: userId,
-    archived: false,
-    speakers: { [userId]: true },
-  })
-  store.ui.loaders.update({ isTalkSaving: false })
-
-  router.push('speaker-talk-page', { talkId: ref.id })
-}
-
-export const updateTalk = async (action, store, { router }) => {
+export const updateTalk = async (action, store) => {
   const talk = action.payload
 
   store.ui.loaders.update({ isTalkSaving: true })
@@ -25,7 +10,6 @@ export const updateTalk = async (action, store, { router }) => {
   store.ui.loaders.update({ isTalkSaving: false })
 
   store.data.talks.update(talk)
-  router.push('speaker-talk-page', { talkId: talk.id })
 }
 
 export const updateTalkSubmissionState = (action, store) => {
@@ -36,8 +20,8 @@ export const updateTalkSubmissionState = (action, store) => {
   store.data.talks.update(updatedTalk)
 }
 
-export const fetchTalk = async (action, store, { router }) => {
-  const talkId = action.payload || router.getParam('talkId')
+export const fetchTalk = async (action, store) => {
+  const { talkId } = action.payload
   if (!talkId) return
   // check if already in the store
   const current = store.data.talks.get(talkId)
@@ -75,14 +59,4 @@ export const updateSpeakerToTalk = async (action, store) => {
       store.data.talks.update(updated)
     }
   }
-}
-
-export const deleteTalk = async (action, store, { router }) => {
-  const { talkId } = action.payload
-
-  await talkCrud.delete(talkId)
-  store.data.talks.remove([talkId])
-  store.ui.speaker.myTalks.remove([talkId])
-
-  router.push('speaker')
 }

@@ -3,20 +3,17 @@ import firebase from 'firebase/app'
 import { downloadFile } from 'helpers/dom'
 import * as firebaseProposals from 'firebase/proposals'
 
-export const updateProposal = async (action, store, { router }) => {
+export const updateProposal = async (action, store) => {
   // get needed inputs
-  const eventId = router.getParam('eventId')
-  const { proposal, options } = action.payload
+  const { eventId, proposal, options } = action.payload
   // update proposal
   await firebaseProposals.updateProposal(eventId, proposal, options)
   // update proposal in the store
   store.data.proposals.update(proposal)
 }
 
-export const getProposal = async (action, store, { router }) => {
-  // get event & proposal id from router
-  const eventId = router.getParam('eventId')
-  const proposalId = router.getParam('proposalId')
+export const getProposal = async (action, store) => {
+  const { eventId, proposalId } = action.payload
   // check if already in the store
   const inStore = store.data.proposals.get(proposalId)
   if (!inStore) {
@@ -30,45 +27,15 @@ export const getProposal = async (action, store, { router }) => {
   store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
 }
 
-export const nextProposal = async (action, store, { router }) => {
-  const eventId = router.getParam('eventId')
-  const { proposalIndex } = store.ui.organizer.proposal.get()
-  const proposalKeys = store.data.proposals.getKeys()
-  const nextIndex = proposalIndex + 1
-  if (nextIndex < proposalKeys.length) {
-    const proposalId = proposalKeys[nextIndex]
-    store.ui.organizer.proposal.set({ proposalIndex: nextIndex })
-    store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
-    const filters = store.ui.organizer.proposals.get()
-    router.push('organizer-event-proposal-page', { eventId, proposalId }, filters)
-  }
-}
-
-export const previousProposal = async (action, store, { router }) => {
-  const eventId = router.getParam('eventId')
-  const { proposalIndex } = store.ui.organizer.proposal.get()
-  const proposalKeys = store.data.proposals.getKeys()
-  const prevIndex = proposalIndex - 1
-  if (prevIndex >= 0) {
-    const proposalId = proposalKeys[prevIndex]
-    store.ui.organizer.proposal.set({ proposalIndex: prevIndex })
-    store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
-    const filters = store.ui.organizer.proposals.get()
-    router.push('organizer-event-proposal-page', { eventId, proposalId }, filters)
-  }
-}
-
-export const exportProposals = async (action, store, { router }) => {
-  const { output } = action.payload
-  const eventId = router.getParam('eventId')
+export const exportProposals = async (action, store) => {
+  const { eventId, filters, output } = action.payload
   store.ui.organizer.proposalsExport.update({ exporting: output })
 
   const token = await firebase.auth().currentUser.getIdToken()
 
   // get proposal filters & sort from query params
-  const queryParams = router.getQueryParams()
   const query = encodeURI(
-    Object.entries({ ...queryParams, output })
+    Object.entries({ ...filters, output })
       .map(([key, value]) => `${key}=${value}`)
       .join('&'),
   )

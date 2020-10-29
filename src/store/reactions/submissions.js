@@ -1,17 +1,5 @@
 import functions from 'firebase/functionCalls'
 
-export const openSelectSubmission = (action, store, { router }) => {
-  const { eventId } = action.payload
-  store.ui.speaker.submission.reset()
-  router.push('speaker-event-submit-wizard', { eventId })
-}
-
-export const openEventSubmission = (action, store, { router }) => {
-  const { talkId, eventId, step = 1 } = action.payload
-  store.ui.speaker.submission.set({ talkId, currentStep: step })
-  router.push('speaker-event-submit-wizard', { eventId })
-}
-
 export const submitTalkToEvent = async (action, store) => {
   const { talkId, eventId, data } = action.payload
   const talk = store.data.talks.get(talkId)

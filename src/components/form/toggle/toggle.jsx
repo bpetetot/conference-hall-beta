@@ -1,10 +1,15 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './toggle.module.css'
 
 const Toggle = ({ name, checked, onChange, ...rest }) => {
   const [isChecked, setChecked] = useState(checked)
+
+  useEffect(() => {
+    setChecked(checked)
+  }, [checked])
+
   const handleChange = useCallback(
     (e) => {
       setChecked(e.target.checked)

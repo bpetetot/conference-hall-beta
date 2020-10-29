@@ -11,18 +11,6 @@ import eventCrud, {
   saveSettings,
 } from 'firebase/events'
 
-export const createEvent = async (action, store, { router }) => {
-  const { userId, data } = action.payload
-  const event = { ...data, owner: userId }
-
-  store.ui.loaders.update({ isEventSaving: true })
-  const ref = await eventCrud.create(event)
-  store.ui.loaders.update({ isEventSaving: false })
-
-  store.data.events.add({ id: ref.id, ...event })
-  router.push('organizer-event-page', { eventId: ref.id })
-}
-
 export const updateEventForm = async (action, store) => {
   const event = action.payload
 
@@ -51,10 +39,7 @@ export const saveEventSettings = async (action, store) => {
   })
 }
 
-const fetchEventSettings = async (eventId, store, router) => {
-  const isOrganizer = router.getParam('root') === 'organizer'
-  if (!isOrganizer) return
-
+const fetchEventSettings = async (eventId, store) => {
   const settings = store.data.eventsSettings.get(eventId)
   if (!settings) {
     const settingsRef = await fetchSettings(eventId)
@@ -64,8 +49,8 @@ const fetchEventSettings = async (eventId, store, router) => {
   }
 }
 
-export const fetchEvent = async (action, store, { router }) => {
-  const eventId = action.payload || router.getParam('eventId')
+export const fetchEvent = async (action, store) => {
+  const { eventId, loadSettings = true } = action.payload
   if (!eventId) return
   // check if already in the store
   const current = store.data.events.get(eventId)
@@ -74,12 +59,13 @@ export const fetchEvent = async (action, store, { router }) => {
   const ref = await eventCrud.read(eventId)
   if (ref.exists) {
     store.data.events.add({ id: eventId, ...ref.data() })
-    // fetch event settings
-    await fetchEventSettings(eventId, store, router)
+    if (loadSettings) {
+      await fetchEventSettings(eventId, store)
+    }
   }
 }
 
-export const fetchOrganizerEvents = async (action, store, { router }) => {
+export const fetchOrganizerEvents = async (action, store) => {
   const { userId } = action.payload
   const organizations = store.data.organizations.getKeys()
 
@@ -99,7 +85,7 @@ export const fetchOrganizerEvents = async (action, store, { router }) => {
   store.ui.organizer.myEvents.set(aggregatedEvents)
 
   // fetch events settings
-  await Promise.all(map(aggregatedEvents, (event) => fetchEventSettings(event.id, store, router)))
+  await Promise.all(map(aggregatedEvents, (event) => fetchEventSettings(event.id, store)))
 }
 
 export const fetchSpeakerEvents = async (action, store) => {
@@ -112,10 +98,8 @@ export const fetchSpeakerEvents = async (action, store) => {
   store.ui.speaker.myEvents.set(events)
 }
 
-export const organizerChangeEvent = async (action, store, { router }) => {
-  const { eventId } = action.payload
+export const organizerChangeEvent = async (action, store) => {
   store.ui.organizer.proposals.reset()
   store.ui.organizer.proposalsPaging.reset()
   store.ui.organizer.proposalsSelection.reset()
-  router.push('organizer-event-proposals', { eventId }, {})
 }

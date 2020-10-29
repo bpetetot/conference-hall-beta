@@ -12,11 +12,8 @@ export const fetchRatings = async (action, store) => {
   store.data.ratings.set(ratings)
 }
 
-export const rateProposal = async (action, store, { router }) => {
-  const { rating, feeling, userId } = action.payload
-  // select needed inputs in the state
-  const eventId = router.getParam('eventId')
-  const proposalId = router.getParam('proposalId')
+export const rateProposal = async (action, store) => {
+  const { rating, feeling, userId, eventId, proposalId } = action.payload
 
   // add or remove the rating in database and store
   const rated = !!rating || !!feeling

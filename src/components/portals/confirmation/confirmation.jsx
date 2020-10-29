@@ -1,73 +1,74 @@
-import React, { Component } from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import Modal from 'components/portals/modal'
 import Button from 'components/button'
+import useTheme from 'styles/themes/useTheme'
 
 import './confirmation.css'
 
-class ConfirmationPopin extends Component {
-  handleOk = (hide) => (e) => {
-    hide()
-    if (this.props.onOk) {
-      this.props.onOk(e)
-    }
-  }
+function ConfirmationPopin({
+  className,
+  title,
+  content,
+  onOk,
+  withOk,
+  onCancel,
+  withCancel,
+  renderTrigger,
+  defaultOpen,
+}) {
+  const theme = useTheme()
 
-  handleCancel = (hide) => (e) => {
-    hide()
-    if (this.props.onCancel) {
-      this.props.onCancel(e)
-    }
-  }
+  const handleOk = useCallback(
+    (hide) => (e) => {
+      hide()
+      if (onOk) onOk(e)
+    },
+    [onOk],
+  )
 
-  render() {
-    const {
-      className,
-      title,
-      content,
-      onOk,
-      withOk,
-      onCancel,
-      withCancel,
-      renderTrigger,
-      defaultOpen,
-    } = this.props
+  const handleCancel = useCallback(
+    (hide) => (e) => {
+      hide()
+      if (onCancel) onCancel(e)
+    },
+    [onCancel],
+  )
 
-    return (
-      <Modal
-        defaultOpen={defaultOpen}
-        renderTrigger={renderTrigger}
-        onClose={this.handleCancel}
-        withCloseIcon={false}
-        withClickOutside={false}
-        withEscapeClose={false}
-        className={cn('confirmation-popin', className)}
-      >
-        {({ hide }) => (
-          <>
-            <div className="confirmation-text">
-              {title && <div className="confirmation-title">{title}</div>}
-              {content && <div className="confirmation-content">{content}</div>}
-            </div>
-            <div className="confirmation-actions">
-              {(withCancel || onCancel) && (
-                <Button secondary onClick={this.handleCancel(hide)}>
-                  Cancel
-                </Button>
-              )}
-              {(withOk || onOk) && (
-                <Button accent onClick={this.handleOk(hide)}>
-                  Ok
-                </Button>
-              )}
-            </div>
-          </>
-        )}
-      </Modal>
-    )
-  }
+  return (
+    <Modal
+      defaultOpen={defaultOpen}
+      renderTrigger={renderTrigger}
+      onClose={handleCancel}
+      withCloseIcon={false}
+      withClickOutside={false}
+      withEscapeClose={false}
+      className={cn('confirmation-popin', theme, className)}
+    >
+      {({ hide }) => (
+        <>
+          <div className="confirmation-text">
+            {title && <div className="confirmation-title">{title}</div>}
+            {content && <div className="confirmation-content">{content}</div>}
+          </div>
+          <div className="confirmation-actions">
+            {(withCancel || onCancel) && (
+              <Button secondary onClick={handleCancel(hide)}>
+                Cancel
+              </Button>
+            )}
+            {(withOk || onOk) && (
+              <Button accent onClick={handleOk(hide)}>
+                Ok
+              </Button>
+            )}
+          </div>
+        </>
+      )}
+    </Modal>
+  )
 }
 
 ConfirmationPopin.propTypes = {

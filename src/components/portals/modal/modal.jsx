@@ -7,6 +7,7 @@ import Backdrop from 'components/portals/backdrop'
 import OpenTrigger from 'components/helpers/openTrigger'
 import Button from 'components/button'
 import CloseIcon from 'components/icons/close'
+import useTheme from 'styles/themes/useTheme'
 
 import './modal.css'
 
@@ -19,28 +20,31 @@ const Modal = ({
   className,
   defaultOpen,
   renderTrigger,
-}) => (
-  <OpenTrigger
-    defaultOpen={defaultOpen}
-    renderTrigger={renderTrigger}
-    withEscapeClose={withEscapeClose}
-    onClose={onClose}
-  >
-    {({ hide, show, isOpen }) => (
-      <Portal>
-        <Backdrop onClick={hide} withClickOutside={withClickOutside} />
-        <div className={cn('modal', className)}>
-          {children({ hide, show, isOpen })}
-          {withCloseIcon && (
-            <Button className="modal-close" simple onClick={hide}>
-              <CloseIcon />
-            </Button>
-          )}
-        </div>
-      </Portal>
-    )}
-  </OpenTrigger>
-)
+}) => {
+  const theme = useTheme()
+  return (
+    <OpenTrigger
+      defaultOpen={defaultOpen}
+      renderTrigger={renderTrigger}
+      withEscapeClose={withEscapeClose}
+      onClose={onClose}
+    >
+      {({ hide, show, isOpen }) => (
+        <Portal>
+          <Backdrop onClick={hide} withClickOutside={withClickOutside} />
+          <div className={cn('modal', theme, className)}>
+            {children({ hide, show, isOpen })}
+            {withCloseIcon && (
+              <Button className="modal-close" simple onClick={hide}>
+                <CloseIcon />
+              </Button>
+            )}
+          </div>
+        </Portal>
+      )}
+    </OpenTrigger>
+  )
+}
 
 Modal.propTypes = {
   children: PropTypes.func.isRequired,

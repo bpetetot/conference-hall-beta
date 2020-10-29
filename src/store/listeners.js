@@ -1,7 +1,5 @@
 import { when } from 'k-ramel'
 
-import * as app from './reactions/app'
-import * as router from './reactions/router'
 import * as user from './reactions/user'
 import * as talks from './reactions/talks'
 import * as events from './reactions/events'
@@ -12,24 +10,15 @@ import * as ratings from './reactions/ratings'
 import * as survey from './reactions/survey'
 
 export default [
-  /* app loaded */
-  when('@@krml/INIT')(app.init),
-  /* router */
-  when('@@router/ROUTE_FOUND')(router.onRouteChanged),
-  when('@@router/REPLACE_WITH_NEXT_URL')(router.replaceWithNextUrl),
-  when('@@router/REDIRECT_TO_NEXT_URL')(router.redirectToNextUrl),
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   /* talks */
-  when('@@ui/ON_CREATE_TALK')(talks.createTalk),
   when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
   when('@@ui/ON_UPDATE_TALK_SUBMISSION_STATE')(talks.updateTalkSubmissionState),
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
   when('@@ui/ON_LOAD_SPEAKER_TALKS')(talks.fetchSpeakerTalks),
   when(/@@ui\/(.*)_SPEAKER_TO_TALK/g)(talks.updateSpeakerToTalk),
-  when('@@ui/DELETE_TALK')(talks.deleteTalk),
   /* events */
-  when('@@ui/ON_CREATE_EVENT')(events.createEvent),
   when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEventForm),
   when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEventForm),
   when('@@ui/ON_EVENT_BANNER_UPLOADED')(events.updateEvent),
@@ -53,15 +42,11 @@ export default [
   when('@@ui/CHANGE_ORGANIZATION_MEMBER_ROLE')(organizations.setMember),
   when('@@ui/REMOVE_ORGANIZATION_MEMBER')(organizations.removeMember),
   /* submissions */
-  when('@@ui/GO_TO_EVENT_SUBMISSION')(submissions.openEventSubmission),
-  when('@@ui/GO_TO_SELECT_SUBMISSION')(submissions.openSelectSubmission),
   when('@@ui/ON_SUBMIT_TALK_TO_EVENT')(submissions.submitTalkToEvent),
   when('@@ui/ON_UNSUBMIT_TALK_FROM_EVENT')(submissions.unsubmitTalkFromEvent),
   /* proposals */
   when('@@ui/ON_LOAD_PROPOSAL')(proposals.getProposal),
   when('@@ui/ON_UPDATE_PROPOSAL')(proposals.updateProposal),
-  when('@@ui/ON_NEXT_PROPOSAL')(proposals.nextProposal),
-  when('@@ui/ON_PREVIOUS_PROPOSAL')(proposals.previousProposal),
   when('@@ui/EXPORT_PROPOSALS')(proposals.exportProposals),
   /* ratings */
   when('@@ui/ON_LOAD_RATINGS')(ratings.fetchRatings),
