@@ -1,5 +1,19 @@
 # Changelog
 
+<a name="0.35.0"></a>
+## 0.35.0 (2020-10-29)
+
+### Changed
+
+- ♻️ Use react router ([#834](https://github.com/bpetetot/conference-hall/issues/834)) [[3641e2c](https://github.com/bpetetot/conference-hall/commit/3641e2cab7dcd97aa8ec85a8d5cba12b5064b983)]
+- 💬 highlight required action in accepted talk email ([#833](https://github.com/bpetetot/conference-hall/issues/833)) [[ce4aa64](https://github.com/bpetetot/conference-hall/commit/ce4aa64670c26f1ea29336b4eb6dfdd52d081eee)]
+- 💄 fix button on the mobile homepage [[32b62c3](https://github.com/bpetetot/conference-hall/commit/32b62c353a5dba50614cd41970b52c38af6ae33e)]
+
+### Fixed
+
+- 🐛 fix big images breaking review proposal layout [[e808fd5](https://github.com/bpetetot/conference-hall/commit/e808fd5f22a3ffff4c475a5242f5a99344691d53)]
+
+
 <a name="0.34.0"></a>
 ## 0.34.0 (2020-08-02)
 
