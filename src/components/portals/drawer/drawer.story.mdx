@@ -1,15 +1,14 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Button from 'components/button'
 import Drawer from './drawer'
 
-
-<Meta title="Components|Drawer" component={Drawer} />
+<Meta title="Components/Drawer" component={Drawer} />
 
 # Drawer
 
 ## Basic usage
 
-<Preview>
+<Canvas>
   <Story name="Basic usage">
     <Drawer
       title="Title"
@@ -29,8 +28,8 @@ import Drawer from './drawer'
       This is a drawer!
     </Drawer>
   </Story>
-</Preview>
+</Canvas>
 
 ## Properties
 
-<Props of={Drawer} />
+<ArgsTable of={Drawer} />
