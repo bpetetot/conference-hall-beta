@@ -5,7 +5,7 @@ import { useAuth } from 'features/auth'
 import Profile from 'features/profile'
 import Contributors from 'features/contributors'
 import Organizations from 'features/organization/list'
-import OrganizationCreate from 'features/organization/form/organizationCreate.container'
+import OrganizationCreate from 'features/organization/form'
 import EventsList from 'features/event/list'
 import EventCreate from 'features/event/create'
 import Sidebar from './sidebar'
@@ -24,7 +24,7 @@ const Organizer = () => {
         <Route path="event/create" element={<EventCreate />} />
         <Route path="event/:eventId/*" element={<Event />} />
         <Route path="organizations" element={<Organizations userId={user.uid} />} />
-        <Route path="organization/create" element={<OrganizationCreate userId={user.uid} />} />
+        <Route path="organization/create" element={<OrganizationCreate />} />
         <Route path="organization/:organizationId/*" element={<Organization />} />
       </Routes>
     </AppLayout>
