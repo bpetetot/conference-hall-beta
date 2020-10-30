@@ -1,19 +1,19 @@
 import firebase from 'firebase/app'
+import { organizationConverter } from 'models/Organization'
 
 import { ROLES } from './constants'
 import crud from './crud'
 
-const organizationCrud = crud('organizations', 'id')
+const organizationCrud = crud('organizations', 'id', organizationConverter)
 
-export const fetchUserOrganizations = (uid) =>
-  firebase
+export const fetchUserOrganizations = async (uid) => {
+  const result = await firebase
     .firestore()
     .collection('organizations')
     .where(`members.${uid}`, 'in', Object.values(ROLES))
+    .withConverter(organizationConverter)
     .get()
-    .then((result) => result.docs.map((ref) => ({ id: ref.id, ...ref.data() })))
-
-export const fetchOrganizationEvents = (organizationId) =>
-  firebase.firestore().collection('events').where('organization', '==', organizationId).get()
+  return result.docs.map((doc) => doc.data())
+}
 
 export default organizationCrud
