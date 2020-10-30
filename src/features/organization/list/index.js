@@ -1,1 +1,1 @@
-export { default } from './organizations.container'
+export { default } from './organizations'
