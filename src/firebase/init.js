@@ -1,4 +1,3 @@
-/* eslint-disable no-console, import/prefer-default-export */
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
@@ -18,7 +17,9 @@ const config = {
 firebase.initializeApp(config)
 
 // enable firestore
-firebase.firestore()
+firebase.firestore().settings({
+  ignoreUndefinedProperties: true,
+})
 
 // enable function calls
 firebase.functions()
