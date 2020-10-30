@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import debounce from 'lodash/debounce'
@@ -16,7 +16,9 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
   const navigate = useNavigate()
 
   const { search } = useLocation()
-  const params = new URLSearchParams(search)
+
+  const params = useMemo(() => new URLSearchParams(search), [search])
+
   const searchFilter = params.get('search')
   const stateFilter = params.get('state')
   const ratingsFilter = params.get('ratings')

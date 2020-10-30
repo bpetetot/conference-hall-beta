@@ -1,14 +1,14 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import Message from './message'
 import Thread from './thread'
 
-<Meta title="Components|Thread" component={Thread} />
+<Meta title="Components/Thread" component={Thread} />
 
 # Thread
 
 ## Message
 
-<Preview>
+<Canvas>
   <Story name="Message">
     <Message
       displayName="Luke Skywalker"
@@ -20,11 +20,11 @@ import Thread from './thread'
       OnDelete={console.log}
     />
   </Story>
-</Preview>
+</Canvas>
 
 ## Messages thread
 
-<Preview>
+<Canvas>
   <Story name="Messages thread">
     <Thread
       messages={[
@@ -55,4 +55,4 @@ import Thread from './thread'
       onDeleteMessage={console.log}
     />
   </Story>
-</Preview>
+</Canvas>

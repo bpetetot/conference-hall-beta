@@ -1,13 +1,12 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Avatar from './avatar'
 
-<Meta title="Components|Avatar" component={Avatar} />
+<Meta title="Components/Avatar" component={Avatar} />
 
 # Avatar
 
 ## Basic usage
-
-<Preview>
+<Canvas>
   <Story name="Basic usage">
     <React.Fragment>
       <Avatar name="Darth Vader" />
@@ -16,13 +15,12 @@ import Avatar from './avatar'
       <Avatar name="C3PO" color="#DA8E03" />
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 If no `color` prop given a color will be generated from the `name` prop.
 
 ## With image
-
-<Preview>
+<Canvas>
   <Story name="With image">
     <React.Fragment>
       <Avatar src="https://upload.wikimedia.org/wikipedia/en/7/76/Darth_Vader.jpg" />
@@ -30,13 +28,12 @@ If no `color` prop given a color will be generated from the `name` prop.
       <Avatar src="https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png" />
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 You can give images or SVG as `src` to `<Avatar>` component.
 
 ## With different sizes
-
-<Preview>
+<Canvas>
   <Story name="Sizes">
     <React.Fragment>
       <Avatar name="Yoda" size="small" />
@@ -44,15 +41,14 @@ You can give images or SVG as `src` to `<Avatar>` component.
       <Avatar name="Yoda" size="large" />
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 You can set `size` prop to `small`, `medium` or `large`. (`medium` by default)
 
 Or you can override CSS variable `--cc-avatar-height`, `--cc-avatar-width` and `--cc-avatar-font-size` through `className` prop.
 
 ## Square avatar
-
-<Preview>
+<Canvas>
   <Story name="Square">
     <React.Fragment>
       <Avatar name="Darth Vader" square />
@@ -60,11 +56,10 @@ Or you can override CSS variable `--cc-avatar-height`, `--cc-avatar-width` and `
       <Avatar name="Yoda" square />
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## With label
-
-<Preview>
+<Canvas>
   <Story name="Label">
     <React.Fragment>
       <Avatar name="Darth Vader" withLabel />
@@ -72,8 +67,7 @@ Or you can override CSS variable `--cc-avatar-height`, `--cc-avatar-width` and `
       <Avatar name="Yoda" withLabel />
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## Properties
-
-<Props of={Avatar} />
+<ArgsTable of={Avatar} />

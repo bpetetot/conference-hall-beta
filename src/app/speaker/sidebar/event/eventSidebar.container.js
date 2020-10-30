@@ -4,7 +4,7 @@ import EventSidebar from './eventSidebar'
 
 const mapStore = (store, { eventId }) => {
   const { id, name, surveyActive } = store.data.events.get(eventId) || {}
-  return { id, name, surveyActive }
+  return { eventId: id, name, surveyActive }
 }
 
 export default inject(mapStore)(EventSidebar)

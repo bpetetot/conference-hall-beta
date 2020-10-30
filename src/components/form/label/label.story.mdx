@@ -1,13 +1,13 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Label from './label'
 
-<Meta title="Components|Label" component={Label} />
+<Meta title="Components/Label" component={Label} />
 
 # Label
 
 ## Basic usage
 
-<Preview>
+<Canvas>
   <Story name="Basic usage">
     <Label
       name="myField"
@@ -19,11 +19,11 @@ import Label from './label'
       <input name="myField" type="text" />
     </Label>
   </Story>
-</Preview>
+</Canvas>
 
 ## Inline
 
-<Preview>
+<Canvas>
   <Story name="Inline">
     <Label
       name="myField"
@@ -36,8 +36,8 @@ import Label from './label'
       <input name="myField" type="text" />
     </Label>
   </Story>
-</Preview>
+</Canvas>
 
 ## Properties
 
-<Props of={Label} />
+<ArgsTable of={Label} />

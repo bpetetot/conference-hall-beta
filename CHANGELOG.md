@@ -1,5 +1,21 @@
 # Changelog
 
+<a name="0.35.2"></a>
+## 0.35.2 (2020-10-30)
+
+### Fixed
+
+- 🐛 Fix sidebar menu display ([#840](https://github.com/bpetetot/conference-hall/issues/840)) [[e4b7b9c](https://github.com/bpetetot/conference-hall/commit/e4b7b9c3f2b3ba8457a000d980a0c4640542673b)]
+
+
+<a name="0.35.1"></a>
+## 0.35.1 (2020-10-29)
+
+### Fixed
+
+- 🐛 fix events list from organization ([#838](https://github.com/bpetetot/conference-hall/issues/838)) [[09eae29](https://github.com/bpetetot/conference-hall/commit/09eae29cf6e8f0e7924a82ac743ab2a49c134589)]
+
+
 <a name="0.35.0"></a>
 ## 0.35.0 (2020-10-29)
 

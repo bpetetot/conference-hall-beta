@@ -1,14 +1,14 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Button from 'components/button'
 import Modal from './modal'
 
-<Meta title="Components|Modal" component={Modal} />
+<Meta title="Components/Modal" component={Modal} />
 
 # Modal
 
 ## Basic usage
 
-<Preview>
+<Canvas>
   <Story name="Basic usage">
     <Modal
       onClose={() => console.log('close')}
@@ -22,8 +22,8 @@ import Modal from './modal'
       {({ show, hide, isOpen }) => <div>Modal content</div>}
     </Modal>
   </Story>
-</Preview>
+</Canvas>
 
 ## Properties
 
-<Props of={Modal} />
+<ArgsTable of={Modal} />

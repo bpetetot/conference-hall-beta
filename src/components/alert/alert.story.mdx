@@ -1,28 +1,28 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Alert from './alert'
 
-<Meta title="Components|Alert" component={Alert} />
+<Meta title="Components/Alert" component={Alert} />
 
 import Button from '../button'
 
 # Alert
 
 ## Basic usage
-<Preview>
+<Canvas>
   <Story name="Basic usage">
     <Alert title="Check your email" type="info" />
   </Story>
-</Preview>
-
-<Props of={Alert} />
+</Canvas>
 
 ## With action button
-<Preview>
+<Canvas>
   <Story name="With action button">
     <Alert title="Success" type="success" actionButtons={(
         <Button onClick={console.log} primary>confirm</Button>
     )}/>
   </Story>
-</Preview>
+</Canvas>
 
+## Properties
+<ArgsTable of={Alert} />
 
