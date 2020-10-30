@@ -22,4 +22,11 @@ firebase.firestore()
 
 // enable function calls
 firebase.functions()
+
+if (process.env.NODE_ENV === 'development') {
+  firebase.auth().useEmulator('http://localhost:9099')
+  firebase.firestore().useEmulator('localhost', 8080)
+  firebase.functions().useEmulator('localhost', 5001)
+}
+
 initFunctionCalls()

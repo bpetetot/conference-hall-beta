@@ -7,6 +7,7 @@ package-lock.json
 # testing
 **/coverage
 **/.nyc_output/
+.eslintcache
 
 # production
 /build
@@ -28,6 +29,7 @@ yarn-error.log*
 # firebase
 firebase-debug.log*
 firestore-debug.log*
+ui-debug.log*
 .firebaserc
 .runtimeconfig.json
 .firebase/

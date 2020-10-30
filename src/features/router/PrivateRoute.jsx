@@ -4,7 +4,7 @@ import { useAuth } from 'features/auth'
 import { Navigate, Route, useLocation } from 'react-router-dom'
 import { LoadingIndicator } from 'components/loader'
 
-const SKIP_BETA_ACCESS = false // process.env.NODE_ENV === 'development'
+const SKIP_BETA_ACCESS = process.env.NODE_ENV === 'development'
 
 function PrivateRoute({ betaAccess, ...rest }) {
   const { user, loading } = useAuth()
