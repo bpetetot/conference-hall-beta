@@ -1,14 +1,14 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Button from './button'
 
-<Meta title="Components|Button" component={Button} />
+<Meta title="Components/Button" component={Button} />
 
 # Button
 
 ## Button hierarchy
 
 Define the hierarchy of the button, the default is `primary`
-<Preview>
+<Canvas>
   <Story name="Hierarchy">
     <React.Fragment>
       <Button primary>Button</Button>
@@ -16,11 +16,11 @@ Define the hierarchy of the button, the default is `primary`
       <Button tertiary>Button</Button>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## With accent color
 
-<Preview>
+<Canvas>
   <Story name="Accent color">
     <React.Fragment>
       <Button accent primary>Button</Button>
@@ -28,11 +28,11 @@ Define the hierarchy of the button, the default is `primary`
       <Button accent tertiary>Button</Button>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## With error state
 
-<Preview>
+<Canvas>
   <Story name="Error state">
     <React.Fragment>
       <Button error primary>Button</Button>
@@ -40,11 +40,11 @@ Define the hierarchy of the button, the default is `primary`
       <Button error tertiary>Button</Button>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## With disabled state
 
-<Preview>
+<Canvas>
   <Story name="Disabled state">
     <React.Fragment>
       <Button disabled primary>Button</Button>
@@ -52,11 +52,11 @@ Define the hierarchy of the button, the default is `primary`
       <Button disabled tertiary>Button</Button>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## Sizes
 
-<Preview>
+<Canvas>
   <Story name="Sizes">
     <React.Fragment>
       <Button size="large">Button</Button>
@@ -64,11 +64,11 @@ Define the hierarchy of the button, the default is `primary`
       <Button size="small">Button</Button>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## With loading
 
-<Preview>
+<Canvas>
   <Story name="Loading state">
     <React.Fragment>
       <Button primary loading>Button</Button>
@@ -76,48 +76,48 @@ Define the hierarchy of the button, the default is `primary`
       <Button tertiary loading>Button</Button>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## Block
 
-<Preview>
+<Canvas>
   <Story name="Block">
     <Button block>Button</Button>
   </Story>
-</Preview>
+</Canvas>
 
 ## Simple
 
 Button without padding, border and background. The simpliest way to display it. Useful to display an icon button, like modals closing cross.
 
-<Preview>
+<Canvas>
   <Story name="Simple">
     <Button simple>Simple button</Button>
   </Story>
-</Preview>
+</Canvas>
 
 ## Link
 
 A hyperlink with a button style, just by setting `href` prop instead of `onClick`.
 
-<Preview>
+<Canvas>
   <Story name="Link">
     <Button href="https://www.google.fr" target="NEW">Link like a button</Button>
   </Story>
-</Preview>
+</Canvas>
 
 ## Using Function As A Child
 
 Used to apply button style to any element.
 
-<Preview>
+<Canvas>
   <Story name="FaaC">
     <Button secondary accent>
       {btnClasses => <div className={btnClasses}>Apply button style to any element</div>}
     </Button>
   </Story>
-</Preview>
+</Canvas>
 
 ## Properties
 
-<Props of={Button} />
+<ArgsTable of={Button} />

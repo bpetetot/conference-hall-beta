@@ -1,14 +1,14 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Button from 'components/button'
 import ConfirmationPopin from './confirmation'
 
-<Meta title="Components|ConfirmationPopin" component={ConfirmationPopin} />
+<Meta title="Components/ConfirmationPopin" component={ConfirmationPopin} />
 
 # Confirmation Popin
 
 ## Basic usage
 
-<Preview>
+<Canvas>
   <Story name="Basic usage">
     <ConfirmationPopin
       title="Confirmation title"
@@ -23,8 +23,8 @@ import ConfirmationPopin from './confirmation'
       )}
     />
   </Story>
-</Preview>
+</Canvas>
 
 ## Properties
 
-<Props of={ConfirmationPopin} />
+<ArgsTable of={ConfirmationPopin} />

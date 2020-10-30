@@ -1,25 +1,25 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Button from 'components/button'
 import Snackbar from './snackbar'
 
-<Meta title="Components|Snackbar" component={Snackbar} />
+<Meta title="Components/Snackbar" component={Snackbar} />
 
 # Snackbar
 
 ## Basic usage
 
-<Preview className="vertical-separator">
+<Canvas className="vertical-separator">
   <Story name="Basic usage">
     <Snackbar
       defaultOpen
       content="Default Snackbar"
     />
   </Story>
-</Preview>
+</Canvas>
 
 ## Auto-close
 
-<Preview>
+<Canvas>
   <Story name="Auto-close">
     <Snackbar
       autoClose
@@ -34,8 +34,8 @@ import Snackbar from './snackbar'
       )}
     />
   </Story>
-</Preview>
+</Canvas>
 
 ## Properties
 
-<Props of={Snackbar} />
+<ArgsTable of={Snackbar} />

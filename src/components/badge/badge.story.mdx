@@ -1,13 +1,13 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Badge from './badge'
 
-<Meta title="Components|Badge" component={Badge} />
+<Meta title="Components/Badge" component={Badge} />
 
 # Badge
 
 ## Basic usage
 
-<Preview>
+<Canvas>
   <Story name="Basic usage">
     <React.Fragment>
       <Badge>Darth Vader</Badge>
@@ -15,11 +15,11 @@ import Badge from './badge'
       <Badge>Yoda</Badge>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## Badge status
 
-<Preview>
+<Canvas>
   <Story name="Status">
     <React.Fragment>
       <Badge primary>Primary</Badge>
@@ -32,11 +32,11 @@ import Badge from './badge'
       <Badge dark>Dark</Badge>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## Outline badge
 
-<Preview>
+<Canvas>
   <Story name="Outline">
     <React.Fragment>
       <Badge primary outline>Primary</Badge>
@@ -49,11 +49,11 @@ import Badge from './badge'
       <Badge dark outline>Dark</Badge>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## Pill badge
 
-<Preview>
+<Canvas>
   <Story name="Pill">
     <React.Fragment>
       <Badge pill>Darth Vader</Badge>
@@ -63,13 +63,13 @@ import Badge from './badge'
       <Badge pill>100</Badge>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## Using Function As A Child
 
 Used to apply badge style to any element.
 
-<Preview>
+<Canvas>
   <Story name="FaaC">
     <React.Fragment>
       <Badge outline pill>
@@ -81,8 +81,8 @@ Used to apply badge style to any element.
       </Badge>
     </React.Fragment>
   </Story>
-</Preview>
+</Canvas>
 
 ## Properties
 
-<Props of={Badge} />
+<ArgsTable of={Badge} />
