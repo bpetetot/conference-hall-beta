@@ -9,6 +9,12 @@ const CurrentEventContext = React.createContext()
 
 export const useCurrentEventId = () => useContext(CurrentEventContext)
 
+function getEventIdFromLocalStorage() {
+  const value = localStorage.getItem('currentEventId')
+  if (!value || value === 'null') return null
+  return value
+}
+
 // TODO Add Unit Tests
 const CurrentEventContextProvider = ({ children, loadEvent }) => {
   const [currentEventId, setCurrentEventId] = useState()
@@ -19,18 +25,22 @@ const CurrentEventContextProvider = ({ children, loadEvent }) => {
 
   useEffect(() => {
     const routeEventId = match?.params?.eventId
-    const localEventId = localStorage.getItem('currentEventId')
-
-    if (!routeEventId && !localEventId) return
+    const localEventId = getEventIdFromLocalStorage()
 
     if (isOrganizerApp(pathname)) {
-      setCurrentEventId(routeEventId)
-    } else {
-      localStorage.setItem('currentEventId', routeEventId || localEventId)
-      setCurrentEventId(routeEventId || localEventId)
-      loadEvent(routeEventId || localEventId)
+      if (currentEventId !== routeEventId) {
+        setCurrentEventId(routeEventId)
+      }
+      return
     }
-  }, [pathname, match, loadEvent])
+
+    const eventId = routeEventId || localEventId
+    if (currentEventId !== eventId) {
+      localStorage.setItem('currentEventId', eventId)
+      setCurrentEventId(eventId)
+      loadEvent(eventId)
+    }
+  }, [currentEventId, pathname, match, loadEvent])
 
   return (
     <CurrentEventContext.Provider value={currentEventId}>{children}</CurrentEventContext.Provider>
@@ -44,6 +54,8 @@ CurrentEventContextProvider.propTypes = {
 
 export const CurrentEventProvider = inject((store) => {
   return {
-    loadEvent: (eventId) => store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId } }),
+    loadEvent: (eventId) => {
+      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId, loadSettings: false } })
+    },
   }
 })(CurrentEventContextProvider)
