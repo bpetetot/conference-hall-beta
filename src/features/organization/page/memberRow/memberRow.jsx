@@ -11,8 +11,8 @@ import ChangeRole from '../changeRole'
 import RemoveMemberButton from '../removeMember'
 import styles from './memberRow.module.css'
 
-const MemberRow = ({ organizationId, user, role, isOwner, authUserId }) => {
-  const { uid, displayName, photoURL } = user
+const MemberRow = ({ organizationId, member, role, isOwner }) => {
+  const { uid, displayName, photoURL } = member
   if (!displayName) return null
 
   return (
@@ -21,12 +21,7 @@ const MemberRow = ({ organizationId, user, role, isOwner, authUserId }) => {
       title={<Avatar name={displayName} src={photoURL} withLabel />}
       renderActions={() => (
         <div className={styles.actions}>
-          <RemoveMemberButton
-            organizationId={organizationId}
-            user={user}
-            isOwner={isOwner}
-            authUserId={authUserId}
-          />
+          <RemoveMemberButton organizationId={organizationId} member={member} isOwner={isOwner} />
           <HasRole
             of={ROLES.OWNER}
             forOrganizationId={organizationId}
@@ -36,7 +31,7 @@ const MemberRow = ({ organizationId, user, role, isOwner, authUserId }) => {
               </Badge>
             }
           >
-            <ChangeRole organizationId={organizationId} user={user} role={role} />
+            <ChangeRole organizationId={organizationId} member={member} role={role} />
           </HasRole>
         </div>
       )}
@@ -46,10 +41,9 @@ const MemberRow = ({ organizationId, user, role, isOwner, authUserId }) => {
 
 MemberRow.propTypes = {
   organizationId: PropTypes.string.isRequired,
-  user: PropTypes.object.isRequired,
+  member: PropTypes.object.isRequired,
   role: PropTypes.string,
   isOwner: PropTypes.bool.isRequired,
-  authUserId: PropTypes.string.isRequired,
 }
 
 MemberRow.defaultProps = {
