@@ -3,7 +3,6 @@ import { when } from 'k-ramel'
 import * as user from './reactions/user'
 import * as talks from './reactions/talks'
 import * as events from './reactions/events'
-import * as organizations from './reactions/organizations'
 import * as submissions from './reactions/submissions'
 import * as proposals from './reactions/proposals'
 import * as ratings from './reactions/ratings'
@@ -33,14 +32,6 @@ export default [
   when('@@ui/ON_LOAD_SPEAKER_EVENTS')(events.fetchSpeakerEvents),
   when('@@ui/ON_ORGANIZER_CHANGE_EVENT')(events.organizerChangeEvent),
   when('@@ui/ON_SAVE_EVENT_SETTINGS')(events.saveEventSettings),
-  /* organizations */
-  when('@@ui/ON_LOAD_ORGANIZATION')(organizations.get),
-  when('@@ui/ON_LOAD_USER_ORGANIZATIONS')(organizations.ofUser),
-  when('@@ui/ON_CREATE_ORGANIZATION')(organizations.create),
-  when('@@ui/ON_UPDATE_ORGANIZATION')(organizations.update),
-  when('@@ui/ADD_ORGANIZATION_MEMBER')(organizations.setMember),
-  when('@@ui/CHANGE_ORGANIZATION_MEMBER_ROLE')(organizations.setMember),
-  when('@@ui/REMOVE_ORGANIZATION_MEMBER')(organizations.removeMember),
   /* submissions */
   when('@@ui/ON_SUBMIT_TALK_TO_EVENT')(submissions.submitTalkToEvent),
   when('@@ui/ON_UNSUBMIT_TALK_FROM_EVENT')(submissions.unsubmitTalkFromEvent),

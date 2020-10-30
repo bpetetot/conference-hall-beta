@@ -77,12 +77,8 @@ export const fetchOrganizationEvents = async (organizationId) => {
 
 export const fetchOrganizerEvents = async (action, store) => {
   const { userId } = action.payload
-  let organizationsKeys = store.data.organizations.getKeys()
-  if (!organizationsKeys.length) {
-    const organizations = await fetchUserOrganizations(userId)
-    store.data.organizations.set(organizations)
-    organizationsKeys = store.data.organizations.getKeys()
-  }
+  const organizations = await fetchUserOrganizations(userId)
+  const organizationsKeys = organizations.map((orga) => orga.id)
 
   const result = await fetchUserEvents(userId)
   const events = result.docs.map((ref) => ({ id: ref.id, ...ref.data() }))
