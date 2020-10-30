@@ -54,6 +54,8 @@ CurrentEventContextProvider.propTypes = {
 
 export const CurrentEventProvider = inject((store) => {
   return {
-    loadEvent: (eventId) => store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId } }),
+    loadEvent: (eventId) => {
+      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId, loadSettings: false } })
+    },
   }
 })(CurrentEventContextProvider)
