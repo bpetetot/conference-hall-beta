@@ -1,3 +1,4 @@
+import firebase from 'firebase/app'
 import { useMutation, useQuery, useQueryCache } from 'react-query'
 
 import { useAuth } from 'features/auth'
@@ -54,4 +55,14 @@ export const useSaveTalk = (talkId) => {
       },
     },
   )
+}
+
+export const useAddSpeaker = (talkId) => {
+  const [saveTalk] = useSaveTalk(talkId)
+  return (uid) => saveTalk({ [`speakers.${uid}`]: true })
+}
+
+export const useRemoveSpeaker = (talkId) => {
+  const [saveTalk] = useSaveTalk(talkId)
+  return (uid) => saveTalk({ [`speakers.${uid}`]: firebase.firestore.FieldValue.delete() })
 }

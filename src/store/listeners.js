@@ -1,7 +1,6 @@
 import { when } from 'k-ramel'
 
 import * as user from './reactions/user'
-import * as talks from './reactions/talks'
 import * as events from './reactions/events'
 import * as submissions from './reactions/submissions'
 import * as proposals from './reactions/proposals'
@@ -11,8 +10,6 @@ import * as survey from './reactions/survey'
 export default [
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
-  /* talks */
-  when(/@@ui\/(.*)_SPEAKER_TO_TALK/g)(talks.updateSpeakerToTalk),
   /* events */
   when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEventForm),
   when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEventForm),
