@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query'
 
 import { useAuth } from 'features/auth'
-import { fetchUserTalks } from 'firebase/talks'
+import talksCrud, { fetchUserTalks } from 'firebase/talks'
 import { FILTERS } from 'models/Talk'
+import { useParams } from 'react-router-dom'
 
 export const useTalks = () => {
   const { user } = useAuth()
@@ -20,4 +21,13 @@ export const useFilteredTalks = (status) => {
     return talk.archived !== true
   })
   return { ...result, data: filteredTalks }
+}
+
+export const useTalk = (talkId) => {
+  const { talkId: routeId } = useParams()
+  return useQuery(['talk', talkId || routeId], async (key, id) => {
+    if (!id) return null
+    const result = await talksCrud.read(id)
+    return result.data()
+  })
 }
