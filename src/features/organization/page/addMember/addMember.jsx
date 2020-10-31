@@ -8,11 +8,11 @@ import { useOrganization, useSetMembers } from 'features/organization/useOrganiz
 const AddMember = () => {
   const { data } = useOrganization()
   const { id: organizationId, name } = data
-  const [addMember] = useSetMembers(organizationId)
+  const addMember = useSetMembers(organizationId)
 
   return (
     <AddUserModal
-      onSelectUser={(memberId) => addMember({ memberId })}
+      onSelectUser={addMember}
       resultsMessage="Select an organizer to add to your organization"
       description={
         <>
