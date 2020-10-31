@@ -1,12 +1,21 @@
 import { node } from 'prop-types'
 import { useAuth } from 'features/auth'
+import { useOrganization } from '../useOrganizations'
 
-// TODO Refactor later with a hook
-const HasRole = ({ of, orgaMembers, eventOwner, children, otherwise }) => {
+const HasRole = ({
+  of,
+  forOrganizationId,
+  eventOrganizationId,
+  eventOwner,
+  children,
+  otherwise,
+}) => {
   const { user } = useAuth()
   const roles = Array.isArray(of) ? of : [of]
 
-  if (!roles.includes(orgaMembers?.[user.uid]) && eventOwner !== user.uid) {
+  const { data, isLoading } = useOrganization(eventOrganizationId || forOrganizationId)
+
+  if (isLoading || (!roles.includes(data?.members?.[user.uid]) && eventOwner !== user.uid)) {
     return otherwise
   }
 

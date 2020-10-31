@@ -1,18 +1,18 @@
 import firebase from 'firebase/app'
-import omit from 'lodash/omit'
 
 /**
  * create document in the collection
  * @param {String} collection collection name
  * @param {String} idAttr attribute name of the id
  */
-const create = (collection, idAttr) => (data) => {
+const create = (collection, idAttr, converter) => (data) => {
   const id = data[idAttr]
   if (id) {
     // create a document with the given ID
     return firebase
       .firestore()
       .collection(collection)
+      .withConverter(converter)
       .doc(id)
       .set({
         ...data,
@@ -24,6 +24,7 @@ const create = (collection, idAttr) => (data) => {
   return firebase
     .firestore()
     .collection(collection)
+    .withConverter(converter)
     .add({
       ...data,
       createTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -35,22 +36,25 @@ const create = (collection, idAttr) => (data) => {
  * read document in the collection
  * @param {String} collection collection name
  */
-const read = (collection) => (id) => firebase.firestore().collection(collection).doc(id).get()
+const read = (collection, converter) => (id) =>
+  firebase.firestore().collection(collection).withConverter(converter).doc(id).get()
 
 /**
  * update the document in the collection
  * @param {String} collection collection name
  * @param {String} idAttr attribute name of the id
  */
-const update = (collection, idAttr) => (data) =>
-  firebase
+const update = (collection, idAttr, converter) => (data) => {
+  const dataConverted = converter ? converter.toFirestore(data) : data
+  return firebase
     .firestore()
     .collection(collection)
     .doc(data[idAttr])
     .update({
-      ...omit(data, 'createTimestamp'),
+      ...dataConverted,
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
+}
 
 /**
  * delete document in the collection
@@ -59,9 +63,9 @@ const update = (collection, idAttr) => (data) =>
 const deleteDoc = (collection) => (id) =>
   firebase.firestore().collection(collection).doc(id).delete()
 
-export default (collection, idAttr) => ({
-  create: create(collection, idAttr),
-  read: read(collection),
-  update: update(collection, idAttr),
+export default (collection, idAttr, converter) => ({
+  create: create(collection, idAttr, converter),
+  read: read(collection, converter),
+  update: update(collection, idAttr, converter),
   delete: deleteDoc(collection),
 })
