@@ -1,7 +1,8 @@
 import firebase from 'firebase/app'
+import { talkConverter } from 'models/Talk'
 import crud from './crud'
 
-const talksCrud = crud('talks', 'id')
+const talksCrud = crud('talks', 'id', talkConverter)
 
 /**
  * Fetch all talks of a user
