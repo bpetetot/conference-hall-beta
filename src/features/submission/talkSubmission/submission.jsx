@@ -1,11 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Stepper from 'components/stepper'
 import { TalkTitle } from 'features/talk'
-import EventsSelection from './eventsSelection'
 
 import './submission.css'
+import { useTalk } from 'features/talk/useTalks'
+import { LoadingIndicator } from 'components/loader'
+import EventsSelection from './eventsSelection'
 
 const steps = [
   { label: 'Event selection', icon: 'fa fa-bars' },
@@ -14,25 +15,18 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const Submission = ({ talkId, talkTitle }) => {
-  if (!talkId) return null
+const Submission = () => {
+  const { data: talk, isLoading } = useTalk()
+
+  if (isLoading) return <LoadingIndicator />
+
   return (
     <div className="submission">
-      <TalkTitle name={talkTitle} />
+      <TalkTitle name={talk.title} />
       <Stepper steps={steps} currentStep={0} />
-      <EventsSelection talkId={talkId} />
+      <EventsSelection talkId={talk.id} />
     </div>
   )
-}
-
-Submission.propTypes = {
-  talkId: PropTypes.string,
-  talkTitle: PropTypes.string,
-}
-
-Submission.defaultProps = {
-  talkId: undefined,
-  talkTitle: '',
 }
 
 export default Submission
