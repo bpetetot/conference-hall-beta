@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import firebase from 'firebase/app'
 import { useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'

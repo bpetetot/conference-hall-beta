@@ -1,3 +1,5 @@
+import { toDate } from 'helpers/firebase'
+
 class Organization {
   constructor(data = {}) {
     this.id = data.id
@@ -15,7 +17,12 @@ export const organizationConverter = {
   },
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)
-    return new Organization({ id: snapshot.id, ...data })
+    return new Organization({
+      id: snapshot.id,
+      ...data,
+      updateTimestamp: toDate(data.updateTimestamp),
+      createTimestamp: toDate(data.createTimestamp),
+    })
   },
 }
 

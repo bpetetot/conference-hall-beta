@@ -1,3 +1,13 @@
+/* eslint-disable max-classes-per-file */
+import mapValues from 'lodash/mapValues'
+import { toDate } from 'helpers/firebase'
+
+export const FILTERS = {
+  ALL: 'all',
+  ARCHIVED: 'archived',
+  ACTIVE: 'active',
+}
+
 class Talk {
   constructor(data = {}) {
     this.id = data.id
@@ -15,13 +25,29 @@ class Talk {
   }
 }
 
+class Submission extends Talk {
+  constructor(data = {}) {
+    super(data)
+    this.state = data.state
+    this.formats = data.formats
+    this.categories = data.categories
+  }
+}
+
 export const talkConverter = {
   toFirestore(talk) {
     return talk
   },
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)
-    return new Talk({ id: snapshot.id, ...data })
+    const submissions = mapValues(data.submissions, (s) => new Submission(s))
+    return new Talk({
+      id: snapshot.id,
+      ...data,
+      submissions,
+      updateTimestamp: toDate(data.updateTimestamp),
+      createTimestamp: toDate(data.createTimestamp),
+    })
   },
 }
 
