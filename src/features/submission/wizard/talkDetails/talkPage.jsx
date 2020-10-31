@@ -1,27 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { LoadingIndicator } from 'components/loader'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { TalkAbstract, TalkSpeakers } from 'features/talk'
-import TalkTitle from './talkTitle'
+import { useSubmission } from 'features/submission/useSubmissions'
+import { useTalk } from 'features/talk/useTalks'
 
+import TalkTitle from './talkTitle'
 import './talkPage.css'
 
-const TalkPage = ({
-  id,
-  eventId,
-  title,
-  abstract,
-  level,
-  owner,
-  references,
-  language,
-  speakers,
-  onNext,
-}) => {
-  const titleComponent = <TalkTitle talkId={id} eventId={eventId} title={title} />
+const TalkPage = ({ talkId, eventId, onNext }) => {
+  const { data: existing, isLoading: isLoadingSubmission } = useSubmission(talkId, eventId)
+  const { data: talk, isLoading: isLoadingTalk } = useTalk(talkId)
+
+  if (isLoadingSubmission || isLoadingTalk) return <LoadingIndicator />
+
+  const { title, abstract, level, owner, references, language, speakers } = existing || talk
+
+  const titleComponent = <TalkTitle talkId={talkId} eventId={eventId} title={title} />
+
   return (
     <div className="talk-details">
       <Titlebar icon="fa fa-microphone" title={titleComponent} className="talk-title">
@@ -39,7 +39,7 @@ const TalkPage = ({
         />
         <TalkSpeakers
           className="talk-info"
-          talkId={id}
+          talkId={talkId}
           talkTitle={title}
           owner={owner}
           speakers={speakers}
@@ -50,25 +50,9 @@ const TalkPage = ({
 }
 
 TalkPage.propTypes = {
-  id: PropTypes.string.isRequired,
+  talkId: PropTypes.string.isRequired,
   eventId: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  abstract: PropTypes.string,
-  level: PropTypes.string,
-  owner: PropTypes.string,
-  references: PropTypes.string,
-  language: PropTypes.string,
-  speakers: PropTypes.objectOf(PropTypes.bool),
   onNext: PropTypes.func.isRequired,
-}
-
-TalkPage.defaultProps = {
-  abstract: undefined,
-  level: 'not defined',
-  owner: undefined,
-  references: undefined,
-  language: undefined,
-  speakers: {},
 }
 
 export default TalkPage
