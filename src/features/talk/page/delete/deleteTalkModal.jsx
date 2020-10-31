@@ -9,8 +9,9 @@ import InputButton from 'components/form/inputButton'
 
 import './deleteTalkModal.css'
 import { useNavigate } from 'react-router-dom'
+import { useDeleteTalk } from 'features/talk/useTalks'
 
-function DeleteTalkModal({ talkTitle, deleteTalk }) {
+function DeleteTalkModal({ talkId, talkTitle }) {
   const [disabled, setDisabled] = useState(true)
   const navigate = useNavigate()
 
@@ -20,6 +21,8 @@ function DeleteTalkModal({ talkTitle, deleteTalk }) {
     },
     [talkTitle],
   )
+
+  const [deleteTalk] = useDeleteTalk(talkId)
 
   const handleDelete = useCallback(
     (hide) => async () => {
@@ -58,8 +61,8 @@ function DeleteTalkModal({ talkTitle, deleteTalk }) {
 }
 
 DeleteTalkModal.propTypes = {
+  talkId: PropTypes.string.isRequired,
   talkTitle: PropTypes.string,
-  deleteTalk: PropTypes.func.isRequired,
 }
 
 DeleteTalkModal.defaultProps = {

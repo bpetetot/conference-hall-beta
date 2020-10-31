@@ -66,3 +66,19 @@ export const useRemoveSpeaker = (talkId) => {
   const [saveTalk] = useSaveTalk(talkId)
   return (uid) => saveTalk({ [`speakers.${uid}`]: firebase.firestore.FieldValue.delete() })
 }
+
+export const useDeleteTalk = (talkId) => {
+  const cache = useQueryCache()
+  return useMutation(
+    async () => {
+      if (!talkId) return
+      await talksCrud.delete(talkId)
+    },
+    {
+      onSuccess: () => {
+        cache.invalidateQueries(['talks'])
+        cache.invalidateQueries(['talk', talkId])
+      },
+    },
+  )
+}
