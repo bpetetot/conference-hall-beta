@@ -1,1 +1,1 @@
-export { default } from './removeMember.container'
+export { default } from './removeMember'

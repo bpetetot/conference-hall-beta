@@ -4,7 +4,7 @@ import { Route, Routes, useParams } from 'react-router-dom'
 import EventPage from 'features/event/page'
 import ProposalsList from 'features/proposal/list'
 import Proposal from 'features/proposal/page'
-import EventEdit from './eventEdit'
+import EventEdit from 'features/event/edit'
 
 const Event = () => {
   const { eventId } = useParams()

@@ -5,11 +5,11 @@ import eventCrud from 'firebase/events'
 import { useAuth } from 'features/auth'
 import EventForm from '../form'
 
-const EventCreate = (props) => {
+const EventCreate = () => {
   const { user } = useAuth()
-  const navigate = useNavigate()
-
   const { uid } = user
+
+  const navigate = useNavigate()
   const onSubmit = useCallback(
     async (data) => {
       const event = {
@@ -24,7 +24,17 @@ const EventCreate = (props) => {
     [navigate, uid],
   )
 
-  return <EventForm {...props} onSubmit={onSubmit} />
+  return (
+    <EventForm
+      onSubmit={onSubmit}
+      isCreateForm
+      initialValues={{
+        type: 'conference',
+        visibility: true,
+        conferenceDates: {},
+      }}
+    />
+  )
 }
 
 export default EventCreate

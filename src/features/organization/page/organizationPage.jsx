@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import sortBy from 'lodash/sortBy'
 import { Link } from 'react-router-dom'
 
+import { LoadingIndicator } from 'components/loader'
 import Titlebar from 'components/titlebar'
 import { List } from 'components/list'
 import IconLabel from 'components/iconLabel'
@@ -15,18 +15,28 @@ import { useAuth } from 'features/auth'
 import AddMember from './addMember'
 import MemberRow from './memberRow'
 import './organizationPage.css'
+import { useOrganization } from '../useOrganizations'
 
-const OrganizationPage = ({ id: organizationId, name, members, addMember }) => {
+const OrganizationPage = () => {
   const { user } = useAuth()
   const [users, setUsers] = useState([])
 
+  const { data, isLoading } = useOrganization()
+  const { id: organizationId, name, members } = data || {}
+
   useEffect(() => {
+    if (isLoading) return
     fetchUsersList(Object.keys(members)).then((result) => {
       setUsers(sortBy(result, 'displayName'))
     })
-  }, [members])
+  }, [isLoading, members])
+
+  if (isLoading) return <LoadingIndicator />
 
   const isOwner = members[user.uid] === ROLES.OWNER
+
+  if (!users.length) return <LoadingIndicator />
+
   return (
     <div className="organization-page">
       <Titlebar className="organization-header" icon="fa fa-users" title={name}>
@@ -38,11 +48,7 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember }) => {
               </Link>
             )}
           </Button>
-          <AddMember
-            organizationId={organizationId}
-            organizationName={name}
-            addMember={addMember}
-          />
+          <AddMember />
         </HasRole>
       </Titlebar>
       <List
@@ -53,26 +59,14 @@ const OrganizationPage = ({ id: organizationId, name, members, addMember }) => {
           <MemberRow
             key={member.uid}
             organizationId={organizationId}
-            user={member}
+            member={member}
             role={members[member.uid]}
-            authUserId={user.uid}
             isOwner={isOwner}
           />
         )}
       />
     </div>
   )
-}
-
-OrganizationPage.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  members: PropTypes.objectOf(PropTypes.string),
-  addMember: PropTypes.func.isRequired,
-}
-
-OrganizationPage.defaultProps = {
-  members: [],
 }
 
 export default OrganizationPage

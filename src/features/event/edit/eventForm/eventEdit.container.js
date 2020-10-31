@@ -7,7 +7,6 @@ const mapStore = (store, { eventId }) => {
 
   return {
     submitting: store.ui.loaders.get().isEventSaving,
-    organizations: store.data.organizations.getAsArray(),
     initialValues: {
       ...event,
       visibility: event.visibility === 'private',

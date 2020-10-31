@@ -1,1 +1,1 @@
-export { default } from './changeRole.container'
+export { default } from './changeRole'

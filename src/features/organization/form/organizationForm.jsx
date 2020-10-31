@@ -1,51 +1,47 @@
 import React, { useCallback } from 'react'
-import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 
+import { LoadingIndicator } from 'components/loader'
 import Field from 'components/form/field'
 import { input, SubmitButton } from 'components/form'
 import { required } from 'components/form/validators'
 
 import './organizationForm.css'
 import { useNavigate } from 'react-router-dom'
+import { useOrganization, useSaveOrganization } from '../useOrganizations'
 
-const OrganizationForm = ({ onSubmit, initialValues, submitting }) => {
+const OrganizationForm = () => {
+  const { data, isLoading } = useOrganization()
+
+  const [saveOrganization] = useSaveOrganization(data?.id)
+
   const navigate = useNavigate()
   const handleFormSubmit = useCallback(
-    (data) => {
-      onSubmit(data)
-      if (data.id) {
-        navigate(`/organizer/organization/${data.id}`)
+    async (formData) => {
+      await saveOrganization(formData)
+      if (formData.id) {
+        navigate(`/organizer/organization/${formData.id}`)
       } else {
         navigate('/organizer/organizations')
       }
     },
-    [onSubmit, navigate],
+    [saveOrganization, navigate],
   )
 
+  if (isLoading) return <LoadingIndicator />
+
   return (
-    <Form onSubmit={handleFormSubmit} initialValues={initialValues}>
-      {({ handleSubmit, pristine }) => (
+    <Form onSubmit={handleFormSubmit} initialValues={data}>
+      {({ handleSubmit, pristine, submitting }) => (
         <form className="organization-form card">
           <Field name="name" label="Name" type="text" component={input} validate={required} />
           <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
-            {!initialValues ? 'Create organization' : 'Save organization'}
+            {!data ? 'Create organization' : 'Save organization'}
           </SubmitButton>
         </form>
       )}
     </Form>
   )
-}
-
-OrganizationForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  initialValues: PropTypes.object,
-  submitting: PropTypes.bool,
-}
-
-OrganizationForm.defaultProps = {
-  initialValues: undefined,
-  submitting: false,
 }
 
 export default OrganizationForm

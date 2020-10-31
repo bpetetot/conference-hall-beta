@@ -6,7 +6,7 @@ import firebase from 'firebase/app'
 import pick from 'lodash/pick'
 import { useNavigate } from 'react-router-dom'
 
-import userCrud from 'firebase/user'
+import { findOrCreateAuthUser, updateAuthUser } from 'firebase/user'
 import { preloadFunctions } from 'firebase/functionCalls'
 
 const AuthContext = React.createContext()
@@ -22,18 +22,7 @@ export const AuthContextProvider = ({ children, resetStore }) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (authUser) => {
       if (authUser) {
-        // check if user exists in database
-        const userRef = await userCrud.read(authUser.uid)
-        if (userRef.exists) {
-          // get user info from db
-          setUser(userRef.data())
-        } else {
-          // first connexion, add user in database
-          const userData = pick(authUser, ['uid', 'displayName', 'photoURL', 'email'])
-          await userCrud.create(userData)
-          setUser(userData)
-        }
-        // preload cloud functions
+        setUser(await findOrCreateAuthUser(authUser))
         preloadFunctions()
       } else {
         setUser(null)
@@ -79,15 +68,13 @@ export const AuthContextProvider = ({ children, resetStore }) => {
 
   const updateUser = useCallback(
     async (data) => {
-      const updatedUser = { ...user, ...data }
-      setUser(updatedUser)
-      return userCrud.update(updatedUser)
+      setUser(await updateAuthUser(user, data))
     },
     [user],
   )
 
   const resetUserFromProvider = useCallback(async () => {
-    const data = pick(firebase.auth().currentUser, ['uid', 'email', 'displayName', 'photoURL'])
+    const data = pick(firebase.auth().currentUser, ['email', 'displayName', 'photoURL'])
     return updateUser(data)
   }, [updateUser])
 
