@@ -1,4 +1,5 @@
 import firebase from 'firebase/app'
+import functions from 'firebase/functionCalls'
 import { useMutation, useQuery, useQueryCache } from 'react-query'
 
 import { useAuth } from 'features/auth'
@@ -81,4 +82,28 @@ export const useDeleteTalk = (talkId) => {
       },
     },
   )
+}
+
+export const useSubmitTalk = (talkId, eventId, callback) => {
+  const cache = useQueryCache()
+  const { data: talk } = useTalk(talkId)
+  return useMutation((data) => functions.submitTalk({ eventId, talk: { ...talk, ...data } }), {
+    onSuccess: () => {
+      cache.invalidateQueries(['talks'])
+      cache.invalidateQueries(['talk', talkId])
+      callback()
+    },
+  })
+}
+
+export const useUnsubmitTalk = (talkId, eventId, callback) => {
+  const cache = useQueryCache()
+  const { data: talk } = useTalk(talkId)
+  return useMutation(() => functions.unsubmitTalk({ eventId, talk }), {
+    onSuccess: () => {
+      cache.invalidateQueries(['talks'])
+      cache.invalidateQueries(['talk', talkId])
+      callback()
+    },
+  })
 }

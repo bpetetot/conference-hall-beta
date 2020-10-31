@@ -33,11 +33,15 @@ class Talk {
     this.createTimestamp = data.createTimestamp
   }
 
-  getSubmission = (eventId) => this.submissions?.[eventId]
+  getSubmission(eventId) {
+    return this.submissions?.[eventId]
+  }
 
-  isSubmitted = (eventId) => !!this.getSubmission(eventId) ?? false
+  isSubmitted(eventId) {
+    return !!this.getSubmission(eventId) ?? false
+  }
 
-  isSubmissionOutOfDate = (eventId) => {
+  isSubmissionOutOfDate(eventId) {
     if (!this.isSubmitted(eventId)) return false
     const comparedFields = ['title', 'abstract', 'level', 'references', 'speakers']
     const currentTalk = pick(this, comparedFields)
@@ -54,13 +58,21 @@ class Submission extends Talk {
     this.categories = data.categories
   }
 
-  isAccepted = () => this.state === SUBMISSION_STATES.ACCEPTED
+  isAccepted() {
+    return this.state === SUBMISSION_STATES.ACCEPTED
+  }
 
-  isRejected = () => this.state === SUBMISSION_STATES.REJECTED
+  isRejected() {
+    return this.state === SUBMISSION_STATES.REJECTED
+  }
 
-  isConfirmed = () => this.state === SUBMISSION_STATES.CONFIRMED
+  isConfirmed() {
+    return this.state === SUBMISSION_STATES.CONFIRMED
+  }
 
-  isDeclined = () => this.state === SUBMISSION_STATES.DECLINED
+  isDeclined() {
+    return this.state === SUBMISSION_STATES.DECLINED
+  }
 }
 
 export const talkConverter = {
