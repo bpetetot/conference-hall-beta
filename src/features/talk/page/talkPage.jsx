@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import Titlebar from 'components/titlebar'
@@ -14,10 +13,12 @@ import {
 } from 'features/talk'
 import DeleteTalkButton from './delete'
 import './talkPage.css'
-import { useTalk } from '../useTalks'
+import { useSaveTalk, useTalk } from '../useTalks'
 
-const TalkPage = ({ toggleArchive }) => {
+const TalkPage = () => {
   const { data, isLoading } = useTalk()
+
+  const [saveTalk] = useSaveTalk(data?.id)
 
   if (isLoading) return <LoadingIndicator />
 
@@ -39,7 +40,7 @@ const TalkPage = ({ toggleArchive }) => {
       <Titlebar icon="fa fa-microphone" title={title}>
         <DeleteTalkButton talkId={id} talkTitle={title} />
         {!archived && (
-          <Button secondary onClick={() => toggleArchive(data)}>
+          <Button secondary onClick={() => saveTalk({ archived: !data.archived })}>
             <IconLabel icon="fa fa-archive" label="Archive" />
           </Button>
         )}
@@ -51,7 +52,7 @@ const TalkPage = ({ toggleArchive }) => {
           )}
         </Button>
         {archived ? (
-          <Button primary onClick={() => toggleArchive(data)}>
+          <Button primary onClick={() => saveTalk({ archived: !data.archived })}>
             <IconLabel icon="fa fa-history" label="Restore" />
           </Button>
         ) : (
@@ -80,10 +81,6 @@ const TalkPage = ({ toggleArchive }) => {
       </div>
     </div>
   )
-}
-
-TalkPage.propTypes = {
-  toggleArchive: PropTypes.func.isRequired,
 }
 
 export default TalkPage

@@ -37,7 +37,9 @@ export const useSaveTalk = (talkId) => {
   const cache = useQueryCache()
   return useMutation(
     (data) => {
-      if (talkId) return talksCrud.update(data)
+      if (talkId) {
+        return talksCrud.update({ id: talkId, ...data })
+      }
       return talksCrud.create({
         ...data,
         archived: false,

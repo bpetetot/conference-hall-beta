@@ -12,7 +12,6 @@ export default [
   /* user */
   when('@@ui/FETCH_USER')(user.fetchUser),
   /* talks */
-  when('@@ui/ON_UPDATE_TALK')(talks.updateTalk),
   when('@@ui/ON_UPDATE_TALK_SUBMISSION_STATE')(talks.updateTalkSubmissionState),
   when('@@ui/ON_LOAD_TALK')(talks.fetchTalk),
   when(/@@ui\/(.*)_SPEAKER_TO_TALK/g)(talks.updateSpeakerToTalk),

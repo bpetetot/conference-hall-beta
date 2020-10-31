@@ -1,16 +1,6 @@
 import { set, unset } from 'immutadot'
 import talkCrud from 'firebase/talks'
 
-export const updateTalk = async (action, store) => {
-  const talk = action.payload
-
-  store.ui.loaders.update({ isTalkSaving: true })
-  await talkCrud.update(talk)
-  store.ui.loaders.update({ isTalkSaving: false })
-
-  store.data.talks.update(talk)
-}
-
 export const updateTalkSubmissionState = (action, store) => {
   const { eventId, talkId, state } = action.payload
   const talk = store.data.talks.get(talkId)
