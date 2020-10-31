@@ -6,9 +6,15 @@ import Titlebar from 'components/titlebar'
 import SubmitTalkLink from 'features/talk/submitTalksLink'
 import TalkStatus from 'features/talk/status'
 import { List, ListItem } from 'components/list'
+import { LoadingIndicator } from 'components/loader'
+import { useEventSubmissions } from '../useSubmissions'
 
-const Submissions = ({ eventId, eventName, talks }) => {
+const Submissions = ({ eventId, eventName }) => {
   const navigate = useNavigate()
+
+  const { data: submissions, isLoading } = useEventSubmissions(eventId)
+
+  if (isLoading) return <LoadingIndicator />
 
   return (
     <div>
@@ -17,7 +23,7 @@ const Submissions = ({ eventId, eventName, talks }) => {
       </Titlebar>
       <div>
         <List
-          array={talks}
+          array={submissions}
           noResult={<div>No submissions</div>}
           renderRow={({ id, title }) => (
             <ListItem
@@ -36,11 +42,6 @@ const Submissions = ({ eventId, eventName, talks }) => {
 Submissions.propTypes = {
   eventId: PropTypes.string.isRequired,
   eventName: PropTypes.string.isRequired,
-  talks: PropTypes.array,
-}
-
-Submissions.defaultProps = {
-  talks: [],
 }
 
 export default Submissions
