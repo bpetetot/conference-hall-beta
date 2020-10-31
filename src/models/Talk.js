@@ -1,11 +1,20 @@
 /* eslint-disable max-classes-per-file */
 import mapValues from 'lodash/mapValues'
+import pick from 'lodash/pick'
+import isEqual from 'lodash/isEqual'
 import { toDate } from 'helpers/firebase'
 
 export const FILTERS = {
   ALL: 'all',
   ARCHIVED: 'archived',
   ACTIVE: 'active',
+}
+
+export const SUBMISSION_STATES = {
+  ACCEPTED: 'accepted',
+  REJECTED: 'rejected',
+  CONFIRMED: 'confirmed',
+  DECLINED: 'declined',
 }
 
 class Talk {
@@ -23,6 +32,18 @@ class Talk {
     this.updateTimestamp = data.updateTimestamp
     this.createTimestamp = data.createTimestamp
   }
+
+  getSubmission = (eventId) => this.submissions?.[eventId]
+
+  isSubmitted = (eventId) => !!this.getSubmission(eventId) ?? false
+
+  isSubmissionOutOfDate = (eventId) => {
+    if (!this.isSubmitted(eventId)) return false
+    const comparedFields = ['title', 'abstract', 'level', 'references', 'speakers']
+    const currentTalk = pick(this, comparedFields)
+    const submittedTalk = pick(this.getSubmission(eventId), comparedFields)
+    return !isEqual(currentTalk, submittedTalk)
+  }
 }
 
 class Submission extends Talk {
@@ -32,6 +53,14 @@ class Submission extends Talk {
     this.formats = data.formats
     this.categories = data.categories
   }
+
+  isAccepted = () => this.state === SUBMISSION_STATES.ACCEPTED
+
+  isRejected = () => this.state === SUBMISSION_STATES.REJECTED
+
+  isConfirmed = () => this.state === SUBMISSION_STATES.CONFIRMED
+
+  isDeclined = () => this.state === SUBMISSION_STATES.DECLINED
 }
 
 export const talkConverter = {

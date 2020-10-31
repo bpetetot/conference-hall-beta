@@ -1,21 +1,21 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 
-import { isSubmitted } from 'store/reducers/data/talks.selector'
+// import { isSubmitted } from 'store/reducers/data/talks.selector'
 import TalkSubmission from './talkSubmission'
 
 const mapStore = (store, { eventId }) => {
   const { talkId, error } = store.ui.speaker.submission.get()
   const event = store.data.events.get(eventId)
   const talk = store.data.talks.get(talkId)
-  const update = isSubmitted(talkId, eventId)(store)
+  // const update = isSubmitted(talkId, eventId)(store)
   const initialValues = talk && talk.submissions ? talk.submissions[event.id] : {}
 
   return {
     event,
     talk,
     error,
-    update,
+    // update,
     initialValues,
     isSubmitting: store.ui.loaders.get().isTalkSubmitting,
     isUnsubmitting: store.ui.loaders.get().isTalkUnsubmitting,

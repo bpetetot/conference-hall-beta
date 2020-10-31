@@ -5,8 +5,8 @@ export const useEventSubmissions = (eventId) => {
   const result = useTalks()
 
   const submissions = result.data
-    ?.filter((talk) => !!talk?.submissions?.[eventId])
-    ?.map((talk) => talk.submissions[eventId])
+    ?.filter((talk) => talk.isSubmitted(eventId))
+    ?.map((talk) => talk.getSubmission(eventId))
 
   return { ...result, data: submissions }
 }
@@ -14,8 +14,7 @@ export const useEventSubmissions = (eventId) => {
 export const useSubmission = (talkId, eventId) => {
   const result = useTalks()
   const talk = result.data?.find((t) => t.id === talkId)
-  const submission = talk?.submissions?.[eventId]
-  return { ...result, data: submission }
+  return { ...result, data: talk.getSubmission(eventId) }
 }
 
 export const useUpdateSubmissionState = (talkId, eventId, state) => {

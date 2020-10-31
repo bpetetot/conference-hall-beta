@@ -5,20 +5,21 @@ import cn from 'classnames'
 
 import Badge from 'components/badge'
 import './status.css'
+import { useTalk } from '../useTalks'
 
-const Status = ({
-  loaded,
-  submitted,
-  confirmed,
-  accepted,
-  rejected,
-  declined,
-  cfpOpened,
-  outOfDate,
-  className,
-  displayCfpStatus,
-}) => {
-  if (!loaded) return null
+const Status = ({ talkId, eventId, loaded, cfpOpened, className, displayCfpStatus }) => {
+  const { data: talk, isLoading } = useTalk(talkId)
+
+  if (!loaded || isLoading) return null
+
+  const submission = talk.getSubmission(eventId)
+  const submitted = talk.isSubmitted(eventId)
+  const outOfDate = talk.isSubmissionOutOfDate(eventId)
+  const accepted = submission?.isAccepted()
+  const rejected = submission?.isRejected()
+  const confirmed = submission?.isConfirmed()
+  const declined = submission?.isDeclined()
+
   return (
     <div className={cn('submission-status', className)}>
       {outOfDate && cfpOpened && <Badge warning>Out of date</Badge>}
@@ -51,13 +52,9 @@ const Status = ({
 }
 
 Status.propTypes = {
+  talkId: PropTypes.string.isRequired,
+  eventId: PropTypes.string.isRequired,
   loaded: PropTypes.bool,
-  submitted: PropTypes.bool,
-  accepted: PropTypes.bool,
-  rejected: PropTypes.bool,
-  confirmed: PropTypes.bool,
-  declined: PropTypes.bool,
-  outOfDate: PropTypes.bool,
   cfpOpened: PropTypes.bool,
   displayCfpStatus: PropTypes.bool,
   className: PropTypes.string,
@@ -65,12 +62,6 @@ Status.propTypes = {
 
 Status.defaultProps = {
   loaded: false,
-  submitted: false,
-  accepted: false,
-  rejected: false,
-  confirmed: false,
-  declined: false,
-  outOfDate: false,
   cfpOpened: true,
   displayCfpStatus: true,
   className: undefined,
