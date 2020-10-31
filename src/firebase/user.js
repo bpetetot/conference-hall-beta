@@ -1,7 +1,6 @@
 import firebase from 'firebase/app'
 import User, { userConverter } from 'models/User'
 import crud from './crud'
-import { fetchUserOrganizations } from './organizations'
 
 const userCrud = crud('users', 'uid', userConverter)
 
@@ -17,9 +16,7 @@ export const findOrCreateAuthUser = async ({ uid, displayName, photoUrl, email }
     await userCrud.create(data)
     return new User(data)
   }
-
-  const organizations = await fetchUserOrganizations(uid)
-  return new User({ ...user.data(), organizations })
+  return user.data()
 }
 
 /**
