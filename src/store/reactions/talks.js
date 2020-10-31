@@ -9,19 +9,6 @@ export const updateTalkSubmissionState = (action, store) => {
   store.data.talks.update(updatedTalk)
 }
 
-export const fetchTalk = async (action, store) => {
-  const { talkId } = action.payload
-  if (!talkId) return
-  // check if already in the store
-  const current = store.data.talks.get(talkId)
-  if (current && current.id === talkId) return
-  // fetch talk from id
-  const ref = await talkCrud.read(talkId)
-  if (ref.exists) {
-    store.data.talks.add({ id: talkId, ...ref.data() })
-  }
-}
-
 export const updateSpeakerToTalk = async (action, store) => {
   const { uid, talkId } = action.payload
   const talk = store.data.talks.get(talkId)

@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { LoadingIndicator } from 'components/loader'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
@@ -9,30 +10,34 @@ import { FormatBadge, CategoryBadge } from 'features/event/badges'
 import { TalkAbstract, TalkSpeakers, TalkStatus } from 'features/talk'
 import Notification from 'features/talk/deliberation/notification'
 
+import { useSubmission } from '../useSubmissions'
 import styles from './submissionPage.module.css'
 
-const SubmissionPage = ({
-  eventId,
-  id,
-  title,
-  abstract,
-  level,
-  owner,
-  state,
-  references,
-  language,
-  formats,
-  speakers,
-  categories,
-  onUpdateSubmission,
-  cfpOpened,
-}) => {
+const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
   const navigate = useNavigate()
+
+  const { data: submission, isLoading } = useSubmission(talkId, eventId)
 
   const handleUpdateSubmission = useCallback(() => {
     onUpdateSubmission()
     navigate(`/speaker/event/${eventId}/submission`)
   }, [onUpdateSubmission, navigate, eventId])
+
+  if (isLoading) return <LoadingIndicator />
+
+  const {
+    id,
+    title,
+    abstract,
+    level,
+    owner,
+    state,
+    references,
+    language,
+    formats,
+    speakers,
+    categories,
+  } = submission
 
   return (
     <div>
@@ -75,34 +80,13 @@ const SubmissionPage = ({
 }
 
 SubmissionPage.propTypes = {
+  talkId: PropTypes.string.isRequired,
   eventId: PropTypes.string.isRequired,
-  id: PropTypes.string,
-  title: PropTypes.string,
-  abstract: PropTypes.string,
-  level: PropTypes.string,
-  owner: PropTypes.string,
-  state: PropTypes.string,
-  references: PropTypes.string,
-  language: PropTypes.string,
-  formats: PropTypes.string,
-  categories: PropTypes.string,
-  speakers: PropTypes.objectOf(PropTypes.bool),
   onUpdateSubmission: PropTypes.func.isRequired,
   cfpOpened: PropTypes.bool,
 }
 
 SubmissionPage.defaultProps = {
-  id: undefined,
-  title: undefined,
-  abstract: undefined,
-  level: 'not defined',
-  owner: undefined,
-  state: undefined,
-  references: undefined,
-  language: undefined,
-  formats: undefined,
-  categories: undefined,
-  speakers: {},
   cfpOpened: false,
 }
 

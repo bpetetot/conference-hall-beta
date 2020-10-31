@@ -10,3 +10,10 @@ export const useEventSubmissions = (eventId) => {
 
   return { ...result, data: submissions }
 }
+
+export const useSubmission = (talkId, eventId) => {
+  const result = useTalks()
+  const talk = result.data?.find((t) => t.id === talkId)
+  const submission = talk?.submissions?.[eventId]
+  return { ...result, data: submission }
+}
