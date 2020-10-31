@@ -36,7 +36,8 @@ class Submission extends Talk {
 
 export const talkConverter = {
   toFirestore(talk) {
-    return talk
+    const submissions = mapValues(talk.submissions, (s) => ({ ...s }))
+    return { ...talk, submissions }
   },
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)

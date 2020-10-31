@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryCache } from 'react-query'
 
 import { useAuth } from 'features/auth'
 import talksCrud, { fetchUserTalks } from 'firebase/talks'
@@ -30,4 +30,26 @@ export const useTalk = (talkId) => {
     const result = await talksCrud.read(id)
     return result.data()
   })
+}
+
+export const useSaveTalk = (talkId) => {
+  const { user } = useAuth()
+  const cache = useQueryCache()
+  return useMutation(
+    (data) => {
+      if (talkId) return talksCrud.update(data)
+      return talksCrud.create({
+        ...data,
+        archived: false,
+        speakers: { [user.uid]: true },
+        owner: user.uid,
+      })
+    },
+    {
+      onSuccess: () => {
+        cache.invalidateQueries(['talks'])
+        cache.invalidateQueries(['talk', talkId])
+      },
+    },
+  )
 }
