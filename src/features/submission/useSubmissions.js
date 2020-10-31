@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { useTalks } from 'features/talk/useTalks'
+import { useSaveTalk, useTalks } from 'features/talk/useTalks'
 
 export const useEventSubmissions = (eventId) => {
   const result = useTalks()
@@ -16,4 +16,9 @@ export const useSubmission = (talkId, eventId) => {
   const talk = result.data?.find((t) => t.id === talkId)
   const submission = talk?.submissions?.[eventId]
   return { ...result, data: submission }
+}
+
+export const useUpdateSubmissionState = (talkId, eventId, state) => {
+  const [saveTalk] = useSaveTalk(talkId)
+  return () => saveTalk({ [`submissions.${eventId}.state`]: state })
 }

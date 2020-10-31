@@ -3,9 +3,14 @@ import PropTypes from 'prop-types'
 
 import Button from 'components/button'
 import Alert from 'components/alert'
+import { useUpdateSubmissionState } from 'features/submission/useSubmissions'
 
-const Notification = ({ name, onConfirm, onDecline, className }) => {
+const Notification = ({ talkId, eventId, name, className }) => {
   const title = `This talk has been accepted at ${name}.`
+
+  const onConfirm = useUpdateSubmissionState(talkId, eventId, 'confirmed')
+  const onDecline = useUpdateSubmissionState(talkId, eventId, 'declined')
+
   return (
     <Alert
       type="info"
@@ -26,9 +31,9 @@ const Notification = ({ name, onConfirm, onDecline, className }) => {
 }
 
 Notification.propTypes = {
+  talkId: PropTypes.string.isRequired,
+  eventId: PropTypes.string.isRequired,
   name: PropTypes.string,
-  onConfirm: PropTypes.func.isRequired,
-  onDecline: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 
