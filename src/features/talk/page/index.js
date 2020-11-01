@@ -1,1 +1,1 @@
-export { default } from './talkPage.container'
+export { default } from './talkPage'

@@ -15,14 +15,12 @@ class User {
     this.phone = data.phone
     this.speakerReference = data.speakerReference
     this.twitter = data.twitter
-    this.organizations = data.organizations
   }
 }
 
 export const userConverter = {
   toFirestore(user) {
-    const { organizations, ...dataToSave } = user
-    return dataToSave
+    return user
   },
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)

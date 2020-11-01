@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import SubmitTalksLink from 'features/talk/submitTalksLink'
+import SubmitTalksLink from 'features/talk/components/submitTalksLink'
 import './talkSubmitted.css'
 
 const TalkSubmitted = ({ eventId, eventName, surveyActive }) => (

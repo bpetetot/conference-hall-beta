@@ -4,7 +4,7 @@ import capitalize from 'lodash/capitalize'
 import cn from 'classnames'
 import { withSizes } from 'styles/utils'
 
-import SubmitTalkLink from 'features/talk/submitTalksLink'
+import SubmitTalkLink from 'features/talk/components/submitTalksLink'
 
 import styles from './banner.module.css'
 

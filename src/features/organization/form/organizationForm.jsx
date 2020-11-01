@@ -18,12 +18,8 @@ const OrganizationForm = () => {
   const navigate = useNavigate()
   const handleFormSubmit = useCallback(
     async (formData) => {
-      await saveOrganization(formData)
-      if (formData.id) {
-        navigate(`/organizer/organization/${formData.id}`)
-      } else {
-        navigate('/organizer/organizations')
-      }
+      const result = await saveOrganization(formData)
+      navigate(`/organizer/organization/${formData.id || result.id}`)
     },
     [saveOrganization, navigate],
   )

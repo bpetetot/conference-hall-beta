@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { SideBarPanel, SideBarLink } from 'app/layout/sidebar'
 import IconLabel from 'components/iconLabel'
-import SubmitTalksLink from 'features/talk/submitTalksLink'
+import SubmitTalksLink from 'features/talk/components/submitTalksLink'
 
 const EventSidebar = ({ eventId, name, surveyActive }) => {
   if (!eventId) return null

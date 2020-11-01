@@ -1,17 +1,17 @@
 import React, { memo } from 'react'
-import { Route, Routes, useParams } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
-import TalkPage from 'features/talk/page'
-import TalkEdit from 'features/talk/form/talkEdit'
-import TalkSubmission from 'features/submission/talkSubmission'
+import Page from 'features/talk/page'
+import Form from 'features/talk/form'
+import SubmitWizard from 'features/submission/wizard-talk'
 
 const Talk = () => {
-  const { talkId } = useParams()
   return (
     <Routes>
-      <Route path="/" element={<TalkPage talkId={talkId} />} />
-      <Route path="/edit" element={<TalkEdit talkId={talkId} />} />
-      <Route path="/submission" element={<TalkSubmission talkId={talkId} />} />
+      <Route path="/create" element={<Form />} />
+      <Route path="/:talkId" element={<Page />} />
+      <Route path="/:talkId/edit" element={<Form />} />
+      <Route path="/:talkId/submission" element={<SubmitWizard />} />
     </Routes>
   )
 }

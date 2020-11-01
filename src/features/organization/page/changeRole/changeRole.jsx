@@ -13,7 +13,7 @@ const ChangeRoleSelect = ({ organizationId, member, role }) => {
   const { user } = useAuth()
 
   const [selectedRole, setSelectedRole] = useState(role)
-  const [updateMember] = useSetMembers(organizationId)
+  const updateMember = useSetMembers(organizationId)
 
   if (user.uid === member.uid) return null
 
@@ -21,9 +21,7 @@ const ChangeRoleSelect = ({ organizationId, member, role }) => {
     <ConfirmationPopin
       title="Change member role"
       content={<RoleText displayName={member.displayName} role={selectedRole} />}
-      onOk={() => {
-        updateMember({ memberId: member.uid, role: selectedRole })
-      }}
+      onOk={() => updateMember(member.uid, selectedRole)}
       onCancel={() => setSelectedRole(role)}
       withCancel
       renderTrigger={({ show }) => (

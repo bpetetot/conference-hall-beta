@@ -27,6 +27,20 @@
   margin-top: 2em;
 }
 
+.talk-title {
+  display: flex;
+  align-items: center;
+}
+
+.talk-title .talk-status {
+  margin-left: 1em;
+  align-items: center;
+  font-size: 0.7em;
+  letter-spacing: normal;
+  font-weight: normal;
+  text-transform: none;
+}
+
 @media only screen and (max-width: 1024px) {
   .talk-page {
     grid-template-columns: auto 30%;

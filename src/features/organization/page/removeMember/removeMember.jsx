@@ -11,8 +11,8 @@ const RemoveMemberButton = ({ organizationId, member, isOwner }) => {
   const { user } = useAuth()
   const { uid, displayName } = member
   const leaveOrganization = useLeaveOrganization(organizationId)
-  const [unsetMember] = useUnsetMembers(organizationId)
-  const onRemoveMember = () => unsetMember({ memberId: uid })
+  const unsetMember = useUnsetMembers(organizationId)
+  const onRemoveMember = () => unsetMember(uid)
 
   const canRemove = isOwner && user.uid !== uid
   const canLeave = !isOwner && user.uid === uid

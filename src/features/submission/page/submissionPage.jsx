@@ -2,37 +2,45 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { LoadingIndicator } from 'components/loader'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { FormatBadge, CategoryBadge } from 'features/event/badges'
-import { TalkAbstract, TalkSpeakers, TalkStatus } from 'features/talk'
-import Notification from 'features/talk/deliberation/notification'
+import TalkSpeakers from 'features/talk/components/speakers'
+import TalkAbstract from 'features/talk/components/abstract'
+import TalkStatus from 'features/talk/components/status'
+import TalkDeliberation from 'features/talk/components/deliberation'
+import { useTalk } from 'features/talk/useTalks'
+import { SUBMISSION_STATES } from 'models/Talk'
 
 import styles from './submissionPage.module.css'
 
-const SubmissionPage = ({
-  eventId,
-  id,
-  title,
-  abstract,
-  level,
-  owner,
-  state,
-  references,
-  language,
-  formats,
-  speakers,
-  categories,
-  onUpdateSubmission,
-  cfpOpened,
-}) => {
+const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
   const navigate = useNavigate()
+
+  const { data: talk, isLoading } = useTalk(talkId)
 
   const handleUpdateSubmission = useCallback(() => {
     onUpdateSubmission()
     navigate(`/speaker/event/${eventId}/submission`)
   }, [onUpdateSubmission, navigate, eventId])
+
+  if (isLoading) return <LoadingIndicator />
+
+  const {
+    id,
+    title,
+    abstract,
+    level,
+    owner,
+    state,
+    references,
+    language,
+    formats,
+    speakers,
+    categories,
+  } = talk.getSubmission(eventId)
 
   return (
     <div>
@@ -48,13 +56,13 @@ const SubmissionPage = ({
       </Titlebar>
       <div className={styles.submission}>
         <div className={styles.header}>
-          {state === 'accepted' && (
+          {state === SUBMISSION_STATES.ACCEPTED && (
             <div className={styles.notification}>
-              <Notification eventId={eventId} talkId={id} />
+              <TalkDeliberation submissions={talk.submissions} />
             </div>
           )}
           <div className={styles.status}>
-            {state !== 'accepted' && <TalkStatus talkId={id} eventId={eventId} />}
+            {state !== SUBMISSION_STATES.ACCEPTED && <TalkStatus talk={talk} eventId={eventId} />}
             <FormatBadge outline eventId={eventId} formatId={formats} />
             <CategoryBadge outline eventId={eventId} categoryId={categories} />
           </div>
@@ -75,34 +83,13 @@ const SubmissionPage = ({
 }
 
 SubmissionPage.propTypes = {
+  talkId: PropTypes.string.isRequired,
   eventId: PropTypes.string.isRequired,
-  id: PropTypes.string,
-  title: PropTypes.string,
-  abstract: PropTypes.string,
-  level: PropTypes.string,
-  owner: PropTypes.string,
-  state: PropTypes.string,
-  references: PropTypes.string,
-  language: PropTypes.string,
-  formats: PropTypes.string,
-  categories: PropTypes.string,
-  speakers: PropTypes.objectOf(PropTypes.bool),
   onUpdateSubmission: PropTypes.func.isRequired,
   cfpOpened: PropTypes.bool,
 }
 
 SubmissionPage.defaultProps = {
-  id: undefined,
-  title: undefined,
-  abstract: undefined,
-  level: 'not defined',
-  owner: undefined,
-  state: undefined,
-  references: undefined,
-  language: undefined,
-  formats: undefined,
-  categories: undefined,
-  speakers: {},
   cfpOpened: false,
 }
 

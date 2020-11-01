@@ -1,1 +1,1 @@
-export { default } from './deleteTalkModal.container'
+export { default } from './deleteTalkModal'

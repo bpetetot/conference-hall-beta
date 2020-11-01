@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import firebase from 'firebase/app'
 import { useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -30,7 +29,9 @@ export const useSaveOrganization = (organizationId) => {
   const cache = useQueryCache()
   return useMutation(
     (data) => {
-      if (organizationId) return organizationCrud.update(data)
+      if (organizationId) {
+        return organizationCrud.update({ id: organizationId, ...data })
+      }
       return organizationCrud.create({
         ...data,
         members: { [user.uid]: ROLES.OWNER },
@@ -47,35 +48,17 @@ export const useSaveOrganization = (organizationId) => {
 }
 
 export const useSetMembers = (organizationId) => {
-  const cache = useQueryCache()
-  return useMutation(
-    ({ memberId, role = ROLES.MEMBER }) => {
-      return organizationCrud.update({ id: organizationId, [`members.${memberId}`]: role })
-    },
-    {
-      onSuccess: () => {
-        cache.invalidateQueries(['organization', organizationId])
-      },
-    },
-  )
+  const [saveOrganization] = useSaveOrganization(organizationId)
+  return (memberId, role = ROLES.MEMBER) => {
+    saveOrganization({ [`members.${memberId}`]: role })
+  }
 }
 
 export const useUnsetMembers = (organizationId) => {
-  const cache = useQueryCache()
-  return useMutation(
-    ({ memberId, leave }) => {
-      if (leave) return null
-      return organizationCrud.update({
-        id: organizationId,
-        [`members.${memberId}`]: firebase.firestore.FieldValue.delete(),
-      })
-    },
-    {
-      onSuccess: () => {
-        cache.invalidateQueries(['organization', organizationId])
-      },
-    },
-  )
+  const [saveOrganization] = useSaveOrganization(organizationId)
+  return (memberId) => {
+    saveOrganization({ [`members.${memberId}`]: firebase.firestore.FieldValue.delete() })
+  }
 }
 
 export const useLeaveOrganization = (organizationId) => {
@@ -83,10 +66,10 @@ export const useLeaveOrganization = (organizationId) => {
   const cache = useQueryCache()
 
   const leaverOrganization = useCallback(async () => {
+    cache.invalidateQueries(['organizations'])
     const leaveOrganization = firebase.functions().httpsCallable('leaveOrganization')
     await leaveOrganization({ organizationId })
     navigate('/organizer/organizations')
-    cache.invalidateQueries(['organizations'])
   }, [navigate, cache, organizationId])
 
   return leaverOrganization
