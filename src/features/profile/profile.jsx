@@ -11,7 +11,6 @@ import Avatar from 'components/avatar'
 import './profile.css'
 
 const validateEmail = validators.validate([validators.required, validators.email])
-const validatePhoto = validators.validate([validators.required, validators.url])
 
 const Profile = () => {
   const { user, updateUser, resetUserFromProvider } = useAuth()
@@ -60,7 +59,7 @@ const Profile = () => {
               label="Photo URL"
               type="text"
               component={input}
-              validate={validatePhoto}
+              validate={validators.url}
               inline
             />
             <Field name="company" label="Company" type="text" component={input} inline />
