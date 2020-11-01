@@ -74,7 +74,7 @@ const TalkPage = () => {
         />
         <div className="talk-info">
           <TalkSpeakers talkId={id} talkTitle={title} speakers={speakers} owner={owner} edit />
-          <TalkSubmissions id={id} submissions={submissions} />
+          <TalkSubmissions talk={data} />
         </div>
       </div>
     </div>

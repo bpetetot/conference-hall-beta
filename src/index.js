@@ -16,7 +16,6 @@ import App from './app'
 const queryCache = new QueryCache({
   defaultConfig: {
     queries: {
-      refetchOnMount: false,
       refetchOnWindowFocus: false,
       staleTime: Infinity,
     },

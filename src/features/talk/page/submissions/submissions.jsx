@@ -1,19 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cn from 'classnames'
 import isEmpty from 'lodash/isEmpty'
 
 import Submission from './submission'
 import './submissions.css'
 
-const TalkSubmissions = ({ id, submissions, className }) => (
-  <div className={cn('card', className)}>
+const TalkSubmissions = ({ talk }) => (
+  <div className="card">
     <h3>Submissions</h3>
-    {isEmpty(submissions) && <small>Not submitted yet</small>}
-    {!isEmpty(submissions) && (
+    {isEmpty(talk.submissions) && <small>Not submitted yet</small>}
+    {!isEmpty(talk.submissions) && (
       <div className="talk-submissions">
-        {Object.keys(submissions).map((eventId) => (
-          <Submission key={eventId} eventId={eventId} talkId={id} />
+        {Object.keys(talk.submissions).map((eventId) => (
+          <Submission key={eventId} eventId={eventId} talk={talk} />
         ))}
       </div>
     )}
@@ -21,14 +20,11 @@ const TalkSubmissions = ({ id, submissions, className }) => (
 )
 
 TalkSubmissions.propTypes = {
-  id: PropTypes.string.isRequired,
-  submissions: PropTypes.objectOf(PropTypes.any),
-  className: PropTypes.string,
+  talk: PropTypes.any,
 }
 
 TalkSubmissions.defaultProps = {
-  submissions: {},
-  className: undefined,
+  talk: {},
 }
 
 export default TalkSubmissions
