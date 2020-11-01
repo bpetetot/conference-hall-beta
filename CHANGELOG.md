@@ -1,5 +1,19 @@
 # Changelog
 
+<a name="0.36.0"></a>
+## 0.36.0 (2020-11-01)
+
+### Changed
+
+- ⬆️ upgrade dependencies ([#836](https://github.com/bpetetot/conference-hall/issues/836)) [[5b0081b](https://github.com/bpetetot/conference-hall/commit/5b0081b1bafa3e19b6384507711ca5968b3974bc)]
+
+### Fixed
+
+- 🐛 fix proposals refresh after actions ([#845](https://github.com/bpetetot/conference-hall/issues/845)) [[f669ee1](https://github.com/bpetetot/conference-hall/commit/f669ee18bbe1798e153cf63a150ee94bde19bb6a)]
+- 🐛 profile photo should not be mandatory ([#844](https://github.com/bpetetot/conference-hall/issues/844)) [[dfc6eda](https://github.com/bpetetot/conference-hall/commit/dfc6eda8b9530aef72f67202644babba3a7431c2)]
+- ✏️ update README.md contribution link ([#842](https://github.com/bpetetot/conference-hall/issues/842)) [[ec3261d](https://github.com/bpetetot/conference-hall/commit/ec3261d92939fe257269545319e99bd66640ed54)]
+
+
 <a name="0.35.2"></a>
 ## 0.35.2 (2020-10-30)
 
