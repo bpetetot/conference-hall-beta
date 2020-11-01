@@ -7,8 +7,10 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { FormatBadge, CategoryBadge } from 'features/event/badges'
-import { TalkAbstract, TalkSpeakers, TalkStatus } from 'features/talk'
-import Notification from 'features/talk/deliberation/notification'
+import TalkSpeakers from 'features/talk/components/speakers'
+import TalkAbstract from 'features/talk/components/abstract'
+import TalkStatus from 'features/talk/components/status'
+import TalkDeliberation from 'features/talk/components/deliberation'
 import { useTalk } from 'features/talk/useTalks'
 import { SUBMISSION_STATES } from 'models/Talk'
 
@@ -56,7 +58,7 @@ const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
         <div className={styles.header}>
           {state === SUBMISSION_STATES.ACCEPTED && (
             <div className={styles.notification}>
-              <Notification eventId={eventId} talkId={id} />
+              <TalkDeliberation eventId={eventId} talkId={id} />
             </div>
           )}
           <div className={styles.status}>

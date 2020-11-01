@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import { useTalk } from 'features/talk/useTalks'
-import TalkStatus from 'features/talk/status'
+import TalkStatus from 'features/talk/components/status'
 import './submission.css'
 
 const Submission = ({ talkId, eventId, name }) => {

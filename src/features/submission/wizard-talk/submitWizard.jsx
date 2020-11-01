@@ -1,12 +1,11 @@
 import React from 'react'
 
 import Stepper from 'components/stepper'
-import { TalkTitle } from 'features/talk'
-
-import './submission.css'
+import TalkTitle from 'features/talk/components/title'
 import { useTalk } from 'features/talk/useTalks'
 import { LoadingIndicator } from 'components/loader'
-import EventsSelection from './eventsSelection'
+import EventsSelection from '../wizard/eventsSelection'
+import './submitWizard.css'
 
 const steps = [
   { label: 'Event selection', icon: 'fa fa-bars' },

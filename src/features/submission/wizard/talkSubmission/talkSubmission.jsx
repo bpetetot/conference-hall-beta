@@ -31,11 +31,11 @@ const TalkSubmission = ({ talkId, event, onSubmit, onUnsubmit }) => {
 
   if (isLoading) return <LoadingIndicator />
 
-  const existingSubmission = talk.getSubmission(event.id)
   const alreadySubmitted = talk.isSubmitted(event.id)
+  const { formats, categories } = talk.getSubmission(event.id) || {}
 
   return (
-    <Form onSubmit={submitTalk} initialValues={existingSubmission}>
+    <Form onSubmit={submitTalk} initialValues={{ formats, categories }}>
       {({ handleSubmit, invalid, errors }) => (
         <form className="talk-submission">
           <Titlebar icon="fa fa-microphone" title={talk.title}>

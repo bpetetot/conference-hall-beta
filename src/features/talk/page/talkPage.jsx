@@ -5,15 +5,13 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { LoadingIndicator } from 'components/loader'
-import {
-  TalkAbstract,
-  TalkSpeakers,
-  TalkSubmissions,
-  TalkDeliberationNotification,
-} from 'features/talk'
+import TalkSpeakers from 'features/talk/components/speakers'
+import TalkAbstract from 'features/talk/components/abstract'
+import TalkDeliberation from 'features/talk/components/deliberation'
+import TalkSubmissions from './submissions'
 import DeleteTalkButton from './delete'
-import './talkPage.css'
 import { useSaveTalk, useTalk } from '../useTalks'
+import './talkPage.css'
 
 const TalkPage = () => {
   const { data, isLoading } = useTalk()
@@ -65,7 +63,7 @@ const TalkPage = () => {
           </Button>
         )}
       </Titlebar>
-      <TalkDeliberationNotification submissions={submissions} />
+      <TalkDeliberation submissions={submissions} />
       <div className="talk-page">
         <TalkAbstract
           className="talk-content"
