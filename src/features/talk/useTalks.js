@@ -78,7 +78,7 @@ export const useDeleteTalk = (talkId) => {
     {
       onSuccess: () => {
         cache.invalidateQueries(['talks'])
-        cache.invalidateQueries(['talk', talkId])
+        cache.removeQueries(['talk', talkId])
       },
     },
   )
