@@ -15,11 +15,6 @@
     "doc:build": "build-storybook --docs",
     "changelog": "npx gitmoji-changelog@latest"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn lint"
-    }
-  },
   "dependencies": {
     "@k-ramel/react": "3.0.1",
     "classnames": "2.2.6",
@@ -74,7 +69,6 @@
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
     "firebase-tools": "8.14.1",
-    "husky": "4.3.0",
     "prettier": "2.1.2",
     "react-is": "17.0.1",
     "react-scripts": "4.0.0",
