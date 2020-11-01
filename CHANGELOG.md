@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="0.36.1"></a>
+## 0.36.1 (2020-11-01)
+
+### Changed
+
+- 🔧 remove husky [[f8c320e](https://github.com/bpetetot/conference-hall/commit/f8c320e5ab4de77e535dae47a1a8ecfd2ab3ad3c)]
+
+### Fixed
+
+- 🐛 fix proposals export [[b82db9e](https://github.com/bpetetot/conference-hall/commit/b82db9e69f3426ec1e86ff69eed67bf85a1a40b4)]
+
+
 <a name="0.36.0"></a>
 ## 0.36.0 (2020-11-01)
 
