@@ -6,7 +6,7 @@ import userCrud from 'firebase/user'
 
 /* Send email to a selection of proposals */
 export const sendEmails = async (action, store) => {
-  const { eventId, selection } = action.payload
+  const { userId, eventId, filters, selection } = action.payload
   if (!selection) return
 
   for (let i = 0; i < selection.length; i += 1) {
@@ -16,11 +16,12 @@ export const sendEmails = async (action, store) => {
       firebase.updateProposal(eventId, proposal)
     }
   }
+  store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId, eventId, filters } })
 }
 
 /* reject several proposals */
 export const rejectProposals = async (action, store) => {
-  const { eventId, selection } = action.payload
+  const { userId, eventId, filters, selection } = action.payload
   if (!selection) return
 
   for (let i = 0; i < selection.length; i += 1) {
@@ -31,11 +32,12 @@ export const rejectProposals = async (action, store) => {
       firebase.updateProposal(eventId, proposal)
     }
   }
+  store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId, eventId, filters } })
 }
 
 /* accept several proposals */
 export const acceptProposals = async (action, store) => {
-  const { eventId, selection } = action.payload
+  const { userId, eventId, filters, selection } = action.payload
   if (!selection) return
 
   for (let i = 0; i < selection.length; i += 1) {
@@ -46,6 +48,7 @@ export const acceptProposals = async (action, store) => {
       firebase.updateProposal(eventId, proposal)
     }
   }
+  store.dispatch({ type: '@@ui/ON_LOAD_EVENT_PROPOSALS', payload: { userId, eventId, filters } })
 }
 
 /* select a proposal to send email */
@@ -124,5 +127,6 @@ export const loadProposals = async (action, store) => {
     )
   }
   store.ui.organizer.proposalsPaging.reset()
+  store.data.proposals.reset()
   store.data.proposals.set(props)
 }

@@ -35,12 +35,18 @@ const mapStore = (store, { userId, eventId, filters }) => {
     onSendEmails: () =>
       store.dispatch({
         type: '@@ui/SEND_EMAIL_FOR_PROPOSALS',
-        payload: { userId, eventId, selection },
+        payload: { userId, eventId, selection, filters },
       }),
     onAcceptProposals: () =>
-      store.dispatch({ type: '@@ui/ACCEPT_PROPOSALS', payload: { userId, eventId, selection } }),
+      store.dispatch({
+        type: '@@ui/ACCEPT_PROPOSALS',
+        payload: { userId, eventId, selection, filters },
+      }),
     onRejectProposals: () =>
-      store.dispatch({ type: '@@ui/REJECT_PROPOSALS', payload: { userId, eventId, selection } }),
+      store.dispatch({
+        type: '@@ui/REJECT_PROPOSALS',
+        payload: { userId, eventId, selection, filters },
+      }),
   }
 }
 
