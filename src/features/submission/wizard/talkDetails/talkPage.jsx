@@ -5,22 +5,26 @@ import { LoadingIndicator } from 'components/loader'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import { TalkAbstract, TalkSpeakers } from 'features/talk'
-import { useSubmission } from 'features/submission/useSubmissions'
+import { TalkAbstract, TalkSpeakers, TalkStatus } from 'features/talk'
 import { useTalk } from 'features/talk/useTalks'
 
-import TalkTitle from './talkTitle'
 import './talkPage.css'
 
 const TalkPage = ({ talkId, eventId, onNext }) => {
-  const { data: existing, isLoading: isLoadingSubmission } = useSubmission(talkId, eventId)
   const { data: talk, isLoading: isLoadingTalk } = useTalk(talkId)
 
-  if (isLoadingSubmission || isLoadingTalk) return <LoadingIndicator />
+  if (isLoadingTalk) return <LoadingIndicator />
+
+  const existing = talk.getSubmission(eventId)
 
   const { title, abstract, level, owner, references, language, speakers } = existing || talk
 
-  const titleComponent = <TalkTitle talkId={talkId} eventId={eventId} title={title} />
+  const titleComponent = (
+    <div className="talk-title">
+      <span>{title}</span>
+      <TalkStatus talk={talk} eventId={eventId} className="talk-status" />
+    </div>
+  )
 
   return (
     <div className="talk-details">

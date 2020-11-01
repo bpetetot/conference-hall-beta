@@ -3,17 +3,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import Status from '../../status'
+import { useTalk } from 'features/talk/useTalks'
+import TalkStatus from 'features/talk/status'
 import './submission.css'
 
-const Submission = ({ talkId, eventId, name }) => (
-  <div className="talk-submission-event">
-    <Link to={`/speaker/event/${eventId}/submissions/${talkId}`}>{name}</Link>
-    <div className="talk-submission-event-actions">
-      <Status talkId={talkId} eventId={eventId} />
+const Submission = ({ talkId, eventId, name }) => {
+  const { data: talk, isLoading } = useTalk(talkId)
+
+  if (isLoading) return null
+
+  return (
+    <div className="talk-submission-event">
+      <Link to={`/speaker/event/${eventId}/submissions/${talkId}`}>{name}</Link>
+      <div className="talk-submission-event-actions">
+        <TalkStatus talk={talk} eventId={eventId} displayCfpStatus={false} />
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 Submission.propTypes = {
   talkId: PropTypes.string.isRequired,

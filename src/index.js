@@ -27,7 +27,7 @@ ReactDOM.render(
   <BrowserRouter>
     <ReactQueryCacheProvider queryCache={queryCache}>
       <App />
-      <ReactQueryDevtools />
+      <ReactQueryDevtools initialIsOpen={false} />
     </ReactQueryCacheProvider>
   </BrowserRouter>,
   document.getElementById('root'),

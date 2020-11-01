@@ -3,16 +3,18 @@ import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import { useNavigate } from 'react-router-dom'
 
+import { useTalk } from 'features/talk/useTalks'
+import { LoadingIndicator } from 'components/loader'
 import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
 import IconLabel from 'components/iconLabel'
 import NoEvents from 'features/event/noEvents'
-import Status from 'features/talk/status'
+import TalkStatus from 'features/talk/status'
 import EventDates from 'features/event/page/eventDates'
 
 import styles from './eventsSelection.module.css'
 
-const TalksSelection = ({ talkId, events, onSelect }) => {
+const EventsSelection = ({ talkId, events, onSelect }) => {
   const navigate = useNavigate()
 
   const handleSelect = useCallback(
@@ -22,6 +24,10 @@ const TalksSelection = ({ talkId, events, onSelect }) => {
     },
     [onSelect, navigate],
   )
+
+  const { data: talk, isLoading: isLoadingTalk } = useTalk(talkId)
+
+  if (isLoadingTalk) return <LoadingIndicator />
 
   return (
     <List
@@ -56,7 +62,7 @@ const TalksSelection = ({ talkId, events, onSelect }) => {
               <IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />
             </>
           }
-          info={<Status eventId={id} talkId={talkId} />}
+          info={<TalkStatus talk={talk} eventId={id} />}
           onSelect={() => handleSelect(id)}
         />
       )}
@@ -64,14 +70,14 @@ const TalksSelection = ({ talkId, events, onSelect }) => {
   )
 }
 
-TalksSelection.propTypes = {
+EventsSelection.propTypes = {
   talkId: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
   events: PropTypes.arrayOf(PropTypes.object),
 }
 
-TalksSelection.defaultProps = {
+EventsSelection.defaultProps = {
   events: [],
 }
 
-export default TalksSelection
+export default EventsSelection

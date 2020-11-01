@@ -12,7 +12,7 @@ import { useEventSubmissions } from '../useSubmissions'
 const Submissions = ({ eventId, eventName }) => {
   const navigate = useNavigate()
 
-  const { data: submissions, isLoading } = useEventSubmissions(eventId)
+  const { data: talksSubmitted, isLoading } = useEventSubmissions(eventId)
 
   if (isLoading) return <LoadingIndicator />
 
@@ -23,14 +23,14 @@ const Submissions = ({ eventId, eventName }) => {
       </Titlebar>
       <div>
         <List
-          array={submissions}
+          array={talksSubmitted}
           noResult={<div>No submissions</div>}
-          renderRow={({ id, title }) => (
+          renderRow={(talk) => (
             <ListItem
-              key={id}
-              title={title}
-              info={<TalkStatus talkId={id} eventId={eventId} displayCfpStatus={false} />}
-              onSelect={() => navigate(`/speaker/event/${eventId}/submissions/${id}`)}
+              key={talk.id}
+              title={talk.getSubmission(eventId).title}
+              info={<TalkStatus talk={talk} eventId={eventId} displayCfpStatus={false} />}
+              onSelect={() => navigate(`/speaker/event/${eventId}/submissions/${talk.id}`)}
             />
           )}
         />

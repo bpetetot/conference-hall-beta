@@ -9,14 +9,15 @@ import Button from 'components/button'
 import { FormatBadge, CategoryBadge } from 'features/event/badges'
 import { TalkAbstract, TalkSpeakers, TalkStatus } from 'features/talk'
 import Notification from 'features/talk/deliberation/notification'
+import { useTalk } from 'features/talk/useTalks'
+import { SUBMISSION_STATES } from 'models/Talk'
 
-import { useSubmission } from '../useSubmissions'
 import styles from './submissionPage.module.css'
 
 const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
   const navigate = useNavigate()
 
-  const { data: submission, isLoading } = useSubmission(talkId, eventId)
+  const { data: talk, isLoading } = useTalk(talkId)
 
   const handleUpdateSubmission = useCallback(() => {
     onUpdateSubmission()
@@ -37,7 +38,7 @@ const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
     formats,
     speakers,
     categories,
-  } = submission
+  } = talk.getSubmission(eventId)
 
   return (
     <div>
@@ -53,13 +54,13 @@ const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
       </Titlebar>
       <div className={styles.submission}>
         <div className={styles.header}>
-          {state === 'accepted' && (
+          {state === SUBMISSION_STATES.ACCEPTED && (
             <div className={styles.notification}>
               <Notification eventId={eventId} talkId={id} />
             </div>
           )}
           <div className={styles.status}>
-            {state !== 'accepted' && <TalkStatus talkId={id} eventId={eventId} />}
+            {state !== SUBMISSION_STATES.ACCEPTED && <TalkStatus talk={talk} eventId={eventId} />}
             <FormatBadge outline eventId={eventId} formatId={formats} />
             <CategoryBadge outline eventId={eventId} categoryId={categories} />
           </div>

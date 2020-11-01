@@ -5,12 +5,9 @@ import cn from 'classnames'
 
 import Badge from 'components/badge'
 import './status.css'
-import { useTalk } from '../useTalks'
 
-const Status = ({ talkId, eventId, loaded, cfpOpened, className, displayCfpStatus }) => {
-  const { data: talk, isLoading } = useTalk(talkId)
-
-  if (!loaded || isLoading) return null
+const Status = ({ talk, eventId, cfpOpened, displayCfpStatus, className, loaded }) => {
+  if (!loaded || !talk) return null
 
   const submission = talk.getSubmission(eventId)
   const submitted = talk.isSubmitted(eventId)
@@ -52,7 +49,7 @@ const Status = ({ talkId, eventId, loaded, cfpOpened, className, displayCfpStatu
 }
 
 Status.propTypes = {
-  talkId: PropTypes.string.isRequired,
+  talk: PropTypes.object,
   eventId: PropTypes.string.isRequired,
   loaded: PropTypes.bool,
   cfpOpened: PropTypes.bool,
@@ -61,6 +58,7 @@ Status.propTypes = {
 }
 
 Status.defaultProps = {
+  talk: undefined,
   loaded: false,
   cfpOpened: true,
   displayCfpStatus: true,

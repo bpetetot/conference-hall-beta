@@ -87,7 +87,7 @@ export const useDeleteTalk = (talkId) => {
 export const useSubmitTalk = (talkId, eventId, callback) => {
   const cache = useQueryCache()
   const { data: talk } = useTalk(talkId)
-  return useMutation((data) => functions.submitTalk({ eventId, talk: { ...talk, ...data } }), {
+  return useMutation((data) => functions.submitTalk({ eventId, talk: { ...data, ...talk } }), {
     onSuccess: () => {
       cache.invalidateQueries(['talks'])
       cache.invalidateQueries(['talk', talkId])
