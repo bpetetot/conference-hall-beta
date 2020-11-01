@@ -5,7 +5,7 @@ class Organization {
     this.id = data.id
     this.name = data.name
     this.owner = data.owner
-    this.members = data.members || {}
+    this.members = data.members
     this.updateTimestamp = data.updateTimestamp
     this.createTimestamp = data.createTimestamp
   }

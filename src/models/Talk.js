@@ -1,6 +1,8 @@
 /* eslint-disable max-classes-per-file */
 import mapValues from 'lodash/mapValues'
 import pick from 'lodash/pick'
+import omitBy from 'lodash/omitBy'
+import isNil from 'lodash/isNil'
 import isEqual from 'lodash/isEqual'
 import { toDate } from 'helpers/firebase'
 
@@ -27,8 +29,8 @@ class Talk {
     this.references = data.references
     this.owner = data.owner
     this.archived = data.archived
-    this.speakers = data.speakers || {}
-    this.submissions = data.submissions || {}
+    this.speakers = data.speakers
+    this.submissions = data.submissions
     this.updateTimestamp = data.updateTimestamp
     this.createTimestamp = data.createTimestamp
   }
@@ -44,8 +46,8 @@ class Talk {
   isSubmissionOutOfDate(eventId) {
     if (!this.isSubmitted(eventId)) return false
     const comparedFields = ['title', 'abstract', 'level', 'references', 'speakers']
-    const currentTalk = pick(this, comparedFields)
-    const submittedTalk = pick(this.getSubmission(eventId), comparedFields)
+    const currentTalk = omitBy(pick(this, comparedFields), isNil)
+    const submittedTalk = omitBy(pick(this.getSubmission(eventId), comparedFields), isNil)
     return !isEqual(currentTalk, submittedTalk)
   }
 }
@@ -77,8 +79,7 @@ class Submission extends Talk {
 
 export const talkConverter = {
   toFirestore(talk) {
-    const submissions = mapValues(talk.submissions, (s) => ({ ...s }))
-    return { ...talk, submissions }
+    return talk
   },
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)

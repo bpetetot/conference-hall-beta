@@ -44,14 +44,13 @@ const read = (collection, converter) => (id) =>
  * @param {String} collection collection name
  * @param {String} idAttr attribute name of the id
  */
-const update = (collection, idAttr, converter) => (data) => {
-  const dataConverted = converter ? converter.toFirestore(data) : data
+const update = (collection, idAttr) => (data) => {
   return firebase
     .firestore()
     .collection(collection)
     .doc(data[idAttr])
     .update({
-      ...dataConverted,
+      ...data,
       updateTimestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
 }
@@ -66,6 +65,6 @@ const deleteDoc = (collection) => (id) =>
 export default (collection, idAttr, converter) => ({
   create: create(collection, idAttr, converter),
   read: read(collection, converter),
-  update: update(collection, idAttr, converter),
+  update: update(collection, idAttr),
   delete: deleteDoc(collection),
 })

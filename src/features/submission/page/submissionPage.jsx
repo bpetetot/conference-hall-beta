@@ -41,7 +41,7 @@ const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
     speakers,
     categories,
   } = talk.getSubmission(eventId)
-  console.log(talk.submissions)
+
   return (
     <div>
       <Titlebar icon="fa fa-microphone" title={title}>
