@@ -40,8 +40,4 @@ Conference Hall is still in beta but already contains a large set of features.
 
 ## You want to contribute?
 
-If you want to contribute and make **Conference Hall** better, go there:
-
-**[https://contribute-conference-hall.netlify.com](https://contribute-conference-hall.netlify.com)**
-
-
+If you want to contribute and make **Conference Hall** better, read our [Contributing Guidelines.](https://contribute-conference-hall.netlify.app/?path=/docs/documentation-contributing--page)
