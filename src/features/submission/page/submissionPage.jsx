@@ -41,7 +41,7 @@ const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
     speakers,
     categories,
   } = talk.getSubmission(eventId)
-
+  console.log(talk.submissions)
   return (
     <div>
       <Titlebar icon="fa fa-microphone" title={title}>
@@ -58,7 +58,7 @@ const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
         <div className={styles.header}>
           {state === SUBMISSION_STATES.ACCEPTED && (
             <div className={styles.notification}>
-              <TalkDeliberation eventId={eventId} talkId={id} />
+              <TalkDeliberation submissions={talk.submissions} />
             </div>
           )}
           <div className={styles.status}>
