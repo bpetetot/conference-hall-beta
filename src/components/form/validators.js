@@ -15,7 +15,8 @@ export const email = (value) => {
 }
 
 export const url = (value) => {
-  if (value && isURL(value)) return undefined
+  if (!value) return undefined
+  if (isURL(value)) return undefined
   return 'Invalid URL'
 }
 
