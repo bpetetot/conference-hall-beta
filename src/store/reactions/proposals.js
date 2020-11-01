@@ -1,4 +1,6 @@
 import firebase from 'firebase/app'
+import omitBy from 'lodash/omitBy'
+import isNil from 'lodash/isNil'
 
 import { downloadFile } from 'helpers/dom'
 import * as firebaseProposals from 'firebase/proposals'
@@ -33,9 +35,8 @@ export const exportProposals = async (action, store) => {
 
   const token = await firebase.auth().currentUser.getIdToken()
 
-  // get proposal filters & sort from query params
   const query = encodeURI(
-    Object.entries({ ...filters, output })
+    Object.entries({ ...omitBy(filters, isNil), output })
       .map(([key, value]) => `${key}=${value}`)
       .join('&'),
   )
