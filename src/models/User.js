@@ -20,7 +20,7 @@ class User {
 
 export const userConverter = {
   toFirestore(user) {
-    return user
+    return { ...user }
   },
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)

@@ -2,7 +2,6 @@ import { when } from 'k-ramel'
 
 import * as events from './reactions/events'
 import * as proposals from './reactions/proposals'
-import * as ratings from './reactions/ratings'
 
 export default [
   /* events */
@@ -24,7 +23,4 @@ export default [
   when('@@ui/ON_LOAD_PROPOSAL')(proposals.getProposal),
   when('@@ui/ON_UPDATE_PROPOSAL')(proposals.updateProposal),
   when('@@ui/EXPORT_PROPOSALS')(proposals.exportProposals),
-  /* ratings */
-  when('@@ui/ON_LOAD_RATINGS')(ratings.fetchRatings),
-  when('@@ui/RATE_PROPOSAL')(ratings.rateProposal),
 ]

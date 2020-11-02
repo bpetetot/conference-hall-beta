@@ -3,39 +3,26 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import ProposalStars from 'features/ratings/proposal-stars'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import { LoadingIndicator } from 'components/loader'
-import Rating from 'components/rating'
 import './ratings.css'
 
-const Ratings = ({
-  eventId,
-  isLoaded,
-  loadRatings,
-  rating,
-  feeling,
-  onRating,
-  nextProposalId,
-  prevProposalId,
-  className,
-}) => {
+const Ratings = ({ eventId, proposalId, nextProposalId, prevProposalId, className }) => {
   const navigate = useNavigate()
   const { search } = useLocation()
 
   const handleNext = useCallback(() => {
     if (nextProposalId === undefined) return
-    loadRatings(eventId, nextProposalId)
     const params = new URLSearchParams(search)
     navigate(`/organizer/event/${eventId}/proposals/${nextProposalId}?${params.toString()}`)
-  }, [navigate, eventId, nextProposalId, search, loadRatings])
+  }, [navigate, eventId, nextProposalId, search])
 
   const handlePrevious = useCallback(() => {
     if (prevProposalId === undefined) return
-    loadRatings(eventId, prevProposalId)
     const params = new URLSearchParams(search)
     navigate(`/organizer/event/${eventId}/proposals/${prevProposalId}?${params.toString()}`)
-  }, [navigate, eventId, prevProposalId, search, loadRatings])
+  }, [navigate, eventId, prevProposalId, search])
 
   return (
     <div className={cn(className, 'proposal-ratings-layout card')}>
@@ -48,8 +35,7 @@ const Ratings = ({
         <IconLabel icon="fa fa-angle-left" label="Previous" />
       </Button>
       <div className="btn-ratings">
-        {!isLoaded && <LoadingIndicator />}
-        {isLoaded && <Rating onRating={onRating} rating={rating} feeling={feeling} />}
+        <ProposalStars eventId={eventId} proposalId={proposalId} />
       </div>
       <Button
         tertiary
@@ -65,20 +51,13 @@ const Ratings = ({
 
 Ratings.propTypes = {
   eventId: PropTypes.string.isRequired,
-  isLoaded: PropTypes.bool,
-  rating: PropTypes.number,
-  feeling: PropTypes.string,
-  onRating: PropTypes.func.isRequired,
-  loadRatings: PropTypes.func.isRequired,
+  proposalId: PropTypes.string.isRequired,
   nextProposalId: PropTypes.string,
   prevProposalId: PropTypes.string,
   className: PropTypes.string,
 }
 
 Ratings.defaultProps = {
-  isLoaded: false,
-  rating: undefined,
-  feeling: undefined,
   nextProposalId: undefined,
   prevProposalId: undefined,
   className: undefined,

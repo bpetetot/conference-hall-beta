@@ -1,4 +1,26 @@
 import firebase from 'firebase/app'
+import { ratingConverter } from 'models/Rating'
+
+/**
+ * Return user rating for an event and proposal
+ * @param {string} eventId event id
+ * @param {string} proposalId proposal id
+ * @param {string} userId user id
+ */
+export const getUserRating = async (eventId, proposalId, userId) => {
+  const result = await firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('proposals')
+    .doc(proposalId)
+    .collection('ratings')
+    .doc(userId)
+    .withConverter(ratingConverter)
+    .get()
+
+  return result.data()
+}
 
 /**
  * Return ratings with for an event and proposal
@@ -13,6 +35,7 @@ export const getRatings = async (eventId, proposalId) => {
     .collection('proposals')
     .doc(proposalId)
     .collection('ratings')
+    .withConverter(ratingConverter)
     .get()
   return result.docs.map((ref) => ref.data())
 }
@@ -33,6 +56,7 @@ export const addRating = (eventId, proposalId, userId, ratingObject) =>
     .doc(proposalId)
     .collection('ratings')
     .doc(userId)
+    .withConverter(ratingConverter)
     .set({
       uid: userId,
       ...ratingObject,
