@@ -25,8 +25,6 @@ export const getProposal = async (action, store) => {
       store.data.proposals.add(ref.data())
     }
   }
-  // get associated ratings
-  store.dispatch({ type: '@@ui/ON_LOAD_RATINGS', payload: { eventId, proposalId } })
 }
 
 export const exportProposals = async (action, store) => {

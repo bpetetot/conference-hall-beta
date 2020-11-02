@@ -1,6 +1,6 @@
 import { inject } from '@k-ramel/react'
 
-import TeamRatings from './teamRatings'
+import RatingsDrawer from './ratingsDrawer'
 
 const mapStore = (store, { proposalId }) => {
   const { rating, loves, hates, noopinion } = store.data.proposals.get(proposalId) || {}
@@ -9,7 +9,6 @@ const mapStore = (store, { proposalId }) => {
     loves,
     hates,
     noopinion,
-    ratings: store.data.ratings.getAsArray(),
   }
 }
-export default inject(mapStore)(TeamRatings)
+export default inject(mapStore)(RatingsDrawer)

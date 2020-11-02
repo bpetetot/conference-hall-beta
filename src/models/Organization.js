@@ -13,7 +13,7 @@ class Organization {
 
 export const organizationConverter = {
   toFirestore(organization) {
-    return organization
+    return { ...organization }
   },
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)

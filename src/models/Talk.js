@@ -79,7 +79,7 @@ class Submission extends Talk {
 
 export const talkConverter = {
   toFirestore(talk) {
-    return talk
+    return { ...talk }
   },
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options)

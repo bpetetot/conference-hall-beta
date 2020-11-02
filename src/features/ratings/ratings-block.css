@@ -1,4 +1,4 @@
-.team-ratings-total {
+.ratings-block-total {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,11 +10,11 @@
   color: var(--grey-color-dark);
 }
 
-.team-ratings-total-label {
+.ratings-block-total-label {
   font-size: 1.5em;
 }
 
-.team-ratings {
+.ratings-block {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,24 +22,24 @@
   font-weight: 200;
 }
 
-.team-ratings-rates {
+.ratings-block-rates {
   margin-left: 2em;
   font-size: 1.3em;
 }
 
 
-.team-ratings-rates .fa-star {
+.ratings-block-rates .fa-star {
   color: #ffc74c;
 }
 
-.team-ratings-rates .fa-heart {
+.ratings-block-rates .fa-heart {
   color: #ed4842;
 }
 
-.team-ratings-rates .fa-circle {
+.ratings-block-rates .fa-circle {
   color: #000;
 }
 
-.team-ratings-rates .fa-ban {
+.ratings-block-rates .fa-ban {
   color: #ed4842;
 }
