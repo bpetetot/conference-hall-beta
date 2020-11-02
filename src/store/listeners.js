@@ -4,7 +4,6 @@ import * as user from './reactions/user'
 import * as events from './reactions/events'
 import * as proposals from './reactions/proposals'
 import * as ratings from './reactions/ratings'
-import * as survey from './reactions/survey'
 
 export default [
   /* user */
@@ -31,7 +30,4 @@ export default [
   /* ratings */
   when('@@ui/ON_LOAD_RATINGS')(ratings.fetchRatings),
   when('@@ui/RATE_PROPOSAL')(ratings.rateProposal),
-  /* survey */
-  when('@@ui/ON_LOAD_SURVEY')(survey.fetch),
-  when('@@ui/SAVE_SPEAKER_SURVEY')(survey.save),
 ]

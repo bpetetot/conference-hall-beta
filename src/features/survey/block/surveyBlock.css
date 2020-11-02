@@ -1,27 +1,27 @@
-.speaker-surveys {
+.survey-block {
   margin: 2em 0;
   max-width: 500px;
 }
 
-.speaker-surveys img {
+.survey-block img {
   font-size: 1.2em;
 }
 
-.speaker-surveys .questions {
+.survey-block .questions {
   margin-top: 1em;
   font-weight: 200;
 }
 
-.speaker-surveys .questions .question {
+.survey-block .questions .question {
   padding: 0.5em 0;
 }
 
-.speaker-surveys .questions .question .answer {
+.survey-block .questions .question .answer {
   margin-left: 1em;
   color: var(--grey-color-dark);
   font-weight: 600;
 }
 
-.speaker-surveys .not-answered {
+.survey-block .not-answered {
   margin-top: 1.5em;
 }

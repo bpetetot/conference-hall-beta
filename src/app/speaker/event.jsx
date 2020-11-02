@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Route, Routes, useParams } from 'react-router-dom'
 
 import EventPage from 'features/event/page'
-import SurveyForm from 'features/survey/page'
+import SurveyForm from 'features/survey/form'
 import SubmitWizard from 'features/submission/wizard-event'
 import SubmissionsList from 'features/submission/list'
 import SubmissionPage from 'features/submission/page'

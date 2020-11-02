@@ -5,6 +5,5 @@ export default {
   proposals: types.keyValue(),
   ratings: types.keyValue({ key: 'uid' }),
   users: types.keyValue({ key: 'uid' }),
-  surveys: types.keyValue({ key: 'uid' }),
   eventsSettings: types.keyValue(),
 }

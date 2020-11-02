@@ -1,1 +1,1 @@
-export { default } from './surveyForm.container'
+export { default } from './survey.container'

@@ -7,7 +7,7 @@ import Titlebar from 'components/titlebar'
 import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
 import TeamRatings from './teamRatings'
-import SpeakerSurveys from './speakerSurveys'
+import SurveysDrawer from './surveysDrawer'
 import ReviewersThread from './reviewersThread'
 import EditProposal from './editProposal'
 import styles from './actions.module.css'
@@ -19,7 +19,7 @@ const Actions = ({ eventId, proposal, surveyActive, displayOrganizersRatings, cl
 
       {displayOrganizersRatings && <TeamRatings proposalId={proposal.id} />}
 
-      {surveyActive && <SpeakerSurveys eventId={eventId} proposalId={proposal.id} />}
+      {surveyActive && <SurveysDrawer eventId={eventId} proposalId={proposal.id} />}
     </HasRole>
     <ReviewersThread eventId={eventId} proposalId={proposal.id} />
   </Titlebar>
