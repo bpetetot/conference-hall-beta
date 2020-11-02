@@ -26,6 +26,7 @@ const OrganizationPage = () => {
 
   useEffect(() => {
     if (isLoading) return
+    // TODO refactor with useQueries in react-query 3
     fetchUsersList(Object.keys(members)).then((result) => {
       setUsers(sortBy(result, 'displayName'))
     })

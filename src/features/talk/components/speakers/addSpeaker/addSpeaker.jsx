@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import PropTypes from 'prop-types'
-import AddUserModal from 'features/invite/addUserModal'
+import AddUserModal from 'features/user/add-user-modal'
 import { useAddSpeaker } from 'features/talk/useTalks'
 
 import './addSpeaker.css'

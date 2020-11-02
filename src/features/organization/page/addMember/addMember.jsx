@@ -1,6 +1,6 @@
 import React from 'react'
 
-import AddUserModal from 'features/invite/addUserModal'
+import AddUserModal from 'features/user/add-user-modal'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { useOrganization, useSetMembers } from 'features/organization/useOrganizations'
