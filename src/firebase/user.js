@@ -45,6 +45,10 @@ export const fetchUsersByEmail = async (email) => {
   return result.docs.map((ref) => ref.data())
 }
 
+/**
+ * Fetch a list of users by their ids
+ * @param {*} userIds array of user ids
+ */
 export const fetchUsersList = async (userIds = []) => {
   return Promise.all(
     userIds.map(async (uid) => {
