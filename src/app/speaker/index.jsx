@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import Profile from 'features/profile'
+import Profile from 'features/auth/profile'
 import Contributors from 'features/contributors'
 import Talks from 'features/talk/list'
 import Talk from './talk'
