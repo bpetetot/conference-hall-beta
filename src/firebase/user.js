@@ -39,11 +39,16 @@ export const fetchUsersByEmail = async (email) => {
     .firestore()
     .collection('users')
     .where('email', '==', email)
+    .withConverter(userConverter)
     .limit(1)
     .get()
-  return result.docs.map((ref) => ({ uid: ref.id, ...ref.data() }))
+  return result.docs.map((ref) => ref.data())
 }
 
+/**
+ * Fetch a list of users by their ids
+ * @param {*} userIds array of user ids
+ */
 export const fetchUsersList = async (userIds = []) => {
   return Promise.all(
     userIds.map(async (uid) => {

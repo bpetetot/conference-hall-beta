@@ -2,32 +2,37 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { getGitHubUserRepo } from 'helpers/github'
-import UserAvatar from 'features/auth/userAvatar'
+import Avatar from 'components/avatar'
 import IconLabel from 'components/iconLabel'
 import IconLink from 'components/iconLink'
 import Markdown from 'components/markdown'
+import { useUser } from 'features/user/useUser'
 
 import styles from './speaker.module.css'
 
-const Speaker = ({
-  uid,
-  email,
-  github,
-  twitter,
-  company,
-  language,
-  address,
-  bio,
-  speakerReferences,
-}) => {
-  let twitterUrl
-  if (twitter) {
-    twitterUrl = twitter.startsWith('@') ? twitter.substr(1) : twitter
-  }
+const Speaker = ({ userId }) => {
+  const { data, isLoading } = useUser(userId)
+
+  if (isLoading) return null
+
+  const {
+    displayName,
+    photoURL,
+    email,
+    github,
+    twitter,
+    company,
+    language,
+    address,
+    bio,
+    speakerReferences,
+  } = data
+
+  const twitterUrl = twitter?.startsWith('@') ? twitter?.substr(1) : twitter
 
   return (
     <div>
-      <UserAvatar id={uid} className={styles.avatar} />
+      <Avatar name={displayName} src={photoURL} withLabel className={styles.avatar} />
       <div className={styles.icons}>
         <IconLink icon="fa fa-envelope-o" label={email} href={`mailto:${email}`} />
         <IconLink icon="fa fa-github" label={github} href={getGitHubUserRepo(github)} />
@@ -48,26 +53,7 @@ const Speaker = ({
 }
 
 Speaker.propTypes = {
-  uid: PropTypes.string.isRequired,
-  email: PropTypes.string,
-  github: PropTypes.string,
-  twitter: PropTypes.string,
-  company: PropTypes.string,
-  language: PropTypes.string,
-  address: PropTypes.object,
-  bio: PropTypes.string,
-  speakerReferences: PropTypes.string,
-}
-
-Speaker.defaultProps = {
-  email: undefined,
-  github: undefined,
-  twitter: undefined,
-  company: undefined,
-  language: undefined,
-  address: undefined,
-  bio: undefined,
-  speakerReferences: undefined,
+  userId: PropTypes.string.isRequired,
 }
 
 export default Speaker

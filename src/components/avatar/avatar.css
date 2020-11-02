@@ -51,6 +51,13 @@
   font-size: var(--cc-avatar-font-size);
 }
 
+.cc-avatar-loading {
+  background: var(--grey-color-light);
+  color: var(--grey-color-dark);
+  height: var(--cc-avatar-height);
+  width: var(--cc-avatar-width);
+}
+
 .cc-avatar-label {
   margin-left: 0.5em;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import UserAvatar from 'features/auth/userAvatar'
+import UserAvatar from 'features/user/user-avatar'
 import { useSurvey } from 'features/survey/useSurveys'
 import Answer from './answer'
 
@@ -12,7 +12,7 @@ const SurveyBlock = ({ eventId, userId, survey }) => {
 
   return (
     <div className="survey-block card">
-      <UserAvatar id={userId} />
+      <UserAvatar userId={userId} />
       {isLoading && (
         <div className="not-answered">
           <small>Loading...</small>

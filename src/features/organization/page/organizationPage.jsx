@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import sortBy from 'lodash/sortBy'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { LoadingIndicator } from 'components/loader'
@@ -8,42 +7,32 @@ import { List } from 'components/list'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import HasRole from 'features/organization/hasRole'
-import { fetchUsersList } from 'firebase/user'
 import { ROLES } from 'firebase/constants'
 import { useAuth } from 'features/auth'
+import { useUsers } from 'features/user/useUser'
 
 import AddMember from './addMember'
 import MemberRow from './memberRow'
-import './organizationPage.css'
 import { useOrganization } from '../useOrganizations'
+import './organizationPage.css'
 
 const OrganizationPage = () => {
   const { user } = useAuth()
-  const [users, setUsers] = useState([])
-
   const { data, isLoading } = useOrganization()
-  const { id: organizationId, name, members } = data || {}
+  const { id, name, members } = data || {}
+  const { data: users, isLoading: isLoadingUsers } = useUsers(Object.keys(members || []))
 
-  useEffect(() => {
-    if (isLoading) return
-    fetchUsersList(Object.keys(members)).then((result) => {
-      setUsers(sortBy(result, 'displayName'))
-    })
-  }, [isLoading, members])
-
-  if (isLoading) return <LoadingIndicator />
+  if (isLoading || isLoadingUsers) return <LoadingIndicator />
 
   const isOwner = members[user.uid] === ROLES.OWNER
-
-  if (!users.length) return <LoadingIndicator />
 
   return (
     <div className="organization-page">
       <Titlebar className="organization-header" icon="fa fa-users" title={name}>
-        <HasRole of={ROLES.OWNER} forOrganizationId={organizationId}>
+        <HasRole of={ROLES.OWNER} forOrganizationId={id}>
           <Button secondary>
             {(btn) => (
-              <Link to={`/organizer/organization/${organizationId}/edit`} className={btn}>
+              <Link to={`/organizer/organization/${id}/edit`} className={btn}>
                 <IconLabel icon="fa fa-pencil" label="Edit" />
               </Link>
             )}
@@ -58,7 +47,7 @@ const OrganizationPage = () => {
         renderRow={(member) => (
           <MemberRow
             key={member.uid}
-            organizationId={organizationId}
+            organizationId={id}
             member={member}
             role={members[member.uid]}
             isOwner={isOwner}

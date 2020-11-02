@@ -6,7 +6,7 @@ import { displayRating } from 'helpers/number'
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel/iconLabel'
-import UserAvatar from 'features/auth/userAvatar'
+import UserAvatar from 'features/user/user-avatar'
 import TotalRatings from 'features/ratings/totalRatings'
 
 import './teamRatings.css'
@@ -32,7 +32,7 @@ const TeamRatings = ({ total, loves, hates, noopinion, ratings }) => (
     </div>
     {ratings.map(({ uid, feeling, rating }) => (
       <div key={uid} className="team-ratings">
-        <UserAvatar id={uid} />
+        <UserAvatar userId={uid} />
         <div className="team-ratings-rates">
           <IconLabel
             icon={cn('fa', {

@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import { useAuth } from 'features/auth'
-import Profile from 'features/profile'
+import Profile from 'features/auth/profile'
 import Contributors from 'features/contributors'
 import Organizations from 'features/organization/list'
 import EventsList from 'features/event/list'
