@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import UserAvatar from 'features/auth/userAvatar'
+import UserAvatar from 'features/user/user-avatar'
 
 import AddSpeaker from './addSpeaker'
 import RemoveSpeaker from './removeSpeaker'
@@ -13,7 +13,7 @@ const TalkSpeakers = ({ talkId, talkTitle, speakers, owner, className, edit }) =
     <h3>Speakers</h3>
     {Object.keys(speakers).map((key) => (
       <div key={key} className="talk-speaker-row">
-        <UserAvatar id={key} />
+        <UserAvatar userId={key} />
         {owner === key && <small>owner</small>}
         {edit && owner !== key && <RemoveSpeaker uid={key} talkId={talkId} />}
       </div>

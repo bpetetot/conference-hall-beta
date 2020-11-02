@@ -1,6 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/avatar should not render when no props 1`] = `null`;
+exports[`components/avatar should not render when no props 1`] = `
+<div
+  className="cc-avatar-wrapper"
+>
+  <div
+    className="cc-avatar cc-avatar-initials"
+    style={Object {}}
+  />
+</div>
+`;
 
 exports[`components/avatar should render with initial when no photo 1`] = `
 <div
@@ -27,11 +36,7 @@ exports[`components/avatar should render with photo 1`] = `
 >
   <div
     className="cc-avatar cc-avatar-image"
-    style={
-      Object {
-        "background": "transparent",
-      }
-    }
+    style={Object {}}
   >
     <img
       alt="Benjamin"

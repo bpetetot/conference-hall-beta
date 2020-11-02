@@ -7,8 +7,8 @@ import Speaker from './speaker'
 
 const Speakers = ({ proposal, className }) => (
   <div className={cn(className, 'card')}>
-    {keys(proposal.speakers).map((uid) => (
-      <Speaker key={uid} uid={uid} />
+    {keys(proposal.speakers).map((userId) => (
+      <Speaker key={userId} userId={userId} />
     ))}
   </div>
 )

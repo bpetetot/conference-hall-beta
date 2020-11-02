@@ -1,13 +1,10 @@
 import { when } from 'k-ramel'
 
-import * as user from './reactions/user'
 import * as events from './reactions/events'
 import * as proposals from './reactions/proposals'
 import * as ratings from './reactions/ratings'
 
 export default [
-  /* user */
-  when('@@ui/FETCH_USER')(user.fetchUser),
   /* events */
   when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEventForm),
   when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEventForm),

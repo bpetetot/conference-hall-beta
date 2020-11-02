@@ -24,13 +24,12 @@ const Avatar = ({
   size,
   square,
   withLabel,
+  loading,
   className,
   labelClassName,
   style,
 }) => {
-  if (!name && !src) return null
-
-  let bgColor = { background: 'transparent' }
+  let bgColor = {}
   if (color) {
     bgColor = { background: color }
   } else if (!src) {
@@ -40,7 +39,8 @@ const Avatar = ({
   const classes = cn('cc-avatar', {
     'cc-avatar-small': size === 'small',
     'cc-avatar-large': size === 'large',
-    'cc-avatar-initials': !src,
+    'cc-avatar-initials': !src && !loading,
+    'cc-avatar-loading': loading,
     'cc-avatar-image': src,
     'cc-avatar-square': square,
   })
@@ -48,6 +48,7 @@ const Avatar = ({
   return (
     <div className={cn('cc-avatar-wrapper', className)}>
       <div className={classes} style={{ ...bgColor, ...style }}>
+        {loading && <i className="fa fa-user fa-lg" />}
         {src && <img src={src} alt={name || 'avatar'} loading="lazy" />}
         {!src && name && <span>{name.charAt(0)}</span>}
       </div>
@@ -63,6 +64,7 @@ Avatar.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   square: PropTypes.bool,
   withLabel: PropTypes.bool,
+  loading: PropTypes.bool,
   className: PropTypes.string,
   labelClassName: PropTypes.string,
   style: PropTypes.objectOf(PropTypes.string),
@@ -75,6 +77,7 @@ Avatar.defaultProps = {
   size: 'medium',
   square: false,
   withLabel: false,
+  loading: false,
   className: undefined,
   labelClassName: undefined,
   style: undefined,
