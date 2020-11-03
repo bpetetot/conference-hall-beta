@@ -1,4 +1,6 @@
 import firebase from 'firebase/app'
+import { eventConverter } from 'models/Event'
+import { eventSettingsConverter } from 'models/EventSettings'
 
 import crud from './crud'
 
@@ -9,7 +11,14 @@ export const fetchPublicEvents = () =>
   firebase.firestore().collection('events').where('visibility', '==', 'public').get()
 
 export const fetchSettings = (eventId) =>
-  firebase.firestore().collection('events').doc(eventId).collection('settings').doc(eventId).get()
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('settings')
+    .withConverter(eventSettingsConverter)
+    .doc(eventId)
+    .get()
 
 export const saveSettings = (eventId, settings) =>
   firebase
@@ -20,4 +29,4 @@ export const saveSettings = (eventId, settings) =>
     .doc(eventId)
     .set({ id: eventId, ...settings }, { merge: true })
 
-export default crud('events', 'id')
+export default crud('events', 'id', eventConverter)
