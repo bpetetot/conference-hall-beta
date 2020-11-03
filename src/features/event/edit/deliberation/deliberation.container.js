@@ -4,7 +4,6 @@ import get from 'lodash/get'
 import DeliberationForm from './deliberation'
 
 const mapStore = (store, { eventId }) => {
-  const { contact } = store.data.events.get(eventId) || {}
   const settings = store.data.eventsSettings.get(eventId)
 
   const blindRating = get(settings, 'deliberation.blindRating')
@@ -19,7 +18,6 @@ const mapStore = (store, { eventId }) => {
     deliberationEnabled,
     displayRatings,
     hideRatings,
-    contact,
     recipients,
     emails,
     onToggleDeliberation: (checked) =>

@@ -16,7 +16,7 @@ const EventSidebar = () => {
       <SideBarLink to={`/organizer/event/${event.id}`} exact>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
-      <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={event.id}>
+      <HasRole of={ROLE_OWNER_OR_MEMBER}>
         <SideBarLink to={`/organizer/event/${event.id}/edit`}>
           <IconLabel icon="fa fa-gear" label="Configuration" />
         </SideBarLink>

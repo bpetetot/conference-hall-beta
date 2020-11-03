@@ -6,6 +6,7 @@ import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import Checkbox from 'components/form/checkbox'
 import IconLabel from 'components/iconLabel/iconLabel'
+import { useCurrentEvent } from 'features/event/currentEventContext'
 
 import styles from './deliberation.module.css'
 
@@ -14,7 +15,6 @@ const DeliberationForm = ({
   deliberationEnabled,
   displayRatings,
   hideRatings,
-  contact,
   recipients,
   emails,
   onToggleBlindRating,
@@ -24,9 +24,10 @@ const DeliberationForm = ({
   onChangeRecipients,
   onChangeNotifiedEmails,
 }) => {
-  // eslint-disable-next-line max-len
+  const { data: event } = useCurrentEvent()
+
   const disabledEmails =
-    !recipients.organizers && (!recipients.contact || (recipients.contact && !contact))
+    !recipients.organizers && (!recipients.contact || (recipients.contact && !event.contact))
 
   return (
     <div className={cn(styles.form, 'card')}>
@@ -88,7 +89,7 @@ const DeliberationForm = ({
           name="contact"
           label="Send to the event contact email"
           info={
-            contact ? (
+            event.contact ? (
               'Sent emails will have the event contact email as CC.'
             ) : (
               <IconLabel
@@ -99,7 +100,7 @@ const DeliberationForm = ({
           }
           onChange={onChangeRecipients}
           value={recipients.contact}
-          disabled={!contact}
+          disabled={!event.contact}
         />
         <Checkbox
           name="organizers"

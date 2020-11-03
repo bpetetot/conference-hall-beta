@@ -24,17 +24,7 @@ const EventCreate = () => {
     [navigate, uid],
   )
 
-  return (
-    <EventForm
-      onSubmit={onSubmit}
-      isCreateForm
-      initialValues={{
-        type: 'conference',
-        visibility: true,
-        conferenceDates: {},
-      }}
-    />
-  )
+  return <EventForm onSubmit={onSubmit} />
 }
 
 export default EventCreate

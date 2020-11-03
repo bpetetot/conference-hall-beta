@@ -1,11 +1,11 @@
 import { node } from 'prop-types'
 import { useAuth } from 'features/auth'
-import { useEvent } from 'features/event/useEvents'
+import { useCurrentEvent } from 'features/event/currentEventContext'
 import { useOrganization } from './useOrganizations'
 
 const HasRole = ({ of, forOrganizationId, children, otherwise }) => {
   const { user } = useAuth()
-  const { data: event, isLoading: isLoadingEvent } = useEvent()
+  const { data: event, isLoading: isLoadingEvent } = useCurrentEvent()
   const { data: orga, isLoading } = useOrganization(event?.organization || forOrganizationId)
 
   const roles = Array.isArray(of) ? of : [of]

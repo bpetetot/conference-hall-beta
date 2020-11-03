@@ -6,11 +6,6 @@ const mapStore = (store, { eventId }) => {
   const event = store.data.events.get(eventId)
 
   return {
-    submitting: store.ui.loaders.get().isEventSaving,
-    initialValues: {
-      ...event,
-      visibility: event.visibility === 'private',
-    },
     onSubmit: (values) => {
       store.dispatch({
         type: '@@ui/ON_UPDATE_EVENT_DETAILS',
