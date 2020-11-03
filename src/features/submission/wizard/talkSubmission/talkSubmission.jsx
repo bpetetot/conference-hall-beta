@@ -10,11 +10,13 @@ import { markdownInput, radio, SubmitButton, RadioGroup } from 'components/form'
 import Alert from 'components/alert'
 import { required } from 'components/form/validators'
 import { LoadingIndicator } from 'components/loader'
+import { useCurrentEvent } from 'features/event/currentEventContext'
 
 import './talkSubmission.css'
 import { useTalk, useSubmitTalk, useUnsubmitTalk } from 'features/talk/useTalks'
 
-const TalkSubmission = ({ talkId, event, onSubmit, onUnsubmit }) => {
+const TalkSubmission = ({ talkId, onSubmit, onUnsubmit }) => {
+  const { data: event } = useCurrentEvent()
   const { data: talk, isLoading } = useTalk(talkId)
 
   const [submitTalk, { isLoading: isSubmitting, error: submitError }] = useSubmitTalk(
@@ -111,11 +113,6 @@ TalkSubmission.propTypes = {
   talkId: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onUnsubmit: PropTypes.func.isRequired,
-  event: PropTypes.objectOf(PropTypes.any),
-}
-
-TalkSubmission.defaultProps = {
-  event: {},
 }
 
 export default TalkSubmission

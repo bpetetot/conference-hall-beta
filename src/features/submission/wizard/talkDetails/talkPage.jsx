@@ -9,22 +9,24 @@ import TalkSpeakers from 'features/talk/components/speakers'
 import TalkAbstract from 'features/talk/components/abstract'
 import TalkStatus from 'features/talk/components/status'
 import { useTalk } from 'features/talk/useTalks'
+import { useCurrentEvent } from 'features/event/currentEventContext'
 
 import './talkPage.css'
 
-const TalkPage = ({ talkId, eventId, onNext }) => {
+const TalkPage = ({ talkId, onNext }) => {
+  const { data: event } = useCurrentEvent()
   const { data: talk, isLoading: isLoadingTalk } = useTalk(talkId)
 
   if (isLoadingTalk) return <LoadingIndicator />
 
-  const existing = talk.getSubmission(eventId)
+  const existing = talk.getSubmission(event.id)
 
   const { title, abstract, level, owner, references, language, speakers } = existing || talk
 
   const titleComponent = (
     <div className="talk-title">
       <span>{title}</span>
-      <TalkStatus talk={talk} eventId={eventId} className="talk-status" />
+      <TalkStatus talk={talk} eventId={event.id} className="talk-status" />
     </div>
   )
 
@@ -57,7 +59,6 @@ const TalkPage = ({ talkId, eventId, onNext }) => {
 
 TalkPage.propTypes = {
   talkId: PropTypes.string.isRequired,
-  eventId: PropTypes.string.isRequired,
   onNext: PropTypes.func.isRequired,
 }
 
