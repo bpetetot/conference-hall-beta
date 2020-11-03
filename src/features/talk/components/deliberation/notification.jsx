@@ -4,12 +4,16 @@ import PropTypes from 'prop-types'
 import Button from 'components/button'
 import Alert from 'components/alert'
 import { useUpdateSubmissionState } from 'features/submission/useSubmissions'
+import { useEvent } from 'features/event/useEvents'
 
-const Notification = ({ talkId, eventId, name, className }) => {
-  const title = `This talk has been accepted at ${name}.`
+const Notification = ({ talkId, eventId, className }) => {
+  const { data: event, isLoading } = useEvent(eventId)
 
+  const title = `This talk has been accepted at ${event.name}.`
   const onConfirm = useUpdateSubmissionState(talkId, eventId, 'confirmed')
   const onDecline = useUpdateSubmissionState(talkId, eventId, 'declined')
+
+  if (isLoading) return null
 
   return (
     <Alert
@@ -33,12 +37,10 @@ const Notification = ({ talkId, eventId, name, className }) => {
 Notification.propTypes = {
   talkId: PropTypes.string.isRequired,
   eventId: PropTypes.string.isRequired,
-  name: PropTypes.string,
   className: PropTypes.string,
 }
 
 Notification.defaultProps = {
-  name: undefined,
   className: undefined,
 }
 
