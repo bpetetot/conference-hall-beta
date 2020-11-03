@@ -4,11 +4,15 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import Badge from 'components/badge'
+import { useEvent } from 'features/event/useEvents'
 import './status.css'
 
-const Status = ({ talk, eventId, cfpOpened, displayCfpStatus, className, loaded }) => {
-  if (!loaded || !talk) return null
+const Status = ({ talk, eventId, displayCfpStatus, className }) => {
+  const { data: event, isLoading } = useEvent(eventId)
 
+  if (isLoading || !talk) return null
+
+  const cfpOpened = event.isCfpOpened()
   const submission = talk.getSubmission(eventId)
   const submitted = talk.isSubmitted(eventId)
   const outOfDate = talk.isSubmissionOutOfDate(eventId)
@@ -51,16 +55,12 @@ const Status = ({ talk, eventId, cfpOpened, displayCfpStatus, className, loaded 
 Status.propTypes = {
   talk: PropTypes.object,
   eventId: PropTypes.string.isRequired,
-  loaded: PropTypes.bool,
-  cfpOpened: PropTypes.bool,
   displayCfpStatus: PropTypes.bool,
   className: PropTypes.string,
 }
 
 Status.defaultProps = {
   talk: undefined,
-  loaded: false,
-  cfpOpened: true,
   displayCfpStatus: true,
   className: undefined,
 }

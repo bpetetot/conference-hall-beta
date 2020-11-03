@@ -1,3 +1,6 @@
+import { DateTime } from 'luxon'
+import isEmpty from 'lodash/isEmpty'
+import get from 'lodash/get'
 import { toDate, toStartEndDates } from 'helpers/firebase'
 
 export const EVENT_TYPES = { CONFERENCE: 'conference', MEETUP: 'meetup' }
@@ -27,6 +30,48 @@ class Event {
     this.owner = data.owner
     this.updateTimestamp = data.updateTimestamp
     this.createTimestamp = data.createTimestamp
+  }
+
+  isCfpOpened() {
+    return this.getCfpState() === 'opened'
+  }
+
+  getCfpState(userTimezone = 'local') {
+    if (this.type === 'meetup') {
+      return this.cfpOpened ? 'opened' : 'closed'
+    }
+
+    if (isEmpty(this.cfpDates)) {
+      return 'not-started'
+    }
+
+    // By default 'Europe/Paris' because now it should be mandatory
+    const eventTimezone = get(this.address, 'timezone.id', 'Europe/Paris')
+
+    const { start, end } = this.getCfpOpeningDates(this.cfpDates, eventTimezone)
+    const today = DateTime.utc().setZone(userTimezone)
+
+    if (today < start) {
+      return 'not-started'
+    }
+    if (today > end) {
+      return 'closed'
+    }
+    return 'opened'
+  }
+
+  getCfpOpeningDates(eventTimezone) {
+    if (isEmpty(this.cfpDates)) return null
+
+    const { start, end } = this.cfpDates
+    return {
+      start: DateTime.fromJSDate(toDate(start)).setZone(eventTimezone),
+      end: DateTime.fromJSDate(toDate(end)).setZone(eventTimezone).plus({
+        hours: 23,
+        minutes: 59,
+        seconds: 59,
+      }),
+    }
   }
 }
 
