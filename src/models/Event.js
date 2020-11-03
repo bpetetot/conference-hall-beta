@@ -4,7 +4,7 @@ import get from 'lodash/get'
 import { toDate, toStartEndDates } from 'helpers/firebase'
 
 export const EVENT_TYPES = { CONFERENCE: 'conference', MEETUP: 'meetup' }
-export const VISIBILITY = { PUBLIC: 'conference', HIDDEN: 'meetup' }
+export const VISIBILITY = { PUBLIC: 'public', HIDDEN: 'hidden' }
 
 class Event {
   constructor(data) {
@@ -17,6 +17,7 @@ class Event {
     this.address = data.address
     this.contact = data.contact
     this.website = data.website
+    this.bannerUrl = data.bannerUrl
     this.cfpDates = data.cfpDates
     this.cfpOpened = data.cfpOpened
     this.deliberationDate = data.deliberationDate
@@ -30,6 +31,14 @@ class Event {
     this.owner = data.owner
     this.updateTimestamp = data.updateTimestamp
     this.createTimestamp = data.createTimestamp
+  }
+
+  isConference() {
+    return this.type === EVENT_TYPES.CONFERENCE
+  }
+
+  isMeetup() {
+    return this.type === EVENT_TYPES.MEETUP
   }
 
   isCfpOpened() {
@@ -48,9 +57,8 @@ class Event {
     // By default 'Europe/Paris' because now it should be mandatory
     const eventTimezone = get(this.address, 'timezone.id', 'Europe/Paris')
 
-    const { start, end } = this.getCfpOpeningDates(this.cfpDates, eventTimezone)
+    const { start, end } = this.getCfpOpeningDates(eventTimezone)
     const today = DateTime.utc().setZone(userTimezone)
-
     if (today < start) {
       return 'not-started'
     }
@@ -65,8 +73,8 @@ class Event {
 
     const { start, end } = this.cfpDates
     return {
-      start: DateTime.fromJSDate(toDate(start)).setZone(eventTimezone),
-      end: DateTime.fromJSDate(toDate(end)).setZone(eventTimezone).plus({
+      start: DateTime.fromJSDate(start).setZone(eventTimezone),
+      end: DateTime.fromJSDate(end).setZone(eventTimezone).plus({
         hours: 23,
         minutes: 59,
         seconds: 59,

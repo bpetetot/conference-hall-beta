@@ -1,1 +1,1 @@
-export { default } from './cfpBlock.container'
+export { default } from './cfpBlock'
