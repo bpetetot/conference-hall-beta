@@ -1,15 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useCurrentEventId } from 'features/event/currentEventContext'
 import { SideBar, SideBarPanel, SideBarLink } from 'app/layout/sidebar'
 import IconLabel from 'components/iconLabel'
 import { useAuth } from 'features/auth'
-import EventSideBar from './event'
+import EventSideBar from './eventSidebar'
 
 const OrganizerSideBar = ({ className }) => {
   const { user } = useAuth()
-  const eventId = useCurrentEventId()
   return (
     <SideBar className={className}>
       <SideBarPanel label={user.displayName}>
@@ -23,7 +21,7 @@ const OrganizerSideBar = ({ className }) => {
           <IconLabel icon="fa fa-users" label="My organizations" />
         </SideBarLink>
       </SideBarPanel>
-      <EventSideBar eventId={eventId} />
+      <EventSideBar />
     </SideBar>
   )
 }

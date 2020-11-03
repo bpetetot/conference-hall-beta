@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect, useContext } from 'react'
-import { inject } from '@k-ramel/react'
 import PropTypes from 'prop-types'
 import { useLocation, useMatch } from 'react-router-dom'
 import { getTopRoute, isOrganizerApp } from 'features/router/utils'
+import { useEvent } from './useEvents'
 
 const CurrentEventContext = React.createContext()
 
-export const useCurrentEventId = () => useContext(CurrentEventContext)
+export const useCurrentEvent = () => useContext(CurrentEventContext)
 
 function getEventIdFromLocalStorage() {
   const value = localStorage.getItem('currentEventId')
@@ -16,8 +16,9 @@ function getEventIdFromLocalStorage() {
 }
 
 // TODO Add Unit Tests
-const CurrentEventContextProvider = ({ children, loadEvent }) => {
+export const CurrentEventProvider = ({ children }) => {
   const [currentEventId, setCurrentEventId] = useState()
+  const currentEvent = useEvent(currentEventId)
 
   const { pathname } = useLocation()
   const route = getTopRoute(pathname)
@@ -38,24 +39,14 @@ const CurrentEventContextProvider = ({ children, loadEvent }) => {
     if (currentEventId !== eventId) {
       localStorage.setItem('currentEventId', eventId)
       setCurrentEventId(eventId)
-      loadEvent(eventId)
     }
-  }, [currentEventId, pathname, match, loadEvent])
+  }, [currentEventId, pathname, match])
 
   return (
-    <CurrentEventContext.Provider value={currentEventId}>{children}</CurrentEventContext.Provider>
+    <CurrentEventContext.Provider value={currentEvent}>{children}</CurrentEventContext.Provider>
   )
 }
 
-CurrentEventContextProvider.propTypes = {
+CurrentEventProvider.propTypes = {
   children: PropTypes.any.isRequired,
-  loadEvent: PropTypes.func.isRequired,
 }
-
-export const CurrentEventProvider = inject((store) => {
-  return {
-    loadEvent: (eventId) => {
-      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId, loadSettings: false } })
-    },
-  }
-})(CurrentEventContextProvider)

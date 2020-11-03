@@ -1,44 +1,35 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { SideBarPanel, SideBarLink } from 'app/layout/sidebar'
 import IconLabel from 'components/iconLabel'
 import SubmitTalksLink from 'features/talk/components/submitTalksLink'
+import { useCurrentEvent } from 'features/event/currentEventContext'
 
-const EventSidebar = ({ eventId, name, surveyActive }) => {
-  if (!eventId) return null
+const EventSidebar = () => {
+  const { data: event } = useCurrentEvent()
+
+  if (!event) return null
+
   return (
-    <SideBarPanel label={name}>
-      <SideBarLink to={`/speaker/event/${eventId}`} exact>
+    <SideBarPanel label={event.name}>
+      <SideBarLink to={`/speaker/event/${event.id}`} exact>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
-      <SideBarLink to={`/speaker/event/${eventId}/submissions`} exact>
+      <SideBarLink to={`/speaker/event/${event.id}/submissions`} exact>
         <IconLabel icon="fa fa-inbox" label="My submissions" />
       </SideBarLink>
-      {surveyActive && (
-        <SideBarLink to={`/speaker/event/${eventId}/survey`} exact>
+      {event.surveyActive && (
+        <SideBarLink to={`/speaker/event/${event.id}/survey`} exact>
           <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
         </SideBarLink>
       )}
       <SubmitTalksLink
-        eventId={eventId}
+        eventId={event.id}
         className="sidebar-link"
         classNameActive="sidebar-link-active"
       />
     </SideBarPanel>
   )
-}
-
-EventSidebar.propTypes = {
-  eventId: PropTypes.string,
-  name: PropTypes.string,
-  surveyActive: PropTypes.bool,
-}
-
-EventSidebar.defaultProps = {
-  eventId: undefined,
-  name: 'no name',
-  surveyActive: false,
 }
 
 export default EventSidebar
