@@ -2,7 +2,7 @@ import React from 'react'
 
 import { SideBarPanel, SideBarLink } from 'app/layout/sidebar'
 import IconLabel from 'components/iconLabel'
-import SubmitTalksLink from 'features/talk/components/submitTalksLink'
+import SubmitTalkLink from 'features/talk/components/submitTalksLink'
 import { useCurrentEvent } from 'features/event/currentEventContext'
 
 const EventSidebar = () => {
@@ -23,11 +23,13 @@ const EventSidebar = () => {
           <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
         </SideBarLink>
       )}
-      <SubmitTalksLink
-        eventId={event.id}
-        className="sidebar-link"
-        classNameActive="sidebar-link-active"
-      />
+      {event.isCfpOpened() && (
+        <SubmitTalkLink
+          eventId={event.id}
+          className="sidebar-link"
+          classNameActive="sidebar-link-active"
+        />
+      )}
     </SideBarPanel>
   )
 }

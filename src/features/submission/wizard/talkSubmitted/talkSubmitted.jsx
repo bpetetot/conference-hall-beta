@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import SubmitTalksLink from 'features/talk/components/submitTalksLink'
+import SubmitTalkLink from 'features/talk/components/submitTalksLink'
 import './talkSubmitted.css'
 
 const TalkSubmitted = ({ eventId, eventName, surveyActive }) => (
@@ -15,15 +15,17 @@ const TalkSubmitted = ({ eventId, eventName, surveyActive }) => (
     <h2>
       <Link to="/speaker/profile">Your profile</Link>
     </h2>
-    {surveyActive && <p>and</p>}
     {surveyActive && (
-      <h2>
-        <Link to={`/speaker/event/${eventId}/survey`}>The speaker survey</Link>
-      </h2>
+      <>
+        <p>and</p>
+        <h2>
+          <Link to={`/speaker/event/${eventId}/survey`}>The speaker survey</Link>
+        </h2>
+      </>
     )}
     <i className="fa fa-paper-plane-o" />
     <br />
-    <SubmitTalksLink eventId={eventId} label="Want to submit or update an other talk ?" />
+    <SubmitTalkLink eventId={eventId} label="Want to submit or update an other talk ?" />
   </div>
 )
 
