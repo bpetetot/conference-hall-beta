@@ -29,4 +29,22 @@ export const saveSettings = (eventId, settings) =>
     .doc(eventId)
     .set({ id: eventId, ...settings }, { merge: true })
 
+export const createSettings = (eventId) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('settings')
+    .doc(eventId)
+    .set({ id: eventId })
+
+export const updateSettings = (eventId, settings) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('settings')
+    .doc(eventId)
+    .update(settings)
+
 export default crud('events', 'id', eventConverter)

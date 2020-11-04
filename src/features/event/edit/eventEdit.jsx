@@ -13,12 +13,14 @@ import SurveyForm from 'features/event/edit/survey'
 import DeliberationForm from 'features/event/edit/deliberation'
 import IntegrationsForm from 'features/event/edit/integrations'
 import { useEvent } from '../useEvents'
+import { useEventSettings } from '../useEventSettings'
 
 const EventEdit = () => {
   const { eventId } = useParams()
   const { data: event, isLoading } = useEvent(eventId)
+  const { isLoading: isLoadingSettings } = useEventSettings(eventId)
 
-  if (isLoading) return <LoadingIndicator />
+  if (isLoading || isLoadingSettings) return <LoadingIndicator />
 
   return (
     <div>
