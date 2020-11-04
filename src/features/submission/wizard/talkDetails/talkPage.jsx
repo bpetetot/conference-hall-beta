@@ -26,7 +26,7 @@ const TalkPage = ({ talkId, onNext }) => {
   const titleComponent = (
     <div className="talk-title">
       <span>{title}</span>
-      <TalkStatus talk={talk} eventId={event.id} className="talk-status" />
+      <TalkStatus talkId={talkId} eventId={event.id} className="talk-status" />
     </div>
   )
 

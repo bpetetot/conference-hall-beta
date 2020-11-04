@@ -24,7 +24,7 @@ const TalksSelection = ({ onSelect }) => {
           key={talk.id}
           title={talk.title}
           subtitle={<RelativeDate date={talk.updateTimestamp} />}
-          info={<TalkStatus talk={talk} eventId={event.id} displayCfpStatus={false} />}
+          info={<TalkStatus talkId={talk.id} eventId={event.id} displayCfpStatus={false} />}
           onSelect={() => onSelect(talk.id)}
         />
       )}

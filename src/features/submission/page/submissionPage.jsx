@@ -62,7 +62,9 @@ const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
             </div>
           )}
           <div className={styles.status}>
-            {state !== SUBMISSION_STATES.ACCEPTED && <TalkStatus talk={talk} eventId={eventId} />}
+            {state !== SUBMISSION_STATES.ACCEPTED && (
+              <TalkStatus talkId={talk.id} eventId={eventId} />
+            )}
             <FormatBadge outline eventId={eventId} formatId={formats} />
             <CategoryBadge outline eventId={eventId} categoryId={categories} />
           </div>

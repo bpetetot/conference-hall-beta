@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import { useNavigate } from 'react-router-dom'
 
-import { useTalk } from 'features/talk/useTalks'
-import { LoadingIndicator } from 'components/loader'
 import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
 import IconLabel from 'components/iconLabel'
@@ -24,10 +22,6 @@ const EventsSelection = ({ talkId, events, onSelect }) => {
     },
     [onSelect, navigate],
   )
-
-  const { data: talk, isLoading: isLoadingTalk } = useTalk(talkId)
-
-  if (isLoadingTalk) return <LoadingIndicator />
 
   return (
     <List
@@ -62,7 +56,7 @@ const EventsSelection = ({ talkId, events, onSelect }) => {
               <IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />
             </>
           }
-          info={<TalkStatus talk={talk} eventId={id} />}
+          info={<TalkStatus talkId={talkId} eventId={id} />}
           onSelect={() => handleSelect(id)}
         />
       )}

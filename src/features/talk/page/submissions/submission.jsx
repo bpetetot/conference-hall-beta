@@ -16,7 +16,7 @@ const Submission = ({ talk, eventId }) => {
     <div className="talk-submission-event">
       <Link to={`/speaker/event/${eventId}/submissions/${talk.id}`}>{event?.name}</Link>
       <div className="talk-submission-event-actions">
-        <TalkStatus talk={talk} eventId={eventId} displayCfpStatus={false} />
+        <TalkStatus talkId={talk.id} eventId={eventId} displayCfpStatus={false} />
       </div>
     </div>
   )

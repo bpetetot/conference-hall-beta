@@ -29,7 +29,7 @@ const Submissions = () => {
             <ListItem
               key={talk.id}
               title={talk.getSubmission(event.id).title}
-              info={<TalkStatus talk={talk} eventId={event.id} displayCfpStatus={false} />}
+              info={<TalkStatus talkId={talk.id} eventId={event.id} displayCfpStatus={false} />}
               onSelect={() => navigate(`/speaker/event/${event.id}/submissions/${talk.id}`)}
             />
           )}
