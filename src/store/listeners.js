@@ -5,12 +5,9 @@ import * as proposals from './reactions/proposals'
 
 export default [
   /* events */
-  when('@@ui/ON_LOAD_EVENT')(events.fetchEvent),
   when('@@ui/ON_LOAD_ORGANIZER_EVENTS')(events.fetchOrganizerEvents),
   when('@@ui/ON_LOAD_SPEAKER_EVENTS')(events.fetchSpeakerEvents),
 
-  when('@@ui/ON_UPDATE_EVENT_DETAILS')(events.updateEventForm),
-  when('@@ui/ON_UPDATE_EVENT_CFP')(events.updateEventForm),
   when('@@ui/ON_EVENT_BANNER_UPLOADED')(events.updateEvent),
   when('@@ui/ON_TOGGLE_EVENT_SURVEY')(events.updateEvent),
   when('@@ui/ON_CHANGE_EMAIL_DESTINATION')(events.updateEvent),

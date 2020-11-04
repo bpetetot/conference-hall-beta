@@ -1,11 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import pick from 'lodash/pick'
 import { Form } from 'react-final-form'
 import arrayMutators from 'final-form-arrays'
 import cn from 'classnames'
 
-import { useCurrentEvent } from 'features/event/currentEventContext'
+import { useParams } from 'react-router-dom'
+import { useEvent, useSaveEvent } from 'features/event/useEvents'
 import Field from 'components/form/field'
 import { input, dayPicker, dayRangePicker, Label, SubmitButton, toggle } from 'components/form'
 import CategoriesField from './categories'
@@ -13,8 +13,10 @@ import FormatsField from './formats'
 
 import styles from './cfp.module.css'
 
-const CFPForm = ({ onSubmit }) => {
-  const { data: event } = useCurrentEvent()
+const CFPForm = () => {
+  const { eventId } = useParams()
+  const { data: event } = useEvent(eventId)
+  const [saveEvent] = useSaveEvent(eventId)
 
   const initialValues = pick(event, [
     'cfpDates',
@@ -27,7 +29,7 @@ const CFPForm = ({ onSubmit }) => {
   ])
 
   return (
-    <Form onSubmit={onSubmit} initialValues={initialValues} mutators={{ ...arrayMutators }}>
+    <Form onSubmit={saveEvent} initialValues={initialValues} mutators={{ ...arrayMutators }}>
       {({ handleSubmit, pristine, submitting }) => (
         <form className={cn(styles.form, 'card')}>
           {event.isConference() && (
@@ -90,10 +92,6 @@ const CFPForm = ({ onSubmit }) => {
       )}
     </Form>
   )
-}
-
-CFPForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 }
 
 export default CFPForm

@@ -3,6 +3,7 @@ import { useAuth } from 'features/auth'
 import { useCurrentEvent } from 'features/event/currentEventContext'
 import { useOrganization } from './useOrganizations'
 
+// TODO give eventId instead of useCurrentEvent (useParams not enough for sidebars)
 const HasRole = ({ of, forOrganizationId, children, otherwise }) => {
   const { user } = useAuth()
   const { data: event, isLoading: isLoadingEvent } = useCurrentEvent()

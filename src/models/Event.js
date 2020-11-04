@@ -4,7 +4,7 @@ import get from 'lodash/get'
 import { toDate, toStartEndDates } from 'helpers/firebase'
 
 export const EVENT_TYPES = { CONFERENCE: 'conference', MEETUP: 'meetup' }
-export const VISIBILITY = { PUBLIC: 'public', HIDDEN: 'hidden' }
+export const VISIBILITY = { PUBLIC: 'public', PRIVATE: 'private' }
 
 class Event {
   constructor(data) {
@@ -29,6 +29,7 @@ class Event {
     this.surveyActive = data.surveyActive
     this.organization = data.organization
     this.owner = data.owner
+    this.archived = data.archived
     this.updateTimestamp = data.updateTimestamp
     this.createTimestamp = data.createTimestamp
   }

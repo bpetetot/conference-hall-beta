@@ -12,16 +12,6 @@ import eventCrud, {
   saveSettings,
 } from 'firebase/events'
 
-export const updateEventForm = async (action, store) => {
-  const event = action.payload
-
-  store.ui.loaders.update({ isEventSaving: true })
-  await eventCrud.update(event)
-  store.ui.loaders.update({ isEventSaving: false })
-
-  store.data.events.update(event)
-}
-
 export const updateEvent = (action, store) => {
   const { event } = action.payload
   store.data.events.update(event)
@@ -46,22 +36,6 @@ const fetchEventSettings = async (eventId, store) => {
     const settingsRef = await fetchSettings(eventId)
     if (settingsRef.exists) {
       store.data.eventsSettings.addOrUpdate(settingsRef.data())
-    }
-  }
-}
-
-export const fetchEvent = async (action, store) => {
-  const { eventId, loadSettings = true } = action.payload
-  if (!eventId) return
-  // check if already in the store
-  const current = store.data.events.get(eventId)
-  if (current && current.id === eventId) return
-  // fetch event from id
-  const ref = await eventCrud.read(eventId)
-  if (ref.exists) {
-    store.data.events.add({ id: eventId, ...ref.data() })
-    if (loadSettings) {
-      await fetchEventSettings(eventId, store)
     }
   }
 }

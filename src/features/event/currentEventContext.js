@@ -40,7 +40,7 @@ export const CurrentEventProvider = ({ children }) => {
       localStorage.setItem('currentEventId', eventId)
       setCurrentEventId(eventId)
     }
-  }, [currentEventId, pathname, match])
+  }, [currentEventId, pathname, match?.params?.eventId])
 
   return (
     <CurrentEventContext.Provider value={currentEvent}>{children}</CurrentEventContext.Provider>

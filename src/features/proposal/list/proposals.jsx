@@ -5,7 +5,8 @@ import { useLocation } from 'react-router-dom'
 import HasRole from 'features/organization/hasRole'
 import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 import { useAuth } from 'features/auth'
-
+import { useEvent } from 'features/event/useEvents'
+import { LoadingIndicator } from 'components/loader'
 import ProposalsHeader from './proposalsHeader'
 import ProposalsFilters from './proposalsFilters'
 import ProposalsToolbar from './proposalsToolbar'
@@ -14,6 +15,7 @@ import ProposalsPaging from './proposalsPaging'
 
 const Proposals = ({ eventId }) => {
   const { user } = useAuth()
+  const { isLoading } = useEvent(eventId)
 
   const { search } = useLocation()
   const params = new URLSearchParams(search)
@@ -25,6 +27,8 @@ const Proposals = ({ eventId }) => {
     categories: params.get('categories'),
     sortOrder: params.get('sortOrder'),
   }
+
+  if (isLoading) return <LoadingIndicator />
 
   return (
     <div>

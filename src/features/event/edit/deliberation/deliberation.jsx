@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import { useParams } from 'react-router-dom'
 
+import { useEvent } from 'features/event/useEvents'
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import Checkbox from 'components/form/checkbox'
 import IconLabel from 'components/iconLabel/iconLabel'
-import { useCurrentEvent } from 'features/event/currentEventContext'
 
 import styles from './deliberation.module.css'
 
@@ -24,7 +25,8 @@ const DeliberationForm = ({
   onChangeRecipients,
   onChangeNotifiedEmails,
 }) => {
-  const { data: event } = useCurrentEvent()
+  const { eventId } = useParams()
+  const { data: event } = useEvent(eventId)
 
   const disabledEmails =
     !recipients.organizers && (!recipients.contact || (recipients.contact && !event.contact))

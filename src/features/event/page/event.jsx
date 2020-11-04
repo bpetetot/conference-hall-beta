@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import { isOrganizerApp } from 'features/router/utils'
 import Maps from 'components/maps'
@@ -13,13 +13,14 @@ import Cfp from './cfpBlock'
 import Website from './websiteBlock'
 import Contact from './contactBlock'
 import Dates from './eventDates'
+import { useEvent } from '../useEvents'
 
 import './event.css'
-import { useCurrentEvent } from '../currentEventContext'
 
 const Event = () => {
   const { pathname } = useLocation()
-  const { data: event, isLoading } = useCurrentEvent()
+  const { eventId } = useParams()
+  const { data: event, isLoading } = useEvent(eventId)
 
   if (isLoading) return <LoadingIndicator />
 
