@@ -40,7 +40,7 @@ export const useSaveOrganization = (organizationId) => {
     },
     {
       onSuccess: () => {
-        cache.invalidateQueries(['organizations'])
+        cache.invalidateQueries(['organizations', user?.uid])
         cache.invalidateQueries(['organization', organizationId])
       },
     },
@@ -50,27 +50,26 @@ export const useSaveOrganization = (organizationId) => {
 export const useSetMembers = (organizationId) => {
   const [saveOrganization] = useSaveOrganization(organizationId)
   return (memberId, role = ROLES.MEMBER) => {
-    saveOrganization({ [`members.${memberId}`]: role })
+    return saveOrganization({ [`members.${memberId}`]: role })
   }
 }
 
 export const useUnsetMembers = (organizationId) => {
   const [saveOrganization] = useSaveOrganization(organizationId)
   return (memberId) => {
-    saveOrganization({ [`members.${memberId}`]: firebase.firestore.FieldValue.delete() })
+    return saveOrganization({ [`members.${memberId}`]: firebase.firestore.FieldValue.delete() })
   }
 }
 
 export const useLeaveOrganization = (organizationId) => {
+  const { user } = useAuth()
   const navigate = useNavigate()
   const cache = useQueryCache()
 
-  const leaverOrganization = useCallback(async () => {
-    cache.invalidateQueries(['organizations'])
+  return useCallback(async () => {
+    cache.invalidateQueries(['organizations', user?.uid])
     const leaveOrganization = firebase.functions().httpsCallable('leaveOrganization')
     await leaveOrganization({ organizationId })
     navigate('/organizer/organizations')
-  }, [navigate, cache, organizationId])
-
-  return leaverOrganization
+  }, [cache, user?.uid, organizationId, navigate])
 }
