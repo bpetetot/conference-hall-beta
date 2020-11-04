@@ -27,12 +27,12 @@ const EventEdit = () => {
       <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={event.id}>
         <Tabs eventId={event.id} />
         <Routes>
-          <Route path="/" element={<EventForm eventId={event.id} />} />
+          <Route path="/" element={<EventForm />} />
           <Route path="cfp" element={<CfpForm />} />
-          <Route path="deliberation" element={<DeliberationForm eventId={event.id} />} />
-          <Route path="custom" element={<CustomizeForm eventId={event.id} />} />
-          <Route path="survey" element={<SurveyForm eventId={event.id} />} />
-          <Route path="integrations" element={<IntegrationsForm eventId={event.id} />} />
+          <Route path="deliberation" element={<DeliberationForm />} />
+          <Route path="custom" element={<CustomizeForm />} />
+          <Route path="survey" element={<SurveyForm />} />
+          <Route path="integrations" element={<IntegrationsForm />} />
         </Routes>
       </HasRole>
     </div>

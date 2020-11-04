@@ -1,24 +1,30 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import { useParams } from 'react-router-dom'
 import cn from 'classnames'
+import get from 'lodash/get'
 
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import Checkbox from 'components/form/checkbox'
+import { useEventSettings, useSaveEventSettings } from 'features/event/useEventSettings'
 
 import styles from './slack.module.css'
 
-const Slack = ({
-  enabled,
-  webhookUrl,
-  notifications,
-  onToggleSlack,
-  onSaveUrl,
-  onChangeNotification,
-}) => {
-  const [url, setUrl] = useState(webhookUrl)
+const Slack = () => {
+  const { eventId } = useParams()
+  const { data: settings } = useEventSettings(eventId)
+  const [saveSettings] = useSaveEventSettings(eventId)
+
+  const enabled = get(settings, 'slack.enabled')
+  const notifications = get(settings, 'slack.notifications', {})
+  const [url, setUrl] = useState(get(settings, 'slack.webhookUrl'))
+
+  const onToggleSlack = (checked) => saveSettings({ 'slack.enabled': checked })
+  const onSaveUrl = (webhookUrl) => saveSettings({ 'slack.webhookUrl': webhookUrl })
+  const onChangeNotification = (e) =>
+    saveSettings({ [`slack.notifications.${e.target.name}`]: e.target.checked })
 
   return (
     <div className={cn(styles.form, 'card')}>
@@ -55,21 +61,6 @@ const Slack = ({
       )}
     </div>
   )
-}
-
-Slack.propTypes = {
-  enabled: PropTypes.bool,
-  webhookUrl: PropTypes.string,
-  notifications: PropTypes.object,
-  onToggleSlack: PropTypes.func.isRequired,
-  onSaveUrl: PropTypes.func.isRequired,
-  onChangeNotification: PropTypes.func.isRequired,
-}
-
-Slack.defaultProps = {
-  enabled: false,
-  webhookUrl: undefined,
-  notifications: {},
 }
 
 export default Slack

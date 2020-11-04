@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useParams } from 'react-router-dom'
 
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
@@ -10,7 +10,8 @@ import questions from 'features/survey/questions'
 import './survey.css'
 import { useEvent, useSaveEvent } from 'features/event/useEvents'
 
-const SurveyForm = ({ eventId }) => {
+const SurveyForm = () => {
+  const { eventId } = useParams()
   const { data: event } = useEvent(eventId)
   const [saveEvent] = useSaveEvent(eventId)
 
@@ -36,10 +37,6 @@ const SurveyForm = ({ eventId }) => {
       ))}
     </div>
   )
-}
-
-SurveyForm.propTypes = {
-  eventId: PropTypes.string.isRequired,
 }
 
 export default SurveyForm

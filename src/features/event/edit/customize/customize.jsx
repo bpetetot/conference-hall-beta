@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import { useParams } from 'react-router-dom'
 import cn from 'classnames'
 import firebase from 'firebase/app'
 
@@ -10,7 +10,8 @@ import styles from './customize.module.css'
 
 const MAX_SIZE = 100 * 1024 // 100kB
 
-const CustomizeForm = ({ eventId }) => {
+const CustomizeForm = () => {
+  const { eventId } = useParams()
   const [percentage, setPercentage] = useState()
   const [error, setError] = useState()
   const [saveEvent] = useSaveEvent(eventId)
@@ -71,10 +72,6 @@ const CustomizeForm = ({ eventId }) => {
       <Banner eventId={eventId} />
     </div>
   )
-}
-
-CustomizeForm.propTypes = {
-  eventId: PropTypes.string.isRequired,
 }
 
 export default CustomizeForm
