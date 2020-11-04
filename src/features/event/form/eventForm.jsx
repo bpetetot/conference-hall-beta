@@ -68,7 +68,6 @@ const EventForm = () => {
   ])
 
   const initialValues = getInitialValues(event)
-  console.log(initialValues, event)
 
   return (
     <Form onSubmit={onSubmit} initialValues={initialValues} keepDirtyOnReinitialize={!event}>

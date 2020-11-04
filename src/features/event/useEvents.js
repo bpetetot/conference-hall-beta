@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { useMutation, useQuery, useQueryCache } from 'react-query'
 import eventCrud from 'firebase/events'
 import { useAuth } from 'features/auth'

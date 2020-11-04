@@ -26,14 +26,7 @@ const Event = () => {
 
   return (
     <div className="event-wrapper">
-      <Banner
-        className="event-header"
-        eventId={event.id}
-        name={event.name}
-        type={event.type}
-        address={event.address}
-        bannerUrl={event.bannerUrl}
-      />
+      <Banner className="event-header" eventId={event.id} />
       <div className="event-page">
         <div className="event-page-content">
           <Cfp className="event-page-cfp" event={event} />

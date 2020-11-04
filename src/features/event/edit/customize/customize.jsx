@@ -5,20 +5,22 @@ import firebase from 'firebase/app'
 
 import Button from 'components/button'
 import Banner from 'features/event/page/banner'
+import { useSaveEvent } from 'features/event/useEvents'
 import styles from './customize.module.css'
 
 const MAX_SIZE = 100 * 1024 // 100kB
 
-const CustomizeForm = ({ eventId, onChangeBanner }) => {
+const CustomizeForm = ({ eventId }) => {
   const [percentage, setPercentage] = useState()
   const [error, setError] = useState()
+  const [saveEvent] = useSaveEvent(eventId)
 
   const handleUpload = (e) => {
     setError()
     if (!e.target.files || e.target.files.length === 0) return
+    setPercentage(0.1)
 
     const file = e.target.files[0]
-
     if (file.size > MAX_SIZE) {
       setError('Image weight too large, maximum size is 100kB')
       return
@@ -35,7 +37,7 @@ const CustomizeForm = ({ eventId, onChangeBanner }) => {
       async () => {
         const url = await task.snapshot.ref.getDownloadURL()
         setPercentage()
-        onChangeBanner(url)
+        return saveEvent({ bannerUrl: url })
       },
     )
   }
@@ -73,7 +75,6 @@ const CustomizeForm = ({ eventId, onChangeBanner }) => {
 
 CustomizeForm.propTypes = {
   eventId: PropTypes.string.isRequired,
-  onChangeBanner: PropTypes.func.isRequired,
 }
 
 export default CustomizeForm
