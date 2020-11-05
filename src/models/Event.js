@@ -82,6 +82,14 @@ class Event {
       }),
     }
   }
+
+  getFormat(formatId) {
+    return this.formats?.find((f) => f.id === formatId)
+  }
+
+  getCategory(categoryId) {
+    return this.categories?.find((f) => f.id === categoryId)
+  }
 }
 
 export const eventConverter = {

@@ -1,2 +1,2 @@
-export { default as FormatBadge } from './formatBadge.container'
-export { default as CategoryBadge } from './categoryBadge.container'
+export { default as FormatBadge } from './formatBadge'
+export { default as CategoryBadge } from './categoryBadge'

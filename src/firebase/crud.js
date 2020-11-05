@@ -37,7 +37,7 @@ const create = (collection, idAttr, converter) => (data) => {
  * @param {String} collection collection name
  */
 const read = (collection, converter) => (id) => {
-  console.log(`Read ${collection}: ${id}`)
+  // console.log(`Read ${collection}: ${id}`)
   return firebase.firestore().collection(collection).withConverter(converter).doc(id).get()
 }
 
