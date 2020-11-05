@@ -1,14 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { useEvent } from 'features/event/useEvents'
 import UserAvatar from 'features/user/user-avatar'
 import { useSurvey } from 'features/survey/useSurveys'
 import Answer from './answer'
 
 import './surveyBlock.css'
 
-const SurveyBlock = ({ eventId, userId, survey }) => {
+const SurveyBlock = ({ eventId, userId }) => {
+  const { data: event } = useEvent(eventId)
   const { data: response, isLoading } = useSurvey(eventId, userId)
+  const survey = event?.survey || {}
 
   return (
     <div className="survey-block card">
@@ -40,7 +43,6 @@ const SurveyBlock = ({ eventId, userId, survey }) => {
 SurveyBlock.propTypes = {
   eventId: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
-  survey: PropTypes.objectOf(PropTypes.bool).isRequired,
 }
 
 export default SurveyBlock

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import get from 'lodash/get'
 import values from 'lodash/values'
 import compact from 'lodash/compact'
 
@@ -7,8 +8,13 @@ import TotalRatings from 'features/ratings/totalRatings'
 import TalkSelection from 'features/proposal/selection'
 
 import './proposalInfo.css'
+import { useEventSettings } from 'features/event/useEventSettings'
 
-const ProposalInfo = ({ eventId, proposal, isMobile, deliberationActive, hideRatings }) => {
+const ProposalInfo = ({ eventId, proposal, isMobile }) => {
+  const { data: settings } = useEventSettings(eventId)
+  const hideRatings = get(settings, 'deliberation.hideRatings')
+  const deliberationActive = get(settings, 'deliberation.enabled')
+
   const { id, rating, loves, hates, noopinion, usersRatings } = proposal
 
   const nbVotes = compact(values(usersRatings)).length
@@ -33,14 +39,10 @@ ProposalInfo.propTypes = {
   eventId: PropTypes.string.isRequired,
   proposal: PropTypes.objectOf(PropTypes.any),
   isMobile: PropTypes.bool.isRequired,
-  deliberationActive: PropTypes.bool,
-  hideRatings: PropTypes.bool,
 }
 
 ProposalInfo.defaultProps = {
   proposal: {},
-  deliberationActive: false,
-  hideRatings: false,
 }
 
 export default ProposalInfo

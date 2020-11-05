@@ -1,1 +1,1 @@
-export { default } from './actions.container'
+export { default } from './actions'
