@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useCallback } from 'react'
-import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { LoadingIndicator } from 'components/loader'
 import Badge from 'components/badge'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
@@ -11,30 +11,29 @@ import { List, ListItem } from 'components/list'
 import EventDates from 'features/event/page/eventDates'
 
 import styles from './events.module.css'
+import { useOrganizerEvents } from '../useEvents'
 
-const MyEvents = ({ events, onChangeEvent }) => {
+const MyEvents = () => {
+  const { data: events, isLoading, isFetched } = useOrganizerEvents()
+
   const [status, setStatus] = useState('active')
-
   const filteredEvents = useMemo(
     () =>
-      events.filter((event) => {
+      events?.filter((event) => {
         if (status === 'all') return true
         if (status === 'archived') return event.archived === true
         return event.archived !== true
       }),
     [status, events],
   )
-
   const onFilter = (e) => setStatus(e.target.value)
 
   const navigate = useNavigate()
-  const handleSelect = useCallback(
-    (eventId) => {
-      onChangeEvent()
-      navigate(`/organizer/event/${eventId}/proposals`)
-    },
-    [navigate, onChangeEvent],
-  )
+  const handleSelect = useCallback((eventId) => navigate(`/organizer/event/${eventId}/proposals`), [
+    navigate,
+  ])
+
+  if (isLoading || !isFetched) return <LoadingIndicator />
 
   return (
     <div>
@@ -95,14 +94,6 @@ const MyEvents = ({ events, onChangeEvent }) => {
       />
     </div>
   )
-}
-MyEvents.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.object),
-  onChangeEvent: PropTypes.func.isRequired,
-}
-
-MyEvents.defaultProps = {
-  events: [],
 }
 
 export default MyEvents

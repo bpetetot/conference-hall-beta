@@ -12,21 +12,23 @@ import TalkAbstract from 'features/talk/components/abstract'
 import TalkStatus from 'features/talk/components/status'
 import TalkDeliberation from 'features/talk/components/deliberation'
 import { useTalk } from 'features/talk/useTalks'
+import { useEvent } from 'features/event/useEvents'
 import { SUBMISSION_STATES } from 'models/Talk'
 
 import styles from './submissionPage.module.css'
 
-const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
+const SubmissionPage = ({ talkId, eventId, onUpdateSubmission }) => {
   const navigate = useNavigate()
 
-  const { data: talk, isLoading } = useTalk(talkId)
+  const { data: talk, isLoading: isLoadingTalk } = useTalk(talkId)
+  const { data: event, isLoading: isLoadingEvent } = useEvent(talkId)
 
   const handleUpdateSubmission = useCallback(() => {
     onUpdateSubmission()
     navigate(`/speaker/event/${eventId}/submission`)
   }, [onUpdateSubmission, navigate, eventId])
 
-  if (isLoading) return <LoadingIndicator />
+  if (isLoadingTalk || isLoadingEvent) return <LoadingIndicator />
 
   const {
     id,
@@ -48,7 +50,7 @@ const SubmissionPage = ({ talkId, eventId, onUpdateSubmission, cfpOpened }) => {
         <Link to={`/speaker/talk/${id}`}>
           <IconLabel icon="fa fa-history" label="Show current version" />
         </Link>
-        {cfpOpened && (
+        {event.isCfpOpened() && (
           <Button accent onClick={handleUpdateSubmission}>
             Update submission
           </Button>
@@ -88,11 +90,6 @@ SubmissionPage.propTypes = {
   talkId: PropTypes.string.isRequired,
   eventId: PropTypes.string.isRequired,
   onUpdateSubmission: PropTypes.func.isRequired,
-  cfpOpened: PropTypes.bool,
-}
-
-SubmissionPage.defaultProps = {
-  cfpOpened: false,
 }
 
 export default SubmissionPage

@@ -3,18 +3,21 @@ import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import { useNavigate } from 'react-router-dom'
 
+import { LoadingIndicator } from 'components/loader'
 import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
 import IconLabel from 'components/iconLabel'
 import NoEvents from 'features/event/noEvents'
 import EventDates from 'features/event/page/eventDates'
 import TalkStatus from 'features/talk/components/status'
+import { usePublicEvents } from 'features/event/useEvents'
 
 import styles from './eventsSelection.module.css'
 
-const EventsSelection = ({ talkId, events, onSelect }) => {
-  const navigate = useNavigate()
+const EventsSelection = ({ talkId, onSelect }) => {
+  const { data: events, isLoading } = usePublicEvents()
 
+  const navigate = useNavigate()
   const handleSelect = useCallback(
     (eventId) => {
       onSelect()
@@ -22,6 +25,8 @@ const EventsSelection = ({ talkId, events, onSelect }) => {
     },
     [onSelect, navigate],
   )
+
+  if (isLoading) return <LoadingIndicator />
 
   return (
     <List
@@ -67,11 +72,6 @@ const EventsSelection = ({ talkId, events, onSelect }) => {
 EventsSelection.propTypes = {
   talkId: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
-  events: PropTypes.arrayOf(PropTypes.object),
-}
-
-EventsSelection.defaultProps = {
-  events: [],
 }
 
 export default EventsSelection
