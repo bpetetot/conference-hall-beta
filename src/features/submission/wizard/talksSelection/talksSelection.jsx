@@ -7,8 +7,10 @@ import TalkStatus from 'features/talk/components/status'
 
 import { useFilteredTalks } from 'features/talk/useTalks'
 import { LoadingIndicator } from 'components/loader'
+import { useCurrentEvent } from 'features/event/currentEventContext'
 
-const TalksSelection = ({ eventId, onSelect }) => {
+const TalksSelection = ({ onSelect }) => {
+  const { data: event } = useCurrentEvent()
   const { data: talks, isLoading } = useFilteredTalks('active')
 
   if (isLoading) return <LoadingIndicator />
@@ -22,7 +24,7 @@ const TalksSelection = ({ eventId, onSelect }) => {
           key={talk.id}
           title={talk.title}
           subtitle={<RelativeDate date={talk.updateTimestamp} />}
-          info={<TalkStatus talk={talk} eventId={eventId} displayCfpStatus={false} />}
+          info={<TalkStatus talkId={talk.id} eventId={event.id} displayCfpStatus={false} />}
           onSelect={() => onSelect(talk.id)}
         />
       )}
@@ -31,7 +33,6 @@ const TalksSelection = ({ eventId, onSelect }) => {
 }
 
 TalksSelection.propTypes = {
-  eventId: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
 }
 

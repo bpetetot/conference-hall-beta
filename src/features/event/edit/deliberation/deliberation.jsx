@@ -1,7 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import get from 'lodash/get'
 import cn from 'classnames'
+import { useParams } from 'react-router-dom'
 
+import { useEvent } from 'features/event/useEvents'
+import { useEventSettings, useSaveEventSettings } from 'features/event/useEventSettings'
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import Checkbox from 'components/form/checkbox'
@@ -9,24 +12,30 @@ import IconLabel from 'components/iconLabel/iconLabel'
 
 import styles from './deliberation.module.css'
 
-const DeliberationForm = ({
-  blindRating,
-  deliberationEnabled,
-  displayRatings,
-  hideRatings,
-  contact,
-  recipients,
-  emails,
-  onToggleBlindRating,
-  onToggleDeliberation,
-  onToggleOrganizersRatings,
-  onToggleHideRatings,
-  onChangeRecipients,
-  onChangeNotifiedEmails,
-}) => {
-  // eslint-disable-next-line max-len
+const DeliberationForm = () => {
+  const { eventId } = useParams()
+  const { data: event } = useEvent(eventId)
+  const { data: settings } = useEventSettings(eventId)
+  const [saveSettings] = useSaveEventSettings(eventId)
+
+  const blindRating = get(settings, 'deliberation.blindRating')
+  const deliberationEnabled = get(settings, 'deliberation.enabled')
+  const displayRatings = get(settings, 'deliberation.displayRatings')
+  const hideRatings = get(settings, 'deliberation.hideRatings')
+  const recipients = get(settings, 'notifications.recipients', {})
+  const emails = get(settings, 'notifications.emails', {})
+
+  const onToggleDeliberation = (checked) => saveSettings({ 'deliberation.enabled': checked })
+  const onToggleBlindRating = (checked) => saveSettings({ 'deliberation.blindRating': checked })
+  const onToggleRatings = (checked) => saveSettings({ 'deliberation.displayRatings': checked })
+  const onToggleHideRatings = (checked) => saveSettings({ 'deliberation.hideRatings': checked })
+  const onChangeRecipients = (e) =>
+    saveSettings({ [`notifications.recipients.${e.target.name}`]: e.target.checked })
+  const onChangeNotifiedEmails = (e) =>
+    saveSettings({ [`notifications.emails.${e.target.name}`]: e.target.checked })
+
   const disabledEmails =
-    !recipients.organizers && (!recipients.contact || (recipients.contact && !contact))
+    !recipients.organizers && (!recipients.contact || (recipients.contact && !event.contact))
 
   return (
     <div className={cn(styles.form, 'card')}>
@@ -50,7 +59,7 @@ const DeliberationForm = ({
         <Toggle
           name="displayOrganizersRatings"
           checked={displayRatings}
-          onChange={onToggleOrganizersRatings}
+          onChange={onToggleRatings}
         />
       </Label>
 
@@ -88,7 +97,7 @@ const DeliberationForm = ({
           name="contact"
           label="Send to the event contact email"
           info={
-            contact ? (
+            event.contact ? (
               'Sent emails will have the event contact email as CC.'
             ) : (
               <IconLabel
@@ -99,7 +108,7 @@ const DeliberationForm = ({
           }
           onChange={onChangeRecipients}
           value={recipients.contact}
-          disabled={!contact}
+          disabled={!event.contact}
         />
         <Checkbox
           name="organizers"
@@ -155,32 +164,6 @@ const DeliberationForm = ({
       </div>
     </div>
   )
-}
-
-DeliberationForm.propTypes = {
-  blindRating: PropTypes.bool,
-  deliberationEnabled: PropTypes.bool,
-  displayRatings: PropTypes.bool,
-  hideRatings: PropTypes.bool,
-  contact: PropTypes.string,
-  recipients: PropTypes.object,
-  emails: PropTypes.object,
-  onToggleDeliberation: PropTypes.func.isRequired,
-  onToggleOrganizersRatings: PropTypes.func.isRequired,
-  onToggleHideRatings: PropTypes.func.isRequired,
-  onToggleBlindRating: PropTypes.func.isRequired,
-  onChangeRecipients: PropTypes.func.isRequired,
-  onChangeNotifiedEmails: PropTypes.func.isRequired,
-}
-
-DeliberationForm.defaultProps = {
-  blindRating: false,
-  deliberationEnabled: false,
-  displayRatings: false,
-  hideRatings: false,
-  contact: undefined,
-  recipients: {},
-  emails: {},
 }
 
 export default DeliberationForm

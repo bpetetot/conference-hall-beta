@@ -7,15 +7,7 @@ import cn from 'classnames'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 
-const SubmitTalkLink = ({
-  eventId,
-  label,
-  displayed,
-  onClick,
-  className,
-  classNameActive,
-  size,
-}) => {
+const SubmitTalkLink = ({ eventId, label, onClick, className, classNameActive, size }) => {
   const navigate = useNavigate()
   const match = useMatch({ path: `/speaker/event/${eventId}/submission`, end: true })
 
@@ -24,7 +16,6 @@ const SubmitTalkLink = ({
     navigate(`/speaker/event/${eventId}/submission`)
   }, [onClick, navigate, eventId])
 
-  if (!displayed) return null
   return (
     <Button primary accent size={size}>
       {(btn) => (
@@ -44,7 +35,6 @@ SubmitTalkLink.propTypes = {
   eventId: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   label: PropTypes.string,
-  displayed: PropTypes.bool,
   className: PropTypes.string,
   classNameActive: PropTypes.string,
   size: PropTypes.string,
@@ -52,7 +42,6 @@ SubmitTalkLink.propTypes = {
 
 SubmitTalkLink.defaultProps = {
   label: undefined,
-  displayed: false,
   className: undefined,
   classNameActive: undefined,
   size: 'normal',

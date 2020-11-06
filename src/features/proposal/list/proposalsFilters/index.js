@@ -1,1 +1,1 @@
-export { default } from './proposalsFilters.container'
+export { default } from './proposalsFilters'

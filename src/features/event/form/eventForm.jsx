@@ -1,5 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useCallback } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import pick from 'lodash/pick'
 import { Form } from 'react-final-form'
 import isEmpty from 'lodash/isEmpty'
 
@@ -20,14 +21,59 @@ import {
 import { required } from 'components/form/validators'
 import { useOrganizations } from 'features/organization/useOrganizations'
 import './eventForm.css'
+import { useEvent, useSaveEvent } from '../useEvents'
 
-const EventForm = ({ isCreateForm, onSubmit, initialValues, toggleArchive }) => {
+function getInitialValues(event) {
+  const values = !event
+    ? {
+        type: 'conference',
+        visibility: 'private',
+      }
+    : pick(event, [
+        'type',
+        'name',
+        'description',
+        'address',
+        'organization',
+        'visibility',
+        'conferenceDates',
+        'website',
+        'contact',
+        'archived',
+      ])
+  return { ...values, visibility: values.visibility === 'private' }
+}
+
+const EventForm = () => {
+  const navigate = useNavigate()
+  const { eventId } = useParams()
+  const { data: event } = useEvent(eventId)
   const { data: organizations } = useOrganizations()
+  const [saveEvent] = useSaveEvent(eventId)
+
+  const onSubmit = useCallback(
+    async (formData) => {
+      const result = await saveEvent({
+        ...formData,
+        visibility: formData.visibility ? 'private' : 'public',
+      })
+      navigate(`/organizer/event/${event?.id || result.id}`)
+    },
+    [event?.id, navigate, saveEvent],
+  )
+
+  const toggleArchive = useCallback(() => saveEvent({ archived: !event?.archived }), [
+    event?.archived,
+    saveEvent,
+  ])
+
+  const initialValues = getInitialValues(event)
+
   return (
-    <Form onSubmit={onSubmit} initialValues={initialValues} keepDirtyOnReinitialize={isCreateForm}>
+    <Form onSubmit={onSubmit} initialValues={initialValues} keepDirtyOnReinitialize={!event}>
       {({ values, handleSubmit, pristine, invalid, submitting }) => (
         <form className="event-form card">
-          {isCreateForm && (
+          {!event && (
             <RadioGroup name="type" label="Event type" value="conference" inline>
               <Field
                 name="type"
@@ -90,7 +136,7 @@ const EventForm = ({ isCreateForm, onSubmit, initialValues, toggleArchive }) => 
           <Field name="website" label="Website" type="text" component={input} inline />
           <Field name="contact" label="Contact email" type="email" component={input} inline />
           <div className="event-form-actions">
-            {!isCreateForm && (
+            {!!event && (
               <Button secondary onClick={toggleArchive}>
                 {values.archived ? (
                   <IconLabel icon="fa fa-history" label="Restore event" />
@@ -105,26 +151,13 @@ const EventForm = ({ isCreateForm, onSubmit, initialValues, toggleArchive }) => 
               invalid={invalid}
               submitting={submitting}
             >
-              {isCreateForm ? 'Create event' : 'Save event'}
+              {!event ? 'Create event' : 'Save event'}
             </SubmitButton>
           </div>
         </form>
       )}
     </Form>
   )
-}
-
-EventForm.propTypes = {
-  isCreateForm: PropTypes.bool,
-  onSubmit: PropTypes.func.isRequired,
-  toggleArchive: PropTypes.func,
-  initialValues: PropTypes.object,
-}
-
-EventForm.defaultProps = {
-  isCreateForm: false,
-  initialValues: undefined,
-  toggleArchive: undefined,
 }
 
 export default EventForm

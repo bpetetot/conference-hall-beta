@@ -1,1 +1,1 @@
-export { default } from './status.container'
+export { default } from './status'

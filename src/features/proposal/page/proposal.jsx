@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import get from 'lodash/get'
 
 import { useAuth } from 'features/auth'
+import { useEventSettings } from 'features/event/useEventSettings'
 
 import Talk from './talk'
 import Speakers from './speakers'
@@ -10,8 +12,12 @@ import Actions from './actions'
 
 import './proposal.css'
 
-const Proposal = ({ eventId, proposal, deliberationActive, blindRating }) => {
+const Proposal = ({ eventId, proposal }) => {
   const { user } = useAuth()
+
+  const { data: settings } = useEventSettings(eventId)
+  const deliberationActive = get(settings, 'deliberation.enabled')
+  const blindRating = get(settings, 'deliberation.blindRating')
 
   return (
     <div className="proposal">
@@ -36,14 +42,10 @@ const Proposal = ({ eventId, proposal, deliberationActive, blindRating }) => {
 Proposal.propTypes = {
   eventId: PropTypes.string.isRequired,
   proposal: PropTypes.objectOf(PropTypes.any),
-  deliberationActive: PropTypes.bool,
-  blindRating: PropTypes.bool,
 }
 
 Proposal.defaultProps = {
   proposal: {},
-  deliberationActive: false,
-  blindRating: false,
 }
 
 export default Proposal

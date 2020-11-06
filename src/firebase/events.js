@@ -1,23 +1,65 @@
 import firebase from 'firebase/app'
+import { eventConverter } from 'models/Event'
+import { eventSettingsConverter } from 'models/EventSettings'
 
 import crud from './crud'
 
-export const fetchUserEvents = (uid) =>
-  firebase.firestore().collection('events').where('owner', '==', uid).get()
+export const fetchUserEvents = async (uid) => {
+  const result = await firebase
+    .firestore()
+    .collection('events')
+    .where('owner', '==', uid)
+    .withConverter(eventConverter)
+    .get()
+  return result.docs.map((ref) => ref.data())
+}
 
-export const fetchPublicEvents = () =>
-  firebase.firestore().collection('events').where('visibility', '==', 'public').get()
+export const fetchOrganizationEvents = async (organizationId) => {
+  const result = await firebase
+    .firestore()
+    .collection('events')
+    .where('organization', '==', organizationId)
+    .withConverter(eventConverter)
+    .get()
+  return result.docs.map((ref) => ref.data())
+}
+
+export const fetchPublicEvents = async () => {
+  const result = await firebase
+    .firestore()
+    .collection('events')
+    .where('visibility', '==', 'public')
+    .withConverter(eventConverter)
+    .get()
+  return result.docs.map((ref) => ref.data())
+}
 
 export const fetchSettings = (eventId) =>
-  firebase.firestore().collection('events').doc(eventId).collection('settings').doc(eventId).get()
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('settings')
+    .withConverter(eventSettingsConverter)
+    .doc(eventId)
+    .get()
 
-export const saveSettings = (eventId, settings) =>
+export const createSettings = (eventId) =>
   firebase
     .firestore()
     .collection('events')
     .doc(eventId)
     .collection('settings')
     .doc(eventId)
-    .set({ id: eventId, ...settings }, { merge: true })
+    .set({ id: eventId })
 
-export default crud('events', 'id')
+export const updateSettings = (eventId, settings) =>
+  firebase
+    .firestore()
+    .collection('events')
+    .doc(eventId)
+    .collection('settings')
+    .doc(eventId)
+    .update(settings)
+
+export default crud('events', 'id', eventConverter)

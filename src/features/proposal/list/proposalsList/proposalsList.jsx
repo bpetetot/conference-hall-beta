@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import get from 'lodash/get'
 import PropTypes from 'prop-types'
 
+import { useEventSettings } from 'features/event/useEventSettings'
 import { withSizes } from 'styles/utils'
 import { List, ListItem } from 'components/list'
 import ProposalSubtitle from './proposalSubtitle'
@@ -12,13 +14,15 @@ const Proposals = ({
   eventId,
   proposals,
   proposalsSelection,
-  deliberationActive,
-  blindRating,
   onAddProposalToSelection,
   onLoad,
   filters,
   isMobile,
 }) => {
+  const { data: settings } = useEventSettings(eventId)
+  const deliberationActive = get(settings, 'deliberation.enabled')
+  const blindRating = get(settings, 'deliberation.blindRating')
+
   useEffect(() => {
     onLoad({ filters })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,8 +66,6 @@ Proposals.propTypes = {
   eventId: PropTypes.string.isRequired,
   proposals: PropTypes.arrayOf(PropTypes.object),
   proposalsSelection: PropTypes.arrayOf(PropTypes.string),
-  deliberationActive: PropTypes.bool,
-  blindRating: PropTypes.bool,
   onAddProposalToSelection: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
@@ -73,8 +75,6 @@ Proposals.propTypes = {
 Proposals.defaultProps = {
   proposals: [],
   proposalsSelection: [],
-  deliberationActive: false,
-  blindRating: false,
 }
 
 export default withSizes(Proposals)

@@ -1,5 +1,4 @@
 import { inject } from '@k-ramel/react'
-import get from 'lodash/get'
 
 import ProposalToobar from './proposalsToolbar'
 
@@ -9,7 +8,6 @@ const countEmailsToSend = (type, selection = [], proposals = []) => {
 }
 
 const mapStore = (store, { userId, eventId, filters }) => {
-  const settings = store.data.eventsSettings.get(eventId)
   const { exporting } = store.ui.organizer.proposalsExport.get()
   const proposals = store.data.proposals.getAsArray()
   const totalProposals = proposals.length
@@ -19,7 +17,6 @@ const mapStore = (store, { userId, eventId, filters }) => {
   const nbAcceptedEmails = countEmailsToSend('accepted', selection, proposals)
 
   return {
-    deliberationActive: get(settings, 'deliberation.enabled'),
     exporting,
     nbSelected: count,
     totalProposals,

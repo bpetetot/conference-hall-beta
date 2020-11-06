@@ -11,6 +11,14 @@ export const toDate = (timestamp) => {
   return timestamp
 }
 
-// eslint-disable-next-line max-len
-export const formatTimestamp = (timestamp, size, timezone) =>
-  formatDate(toDate(timestamp), size, timezone)
+export const toStartEndDates = (dates) => {
+  if (!dates) return undefined
+  return {
+    start: toDate(dates.start),
+    end: toDate(dates.end),
+  }
+}
+
+export const formatTimestamp = (timestamp, size, timezone) => {
+  return formatDate(toDate(timestamp), size, timezone)
+}

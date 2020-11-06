@@ -6,7 +6,7 @@ import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import SurveyBlock from 'features/survey/block/surveyBlock'
 
-const SpeakerSurveys = ({ eventId, userIds, survey }) => (
+const SpeakerSurveys = ({ eventId, userIds }) => (
   <Drawer
     title="Speaker survey"
     renderTrigger={({ show }) => (
@@ -16,7 +16,7 @@ const SpeakerSurveys = ({ eventId, userIds, survey }) => (
     )}
   >
     {userIds.map((userId) => (
-      <SurveyBlock key={userId} eventId={eventId} userId={userId} survey={survey} />
+      <SurveyBlock key={userId} eventId={eventId} userId={userId} />
     ))}
   </Drawer>
 )
@@ -24,7 +24,6 @@ const SpeakerSurveys = ({ eventId, userIds, survey }) => (
 SpeakerSurveys.propTypes = {
   eventId: PropTypes.string.isRequired,
   userIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-  survey: PropTypes.objectOf(PropTypes.bool).isRequired,
 }
 
 export default SpeakerSurveys

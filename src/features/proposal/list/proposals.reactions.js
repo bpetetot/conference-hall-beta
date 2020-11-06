@@ -103,12 +103,7 @@ export const loadProposals = async (action, store) => {
       const speakerList = Object.keys(prop.speakers)
       const speakerNameList = await Promise.all(
         speakerList.map(async (speakerUid) => {
-          // check if user already in the store
-          const userCache = store.data.users.get(speakerUid)
-          if (userCache) return userCache.displayName
-          // Not in the store so fetching user in database
           const user = await userCrud.read(speakerUid)
-          store.data.users.add(user.data())
           return user.data().displayName
         }),
       )

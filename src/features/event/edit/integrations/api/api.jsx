@@ -1,7 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useParams } from 'react-router-dom'
 import cn from 'classnames'
+import get from 'lodash/get'
+import { v4 as uuid } from 'uuid'
 
+import { useEventSettings, useSaveEventSettings } from 'features/event/useEventSettings'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import Label from 'components/form/label'
@@ -10,7 +13,18 @@ import ApiCard from './apiCard'
 
 import styles from './api.module.css'
 
-const Api = ({ eventId, enabled, apiKey, onActiveApi, onGenerateKey }) => {
+const Api = () => {
+  const { eventId } = useParams()
+  const { data: settings } = useEventSettings(eventId)
+  const [saveSettings] = useSaveEventSettings(eventId)
+
+  const enabled = get(settings, 'api.enabled')
+  const apiKey = get(settings, 'api.apiKey')
+
+  const onGenerateKey = () => saveSettings({ 'api.apiKey': uuid() })
+  const onActiveApi = (checked) =>
+    saveSettings({ 'api.enabled': checked, 'api.apiKey': checked && !apiKey ? uuid() : apiKey })
+
   const { origin } = window.location
   return (
     <div className={cn(styles.form, 'card')}>
@@ -45,19 +59,6 @@ const Api = ({ eventId, enabled, apiKey, onActiveApi, onGenerateKey }) => {
       )}
     </div>
   )
-}
-
-Api.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  enabled: PropTypes.bool,
-  apiKey: PropTypes.string,
-  onActiveApi: PropTypes.func.isRequired,
-  onGenerateKey: PropTypes.func.isRequired,
-}
-
-Api.defaultProps = {
-  enabled: false,
-  apiKey: undefined,
 }
 
 export default Api

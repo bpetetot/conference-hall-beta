@@ -1,1 +1,1 @@
-export { default } from './submissions.container'
+export { default } from './submissions'

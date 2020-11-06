@@ -3,13 +3,11 @@ import { inject } from '@k-ramel/react'
 
 import TalkSubmission from './talkSubmission'
 
-const mapStore = (store, { eventId }) => {
+const mapStore = (store) => {
   const { talkId } = store.ui.speaker.submission.get()
-  const event = store.data.events.get(eventId)
 
   return {
     talkId,
-    event,
     onSubmit: () => {
       const { currentStep } = store.ui.speaker.submission.get()
       store.ui.speaker.submission.update({ currentStep: currentStep + 1 })

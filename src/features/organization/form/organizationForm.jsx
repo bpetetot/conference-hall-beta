@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import pick from 'lodash/pick'
 import { Form } from 'react-final-form'
 
 import { LoadingIndicator } from 'components/loader'
@@ -19,20 +20,22 @@ const OrganizationForm = () => {
   const handleFormSubmit = useCallback(
     async (formData) => {
       const result = await saveOrganization(formData)
-      navigate(`/organizer/organization/${formData.id || result.id}`)
+      navigate(`/organizer/organization/${data?.id || result.id}`)
     },
-    [saveOrganization, navigate],
+    [saveOrganization, navigate, data?.id],
   )
 
   if (isLoading) return <LoadingIndicator />
 
+  const initialValues = pick(data, ['name'])
+
   return (
-    <Form onSubmit={handleFormSubmit} initialValues={data}>
+    <Form onSubmit={handleFormSubmit} initialValues={initialValues}>
       {({ handleSubmit, pristine, submitting }) => (
         <form className="organization-form card">
           <Field name="name" label="Name" type="text" component={input} validate={required} />
           <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
-            {!data ? 'Create organization' : 'Save organization'}
+            {!data?.id ? 'Create organization' : 'Save organization'}
           </SubmitButton>
         </form>
       )}

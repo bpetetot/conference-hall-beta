@@ -1,1 +1,1 @@
-export { default } from './deliberation.container'
+export { default } from './deliberation'
