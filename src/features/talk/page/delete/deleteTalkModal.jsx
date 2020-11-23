@@ -50,6 +50,7 @@ function DeleteTalkModal({ talkTitle, deleteTalk }) {
             onClick={handleDelete(hide)}
             onChange={handleChange}
             disabled={disabled}
+            autoFocus
           />
         </>
       )}
