@@ -70,6 +70,7 @@ class Tooltip extends Component {
         onClick={this.handleOpened}
         className={cn('cc-tooltip-button', className)}
         style={{ display: inline ? 'inline' : 'block' }}
+        aria-label="More info"
       >
         {children}
         <TooltipOverlay ref={(t) => (this.tooltip = t)} content={tooltip} {...this.state} />

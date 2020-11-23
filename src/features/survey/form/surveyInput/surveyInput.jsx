@@ -7,11 +7,11 @@ import './surveyInput.css'
 
 const SurveyInput = ({ name, label, type, answers }) => (
   <div className="survey-input">
-    <label>{label}</label>
+    <label htmlFor={name}>{label}</label>
     {answers ? (
       answers.map((answer) => (
         <div key={answer.name}>
-          <label>
+          <label htmlFor={type === 'radio' ? name : `${name}.${answer.name}`}>
             <Field
               name={type === 'radio' ? name : `${name}.${answer.name}`}
               component="input"
@@ -23,7 +23,7 @@ const SurveyInput = ({ name, label, type, answers }) => (
         </div>
       ))
     ) : (
-      <Field name={name} component="input" type={type} value={name} />
+      <Field name={name} id={name} component="input" type={type} value={name} />
     )}
   </div>
 )
