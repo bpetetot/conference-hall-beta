@@ -7,12 +7,12 @@ import IconLabel from 'components/iconLabel'
 import './sidebar.css'
 
 const SideBar = ({ className, children }) => (
-  <div className={cn('sidebar', className)}>
+  <aside className={cn('sidebar', className)}>
     <div>{children}</div>
     <a href="https://github.com/sponsors/bpetetot" target="NEW" className="donate-button">
       <IconLabel icon="fa fa-heart" label="Donate to help ;)" />
     </a>
-  </div>
+  </aside>
 )
 
 SideBar.propTypes = {

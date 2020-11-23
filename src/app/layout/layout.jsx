@@ -16,7 +16,7 @@ const AppLayout = ({ children, sidebar }) => {
       <Brand className="layout-brand" sidebar={sidebar} />
       <Navbar eventId={eventId} className="layout-navbar" />
       {sidebar && <div className="layout-sidebar">{sidebar}</div>}
-      <div className="layout-main">{children}</div>
+      <main className="layout-main">{children}</main>
     </div>
   )
 }
