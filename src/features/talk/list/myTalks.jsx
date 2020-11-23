@@ -31,7 +31,7 @@ const MyTalks = ({ talks }) => {
   return (
     <div className="talks-page">
       <Titlebar icon="fa fa-microphone" title="My talks">
-        <select onChange={onFilter} value={status}>
+        <select onChange={onFilter} value={status} aria-label="Talks filter">
           <option value="all">All talks</option>
           <option value="archived">Archived talks</option>
           <option value="active">Active talks</option>

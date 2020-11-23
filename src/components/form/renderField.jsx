@@ -28,7 +28,7 @@ const renderField = (component) => ({
     error={meta.error}
     inline={inline}
   >
-    {component === 'address' && <Address {...input} autoComplete="nope" />}
+    {component === 'address' && <Address {...input} id={input.name} autoComplete="nope" />}
     {component === 'input' && (
       <input
         {...input}

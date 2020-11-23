@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`tooltip should display tooltip inline 1`] = `
-<span
+<button
+  aria-label="More info"
+  className="cc-tooltip-button"
+  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -9,6 +12,7 @@ exports[`tooltip should display tooltip inline 1`] = `
       "display": "inline",
     }
   }
+  type="button"
 >
   <div>
     Wrapped
@@ -33,11 +37,14 @@ exports[`tooltip should display tooltip inline 1`] = `
       my content
     </div>
   </div>
-</span>
+</button>
 `;
 
 exports[`tooltip should set placement "auto" 1`] = `
-<span
+<button
+  aria-label="More info"
+  className="cc-tooltip-button"
+  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -45,6 +52,7 @@ exports[`tooltip should set placement "auto" 1`] = `
       "display": "block",
     }
   }
+  type="button"
 >
   <div>
     Wrapped
@@ -69,11 +77,14 @@ exports[`tooltip should set placement "auto" 1`] = `
       my content
     </div>
   </div>
-</span>
+</button>
 `;
 
 exports[`tooltip should set placement "bottom" 1`] = `
-<span
+<button
+  aria-label="More info"
+  className="cc-tooltip-button"
+  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -81,6 +92,7 @@ exports[`tooltip should set placement "bottom" 1`] = `
       "display": "block",
     }
   }
+  type="button"
 >
   <div>
     Wrapped
@@ -105,11 +117,14 @@ exports[`tooltip should set placement "bottom" 1`] = `
       my content
     </div>
   </div>
-</span>
+</button>
 `;
 
 exports[`tooltip should set placement "left" 1`] = `
-<span
+<button
+  aria-label="More info"
+  className="cc-tooltip-button"
+  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -117,6 +132,7 @@ exports[`tooltip should set placement "left" 1`] = `
       "display": "block",
     }
   }
+  type="button"
 >
   <div>
     Wrapped
@@ -141,11 +157,14 @@ exports[`tooltip should set placement "left" 1`] = `
       my content
     </div>
   </div>
-</span>
+</button>
 `;
 
 exports[`tooltip should set placement "right" 1`] = `
-<span
+<button
+  aria-label="More info"
+  className="cc-tooltip-button"
+  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -153,6 +172,7 @@ exports[`tooltip should set placement "right" 1`] = `
       "display": "block",
     }
   }
+  type="button"
 >
   <div>
     Wrapped
@@ -177,11 +197,14 @@ exports[`tooltip should set placement "right" 1`] = `
       my content
     </div>
   </div>
-</span>
+</button>
 `;
 
 exports[`tooltip should set placement "top" 1`] = `
-<span
+<button
+  aria-label="More info"
+  className="cc-tooltip-button"
+  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -189,6 +212,7 @@ exports[`tooltip should set placement "top" 1`] = `
       "display": "block",
     }
   }
+  type="button"
 >
   <div>
     Wrapped
@@ -213,11 +237,14 @@ exports[`tooltip should set placement "top" 1`] = `
       my content
     </div>
   </div>
-</span>
+</button>
 `;
 
 exports[`tooltip should set tooltip content 1`] = `
-<span
+<button
+  aria-label="More info"
+  className="cc-tooltip-button"
+  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -225,6 +252,7 @@ exports[`tooltip should set tooltip content 1`] = `
       "display": "block",
     }
   }
+  type="button"
 >
   <div>
     Wrapped
@@ -249,5 +277,5 @@ exports[`tooltip should set tooltip content 1`] = `
       my content
     </div>
   </div>
-</span>
+</button>
 `;
