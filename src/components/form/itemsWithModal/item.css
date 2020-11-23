@@ -4,12 +4,14 @@
   min-width: initial;
   overflow: hidden;
   white-space: normal;
-  text-align: left;
-  border: 1px solid var(--grey-color);
-  background: none;
+  height: 2.7em;
+  padding: 0 10px;
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
   color: var(--primary-color);
+  fill: var(--primary-color);
 }
 
-.item-box > a {
-  margin-left: 1em;
+.item-box > button {
+  margin-left: 10px;
 }
