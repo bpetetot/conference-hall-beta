@@ -1,5 +1,28 @@
 # Changelog
 
+<a name="0.37.0"></a>
+## 0.37.0 (2020-11-23)
+
+### Changed
+
+- 💄 set outline on inputs [[8ab0417](https://github.com/bpetetot/conference-hall/commit/8ab0417d3f83ceafd5d6f3cad6e953b946b5b669)]
+- ⬆️ upgrade dependencies [[8d93d1d](https://github.com/bpetetot/conference-hall/commit/8d93d1dc3dba7eb6fcdfad70025702922a5fcff7)]
+
+### Fixed
+
+- 🐛 fix some missing labels with inputs [[96f4b8e](https://github.com/bpetetot/conference-hall/commit/96f4b8e274cc06df1a3a53060712137c50bb834f)]
+- 🐛 fix layout structure for accessibility [[9234cc9](https://github.com/bpetetot/conference-hall/commit/9234cc9e418e436f8e6c5b721781b71892c79109)]
+- 🐛 fix add co-speaker accessibility [[8b7e890](https://github.com/bpetetot/conference-hall/commit/8b7e890a354b999fc63b2d2c29650473919d3069)]
+- 🐛 autoFocus on delete talk [[6707861](https://github.com/bpetetot/conference-hall/commit/67078611621f6cbe9105fc2d19812aa4a53f6e43)]
+- 🐛 fix markdown preview accessibility [[6343472](https://github.com/bpetetot/conference-hall/commit/6343472d886f0abf44ebfc0f2184b4f08bcba22f)]
+- 🐛 fix submit button accessibility [[8a92a2f](https://github.com/bpetetot/conference-hall/commit/8a92a2f16bb35f1fffc2b8fbca88c987b8ff8240)]
+- 🐛 fix items with modal accessibility [[be146bf](https://github.com/bpetetot/conference-hall/commit/be146bf4bc03e833eccde98d911c291aedd75c0e)]
+- 🐛 fix toggle accessibility [[8d81814](https://github.com/bpetetot/conference-hall/commit/8d81814836bfd6b7b57f44a74d0665ec3119f7f2)]
+- 🐛 fix radio box accessibility [[36f67a8](https://github.com/bpetetot/conference-hall/commit/36f67a85db345a9ca04f4efeb082b93f0cb93b0a)]
+- 🐛 fix list accessibility [[7454d8f](https://github.com/bpetetot/conference-hall/commit/7454d8fca352e90b70f37ff49dab59db52230d27)]
+- 🐛 fix dropdown accessibility [[103e1ee](https://github.com/bpetetot/conference-hall/commit/103e1eec9375bb5c2a647ef3a18bd0d9bef6b926)]
+
+
 <a name="0.36.1"></a>
 ## 0.36.1 (2020-11-01)
 
