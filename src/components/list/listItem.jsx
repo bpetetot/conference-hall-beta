@@ -22,7 +22,16 @@ const ListItem = ({
         <Checkbox onChange={onCheckboxChange} value={checked} disabled={checkboxDisabled} />
       </div>
     )}
-    <div className={cn('list-item-main', { clickable: onSelect })} onClick={onSelect} role="button">
+    <div
+      className={cn('list-item-main', { clickable: onSelect })}
+      onClick={onSelect}
+      onKeyPress={(e) => {
+        if (e.key !== 'Enter') return
+        onSelect()
+      }}
+      role="button"
+      tabIndex="0"
+    >
       <div className="list-item-title">{title}</div>
       {subtitle && <div className=" list-item-subtitle">{subtitle}</div>}
     </div>
