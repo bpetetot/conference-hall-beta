@@ -53,3 +53,7 @@
 .sidebar a.sidebar-link-active:hover {
   color: var(--secondary-color);
 }
+
+.sidebar button.sidebar-button {
+  margin: 10px;
+}
