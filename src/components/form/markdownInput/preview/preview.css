@@ -1,5 +1,4 @@
 .preview-markdown {
-  position: absolute;
   bottom: 0;
   width: 100%;
   border-bottom-left-radius: 3px;
@@ -44,8 +43,7 @@
 
 .preview-markdown-display {
   height: 100%;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  overflow: auto;
 }
 
 .preview-markdown-display > .preview-markdown-content {
@@ -53,5 +51,10 @@
   padding: 0.7em;
   overflow: auto;
   border-top: 1px solid var(--grey-color);
-  border-radius: 3px;
+  background: #edf2f5;
+}
+
+.preview-markdown-button {
+  background: none;
+  border-color: transparent;
 }
