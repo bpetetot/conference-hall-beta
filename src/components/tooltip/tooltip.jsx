@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Popper from 'popper.js'
+import cn from 'classnames'
 
 import TooltipOverlay from './tooltipOverlay'
 
@@ -40,6 +41,15 @@ class Tooltip extends Component {
     this.popperInstance.update()
   }
 
+  handleOpened = () => {
+    if (this.state.opened) {
+      this.setState(() => ({ opened: false }))
+    } else {
+      this.setState(() => ({ opened: true }))
+    }
+    this.popperInstance.update()
+  }
+
   updatePositions = (data) => {
     this.setState(() => ({
       popperStyle: data.styles,
@@ -52,16 +62,18 @@ class Tooltip extends Component {
   render() {
     const { tooltip, inline, className, children } = this.props
     return (
-      <span
+      <button
+        type="button"
         ref={(r) => (this.targetRef = r)}
         onMouseEnter={this.handleHover('enter')}
         onMouseLeave={this.handleHover('leave')}
-        className={className}
+        onClick={this.handleOpened}
+        className={cn('cc-tooltip-button', className)}
         style={{ display: inline ? 'inline' : 'block' }}
       >
         {children}
         <TooltipOverlay ref={(t) => (this.tooltip = t)} content={tooltip} {...this.state} />
-      </span>
+      </button>
     )
   }
 }

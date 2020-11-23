@@ -28,13 +28,13 @@ class PreviewMarkdown extends Component {
             <MarkdownIcon />
             <span>&nbsp;markdown is supported</span>
           </div>
-          <a onClick={this.handleDisplay} role="button">
+          <button type="button" onClick={this.handleDisplay} className="preview-markdown-button">
             {display ? (
-              <IconLabel icon="fa fa-pencil" label="write" />
+              <IconLabel icon="fa fa-times" label="Close preview" />
             ) : (
               <IconLabel icon="fa fa-eye" label="preview" />
             )}
-          </a>
+          </button>
         </div>
       </div>
     )

@@ -1,5 +1,7 @@
 .markdown-input {
   --md-header-size: 29px;
+  display: flex;
+  flex-direction: column;
   position: relative;
   padding-bottom: var(--md-header-size);
 }
