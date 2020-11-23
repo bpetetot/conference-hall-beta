@@ -11,18 +11,31 @@ class Dropdown extends Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside)
+    document.addEventListener('keyup', this.handleKeyEscape)
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside)
+    document.addEventListener('mousedown', this.handleClickOutside)
+    document.removeEventListener('keyup', this.handleKeyEscape)
   }
 
   handleClick = () => {
     this.setState((state) => ({ visible: !state.visible }))
   }
 
+  handleKey = (e) => {
+    if (e.key !== 'Enter') return
+    this.setState((state) => ({ visible: !state.visible }))
+  }
+
   handleClickOutside = (e) => {
     if (this.dropdownRef && !this.dropdownRef.contains(e.target)) {
+      this.setState(() => ({ visible: false }))
+    }
+  }
+
+  handleKeyEscape = (e) => {
+    if (e.key === 'Escape' && this.state.visible) {
       this.setState(() => ({ visible: false }))
     }
   }
@@ -37,6 +50,7 @@ class Dropdown extends Component {
         }}
         tabIndex="0"
         className={cn('dropdown', className, { dark: darkMode })}
+        onKeyPress={this.handleKey}
         onClick={this.handleClick}
       >
         {action}
