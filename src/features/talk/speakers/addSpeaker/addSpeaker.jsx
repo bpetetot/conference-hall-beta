@@ -9,12 +9,12 @@ const AddSpeaker = ({ talkId, talkTitle, onSelectUser }) => (
   <AddUserModal
     title="Add a co-speaker"
     renderTrigger={({ show }) => (
-      <a onClick={show} role="button" className="add-speaker-button">
+      <button type="button" onClick={show} className="add-speaker-button">
         <span className="add-speaker-button-icon">
           <i className="fa fa-user fa-lg" />
         </span>
         <span className="add-speaker-button-label">Add a co-speaker</span>
-      </a>
+      </button>
     )}
     resultsMessage="Add a co-speaker to your talk"
     onSelectUser={onSelectUser}
