@@ -49,7 +49,7 @@ function ConfirmationPopin({
     >
       {({ hide }) => (
         <>
-          <div className="confirmation-text">
+          <div className="confirmation-text" aria-describedby={title}>
             {title && <div className="confirmation-title">{title}</div>}
             {content && <div className="confirmation-content">{content}</div>}
           </div>
