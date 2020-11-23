@@ -9,7 +9,9 @@
 }
 
 .toggle input[type='checkbox'] {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .item {
@@ -48,4 +50,8 @@ input[type='checkbox']:checked + .item  {
 input[type='checkbox']:checked + .item::before {
   border: 1px solid var(--secondary-color);
   left: calc(var(--toggle-width) - var(--toggle-height));
+}
+
+input[type='checkbox']:focus + .item {
+  box-shadow: 0 0 8px #5e9ed6;
 }
