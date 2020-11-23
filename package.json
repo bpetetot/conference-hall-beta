@@ -71,7 +71,7 @@
     "firebase-tools": "8.14.1",
     "prettier": "2.1.2",
     "react-is": "17.0.1",
-    "react-scripts": "4.0.0",
+    "react-scripts": "4.0.1",
     "react-test-renderer": "17.0.1",
     "redux-devtools-extension": "2.13.8"
   },
