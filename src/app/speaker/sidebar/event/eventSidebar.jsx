@@ -22,7 +22,7 @@ const EventSidebar = ({ eventId, name, surveyActive }) => {
       )}
       <SubmitTalksLink
         eventId={eventId}
-        className="sidebar-link"
+        className="sidebar-button"
         classNameActive="sidebar-link-active"
       />
     </SideBarPanel>
