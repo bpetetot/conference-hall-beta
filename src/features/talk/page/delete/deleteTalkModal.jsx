@@ -46,6 +46,7 @@ function DeleteTalkModal({ talkTitle, deleteTalk }) {
           <InputButton
             type="text"
             placeholder="Type the talk name to delete"
+            aria-label="Type the talk name to delete"
             btnLabel="Delete!"
             onClick={handleDelete(hide)}
             onChange={handleChange}

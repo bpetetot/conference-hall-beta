@@ -39,7 +39,7 @@ const MyEvents = ({ events, onChangeEvent }) => {
   return (
     <div>
       <Titlebar icon="fa fa-calendar-o" title="My events">
-        <select onChange={onFilter} value={status}>
+        <select onChange={onFilter} value={status} aria-label="Events filter">
           <option value="all">All events</option>
           <option value="archived">Archived events</option>
           <option value="active">Active events</option>

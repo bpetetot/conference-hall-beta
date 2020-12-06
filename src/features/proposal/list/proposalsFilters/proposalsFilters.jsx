@@ -49,13 +49,19 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
         id="search"
         type="search"
         placeholder="Search by title or speaker"
+        aria-label="Search by title or speaker"
         onChange={handleSearchChange}
         defaultValue={searchFilter}
       />
 
       {deliberationActive && (
         <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
-          <select id="state" onChange={handleChange} defaultValue={stateFilter}>
+          <select
+            id="state"
+            onChange={handleChange}
+            defaultValue={stateFilter}
+            aria-label="Filter by proposal status"
+          >
             <option value="">All statuses</option>
             {statuses.map((status) => (
               <option key={status} value={status}>
@@ -66,7 +72,12 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
         </HasRole>
       )}
 
-      <select id="ratings" onChange={handleChange} defaultValue={ratingsFilter}>
+      <select
+        id="ratings"
+        onChange={handleChange}
+        defaultValue={ratingsFilter}
+        aria-label="Filter by your ratings"
+      >
         <option value="">All ratings</option>
         {ratings.map((rating) => (
           <option key={rating} value={rating}>
@@ -75,7 +86,12 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
         ))}
       </select>
 
-      <select id="formats" onChange={handleChange} defaultValue={formatsFilter}>
+      <select
+        id="formats"
+        onChange={handleChange}
+        defaultValue={formatsFilter}
+        aria-label="Filter by proposal format"
+      >
         <option value="">All formats</option>
         {formats.map(({ id, name }) => (
           <option key={id} value={id}>
@@ -84,7 +100,12 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
         ))}
       </select>
 
-      <select id="categories" onChange={handleChange} defaultValue={categoriesFilter}>
+      <select
+        id="categories"
+        onChange={handleChange}
+        defaultValue={categoriesFilter}
+        aria-label="Filter by proposal category"
+      >
         <option value="">All categories</option>
         {categories.map(({ id, name }) => (
           <option key={id} value={id}>
@@ -93,7 +114,12 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
         ))}
       </select>
 
-      <select id="sortOrder" onChange={handleChange} defaultValue={sortOrderFilter}>
+      <select
+        id="sortOrder"
+        onChange={handleChange}
+        defaultValue={sortOrderFilter}
+        aria-label="Sort proposals"
+      >
         <option value="">Sort</option>
         {filterSortOrders(hideRatings).map((sortOrder) => (
           <option key={sortOrder} value={sortOrder}>

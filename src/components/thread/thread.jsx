@@ -59,9 +59,10 @@ const Thread = ({
           ref={input}
           type="text"
           name="message"
-          placeholder="Send a message"
+          placeholder="Type a message"
           onKeyDown={handleKey}
           autoComplete="off"
+          aria-label="Type a message"
         />
         <Button onClick={handleAddMessage}>Send</Button>
       </div>

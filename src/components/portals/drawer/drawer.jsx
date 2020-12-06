@@ -25,7 +25,7 @@ const Drawer = ({ title, subtitle, className, actions, children, defaultOpen, re
                 <div className="drawer-title">{title}</div>
                 {subtitle && <div className="drawer-subtitle">{subtitle}</div>}
               </div>
-              <Button simple onClick={hide}>
+              <Button simple onClick={hide} aria-label="Close">
                 <CloseIcon />
               </Button>
             </div>
