@@ -1,23 +1,26 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useCallback } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import cn from 'classnames'
 
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 
-const SubmitTalkLink = ({ eventId, label, displayed, onClick, className, size }) => {
-  const navigate = useNavigate()
-
-  const handleClick = useCallback(() => {
-    onClick()
-    navigate(`/speaker/event/${eventId}/submission`)
-  }, [onClick, navigate, eventId])
-
+const SubmitTalkLink = ({ eventId, label, displayed, className, size, onClick }) => {
   if (!displayed) return null
+
   return (
-    <Button primary accent size={size} onClick={handleClick} className={className}>
-      {label || <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />}
+    <Button primary accent size={size}>
+      {(btn) => (
+        <Link
+          to={`/speaker/event/${eventId}/submission`}
+          onClick={onClick}
+          className={cn(btn, className)}
+        >
+          {label || <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />}
+        </Link>
+      )}
     </Button>
   )
 }
