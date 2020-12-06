@@ -31,13 +31,13 @@
 .dropdown .dropdown-menu > div {
   font-size: 0.9em;
   font-weight: 600;
-  color: var(--grey-color-dark);
+  color: var(--grey-color);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .dropdown.dark .dropdown-menu > div {
-  color: var(--grey-color-dark);
+  color: var(--grey-color);
 }
 
 .dropdown .dropdown-menu > a {

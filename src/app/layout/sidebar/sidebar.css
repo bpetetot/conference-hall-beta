@@ -20,7 +20,7 @@
 }
 
 .sidebar .sidebar-header {
-  color: var(--grey-color-dark);
+  color: var(--grey-color);
   font-size: 0.9em;
   font-weight: 600;
   letter-spacing: 1px;
@@ -40,18 +40,12 @@
 }
 
 .sidebar a.sidebar-link-active {
-  color: var(--secondary-color);
   background: var(--primary-color-light);
 }
 
 .sidebar a.sidebar-link:hover {
-  color: var(--primary-color-font);
   background: var(--primary-color-light);
   text-decoration: none;
-}
-
-.sidebar a.sidebar-link-active:hover {
-  color: var(--secondary-color);
 }
 
 .sidebar a.sidebar-button {

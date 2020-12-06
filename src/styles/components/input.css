@@ -23,7 +23,7 @@ select:focus {
 input:disabled,
 input:read-only,
 select:disabled {
-  color: var(--grey-color);
+  color: var(--grey-color-dark);
 }
 
 input::placeholder {
