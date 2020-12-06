@@ -1,5 +1,25 @@
 # Changelog
 
+<a name="0.38.0"></a>
+## 0.38.0 (2020-12-06)
+
+### Changed
+
+- 💄 replace tooltip by message explaination [[223de35](https://github.com/bpetetot/conference-hall/commit/223de35f3b5416c9bc68446407b71c145b7c9be8)]
+
+### Fixed
+
+- 🐛 fix address autocomplete not displayed ([#860](https://github.com/bpetetot/conference-hall/issues/860)) [[f6dab2d](https://github.com/bpetetot/conference-hall/commit/f6dab2db0884fd2bd2a062139a9b2e8b2c4ae982)]
+- 🐛 fix button disabled for accessibility [[845d1bb](https://github.com/bpetetot/conference-hall/commit/845d1bbdde2b6ddd4d3cd5c9becd9ddaef84a73e)]
+- 🐛 add role presentation on icons for accessibility [[a6ff408](https://github.com/bpetetot/conference-hall/commit/a6ff40844002947834675630f26b545dd888fcae)]
+- 🐛 fix message thread when no user photo [[e3dbec7](https://github.com/bpetetot/conference-hall/commit/e3dbec76848817d60dd5d154ac451f6fd88f3a31)]
+- 🐛 add missing labels to form inputs [[fb03612](https://github.com/bpetetot/conference-hall/commit/fb03612081164fcfe3220e10c7bd4f8f2f204b68)]
+- 🐛 fix address autocomplete field [[ea799a0](https://github.com/bpetetot/conference-hall/commit/ea799a0bb25ebc23d0c1ba88556b7316585ed492)]
+- 🐛 fix color contrasts [[ed87c10](https://github.com/bpetetot/conference-hall/commit/ed87c100143920ff10854fc6e0d5185c2e957ad7)]
+- 🐛 use link instead of button for SubmitTalk [[3a5f6fe](https://github.com/bpetetot/conference-hall/commit/3a5f6fe6b132928cf59500cfc4facce348592c25)]
+- 🐛 fix title hierarchy in event page [[ee74ee9](https://github.com/bpetetot/conference-hall/commit/ee74ee9fa7fa1349f31839a08aae26e690f8ef36)]
+
+
 <a name="0.37.0"></a>
 ## 0.37.0 (2020-11-23)
 
