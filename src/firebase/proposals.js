@@ -113,7 +113,7 @@ export const addReviewersThreadMessage = async (eventId, proposalId, message, us
       message,
       uid: user.uid,
       displayName: user.displayName,
-      photoURL: user.photoURL,
+      photoURL: user.photoURL ? user.photoURL : '',
       date: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
