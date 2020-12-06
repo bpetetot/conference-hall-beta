@@ -10,17 +10,17 @@
   --secondary-color: #ffab00;
   --secondary-color-light: #ffdd4b;
   --secondary-color-dark: #c67c00;
-  --secondary-color-font: #fff;
+  --secondary-color-font: #2a3244;
 
   --grey-color: #c4c9d6;
-  --grey-color-dark: #95949b;
+  --grey-color-dark: #6E6D74;
   --grey-color-light: #eee;
 
   --layout-navbar-height: 60px;
   --layout-sidebar-width: 240px;
 
   --info-color: #fff;
-  --success-color: #7fba01;
+  --success-color: #16793F;
   --question-color: #2170bf;
   --error-color: #c73228;
   --warning-color: #ff9900;

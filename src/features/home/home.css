@@ -11,7 +11,7 @@
   align-items: center;
   background: var(--secondary-color);
   border-radius: 0.5em;
-  color: var(--primary-color-font);
+  color: var(--secondary-color-font);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +38,6 @@
 
 .home .home-link:hover {
   background: var(--primary-color-font);
-  color: var(--secondary-color);
   text-decoration: none;
 }
 

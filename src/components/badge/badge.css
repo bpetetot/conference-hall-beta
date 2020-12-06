@@ -59,7 +59,7 @@
 .cc-badge-warning {
   border: 1px solid var(--warning-color);
   background-color: var(--warning-color);
-  color: #fff;
+  color: #000;
 }
 
 .cc-badge-warning.cc-badge-outline {

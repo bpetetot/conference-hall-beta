@@ -25,7 +25,7 @@
 .preview-markdown-icon {
   display: flex;
   align-items: center;
-  color: var(--grey-color);
+  color: var(--grey-color-dark);
   font-size: 0.9em;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .preview-markdown-icon rect {
-  fill: var(--grey-color);
+  fill: var(--grey-color-dark);
 }
 
 .preview-markdown-icon path {
