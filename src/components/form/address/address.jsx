@@ -75,7 +75,7 @@ const AddressInput = (props) => {
     <PlacesAutocomplete {...props} value={address} onChange={handleChange} onSelect={handleSelect}>
       {({ getInputProps, suggestions, getSuggestionItemProps }) => (
         <div className="cc-address-input-wrapper">
-          <input id={props.id} {...getInputProps({ autoComplete: 'nope' })} />
+          <input id={props.id} {...getInputProps({ autoComplete: 'off' })} />
 
           <div className="cc-address-input-suggestions">
             {suggestions.map((suggestion) => {
