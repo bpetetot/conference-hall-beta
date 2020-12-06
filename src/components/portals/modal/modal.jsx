@@ -35,7 +35,7 @@ const Modal = ({
           <div className={cn('modal', theme, className)}>
             {children({ hide, show, isOpen })}
             {withCloseIcon && (
-              <Button className="modal-close" simple onClick={hide}>
+              <Button className="modal-close" aria-label="Close" simple onClick={hide}>
                 <CloseIcon />
               </Button>
             )}

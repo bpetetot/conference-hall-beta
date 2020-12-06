@@ -34,7 +34,7 @@ class CopyInput extends PureComponent {
           placeholder="Just copy it"
           defaultValue={value}
         />
-        <Button tertiary onClick={this.copy}>
+        <Button tertiary onClick={this.copy} aria-label="Copy to clipboard">
           <i className="fa fa-clipboard" />
         </Button>
       </div>

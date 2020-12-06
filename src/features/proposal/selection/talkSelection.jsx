@@ -32,6 +32,7 @@ const TalkSelection = ({ eventId, onChange, state, emailStatus, isDeliberationDo
           onChange={onChange}
           onClick={(e) => e.stopPropagation()}
           defaultValue={state}
+          aria-label="Set proposal deliberation"
         >
           <option key="submitted" value="submitted">
             Deliberate...

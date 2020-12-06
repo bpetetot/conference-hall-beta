@@ -34,6 +34,7 @@ const AddUserModal = ({
             <InputButton
               type="search"
               placeholder="Search a user by email"
+              aria-label="Search a user by email"
               btnLabel="Search"
               btntitle="Search"
               autoFocus

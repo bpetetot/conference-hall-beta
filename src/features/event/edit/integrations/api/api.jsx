@@ -18,7 +18,12 @@ const Api = ({ eventId, enabled, apiKey, onActiveApi, onGenerateKey }) => {
         <h3>
           <IconLabel icon="fa fa-code" label="HTTP API" />
         </h3>
-        <Toggle name="apiEnabled" checked={enabled} onChange={onActiveApi} />
+        <Toggle
+          name="apiEnabled"
+          checked={enabled}
+          onChange={onActiveApi}
+          aria-label={enabled ? 'Disable API' : 'Enable API'}
+        />
       </div>
       <small className={styles.subtitle}>
         Use the HTTP API if you want to connect a service to some Conference Hall event. Have a look
@@ -31,7 +36,7 @@ const Api = ({ eventId, enabled, apiKey, onActiveApi, onGenerateKey }) => {
       {enabled && (
         <div className={styles.content}>
           <Label name="apiKey" label="API key" classNameInput={styles.input}>
-            <input type="text" value={apiKey} readOnly />
+            <input id="apiKey" type="text" value={apiKey} readOnly />
             <Button onClick={onGenerateKey} disabled={!enabled}>
               Generate API Key
             </Button>

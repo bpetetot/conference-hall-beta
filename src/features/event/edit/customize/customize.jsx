@@ -61,7 +61,13 @@ const CustomizeForm = ({ eventId, onChangeBanner }) => {
           <Button disabled={!!percentage}>
             {percentage ? `Uploading ${percentage}%...` : ' Upload a banner image'}
           </Button>
-          <input type="file" name="myfile" accept="image/png, image/jpeg" onChange={handleUpload} />
+          <input
+            type="file"
+            name="myfile"
+            accept="image/png, image/jpeg"
+            onChange={handleUpload}
+            aria-label="Upload a banner image"
+          />
         </div>
         <div className={styles.error}>{error}</div>
       </div>

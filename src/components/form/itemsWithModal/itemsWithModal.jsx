@@ -36,7 +36,7 @@ export default (name, Form) =>
             <div className="items-form">
               <Modal
                 renderTrigger={({ show }) => (
-                  <Button onClick={show}>
+                  <Button onClick={show} aria-label={`Add ${name}`}>
                     <i className="fa fa-plus" />
                   </Button>
                 )}

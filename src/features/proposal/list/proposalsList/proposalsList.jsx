@@ -41,6 +41,7 @@ const Proposals = ({
       renderRow={(proposal) => (
         <ListItem
           key={proposal.id}
+          id={proposal.id}
           title={proposal.title}
           subtitle={
             !isMobile && (

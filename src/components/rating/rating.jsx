@@ -77,6 +77,7 @@ class Rating extends Component {
             })}
             onMouseEnter={this.handleMouseEnterStar(-1, 'noopinion')}
             onClick={this.handleClick}
+            aria-label="Without opinion vote"
             role="button"
           />
         </Tooltip>
@@ -90,6 +91,7 @@ class Rating extends Component {
             })}
             onMouseEnter={this.handleMouseEnterStar(0, 'hate')}
             onClick={this.handleClick}
+            aria-label="No way vote"
             role="button"
           />
         </Tooltip>
@@ -103,6 +105,7 @@ class Rating extends Component {
             })}
             onMouseEnter={this.handleMouseEnterStar(i)}
             onClick={this.handleClick}
+            aria-label={`${i} star vote`}
             role="button"
           />
         ))}
@@ -115,6 +118,7 @@ class Rating extends Component {
             })}
             onMouseEnter={this.handleMouseEnterStar(5, 'love')}
             onClick={this.handleClick}
+            aria-label="I love it vote"
             role="button"
           />
         </Tooltip>

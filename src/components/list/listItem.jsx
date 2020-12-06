@@ -8,6 +8,7 @@ import './listItem.css'
 
 const ListItem = ({
   onSelect,
+  id,
   info,
   title,
   subtitle,
@@ -19,7 +20,13 @@ const ListItem = ({
   <div className={cn('list-item')}>
     {onCheckboxChange && (
       <div className="list-item-checkbox">
-        <Checkbox onChange={onCheckboxChange} value={checked} disabled={checkboxDisabled} />
+        <Checkbox
+          name={id}
+          onChange={onCheckboxChange}
+          value={checked}
+          disabled={checkboxDisabled}
+          aria-label={`Select proposal ${title}`}
+        />
       </div>
     )}
     <div
@@ -49,6 +56,7 @@ ListItem.propTypes = {
   title: PropTypes.node,
   subtitle: PropTypes.node,
   info: PropTypes.node,
+  id: PropTypes.string,
 }
 
 ListItem.defaultProps = {
@@ -60,6 +68,7 @@ ListItem.defaultProps = {
   title: undefined,
   subtitle: undefined,
   info: undefined,
+  id: undefined,
 }
 
 export default ListItem

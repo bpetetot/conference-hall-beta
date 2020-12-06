@@ -26,6 +26,7 @@ const ChangeRoleSelect = ({ user, role, changeMemberRole }) => {
       renderTrigger={({ show }) => (
         <select
           value={selectedRole}
+          aria-label="Change role"
           onChange={(e) => {
             e.stopPropagation()
             setSelectedRole(e.target.value)

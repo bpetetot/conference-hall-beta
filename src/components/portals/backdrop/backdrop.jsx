@@ -5,7 +5,12 @@ import noop from 'lodash/noop'
 import './backdrop.css'
 
 const Backdrop = ({ onClick, withClickOutside }) => (
-  <div className="backdrop" onClick={withClickOutside ? onClick : noop} role="button" />
+  <div
+    className="backdrop"
+    onClick={withClickOutside ? onClick : noop}
+    role="button"
+    aria-label="Close"
+  />
 )
 
 Backdrop.propTypes = {
