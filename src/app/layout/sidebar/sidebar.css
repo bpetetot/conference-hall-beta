@@ -54,6 +54,6 @@
   color: var(--secondary-color);
 }
 
-.sidebar button.sidebar-button {
+.sidebar a.sidebar-button {
   margin: 10px;
 }
