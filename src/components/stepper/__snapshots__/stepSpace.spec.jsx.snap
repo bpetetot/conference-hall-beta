@@ -3,17 +3,20 @@
 exports[`components/stepSpace should render when current is lower than step 1`] = `
 <div
   className="step-space"
+  role="presentation"
 />
 `;
 
 exports[`components/stepSpace should render when current is one before step 1`] = `
 <div
   className="step-space"
+  role="presentation"
 />
 `;
 
 exports[`components/stepSpace should render when step is current 1`] = `
 <div
   className="step-space space-active-to-default"
+  role="presentation"
 />
 `;

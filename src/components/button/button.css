@@ -27,6 +27,7 @@
 .cc-button-primary {
   background: var(--primary-color);
   border: 1px solid var(--primary-color);
+  outline-color: var(--secondary-color-light);
   color: var(--primary-color-font);
   fill: var(--primary-color-font);
 }
@@ -143,7 +144,7 @@
 }
 
 /* button disabled */
-.cc-button:disabled {
+.cc-button[disabled], .cc-button[aria-disabled=true] {
   background: var(--grey-color-light);
   border: 1px solid var(--grey-color-light);
   color: var(--grey-color-dark);
@@ -151,7 +152,7 @@
   cursor: not-allowed;
 }
 
-.cc-button:disabled:hover {
+.cc-button[disabled]:hover, .cc-button[aria-disabled=true]:hover {
   background: var(--grey-color-light);
   border: 1px solid var(--grey-color-light);
   color: var(--grey-color-dark);

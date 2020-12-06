@@ -36,6 +36,8 @@ const Button = ({
     className,
   )
 
+  const disabled = rest['aria-disabled'] || rest.disabled
+
   if (typeof children === 'function') {
     return children(classes)
   }
@@ -50,7 +52,18 @@ const Button = ({
   }
 
   return (
-    <button type="button" className={classes} onClick={onClick} {...rest}>
+    <button
+      type="button"
+      className={classes}
+      onClick={
+        disabled
+          ? (e) => {
+              e.preventDefault()
+            }
+          : onClick
+      }
+      {...rest}
+    >
       {loading && <i className="cc-button-loading fa fa-circle-o-notch fa-spin fa-fw" />}
       {children}
     </button>
