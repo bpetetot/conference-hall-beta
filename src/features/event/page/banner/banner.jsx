@@ -14,11 +14,11 @@ const EventBanner = ({ eventId, name, type, address, bannerUrl, className, isMob
     <div className={cn(styles.banner, className)} style={bannerStyle}>
       <div className={styles.layer} />
       <div className={styles.rightSide}>
-        <div className={styles.title}>{name}</div>
-        <div className={styles.subtitle}>
+        <h1 className={styles.title}>{name}</h1>
+        <p className={styles.subtitle}>
           {capitalize(type)}
           {address && ` • ${address.formattedAddress}`}
-        </div>
+        </p>
         <div className={styles.actions}>
           <SubmitTalkLink eventId={eventId} size={isMobile ? 'small' : 'normal'} />
         </div>
