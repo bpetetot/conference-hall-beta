@@ -35,10 +35,11 @@
 }
 
 .tooltip {
-  text-transform: none;
   overflow: auto;
   white-space: normal;
-  margin-left: 0.5em;
+  color: var(--grey-color-dark);
+  font-size: 0.875rem;
+  margin: 5px 8px 5px 0;
 }
 
 .hints {
