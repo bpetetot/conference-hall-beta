@@ -56,7 +56,6 @@
 
 .field {
   width: 100%;
-  overflow: auto;
 }
 
 .label .input-autocomplete {
