@@ -36,6 +36,7 @@
   font-size: 3.5vw;
   letter-spacing: 2px;
   text-align: right;
+  margin-bottom: 0;
 }
 
 .subtitle {
@@ -43,6 +44,7 @@
   font-size: 1.2em;
   font-weight: 400;
   text-align: right;
+  margin-bottom: 0;
 }
 
 .actions {

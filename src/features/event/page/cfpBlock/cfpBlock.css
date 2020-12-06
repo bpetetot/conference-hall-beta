@@ -1,14 +1,19 @@
 .cfp-block {
-  font-size: 2em;
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
   flex-direction: column;
 }
 
+.cfp-block .cfp-block-title {
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
 .cfp-block .cfp-block-subtitle {
-  font-size: 0.6em;
+  font-size: 1rem;
   margin-top: 1em;
+  margin-bottom: 0;
 }
 
 .cfp-block.cfp-block-not-started {

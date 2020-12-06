@@ -17,13 +17,13 @@ class CfpBlock extends Component {
 
     return (
       <div className={cn('cfp-block', className, `cfp-block-${cfpState}`)}>
-        <div className="cfp-block-title">Call for paper {this.renderCfpLabel()}</div>
+        <h2 className="cfp-block-title">Call for paper {this.renderCfpLabel()}</h2>
         {type === 'conference' && (
-          <div className="cfp-block-subtitle">
+          <p className="cfp-block-subtitle">
             {cfpState === 'not-started' && !!start && `Will open ${start}`}
             {cfpState === 'opened' && !!end && `Until ${end}`}
             {cfpState === 'closed' && deliberation && `Deliberation date will be ${deliberation}`}
-          </div>
+          </p>
         )}
       </div>
     )
