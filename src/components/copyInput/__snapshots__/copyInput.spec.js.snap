@@ -18,6 +18,7 @@ exports[`components/copyInput should render with all props 1`] = `
     type="text"
   />
   <button
+    aria-label="Copy to clipboard"
     className="cc-button cc-button-tertiary"
     onClick={[Function]}
     type="button"
@@ -40,6 +41,7 @@ exports[`components/copyInput should render without props 1`] = `
     type="text"
   />
   <button
+    aria-label="Copy to clipboard"
     className="cc-button cc-button-tertiary"
     onClick={[Function]}
     type="button"
@@ -63,6 +65,7 @@ exports[`components/copyInput should render without title 1`] = `
     type="text"
   />
   <button
+    aria-label="Copy to clipboard"
     className="cc-button cc-button-tertiary"
     onClick={[Function]}
     type="button"

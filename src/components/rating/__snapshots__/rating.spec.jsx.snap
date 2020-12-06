@@ -11,6 +11,7 @@ exports[`components/rating should render 1`] = `
     tooltip="Without opinion"
   >
     <i
+      aria-label="Without opinion vote"
       className="fa fa-2x fa-ban rating-noopinion-disable"
       onClick={[Function]}
       onMouseEnter={[Function]}
@@ -23,6 +24,7 @@ exports[`components/rating should render 1`] = `
     tooltip="No way! (0)"
   >
     <i
+      aria-label="No way vote"
       className="fa fa-2x bounce"
       onClick={[Function]}
       onMouseEnter={[Function]}
@@ -30,6 +32,7 @@ exports[`components/rating should render 1`] = `
     />
   </Tooltip>
   <i
+    aria-label="1 star vote"
     className="fa fa-2x fa-star-o"
     key="1"
     onClick={[Function]}
@@ -37,6 +40,7 @@ exports[`components/rating should render 1`] = `
     role="button"
   />
   <i
+    aria-label="2 star vote"
     className="fa fa-2x fa-star-o"
     key="2"
     onClick={[Function]}
@@ -44,6 +48,7 @@ exports[`components/rating should render 1`] = `
     role="button"
   />
   <i
+    aria-label="3 star vote"
     className="fa fa-2x fa-star-o"
     key="3"
     onClick={[Function]}
@@ -51,6 +56,7 @@ exports[`components/rating should render 1`] = `
     role="button"
   />
   <i
+    aria-label="4 star vote"
     className="fa fa-2x fa-star-o"
     key="4"
     onClick={[Function]}
@@ -58,6 +64,7 @@ exports[`components/rating should render 1`] = `
     role="button"
   />
   <i
+    aria-label="5 star vote"
     className="fa fa-2x fa-star-o"
     key="5"
     onClick={[Function]}
@@ -70,6 +77,7 @@ exports[`components/rating should render 1`] = `
     tooltip="I love it! (5)"
   >
     <i
+      aria-label="I love it vote"
       className="fa fa-2x fa-heart-o"
       onClick={[Function]}
       onMouseEnter={[Function]}

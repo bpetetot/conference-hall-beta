@@ -2,6 +2,7 @@
 
 exports[`components/backdrop should render 1`] = `
 <div
+  aria-label="Close"
   className="backdrop"
   role="button"
 />
