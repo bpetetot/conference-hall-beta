@@ -9,7 +9,7 @@ const Step = ({ icon, step, current }) => {
   const stepClasses = (s, c) => cn('step-icon', { 'step-active': s === c, 'step-success': s < c })
 
   return (
-    <div className={stepClasses(step, current)}>
+    <div className={stepClasses(step, current)} role="presentation">
       <i className={stepIcon(icon, step, current)} />
     </div>
   )

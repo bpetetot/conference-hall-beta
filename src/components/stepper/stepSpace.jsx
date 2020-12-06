@@ -10,7 +10,7 @@ const StepSpace = ({ step, current }) => {
     if (s < c) return 'step-space space-success-to-active'
     return 'step-space'
   }
-  return <div className={stepSpaceClasses(step, current)} />
+  return <div className={stepSpaceClasses(step, current)} role="presentation" />
 }
 
 StepSpace.propTypes = {
