@@ -37,9 +37,6 @@ const TalkSubmission = ({
               Remove submission
             </SubmitButton>
           )}
-          <SubmitButton onClick={handleSubmit} submitting={isSubmitting} invalid={invalid}>
-            {update ? 'Update submission' : `Submit to ${event.name}`}
-          </SubmitButton>
         </Titlebar>
         {!isEmpty(error) && (
           <div className="form-error">
@@ -83,6 +80,9 @@ const TalkSubmission = ({
             hints="Ask special requirements to organizers or just thank them."
             component={markdownInput}
           />
+          <SubmitButton onClick={handleSubmit} submitting={isSubmitting} invalid={invalid}>
+            {update ? 'Update submission' : `Submit to ${event.name}`}
+          </SubmitButton>
         </div>
       </form>
     )}

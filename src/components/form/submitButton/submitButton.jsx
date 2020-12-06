@@ -22,7 +22,7 @@ const SubmitButton = ({
     className={className}
     accent={!secondary}
     secondary={secondary}
-    disabled={pristine || submitting || invalid}
+    aria-disabled={pristine || submitting || invalid}
   >
     {submitting && <IconLabel icon="fa fa-cog fa-spin fa-fw" label={loadingMessage} />}
     {!submitting && children}

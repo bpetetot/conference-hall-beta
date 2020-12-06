@@ -3,6 +3,7 @@
 exports[`components/step should render 1`] = `
 <div
   className="step-icon step-active"
+  role="presentation"
 >
   <i
     className="fa-check"
