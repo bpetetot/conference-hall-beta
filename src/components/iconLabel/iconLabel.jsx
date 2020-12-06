@@ -9,13 +9,13 @@ const IconLabel = ({ icon, label, right, overflow, className }) => {
   return (
     <span className={cn(className, 'icon-label', { 'icon-label-right': right })}>
       {!right && icon && (
-        <span>
+        <span role="presentation">
           <i className={icon} />
         </span>
       )}
       <span className={cn({ 'icon-label-overflow': overflow })}>{label}</span>
       {right && icon && (
-        <span>
+        <span role="presentation">
           <i className={icon} />
         </span>
       )}
