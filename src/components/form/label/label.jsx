@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import { withSizes } from 'styles/utils'
-import Tooltip from 'components/tooltip/tooltip'
 import IconLabel from 'components/iconLabel'
 import styles from './label.module.css'
 
@@ -35,11 +34,7 @@ const Label = ({
       <label className={styles.label} htmlFor={name}>
         <div>
           <span className={styles.text}>{label}</span>
-          {tooltip && (
-            <Tooltip className={styles.tooltip} tooltip={tooltip} inline>
-              <i className="fa fa-info-circle" />
-            </Tooltip>
-          )}
+          {tooltip && <p className={styles.tooltip}>{tooltip}</p>}
         </div>
         {hints && <div className={styles.hints}>{hints}</div>}
         {error && <IconLabel icon="fa fa-warning" label={error} className={styles.errorMessage} />}
