@@ -1,46 +1,64 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import values from 'lodash/values'
-import compact from 'lodash/compact'
 
 import TotalRatings from 'features/ratings/totalRatings'
-import TalkSelection from 'features/proposal/selection'
+import Badge from 'components/badge'
 
 import './proposalInfo.css'
 
-const ProposalInfo = ({ eventId, proposal, isMobile, deliberationActive, hideRatings }) => {
-  const { id, rating, loves, hates, noopinion, usersRatings } = proposal
-
-  const nbVotes = compact(values(usersRatings)).length
-
+const ProposalInfo = ({ event, proposal, isMobile }) => {
+  const { deliberationEnabled, displayProposalsRatings } = event
+  const { status, emailStatus } = proposal
   return (
     <div className="proposal-item-info">
-      {!isMobile && deliberationActive && <TalkSelection eventId={eventId} proposalId={id} />}
-      {!hideRatings && (
-        <TotalRatings
-          rating={rating}
-          loves={loves}
-          hates={hates}
-          noopinion={noopinion}
-          nbvotes={nbVotes}
-        />
+      {!isMobile && deliberationEnabled && (
+        <>
+          {status === 'ACCEPTED' && (
+            <Badge outline success>
+              Accepted
+            </Badge>
+          )}
+          {status === 'REJECTED' && (
+            <Badge outline error>
+              Rejected
+            </Badge>
+          )}
+          {status === 'CONFIRMED' && (
+            <Badge outline success>
+              Confirmed by speaker
+            </Badge>
+          )}
+          {status === 'DECLINED' && (
+            <Badge outline error>
+              Declined by speaker
+            </Badge>
+          )}
+          {emailStatus === 'SENDING' && (
+            <Badge outline light>
+              Sending email...
+            </Badge>
+          )}
+          {emailStatus === 'SENT' && (
+            <Badge outline info>
+              Email sent
+            </Badge>
+          )}
+          {emailStatus === 'DELIVERED' && (
+            <Badge outline success>
+              Email delivered
+            </Badge>
+          )}
+        </>
       )}
+      {displayProposalsRatings && <TotalRatings stats={proposal.ratingStats} />}
     </div>
   )
 }
 
 ProposalInfo.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  proposal: PropTypes.objectOf(PropTypes.any),
+  event: PropTypes.object.isRequired,
+  proposal: PropTypes.object.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  deliberationActive: PropTypes.bool,
-  hideRatings: PropTypes.bool,
-}
-
-ProposalInfo.defaultProps = {
-  proposal: {},
-  deliberationActive: false,
-  hideRatings: false,
 }
 
 export default ProposalInfo

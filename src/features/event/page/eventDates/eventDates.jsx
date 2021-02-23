@@ -2,17 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import { toDate } from 'helpers/firebase'
 import { formatDate } from 'helpers/date'
 import IconLabel from 'components/iconLabel'
 import isEqual from 'date-fns/isEqual'
 
 import './eventDates.css'
 
-const EventDates = ({ dates: { start, end }, timezone, large, className }) => {
-  if (!start && !end) return null
-  const startDate = toDate(start)
-  const endDate = toDate(end)
+const EventDates = ({ startDate, endDate, timezone, large, className }) => {
+  if (!startDate && !endDate) return null
   return (
     <IconLabel
       icon={cn('fa fa-calendar', { 'fa-2x': large })}
@@ -33,14 +30,16 @@ const EventDates = ({ dates: { start, end }, timezone, large, className }) => {
 }
 
 EventDates.propTypes = {
-  dates: PropTypes.objectOf(PropTypes.any),
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
   large: PropTypes.bool,
   timezone: PropTypes.string,
   className: PropTypes.string,
 }
 
 EventDates.defaultProps = {
-  dates: {},
+  startDate: undefined,
+  endDate: undefined,
   large: false,
   className: undefined,
   timezone: 'Europe/Paris',

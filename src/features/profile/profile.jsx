@@ -9,37 +9,64 @@ import * as validators from 'components/form/validators'
 import Avatar from 'components/avatar'
 
 import './profile.css'
+import { useResetUserProvider, useUpdateUser } from '../../data/user'
 
 const validateEmail = validators.validate([validators.required, validators.email])
 
 const Profile = () => {
-  const { user, updateUser, resetUserFromProvider } = useAuth()
-  const { displayName, photoURL, email } = user
+  const { user } = useAuth()
+  const { mutateAsync: resetUserProvider } = useResetUserProvider()
+  const { mutateAsync: updateUser } = useUpdateUser()
+  const { name, photoURL, email } = user
+
+  const initialValues = {
+    email: user.email,
+    name: user.name,
+    company: user.company,
+    photoURL: user.photoURL,
+    phone: user.phone,
+    language: user.language,
+    twitter: user.twitter,
+    github: user.github,
+    bio: user.bio,
+    references: user.references,
+    address: {
+      address: user.address,
+      lat: user.lat,
+      lng: user.lng,
+      timezone: user.timezone,
+    },
+  }
+
+  const onSubmit = (data) => {
+    return updateUser({
+      ...data,
+      address: data?.address?.address,
+      lat: data?.address?.lat,
+      lng: data?.address?.lng,
+      timezone: data?.address?.timezone,
+    })
+  }
 
   return (
-    <Form onSubmit={updateUser} initialValues={user}>
+    <Form onSubmit={onSubmit} initialValues={initialValues}>
       {({ handleSubmit, pristine, invalid, submitting }) => (
         <div className="profile">
           <div className="profile-header card">
-            <Avatar name={displayName} src={photoURL} className="profile-avatar" square />
+            <Avatar name={name} src={photoURL} className="profile-avatar" square />
             <div className="profile-infos">
-              <h1>{displayName}</h1>
+              <h1>{name}</h1>
               <small>{email}</small>
             </div>
             <div className="profile-button">
-              <Button
-                secondary
-                loading={submitting}
-                disabled={submitting}
-                onClick={resetUserFromProvider}
-              >
+              <Button secondary disabled={submitting} onClick={resetUserProvider}>
                 Set defaults from auth provider
               </Button>
             </div>
           </div>
           <form className="profile-form card">
             <Field
-              name="displayName"
+              name="name"
               label="Full name"
               type="text"
               component={input}
@@ -84,7 +111,7 @@ const Profile = () => {
             <Field name="address" label="City" type="text" component={address} inline />
             <Field name="bio" label="Biography" component={markdownInput} inline />
             <Field
-              name="speakerReferences"
+              name="references"
               label="Speaker references"
               tooltip="Give some information about your speaker experience: your already-given talks, conferences or meetups as speaker, video links..."
               component={markdownInput}

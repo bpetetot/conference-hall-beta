@@ -13,6 +13,10 @@
   transition: all 0.5s;
 }
 
+.rating > span, .rating > button {
+  cursor: pointer;
+}
+
 .rating > span > i {
   padding: 0 0.5em;
 }

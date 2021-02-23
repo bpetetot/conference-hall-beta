@@ -1,1 +1,1 @@
-export { default } from './eventSidebar.container'
+export { default } from './eventSidebar'

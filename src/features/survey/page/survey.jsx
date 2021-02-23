@@ -1,31 +1,33 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useParams } from 'react-router'
 
+import { LoadingIndicator } from 'components/loader'
 import EventTitle from 'features/event/eventTitle'
-import { useAuth } from 'features/auth'
+import { useEvent } from 'data/event'
 import SurveyForm from '../form'
 
 import './survey.css'
 
-const SpeakerSurvey = ({ eventId, name }) => {
-  const { user } = useAuth()
+const SpeakerSurvey = () => {
+  const { eventId } = useParams()
+  const { data: event } = useEvent(eventId)
+
+  if (!event) {
+    return <LoadingIndicator />
+  }
+
   return (
     <div className="speaker-survey">
-      <EventTitle name={name} subtitle="Speaker survey" />
+      <EventTitle name={event.name} subtitle="Speaker survey" />
       <div className="card">
         <p>
           Organizers need some information about you in order to make a better event experience for
           speakers. Please fill the following survey to help them.
         </p>
-        <SurveyForm eventId={eventId} uid={user.uid} />
+        <SurveyForm eventId={eventId} survey={event.surveyQuestions} />
       </div>
     </div>
   )
-}
-
-SpeakerSurvey.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
 }
 
 export default SpeakerSurvey

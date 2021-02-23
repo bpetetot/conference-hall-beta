@@ -1,1 +1,1 @@
-export { default } from './speakerSurveys.container'
+export { default } from './speakerSurveys'

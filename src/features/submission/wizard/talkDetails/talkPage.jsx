@@ -1,30 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { useTalk } from 'data/talk'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
+import { LoadingIndicator } from 'components/loader'
 import { TalkAbstract, TalkSpeakers } from 'features/talk'
-import TalkTitle from './talkTitle'
 
 import './talkPage.css'
 
-const TalkPage = ({
-  id,
-  eventId,
-  title,
-  abstract,
-  level,
-  owner,
-  references,
-  language,
-  speakers,
-  onNext,
-}) => {
-  const titleComponent = <TalkTitle talkId={id} eventId={eventId} title={title} />
+const TalkPage = ({ talkId, onNext }) => {
+  const { data: talk } = useTalk(talkId)
+
+  if (!talk) {
+    return <LoadingIndicator />
+  }
   return (
     <div className="talk-details">
-      <Titlebar icon="fa fa-microphone" title={titleComponent} className="talk-title">
+      <Titlebar icon="fa fa-microphone" title={talk.title} className="talk-title">
         <Button accent onClick={onNext}>
           <IconLabel icon="fa fa-angle-right" label="Next" right />
         </Button>
@@ -32,17 +26,16 @@ const TalkPage = ({
       <div className="talk-page">
         <TalkAbstract
           className="talk-content"
-          abstract={abstract}
-          references={references}
-          language={language}
-          level={level}
+          abstract={talk.abstract}
+          references={talk.references}
+          language={talk.language}
+          level={talk.level}
         />
         <TalkSpeakers
           className="talk-info"
-          talkId={id}
-          talkTitle={title}
-          owner={owner}
-          speakers={speakers}
+          talkId={talk.id}
+          ownerId={talk.ownerId}
+          speakers={talk.speakers}
         />
       </div>
     </div>
@@ -50,25 +43,8 @@ const TalkPage = ({
 }
 
 TalkPage.propTypes = {
-  id: PropTypes.string.isRequired,
-  eventId: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  abstract: PropTypes.string,
-  level: PropTypes.string,
-  owner: PropTypes.string,
-  references: PropTypes.string,
-  language: PropTypes.string,
-  speakers: PropTypes.objectOf(PropTypes.bool),
+  talkId: PropTypes.string.isRequired,
   onNext: PropTypes.func.isRequired,
-}
-
-TalkPage.defaultProps = {
-  abstract: undefined,
-  level: 'not defined',
-  owner: undefined,
-  references: undefined,
-  language: undefined,
-  speakers: {},
 }
 
 export default TalkPage

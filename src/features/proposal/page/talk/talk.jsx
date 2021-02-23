@@ -1,32 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import isEmpty from 'lodash/isEmpty'
 
-import { withSizes } from 'styles/utils'
 import Badge from 'components/badge'
 import Markdown from 'components/markdown'
-import { FormatBadge, CategoryBadge } from 'features/event/badges'
-import ProposalSelection from 'features/proposal/selection'
-import { formatTimestamp } from 'helpers/firebase'
+import { formatDate } from 'helpers/date'
 
 import styles from './talk.module.css'
 
-const Talk = ({ eventId, proposal, deliberationActive, isMobile, className }) => (
+const Talk = ({ proposal, className }) => (
   <div className={cn(className, 'card')}>
     <div className={styles.title}>
       <h2>{proposal.title}</h2>
-      <div>
-        {!isMobile && deliberationActive && (
-          <div>
-            <ProposalSelection eventId={eventId} proposalId={proposal.id} />
-          </div>
-        )}
-      </div>
     </div>
     <div className={styles.metadata}>
       <div className={styles.badges}>
-        <FormatBadge outline pill light eventId={eventId} formatId={proposal.formats} />
-        <CategoryBadge outline pill light eventId={eventId} categoryId={proposal.categories} />
+        {!isEmpty(proposal.formats) && (
+          <Badge outline pill light>
+            {proposal.formats[0].name}
+          </Badge>
+        )}
+        {!isEmpty(proposal.categories) && (
+          <Badge outline pill light>
+            {proposal.categories[0].name}
+          </Badge>
+        )}
         <Badge outline pill light>
           {proposal.level}
         </Badge>
@@ -35,7 +34,7 @@ const Talk = ({ eventId, proposal, deliberationActive, isMobile, className }) =>
         </Badge>
       </div>
       <div>
-        <small>Submitted on {formatTimestamp(proposal.createTimestamp, 'large')}</small>
+        <small>Submitted on {formatDate(proposal.createdAt, 'large')}</small>
       </div>
     </div>
     <div className={styles.infos}>
@@ -49,18 +48,12 @@ const Talk = ({ eventId, proposal, deliberationActive, isMobile, className }) =>
 )
 
 Talk.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  proposal: PropTypes.objectOf(PropTypes.any),
+  proposal: PropTypes.object.isRequired,
   className: PropTypes.string,
-  deliberationActive: PropTypes.bool,
-  isMobile: PropTypes.bool,
 }
 
 Talk.defaultProps = {
-  proposal: {},
-  deliberationActive: false,
-  isMobile: false,
   className: undefined,
 }
 
-export default withSizes(Talk)
+export default Talk

@@ -1,21 +1,21 @@
 import React, { useState, useMemo } from 'react'
-import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { toDate } from 'helpers/firebase'
 import { List, ListItem } from 'components/list'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import RelativeDate from 'components/relativeDate'
 import NoTalks from 'features/talk/noTalks'
+import { useTalks } from '../../../data/talk'
 
 import TalkInfo from './talkInfo'
 
-const MyTalks = ({ talks }) => {
+const MyTalks = () => {
   const navigate = useNavigate()
-
   const [status, setStatus] = useState('active')
+  const { data: talks = [] } = useTalks()
+
   const filteredTalks = useMemo(
     () =>
       talks.filter((talk) => {
@@ -47,26 +47,18 @@ const MyTalks = ({ talks }) => {
       <List
         array={filteredTalks}
         noResult={status === 'archived' ? 'No archived talk' : <NoTalks />}
-        renderRow={({ id, title, submissions, archived, updateTimestamp }) => (
+        renderRow={({ id, title, proposals, archived, updatedAt }) => (
           <ListItem
             key={id}
             title={title}
-            subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
-            info={<TalkInfo id={id} submissions={submissions} archived={archived} />}
+            subtitle={<RelativeDate date={updatedAt} />}
+            info={<TalkInfo id={id} proposals={proposals} archived={archived} />}
             onSelect={() => navigate(`/speaker/talk/${id}`)}
           />
         )}
       />
     </div>
   )
-}
-
-MyTalks.propTypes = {
-  talks: PropTypes.arrayOf(PropTypes.object),
-}
-
-MyTalks.defaultProps = {
-  talks: [],
 }
 
 export default MyTalks

@@ -17,12 +17,12 @@ const AvatarDropdown = () => {
 
   if (!user) return null
 
-  const { displayName, photoURL } = user
-  const avatar = <Avatar src={photoURL} name={displayName} className="avatar-dropdown-button" />
+  const { name, photoURL } = user
+  const avatar = <Avatar src={photoURL} name={name} className="avatar-dropdown-button" />
 
   return (
     <Dropdown className="avatar-dropdown" action={avatar} darkMode>
-      <div>{displayName}</div>
+      <div>{name}</div>
       <Link to="/">
         <IconLabel icon="fa fa-home" label="Conference Hall" />
       </Link>

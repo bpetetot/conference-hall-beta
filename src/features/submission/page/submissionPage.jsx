@@ -1,46 +1,46 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
+import isEmpty from 'lodash/isEmpty'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import { FormatBadge, CategoryBadge } from 'features/event/badges'
-import { TalkAbstract, TalkSpeakers, TalkStatus } from 'features/talk'
+import Badge from 'components/badge'
+import { LoadingIndicator } from 'components/loader'
+import { useEvent } from 'data/event'
+import { useTalk } from 'data/talk'
+import { TalkAbstract, TalkSpeakers } from 'features/talk'
 import Notification from 'features/talk/deliberation/notification'
 
 import styles from './submissionPage.module.css'
 
-const SubmissionPage = ({
-  eventId,
-  id,
-  title,
-  abstract,
-  level,
-  owner,
-  state,
-  references,
-  language,
-  formats,
-  speakers,
-  categories,
-  onUpdateSubmission,
-  cfpOpened,
-}) => {
-  const navigate = useNavigate()
+const SubmissionPage = ({ eventId, talkId, onUpdateSubmission }) => {
+  const { data: event } = useEvent(eventId)
+  const { data: talk } = useTalk(talkId)
 
+  const navigate = useNavigate()
   const handleUpdateSubmission = useCallback(() => {
     onUpdateSubmission()
     navigate(`/speaker/event/${eventId}/submission`)
   }, [onUpdateSubmission, navigate, eventId])
 
+  if (!event || !talk) {
+    return <LoadingIndicator />
+  }
+
+  const proposal = talk.proposals.find((p) => p.eventId === event.id)
+  if (!proposal) {
+    return 'no proposal found'
+  }
+
   return (
     <div>
-      <Titlebar icon="fa fa-microphone" title={title}>
-        <Link to={`/speaker/talk/${id}`}>
+      <Titlebar icon="fa fa-microphone" title={proposal.title}>
+        <Link to={`/speaker/talk/${talkId}`}>
           <IconLabel icon="fa fa-history" label="Show current version" />
         </Link>
-        {cfpOpened && (
+        {event.isCfpOpened && (
           <Button accent onClick={handleUpdateSubmission}>
             Update submission
           </Button>
@@ -48,26 +48,31 @@ const SubmissionPage = ({
       </Titlebar>
       <div className={styles.submission}>
         <div className={styles.header}>
-          {state === 'accepted' && (
+          {proposal.status === 'ACCEPTED' && (
             <div className={styles.notification}>
-              <Notification eventId={eventId} talkId={id} />
+              <Notification eventId={eventId} talkId={talkId} />
             </div>
           )}
           <div className={styles.status}>
-            {state !== 'accepted' && <TalkStatus talkId={id} eventId={eventId} />}
-            <FormatBadge outline eventId={eventId} formatId={formats} />
-            <CategoryBadge outline eventId={eventId} categoryId={categories} />
+            {proposal.status !== 'ACCEPTED' && <Badge>{proposal.status}</Badge>}
+            {!isEmpty(proposal.formats) && <Badge outline>{proposal.formats[0].name}</Badge>}
+            {!isEmpty(proposal.categories) && <Badge outline>{proposal.categories[0].name}</Badge>}
           </div>
         </div>
         <TalkAbstract
           className={styles.content}
-          abstract={abstract}
-          references={references}
-          language={language}
-          level={level}
+          abstract={proposal.abstract}
+          references={proposal.references}
+          language={proposal.language}
+          level={proposal.level}
         />
         <div className={styles.info}>
-          <TalkSpeakers talkId={id} talkTitle={title} speakers={speakers} owner={owner} />
+          <TalkSpeakers
+            talkId={talkId}
+            talkTitle={talk.title}
+            speakers={talk.speakers}
+            ownerId={talk.ownerId}
+          />
         </div>
       </div>
     </div>
@@ -76,34 +81,8 @@ const SubmissionPage = ({
 
 SubmissionPage.propTypes = {
   eventId: PropTypes.string.isRequired,
-  id: PropTypes.string,
-  title: PropTypes.string,
-  abstract: PropTypes.string,
-  level: PropTypes.string,
-  owner: PropTypes.string,
-  state: PropTypes.string,
-  references: PropTypes.string,
-  language: PropTypes.string,
-  formats: PropTypes.string,
-  categories: PropTypes.string,
-  speakers: PropTypes.objectOf(PropTypes.bool),
+  talkId: PropTypes.string.isRequired,
   onUpdateSubmission: PropTypes.func.isRequired,
-  cfpOpened: PropTypes.bool,
-}
-
-SubmissionPage.defaultProps = {
-  id: undefined,
-  title: undefined,
-  abstract: undefined,
-  level: 'not defined',
-  owner: undefined,
-  state: undefined,
-  references: undefined,
-  language: undefined,
-  formats: undefined,
-  categories: undefined,
-  speakers: {},
-  cfpOpened: false,
 }
 
 export default SubmissionPage

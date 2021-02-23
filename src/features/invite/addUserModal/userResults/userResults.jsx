@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import UserAvatar from 'features/auth/userAvatar'
+import Avatar from 'components/avatar'
 import './userResults.css'
 
 const UserResults = ({ users, message, onSelectUser }) => {
@@ -16,9 +16,9 @@ const UserResults = ({ users, message, onSelectUser }) => {
   return (
     <div className="users-result">
       <h3>{message}</h3>
-      {users.map(({ uid }) => (
-        <div key={uid} onClick={() => onSelectUser(uid)} role="button">
-          <UserAvatar id={uid} />
+      {users.map(({ id, name, photoURL }) => (
+        <div key={id} onClick={() => onSelectUser(id)} role="button">
+          <Avatar src={photoURL} name={name} withLabel />
         </div>
       ))}
     </div>

@@ -61,6 +61,7 @@
 }
 
 .cc-button-tertiary:hover {
+  background: var(--grey-color-light);
   color: var(--primary-color-dark);
   fill: var(--primary-color-dark);
 }
@@ -171,12 +172,12 @@
 
 .cc-button-tertiary.cc-button:disabled {
   background: none;
-  border: none;
+  border: 1px solid transparent;
 }
 
 .cc-button-tertiary.cc-button:disabled:hover {
   background: none;
-  border: none;
+  border: 1px solid transparent;
 }
 
 /** block button */

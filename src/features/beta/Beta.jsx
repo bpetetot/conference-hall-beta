@@ -1,28 +1,28 @@
 import React, { useCallback, useState } from 'react'
 
-import { isValidBetaAccessKey } from 'firebase/betaAccess'
-import { useAuth } from 'features/auth'
 import useRedirectNext from 'features/router/useRedirectNext'
 import InputButton from 'components/form/inputButton'
 
 import styles from './Beta.module.css'
+import { useValidateBetaKey } from '../../data/betaKey'
 
 const BetaAccess = () => {
-  const { updateUser } = useAuth()
   const [error, setError] = useState()
   const redirectNext = useRedirectNext()
-
+  const { mutateAsync: validateBetaKey } = useValidateBetaKey()
   const onValidateBetaKey = useCallback(
     async (betaAccess) => {
-      const valid = await isValidBetaAccessKey(betaAccess)
-      if (valid) {
-        await updateUser({ betaAccess })
-        redirectNext()
-      } else {
-        setError('Sorry, invalid beta access key.')
-      }
+      await validateBetaKey(betaAccess, {
+        onSuccess: (isValid) => {
+          if (isValid) {
+            redirectNext()
+          } else {
+            setError('Sorry, invalid beta access key.')
+          }
+        },
+      })
     },
-    [redirectNext, updateUser],
+    [redirectNext, validateBetaKey],
   )
 
   return (

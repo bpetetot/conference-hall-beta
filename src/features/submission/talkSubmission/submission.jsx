@@ -1,8 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useParams } from 'react-router'
 
 import Stepper from 'components/stepper'
 import { TalkTitle } from 'features/talk'
+import { useTalk } from 'data/talk'
 import EventsSelection from './eventsSelection'
 
 import './submission.css'
@@ -14,25 +15,18 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const Submission = ({ talkId, talkTitle }) => {
-  if (!talkId) return null
+const Submission = () => {
+  const { talkId } = useParams()
+  const { data: talk } = useTalk(talkId)
+  if (!talk) return null
+
   return (
     <div className="submission">
-      <TalkTitle name={talkTitle} />
+      <TalkTitle name={talk.title} />
       <Stepper steps={steps} currentStep={0} />
       <EventsSelection talkId={talkId} />
     </div>
   )
-}
-
-Submission.propTypes = {
-  talkId: PropTypes.string,
-  talkTitle: PropTypes.string,
-}
-
-Submission.defaultProps = {
-  talkId: undefined,
-  talkTitle: '',
 }
 
 export default Submission

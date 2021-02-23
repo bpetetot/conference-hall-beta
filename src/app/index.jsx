@@ -2,10 +2,11 @@ import React from 'react'
 import cn from 'classnames'
 import { Routes, Route } from 'react-router-dom'
 import { provider } from '@k-ramel/react'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 import useTheme from 'styles/themes/useTheme'
 import store from 'store'
-import { CurrentEventProvider } from 'features/event/currentEventContext'
 import { AuthProvider } from 'features/auth'
 import PrivateRoute from 'features/router/PrivateRoute'
 import Home from 'features/home'
@@ -19,12 +20,23 @@ import Organizer from './organizer'
 
 import 'styles'
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchIntervalInBackground: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  },
+})
+
 const App = () => {
   const theme = useTheme()
   return (
     <div className={cn('app', theme)}>
-      <AuthProvider>
-        <CurrentEventProvider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <AuthProvider client={queryClient}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -35,8 +47,8 @@ const App = () => {
             <PrivateRoute path="/invite/:inviteId" element={<Invite />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
-        </CurrentEventProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </QueryClientProvider>
     </div>
   )
 }

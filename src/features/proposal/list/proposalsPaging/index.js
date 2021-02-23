@@ -1,1 +1,1 @@
-export { default } from './proposalsPaging.container'
+export { default } from './proposalsPaging'

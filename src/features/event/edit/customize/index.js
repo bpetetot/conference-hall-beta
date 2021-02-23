@@ -1,1 +1,1 @@
-export { default } from './customize.container'
+export { default } from './customize'

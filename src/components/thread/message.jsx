@@ -12,9 +12,9 @@ import styles from './message.module.css'
 const Message = ({
   id,
   photoURL,
-  displayName,
+  name,
   message,
-  date,
+  createdAt,
   className,
   modified,
   allowEdit,
@@ -35,7 +35,7 @@ const Message = ({
   }
 
   const handleSave = () => {
-    onSave(inputMessageValue, id)
+    onSave({ message: inputMessageValue, id })
     setEditable(!editable)
   }
 
@@ -54,9 +54,9 @@ const Message = ({
           <Message
             id={id}
             photoURL={photoURL}
-            displayName={displayName}
+            name={name}
             message={message}
-            date={date}
+            createdAt={createdAt}
             modified={modified}
             className={styles.previewMessageDelete}
           />
@@ -73,11 +73,11 @@ const Message = ({
 
   return (
     <div className={cn(styles.wrapper, className)}>
-      <Avatar src={photoURL} name={displayName} size="medium" className={styles.avatar} />
+      <Avatar src={photoURL} name={name} size="medium" className={styles.avatar} />
       <div className={styles.messageContent}>
         <div className={styles.message}>
-          <span className={styles.name}>{displayName}</span>
-          <span className={styles.date}>{formatDistanceToNow(date, { addSuffix: true })}</span>
+          <span className={styles.name}>{name}</span>
+          <span className={styles.date}>{formatDistanceToNow(createdAt, { addSuffix: true })}</span>
           <span className={styles.modified}>{modified && '(modified)'}</span>
           {allowEdit && (
             <i
@@ -110,11 +110,11 @@ const Message = ({
 }
 
 Message.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   photoURL: PropTypes.string,
-  displayName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
-  date: PropTypes.instanceOf(Date).isRequired,
+  createdAt: PropTypes.instanceOf(Date).isRequired,
   modified: PropTypes.bool,
   onSave: PropTypes.func,
   onDelete: PropTypes.func,

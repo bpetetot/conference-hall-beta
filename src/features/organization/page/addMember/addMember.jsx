@@ -4,39 +4,43 @@ import PropTypes from 'prop-types'
 import AddUserModal from 'features/invite/addUserModal'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
+import { useAddMember } from '../../../../data/organization'
 
-const AddMember = ({ organizationId, organizationName, addMember }) => (
-  <AddUserModal
-    onSelectUser={addMember}
-    resultsMessage="Select an organizer to add to your organization"
-    description={
-      <>
-        <p>
-          Add or invite a member to your organization. By default, the new member will have{' '}
-          <strong>the role of &ldquo;Reviewer&rdquo;.</strong> You can changed it once the user is
-          added.
-        </p>
-        <p>
-          For security and privacy reasons, you can search a member only by the registered email
-          address. <strong>The member must already have a Conference Hall account.</strong>
-        </p>
-      </>
-    }
-    renderTrigger={({ show }) => (
-      <Button onClick={show} secondary>
-        <IconLabel icon="fa fa-user" label="Add a member" />
-      </Button>
-    )}
-    inviteEntity="organization"
-    inviteEntityId={organizationId}
-    inviteEntityTitle={organizationName}
-  />
-)
+const AddMember = ({ organizationId, organizationName }) => {
+  const { mutate } = useAddMember(organizationId)
+
+  return (
+    <AddUserModal
+      onSelectUser={mutate}
+      resultsMessage="Select an organizer to add to your organization"
+      description={
+        <>
+          <p>
+            Add or invite a member to your organization. By default, the new member will have{' '}
+            <strong>the role of &ldquo;Reviewer&rdquo;.</strong> You can changed it once the user is
+            added.
+          </p>
+          <p>
+            For security and privacy reasons, you can search a member only by the registered email
+            address. <strong>The member must already have a Conference Hall account.</strong>
+          </p>
+        </>
+      }
+      renderTrigger={({ show }) => (
+        <Button onClick={show} secondary>
+          <IconLabel icon="fa fa-user" label="Add a member" />
+        </Button>
+      )}
+      inviteEntity="organization"
+      inviteEntityId={organizationId}
+      inviteEntityTitle={organizationName}
+    />
+  )
+}
 
 AddMember.propTypes = {
   organizationId: PropTypes.string.isRequired,
   organizationName: PropTypes.string.isRequired,
-  addMember: PropTypes.func.isRequired,
 }
 
 export default AddMember

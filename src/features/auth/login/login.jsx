@@ -15,12 +15,12 @@ const PROVIDERS = split(process.env.REACT_APP_AUTH_PROVIDERS, ',') || []
 const Login = () => {
   const [redirecting, setRedirecting] = useState(false)
   const [error, setError] = useState()
-  const { user, loading, signin } = useAuth()
+  const { isAuthenticated, isAuthenticating, signin } = useAuth()
   const redirectNext = useRedirectNext()
 
   useEffect(() => {
-    if (user && !redirecting) redirectNext()
-  }, [user, redirecting, redirectNext])
+    if (isAuthenticated && !redirecting) redirectNext()
+  }, [isAuthenticated, redirecting, redirectNext])
 
   useEffect(() => {
     setRedirecting(true)
@@ -34,7 +34,7 @@ const Login = () => {
       })
   }, [])
 
-  if (redirecting || loading) {
+  if (redirecting || isAuthenticating) {
     return <LoadingIndicator className="login-loading" />
   }
 

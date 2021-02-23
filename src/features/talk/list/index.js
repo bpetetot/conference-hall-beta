@@ -1,1 +1,1 @@
-export { default } from './myTalks.container'
+export { default } from './myTalks'

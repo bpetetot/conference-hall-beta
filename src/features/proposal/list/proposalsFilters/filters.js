@@ -1,7 +1,7 @@
 export const filterTypes = {
   sortOrders: ['newest', 'oldest', 'highestRating', 'lowestRating'],
-  ratings: ['rated', 'notRated'],
-  statuses: ['submitted', 'accepted', 'rejected', 'confirmed', 'declined'],
+  ratings: ['rated', 'not-rated'],
+  statuses: ['SUBMITTED', 'ACCEPTED', 'REJECTED', 'CONFIRMED', 'DECLINED'],
 }
 
 // TODO Add unit tests
@@ -20,14 +20,14 @@ export const sortOrderLabel = (sortOrder) =>
 export const ratingsLabel = (rating) =>
   ({
     rated: 'Rated',
-    notRated: 'Not rated',
+    'not-rated': 'Not rated',
   }[rating])
 
 export const statusLabel = (status) =>
   ({
-    submitted: 'Not deliberated',
-    accepted: 'Accepted',
-    rejected: 'Rejected',
-    confirmed: 'Confirmed',
-    declined: 'Declined',
+    SUBMITTED: 'Not deliberated',
+    ACCEPTED: 'Accepted',
+    REJECTED: 'Rejected',
+    CONFIRMED: 'Confirmed',
+    DECLINED: 'Declined',
   }[status])

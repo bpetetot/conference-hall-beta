@@ -21,9 +21,10 @@ const ListItem = ({
     {onCheckboxChange && (
       <div className="list-item-checkbox">
         <Checkbox
-          name={id}
+          name={String(id)}
           onChange={onCheckboxChange}
           value={checked}
+          checked={checked}
           disabled={checkboxDisabled}
           aria-label={`Select proposal ${title}`}
         />
@@ -56,7 +57,7 @@ ListItem.propTypes = {
   title: PropTypes.node,
   subtitle: PropTypes.node,
   info: PropTypes.node,
-  id: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 ListItem.defaultProps = {

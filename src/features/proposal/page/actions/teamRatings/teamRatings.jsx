@@ -6,12 +6,35 @@ import { displayRating } from 'helpers/number'
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel/iconLabel'
-import UserAvatar from 'features/auth/userAvatar'
 import TotalRatings from 'features/ratings/totalRatings'
 
 import './teamRatings.css'
 
-const TeamRatings = ({ total, loves, hates, noopinion, ratings }) => (
+const UserRating = ({ userRating }) => {
+  const { rating, feeling } = userRating
+  return (
+    <div className="team-ratings">
+      <div className="team-ratings-rates">
+        <IconLabel
+          icon={cn('fa', {
+            'fa-ban': feeling === 'NO_OPINION',
+            'fa-star': feeling === 'NEUTRAL',
+            'fa-heart': feeling === 'LOVE',
+            'fa-circle': feeling === 'HATE',
+          })}
+          label={String(displayRating(rating))}
+          right
+        />
+      </div>
+    </div>
+  )
+}
+
+UserRating.propTypes = {
+  userRating: PropTypes.object.isRequired,
+}
+
+const TeamRatings = ({ ratings, stats }) => (
   <Drawer
     title="Team ratings"
     renderTrigger={({ show }) => (
@@ -22,48 +45,22 @@ const TeamRatings = ({ total, loves, hates, noopinion, ratings }) => (
   >
     <div className="team-ratings-total">
       <span className="team-ratings-total-label">Total</span>
-      <TotalRatings
-        rating={total}
-        loves={loves}
-        hates={hates}
-        noopinion={noopinion}
-        nbvotes={ratings.length}
-      />
+      <TotalRatings stats={stats} />
     </div>
-    {ratings.map(({ uid, feeling, rating }) => (
-      <div key={uid} className="team-ratings">
-        <UserAvatar id={uid} />
-        <div className="team-ratings-rates">
-          <IconLabel
-            icon={cn('fa', {
-              'fa-ban': feeling === 'noopinion',
-              'fa-star': feeling === 'neutral',
-              'fa-heart': feeling === 'love',
-              'fa-circle': feeling === 'hate',
-            })}
-            label={String(displayRating(rating))}
-            right
-          />
-        </div>
-      </div>
+    {ratings.map((rating) => (
+      <UserRating key={rating.userId} userRating={rating} />
     ))}
   </Drawer>
 )
 
 TeamRatings.propTypes = {
-  total: PropTypes.number,
-  loves: PropTypes.number,
-  hates: PropTypes.number,
-  noopinion: PropTypes.number,
-  ratings: PropTypes.arrayOf(PropTypes.object),
+  ratings: PropTypes.array,
+  stats: PropTypes.object,
 }
 
 TeamRatings.defaultProps = {
-  total: 0,
-  loves: 0,
-  hates: 0,
-  noopinion: 0,
   ratings: [],
+  stats: {},
 }
 
 export default TeamRatings

@@ -7,18 +7,16 @@ import IconLabel from 'components/iconLabel'
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import Checkbox from 'components/form/checkbox'
+import { useOrganizerEvent, useUpdateEventField } from 'data/event'
 
 import styles from './slack.module.css'
 
-const Slack = ({
-  enabled,
-  webhookUrl,
-  notifications,
-  onToggleSlack,
-  onSaveUrl,
-  onChangeNotification,
-}) => {
-  const [url, setUrl] = useState(webhookUrl)
+const Slack = ({ eventId }) => {
+  const { data: event } = useOrganizerEvent(eventId)
+  const [enabled, setEnabled] = useState(!!event.slackWebhookUrl)
+  const [url, setUrl] = useState(event.slackWebhookUrl || '')
+  const { mutate: saveWebhookUrl } = useUpdateEventField(eventId, 'slackWebhookUrl')
+  const { mutate: saveSlackNotif } = useUpdateEventField(eventId, 'slackNotifSubmitted')
 
   return (
     <div className={cn(styles.form, 'card')}>
@@ -29,7 +27,10 @@ const Slack = ({
         <Toggle
           name="slackEnabled"
           checked={enabled}
-          onChange={onToggleSlack}
+          onChange={() => {
+            if (enabled) saveWebhookUrl(null)
+            setEnabled(!enabled)
+          }}
           aria-label={enabled ? 'Disable Slack' : 'Enable Slack'}
         />
       </div>
@@ -47,18 +48,18 @@ const Slack = ({
             <input
               id="webhookUrl"
               type="text"
-              defaultValue={url}
+              defaultValue={event.slackWebhookUrl}
               onChange={(e) => setUrl(e.target.value)}
             />
-            <Button onClick={() => onSaveUrl(url)}>Save Web hook URL</Button>
+            <Button onClick={() => saveWebhookUrl(url)}>Save Web hook URL</Button>
           </Label>
           <h4>Configure which notification you want to receive:</h4>
           <Checkbox
             name="submitted"
             label="Submitted proposals"
             info="Receive a message in the channel when a speaker submit a talk."
-            onChange={onChangeNotification}
-            value={notifications.submitted}
+            onChange={(e) => saveSlackNotif(e.target.checked)}
+            defaultChecked={event.slackNotifSubmitted}
             disabled={!url}
           />
         </div>
@@ -68,18 +69,7 @@ const Slack = ({
 }
 
 Slack.propTypes = {
-  enabled: PropTypes.bool,
-  webhookUrl: PropTypes.string,
-  notifications: PropTypes.object,
-  onToggleSlack: PropTypes.func.isRequired,
-  onSaveUrl: PropTypes.func.isRequired,
-  onChangeNotification: PropTypes.func.isRequired,
-}
-
-Slack.defaultProps = {
-  enabled: false,
-  webhookUrl: undefined,
-  notifications: {},
+  eventId: PropTypes.string.isRequired,
 }
 
 export default Slack

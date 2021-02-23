@@ -6,14 +6,14 @@ import isEmpty from 'lodash/isEmpty'
 import Submission from './submission'
 import './submissions.css'
 
-const TalkSubmissions = ({ id, submissions, className }) => (
+const TalkSubmissions = ({ id, proposals, className }) => (
   <div className={cn('card', className)}>
     <h3>Submissions</h3>
-    {isEmpty(submissions) && <small>Not submitted yet</small>}
-    {!isEmpty(submissions) && (
+    {isEmpty(proposals) && <small>Not submitted yet</small>}
+    {!isEmpty(proposals) && (
       <div className="talk-submissions">
-        {Object.keys(submissions).map((eventId) => (
-          <Submission key={eventId} eventId={eventId} talkId={id} />
+        {proposals.map(({ eventId, status }) => (
+          <Submission key={eventId} eventId={eventId} talkId={id} status={status} />
         ))}
       </div>
     )}
@@ -21,13 +21,13 @@ const TalkSubmissions = ({ id, submissions, className }) => (
 )
 
 TalkSubmissions.propTypes = {
-  id: PropTypes.string.isRequired,
-  submissions: PropTypes.objectOf(PropTypes.any),
+  id: PropTypes.number.isRequired,
+  proposals: PropTypes.array,
   className: PropTypes.string,
 }
 
 TalkSubmissions.defaultProps = {
-  submissions: {},
+  proposals: [],
   className: undefined,
 }
 

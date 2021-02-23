@@ -10,21 +10,13 @@ const Checkbox = (props) => {
 
   useEffect(() => {
     if (checkboxEl && checkboxEl.current) {
-      checkboxEl.current.indeterminate = !!value && indeterminate
+      checkboxEl.current.indeterminate = indeterminate === true
     }
-  }, [value, indeterminate])
+  }, [indeterminate])
 
   return (
     <div className="form-checkbox">
-      <input
-        ref={checkboxEl}
-        name={name}
-        id={`${name}-${value}`}
-        type="checkbox"
-        checked={!!value}
-        value={value}
-        {...rest}
-      />
+      <input ref={checkboxEl} name={name} id={`${name}-${value}`} type="checkbox" {...rest} />
       {(label || info) && (
         <label htmlFor={`${name}-${value}`}>
           {label}
@@ -52,7 +44,7 @@ Checkbox.defaultProps = {
   label: undefined,
   value: false,
   info: undefined,
-  indeterminate: false,
+  indeterminate: undefined,
 }
 
 export default Checkbox

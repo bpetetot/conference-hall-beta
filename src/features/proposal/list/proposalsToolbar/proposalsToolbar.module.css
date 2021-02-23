@@ -20,7 +20,7 @@
 .rightActions {
   display: flex;
   align-items: center;
-  margin-right: 1em;
+  margin-right: .5em;
 }
 
 @media only screen and (max-width: 480px) {

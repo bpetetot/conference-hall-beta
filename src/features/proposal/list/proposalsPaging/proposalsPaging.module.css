@@ -3,25 +3,32 @@
   margin: 1em 0;
 }
 
+.paging > *:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.paging > *:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
 .button {
   padding: 10px;
   background: #fff;
-  cursor: pointer;
   border: 1px solid var(--grey-color);
+  text-align: center;
+  text-decoration: none;
 }
 
 .previous {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-right-width: 0px;
   width: 80px;
+  border-right-width: 0;
 }
 
 .next {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-left-width: 0px;
   width: 80px;
+  border-left-width: 0;
 }
 
 .status {

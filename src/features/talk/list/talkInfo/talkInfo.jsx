@@ -5,7 +5,7 @@ import Badge from 'components/badge'
 import './talkInfo.css'
 import { Link } from 'react-router-dom'
 
-const TalkInfo = ({ id, archived, submissions }) => {
+const TalkInfo = ({ id, archived, proposals }) => {
   if (archived) {
     return (
       <Badge light outline>
@@ -15,12 +15,12 @@ const TalkInfo = ({ id, archived, submissions }) => {
   }
 
   let message
-  if (!submissions) {
+  if (!proposals || proposals.length === 0) {
     message = 'Not submitted yet'
-  } else if (Object.keys(submissions).length === 1) {
+  } else if (proposals.length === 1) {
     message = '1 submission'
   } else {
-    message = `${Object.keys(submissions).length} submissions`
+    message = `${proposals.length} proposals`
   }
 
   return (
@@ -33,14 +33,14 @@ const TalkInfo = ({ id, archived, submissions }) => {
 }
 
 TalkInfo.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   archived: PropTypes.bool,
-  submissions: PropTypes.objectOf(PropTypes.any),
+  proposals: PropTypes.array,
 }
 
 TalkInfo.defaultProps = {
   archived: false,
-  submissions: undefined,
+  proposals: [],
 }
 
 export default TalkInfo

@@ -1,6 +1,5 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import cn from 'classnames'
 import debounce from 'lodash/debounce'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -9,31 +8,29 @@ import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
 import styles from './proposalsFilters.module.css'
 import { filterTypes, statusLabel, ratingsLabel, sortOrderLabel, filterSortOrders } from './filters'
+import { useSelection } from '../selection-context'
 
 const { statuses, ratings } = filterTypes
 
-function ProposalFilters({ eventId, formats, categories, hideRatings, deliberationActive }) {
+function ProposalFilters({ event }) {
   const navigate = useNavigate()
 
+  const { resetSelection } = useSelection()
   const { search } = useLocation()
+  const params = new URLSearchParams(search)
+  const { id: eventId, deliberationEnabled, formats, categories, displayProposalsRatings } = event
 
-  const params = useMemo(() => new URLSearchParams(search), [search])
-
-  const searchFilter = params.get('search')
-  const stateFilter = params.get('state')
-  const ratingsFilter = params.get('ratings')
-  const formatsFilter = params.get('formats')
-  const categoriesFilter = params.get('categories')
-  const sortOrderFilter = params.get('sortOrder')
-
-  const handleChange = useCallback(
-    (event) => {
-      const { id, value } = event.target
-      params.set(id, value)
-      navigate(`/organizer/event/${eventId}/proposals?${params.toString()}`)
-    },
-    [navigate, params, eventId],
-  )
+  const handleChange = (e) => {
+    resetSelection()
+    if (!e.target.value) {
+      params.delete(e.target.id)
+    } else {
+      params.set(e.target.id, e.target.value)
+    }
+    params.delete('page')
+    params.delete('pageSize')
+    navigate(`/organizer/event/${eventId}/proposals?${params.toString()}`)
+  }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onChangeDebounced = useCallback(debounce(handleChange, 200), [handleChange])
@@ -44,22 +41,22 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
   }
 
   return (
-    <div className={cn(styles.proposalsFilters, 'no-print')}>
+    <div className={styles.proposalsFilters}>
       <input
         id="search"
         type="search"
         placeholder="Search by title or speaker"
         aria-label="Search by title or speaker"
         onChange={handleSearchChange}
-        defaultValue={searchFilter}
+        defaultValue={params.get('search')}
       />
 
-      {deliberationActive && (
-        <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
+      {deliberationEnabled && (
+        <HasRole of={ROLE_OWNER_OR_MEMBER} forEvent={event}>
           <select
-            id="state"
+            id="status"
             onChange={handleChange}
-            defaultValue={stateFilter}
+            defaultValue={params.get('status')}
             aria-label="Filter by proposal status"
           >
             <option value="">All statuses</option>
@@ -75,7 +72,7 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
       <select
         id="ratings"
         onChange={handleChange}
-        defaultValue={ratingsFilter}
+        defaultValue={params.get('ratings')}
         aria-label="Filter by your ratings"
       >
         <option value="">All ratings</option>
@@ -87,13 +84,13 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
       </select>
 
       <select
-        id="formats"
+        id="format"
         onChange={handleChange}
-        defaultValue={formatsFilter}
+        defaultValue={params.get('format')}
         aria-label="Filter by proposal format"
       >
         <option value="">All formats</option>
-        {formats.map(({ id, name }) => (
+        {formats?.map(({ id, name }) => (
           <option key={id} value={id}>
             {name}
           </option>
@@ -101,13 +98,13 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
       </select>
 
       <select
-        id="categories"
+        id="category"
         onChange={handleChange}
-        defaultValue={categoriesFilter}
+        defaultValue={params.get('category')}
         aria-label="Filter by proposal category"
       >
         <option value="">All categories</option>
-        {categories.map(({ id, name }) => (
+        {categories?.map(({ id, name }) => (
           <option key={id} value={id}>
             {name}
           </option>
@@ -115,13 +112,13 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
       </select>
 
       <select
-        id="sortOrder"
+        id="sort"
         onChange={handleChange}
-        defaultValue={sortOrderFilter}
+        defaultValue={params.get('sort')}
         aria-label="Sort proposals"
       >
         <option value="">Sort</option>
-        {filterSortOrders(hideRatings).map((sortOrder) => (
+        {filterSortOrders(!displayProposalsRatings).map((sortOrder) => (
           <option key={sortOrder} value={sortOrder}>
             {sortOrderLabel(sortOrder)}
           </option>
@@ -132,18 +129,7 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
 }
 
 ProposalFilters.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  formats: PropTypes.arrayOf(PropTypes.object),
-  categories: PropTypes.arrayOf(PropTypes.object),
-  hideRatings: PropTypes.bool,
-  deliberationActive: PropTypes.bool,
-}
-
-ProposalFilters.defaultProps = {
-  formats: [],
-  categories: [],
-  hideRatings: false,
-  deliberationActive: false,
+  event: PropTypes.object.isRequired,
 }
 
 export default ProposalFilters

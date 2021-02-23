@@ -11,10 +11,10 @@ import Thread from './thread'
 <Canvas>
   <Story name="Message">
     <Message
-      displayName="Luke Skywalker"
+      name="Luke Skywalker"
       photoURL="https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png"
       message="May the force be with you"
-      date={new Date()}
+      createdAt={new Date()}
       onSave={console.log}
       onEdit={console.log}
       OnDelete={console.log}
@@ -30,24 +30,24 @@ import Thread from './thread'
       messages={[
         {
           id: 'message1',
-          displayName: 'Luke Skywalker',
+          name: 'Luke Skywalker',
           photoURL: 'https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png',
           message: 'May the force be with you',
-          date: new Date(),
+          createdAt: new Date(),
         },
         {
           id: 'message2',
-          displayName: 'Darth Vader',
+          name: 'Darth Vader',
           photoURL: 'https://upload.wikimedia.org/wikipedia/en/7/76/Darth_Vader.jpg',
           message: 'Luke, I am your father',
-          date: new Date(),
+          createdAt: new Date(),
         },
         {
           id: 'message3',
-          displayName: 'Luke Skywalker',
+          name: 'Luke Skywalker',
           photoURL: 'https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png',
           message: 'Noooooooooooo !!!!!',
-          date: new Date(),
+          createdAt: new Date(),
         },
       ]}
       onSaveMessage={console.log}

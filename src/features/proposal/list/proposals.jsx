@@ -1,46 +1,41 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 import HasRole from 'features/organization/hasRole'
 import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
-import { useAuth } from 'features/auth'
+import { useOrganizerEvent } from 'data/event'
+import { LoadingIndicator } from 'components/loader'
+import { useOrganizerProposals } from 'data/proposal'
 
 import ProposalsHeader from './proposalsHeader'
 import ProposalsFilters from './proposalsFilters'
 import ProposalsToolbar from './proposalsToolbar'
 import ProposalsList from './proposalsList'
 import ProposalsPaging from './proposalsPaging'
+import { SelectionProvider } from './selection-context'
 
-const Proposals = ({ eventId }) => {
-  const { user } = useAuth()
+const Proposals = () => {
+  const { eventId } = useParams()
+  const { data: event } = useOrganizerEvent(eventId)
+  const { data: result, isFetching } = useOrganizerProposals(eventId)
 
-  const { search } = useLocation()
-  const params = new URLSearchParams(search)
-  const filters = {
-    search: params.get('search'),
-    state: params.get('state'),
-    ratings: params.get('ratings'),
-    formats: params.get('formats'),
-    categories: params.get('categories'),
-    sortOrder: params.get('sortOrder'),
+  if (!event) {
+    return <LoadingIndicator />
   }
 
   return (
     <div>
-      <ProposalsHeader eventId={eventId} />
-      <ProposalsFilters eventId={eventId} />
-      <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
-        <ProposalsToolbar eventId={eventId} userId={user.uid} filters={filters} />
-      </HasRole>
-      <ProposalsList eventId={eventId} userId={user.uid} filters={filters} />
-      <ProposalsPaging />
+      <ProposalsHeader result={result} />
+      <SelectionProvider total={result.total}>
+        <ProposalsFilters event={event} />
+        <HasRole of={ROLE_OWNER_OR_MEMBER} forEvent={event}>
+          <ProposalsToolbar event={event} result={result} />
+        </HasRole>
+        <ProposalsList event={event} result={result} isFetching={isFetching} />
+      </SelectionProvider>
+      <ProposalsPaging event={event} result={result} />
     </div>
   )
-}
-
-Proposals.propTypes = {
-  eventId: PropTypes.string.isRequired,
 }
 
 export default Proposals

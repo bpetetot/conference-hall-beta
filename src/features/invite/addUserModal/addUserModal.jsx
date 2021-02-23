@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { Modal } from 'components/portals'
@@ -6,9 +6,9 @@ import InputButton from 'components/form/inputButton'
 import { LoadingIndicator } from 'components/loader'
 import UserResults from './userResults'
 
-import InviteLink from './inviteLink'
-import useSearchUsers from './useSearchUsers'
+// import InviteLink from './inviteLink'
 import styles from './addUserModal.module.css'
+import { useSearchUserByEmail } from '../../../data/user'
 
 const AddUserModal = ({
   title,
@@ -16,11 +16,12 @@ const AddUserModal = ({
   resultsMessage,
   onSelectUser,
   renderTrigger,
-  inviteEntity,
-  inviteEntityId,
-  inviteEntityTitle,
+  // inviteEntity,
+  // inviteEntityId,
+  // inviteEntityTitle,
 }) => {
-  const { email, users, searchUsers, loading } = useSearchUsers()
+  const [email, setEmail] = useState(null)
+  const { data: users, isLoading } = useSearchUserByEmail(email)
 
   return (
     <Modal renderTrigger={renderTrigger}>
@@ -28,7 +29,7 @@ const AddUserModal = ({
         <>
           <h1 className={styles.title}>{title}</h1>
           {description}
-          {loading ? (
+          {isLoading ? (
             <LoadingIndicator />
           ) : (
             <InputButton
@@ -38,22 +39,22 @@ const AddUserModal = ({
               btnLabel="Search"
               btntitle="Search"
               autoFocus
-              onClick={searchUsers}
+              onClick={setEmail}
               defaultValue={email}
             />
           )}
-          {!!users && !loading && (
+          {!!users && !isLoading && (
             <UserResults
               message={resultsMessage}
               users={users}
-              onSelectUser={(uid) => {
-                onSelectUser(uid)
+              onSelectUser={(id) => {
+                onSelectUser(id)
                 hide()
               }}
             />
           )}
 
-          {inviteEntity && inviteEntityId && (
+          {/* {inviteEntity && inviteEntityId && (
             <div className={styles.inviteLink}>
               <div className={styles.separator}>
                 <small>If you can&apos;t find the user, share an invitation link</small>
@@ -64,7 +65,7 @@ const AddUserModal = ({
                 entityTitle={inviteEntityTitle}
               />
             </div>
-          )}
+          )} */}
         </>
       )}
     </Modal>
@@ -77,17 +78,17 @@ AddUserModal.propTypes = {
   resultsMessage: PropTypes.node.isRequired,
   onSelectUser: PropTypes.func.isRequired,
   renderTrigger: PropTypes.func,
-  inviteEntity: PropTypes.string,
-  inviteEntityId: PropTypes.string,
-  inviteEntityTitle: PropTypes.string,
+  // inviteEntity: PropTypes.string,
+  // inviteEntityId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // inviteEntityTitle: PropTypes.string,
 }
 
 AddUserModal.defaultProps = {
   title: 'Add a member',
   renderTrigger: undefined,
-  inviteEntity: undefined,
-  inviteEntityId: undefined,
-  inviteEntityTitle: '',
+  // inviteEntity: undefined,
+  // inviteEntityId: undefined,
+  // inviteEntityTitle: '',
 }
 
 export default AddUserModal

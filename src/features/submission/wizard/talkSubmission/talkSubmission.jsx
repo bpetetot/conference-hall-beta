@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 import isEmpty from 'lodash/isEmpty'
-import get from 'lodash/get'
 
+import { useSubmitTalk, useTalk, useUnsubmitTalk } from 'data/talk'
 import Field from 'components/form/field'
 import Titlebar from 'components/titlebar'
 import { markdownInput, radio, SubmitButton, RadioGroup } from 'components/form'
@@ -11,104 +11,108 @@ import Alert from 'components/alert'
 import { required } from 'components/form/validators'
 
 import './talkSubmission.css'
+import { LoadingIndicator } from 'components/loader'
+import { useEvent } from 'data/event'
 
-const TalkSubmission = ({
-  talk,
-  error,
-  event,
-  update,
-  onSubmit,
-  unsubmitTalk,
-  initialValues,
-  isSubmitting,
-  isUnsubmitting,
-}) => (
-  <Form onSubmit={onSubmit} initialValues={initialValues}>
-    {({ handleSubmit, invalid, errors }) => (
-      <form className="talk-submission">
-        <Titlebar icon="fa fa-microphone" title={talk.title}>
-          {update && (
-            <SubmitButton
-              secondary
-              type="button"
-              onClick={unsubmitTalk}
-              submitting={isUnsubmitting}
-            >
-              Remove submission
+const TalkSubmission = ({ eventId, talkId, onNext, onReset }) => {
+  const { data: event } = useEvent(eventId)
+  const { data: talk } = useTalk(talkId)
+  const { mutate: submitTalk, error, isError, isLoading: isSaving } = useSubmitTalk(eventId, talkId)
+  const { mutate: unsubmitTalk, isLoading: isRemoving } = useUnsubmitTalk(eventId, talkId)
+
+  if (!talk || !event) {
+    return <LoadingIndicator />
+  }
+
+  const proposal = talk.proposals.find((p) => p.eventId === parseInt(eventId, 10))
+  const isUpdate = !!proposal
+  const initialValues = {
+    comments: proposal?.comments,
+    formats: String(proposal?.formats?.[0]?.id),
+    categories: String(proposal?.categories?.[0]?.id),
+  }
+
+  const onSubmit = (data) => {
+    return submitTalk(data, { onSuccess: onNext })
+  }
+
+  const onUnsubmit = () => {
+    return unsubmitTalk(null, { onSuccess: onReset })
+  }
+
+  return (
+    <Form onSubmit={onSubmit} initialValues={initialValues}>
+      {({ handleSubmit, invalid, errors }) => (
+        <form className="talk-submission">
+          <Titlebar icon="fa fa-microphone" title={talk.title}>
+            {isUpdate && (
+              <SubmitButton secondary type="button" onClick={onUnsubmit} submitting={isRemoving}>
+                Remove submission
+              </SubmitButton>
+            )}
+          </Titlebar>
+          {isError && (
+            <div className="form-error">
+              <Alert title={error.message} type="error" />
+            </div>
+          )}
+          <div className="submit-talk-form card">
+            {!isEmpty(event.categories) && (
+              <RadioGroup
+                name="categories"
+                label="Talk categories"
+                error={errors.categories}
+                inline
+              >
+                {event.categories.map((c) => (
+                  <Field
+                    key={c.id}
+                    name="categories"
+                    value={String(c.id)}
+                    label={c.name}
+                    type="radio"
+                    component={radio}
+                    validate={event.categoriesRequired ? required : undefined}
+                  />
+                ))}
+              </RadioGroup>
+            )}
+            {!isEmpty(event.formats) && (
+              <RadioGroup name="formats" label="Talk formats" error={errors.formats} inline>
+                {event.formats.map((f) => (
+                  <Field
+                    key={f.id}
+                    name="formats"
+                    value={String(f.id)}
+                    label={f.name}
+                    type="radio"
+                    component={radio}
+                    validate={event.formatsRequired ? required : undefined}
+                  />
+                ))}
+              </RadioGroup>
+            )}
+            <Field
+              name="comments"
+              label="Message to organizers"
+              hints="Ask special requirements to organizers or just thank them."
+              component={markdownInput}
+            />
+            <SubmitButton onClick={handleSubmit} submitting={isSaving} invalid={invalid}>
+              {isUpdate ? 'Update submission' : `Submit to ${event.name}`}
             </SubmitButton>
-          )}
-        </Titlebar>
-        {!isEmpty(error) && (
-          <div className="form-error">
-            <Alert title={error} type="error" />
           </div>
-        )}
-        <div className="submit-talk-form card">
-          {!isEmpty(event.categories) && (
-            <RadioGroup name="categories" label="Talk categories" error={errors.categories} inline>
-              {event.categories.map((c) => (
-                <Field
-                  key={c.id}
-                  name="categories"
-                  value={c.id}
-                  label={c.name}
-                  type="radio"
-                  component={radio}
-                  validate={get(event, 'mandatoryFields.categories') ? required : undefined}
-                />
-              ))}
-            </RadioGroup>
-          )}
-          {!isEmpty(event.formats) && (
-            <RadioGroup name="formats" label="Talk formats" error={errors.formats} inline>
-              {event.formats.map((f) => (
-                <Field
-                  key={f.id}
-                  name="formats"
-                  value={f.id}
-                  label={f.name}
-                  type="radio"
-                  component={radio}
-                  validate={get(event, 'mandatoryFields.formats') ? required : undefined}
-                />
-              ))}
-            </RadioGroup>
-          )}
-          <Field
-            name="comments"
-            label="Message to organizers"
-            hints="Ask special requirements to organizers or just thank them."
-            component={markdownInput}
-          />
-          <SubmitButton onClick={handleSubmit} submitting={isSubmitting} invalid={invalid}>
-            {update ? 'Update submission' : `Submit to ${event.name}`}
-          </SubmitButton>
-        </div>
-      </form>
-    )}
-  </Form>
-)
-
-TalkSubmission.propTypes = {
-  update: PropTypes.bool,
-  talk: PropTypes.objectOf(PropTypes.any),
-  error: PropTypes.string,
-  event: PropTypes.objectOf(PropTypes.any),
-  onSubmit: PropTypes.func.isRequired,
-  unsubmitTalk: PropTypes.func.isRequired,
-  initialValues: PropTypes.object,
-  isSubmitting: PropTypes.bool,
-  isUnsubmitting: PropTypes.bool,
+        </form>
+      )}
+    </Form>
+  )
 }
 
-TalkSubmission.defaultProps = {
-  update: false,
-  error: undefined,
-  talk: {},
-  event: {},
-  initialValues: undefined,
-  isSubmitting: false,
-  isUnsubmitting: false,
+TalkSubmission.propTypes = {
+  eventId: PropTypes.string.isRequired,
+  talkId: PropTypes.string.isRequired,
+  onNext: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
 }
 
 export default TalkSubmission

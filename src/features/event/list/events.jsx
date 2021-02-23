@@ -1,6 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react'
-import PropTypes from 'prop-types'
-import get from 'lodash/get'
+import React, { useState, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import Badge from 'components/badge'
@@ -10,10 +8,12 @@ import Button from 'components/button'
 import { List, ListItem } from 'components/list'
 import EventDates from 'features/event/page/eventDates'
 
+import { useOrganizerEvents } from '../../../data/event'
 import styles from './events.module.css'
 
-const MyEvents = ({ events, onChangeEvent }) => {
+const MyEvents = () => {
   const [status, setStatus] = useState('active')
+  const { data: events = [] } = useOrganizerEvents()
 
   const filteredEvents = useMemo(
     () =>
@@ -28,13 +28,9 @@ const MyEvents = ({ events, onChangeEvent }) => {
   const onFilter = (e) => setStatus(e.target.value)
 
   const navigate = useNavigate()
-  const handleSelect = useCallback(
-    (eventId) => {
-      onChangeEvent()
-      navigate(`/organizer/event/${eventId}/proposals`)
-    },
-    [navigate, onChangeEvent],
-  )
+  const handleSelect = (eventId) => {
+    navigate(`/organizer/event/${eventId}`)
+  }
 
   return (
     <div>
@@ -55,36 +51,28 @@ const MyEvents = ({ events, onChangeEvent }) => {
       <List
         array={filteredEvents}
         noResult={status === 'archived' ? 'No archived event' : 'No event yet !'}
-        renderRow={({ id, name, type, visibility, address, conferenceDates }) => (
+        renderRow={({ id, name, type, visibility, address, timezone, conferenceDates }) => (
           <ListItem
             key={id}
             title={<div className={styles.title}>{name}</div>}
-            subtitle={
-              <IconLabel icon="fa fa-map-marker" label={get(address, 'formattedAddress')} />
-            }
+            subtitle={<IconLabel icon="fa fa-map-marker" label={address} />}
             info={
               <div className={styles.infos}>
                 <div className={styles.badges}>
-                  {visibility === 'private' && (
-                    <Badge pill outline error={visibility === 'private'}>
+                  {visibility === 'PRIVATE' && (
+                    <Badge pill outline error={visibility === 'PRIVATE'}>
                       {visibility}
                     </Badge>
                   )}
-                  <Badge
-                    pill
-                    outline
-                    success={type === 'meetup'}
-                    info={type === 'conference'}
-                    className={styles.type}
-                  >
+                  <Badge pill outline className={styles.type}>
                     {type}
                   </Badge>
                 </div>
-                {type === 'conference' && (
+                {type === 'CONFERENCE' && (
                   <EventDates
                     dates={conferenceDates}
                     className={styles.dates}
-                    timezone={get(address, 'timezone.id')}
+                    timezone={timezone}
                   />
                 )}
               </div>
@@ -95,14 +83,6 @@ const MyEvents = ({ events, onChangeEvent }) => {
       />
     </div>
   )
-}
-MyEvents.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.object),
-  onChangeEvent: PropTypes.func.isRequired,
-}
-
-MyEvents.defaultProps = {
-  events: [],
 }
 
 export default MyEvents

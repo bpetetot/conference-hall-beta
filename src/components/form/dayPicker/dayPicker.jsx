@@ -14,6 +14,7 @@ export class DayPicker extends React.Component {
   }
 
   onDateChange = (date) => {
+    date.setHours(0, 0, 0)
     this.setState({ date })
     this.props.onChange(date)
   }

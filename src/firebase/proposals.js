@@ -58,7 +58,7 @@ export const fetchEventProposals = async (
     proposals = proposals.filter(
       (proposal) => proposal.usersRatings && !!proposal.usersRatings[uid],
     )
-  } else if (ratings === 'notRated') {
+  } else if (ratings === 'not-rated') {
     proposals = proposals.filter(
       (proposal) => !proposal.usersRatings || !proposal.usersRatings[uid],
     )

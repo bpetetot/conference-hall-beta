@@ -9,3 +9,7 @@
 .title {
   margin-bottom: 0;
 }
+
+.ratings > progress {
+  width: 100%;
+}

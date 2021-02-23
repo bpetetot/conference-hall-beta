@@ -3,26 +3,27 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import Status from '../../status'
+import Badge from 'components/badge'
 import './submission.css'
+import { useEvent } from 'data/event'
 
-const Submission = ({ talkId, eventId, name }) => (
-  <div className="talk-submission-event">
-    <Link to={`/speaker/event/${eventId}/submissions/${talkId}`}>{name}</Link>
-    <div className="talk-submission-event-actions">
-      <Status talkId={talkId} eventId={eventId} />
+const Submission = ({ talkId, eventId, status }) => {
+  const { data: event } = useEvent(eventId)
+  if (!event) return null
+  return (
+    <div className="talk-submission-event">
+      <Link to={`/speaker/event/${eventId}/submissions/${talkId}`}>{event.name}</Link>
+      <div className="talk-submission-event-actions">
+        <Badge>{status}</Badge>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 Submission.propTypes = {
   talkId: PropTypes.string.isRequired,
   eventId: PropTypes.string.isRequired,
-  name: PropTypes.string,
-}
-
-Submission.defaultProps = {
-  name: undefined,
+  status: PropTypes.string.isRequired,
 }
 
 export default Submission

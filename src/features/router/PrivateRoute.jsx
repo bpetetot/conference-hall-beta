@@ -1,20 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useAuth } from 'features/auth'
 import { Navigate, Route, useLocation } from 'react-router-dom'
 import { LoadingIndicator } from 'components/loader'
+import { useAuth } from 'features/auth'
 
-const SKIP_BETA_ACCESS = false // process.env.NODE_ENV === 'development'
+const SKIP_BETA_ACCESS = process.env.NODE_ENV === 'development'
 
 function PrivateRoute({ betaAccess, ...rest }) {
-  const { user, loading } = useAuth()
+  const { user, isAuthenticated, isAuthenticating } = useAuth()
   const location = useLocation()
 
-  if (loading) {
+  if (isAuthenticating) {
     return <LoadingIndicator className="login-loading" />
   }
 
-  if (!user) {
+  if (!isAuthenticated) {
     return <Navigate to={`/login?next=${location.pathname}`} replace />
   }
 

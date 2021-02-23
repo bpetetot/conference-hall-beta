@@ -2,10 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-import flow from 'lodash/fp/flow'
-import filter from 'lodash/fp/filter'
 import first from 'lodash/fp/first'
-import pick from 'lodash/fp/pick'
 import isEmpty from 'lodash/isEmpty'
 
 import './address.css'
@@ -21,10 +18,7 @@ const getTimezone = async ({ lat, lng }) => {
     )
     const result = await response.json()
     if (result && result.status === 'OK') {
-      return {
-        id: result.timeZoneId,
-        name: result.timeZoneName,
-      }
+      return result.timeZoneId
     }
   } catch (e) {
     console.error(e) // eslint-disable-line no-console
@@ -32,15 +26,8 @@ const getTimezone = async ({ lat, lng }) => {
   return null
 }
 
-const getAddressComponent = (name) =>
-  flow(
-    filter((component) => component.types.includes(name)),
-    first,
-    pick(['short_name', 'long_name']),
-  )
-
 const AddressInput = (props) => {
-  const [address, setAddress] = useState(props.value.formattedAddress || '')
+  const [address, setAddress] = useState(props.value.address || '')
 
   const handleChange = (inputAddress) => {
     setAddress(inputAddress)
@@ -57,16 +44,12 @@ const AddressInput = (props) => {
     if (!result) return
 
     const latLng = await getLatLng(result)
-    const country = getAddressComponent('country')(result.address_components)
-    const locality = getAddressComponent('locality')(result.address_components)
-
     const timezone = await getTimezone(latLng)
 
     props.onChange({
-      formattedAddress: selectedAddress,
-      locality,
-      country,
-      latLng,
+      address: selectedAddress,
+      lat: latLng?.lat,
+      lng: latLng?.lng,
       timezone,
     })
   }

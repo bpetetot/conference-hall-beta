@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useAuth } from 'features/auth'
 import Stepper from 'components/stepper'
 import EventTitle from 'features/event/eventTitle'
+import { useEvent } from 'data/event'
 import Selection from './talksSelection'
 import TalkDetails from './talkDetails'
 import TalkSubmission from './talkSubmission'
@@ -18,32 +18,28 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const SubmitWizard = ({ eventId, cfpOpened, eventName, currentStep }) => {
-  const { user } = useAuth()
-  if (!eventId || !cfpOpened) return null
+const SubmitWizard = ({ eventId, currentStep }) => {
+  const { data: event } = useEvent(eventId)
+  if (!event || !event.isCfpOpened) return null
   return (
     <div className="submitWizard">
-      <EventTitle name={eventName} subtitle="Talk submission" />
+      <EventTitle name={event.name} subtitle="Talk submission" />
       <Stepper steps={steps} currentStep={currentStep} />
-      {currentStep === 0 && <Selection eventId={eventId} eventName={eventName} userId={user.uid} />}
-      {currentStep === 1 && <TalkDetails eventId={eventId} eventName={eventName} />}
-      {currentStep === 2 && <TalkSubmission eventId={eventId} eventName={eventName} />}
-      {currentStep === 3 && <TalkSubmitted eventId={eventId} eventName={eventName} />}
+      {currentStep === 0 && <Selection eventId={eventId} />}
+      {currentStep === 1 && <TalkDetails eventId={eventId} />}
+      {currentStep === 2 && <TalkSubmission eventId={eventId} eventName={event.name} />}
+      {currentStep === 3 && <TalkSubmitted eventId={eventId} eventName={event.name} />}
     </div>
   )
 }
 
 SubmitWizard.propTypes = {
   eventId: PropTypes.string,
-  cfpOpened: PropTypes.bool,
-  eventName: PropTypes.string,
   currentStep: PropTypes.number,
 }
 
 SubmitWizard.defaultProps = {
   eventId: undefined,
-  cfpOpened: false,
-  eventName: undefined,
   currentStep: 0,
 }
 

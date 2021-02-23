@@ -1,1 +1,1 @@
-export { default } from './teamRatings.container'
+export { default } from './teamRatings'

@@ -6,11 +6,11 @@ const messages = {
     one {1 proposal}
     other {{count} proposals}
   }`,
-  emails: `{count, plural,
-    =0 {no {type} emails}
-    one {1 {type} email}
-    other {{count} {type} emails}
-  }`,
+  emails: `You are going to send {count, plural,
+    =0 {no emails}
+    one {1 email}
+    other {{count} emails}
+  }. Continue?`,
 }
 
 export default (key, values) => {

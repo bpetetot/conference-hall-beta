@@ -3,13 +3,16 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import firebase from 'firebase/app'
 
+import { useOrganizerEvent, useUpdateEventField } from 'data/event'
 import Button from 'components/button'
 import Banner from 'features/event/page/banner'
 import styles from './customize.module.css'
 
 const MAX_SIZE = 100 * 1024 // 100kB
 
-const CustomizeForm = ({ eventId, onChangeBanner }) => {
+const CustomizeForm = ({ eventId }) => {
+  const { data: event } = useOrganizerEvent(eventId)
+  const { mutate: onChangeBanner } = useUpdateEventField(eventId, 'bannerUrl')
   const [percentage, setPercentage] = useState()
   const [error, setError] = useState()
 
@@ -72,14 +75,19 @@ const CustomizeForm = ({ eventId, onChangeBanner }) => {
         <div className={styles.error}>{error}</div>
       </div>
 
-      <Banner eventId={eventId} />
+      <Banner
+        eventId={eventId}
+        name={event.name}
+        bannerUrl={event.bannerUrl}
+        type={event.type}
+        address={event.address}
+      />
     </div>
   )
 }
 
 CustomizeForm.propTypes = {
   eventId: PropTypes.string.isRequired,
-  onChangeBanner: PropTypes.func.isRequired,
 }
 
 export default CustomizeForm

@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react'
-import PropTypes from 'prop-types'
 import Titlebar from 'components/titlebar'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -7,17 +6,23 @@ import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { List, ListItem } from 'components/list'
 import RelativeDate from 'components/relativeDate'
+import LoadingIndicator from 'components/loader'
 
-import { toDate } from 'helpers/firebase'
+import { useOrganizations } from '../../../data/organization'
 
-const MyOrganizations = ({ organizations }) => {
+const MyOrganizations = () => {
   const navigate = useNavigate()
+
+  const { data: organizations, isLoading } = useOrganizations()
+
   const handleSelect = useCallback(
     (organizationId) => {
       navigate(`/organizer/organization/${organizationId}`)
     },
     [navigate],
   )
+
+  if (isLoading) return <LoadingIndicator />
 
   return (
     <div className="organizations-page">
@@ -34,25 +39,17 @@ const MyOrganizations = ({ organizations }) => {
         className="organizations-content"
         array={organizations}
         noResult="No organization yet !"
-        renderRow={({ id, name, updateTimestamp }) => (
+        renderRow={({ id, name, createdAt }) => (
           <ListItem
             key={id}
             title={name}
-            subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
+            subtitle={<RelativeDate date={createdAt} />}
             onSelect={() => handleSelect(id)}
           />
         )}
       />
     </div>
   )
-}
-
-MyOrganizations.propTypes = {
-  organizations: PropTypes.arrayOf(PropTypes.object),
-}
-
-MyOrganizations.defaultProps = {
-  organizations: [],
 }
 
 export default MyOrganizations

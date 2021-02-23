@@ -12,30 +12,26 @@ import ReviewersThread from './reviewersThread'
 import EditProposal from './editProposal'
 import styles from './actions.module.css'
 
-const Actions = ({ eventId, proposal, surveyActive, displayOrganizersRatings, className }) => (
+const Actions = ({ event, proposal, className }) => (
   <Titlebar className={cn(styles.header, className)} title={proposal.title}>
-    <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
-      <EditProposal eventId={eventId} proposal={proposal} />
-
-      {displayOrganizersRatings && <TeamRatings proposalId={proposal.id} />}
-
-      {surveyActive && <SpeakerSurveys eventId={eventId} proposalId={proposal.id} />}
+    <HasRole of={ROLE_OWNER_OR_MEMBER} forEvent={event}>
+      <EditProposal event={event} proposal={proposal} />
+      {event.displayOrganizersRatings && (
+        <TeamRatings ratings={proposal.ratings} stats={proposal.ratingStats} />
+      )}
+      {event.surveyEnabled && <SpeakerSurveys event={event} speakers={proposal.speakers} />}
     </HasRole>
-    <ReviewersThread eventId={eventId} proposalId={proposal.id} />
+    <ReviewersThread eventId={event.id} proposalId={proposal.id} />
   </Titlebar>
 )
 
 Actions.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
   proposal: PropTypes.object.isRequired,
-  displayOrganizersRatings: PropTypes.bool,
-  surveyActive: PropTypes.bool,
   className: PropTypes.string,
 }
 
 Actions.defaultProps = {
-  displayOrganizersRatings: false,
-  surveyActive: false,
   className: undefined,
 }
 

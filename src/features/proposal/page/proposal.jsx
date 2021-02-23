@@ -1,49 +1,50 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useParams } from 'react-router'
 
-import { useAuth } from 'features/auth'
+import { useOrganizerEvent } from 'data/event'
+import { useOrganizerProposal } from 'data/proposal'
+import { LoadingIndicator } from 'components/loader'
 
-import Talk from './talk'
-import Speakers from './speakers'
-import Ratings from './ratings'
 import Actions from './actions'
+import Ratings from './ratings'
+import Speaker from './speaker'
+import Talk from './talk'
 
 import './proposal.css'
 
-const Proposal = ({ eventId, proposal, deliberationActive, blindRating }) => {
-  const { user } = useAuth()
+const Proposal = () => {
+  const { eventId, proposalIndex } = useParams()
+
+  const { data: event } = useOrganizerEvent(eventId)
+  const { data: result, isLoading } = useOrganizerProposal(eventId, proposalIndex)
+  if (!event || isLoading) {
+    return <LoadingIndicator />
+  }
+  const { proposal, nextProposal, previousProposal } = result
+
+  if (!proposal) {
+    return <div className="proposal">No more proposal found. Go back to the list.</div>
+  }
 
   return (
     <div className="proposal">
-      <Actions className="proposal-actions" eventId={eventId} proposal={proposal} />
+      <Actions className="proposal-actions" event={event} proposal={proposal} />
       <Ratings
         className="proposal-ratings"
-        userId={user.uid}
-        eventId={eventId}
-        proposalId={proposal.id}
-      />
-      {!blindRating && <Speakers className="proposal-speakers" proposal={proposal} />}
-      <Talk
-        className="proposal-talk"
-        eventId={eventId}
         proposal={proposal}
-        deliberationActive={deliberationActive}
+        nextProposal={nextProposal}
+        previousProposal={previousProposal}
       />
+      {event.displayProposalsSpeakers && (
+        <div className="proposal-speakers card">
+          {proposal.speakers.map((speaker) => (
+            <Speaker key={speaker.id} speaker={speaker} />
+          ))}
+        </div>
+      )}
+      <Talk className="proposal-talk" proposal={proposal} />
     </div>
   )
-}
-
-Proposal.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  proposal: PropTypes.objectOf(PropTypes.any),
-  deliberationActive: PropTypes.bool,
-  blindRating: PropTypes.bool,
-}
-
-Proposal.defaultProps = {
-  proposal: {},
-  deliberationActive: false,
-  blindRating: false,
 }
 
 export default Proposal

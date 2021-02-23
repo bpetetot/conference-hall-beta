@@ -1,51 +1,54 @@
-import React, { Component } from 'react'
+import React from 'react'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
+import { useLocation } from 'react-router'
+import { Link } from 'react-router-dom'
+import isNil from 'lodash/isNil'
 
 import styles from './proposalsPaging.module.css'
 
-class ProposalsPaging extends Component {
-  goToPage = (page) => () => {
-    this.props.onPageChange(page)
+const ProposalsPaging = ({ event, result }) => {
+  const { search } = useLocation()
+  const { page, pageCount, nextPage, previousPage, proposals } = result
+
+  const getNextUrl = () => {
+    const params = new URLSearchParams(search)
+    params.set('page', nextPage)
+    return `/organizer/event/${event.id}/proposals?${params}`
   }
 
-  render() {
-    const { loaded, nbItems, nbPage, page } = this.props
+  const getPreviousUrl = () => {
+    const params = new URLSearchParams(search)
+    params.set('page', previousPage)
+    return `/organizer/event/${event.id}/proposals?${params}`
+  }
 
-    if (!loaded || nbPage <= 1) return null
-
-    return (
-      <div className={styles.paging}>
-        <button
-          type="button"
-          className={cn(styles.button, styles.previous)}
-          disabled={page <= 1}
-          onClick={this.goToPage(page - 1)}
-        >
+  return (
+    <div className={styles.paging}>
+      {!isNil(previousPage) && (
+        <Link className={cn(styles.button, styles.previous)} to={getPreviousUrl()}>
           Previous
-        </button>
-        <div className={cn(styles.button, styles.status)}>
-          {`${nbItems} proposals - page ${page}/${nbPage}`}
-        </div>
-        <button
-          type="button"
-          className={cn(styles.button, styles.next)}
-          disabled={page >= nbPage}
-          onClick={this.goToPage(page + 1)}
-        >
-          Next
-        </button>
+        </Link>
+      )}
+      <div className={cn(styles.button, styles.status)}>
+        {`${proposals?.length} proposals - page ${page + 1}/${pageCount}`}
       </div>
-    )
-  }
+      {!isNil(nextPage) && (
+        <Link className={cn(styles.button, styles.next)} to={getNextUrl()}>
+          Next
+        </Link>
+      )}
+    </div>
+  )
 }
 
 ProposalsPaging.propTypes = {
-  loaded: PropTypes.bool.isRequired,
-  nbItems: PropTypes.number.isRequired,
-  page: PropTypes.number.isRequired,
-  nbPage: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
+  event: PropTypes.object.isRequired,
+  result: PropTypes.object,
+}
+
+ProposalsPaging.defaultProps = {
+  result: {},
 }
 
 export default ProposalsPaging

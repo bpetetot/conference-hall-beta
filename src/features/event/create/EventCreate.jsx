@@ -1,30 +1,31 @@
 import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import eventCrud from 'firebase/events'
 
-import { useAuth } from 'features/auth'
+import { useCreateEvent } from '../../../data/event'
 import EventForm from '../form'
 
-const EventCreate = (props) => {
-  const { user } = useAuth()
+const EventCreate = () => {
   const navigate = useNavigate()
 
-  const { uid } = user
+  const { mutateAsync } = useCreateEvent()
+
   const onSubmit = useCallback(
     async (data) => {
-      const event = {
-        ...data,
-        owner: uid,
-        visibility: data.visibility ? 'private' : 'public',
-      }
-      const ref = await eventCrud.create(event)
-
-      navigate(`/organizer/event/${ref.id}`)
+      return mutateAsync(data, {
+        onSuccess: (eventCreated) => {
+          navigate(`/organizer/event/${eventCreated.id}`)
+        },
+      })
     },
-    [navigate, uid],
+    [navigate, mutateAsync],
   )
 
-  return <EventForm {...props} onSubmit={onSubmit} />
+  const initialValues = {
+    type: 'CONFERENCE',
+    visibility: 'PUBLIC',
+  }
+
+  return <EventForm initialValues={initialValues} isCreateForm onSubmit={onSubmit} />
 }
 
 export default EventCreate

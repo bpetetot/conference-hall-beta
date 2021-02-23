@@ -1,1 +1,1 @@
-export { default } from './ratings.container'
+export { default } from './ratings'

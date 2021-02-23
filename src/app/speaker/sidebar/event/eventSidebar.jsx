@@ -1,44 +1,38 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { SideBarPanel, SideBarLink } from 'app/layout/sidebar'
 import IconLabel from 'components/iconLabel'
 import SubmitTalksLink from 'features/talk/submitTalksLink'
+import { useEvent } from 'data/event'
+import { useMatch } from 'react-router'
 
-const EventSidebar = ({ eventId, name, surveyActive }) => {
-  if (!eventId) return null
+const EventSidebar = () => {
+  const match = useMatch('/speaker/event/:eventId/*')
+  const eventId = match?.params?.eventId
+  const { data: event } = useEvent(eventId)
+
+  if (!event) return null
   return (
-    <SideBarPanel label={name}>
+    <SideBarPanel label={event.name}>
       <SideBarLink to={`/speaker/event/${eventId}`} exact>
         <IconLabel icon="fa fa-calendar-check-o" label="Event profile" />
       </SideBarLink>
       <SideBarLink to={`/speaker/event/${eventId}/submissions`} exact>
         <IconLabel icon="fa fa-inbox" label="My submissions" />
       </SideBarLink>
-      {surveyActive && (
+      {event.surveyEnabled && (
         <SideBarLink to={`/speaker/event/${eventId}/survey`} exact>
           <IconLabel icon="fa fa-question-circle" label="Speaker survey" />
         </SideBarLink>
       )}
       <SubmitTalksLink
         eventId={eventId}
+        displayed={event.isCfpOpened}
         className="sidebar-button"
         classNameActive="sidebar-link-active"
       />
     </SideBarPanel>
   )
-}
-
-EventSidebar.propTypes = {
-  eventId: PropTypes.string,
-  name: PropTypes.string,
-  surveyActive: PropTypes.bool,
-}
-
-EventSidebar.defaultProps = {
-  eventId: undefined,
-  name: 'no name',
-  surveyActive: false,
 }
 
 export default EventSidebar

@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import DatePicker from 'react-datepicker'
-import { toDate } from 'helpers/firebase'
 import { withSizes } from 'styles/utils'
 import isAfter from 'date-fns/isAfter'
 
@@ -12,12 +11,10 @@ class DayRangePicker extends React.Component {
   constructor(props) {
     super(props)
     const { value = {} } = props
-    const start = toDate(value.start)
-    const end = toDate(value.end)
 
     this.state = {
-      start: start || undefined,
-      end: end || undefined,
+      start: value.start || undefined,
+      end: value.end || undefined,
     }
   }
 
@@ -36,6 +33,8 @@ class DayRangePicker extends React.Component {
         endDate = startDate
       }
 
+      startDate.setHours(0, 0, 0)
+      endDate.setHours(23, 59, 59)
       this.props.onChange({ start: startDate, end: endDate })
       return { start: startDate, end: endDate }
     })

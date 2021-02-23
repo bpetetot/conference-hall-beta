@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
+import { v4 as uuid } from 'uuid'
 
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
-import ApiCard from './apiCard'
+import { useOrganizerEvent, useUpdateEventField } from 'data/event'
 
+import ApiCard from './apiCard'
 import styles from './api.module.css'
 
-const Api = ({ eventId, enabled, apiKey, onActiveApi, onGenerateKey }) => {
+const Api = ({ eventId }) => {
+  const { data: event } = useOrganizerEvent(eventId)
+  const [enabled, setEnabled] = useState(!!event.apiKey)
+  const { mutate: saveApiKey } = useUpdateEventField(eventId, 'apiKey')
   const { origin } = window.location
+
   return (
     <div className={cn(styles.form, 'card')}>
       <div className={styles.title}>
@@ -21,7 +27,10 @@ const Api = ({ eventId, enabled, apiKey, onActiveApi, onGenerateKey }) => {
         <Toggle
           name="apiEnabled"
           checked={enabled}
-          onChange={onActiveApi}
+          onChange={() => {
+            if (enabled) saveApiKey(null)
+            setEnabled(!enabled)
+          }}
           aria-label={enabled ? 'Disable API' : 'Enable API'}
         />
       </div>
@@ -36,15 +45,15 @@ const Api = ({ eventId, enabled, apiKey, onActiveApi, onGenerateKey }) => {
       {enabled && (
         <div className={styles.content}>
           <Label name="apiKey" label="API key" classNameInput={styles.input}>
-            <input id="apiKey" type="text" value={apiKey} readOnly />
-            <Button onClick={onGenerateKey} disabled={!enabled}>
+            <input id="apiKey" type="text" value={event.apiKey || ''} readOnly />
+            <Button onClick={() => saveApiKey(uuid())} disabled={!enabled}>
               Generate API Key
             </Button>
           </Label>
           <ApiCard
             name="GET /api/v1/event/{id}"
             description="Expose formats, categories, proposals and speakers of the event"
-            endpoint={`${origin}/api/v1/event/${eventId}?key=${apiKey}`}
+            endpoint={`${origin}/api/v1/event/${eventId}?key=${event.apiKey}`}
           />
         </div>
       )}
@@ -54,15 +63,6 @@ const Api = ({ eventId, enabled, apiKey, onActiveApi, onGenerateKey }) => {
 
 Api.propTypes = {
   eventId: PropTypes.string.isRequired,
-  enabled: PropTypes.bool,
-  apiKey: PropTypes.string,
-  onActiveApi: PropTypes.func.isRequired,
-  onGenerateKey: PropTypes.func.isRequired,
-}
-
-Api.defaultProps = {
-  enabled: false,
-  apiKey: undefined,
 }
 
 export default Api

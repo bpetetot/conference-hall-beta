@@ -1,28 +1,20 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import talkCrud from 'firebase/talks'
 
-import { useAuth } from 'features/auth'
 import TalkForm from './talkForm'
+import { useCreateTalk } from '../../../data/talk'
 
 const TalkCreate = () => {
-  const { user } = useAuth()
   const navigate = useNavigate()
+  const { mutateAsync } = useCreateTalk()
 
-  const { uid } = user
-  const onSubmit = useCallback(
-    async (data) => {
-      const ref = await talkCrud.create({
-        ...data,
-        owner: uid,
-        archived: false,
-        speakers: { [uid]: true },
-      })
-
-      navigate(`/speaker/talk/${ref.id}`)
-    },
-    [navigate, uid],
-  )
+  const onSubmit = (data) => {
+    return mutateAsync(data, {
+      onSuccess: (talkCreated) => {
+        navigate(`/speaker/talk/${talkCreated.id}`)
+      },
+    })
+  }
 
   return <TalkForm onSubmit={onSubmit} />
 }

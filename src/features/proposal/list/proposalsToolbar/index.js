@@ -1,1 +1,1 @@
-export { default } from './proposalsToolbar.container'
+export { default } from './proposalsToolbar'

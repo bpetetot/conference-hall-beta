@@ -1,28 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import isEmpty from 'lodash/isEmpty'
 
 import Inline from 'components/inline'
 
 import './proposalSubtitle.css'
 
-const ProposalSubtitle = ({ formatLabel, categoryLabel, speakerName }) => (
+const ProposalSubtitle = ({ proposal }) => (
   <Inline className="proposal-subtitle" classNameItem="proposal-subtitle-item">
-    {!!speakerName && `by ${speakerName}`}
-    {!!formatLabel && formatLabel}
-    {!!categoryLabel && categoryLabel}
+    {!isEmpty(proposal.speakers) && `by ${proposal.speakers.map((s) => s.name).join(' & ')}`}
+    {!isEmpty(proposal.formats) && proposal.formats[0].name}
+    {!isEmpty(proposal.categories) && proposal.categories[0].name}
   </Inline>
 )
 
 ProposalSubtitle.propTypes = {
-  formatLabel: PropTypes.string,
-  categoryLabel: PropTypes.string,
-  speakerName: PropTypes.string,
+  proposal: PropTypes.object,
 }
 
 ProposalSubtitle.defaultProps = {
-  formatLabel: undefined,
-  categoryLabel: undefined,
-  speakerName: undefined,
+  proposal: undefined,
 }
 
 export default ProposalSubtitle

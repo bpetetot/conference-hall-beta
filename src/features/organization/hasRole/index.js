@@ -1,1 +1,1 @@
-export { default } from './hasRole.container'
+export { default } from './hasRole'

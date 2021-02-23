@@ -1,1 +1,1 @@
-export { default } from './slack.container'
+export { default } from './slack'

@@ -2,20 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import UserAvatar from 'features/auth/userAvatar'
+import Avatar from 'components/avatar'
 
 import AddSpeaker from './addSpeaker'
 import RemoveSpeaker from './removeSpeaker'
 import './speakers.css'
 
-const TalkSpeakers = ({ talkId, talkTitle, speakers, owner, className, edit }) => (
+const TalkSpeakers = ({ talkId, talkTitle, speakers, ownerId, className, edit }) => (
   <div className={cn('talk-speakers card', className)}>
     <h3>Speakers</h3>
-    {Object.keys(speakers).map((key) => (
-      <div key={key} className="talk-speaker-row">
-        <UserAvatar id={key} />
-        {owner === key && <small>owner</small>}
-        {edit && owner !== key && <RemoveSpeaker uid={key} talkId={talkId} />}
+    {speakers.map(({ id, name, photoURL }) => (
+      <div key={id} className="talk-speaker-row">
+        <Avatar src={photoURL} name={name} withLabel />
+        {ownerId === id && <small>owner</small>}
+        {edit && ownerId !== id && <RemoveSpeaker speakerId={id} talkId={talkId} />}
       </div>
     ))}
     {edit && <AddSpeaker talkId={talkId} talkTitle={talkTitle} />}
@@ -23,17 +23,18 @@ const TalkSpeakers = ({ talkId, talkTitle, speakers, owner, className, edit }) =
 )
 
 TalkSpeakers.propTypes = {
-  talkId: PropTypes.string.isRequired,
-  talkTitle: PropTypes.string.isRequired,
-  speakers: PropTypes.objectOf(PropTypes.bool),
-  owner: PropTypes.string,
+  talkId: PropTypes.number.isRequired,
+  talkTitle: PropTypes.string,
+  speakers: PropTypes.array,
+  ownerId: PropTypes.number,
   edit: PropTypes.bool,
   className: PropTypes.string,
 }
 
 TalkSpeakers.defaultProps = {
-  speakers: {},
-  owner: undefined,
+  talkTitle: undefined,
+  speakers: [],
+  ownerId: undefined,
   edit: false,
   className: undefined,
 }

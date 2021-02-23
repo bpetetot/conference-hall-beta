@@ -1,58 +1,47 @@
-import React, { useCallback, useEffect } from 'react'
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { withSizes } from 'styles/utils'
 import { List, ListItem } from 'components/list'
+import { LoadingIndicator } from 'components/loader'
 import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
+import { useSelection } from '../selection-context'
 import './proposalsList.css'
 
-const Proposals = ({
-  eventId,
-  proposals,
-  proposalsSelection,
-  deliberationActive,
-  blindRating,
-  onAddProposalToSelection,
-  onLoad,
-  filters,
-  isMobile,
-}) => {
-  useEffect(() => {
-    onLoad({ filters })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters])
+const Proposals = ({ event, result, isFetching, isMobile }) => {
+  const { proposals, page, pageSize } = result
+  const { toggleItem, isItemSelected } = useSelection()
 
   const navigate = useNavigate()
   const { search } = useLocation()
-  const handleSelect = useCallback(
-    (proposalId) => {
-      const params = new URLSearchParams(search)
-      navigate(`/organizer/event/${eventId}/proposals/${proposalId}?${params.toString()}`)
-    },
-    [navigate, eventId, search],
-  )
+  const handleSelect = (index) => {
+    const params = new URLSearchParams(search)
+    params.delete('pageSize')
+    params.delete('page')
+    const proposalIndex = index + page * pageSize
+    navigate(`/organizer/event/${event.id}/proposals/${proposalIndex}?${params.toString()}`)
+  }
+
+  if (isFetching) {
+    return <LoadingIndicator />
+  }
 
   return (
     <List
       className="event-proposals"
       array={proposals}
-      renderRow={(proposal) => (
+      renderRow={(proposal, proposalIndex) => (
         <ListItem
           key={proposal.id}
           id={proposal.id}
           title={proposal.title}
-          subtitle={
-            !isMobile && (
-              <ProposalSubtitle eventId={eventId} proposal={proposal} blindRating={blindRating} />
-            )
-          }
-          info={<ProposalInfo eventId={eventId} proposal={proposal} isMobile={isMobile} />}
-          onSelect={() => handleSelect(proposal.id)}
-          onCheckboxChange={() => onAddProposalToSelection(proposal.id)}
-          checked={!!proposalsSelection.includes(proposal.id)}
-          checkboxDisabled={!deliberationActive}
+          subtitle={!isMobile && <ProposalSubtitle event={event} proposal={proposal} />}
+          info={<ProposalInfo event={event} proposal={proposal} isMobile={isMobile} />}
+          onSelect={() => handleSelect(proposalIndex)}
+          onCheckboxChange={() => toggleItem(proposal.id)}
+          checked={isItemSelected(proposal.id)}
         />
       )}
     />
@@ -60,22 +49,14 @@ const Proposals = ({
 }
 
 Proposals.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  proposals: PropTypes.arrayOf(PropTypes.object),
-  proposalsSelection: PropTypes.arrayOf(PropTypes.string),
-  deliberationActive: PropTypes.bool,
-  blindRating: PropTypes.bool,
-  onAddProposalToSelection: PropTypes.func.isRequired,
+  event: PropTypes.object.isRequired,
+  result: PropTypes.object,
+  isFetching: PropTypes.bool.isRequired,
   isMobile: PropTypes.bool.isRequired,
-  onLoad: PropTypes.func.isRequired,
-  filters: PropTypes.object.isRequired,
 }
 
 Proposals.defaultProps = {
-  proposals: [],
-  proposalsSelection: [],
-  deliberationActive: false,
-  blindRating: false,
+  result: {},
 }
 
 export default withSizes(Proposals)

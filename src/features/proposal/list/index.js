@@ -1,1 +1,1 @@
-export { default } from './proposals.container'
+export { default } from './proposals'

@@ -6,27 +6,25 @@ import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import Checkbox from 'components/form/checkbox'
 import IconLabel from 'components/iconLabel/iconLabel'
+import { useOrganizerEvent, useUpdateEventField } from 'data/event'
 
 import styles from './deliberation.module.css'
 
 const DeliberationForm = ({
-  blindRating,
-  deliberationEnabled,
-  displayRatings,
-  hideRatings,
-  contact,
+  eventId,
   recipients,
   emails,
-  onToggleBlindRating,
-  onToggleDeliberation,
-  onToggleOrganizersRatings,
-  onToggleHideRatings,
   onChangeRecipients,
   onChangeNotifiedEmails,
 }) => {
-  // eslint-disable-next-line max-len
+  const { data: event } = useOrganizerEvent(eventId)
+  const { mutate: onDeliberation } = useUpdateEventField(eventId, 'deliberationEnabled')
+  const { mutate: onProposalsRatings } = useUpdateEventField(eventId, 'displayProposalsRatings')
+  const { mutate: onOrganizersRatings } = useUpdateEventField(eventId, 'displayOrganizersRatings')
+  const { mutate: onProposalsSpeakers } = useUpdateEventField(eventId, 'displayProposalsSpeakers')
+
   const disabledEmails =
-    !recipients.organizers && (!recipients.contact || (recipients.contact && !contact))
+    !recipients.organizers && (!recipients.contact || (recipients.contact && !event.contact))
 
   return (
     <div className={cn(styles.form, 'card')}>
@@ -37,7 +35,7 @@ const DeliberationForm = ({
         classNameInput={styles.label}
         right
       >
-        <Toggle name="enabled" checked={deliberationEnabled} onChange={onToggleDeliberation} />
+        <Toggle name="enabled" checked={event.deliberationEnabled} onChange={onDeliberation} />
       </Label>
 
       <Label
@@ -49,31 +47,38 @@ const DeliberationForm = ({
       >
         <Toggle
           name="displayOrganizersRatings"
-          checked={displayRatings}
-          onChange={onToggleOrganizersRatings}
+          checked={event.displayOrganizersRatings}
+          onChange={onOrganizersRatings}
         />
       </Label>
 
       <Label
-        name="hideRatings"
-        label="Hide ratings from proposal list"
+        name="displayProposalsRatings"
+        label="Display ratings in proposals list"
         classNameInput={styles.label}
         right
       >
-        <Toggle name="hideRatings" checked={hideRatings} onChange={onToggleHideRatings} />
+        <Toggle
+          name="displayProposalsRatings"
+          checked={event.displayProposalsRatings}
+          onChange={onProposalsRatings}
+        />
       </Label>
 
       <Label
-        name="blindRating"
-        label="Hide speakers from proposal page"
+        name="displayProposalsSpeakers"
+        label="Display speakers info in proposal page"
         classNameInput={styles.label}
         right
       >
-        <Toggle name="blindRating" checked={blindRating} onChange={onToggleBlindRating} />
+        <Toggle
+          name="displayProposalsSpeakers"
+          checked={event.displayProposalsSpeakers}
+          onChange={onProposalsSpeakers}
+        />
       </Label>
 
       <h3>Email notifications</h3>
-
       {disabledEmails && (
         <IconLabel
           icon="fa fa-exclamation-circle"
@@ -88,7 +93,7 @@ const DeliberationForm = ({
           name="contact"
           label="Send to the event contact email"
           info={
-            contact ? (
+            event.contact ? (
               'Sent emails will have the event contact email as CC.'
             ) : (
               <IconLabel
@@ -99,7 +104,7 @@ const DeliberationForm = ({
           }
           onChange={onChangeRecipients}
           value={recipients.contact}
-          disabled={!contact}
+          disabled={!event.contact}
         />
         <Checkbox
           name="organizers"
@@ -158,29 +163,20 @@ const DeliberationForm = ({
 }
 
 DeliberationForm.propTypes = {
-  blindRating: PropTypes.bool,
-  deliberationEnabled: PropTypes.bool,
-  displayRatings: PropTypes.bool,
-  hideRatings: PropTypes.bool,
+  eventId: PropTypes.string.isRequired,
   contact: PropTypes.string,
   recipients: PropTypes.object,
   emails: PropTypes.object,
-  onToggleDeliberation: PropTypes.func.isRequired,
-  onToggleOrganizersRatings: PropTypes.func.isRequired,
-  onToggleHideRatings: PropTypes.func.isRequired,
-  onToggleBlindRating: PropTypes.func.isRequired,
-  onChangeRecipients: PropTypes.func.isRequired,
-  onChangeNotifiedEmails: PropTypes.func.isRequired,
+  onChangeRecipients: PropTypes.func,
+  onChangeNotifiedEmails: PropTypes.func,
 }
 
 DeliberationForm.defaultProps = {
-  blindRating: false,
-  deliberationEnabled: false,
-  displayRatings: false,
-  hideRatings: false,
   contact: undefined,
   recipients: {},
   emails: {},
+  onChangeRecipients: undefined,
+  onChangeNotifiedEmails: undefined,
 }
 
 export default DeliberationForm

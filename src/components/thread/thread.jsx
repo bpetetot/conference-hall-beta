@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useRef, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
@@ -8,14 +7,7 @@ import Button from 'components/button'
 import Message from './message'
 import styles from './thread.module.css'
 
-const Thread = ({
-  description,
-  messages,
-  className,
-  onSaveMessage,
-  onDeleteMessage,
-  currentUser,
-}) => {
+const Thread = ({ description, messages, onSaveMessage, onDeleteMessage, className }) => {
   const thread = useRef()
   const input = useRef()
 
@@ -27,13 +19,13 @@ const Thread = ({
   const handleAddMessage = useCallback(() => {
     const message = input.current.value
     if (message) {
-      onSaveMessage(message)
+      onSaveMessage({ message })
       input.current.value = ''
     }
   }, [onSaveMessage, input])
 
   const handleKey = useCallback(
-    e => {
+    (e) => {
       if (e.keyCode === 13) handleAddMessage()
     },
     [handleAddMessage],
@@ -43,13 +35,13 @@ const Thread = ({
     <div className={cn(styles.thread, className)}>
       {description && <div className={styles.description}>{description}</div>}
       <div ref={thread} className={styles.messages}>
-        {messages.map((message, index) => (
+        {messages.map((message) => (
           <Message
-            allowEdit={currentUser === message.owner}
-            key={index}
+            key={message.id}
             {...message}
             onSave={onSaveMessage}
             onDelete={onDeleteMessage}
+            allowEdit={message.me}
             className={styles.message}
           />
         ))}
@@ -71,7 +63,6 @@ const Thread = ({
 }
 
 Thread.propTypes = {
-  currentUser: PropTypes.string.isRequired,
   description: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.shape(Message.propTypes)),
   onSaveMessage: PropTypes.func.isRequired,

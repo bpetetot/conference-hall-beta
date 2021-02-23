@@ -1,32 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router'
 
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { ConfirmationPopin } from 'components/portals'
-import useLeaveOrganization from './useLeaveOrganization'
+import { useAuth } from '../../../auth'
+import { useRemoveMember } from '../../../../data/organization'
+import { hasUserOrganizationRoles } from '../../../../data/user'
+import { ROLES } from '../../../../firebase/constants'
 
-const RemoveMemberButton = ({
-  organizationId,
-  user,
-  isOwner,
-  onRemoveMember,
-  onLeaveMember,
-  authUserId,
-}) => {
-  const { uid, displayName } = user
-  const { leave } = useLeaveOrganization(organizationId, onLeaveMember)
-  const canRemove = isOwner && authUserId !== uid
-  const canLeave = !isOwner && authUserId === uid
+const RemoveMemberButton = ({ organizationId, member }) => {
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  const { mutate: onRemoveMember } = useRemoveMember(organizationId, member.id)
+  const isOwner = hasUserOrganizationRoles(user, organizationId, ROLES.OWNER)
+  const canRemove = isOwner && user.id !== member.id
+  const canLeave = !isOwner && user.id === member.id
+  const onLeave = async () => {
+    await onRemoveMember(null, {
+      onSuccess: () => {
+        navigate('/organizer/organizations')
+      },
+    })
+  }
 
   return (
     <ConfirmationPopin
       title={canRemove ? 'Remove a member' : 'Leave organization'}
       content={`Are you sure you want to ${
-        canRemove ? `remove ${displayName} from` : 'leave'
+        canRemove ? `remove ${member.name} from` : 'leave'
       } organization ?`}
       className="remove-member-modal"
-      onOk={canRemove ? onRemoveMember : leave}
+      onOk={canRemove ? onRemoveMember : onLeave}
       withCancel
       renderTrigger={({ show }) => (
         <>
@@ -48,11 +54,7 @@ const RemoveMemberButton = ({
 
 RemoveMemberButton.propTypes = {
   organizationId: PropTypes.string.isRequired,
-  user: PropTypes.object.isRequired,
-  isOwner: PropTypes.bool.isRequired,
-  onRemoveMember: PropTypes.func.isRequired,
-  onLeaveMember: PropTypes.func.isRequired,
-  authUserId: PropTypes.string.isRequired,
+  member: PropTypes.object.isRequired,
 }
 
 export default RemoveMemberButton

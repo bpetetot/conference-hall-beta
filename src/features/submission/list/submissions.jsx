@@ -4,27 +4,36 @@ import { useNavigate } from 'react-router-dom'
 
 import Titlebar from 'components/titlebar'
 import SubmitTalkLink from 'features/talk/submitTalksLink'
-import TalkStatus from 'features/talk/status'
 import { List, ListItem } from 'components/list'
+import Badge from 'components/badge'
+import { useEvent } from 'data/event'
+import { LoadingIndicator } from 'components/loader'
+import { useSpeakerProposals } from 'data/proposal'
 
-const Submissions = ({ eventId, eventName, talks }) => {
+const Submissions = ({ eventId }) => {
   const navigate = useNavigate()
+  const { data: event } = useEvent(eventId)
+  const { data: proposals } = useSpeakerProposals(eventId)
+
+  if (!event || !proposals) {
+    return <LoadingIndicator />
+  }
 
   return (
     <div>
-      <Titlebar icon="fa fa-inbox" title={`My submissions to "${eventName}"`}>
+      <Titlebar icon="fa fa-inbox" title={`My submissions to "${event.name}"`}>
         <SubmitTalkLink eventId={eventId} />
       </Titlebar>
       <div>
         <List
-          array={talks}
+          array={proposals}
           noResult={<div>No submissions</div>}
-          renderRow={({ id, title }) => (
+          renderRow={({ talkId, title, status }) => (
             <ListItem
-              key={id}
+              key={talkId}
               title={title}
-              info={<TalkStatus talkId={id} eventId={eventId} displayCfpStatus={false} />}
-              onSelect={() => navigate(`/speaker/event/${eventId}/submissions/${id}`)}
+              info={<Badge>{status}</Badge>}
+              onSelect={() => navigate(`/speaker/event/${eventId}/submissions/${talkId}`)}
             />
           )}
         />
@@ -35,12 +44,6 @@ const Submissions = ({ eventId, eventName, talks }) => {
 
 Submissions.propTypes = {
   eventId: PropTypes.string.isRequired,
-  eventName: PropTypes.string.isRequired,
-  talks: PropTypes.array,
-}
-
-Submissions.defaultProps = {
-  talks: [],
 }
 
 export default Submissions

@@ -1,25 +1,20 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
-import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
-import { useAuth } from 'features/auth'
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import Thread from 'components/thread'
+import { LoadingIndicator } from 'components/loader'
+import { useDeleteReviewerMessage, useReviewerMessages, useSaveReviewerMessage } from 'data/message'
 
-import useReviewerThreads from './useReviewerThreads'
 import styles from './reviewersThread.module.css'
 
-const ReviewersThread = ({ eventId, proposalId }) => {
-  const { user } = useAuth()
-
-  const { messages, saveMessage, deleteMessage } = useReviewerThreads({
-    eventId,
-    proposalId,
-    user,
-  })
-
+const ReviewersThreadDrawer = ({ eventId, proposalId }) => {
+  const { data: messages, isLoading } = useReviewerMessages(eventId, proposalId)
+  const { mutate: saveMessage } = useSaveReviewerMessage(eventId, proposalId)
+  const { mutate: deleteMessage } = useDeleteReviewerMessage(eventId, proposalId)
   const nbMessages = !isEmpty(messages) ? ` (${messages.length})` : ''
   return (
     <Drawer
@@ -30,21 +25,19 @@ const ReviewersThread = ({ eventId, proposalId }) => {
         </Button>
       )}
     >
-      <Thread
-        className={styles.reviewersThread}
-        description="Discuss with other reviewers about this proposal. The speaker WILL NOT see these comments."
-        currentUser={user.uid}
-        messages={messages}
-        onSaveMessage={saveMessage}
-        onDeleteMessage={deleteMessage}
-      />
+      {isLoading ? (
+        <LoadingIndicator />
+      ) : (
+        <Thread
+          className={styles.reviewersThread}
+          description="Discuss with other reviewers about this proposal. The speaker WILL NOT see these comments."
+          messages={messages}
+          onSaveMessage={saveMessage}
+          onDeleteMessage={deleteMessage}
+        />
+      )}
     </Drawer>
   )
 }
 
-ReviewersThread.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  proposalId: PropTypes.string.isRequired,
-}
-
-export default ReviewersThread
+export default ReviewersThreadDrawer

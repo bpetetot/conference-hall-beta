@@ -1,18 +1,20 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import upperCase from 'lodash/upperCase'
+import { useNavigate } from 'react-router-dom'
 
 import { Modal } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import InputButton from 'components/form/inputButton'
+import { useDeleteTalk } from '../../../../data/talk'
 
 import './deleteTalkModal.css'
-import { useNavigate } from 'react-router-dom'
 
-function DeleteTalkModal({ talkTitle, deleteTalk }) {
+function DeleteTalkModal({ talkId, talkTitle }) {
   const [disabled, setDisabled] = useState(true)
   const navigate = useNavigate()
+  const { mutate: deleteTalk } = useDeleteTalk()
 
   const handleChange = useCallback(
     (e) => {
@@ -22,12 +24,11 @@ function DeleteTalkModal({ talkTitle, deleteTalk }) {
   )
 
   const handleDelete = useCallback(
-    (hide) => async () => {
-      hide()
-      await deleteTalk()
+    () => async () => {
+      await deleteTalk(talkId)
       navigate('/speaker')
     },
-    [deleteTalk, navigate],
+    [talkId, deleteTalk, navigate],
   )
 
   return (
@@ -60,12 +61,8 @@ function DeleteTalkModal({ talkTitle, deleteTalk }) {
 }
 
 DeleteTalkModal.propTypes = {
-  talkTitle: PropTypes.string,
-  deleteTalk: PropTypes.func.isRequired,
-}
-
-DeleteTalkModal.defaultProps = {
-  talkTitle: undefined,
+  talkId: PropTypes.number.isRequired,
+  talkTitle: PropTypes.string.isRequired,
 }
 
 export default DeleteTalkModal

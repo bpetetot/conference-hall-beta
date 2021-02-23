@@ -1,1 +1,1 @@
-export { default } from './removeSpeaker.container'
+export { default } from './removeSpeaker'

@@ -1,1 +1,1 @@
-export { default } from './survey.container'
+export { default } from './survey'

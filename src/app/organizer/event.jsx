@@ -12,8 +12,8 @@ const Event = () => {
     <Routes>
       <Route path="/" element={<EventPage eventId={eventId} />} />
       <Route path="/edit/*" element={<EventEdit eventId={eventId} />} />
-      <Route path="/proposals" element={<ProposalsList eventId={eventId} />} />
-      <Route path="/proposals/:proposalId" element={<Proposal eventId={eventId} />} />
+      <Route path="/proposals" element={<ProposalsList />} />
+      <Route path="/proposals/:proposalIndex" element={<Proposal />} />
     </Routes>
   )
 }

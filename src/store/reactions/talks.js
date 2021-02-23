@@ -1,6 +1,5 @@
-import compareDesc from 'date-fns/compareDesc'
 import { set, unset } from 'immutadot'
-import talkCrud, { fetchUserTalks } from 'firebase/talks'
+import talkCrud from 'firebase/talks'
 
 export const updateTalk = async (action, store) => {
   const talk = action.payload
@@ -31,17 +30,6 @@ export const fetchTalk = async (action, store) => {
   if (ref.exists) {
     store.data.talks.add({ id: talkId, ...ref.data() })
   }
-}
-
-export const fetchSpeakerTalks = async (action, store) => {
-  const { userId } = action.payload
-  const talks = await fetchUserTalks(userId)
-  // set talks in the store
-  store.data.talks.set(talks)
-  // set talks id to the speaker talk store
-  const sorted = talks.sort((t1, t2) => compareDesc(t1.updateTimestamp, t2.updateTimestamp))
-  store.ui.speaker.myTalks.reset()
-  store.ui.speaker.myTalks.set(sorted)
 }
 
 export const updateSpeakerToTalk = async (action, store) => {

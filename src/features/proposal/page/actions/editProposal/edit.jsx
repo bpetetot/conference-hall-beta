@@ -8,7 +8,7 @@ import IconLabel from 'components/iconLabel'
 import ProposalEditForm from './form'
 import styles from './edit.module.css'
 
-const EditProposal = ({ eventId, proposal }) => (
+const EditProposal = ({ event, proposal }) => (
   <Modal
     className={styles.modal}
     renderTrigger={({ show }) => (
@@ -17,12 +17,12 @@ const EditProposal = ({ eventId, proposal }) => (
       </Button>
     )}
   >
-    {({ hide }) => <ProposalEditForm eventId={eventId} initialValues={proposal} onClose={hide} />}
+    {({ hide }) => <ProposalEditForm event={event} proposal={proposal} onClose={hide} />}
   </Modal>
 )
 
 EditProposal.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
   proposal: PropTypes.object.isRequired,
 }
 

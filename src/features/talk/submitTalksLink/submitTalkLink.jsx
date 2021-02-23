@@ -7,17 +7,13 @@ import cn from 'classnames'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 
-const SubmitTalkLink = ({ eventId, label, displayed, className, size, onClick }) => {
+const SubmitTalkLink = ({ eventId, label, displayed, className, size }) => {
   if (!displayed) return null
 
   return (
     <Button primary accent size={size}>
       {(btn) => (
-        <Link
-          to={`/speaker/event/${eventId}/submission`}
-          onClick={onClick}
-          className={cn(btn, className)}
-        >
+        <Link to={`/speaker/event/${eventId}/submission`} className={cn(btn, className)}>
           {label || <IconLabel icon="fa fa-paper-plane" label="Submit a talk" />}
         </Link>
       )}
@@ -27,7 +23,6 @@ const SubmitTalkLink = ({ eventId, label, displayed, className, size, onClick })
 
 SubmitTalkLink.propTypes = {
   eventId: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
   label: PropTypes.string,
   displayed: PropTypes.bool,
   className: PropTypes.string,
