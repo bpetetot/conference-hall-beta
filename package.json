@@ -2,8 +2,11 @@
   "name": "conference-hall",
   "version": "0.38.0",
   "private": true,
-  "bugs": "https://github.com/bpetetot/conference-hall/issues",
+  "license": "MIT",
+  "description": "An open SaaS platform to manage call for papers",
+  "homepage": "https://conference-hall.io",
   "repository": "github:bpetetot/conference-hall",
+  "bugs": "https://github.com/bpetetot/conference-hall/issues",
   "scripts": {
     "changelog": "npx gitmoji-changelog@latest"
   },

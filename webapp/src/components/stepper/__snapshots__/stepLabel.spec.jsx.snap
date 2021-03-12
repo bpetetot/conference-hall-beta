@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`components/stepLabel should render 1`] = `
-<div
-  className="step-active-label"
->
-  boo
-</div>
-`;

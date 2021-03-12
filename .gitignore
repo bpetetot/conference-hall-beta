@@ -51,3 +51,4 @@ pids
 
 # build
 dist/
+build/

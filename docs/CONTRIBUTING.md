@@ -4,7 +4,7 @@ Contributions, issues and feature requests are very welcome. If you are using th
 
 You can contact other contributors on [Gitter](https://gitter.im/conference-hall) or ping me on [Twitter](https://twitter.com/bpetetot).
 
-If you want to contribute, you must read and accept our [Code of Conduct](/code-of-conduct).
+If you want to contribute, you must read and accept our [Code of Conduct](/code_of_conduct).
 
 ## Guidelines
 

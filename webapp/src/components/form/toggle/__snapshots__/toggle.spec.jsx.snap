@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`components/toggle should render 1`] = `
-<Toggle
-  checked={false}
-  name="name"
-  onChange={[MockFunction]}
-/>
-`;

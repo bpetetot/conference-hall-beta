@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`components/field should render 1`] = `
-<ForwardRef(Field)
-  label="label"
-  name="name"
-  parse={[Function]}
-/>
-`;

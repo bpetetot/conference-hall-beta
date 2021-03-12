@@ -1,7 +1,3 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-
-<Meta title="APIs/Proposals" />
-
 # APIs
 
 As organizer, you can generate an API key for an event in Conference Hall through the event configuration page.

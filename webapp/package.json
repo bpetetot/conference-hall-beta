@@ -2,11 +2,11 @@
   "name": "@conference-hall/webapp",
   "version": "0.38.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:emulator": "firebase emulators:exec --only firestore 'jest --roots config --env=./config/tests/custom.js'",
     "lint": "eslint --ext js,jsx src",
     "size": "bundlesize"
   },
@@ -50,8 +50,6 @@
     "@testing-library/react-hooks": "3.4.2",
     "babel-loader": "8.1.0",
     "bundlesize": "0.18.0",
-    "enzyme": "3.11.0",
-    "enzyme-adapter-react-16": "1.15.5",
     "enzyme-to-json": "3.6.1",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-prettier": "6.15.0",
@@ -139,11 +137,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
     ]
   }
 }

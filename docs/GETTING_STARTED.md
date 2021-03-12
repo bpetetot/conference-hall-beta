@@ -1,7 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Documentation/Install" />
-
 # Install
 
 ## Pre-requisites
