@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "es2015",
     "moduleResolution": "node",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
       "./src/*": ["./src/*"]
     },

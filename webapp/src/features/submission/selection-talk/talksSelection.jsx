@@ -6,6 +6,7 @@ import NoTalks from 'features/talk/noTalks'
 
 import { useTalks } from 'data/talk'
 import Badge from 'components/badge'
+import { useNavigate } from 'react-router'
 
 function renderBadge(eventId, proposals) {
   const proposal = proposals?.find((p) => p.eventId === parseInt(eventId, 10))
@@ -17,9 +18,15 @@ function renderBadge(eventId, proposals) {
   )
 }
 
-const TalksSelection = ({ eventId, onSelect }) => {
+const TalksSelection = ({ eventId }) => {
   const { data: talks } = useTalks()
   const availableTalks = talks.filter((talk) => !talk.archived)
+
+  const navigate = useNavigate()
+  const handleSelect = (talkId) => {
+    navigate(`/speaker/event/${eventId}/submission/${talkId}`)
+  }
+
   return (
     <List
       array={availableTalks}
@@ -30,7 +37,7 @@ const TalksSelection = ({ eventId, onSelect }) => {
           title={title}
           subtitle={<RelativeDate date={updatedAt} />}
           info={renderBadge(eventId, proposals)}
-          onSelect={() => onSelect(id)}
+          onSelect={() => handleSelect(id)}
         />
       )}
     />
@@ -39,7 +46,6 @@ const TalksSelection = ({ eventId, onSelect }) => {
 
 TalksSelection.propTypes = {
   eventId: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired,
 }
 
 export default TalksSelection

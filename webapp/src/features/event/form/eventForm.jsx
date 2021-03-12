@@ -19,7 +19,7 @@ import {
 import { required } from 'components/form/validators'
 import './eventForm.css'
 import { useOrganizationsForRoles } from '../../../data/organization'
-import { ROLES } from '../../../firebase/constants'
+import { ROLES } from '../../organization/constants'
 
 const EventForm = ({ isCreateForm, onSubmit, initialValues, toggleArchive }) => {
   const organizations = useOrganizationsForRoles([ROLES.OWNER, ROLES.MEMBER])

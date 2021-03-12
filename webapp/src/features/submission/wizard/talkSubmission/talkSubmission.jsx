@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Form } from 'react-final-form'
 import isEmpty from 'lodash/isEmpty'
 
-import { useSubmitTalk, useTalk, useUnsubmitTalk } from 'data/talk'
+import { useSubmitTalk, useUnsubmitTalk } from 'data/talk'
 import Field from 'components/form/field'
 import Titlebar from 'components/titlebar'
 import { markdownInput, radio, SubmitButton, RadioGroup } from 'components/form'
@@ -11,20 +11,17 @@ import Alert from 'components/alert'
 import { required } from 'components/form/validators'
 
 import './talkSubmission.css'
-import { LoadingIndicator } from 'components/loader'
-import { useEvent } from 'data/event'
+import { useWizard } from '../context'
 
-const TalkSubmission = ({ eventId, talkId, onNext, onReset }) => {
-  const { data: event } = useEvent(eventId)
-  const { data: talk } = useTalk(talkId)
-  const { mutate: submitTalk, error, isError, isLoading: isSaving } = useSubmitTalk(eventId, talkId)
-  const { mutate: unsubmitTalk, isLoading: isRemoving } = useUnsubmitTalk(eventId, talkId)
+const TalkSubmission = ({ event, talk }) => {
+  const { mutate: submitTalk, error, isError, isLoading: isSaving } = useSubmitTalk(
+    event.id,
+    talk.id,
+  )
+  const { mutate: unsubmitTalk, isLoading: isRemoving } = useUnsubmitTalk(event.id, talk.id)
+  const { nextStep, resetWizard } = useWizard()
 
-  if (!talk || !event) {
-    return <LoadingIndicator />
-  }
-
-  const proposal = talk.proposals.find((p) => p.eventId === parseInt(eventId, 10))
+  const proposal = talk.proposals.find((p) => p.eventId === parseInt(event.id, 10))
   const isUpdate = !!proposal
   const initialValues = {
     comments: proposal?.comments,
@@ -32,13 +29,8 @@ const TalkSubmission = ({ eventId, talkId, onNext, onReset }) => {
     categories: String(proposal?.categories?.[0]?.id),
   }
 
-  const onSubmit = (data) => {
-    return submitTalk(data, { onSuccess: onNext })
-  }
-
-  const onUnsubmit = () => {
-    return unsubmitTalk(null, { onSuccess: onReset })
-  }
+  const onSubmit = async (data) => submitTalk(data, { onSuccess: nextStep })
+  const onUnsubmit = () => unsubmitTalk(null, { onSuccess: resetWizard })
 
   return (
     <Form onSubmit={onSubmit} initialValues={initialValues}>
@@ -109,10 +101,8 @@ const TalkSubmission = ({ eventId, talkId, onNext, onReset }) => {
 }
 
 TalkSubmission.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  talkId: PropTypes.string.isRequired,
-  onNext: PropTypes.func.isRequired,
-  onReset: PropTypes.func.isRequired,
+  event: PropTypes.object.isRequired,
+  talk: PropTypes.object.isRequired,
 }
 
 export default TalkSubmission

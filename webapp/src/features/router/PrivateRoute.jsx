@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Navigate, Route, useLocation } from 'react-router-dom'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import { useAuth } from 'features/auth'
 
 const SKIP_BETA_ACCESS = process.env.NODE_ENV === 'development'

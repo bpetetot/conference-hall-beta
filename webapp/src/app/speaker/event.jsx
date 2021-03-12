@@ -1,28 +1,22 @@
 import React, { memo } from 'react'
-import { Route, Routes, useParams } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
-import { useAuth } from 'features/auth'
 import EventPage from 'features/event/page'
 import SurveyForm from 'features/survey/page'
+import SubmitTalkSelection from 'features/submission/selection-talk'
 import SubmissionWizard from 'features/submission/wizard'
 import SubmissionsList from 'features/submission/list'
 import SubmissionPage from 'features/submission/page'
 
-const Event = () => {
-  const { user } = useAuth()
-  const { eventId } = useParams()
-  return (
-    <Routes>
-      <Route path="/" element={<EventPage eventId={eventId} />} />
-      <Route path="/survey" element={<SurveyForm eventId={eventId} />} />
-      <Route path="/submission" element={<SubmissionWizard eventId={eventId} />} />
-      <Route
-        path="/submissions"
-        element={<SubmissionsList eventId={eventId} userId={user.uid} />}
-      />
-      <Route path="/submissions/:talkId" element={<SubmissionPage eventId={eventId} />} />
-    </Routes>
-  )
-}
+const Event = () => (
+  <Routes>
+    <Route path="/" element={<EventPage />} />
+    <Route path="/survey" element={<SurveyForm />} />
+    <Route path="/submission" element={<SubmitTalkSelection />} />
+    <Route path="/submission/:talkId" element={<SubmissionWizard />} />
+    <Route path="/submissions" element={<SubmissionsList />} />
+    <Route path="/submissions/:talkId" element={<SubmissionPage />} />
+  </Routes>
+)
 
 export default memo(Event)

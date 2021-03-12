@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Modal } from 'components/portals'
 import InputButton from 'components/form/inputButton'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import UserResults from './userResults'
 
 // import InviteLink from './inviteLink'

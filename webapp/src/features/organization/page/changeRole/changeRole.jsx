@@ -4,7 +4,7 @@ import capitalize from 'lodash/capitalize'
 
 import { ConfirmationPopin } from 'components/portals'
 import Badge from 'components/badge/badge'
-import { ROLES } from 'firebase/constants'
+import { ROLES } from 'features/organization/constants'
 import { useAuth } from 'features/auth'
 
 import RoleText from './roleText'

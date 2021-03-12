@@ -1,17 +1,14 @@
 import React, { memo } from 'react'
-import { Route, Routes, useParams } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import OrganizationPage from 'features/organization/page'
 import OrganizationEdit from 'features/organization/form/organizationEdit'
 
-const Organization = () => {
-  const { organizationId } = useParams()
-  return (
-    <Routes>
-      <Route path="/" element={<OrganizationPage organizationId={organizationId} />} />
-      <Route path="/edit" element={<OrganizationEdit organizationId={organizationId} />} />
-    </Routes>
-  )
-}
+const Organization = () => (
+  <Routes>
+    <Route path="/" element={<OrganizationPage />} />
+    <Route path="/edit" element={<OrganizationEdit />} />
+  </Routes>
+)
 
 export default memo(Organization)

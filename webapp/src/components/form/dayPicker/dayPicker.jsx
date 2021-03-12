@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
-import { toDate } from 'helpers/firebase'
 import { withSizes } from 'styles/utils'
 
 export class DayPicker extends React.Component {
   constructor(props) {
     super(props)
-    const date = toDate(props.value)
+    const date = props.value
     this.state = {
       date: date || undefined,
     }

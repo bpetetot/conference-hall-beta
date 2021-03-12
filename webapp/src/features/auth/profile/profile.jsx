@@ -7,9 +7,9 @@ import Field from 'components/form/field'
 import { input, address, markdownInput, SubmitButton } from 'components/form'
 import * as validators from 'components/form/validators'
 import Avatar from 'components/avatar'
+import { useResetUserProvider, useUpdateUser } from 'data/user'
 
 import './profile.css'
-import { useResetUserProvider, useUpdateUser } from '../../data/user'
 
 const validateEmail = validators.validate([validators.required, validators.email])
 
@@ -38,15 +38,14 @@ const Profile = () => {
     },
   }
 
-  const onSubmit = (data) => {
-    return updateUser({
+  const onSubmit = (data) =>
+    updateUser({
       ...data,
       address: data?.address?.address,
       lat: data?.address?.lat,
       lng: data?.address?.lng,
       timezone: data?.address?.timezone,
     })
-  }
 
   return (
     <Form onSubmit={onSubmit} initialValues={initialValues}>

@@ -10,13 +10,12 @@ const TalkEdit = () => {
   const { data: talk, isLoading } = useTalk(talkId)
   const { mutateAsync } = useUpdateTalk(talkId)
 
-  const onSubmit = (data) => {
-    return mutateAsync(data, {
+  const onSubmit = (data) =>
+    mutateAsync(data, {
       onSuccess: () => {
         navigate(`/speaker/talk/${talkId}`)
       },
     })
-  }
 
   if (isLoading) {
     return <div>Loading...</div>

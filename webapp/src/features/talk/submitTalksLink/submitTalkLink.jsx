@@ -22,7 +22,7 @@ const SubmitTalkLink = ({ eventId, label, displayed, className, size }) => {
 }
 
 SubmitTalkLink.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  eventId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string,
   displayed: PropTypes.bool,
   className: PropTypes.string,

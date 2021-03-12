@@ -1,15 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useParams } from 'react-router'
 
 import Stepper from 'components/stepper'
 import EventTitle from 'features/event/eventTitle'
 import { useEvent } from 'data/event'
-import Selection from './talksSelection'
+import { useTalk } from 'data/talk'
 import TalkDetails from './talkDetails'
 import TalkSubmission from './talkSubmission'
 import TalkSubmitted from './talkSubmitted'
 
 import './submitWizard.css'
+import { useWizard, WizardProvider } from './context'
 
 const steps = [
   { label: 'Talk selection', icon: 'fa fa-bars' },
@@ -18,29 +19,27 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const SubmitWizard = ({ eventId, currentStep }) => {
+const SubmitWizard = () => {
+  const { talkId, eventId } = useParams()
   const { data: event } = useEvent(eventId)
-  if (!event || !event.isCfpOpened) return null
+  const { data: talk } = useTalk(talkId)
+  const { step } = useWizard()
+
+  if (!event || !talk || !event.isCfpOpened) return null
+
   return (
     <div className="submitWizard">
       <EventTitle name={event.name} subtitle="Talk submission" />
-      <Stepper steps={steps} currentStep={currentStep} />
-      {currentStep === 0 && <Selection eventId={eventId} />}
-      {currentStep === 1 && <TalkDetails eventId={eventId} />}
-      {currentStep === 2 && <TalkSubmission eventId={eventId} eventName={event.name} />}
-      {currentStep === 3 && <TalkSubmitted eventId={eventId} eventName={event.name} />}
+      <Stepper steps={steps} currentStep={step} />
+      {step === 1 && <TalkDetails talk={talk} />}
+      {step === 2 && <TalkSubmission event={event} talk={talk} />}
+      {step === 3 && <TalkSubmitted event={event} talk={talk} />}
     </div>
   )
 }
 
-SubmitWizard.propTypes = {
-  eventId: PropTypes.string,
-  currentStep: PropTypes.number,
-}
-
-SubmitWizard.defaultProps = {
-  eventId: undefined,
-  currentStep: 0,
-}
-
-export default SubmitWizard
+export default () => (
+  <WizardProvider>
+    <SubmitWizard />
+  </WizardProvider>
+)

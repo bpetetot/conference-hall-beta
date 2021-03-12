@@ -3,7 +3,7 @@ import firebase from 'firebase/app'
 import split from 'lodash/split'
 
 import useRedirectNext from 'features/router/useRedirectNext'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { useAuth } from '../context'

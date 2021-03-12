@@ -4,7 +4,7 @@ import { useMatch } from 'react-router'
 import { SideBarPanel, SideBarLink } from 'app/layout/sidebar'
 import IconLabel from 'components/iconLabel'
 import HasRole from 'features/organization/hasRole'
-import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
+import { ROLE_OWNER_OR_MEMBER } from 'features/organization/constants'
 import { useOrganizerEvent } from '../../../data/event'
 
 const EventSidebar = () => {

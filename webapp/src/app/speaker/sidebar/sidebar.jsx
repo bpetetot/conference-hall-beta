@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { SideBar, SideBarPanel, SideBarLink } from 'app/layout/sidebar'
 import { useAuth } from 'features/auth'
 import IconLabel from 'components/iconLabel'
-import EventSidebar from './event'
+import EventSidebar from './eventSidebar'
 
 const SpeakerSideBar = ({ className }) => {
   const { user } = useAuth()

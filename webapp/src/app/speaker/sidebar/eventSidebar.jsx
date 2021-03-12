@@ -1,10 +1,10 @@
 import React from 'react'
+import { useMatch } from 'react-router'
 
 import { SideBarPanel, SideBarLink } from 'app/layout/sidebar'
 import IconLabel from 'components/iconLabel'
 import SubmitTalksLink from 'features/talk/submitTalksLink'
 import { useEvent } from 'data/event'
-import { useMatch } from 'react-router'
 
 const EventSidebar = () => {
   const match = useMatch('/speaker/event/:eventId/*')

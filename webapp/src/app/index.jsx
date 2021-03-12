@@ -1,12 +1,10 @@
 import React from 'react'
 import cn from 'classnames'
 import { Routes, Route } from 'react-router-dom'
-import { provider } from '@k-ramel/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
 import useTheme from 'styles/themes/useTheme'
-import store from 'store'
 import { AuthProvider } from 'features/auth'
 import PrivateRoute from 'features/router/PrivateRoute'
 import Home from 'features/home'
@@ -53,4 +51,4 @@ const App = () => {
   )
 }
 
-export default provider(store)(App)
+export default App

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { ListItem } from 'components/list'
 import Avatar from 'components/avatar'
 import Badge from 'components/badge'
-import { ROLES } from 'firebase/constants'
+import { ROLES } from 'features/organization/constants'
 import HasRole from 'features/organization/hasRole'
 
 import ChangeRole from '../changeRole'

@@ -1,9 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useParams } from 'react-router-dom'
 
 import HasRole from 'features/organization/hasRole'
-import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
+import { ROLE_OWNER_OR_MEMBER } from 'features/organization/constants'
 
 import Tabs from 'features/event/edit/eventTabs'
 import EventForm from 'features/event/edit/EventEdit'
@@ -14,7 +13,8 @@ import DeliberationForm from 'features/event/edit/deliberation'
 import IntegrationsForm from 'features/event/edit/integrations'
 import { useOrganizerEvent } from 'data/event'
 
-const EventEdit = ({ eventId }) => {
+const EventEdit = () => {
+  const { eventId } = useParams()
   const { data: event } = useOrganizerEvent(eventId)
 
   return (
@@ -32,10 +32,6 @@ const EventEdit = ({ eventId }) => {
       </HasRole>
     </div>
   )
-}
-
-EventEdit.propTypes = {
-  eventId: PropTypes.string.isRequired,
 }
 
 export default EventEdit

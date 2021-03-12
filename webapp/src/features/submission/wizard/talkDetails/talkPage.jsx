@@ -1,25 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useTalk } from 'data/talk'
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
-import { LoadingIndicator } from 'components/loader'
 import { TalkAbstract, TalkSpeakers } from 'features/talk'
 
 import './talkPage.css'
+import { useWizard } from '../context'
 
-const TalkPage = ({ talkId, onNext }) => {
-  const { data: talk } = useTalk(talkId)
-
-  if (!talk) {
-    return <LoadingIndicator />
-  }
+const TalkPage = ({ talk }) => {
+  const { nextStep } = useWizard()
   return (
     <div className="talk-details">
       <Titlebar icon="fa fa-microphone" title={talk.title} className="talk-title">
-        <Button accent onClick={onNext}>
+        <Button accent onClick={nextStep}>
           <IconLabel icon="fa fa-angle-right" label="Next" right />
         </Button>
       </Titlebar>
@@ -43,8 +38,7 @@ const TalkPage = ({ talkId, onNext }) => {
 }
 
 TalkPage.propTypes = {
-  talkId: PropTypes.string.isRequired,
-  onNext: PropTypes.func.isRequired,
+  talk: PropTypes.object.isRequired,
 }
 
 export default TalkPage

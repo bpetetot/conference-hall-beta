@@ -1,1 +1,1 @@
-export { default } from './submitWizard.container'
+export { default } from './submitWizard'

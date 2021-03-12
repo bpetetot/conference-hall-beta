@@ -11,7 +11,6 @@
     "size": "bundlesize"
   },
   "dependencies": {
-    "@k-ramel/react": "3.0.1",
     "classnames": "2.2.6",
     "date-fns": "2.19.0",
     "dompurify": "2.2.7",
@@ -20,10 +19,7 @@
     "firebase": "8.3.0",
     "font-awesome": "4.7.0",
     "history": "^5.0.0",
-    "hoc-react-loader": "6.3.0",
-    "immutadot": "1.0.0",
     "intl-messageformat": "9.5.2",
-    "k-ramel": "3.0.1",
     "lodash": "4.17.21",
     "luxon": "1.26.0",
     "marked": "2.0.1",
@@ -40,17 +36,12 @@
     "react-query": "^3.9.9",
     "react-router-dom": "^6.0.0-beta.0",
     "react-sizes": "2.0.0",
-    "redux": "4.0.5",
     "uuid": "8.3.2",
     "validator": "13.5.2"
   },
   "devDependencies": {
     "@babel/core": "7.13.10",
-    "@firebase/testing": "0.20.11",
-    "@testing-library/react-hooks": "5.1.0",
-    "babel-loader": "8.2.2",
     "bundlesize": "0.18.1",
-    "enzyme-to-json": "3.6.1",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-import": "2.22.1",
@@ -60,10 +51,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "firebase-tools": "9.6.1",
     "prettier": "2.2.1",
-    "react-is": "17.0.1",
-    "react-scripts": "4.0.3",
-    "react-test-renderer": "17.0.1",
-    "redux-devtools-extension": "2.13.9"
+    "react-scripts": "4.0.3"
   },
   "eslintConfig": {
     "parser": "babel-eslint",

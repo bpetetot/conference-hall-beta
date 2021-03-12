@@ -8,7 +8,7 @@ import { ConfirmationPopin } from 'components/portals'
 import { useAuth } from '../../../auth'
 import { useRemoveMember } from '../../../../data/organization'
 import { hasUserOrganizationRoles } from '../../../../data/user'
-import { ROLES } from '../../../../firebase/constants'
+import { ROLES } from '../../constants'
 
 const RemoveMemberButton = ({ organizationId, member }) => {
   const { user } = useAuth()

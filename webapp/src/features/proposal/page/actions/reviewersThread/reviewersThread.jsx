@@ -6,7 +6,7 @@ import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import Thread from 'components/thread'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import { useDeleteReviewerMessage, useReviewerMessages, useSaveReviewerMessage } from 'data/message'
 
 import styles from './reviewersThread.module.css'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router'
 
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import EventTitle from 'features/event/eventTitle'
 import { useEvent } from 'data/event'
 import SurveyForm from '../form'

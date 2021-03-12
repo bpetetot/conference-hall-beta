@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 
 import { useOrganizerEvent } from 'data/event'
 import { useOrganizerProposal } from 'data/proposal'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 
 import Actions from './actions'
 import Ratings from './ratings'

@@ -1,17 +1,21 @@
 import React from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import AppLayout from 'app/layout'
 import Button from 'components/button'
 import Titlebar from 'components/titlebar'
 
-import useValidationInvite from './useValidationInvite'
+// import useValidationInvite from './useValidationInvite'
 import styles from './invite.module.css'
 
 const InvitePage = () => {
-  const navigate = useNavigate()
-  const { inviteId } = useParams()
-  const { invitation, loading, validate } = useValidationInvite(inviteId, navigate)
+  // const navigate = useNavigate()
+  // const { inviteId } = useParams()
+  // const { invitation, loading, validate } = useValidationInvite(inviteId, navigate)
+
+  const invitation = null
+  const loading = false
+  const validate = () => {}
 
   if (!invitation) return null
 

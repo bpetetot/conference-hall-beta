@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 
-import './loading.css'
+import './loader.css'
 
 const LoadingIndicator = ({ className }) => (
   <div className={cn('spinner', className)}>

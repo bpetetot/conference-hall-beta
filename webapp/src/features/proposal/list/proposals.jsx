@@ -2,9 +2,9 @@ import React from 'react'
 import { useParams } from 'react-router'
 
 import HasRole from 'features/organization/hasRole'
-import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
+import { ROLE_OWNER_OR_MEMBER } from 'features/organization/constants'
 import { useOrganizerEvent } from 'data/event'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import { useOrganizerProposals } from 'data/proposal'
 
 import ProposalsHeader from './proposalsHeader'

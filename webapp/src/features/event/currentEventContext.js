@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect, useContext } from 'react'
-import { inject } from '@k-ramel/react'
 import PropTypes from 'prop-types'
 import { useLocation, useMatch } from 'react-router-dom'
 import { getTopRoute, isOrganizerApp } from 'features/router/utils'
@@ -15,7 +14,6 @@ function getEventIdFromLocalStorage() {
   return value
 }
 
-// TODO Add Unit Tests
 const CurrentEventContextProvider = ({ children, loadEvent }) => {
   const [currentEventId, setCurrentEventId] = useState()
 
@@ -52,10 +50,4 @@ CurrentEventContextProvider.propTypes = {
   loadEvent: PropTypes.func.isRequired,
 }
 
-export const CurrentEventProvider = inject((store) => {
-  return {
-    loadEvent: (eventId) => {
-      store.dispatch({ type: '@@ui/ON_LOAD_EVENT', payload: { eventId, loadSettings: false } })
-    },
-  }
-})(CurrentEventContextProvider)
+export default CurrentEventContextProvider

@@ -1,29 +1,25 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
 import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
 import IconLabel from 'components/iconLabel'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import NoEvents from 'features/event/noEvents'
 import EventDates from 'features/event/page/eventDates'
 import { useSearchEvents } from 'data/event'
 
 import styles from './eventsSelection.module.css'
 
-const TalksSelection = ({ onSelect }) => {
+const EventsSelection = ({ talkId }) => {
   const navigate = useNavigate()
 
   const { data: events, isLoading } = useSearchEvents()
 
-  const handleSelect = useCallback(
-    (eventId) => {
-      onSelect()
-      navigate(`/speaker/event/${eventId}/submission`)
-    },
-    [onSelect, navigate],
-  )
+  const handleSelect = (eventId) => {
+    navigate(`/speaker/event/${eventId}/submission/${talkId}`)
+  }
 
   if (isLoading) {
     return <LoadingIndicator />
@@ -64,8 +60,8 @@ const TalksSelection = ({ onSelect }) => {
   )
 }
 
-TalksSelection.propTypes = {
-  onSelect: PropTypes.func.isRequired,
+EventsSelection.propTypes = {
+  talkId: PropTypes.string.isRequired,
 }
 
-export default TalksSelection
+export default EventsSelection

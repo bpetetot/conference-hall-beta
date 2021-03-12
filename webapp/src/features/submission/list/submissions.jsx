@@ -1,17 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import Titlebar from 'components/titlebar'
 import SubmitTalkLink from 'features/talk/submitTalksLink'
 import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
 import { useEvent } from 'data/event'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import { useSpeakerProposals } from 'data/proposal'
 
-const Submissions = ({ eventId }) => {
+const Submissions = () => {
   const navigate = useNavigate()
+  const { eventId } = useParams()
   const { data: event } = useEvent(eventId)
   const { data: proposals } = useSpeakerProposals(eventId)
 
@@ -40,10 +40,6 @@ const Submissions = ({ eventId }) => {
       </div>
     </div>
   )
-}
-
-Submissions.propTypes = {
-  eventId: PropTypes.string.isRequired,
 }
 
 export default Submissions

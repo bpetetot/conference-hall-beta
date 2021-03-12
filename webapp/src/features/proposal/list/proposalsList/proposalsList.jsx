@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { withSizes } from 'styles/utils'
 import { List, ListItem } from 'components/list'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
 import { useSelection } from '../selection-context'

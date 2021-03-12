@@ -6,13 +6,13 @@ import { List } from 'components/list'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import HasRole from 'features/organization/hasRole'
-import { ROLES } from 'firebase/constants'
+import { ROLES } from 'features/organization/constants'
 
 import AddMember from './addMember'
 import MemberRow from './memberRow'
 import './organizationPage.css'
 import { useOrganization, useOrganizationMembers } from '../../../data/organization'
-import { LoadingIndicator } from '../../../components/loader'
+import LoadingIndicator from '../../../components/loader'
 
 const OrganizationPage = () => {
   const { organizationId } = useParams()

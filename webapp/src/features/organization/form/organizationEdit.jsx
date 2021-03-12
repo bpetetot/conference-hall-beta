@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { LoadingIndicator } from 'components/loader'
+import LoadingIndicator from 'components/loader'
 import { useUpdateOrganization, useOrganization } from '../../../data/organization'
 
 import OrganizationForm from './organizationForm'

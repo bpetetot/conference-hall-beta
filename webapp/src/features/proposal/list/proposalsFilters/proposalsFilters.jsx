@@ -4,7 +4,7 @@ import debounce from 'lodash/debounce'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import HasRole from 'features/organization/hasRole'
-import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
+import { ROLE_OWNER_OR_MEMBER } from 'features/organization/constants'
 
 import styles from './proposalsFilters.module.css'
 import { filterTypes, statusLabel, ratingsLabel, sortOrderLabel, filterSortOrders } from './filters'
