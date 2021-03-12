@@ -13,17 +13,16 @@ package-lock.json
 
 # misc
 .DS_Store
+.idea/
 .vscode/
+
+# dotenv
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-.env.test
 .env.production
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 .eslintcache
 
 # firebase
@@ -34,8 +33,21 @@ firestore-debug.log*
 .firebase/
 serviceAccount.json
 
-# storybook
-storybook-static/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
 
-# IDE
-.idea/
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+.cache/
+
+# build
+dist/

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:12.5-alpine
+    volumes:
+      - ./docker/postgres:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: "\"conference-hall\",\"conference-hall-test\""
+      POSTGRES_HOST_AUTH_METHOD: trust
+  firebase-auth:
+    build:
+      context: ./docker/firebase
+    ports:
+      - "9099:9099"
+      - "4000:4000"
+    volumes:
+      - ./docker/firebase:/app
+      - ./docker/firebase/.cache:/app/.cache/firebase/emulators/ 
+

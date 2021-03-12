@@ -13,9 +13,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - uses: actions/setup-java@v1
-        with:
-          java-version: 13
 
       - name: Get yarn cache
         id: yarn-cache
@@ -30,12 +27,5 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn test
-      - run: yarn test:emulator
-      - name: Run function tests
-        run: |
-          cd functions
-          yarn install --frozen-lockfile
-          yarn test
-          yarn test:emulator
       - run: yarn build
       - run: yarn size
