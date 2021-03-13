@@ -6,22 +6,20 @@ import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import Checkbox from 'components/form/checkbox'
 import IconLabel from 'components/iconLabel/iconLabel'
-import { useOrganizerEvent, useUpdateEventField } from 'data/event'
+import { useUpdateEventField } from 'data/event'
 
 import styles from './deliberation.module.css'
 
-const DeliberationForm = ({
-  eventId,
-  recipients,
-  emails,
-  onChangeRecipients,
-  onChangeNotifiedEmails,
-}) => {
-  const { data: event } = useOrganizerEvent(eventId)
-  const { mutate: onDeliberation } = useUpdateEventField(eventId, 'deliberationEnabled')
-  const { mutate: onProposalsRatings } = useUpdateEventField(eventId, 'displayProposalsRatings')
-  const { mutate: onOrganizersRatings } = useUpdateEventField(eventId, 'displayOrganizersRatings')
-  const { mutate: onProposalsSpeakers } = useUpdateEventField(eventId, 'displayProposalsSpeakers')
+const DeliberationForm = ({ event }) => {
+  const { mutate: onDeliberation } = useUpdateEventField(event.id, 'deliberationEnabled')
+  const { mutate: onProposalsRatings } = useUpdateEventField(event.id, 'displayProposalsRatings')
+  const { mutate: onOrganizersRatings } = useUpdateEventField(event.id, 'displayOrganizersRatings')
+  const { mutate: onProposalsSpeakers } = useUpdateEventField(event.id, 'displayProposalsSpeakers')
+
+  const recipients = {} // TODO
+  const emails = {} // TODO
+  const onChangeRecipients = () => {} // TODO
+  const onChangeNotifiedEmails = () => {} // TODO
 
   const disabledEmails =
     !recipients.organizers && (!recipients.contact || (recipients.contact && !event.contact))
@@ -163,20 +161,7 @@ const DeliberationForm = ({
 }
 
 DeliberationForm.propTypes = {
-  eventId: PropTypes.string.isRequired,
-  contact: PropTypes.string,
-  recipients: PropTypes.object,
-  emails: PropTypes.object,
-  onChangeRecipients: PropTypes.func,
-  onChangeNotifiedEmails: PropTypes.func,
-}
-
-DeliberationForm.defaultProps = {
-  contact: undefined,
-  recipients: {},
-  emails: {},
-  onChangeRecipients: undefined,
-  onChangeNotifiedEmails: undefined,
+  event: PropTypes.object.isRequired,
 }
 
 export default DeliberationForm

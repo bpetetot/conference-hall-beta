@@ -1,28 +1,28 @@
-import firebase from 'firebase/app'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useAuth } from '../features/auth'
+import { fetchData } from './fetch'
 
-async function fetchUserOrganizations() {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch('/api/organizer/organizations', auth)
-  const talks = await response.json()
-  return talks.map((talk) => ({
-    ...talk,
-    id: parseInt(talk.id, 10),
-    createdAt: new Date(talk.createdAt),
-  }))
+const parseOrgaResponse = (orga) => ({
+  ...orga,
+  createdAt: new Date(orga.createdAt),
+})
+
+async function fetchOrganizations() {
+  const orgas = await fetchData({
+    method: 'GET',
+    url: '/api/organizer/organizations',
+    auth: true,
+  })
+  return orgas.map(parseOrgaResponse)
 }
 
 export function useOrganizations() {
-  return useQuery('organizations', () => fetchUserOrganizations(), {
-    initialData: [],
-  })
+  return useQuery('organizations', fetchOrganizations)
 }
 
 export function useOrganizationsForRoles(roles) {
   const { user } = useAuth()
-  const { data } = useOrganizations()
+  const { data = [] } = useOrganizations()
   const allowedOrganizations = user.organizations
     .filter((o) => roles.includes(o.role))
     .map((o) => o.organizationId)
@@ -30,121 +30,88 @@ export function useOrganizationsForRoles(roles) {
 }
 
 async function createOrganization(data) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch('/api/organizer/organizations', {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'POST',
-    body: JSON.stringify({ name: data.name }),
+    url: '/api/organizer/organizations',
+    auth: true,
+    body: { name: data.name },
   })
-  return response.json()
 }
 
 export function useCreateOrganization() {
   const queryClient = useQueryClient()
-  return useMutation((data) => createOrganization(data), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('organizations')
-      queryClient.invalidateQueries('users/me')
-    },
+  return useMutation(createOrganization, {
+    onSuccess: () => queryClient.invalidateQueries('users/me'),
   })
 }
 
 async function updateOrganization(organizationId, data) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/organizations/${organizationId}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'PATCH',
-    body: JSON.stringify({ name: data.name }),
+    url: `/api/organizer/organizations/${organizationId}`,
+    auth: true,
+    body: { name: data.name },
   })
 }
 
 export function useUpdateOrganization(organizationId) {
   const queryClient = useQueryClient()
   return useMutation((data) => updateOrganization(organizationId, data), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('organizations')
-      queryClient.invalidateQueries(['organization', organizationId])
-    },
+    onSuccess: () => queryClient.invalidateQueries(['organization', organizationId]),
   })
 }
 
-async function fetchOrganization(id) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`/api/organizer/organizations/${id}`, auth)
-  const talk = await response.json()
-  return {
-    ...talk,
-    id: parseInt(talk.id, 10),
-    createdAt: new Date(talk.createdAt),
-  }
+async function fetchOrganization({ queryKey }) {
+  const [_key, organizationId] = queryKey // eslint-disable-line no-unused-vars
+  const orga = await fetchData({
+    method: 'GET',
+    url: `/api/organizer/organizations/${organizationId}`,
+    auth: true,
+  })
+  return parseOrgaResponse(orga)
 }
 
 export function useOrganization(organizationId) {
-  return useQuery(['organization', organizationId], () => fetchOrganization(organizationId), {
+  return useQuery(['organization', organizationId], fetchOrganization, {
     enabled: !!organizationId,
   })
 }
 
-async function fetchOrganizationMembers(id) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`/api/organizer/organizations/${id}/members`, auth)
-  const members = await response.json()
-  return members.map((member) => ({
-    ...member,
-    id: parseInt(member.id, 10),
-  }))
+async function fetchOrganizationMembers({ queryKey }) {
+  const [_key, organizationId] = queryKey // eslint-disable-line no-unused-vars
+  return fetchData({
+    method: 'GET',
+    url: `/api/organizer/organizations/${organizationId}/members`,
+    auth: true,
+  })
 }
 
 export function useOrganizationMembers(organizationId) {
-  return useQuery(
-    ['organization/members', organizationId],
-    () => fetchOrganizationMembers(organizationId),
-    {
-      enabled: !!organizationId,
-    },
-  )
+  return useQuery(['organization/members', organizationId], fetchOrganizationMembers, {
+    enabled: !!organizationId,
+  })
 }
 
 async function addMember(organizationId, memberId) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/organizations/${organizationId}/members/${memberId}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'POST',
+    url: `/api/organizer/organizations/${organizationId}/members/${memberId}`,
+    auth: true,
   })
 }
 
 export function useAddMember(organizationId) {
   const queryClient = useQueryClient()
   return useMutation((memberId) => addMember(organizationId, memberId), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('organization/members')
-    },
+    onSuccess: () => queryClient.invalidateQueries('organization/members'),
   })
 }
 
 async function removeMember(organizationId, memberId) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/organizations/${organizationId}/members/${memberId}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'DELETE',
+    url: `/api/organizer/organizations/${organizationId}/members/${memberId}`,
+    auth: true,
   })
 }
 
@@ -159,23 +126,17 @@ export function useRemoveMember(organizationId, memberId) {
 }
 
 async function updateMemberRole(organizationId, memberId, role) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/organizations/${organizationId}/members/${memberId}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'PATCH',
-    body: JSON.stringify({ role }),
+    url: `/api/organizer/organizations/${organizationId}/members/${memberId}`,
+    auth: true,
+    body: { role },
   })
 }
 
 export function useUpdateMemberRole(organizationId, memberId) {
   const queryClient = useQueryClient()
   return useMutation((role) => updateMemberRole(organizationId, memberId, role), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('organization/members')
-    },
+    onSuccess: () => queryClient.invalidateQueries('organization/members'),
   })
 }

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 
 import useRedirectNext from 'features/router/useRedirectNext'
 import InputButton from 'components/form/inputButton'
@@ -7,23 +7,11 @@ import styles from './Beta.module.css'
 import { useValidateBetaKey } from '../../data/betaKey'
 
 const BetaAccess = () => {
-  const [error, setError] = useState()
   const redirectNext = useRedirectNext()
-  const { mutateAsync: validateBetaKey } = useValidateBetaKey()
-  const onValidateBetaKey = useCallback(
-    async (betaAccess) => {
-      await validateBetaKey(betaAccess, {
-        onSuccess: (isValid) => {
-          if (isValid) {
-            redirectNext()
-          } else {
-            setError('Sorry, invalid beta access key.')
-          }
-        },
-      })
-    },
-    [redirectNext, validateBetaKey],
-  )
+  const { mutate: validateBetaKey, isError } = useValidateBetaKey()
+  const onValidateBetaKey = (betaAccess) => {
+    validateBetaKey(betaAccess, { onSuccess: redirectNext })
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -42,7 +30,7 @@ const BetaAccess = () => {
           Request a beta key
         </a>
       </div>
-      {error && <div className={styles.error}>{error}</div>}
+      {isError && <div className={styles.error}>Sorry, invalid beta access key.</div>}
     </div>
   )
 }

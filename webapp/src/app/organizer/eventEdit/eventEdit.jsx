@@ -1,5 +1,6 @@
 import React from 'react'
-import { Route, Routes, useParams } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { Route, Routes } from 'react-router-dom'
 
 import HasRole from 'features/organization/hasRole'
 import { ROLE_OWNER_OR_MEMBER } from 'features/organization/constants'
@@ -11,27 +12,27 @@ import CfpForm from 'features/event/edit/cfp'
 import SurveyForm from 'features/event/edit/survey'
 import DeliberationForm from 'features/event/edit/deliberation'
 import IntegrationsForm from 'features/event/edit/integrations'
-import { useOrganizerEvent } from 'data/event'
 
-const EventEdit = () => {
-  const { eventId } = useParams()
-  const { data: event } = useOrganizerEvent(eventId)
-
+const EventEdit = ({ event }) => {
   return (
     <div>
       <HasRole of={ROLE_OWNER_OR_MEMBER} forEvent={event}>
-        <Tabs eventId={eventId} />
+        <Tabs eventId={event.id} />
         <Routes>
-          <Route path="/" element={<EventForm eventId={eventId} />} />
-          <Route path="cfp" element={<CfpForm eventId={eventId} />} />
-          <Route path="deliberation" element={<DeliberationForm eventId={eventId} />} />
-          <Route path="custom" element={<CustomizeForm eventId={eventId} />} />
-          <Route path="survey" element={<SurveyForm eventId={eventId} />} />
-          <Route path="integrations" element={<IntegrationsForm eventId={eventId} />} />
+          <Route path="/" element={<EventForm event={event} />} />
+          <Route path="cfp" element={<CfpForm event={event} />} />
+          <Route path="deliberation" element={<DeliberationForm event={event} />} />
+          <Route path="custom" element={<CustomizeForm event={event} />} />
+          <Route path="survey" element={<SurveyForm event={event} />} />
+          <Route path="integrations" element={<IntegrationsForm event={event} />} />
         </Routes>
       </HasRole>
     </div>
   )
+}
+
+EventEdit.propTypes = {
+  event: PropTypes.object.isRequired,
 }
 
 export default EventEdit

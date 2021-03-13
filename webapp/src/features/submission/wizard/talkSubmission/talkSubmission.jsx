@@ -9,17 +9,16 @@ import Titlebar from 'components/titlebar'
 import { markdownInput, radio, SubmitButton, RadioGroup } from 'components/form'
 import Alert from 'components/alert'
 import { required } from 'components/form/validators'
+import { useNotification } from 'app/layout/notification/context'
 
 import './talkSubmission.css'
 import { useWizard } from '../context'
 
 const TalkSubmission = ({ event, talk }) => {
-  const { mutate: submitTalk, error, isError, isLoading: isSaving } = useSubmitTalk(
-    event.id,
-    talk.id,
-  )
+  const { mutate: submitTalk, error, isError, isLoading } = useSubmitTalk(event.id, talk.id)
   const { mutate: unsubmitTalk, isLoading: isRemoving } = useUnsubmitTalk(event.id, talk.id)
   const { nextStep, resetWizard } = useWizard()
+  const { sendError } = useNotification()
 
   const proposal = talk.proposals.find((p) => p.eventId === parseInt(event.id, 10))
   const isUpdate = !!proposal
@@ -30,7 +29,11 @@ const TalkSubmission = ({ event, talk }) => {
   }
 
   const onSubmit = async (data) => submitTalk(data, { onSuccess: nextStep })
-  const onUnsubmit = () => unsubmitTalk(null, { onSuccess: resetWizard })
+  const onUnsubmit = () =>
+    unsubmitTalk(null, {
+      onSuccess: resetWizard,
+      onError: (err) => sendError(`An unexpected error has occurred: ${err.message}`),
+    })
 
   return (
     <Form onSubmit={onSubmit} initialValues={initialValues}>
@@ -90,7 +93,7 @@ const TalkSubmission = ({ event, talk }) => {
               hints="Ask special requirements to organizers or just thank them."
               component={markdownInput}
             />
-            <SubmitButton onClick={handleSubmit} submitting={isSaving} invalid={invalid}>
+            <SubmitButton onClick={handleSubmit} submitting={isLoading} invalid={invalid}>
               {isUpdate ? 'Update submission' : `Submit to ${event.name}`}
             </SubmitButton>
           </div>

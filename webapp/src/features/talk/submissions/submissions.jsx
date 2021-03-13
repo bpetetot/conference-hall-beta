@@ -21,7 +21,7 @@ const TalkSubmissions = ({ id, proposals, className }) => (
 )
 
 TalkSubmissions.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   proposals: PropTypes.array,
   className: PropTypes.string,
 }

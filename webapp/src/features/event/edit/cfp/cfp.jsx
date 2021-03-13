@@ -10,27 +10,26 @@ import {
   useAddFormat,
   useDeleteCategory,
   useDeleteFormat,
-  useOrganizerEvent,
   useUpdateCfpEvent,
   useUpdateCategory,
   useUpdateFormat,
 } from 'data/event'
 import { input, dayRangePicker, Label, SubmitButton, toggle, ItemsWithModal } from 'components/form'
+import { useNotification } from 'app/layout/notification/context'
 
 import CategoryForm from './categoryForm'
 import FormatForm from './formatForm'
-
 import styles from './cfp.module.css'
 
-const CFPForm = ({ eventId }) => {
-  const { data: event } = useOrganizerEvent(eventId)
-  const { mutateAsync: onSubmit } = useUpdateCfpEvent(eventId)
-  const { mutate: addFormat } = useAddFormat(eventId)
-  const { mutate: saveFormat } = useUpdateFormat(eventId)
-  const { mutate: removeFormat } = useDeleteFormat(eventId)
-  const { mutate: addCategory } = useAddCategory(eventId)
-  const { mutate: saveCategory } = useUpdateCategory(eventId)
-  const { mutate: removeCategory } = useDeleteCategory(eventId)
+const CFPForm = ({ event }) => {
+  const { sendError } = useNotification()
+  const { mutateAsync: updateCfp } = useUpdateCfpEvent(event.id)
+  const { mutate: addFormat } = useAddFormat(event.id)
+  const { mutate: saveFormat } = useUpdateFormat(event.id)
+  const { mutate: removeFormat } = useDeleteFormat(event.id)
+  const { mutate: addCategory } = useAddCategory(event.id)
+  const { mutate: saveCategory } = useUpdateCategory(event.id)
+  const { mutate: removeCategory } = useDeleteCategory(event.id)
 
   const initialValues = useMemo(
     () => ({
@@ -48,8 +47,14 @@ const CFPForm = ({ eventId }) => {
     [event],
   )
 
+  const onUpdateCfp = (data) => {
+    return updateCfp(data).catch((error) => {
+      sendError(`An unexpected error has occurred: ${error.message}`)
+    })
+  }
+
   return (
-    <Form onSubmit={onSubmit} initialValues={initialValues} mutators={{ ...arrayMutators }}>
+    <Form onSubmit={onUpdateCfp} initialValues={initialValues} mutators={{ ...arrayMutators }}>
       {({ handleSubmit, pristine, submitting }) => (
         <form className={cn(styles.form, 'card')}>
           {event.type === 'CONFERENCE' && (
@@ -121,7 +126,7 @@ const CFPForm = ({ eventId }) => {
 }
 
 CFPForm.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
 }
 
 export default CFPForm

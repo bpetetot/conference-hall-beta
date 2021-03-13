@@ -1,24 +1,22 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useNotification } from 'app/layout/notification/context'
 
 import { useCreateEvent } from '../../../data/event'
 import EventForm from '../form'
 
 const EventCreate = () => {
   const navigate = useNavigate()
-
   const { mutateAsync } = useCreateEvent()
+  const { sendError } = useNotification()
 
-  const onSubmit = useCallback(
-    async (data) => {
-      return mutateAsync(data, {
-        onSuccess: (eventCreated) => {
-          navigate(`/organizer/event/${eventCreated.id}`)
-        },
-      })
-    },
-    [navigate, mutateAsync],
-  )
+  const onSubmit = async (data) => {
+    return mutateAsync(data, {
+      onSuccess: (event) => navigate(`/organizer/event/${event.id}`),
+    }).catch((err) => {
+      sendError(`An unexpected error has occurred: ${err.message}`)
+    })
+  }
 
   const initialValues = {
     type: 'CONFERENCE',

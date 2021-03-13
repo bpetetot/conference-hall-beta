@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router'
 
 import Stepper from 'components/stepper'
+import LoadingIndicator from 'components/loader'
 import { TalkTitle } from 'features/talk'
 import { useTalk } from 'data/talk'
 import EventsSelection from './eventsSelection'
@@ -17,8 +18,14 @@ const steps = [
 
 const Submission = () => {
   const { talkId } = useParams()
-  const { data: talk } = useTalk(talkId)
-  if (!talk) return null
+  const { data: talk, isLoading, isError, error } = useTalk(talkId)
+
+  if (isLoading) {
+    return <LoadingIndicator />
+  }
+  if (isError) {
+    return <div>An unexpected error has occurred: {error.message}</div>
+  }
 
   return (
     <div className="submission">

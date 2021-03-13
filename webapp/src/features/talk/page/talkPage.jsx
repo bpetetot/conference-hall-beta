@@ -1,10 +1,12 @@
 import React from 'react'
-// import { useParams } from 'react-router-dom'
 import { Link, useParams } from 'react-router-dom'
+import isEmpty from 'lodash/isEmpty'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
+import LoadingIndicator from 'components/loader'
+import { useNotification } from 'app/layout/notification/context'
 import {
   TalkAbstract,
   TalkSpeakers,
@@ -17,21 +19,31 @@ import { useTalk, useUpdateTalk } from '../../../data/talk'
 
 const TalkPage = () => {
   const { talkId } = useParams()
-  const { data: talk, isLoading } = useTalk(talkId)
+  const { data: talk, isLoading, isError, error } = useTalk(talkId)
   const { mutate: updateTalk } = useUpdateTalk(talkId)
-
-  const toggleArchive = () => {
-    updateTalk({ archived: !talk.archived })
-  }
+  const { sendError } = useNotification()
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <LoadingIndicator />
   }
+  if (isError) {
+    return <div>An unexpected error has occurred: {error.message}</div>
+  }
+
+  const toggleArchive = () =>
+    updateTalk(
+      { archived: !talk.archived },
+      {
+        onError: (err) => {
+          sendError(`An unexpected error has occurred: ${err.message}`)
+        },
+      },
+    )
 
   return (
     <div>
       <Titlebar icon="fa fa-microphone" title={talk.title}>
-        <DeleteTalkButton talkId={talk.id} talkTitle={talk.title} />
+        {isEmpty(talk.proposals) && <DeleteTalkButton talkId={talk.id} talkTitle={talk.title} />}
         {!talk.archived && (
           <Button secondary onClick={toggleArchive}>
             <IconLabel icon="fa fa-archive" label="Archive" />
@@ -69,13 +81,13 @@ const TalkPage = () => {
         />
         <div className="talk-info">
           <TalkSpeakers
-            talkId={talk.id}
+            talkId={talkId}
             talkTitle={talk.title}
             speakers={talk.speakers}
             ownerId={talk.ownerId}
             edit
           />
-          <TalkSubmissions id={talk.id} proposals={talk.proposals} />
+          <TalkSubmissions id={talkId} proposals={talk.proposals} />
         </div>
       </div>
     </div>

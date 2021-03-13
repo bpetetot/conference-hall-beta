@@ -22,7 +22,7 @@ const Submission = ({ talkId, eventId, status }) => {
 
 Submission.propTypes = {
   talkId: PropTypes.string.isRequired,
-  eventId: PropTypes.string.isRequired,
+  eventId: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
 }
 

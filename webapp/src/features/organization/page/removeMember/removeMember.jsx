@@ -14,14 +14,14 @@ const RemoveMemberButton = ({ organizationId, member }) => {
   const { user } = useAuth()
   const navigate = useNavigate()
   const { mutate: onRemoveMember } = useRemoveMember(organizationId, member.id)
+
   const isOwner = hasUserOrganizationRoles(user, organizationId, ROLES.OWNER)
   const canRemove = isOwner && user.id !== member.id
   const canLeave = !isOwner && user.id === member.id
+
   const onLeave = async () => {
     await onRemoveMember(null, {
-      onSuccess: () => {
-        navigate('/organizer/organizations')
-      },
+      onSuccess: () => navigate('/organizer/organizations'),
     })
   }
 

@@ -41,7 +41,7 @@ const EventBanner = ({
 }
 
 EventBanner.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  eventId: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   address: PropTypes.string,

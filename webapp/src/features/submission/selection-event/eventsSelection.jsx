@@ -15,15 +15,14 @@ import styles from './eventsSelection.module.css'
 const EventsSelection = ({ talkId }) => {
   const navigate = useNavigate()
 
-  const { data: events, isLoading } = useSearchEvents()
+  const { data: events, isLoading, isError, error } = useSearchEvents()
 
   const handleSelect = (eventId) => {
     navigate(`/speaker/event/${eventId}/submission/${talkId}`)
   }
 
-  if (isLoading) {
-    return <LoadingIndicator />
-  }
+  if (isLoading) return <LoadingIndicator />
+  if (isError) return <div>An unexpected error has occurred: {error.message}</div>
 
   return (
     <List

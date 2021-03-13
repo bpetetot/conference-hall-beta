@@ -7,16 +7,15 @@ import IconLabel from 'components/iconLabel'
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
 import Checkbox from 'components/form/checkbox'
-import { useOrganizerEvent, useUpdateEventField } from 'data/event'
+import { useUpdateEventField } from 'data/event'
 
 import styles from './slack.module.css'
 
-const Slack = ({ eventId }) => {
-  const { data: event } = useOrganizerEvent(eventId)
+const Slack = ({ event }) => {
   const [enabled, setEnabled] = useState(!!event.slackWebhookUrl)
   const [url, setUrl] = useState(event.slackWebhookUrl || '')
-  const { mutate: saveWebhookUrl } = useUpdateEventField(eventId, 'slackWebhookUrl')
-  const { mutate: saveSlackNotif } = useUpdateEventField(eventId, 'slackNotifSubmitted')
+  const { mutate: saveWebhookUrl } = useUpdateEventField(event.id, 'slackWebhookUrl')
+  const { mutate: saveSlackNotif } = useUpdateEventField(event.id, 'slackNotifSubmitted')
 
   return (
     <div className={cn(styles.form, 'card')}>
@@ -69,7 +68,7 @@ const Slack = ({ eventId }) => {
 }
 
 Slack.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
 }
 
 export default Slack

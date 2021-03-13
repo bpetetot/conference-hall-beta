@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { DateTime } from 'luxon'
 
 const SMALL_FORMAT = 'DD ZZZZ'

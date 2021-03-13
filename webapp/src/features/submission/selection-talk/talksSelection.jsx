@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router'
+import Badge from 'components/badge'
 import { List, ListItem } from 'components/list'
+import LoadingIndicator from 'components/loader'
 import RelativeDate from 'components/relativeDate'
 import NoTalks from 'features/talk/noTalks'
-
 import { useTalks } from 'data/talk'
-import Badge from 'components/badge'
-import { useNavigate } from 'react-router'
 
 function renderBadge(eventId, proposals) {
   const proposal = proposals?.find((p) => p.eventId === parseInt(eventId, 10))
@@ -19,17 +19,23 @@ function renderBadge(eventId, proposals) {
 }
 
 const TalksSelection = ({ eventId }) => {
-  const { data: talks } = useTalks()
-  const availableTalks = talks.filter((talk) => !talk.archived)
+  const { data: talks, isLoading, isError, error } = useTalks()
 
   const navigate = useNavigate()
   const handleSelect = (talkId) => {
     navigate(`/speaker/event/${eventId}/submission/${talkId}`)
   }
 
+  if (isLoading) {
+    return <LoadingIndicator />
+  }
+  if (isError) {
+    return <div>An unexpected error has occurred: {error.message}</div>
+  }
+
   return (
     <List
-      array={availableTalks}
+      array={talks}
       noResult={<NoTalks />}
       renderRow={({ id, title, updatedAt, proposals }) => (
         <ListItem
@@ -45,7 +51,7 @@ const TalksSelection = ({ eventId }) => {
 }
 
 TalksSelection.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  eventId: PropTypes.number.isRequired,
 }
 
 export default TalksSelection

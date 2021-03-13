@@ -2,11 +2,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { useNotification } from 'app/layout/notification/context'
 import { useRemoveSpeaker } from '../../../../data/talk'
 import './removeSpeaker.css'
 
 const RemoveSpeaker = ({ talkId, speakerId }) => {
-  const { mutate: onRemoveSpeaker } = useRemoveSpeaker(talkId, speakerId)
+  const { mutate: removeSpeaker } = useRemoveSpeaker(talkId, speakerId)
+  const { sendError } = useNotification()
+
+  const onRemoveSpeaker = () => {
+    removeSpeaker(null, {
+      onError: (err) => sendError(`An unexpected error has occurred: ${err.message}`),
+    })
+  }
+
   return (
     <a
       role="button"
@@ -20,7 +29,7 @@ const RemoveSpeaker = ({ talkId, speakerId }) => {
 }
 
 RemoveSpeaker.propTypes = {
-  talkId: PropTypes.number.isRequired,
+  talkId: PropTypes.string.isRequired,
   speakerId: PropTypes.number.isRequired,
 }
 

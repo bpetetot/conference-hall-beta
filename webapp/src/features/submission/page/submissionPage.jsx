@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import PropTypes from 'prop-types'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import isEmpty from 'lodash/isEmpty'
 
@@ -7,31 +8,26 @@ import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import Badge from 'components/badge'
 import LoadingIndicator from 'components/loader'
-import { useEvent } from 'data/event'
 import { useTalk } from 'data/talk'
 import { TalkAbstract, TalkSpeakers } from 'features/talk'
 import Notification from 'features/talk/deliberation/notification'
 
 import styles from './submissionPage.module.css'
 
-const SubmissionPage = () => {
-  const { eventId, talkId } = useParams()
-  const { data: event } = useEvent(eventId)
-  const { data: talk } = useTalk(talkId)
+const SubmissionPage = ({ event }) => {
+  const { talkId } = useParams()
+  const { data: talk, isLoading, isError, error } = useTalk(talkId)
 
   const navigate = useNavigate()
   const handleUpdateSubmission = useCallback(() => {
-    navigate(`/speaker/event/${eventId}/submission/${talkId}`)
-  }, [navigate, eventId, talkId])
+    navigate(`/speaker/event/${event.id}/submission/${talkId}`)
+  }, [navigate, event, talkId])
 
-  if (!event || !talk) {
-    return <LoadingIndicator />
-  }
+  if (isLoading) return <LoadingIndicator />
+  if (isError) return <div>An unexpected error has occurred: {error.message}</div>
 
   const proposal = talk.proposals.find((p) => p.eventId === event.id)
-  if (!proposal) {
-    return 'no proposal found'
-  }
+  if (!proposal) return <div>No proposal found for the event.</div>
 
   return (
     <div>
@@ -49,7 +45,7 @@ const SubmissionPage = () => {
         <div className={styles.header}>
           {proposal.status === 'ACCEPTED' && (
             <div className={styles.notification}>
-              <Notification eventId={eventId} talkId={talkId} />
+              <Notification eventId={event.id} talkId={talkId} />
             </div>
           )}
           <div className={styles.status}>
@@ -76,6 +72,10 @@ const SubmissionPage = () => {
       </div>
     </div>
   )
+}
+
+SubmissionPage.propTypes = {
+  event: PropTypes.object.isRequired,
 }
 
 export default SubmissionPage

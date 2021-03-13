@@ -31,4 +31,5 @@ export const EventPatch = [
   body('slackWebhookUrl').trim().optional(falsy).isURL(),
   body('slackNotifSubmitted').trim().optional(falsy).isBoolean().toBoolean(),
   body('apiKey').trim().optional(falsy).isString(),
+  body('archived').trim().optional(falsy).isBoolean().toBoolean(),
 ]

@@ -4,14 +4,22 @@ import PropTypes from 'prop-types'
 import AddUserModal from 'features/invite/addUserModal'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
+import { useNotification } from 'app/layout/notification/context'
 import { useAddMember } from '../../../../data/organization'
 
 const AddMember = ({ organizationId, organizationName }) => {
-  const { mutate } = useAddMember(organizationId)
+  const { mutate: addMember } = useAddMember(organizationId)
+  const { sendError } = useNotification()
+
+  const onSelectMember = (memberId) => {
+    addMember(memberId, {
+      onError: (err) => sendError(`An unexpected error has occurred: ${err.message}`),
+    })
+  }
 
   return (
     <AddUserModal
-      onSelectUser={mutate}
+      onSelectUser={onSelectMember}
       resultsMessage="Select an organizer to add to your organization"
       description={
         <>

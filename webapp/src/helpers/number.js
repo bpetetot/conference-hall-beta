@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import isNil from 'lodash/isNil'
 
 export const displayRating = (rating) => {

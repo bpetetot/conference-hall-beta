@@ -1,12 +1,14 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
-import { useOrganizerEvent, useUpdateInfoEvent } from '../../../data/event'
+import { useNotification } from 'app/layout/notification/context'
+import { useUpdateEventField, useUpdateInfoEvent } from '../../../data/event'
 import EventForm from '../form'
 
-const EventEdit = ({ eventId }) => {
-  const { data: event } = useOrganizerEvent(eventId)
-  const { mutateAsync } = useUpdateInfoEvent(eventId)
+const EventEdit = ({ event }) => {
+  const { sendError } = useNotification()
+  const { mutateAsync: updateInfo } = useUpdateInfoEvent(event.id)
+  const { mutate: toggleArchive } = useUpdateEventField(event.id, 'archived')
 
   const initialValues = useMemo(
     () => ({
@@ -19,11 +21,26 @@ const EventEdit = ({ eventId }) => {
     }),
     [event],
   )
-  return <EventForm initialValues={initialValues} onSubmit={mutateAsync} />
+
+  const onUpdateInfo = (data) => {
+    return updateInfo(data).catch((error) => {
+      sendError(`An unexpected error has occurred: ${error.message}`)
+    })
+  }
+
+  const onToggleArchive = () => toggleArchive(!event.archived)
+
+  return (
+    <EventForm
+      initialValues={initialValues}
+      onSubmit={onUpdateInfo}
+      toggleArchive={onToggleArchive}
+    />
+  )
 }
 
 EventEdit.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
 }
 
 export default EventEdit

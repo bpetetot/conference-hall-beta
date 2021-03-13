@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import Titlebar from 'components/titlebar'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -13,16 +13,9 @@ import { useOrganizations } from '../../../data/organization'
 const MyOrganizations = () => {
   const navigate = useNavigate()
 
-  const { data: organizations, isLoading } = useOrganizations()
+  const { data: organizations, isLoading, isSuccess, isError, error } = useOrganizations()
 
-  const handleSelect = useCallback(
-    (organizationId) => {
-      navigate(`/organizer/organization/${organizationId}`)
-    },
-    [navigate],
-  )
-
-  if (isLoading) return <LoadingIndicator />
+  const handleSelect = (id) => navigate(`/organizer/organization/${id}`)
 
   return (
     <div className="organizations-page">
@@ -35,19 +28,23 @@ const MyOrganizations = () => {
           )}
         </Button>
       </Titlebar>
-      <List
-        className="organizations-content"
-        array={organizations}
-        noResult="No organization yet !"
-        renderRow={({ id, name, createdAt }) => (
-          <ListItem
-            key={id}
-            title={name}
-            subtitle={<RelativeDate date={createdAt} />}
-            onSelect={() => handleSelect(id)}
-          />
-        )}
-      />
+      {isLoading && <LoadingIndicator />}
+      {isError && <div>An unexpected error has occurred: {error.message}</div>}
+      {isSuccess && (
+        <List
+          className="organizations-content"
+          array={organizations}
+          noResult="No organization yet !"
+          renderRow={({ id, name, createdAt }) => (
+            <ListItem
+              key={id}
+              title={name}
+              subtitle={<RelativeDate date={createdAt} />}
+              onSelect={() => handleSelect(id)}
+            />
+          )}
+        />
+      )}
     </div>
   )
 }

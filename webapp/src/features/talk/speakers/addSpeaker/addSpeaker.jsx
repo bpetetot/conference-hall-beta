@@ -2,12 +2,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AddUserModal from 'features/invite/addUserModal'
+import { useNotification } from 'app/layout/notification/context'
 
 import './addSpeaker.css'
 import { useAddSpeaker } from '../../../../data/talk'
 
 const AddSpeaker = ({ talkId, talkTitle }) => {
-  const { mutate: onSelectSpeaker } = useAddSpeaker(talkId)
+  const { mutate: addSpeaker } = useAddSpeaker(talkId)
+  const { sendError } = useNotification()
+
+  const onSelectSpeaker = (speakerId) => {
+    addSpeaker(speakerId, {
+      onError: (err) => sendError(`An unexpected error has occurred: ${err.message}`),
+    })
+  }
 
   return (
     <AddUserModal
@@ -42,7 +50,7 @@ const AddSpeaker = ({ talkId, talkTitle }) => {
 }
 
 AddSpeaker.propTypes = {
-  talkId: PropTypes.number.isRequired,
+  talkId: PropTypes.string.isRequired,
   talkTitle: PropTypes.string.isRequired,
 }
 

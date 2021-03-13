@@ -1,5 +1,6 @@
 import React from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { useLocation } from 'react-router-dom'
 
 import { isOrganizerApp } from 'features/router/utils'
 import Maps from 'components/maps'
@@ -14,23 +15,15 @@ import Contact from './contactBlock'
 import Dates from './eventDates'
 
 import './event.css'
-import { useEvent } from '../../../data/event'
 
-const Event = () => {
+const Event = ({ event }) => {
   const { pathname } = useLocation()
-  const { eventId } = useParams()
-
-  const { data: event, isSuccess } = useEvent(eventId)
-
-  if (!isSuccess) {
-    return 'Loading...'
-  }
 
   return (
     <div className="event-wrapper">
       <Banner
         className="event-header"
-        eventId={eventId}
+        eventId={event.id}
         name={event.name}
         type={event.type}
         address={event.address}
@@ -52,7 +45,7 @@ const Event = () => {
               <CopyInput
                 title="Share link"
                 className="event-share"
-                value={`${origin}/public/event/${eventId}`}
+                value={`${origin}/public/event/${event.id}`}
               />
             )}
             <Markdown className="event-description" source={event.description} />
@@ -76,6 +69,10 @@ const Event = () => {
       </div>
     </div>
   )
+}
+
+Event.propTypes = {
+  event: PropTypes.object.isRequired,
 }
 
 export default Event

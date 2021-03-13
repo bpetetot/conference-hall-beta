@@ -1,9 +1,10 @@
 import React from 'react'
 import { useParams } from 'react-router'
+import PropTypes from 'prop-types'
 
 import Stepper from 'components/stepper'
+import LoadingIndicator from 'components/loader'
 import EventTitle from 'features/event/eventTitle'
-import { useEvent } from 'data/event'
 import { useTalk } from 'data/talk'
 import TalkDetails from './talkDetails'
 import TalkSubmission from './talkSubmission'
@@ -19,13 +20,14 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const SubmitWizard = () => {
-  const { talkId, eventId } = useParams()
-  const { data: event } = useEvent(eventId)
-  const { data: talk } = useTalk(talkId)
+const SubmitWizard = ({ event }) => {
+  const { talkId } = useParams()
+  const { data: talk, isLoading, isError, error } = useTalk(talkId)
   const { step } = useWizard()
 
-  if (!event || !talk || !event.isCfpOpened) return null
+  if (isLoading) return <LoadingIndicator />
+  if (isError) return <div>An unexpected error has occurred: {error.message}</div>
+  if (!event.isCfpOpened) return <div>Call for paper not opened.</div>
 
   return (
     <div className="submitWizard">
@@ -38,8 +40,13 @@ const SubmitWizard = () => {
   )
 }
 
-export default () => (
+SubmitWizard.propTypes = {
+  event: PropTypes.object.isRequired,
+}
+
+// eslint-disable-next-line react/prop-types
+export default ({ event }) => (
   <WizardProvider>
-    <SubmitWizard />
+    <SubmitWizard event={event} />
   </WizardProvider>
 )

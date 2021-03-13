@@ -23,7 +23,7 @@ const TalkSpeakers = ({ talkId, talkTitle, speakers, ownerId, className, edit })
 )
 
 TalkSpeakers.propTypes = {
-  talkId: PropTypes.number.isRequired,
+  talkId: PropTypes.string.isRequired,
   talkTitle: PropTypes.string,
   speakers: PropTypes.array,
   ownerId: PropTypes.number,

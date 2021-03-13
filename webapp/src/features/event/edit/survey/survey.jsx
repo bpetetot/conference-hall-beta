@@ -8,12 +8,11 @@ import Checkbox from 'components/form/checkbox'
 import questions from 'features/survey/questions'
 
 import './survey.css'
-import { useOrganizerEvent, useUpdateEventField } from 'data/event'
+import { useUpdateEventField } from 'data/event'
 
-const SurveyForm = ({ eventId }) => {
-  const { data: event } = useOrganizerEvent(eventId)
-  const { mutate: onActiveSurvey } = useUpdateEventField(eventId, 'surveyEnabled')
-  const { mutate: onSaveSurvey } = useUpdateEventField(eventId, 'surveyQuestions')
+const SurveyForm = ({ event }) => {
+  const { mutate: onActiveSurvey } = useUpdateEventField(event.id, 'surveyEnabled')
+  const { mutate: onSaveSurvey } = useUpdateEventField(event.id, 'surveyQuestions')
 
   const onSelectQuestion = async (e) => {
     const { name, checked } = e.target
@@ -42,7 +41,7 @@ const SurveyForm = ({ eventId }) => {
 }
 
 SurveyForm.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
 }
 
 export default SurveyForm

@@ -7,15 +7,14 @@ import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
-import { useOrganizerEvent, useUpdateEventField } from 'data/event'
+import { useUpdateEventField } from 'data/event'
 
 import ApiCard from './apiCard'
 import styles from './api.module.css'
 
-const Api = ({ eventId }) => {
-  const { data: event } = useOrganizerEvent(eventId)
+const Api = ({ event }) => {
   const [enabled, setEnabled] = useState(!!event.apiKey)
-  const { mutate: saveApiKey } = useUpdateEventField(eventId, 'apiKey')
+  const { mutate: saveApiKey } = useUpdateEventField(event.id, 'apiKey')
   const { origin } = window.location
 
   return (
@@ -53,7 +52,7 @@ const Api = ({ eventId }) => {
           <ApiCard
             name="GET /api/v1/event/{id}"
             description="Expose formats, categories, proposals and speakers of the event"
-            endpoint={`${origin}/api/v1/event/${eventId}?key=${event.apiKey}`}
+            endpoint={`${origin}/api/v1/event/${event.id}?key=${event.apiKey}`}
           />
         </div>
       )}
@@ -62,7 +61,7 @@ const Api = ({ eventId }) => {
 }
 
 Api.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
 }
 
 export default Api

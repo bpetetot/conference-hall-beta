@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useParams } from 'react-router'
 
-import { useOrganizerEvent } from 'data/event'
 import { useOrganizerProposal } from 'data/proposal'
 import LoadingIndicator from 'components/loader'
 
@@ -12,16 +12,14 @@ import Talk from './talk'
 
 import './proposal.css'
 
-const Proposal = () => {
-  const { eventId, proposalIndex } = useParams()
+const Proposal = ({ event }) => {
+  const { proposalIndex } = useParams()
+  const { data: result, isLoading, isError, error } = useOrganizerProposal(event.id, proposalIndex)
 
-  const { data: event } = useOrganizerEvent(eventId)
-  const { data: result, isLoading } = useOrganizerProposal(eventId, proposalIndex)
-  if (!event || isLoading) {
-    return <LoadingIndicator />
-  }
+  if (!event || isLoading) return <LoadingIndicator />
+  if (isError) return <div>An unexpected error has occurred: {error.message}</div>
+
   const { proposal, nextProposal, previousProposal } = result
-
   if (!proposal) {
     return <div className="proposal">No more proposal found. Go back to the list.</div>
   }
@@ -45,6 +43,10 @@ const Proposal = () => {
       <Talk className="proposal-talk" proposal={proposal} />
     </div>
   )
+}
+
+Proposal.propTypes = {
+  event: PropTypes.object.isRequired,
 }
 
 export default Proposal

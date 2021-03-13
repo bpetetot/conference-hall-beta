@@ -1,38 +1,32 @@
-import firebase from 'firebase/app'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { fetchData } from './fetch'
 
-async function fetchSurvey(eventId) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`/api/speaker/events/${eventId}/survey`, auth)
-  return response.json()
+async function fetchSurvey({ queryKey }) {
+  const [_key, eventId] = queryKey // eslint-disable-line no-unused-vars
+  return fetchData({
+    url: `/api/speaker/events/${eventId}/survey`,
+    auth: true,
+  })
 }
 
 export function useSurvey(eventId) {
-  return useQuery(['survey', String(eventId)], () => fetchSurvey(eventId), {
-    enabled: !!eventId,
-  })
+  return useQuery(['survey', eventId], fetchSurvey, { enabled: !!eventId })
 }
 
 async function saveSurvey(eventId, answers) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch(`/api/speaker/events/${eventId}/survey`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'POST',
-    body: JSON.stringify({ answers }),
+    url: `/api/speaker/events/${eventId}/survey`,
+    auth: true,
+    body: { answers },
   })
-  return response.json()
 }
 
 export function useSaveSurvey(eventId) {
   const queryClient = useQueryClient()
   return useMutation((answers) => saveSurvey(eventId, answers), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['survey', String(eventId)])
+      queryClient.invalidateQueries(['survey', eventId])
     },
   })
 }

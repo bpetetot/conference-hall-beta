@@ -9,11 +9,13 @@ import Button from 'components/button'
 import { input, markdownInput, radio, SubmitButton, RadioGroup, select } from 'components/form'
 import { required } from 'components/form/validators'
 import { useUpdateProposal } from 'data/proposal'
+import { useNotification } from 'app/layout/notification/context'
 
 import styles from './form.module.css'
 
 const EditProposalForm = ({ event, proposal, onClose }) => {
   const { mutateAsync } = useUpdateProposal(event.id, proposal.id)
+  const { sendError } = useNotification()
 
   const initialValues = useMemo(
     () => ({
@@ -28,7 +30,9 @@ const EditProposalForm = ({ event, proposal, onClose }) => {
   )
 
   const onSubmit = async (data) => {
-    await mutateAsync(data)
+    await mutateAsync(data).catch((err) =>
+      sendError(`An unexpected error has occurred: ${err.message}`),
+    )
     onClose()
   }
 

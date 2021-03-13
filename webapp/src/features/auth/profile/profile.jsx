@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Form } from 'react-final-form'
 
 import { useAuth } from 'features/auth'
@@ -7,7 +7,8 @@ import Field from 'components/form/field'
 import { input, address, markdownInput, SubmitButton } from 'components/form'
 import * as validators from 'components/form/validators'
 import Avatar from 'components/avatar'
-import { useResetUserProvider, useUpdateUser } from 'data/user'
+import { useResetUserProvider, useUpdateProfile } from 'data/user'
+import { useNotification } from 'app/layout/notification/context'
 
 import './profile.css'
 
@@ -15,37 +16,44 @@ const validateEmail = validators.validate([validators.required, validators.email
 
 const Profile = () => {
   const { user } = useAuth()
-  const { mutateAsync: resetUserProvider } = useResetUserProvider()
-  const { mutateAsync: updateUser } = useUpdateUser()
   const { name, photoURL, email } = user
+  const { sendError } = useNotification()
+  const { mutateAsync: resetUserProvider } = useResetUserProvider()
+  const { mutateAsync: updateProfile } = useUpdateProfile()
 
-  const initialValues = {
-    email: user.email,
-    name: user.name,
-    company: user.company,
-    photoURL: user.photoURL,
-    phone: user.phone,
-    language: user.language,
-    twitter: user.twitter,
-    github: user.github,
-    bio: user.bio,
-    references: user.references,
-    address: {
-      address: user.address,
-      lat: user.lat,
-      lng: user.lng,
-      timezone: user.timezone,
-    },
+  const initialValues = useMemo(
+    () => ({
+      email: user.email,
+      name: user.name,
+      company: user.company,
+      photoURL: user.photoURL,
+      phone: user.phone,
+      language: user.language,
+      twitter: user.twitter,
+      github: user.github,
+      bio: user.bio,
+      references: user.references,
+      address: {
+        address: user.address,
+        lat: user.lat,
+        lng: user.lng,
+        timezone: user.timezone,
+      },
+    }),
+    [user],
+  )
+
+  const onSubmit = (data) => {
+    return updateProfile(data).catch((error) => {
+      sendError(`An unexpected error has occurred: ${error.message}`)
+    })
   }
 
-  const onSubmit = (data) =>
-    updateUser({
-      ...data,
-      address: data?.address?.address,
-      lat: data?.address?.lat,
-      lng: data?.address?.lng,
-      timezone: data?.address?.timezone,
+  const onResetProvider = () => {
+    return resetUserProvider().catch((error) => {
+      sendError(`An unexpected error has occurred: ${error.message}`)
     })
+  }
 
   return (
     <Form onSubmit={onSubmit} initialValues={initialValues}>
@@ -58,7 +66,7 @@ const Profile = () => {
               <small>{email}</small>
             </div>
             <div className="profile-button">
-              <Button secondary disabled={submitting} onClick={resetUserProvider}>
+              <Button secondary disabled={submitting} onClick={onResetProvider}>
                 Set defaults from auth provider
               </Button>
             </div>

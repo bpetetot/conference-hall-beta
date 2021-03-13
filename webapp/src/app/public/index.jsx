@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import EventPage from 'features/event/page'
 import Contributors from 'features/contributors'
+import EventPage from './event'
 import AppLayout from '../layout'
 
 const Public = () => (

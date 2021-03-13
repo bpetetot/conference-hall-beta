@@ -56,7 +56,7 @@ const EventTabs = ({ eventId }) => (
 )
 
 EventTabs.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  eventId: PropTypes.number.isRequired,
 }
 
 export default EventTabs

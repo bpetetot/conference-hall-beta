@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import Badge from 'components/badge'
@@ -6,31 +6,20 @@ import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import { List, ListItem } from 'components/list'
+import LoadingIndicator from 'components/loader'
 import EventDates from 'features/event/page/eventDates'
 
 import { useOrganizerEvents } from '../../../data/event'
 import styles from './events.module.css'
 
 const MyEvents = () => {
+  const navigate = useNavigate()
   const [status, setStatus] = useState('active')
-  const { data: events = [] } = useOrganizerEvents()
-
-  const filteredEvents = useMemo(
-    () =>
-      events.filter((event) => {
-        if (status === 'all') return true
-        if (status === 'archived') return event.archived === true
-        return event.archived !== true
-      }),
-    [status, events],
-  )
+  const { data: events, isLoading, isSuccess, isError, error } = useOrganizerEvents(status)
 
   const onFilter = (e) => setStatus(e.target.value)
 
-  const navigate = useNavigate()
-  const handleSelect = (eventId) => {
-    navigate(`/organizer/event/${eventId}`)
-  }
+  const handleSelect = (eventId) => navigate(`/organizer/event/${eventId}`)
 
   return (
     <div>
@@ -48,39 +37,45 @@ const MyEvents = () => {
           )}
         </Button>
       </Titlebar>
-      <List
-        array={filteredEvents}
-        noResult={status === 'archived' ? 'No archived event' : 'No event yet !'}
-        renderRow={({ id, name, type, visibility, address, timezone, conferenceDates }) => (
-          <ListItem
-            key={id}
-            title={<div className={styles.title}>{name}</div>}
-            subtitle={<IconLabel icon="fa fa-map-marker" label={address} />}
-            info={
-              <div className={styles.infos}>
-                <div className={styles.badges}>
-                  {visibility === 'PRIVATE' && (
-                    <Badge pill outline error={visibility === 'PRIVATE'}>
-                      {visibility}
+
+      {isLoading && <LoadingIndicator />}
+      {isError && <div>An unexpected error has occurred: {error.message}</div>}
+
+      {isSuccess && (
+        <List
+          array={events}
+          noResult={status === 'archived' ? 'No archived event' : 'No event yet !'}
+          renderRow={({ id, name, type, visibility, address, timezone, conferenceDates }) => (
+            <ListItem
+              key={id}
+              title={<div className={styles.title}>{name}</div>}
+              subtitle={<IconLabel icon="fa fa-map-marker" label={address} />}
+              info={
+                <div className={styles.infos}>
+                  <div className={styles.badges}>
+                    {visibility === 'PRIVATE' && (
+                      <Badge pill outline error={visibility === 'PRIVATE'}>
+                        {visibility}
+                      </Badge>
+                    )}
+                    <Badge pill outline className={styles.type}>
+                      {type}
                     </Badge>
+                  </div>
+                  {type === 'CONFERENCE' && (
+                    <EventDates
+                      dates={conferenceDates}
+                      className={styles.dates}
+                      timezone={timezone}
+                    />
                   )}
-                  <Badge pill outline className={styles.type}>
-                    {type}
-                  </Badge>
                 </div>
-                {type === 'CONFERENCE' && (
-                  <EventDates
-                    dates={conferenceDates}
-                    className={styles.dates}
-                    timezone={timezone}
-                  />
-                )}
-              </div>
-            }
-            onSelect={() => handleSelect(id)}
-          />
-        )}
-      />
+              }
+              onSelect={() => handleSelect(id)}
+            />
+          )}
+        />
+      )}
     </div>
   )
 }

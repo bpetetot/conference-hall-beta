@@ -1,20 +1,20 @@
 import { useSelection } from 'features/proposal/list/selection-context'
-import firebase from 'firebase/app'
 import { downloadFile } from 'helpers/dom'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useLocation } from 'react-router'
+import { fetchBlob, fetchData } from './fetch'
 
-async function fetchSpeakerProposals(eventId) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`/api/speaker/events/${eventId}/proposals`, auth)
-  return response.json()
+async function fetchSpeakerProposals({ queryKey }) {
+  const [_key, eventId] = queryKey // eslint-disable-line no-unused-vars
+  return fetchData({
+    method: 'GET',
+    url: `/api/speaker/events/${eventId}/proposals`,
+    auth: true,
+  })
 }
 
 export function useSpeakerProposals(eventId) {
-  return useQuery('speaker-proposals', () => fetchSpeakerProposals(eventId), {
-    initialData: {},
-  })
+  return useQuery(['speaker/proposals', eventId], fetchSpeakerProposals)
 }
 
 function removeEmpty(obj) {
@@ -23,11 +23,12 @@ function removeEmpty(obj) {
 }
 
 async function fetchOrganizerProposals(eventId, filters) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const auth = { headers: { authorization: `Bearer ${token}` } }
   const params = new URLSearchParams(removeEmpty(filters))
-  const response = await fetch(`/api/organizer/events/${eventId}/proposals?${params}`, auth)
-  return response.json()
+  return fetchData({
+    method: 'GET',
+    url: `/api/organizer/events/${eventId}/proposals?${params}`,
+    auth: true,
+  })
 }
 
 export function useOrganizerProposals(eventId) {
@@ -81,73 +82,57 @@ export function useOrganizerProposal(eventId, proposalIndex) {
 }
 
 async function updateProposal(eventId, proposalId, data) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  const format = parseInt(data.format, 10)
+  const category = parseInt(data.category, 10)
+  return fetchData({
     method: 'PATCH',
-    body: JSON.stringify({
+    url: `/api/organizer/events/${eventId}/proposals/${proposalId}`,
+    auth: true,
+    body: {
       title: data.title,
       abstract: data.abstract,
       level: data.level,
       language: data.language,
-      formats: [parseInt(data.format, 10)],
-      categories: [parseInt(data.category, 10)],
-    }),
+      formats: [format],
+      categories: [category],
+    },
   })
 }
 
 export function useUpdateProposal(eventId, proposalId) {
   const queryClient = useQueryClient()
   return useMutation((data) => updateProposal(eventId, proposalId, data), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('proposal')
-    },
+    onSuccess: () => queryClient.invalidateQueries('proposal'),
   })
 }
 
 async function rateProposal(eventId, proposalId, data) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}/rate`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'PUT',
-    body: JSON.stringify({
+    url: `/api/organizer/events/${eventId}/proposals/${proposalId}/rate`,
+    auth: true,
+    body: {
       rating: data.rating,
       feeling: data.feeling,
-    }),
+    },
   })
 }
 
 export function useRateProposal(eventId, proposalId) {
   const queryClient = useQueryClient()
   return useMutation((data) => rateProposal(eventId, proposalId, data), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('proposal')
-    },
+    onSuccess: () => queryClient.invalidateQueries('proposal'),
   })
 }
 
 async function exportProposals(eventId, filters) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch(`/api/organizer/events/${eventId}/proposals/export`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  const blob = await fetchBlob({
     method: 'POST',
-    body: JSON.stringify(filters),
+    url: `/api/organizer/events/${eventId}/proposals/export`,
+    auth: true,
+    body: filters,
   })
-  const blob = await response.blob()
-  const filename = `export-${Date.now()}.json`
-  downloadFile(filename, blob)
+  downloadFile(`export-${Date.now()}.json`, blob)
 }
 
 export function useExportProposals(eventId) {
@@ -163,20 +148,15 @@ export function useExportProposals(eventId) {
     exceptItems,
     selectedItems,
   })
-
   return useMutation(() => exportProposals(eventId, filters))
 }
 
 async function bulkProposalsStatus(eventId, filters, status) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/events/${eventId}/proposals`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'PATCH',
-    body: JSON.stringify({ filters, data: { status } }),
+    url: `/api/organizer/events/${eventId}/proposals`,
+    auth: true,
+    body: { filters, data: { status } },
   })
 }
 
@@ -195,8 +175,6 @@ export function useBulkProposalsStatus(eventId) {
     selectedItems,
   })
   return useMutation((status) => bulkProposalsStatus(eventId, filters, status), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('proposals/search')
-    },
+    onSuccess: () => queryClient.invalidateQueries('proposals/search'),
   })
 }

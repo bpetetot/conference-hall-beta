@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 import { Routes, Route } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider, setLogger } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
 import useTheme from 'styles/themes/useTheme'
@@ -27,6 +27,7 @@ const queryClient = new QueryClient({
     },
   },
 })
+setLogger({ error: () => {} })
 
 const App = () => {
   const theme = useTheme()

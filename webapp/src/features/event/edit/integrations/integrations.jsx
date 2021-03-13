@@ -4,15 +4,15 @@ import PropTypes from 'prop-types'
 import Slack from './slack'
 import Api from './api'
 
-const IntegrationsForm = ({ eventId }) => (
+const IntegrationsForm = ({ event }) => (
   <>
-    <Slack eventId={eventId} />
-    <Api eventId={eventId} />
+    <Slack event={event} />
+    <Api event={event} />
   </>
 )
 
 IntegrationsForm.propTypes = {
-  eventId: PropTypes.string.isRequired,
+  event: PropTypes.object.isRequired,
 }
 
 export default IntegrationsForm

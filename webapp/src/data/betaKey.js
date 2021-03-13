@@ -1,26 +1,22 @@
-import firebase from 'firebase/app'
+import { useAuth } from 'features/auth'
 import { useMutation, useQueryClient } from 'react-query'
+import { fetchData } from './fetch'
 
-/* eslint-disable import/prefer-default-export */
 async function validateBetaKey(key) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch('/api/users/me/beta', {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'PATCH',
-    body: JSON.stringify({ key }),
+    url: '/api/users/me/beta',
+    auth: true,
+    body: { key },
   })
-  return response.status === 204
 }
 
 export function useValidateBetaKey() {
   const queryClient = useQueryClient()
-  return useMutation((key) => validateBetaKey(key), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('users/me')
+  const { user } = useAuth()
+  return useMutation(validateBetaKey, {
+    onSuccess: (data, betaAccess) => {
+      queryClient.setQueryData('users/me', { ...user, betaAccess })
     },
   })
 }

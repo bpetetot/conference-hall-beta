@@ -9,7 +9,7 @@ import styles from './proposalsPaging.module.css'
 
 const ProposalsPaging = ({ event, result }) => {
   const { search } = useLocation()
-  const { page, pageCount, nextPage, previousPage, proposals } = result
+  const { page = 0, pageCount = 1, nextPage, previousPage, proposals } = result
 
   const getNextUrl = () => {
     const params = new URLSearchParams(search)

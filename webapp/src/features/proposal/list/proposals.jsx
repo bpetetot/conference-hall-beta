@@ -1,10 +1,8 @@
 import React from 'react'
-import { useParams } from 'react-router'
+import PropTypes from 'prop-types'
 
 import HasRole from 'features/organization/hasRole'
 import { ROLE_OWNER_OR_MEMBER } from 'features/organization/constants'
-import { useOrganizerEvent } from 'data/event'
-import LoadingIndicator from 'components/loader'
 import { useOrganizerProposals } from 'data/proposal'
 
 import ProposalsHeader from './proposalsHeader'
@@ -14,13 +12,11 @@ import ProposalsList from './proposalsList'
 import ProposalsPaging from './proposalsPaging'
 import { SelectionProvider } from './selection-context'
 
-const Proposals = () => {
-  const { eventId } = useParams()
-  const { data: event } = useOrganizerEvent(eventId)
-  const { data: result, isFetching } = useOrganizerProposals(eventId)
+const Proposals = ({ event }) => {
+  const { data: result, isFetching, isError, error } = useOrganizerProposals(event.id)
 
-  if (!event) {
-    return <LoadingIndicator />
+  if (isError) {
+    return <div>An unexpected error has occurred: {error.message}</div>
   }
 
   return (
@@ -36,6 +32,10 @@ const Proposals = () => {
       <ProposalsPaging event={event} result={result} />
     </div>
   )
+}
+
+Proposals.propTypes = {
+  event: PropTypes.object.isRequired,
 }
 
 export default Proposals

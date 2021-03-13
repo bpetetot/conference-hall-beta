@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 export const downloadFile = (filename, blob) => {
   const url = window.URL.createObjectURL(blob)
   const a = document.createElement('a')

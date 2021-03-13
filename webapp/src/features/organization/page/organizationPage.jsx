@@ -16,18 +16,27 @@ import LoadingIndicator from '../../../components/loader'
 
 const OrganizationPage = () => {
   const { organizationId } = useParams()
-  const { data: organization, isLoading: isLoadingOrga } = useOrganization(organizationId)
-  const { data: members, isLoading: isLoadingMembers } = useOrganizationMembers(organizationId)
+  const {
+    data: organization,
+    isLoading: isLoadingOrga,
+    isError: isErrorOrga,
+    error: errorOrga,
+  } = useOrganization(organizationId)
 
-  if (isLoadingOrga || isLoadingMembers) {
-    return <LoadingIndicator />
-  }
-  const { name } = organization
-  const isOwner = false // TODO
+  const {
+    data: members,
+    isLoading: isLoadingMembers,
+    isError: isErrorMembers,
+    error: errorMembers,
+  } = useOrganizationMembers(organizationId)
+
+  if (isLoadingOrga || isLoadingMembers) return <LoadingIndicator />
+  if (isErrorOrga) return <div>An unexpected error has occurred: {errorOrga.message}</div>
+  if (isErrorMembers) return <div>An unexpected error has occurred: {errorMembers.message}</div>
 
   return (
     <div className="organization-page">
-      <Titlebar className="organization-header" icon="fa fa-users" title={name}>
+      <Titlebar className="organization-header" icon="fa fa-users" title={organization.name}>
         <HasRole of={ROLES.OWNER} forOrganizationId={organizationId}>
           <Button secondary>
             {(btn) => (
@@ -36,7 +45,7 @@ const OrganizationPage = () => {
               </Link>
             )}
           </Button>
-          <AddMember organizationId={organizationId} organizationName={name} />
+          <AddMember organizationId={organizationId} organizationName={organization.name} />
         </HasRole>
       </Titlebar>
       <List
@@ -44,12 +53,7 @@ const OrganizationPage = () => {
         array={members}
         noResult="No users yet !"
         renderRow={(member) => (
-          <MemberRow
-            key={member.id}
-            organizationId={organizationId}
-            member={member}
-            isOwner={isOwner}
-          />
+          <MemberRow key={member.id} organizationId={organizationId} member={member} />
         )}
       />
     </div>

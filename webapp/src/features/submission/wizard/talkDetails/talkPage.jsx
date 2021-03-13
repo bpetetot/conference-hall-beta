@@ -28,7 +28,7 @@ const TalkPage = ({ talk }) => {
         />
         <TalkSpeakers
           className="talk-info"
-          talkId={talk.id}
+          talkId={String(talk.id)}
           ownerId={talk.ownerId}
           speakers={talk.speakers}
         />

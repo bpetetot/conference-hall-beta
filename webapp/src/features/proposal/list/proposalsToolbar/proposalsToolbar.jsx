@@ -6,6 +6,7 @@ import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import { ConfirmationPopin } from 'components/portals'
 import { useBulkProposalsStatus, useExportProposals } from 'data/proposal'
+import { useNotification } from 'app/layout/notification/context'
 
 import styles from './proposalsToolbar.module.css'
 import messages from './proposalsToolbar.messages'
@@ -13,11 +14,23 @@ import { useSelection } from '../selection-context'
 
 const ProposalToolbar = ({ event, result }) => {
   const { deliberationEnabled } = event
+  const { sendError } = useNotification()
   const { allSelected, selectionCount, toggleAll, resetSelection } = useSelection()
-  const { mutateAsync: onExportProposals, isLoading } = useExportProposals(event.id)
+  const { mutateAsync: exportProposals, isLoading } = useExportProposals(event.id)
   const { mutateAsync: updateProposals } = useBulkProposalsStatus(event.id)
-  const onAcceptProposals = () => updateProposals('ACCEPTED', { onSuccess: resetSelection })
-  const onRejectProposals = () => updateProposals('REJECTED', { onSuccess: resetSelection })
+
+  const onExportProposals = () =>
+    exportProposals().catch((error) => {
+      sendError(`An unexpected error has occurred: ${error.message}`)
+    })
+  const onAcceptProposals = () =>
+    updateProposals('ACCEPTED', { onSuccess: resetSelection }).catch((error) => {
+      sendError(`An unexpected error has occurred: ${error.message}`)
+    })
+  const onRejectProposals = () =>
+    updateProposals('REJECTED', { onSuccess: resetSelection }).catch((error) => {
+      sendError(`An unexpected error has occurred: ${error.message}`)
+    })
   const onSendEmails = console.log
 
   return (

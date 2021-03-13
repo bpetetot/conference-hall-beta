@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { fetchData } from './fetch'
 
 export function hasUserOrganizationRoles(user, organizationId, roles) {
   if (!user) return false
@@ -11,64 +12,40 @@ export function hasUserOrganizationRoles(user, organizationId, roles) {
 }
 
 async function getOrCreateUser() {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const auth = { headers: { authorization: `Bearer ${token}` } }
-  let response = await fetch('/api/users/me', auth)
-  if (response.status === 404) {
+  let user
+  try {
+    user = await fetchData({ url: '/api/users/me', auth: true })
+  } catch (error) {
+    if (error.status !== 404) throw error
     const authUser = firebase.auth().currentUser
-    response = await fetch('/api/users/me', {
-      ...auth,
-      method: 'post',
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      body: JSON.stringify({
+    user = fetchData({
+      method: 'POST',
+      url: '/api/users/me',
+      auth: true,
+      body: {
         uid: authUser.uid,
         name: authUser.displayName,
         email: authUser.email,
         photoURL: authUser.photoURL,
-      }),
+      },
     })
   }
-  return response.json()
+  return user
 }
 
 export function useUser(isAuthenticated) {
-  return useQuery('users/me', () => getOrCreateUser(), {
-    enabled: isAuthenticated,
-  })
+  return useQuery('users/me', getOrCreateUser, { enabled: isAuthenticated, retry: false })
 }
 
-async function updateUser(data) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch('/api/users/me', {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'PATCH',
-    body: JSON.stringify(data),
-  })
-}
-
-export function useUpdateUser() {
-  const queryClient = useQueryClient()
-  return useMutation((data) => updateUser(data), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('users/me')
-    },
-  })
-}
-
-export function useResetUserProvider() {
+function useUpdateUser(onUpdate) {
   const queryClient = useQueryClient()
   return useMutation(
-    () => {
-      const user = firebase.auth().currentUser
-      return updateUser({
-        name: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
+    (data) => {
+      return fetchData({
+        method: 'PATCH',
+        url: '/api/users/me',
+        auth: true,
+        body: onUpdate(data),
       })
     },
     {
@@ -79,23 +56,42 @@ export function useResetUserProvider() {
   )
 }
 
-async function searchUsersByEmail(email) {
-  const encodedEmail = encodeURIComponent(email)
-  const token = await firebase.auth().currentUser.getIdToken()
-  const auth = { headers: { authorization: `Bearer ${token}` } }
-  try {
-    const response = await fetch(`/api/users?email=${encodedEmail}`, auth)
-    if (response.status !== 200) {
-      return []
+export function useUpdateProfile() {
+  const onUpdate = (data) => ({
+    ...data,
+    address: data?.address?.address,
+    lat: data?.address?.lat,
+    lng: data?.address?.lng,
+    timezone: data?.address?.timezone,
+  })
+  return useUpdateUser(onUpdate)
+}
+
+export function useResetUserProvider() {
+  const onUpdate = () => {
+    const user = firebase.auth().currentUser
+    return {
+      name: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
     }
-    return response.json()
-  } catch (err) {
-    return []
   }
+  return useUpdateUser(onUpdate)
+}
+
+async function searchUsersByEmail({ queryKey }) {
+  const [_key, email] = queryKey // eslint-disable-line no-unused-vars
+  const encodedEmail = encodeURIComponent(email)
+  return fetchData({
+    method: 'GET',
+    url: `/api/users?email=${encodedEmail}`,
+    auth: true,
+  })
 }
 
 export function useSearchUserByEmail(email) {
-  return useQuery(['users', email], () => searchUsersByEmail(email), {
+  return useQuery(['users', email], searchUsersByEmail, {
     enabled: !!email,
+    retry: false,
   })
 }

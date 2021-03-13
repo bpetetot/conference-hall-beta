@@ -21,7 +21,7 @@ const AddUserModal = ({
   // inviteEntityTitle,
 }) => {
   const [email, setEmail] = useState(null)
-  const { data: users, isLoading } = useSearchUserByEmail(email)
+  const { data: users, isLoading, isError } = useSearchUserByEmail(email)
 
   return (
     <Modal renderTrigger={renderTrigger}>
@@ -43,10 +43,11 @@ const AddUserModal = ({
               defaultValue={email}
             />
           )}
-          {!!users && !isLoading && (
+          {((!!users && !isLoading) || isError) && (
             <UserResults
               message={resultsMessage}
               users={users}
+              isError={isError}
               onSelectUser={(id) => {
                 onSelectUser(id)
                 hide()

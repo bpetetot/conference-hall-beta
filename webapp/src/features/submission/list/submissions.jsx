@@ -1,28 +1,25 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
 
 import Titlebar from 'components/titlebar'
 import SubmitTalkLink from 'features/talk/submitTalksLink'
 import { List, ListItem } from 'components/list'
 import Badge from 'components/badge'
-import { useEvent } from 'data/event'
 import LoadingIndicator from 'components/loader'
 import { useSpeakerProposals } from 'data/proposal'
 
-const Submissions = () => {
+const Submissions = ({ event }) => {
   const navigate = useNavigate()
-  const { eventId } = useParams()
-  const { data: event } = useEvent(eventId)
-  const { data: proposals } = useSpeakerProposals(eventId)
+  const { data: proposals, isLoading, isError, error } = useSpeakerProposals(event.id)
 
-  if (!event || !proposals) {
-    return <LoadingIndicator />
-  }
+  if (!event || isLoading) return <LoadingIndicator />
+  if (isError) return <div>An unexpected error has occurred: {error.message}</div>
 
   return (
     <div>
       <Titlebar icon="fa fa-inbox" title={`My submissions to "${event.name}"`}>
-        <SubmitTalkLink eventId={eventId} />
+        <SubmitTalkLink eventId={event.id} />
       </Titlebar>
       <div>
         <List
@@ -33,13 +30,17 @@ const Submissions = () => {
               key={talkId}
               title={title}
               info={<Badge>{status}</Badge>}
-              onSelect={() => navigate(`/speaker/event/${eventId}/submissions/${talkId}`)}
+              onSelect={() => navigate(`/speaker/event/${event.id}/submissions/${talkId}`)}
             />
           )}
         />
       </div>
     </div>
   )
+}
+
+Submissions.propTypes = {
+  event: PropTypes.object.isRequired,
 }
 
 export default Submissions

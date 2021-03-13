@@ -18,6 +18,7 @@ describe('validation | EventPatch', () => {
         website: 'https://website.com',
         conferenceStart: '2021-02-26T23:00:00.000Z',
         conferenceEnd: '2021-02-26T23:00:00.000Z',
+        archived: false,
       },
     }
     // when

@@ -1,14 +1,11 @@
-import firebase from 'firebase/app'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { fetchData } from './fetch'
 
 async function fetchReviewerMessages(eventId, proposalId) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(
-    `/api/organizer/events/${eventId}/proposals/${proposalId}/messages`,
-    auth,
-  )
-  const messages = await response.json()
+  const messages = await fetchData({
+    url: `/api/organizer/events/${eventId}/proposals/${proposalId}/messages`,
+    auth: true,
+  })
   return messages.map((message) => ({
     ...message,
     createdAt: new Date(message.createdAt),
@@ -27,28 +24,20 @@ export function useReviewerMessages(eventId, proposalId) {
 }
 
 async function addReviewerMessage(eventId, proposalId, message) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}/messages`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'POST',
-    body: JSON.stringify({ message }),
+    url: `/api/organizer/events/${eventId}/proposals/${proposalId}/messages`,
+    auth: true,
+    body: { message },
   })
 }
 
 async function updateReviewerMessage(eventId, proposalId, messageId, message) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}/messages/${messageId}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'PATCH',
-    body: JSON.stringify({ message }),
+    url: `/api/organizer/events/${eventId}/proposals/${proposalId}/messages/${messageId}`,
+    auth: true,
+    body: { message },
   })
 }
 
@@ -70,14 +59,10 @@ export function useSaveReviewerMessage(eventId, proposalId) {
 }
 
 async function deleteReviewerMessage(eventId, proposalId, messageId) {
-  const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}/messages/${messageId}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return fetchData({
     method: 'DELETE',
+    url: `/api/organizer/events/${eventId}/proposals/${proposalId}/messages/${messageId}`,
+    auth: true,
   })
 }
 
