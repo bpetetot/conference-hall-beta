@@ -1,0 +1,8 @@
+.notification {
+  position: absolute;
+  bottom: 16px;
+  left: calc(50% - 300px);
+  height: 64px;
+  width: 600px;
+  border-radius: 5px;
+}

@@ -5,6 +5,7 @@ import cn from 'classnames'
 import { useCurrentEventId } from 'features/event/currentEventContext'
 import Brand from './brand'
 import Navbar from './navbar'
+import { NotificationProvider } from './notification/context'
 
 import './layout.css'
 
@@ -13,10 +14,12 @@ const AppLayout = ({ children, sidebar }) => {
 
   return (
     <div className={cn('layout-screen', { 'layout-screen-full-width': !sidebar })}>
-      <Brand className="layout-brand" sidebar={sidebar} />
-      <Navbar eventId={eventId} className="layout-navbar" />
-      {sidebar && <div className="layout-sidebar">{sidebar}</div>}
-      <main className="layout-main">{children}</main>
+      <NotificationProvider className="layout-notification">
+        <Brand className="layout-brand" sidebar={sidebar} />
+        <Navbar eventId={eventId} className="layout-navbar" />
+        {sidebar && <div className="layout-sidebar">{sidebar}</div>}
+        <main className="layout-main">{children}</main>
+      </NotificationProvider>
     </div>
   )
 }
