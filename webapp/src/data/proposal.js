@@ -7,7 +7,7 @@ import { useLocation } from 'react-router'
 async function fetchSpeakerProposals(eventId) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`http://localhost:3001/speaker/events/${eventId}/proposals`, auth)
+  const response = await fetch(`/api/speaker/events/${eventId}/proposals`, auth)
   return response.json()
 }
 
@@ -26,10 +26,7 @@ async function fetchOrganizerProposals(eventId, filters) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
   const params = new URLSearchParams(removeEmpty(filters))
-  const response = await fetch(
-    `http://localhost:3001/organizer/events/${eventId}/proposals?${params}`,
-    auth,
-  )
+  const response = await fetch(`/api/organizer/events/${eventId}/proposals?${params}`, auth)
   return response.json()
 }
 
@@ -85,7 +82,7 @@ export function useOrganizerProposal(eventId, proposalIndex) {
 
 async function updateProposal(eventId, proposalId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}/proposals/${proposalId}`, {
+  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -114,7 +111,7 @@ export function useUpdateProposal(eventId, proposalId) {
 
 async function rateProposal(eventId, proposalId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}/proposals/${proposalId}/rate`, {
+  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}/rate`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -139,18 +136,15 @@ export function useRateProposal(eventId, proposalId) {
 
 async function exportProposals(eventId, filters) {
   const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch(
-    `http://localhost:3001/organizer/events/${eventId}/proposals/export`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify(filters),
+  const response = await fetch(`/api/organizer/events/${eventId}/proposals/export`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  )
+    method: 'POST',
+    body: JSON.stringify(filters),
+  })
   const blob = await response.blob()
   const filename = `export-${Date.now()}.json`
   downloadFile(filename, blob)
@@ -175,7 +169,7 @@ export function useExportProposals(eventId) {
 
 async function bulkProposalsStatus(eventId, filters, status) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}/proposals`, {
+  await fetch(`/api/organizer/events/${eventId}/proposals`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',

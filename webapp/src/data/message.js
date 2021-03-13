@@ -5,7 +5,7 @@ async function fetchReviewerMessages(eventId, proposalId) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
   const response = await fetch(
-    `http://localhost:3001/organizer/events/${eventId}/proposals/${proposalId}/messages`,
+    `/api/organizer/events/${eventId}/proposals/${proposalId}/messages`,
     auth,
   )
   const messages = await response.json()
@@ -28,34 +28,28 @@ export function useReviewerMessages(eventId, proposalId) {
 
 async function addReviewerMessage(eventId, proposalId, message) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(
-    `http://localhost:3001/organizer/events/${eventId}/proposals/${proposalId}/messages`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify({ message }),
+  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}/messages`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  )
+    method: 'POST',
+    body: JSON.stringify({ message }),
+  })
 }
 
 async function updateReviewerMessage(eventId, proposalId, messageId, message) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(
-    `http://localhost:3001/organizer/events/${eventId}/proposals/${proposalId}/messages/${messageId}`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'PATCH',
-      body: JSON.stringify({ message }),
+  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}/messages/${messageId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  )
+    method: 'PATCH',
+    body: JSON.stringify({ message }),
+  })
 }
 
 export function useSaveReviewerMessage(eventId, proposalId) {
@@ -77,17 +71,14 @@ export function useSaveReviewerMessage(eventId, proposalId) {
 
 async function deleteReviewerMessage(eventId, proposalId, messageId) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(
-    `http://localhost:3001/organizer/events/${eventId}/proposals/${proposalId}/messages/${messageId}`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'DELETE',
+  await fetch(`/api/organizer/events/${eventId}/proposals/${proposalId}/messages/${messageId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  )
+    method: 'DELETE',
+  })
 }
 
 export function useDeleteReviewerMessage(eventId, proposalId) {

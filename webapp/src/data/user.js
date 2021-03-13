@@ -13,10 +13,10 @@ export function hasUserOrganizationRoles(user, organizationId, roles) {
 async function getOrCreateUser() {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  let response = await fetch('http://localhost:3001/users/me', auth)
+  let response = await fetch('/api/users/me', auth)
   if (response.status === 404) {
     const authUser = firebase.auth().currentUser
-    response = await fetch('http://localhost:3001/users/me', {
+    response = await fetch('/api/users/me', {
       ...auth,
       method: 'post',
       Accept: 'application/json',
@@ -40,7 +40,7 @@ export function useUser(isAuthenticated) {
 
 async function updateUser(data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch('http://localhost:3001/users/me', {
+  await fetch('/api/users/me', {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -84,7 +84,7 @@ async function searchUsersByEmail(email) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
   try {
-    const response = await fetch(`http://localhost:3001/users?email=${encodedEmail}`, auth)
+    const response = await fetch(`/api/users?email=${encodedEmail}`, auth)
     if (response.status !== 200) {
       return []
     }

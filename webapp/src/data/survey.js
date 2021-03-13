@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 async function fetchSurvey(eventId) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`http://localhost:3001/speaker/events/${eventId}/survey`, auth)
+  const response = await fetch(`/api/speaker/events/${eventId}/survey`, auth)
   return response.json()
 }
 
@@ -16,7 +16,7 @@ export function useSurvey(eventId) {
 
 async function saveSurvey(eventId, answers) {
   const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch(`http://localhost:3001/speaker/events/${eventId}/survey`, {
+  const response = await fetch(`/api/speaker/events/${eventId}/survey`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',

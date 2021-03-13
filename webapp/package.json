@@ -3,6 +3,7 @@
   "version": "0.38.0",
   "private": true,
   "license": "MIT",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",

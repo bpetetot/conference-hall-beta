@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 async function fetchEvent(eventId) {
-  const response = await fetch(`http://localhost:3001/events/${eventId}`)
+  const response = await fetch(`/api/events/${eventId}`)
   const event = await response.json()
   return {
     ...event,
@@ -22,7 +22,7 @@ export function useEvent(eventId) {
 async function fetchSearchEvents() {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`http://localhost:3001/speaker/events`, auth)
+  const response = await fetch(`/api/speaker/events`, auth)
   const events = await response.json()
   return events.map((event) => ({
     ...event,
@@ -42,7 +42,7 @@ export function useSearchEvents() {
 async function fetchOrganizerEvent(eventId) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`http://localhost:3001/organizer/events/${eventId}`, auth)
+  const response = await fetch(`/api/organizer/events/${eventId}`, auth)
   const event = await response.json()
   return {
     ...event,
@@ -64,7 +64,7 @@ export function useOrganizerEvent(eventId) {
 async function fetchOrganizerEvents() {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch('http://localhost:3001/organizer/events', auth)
+  const response = await fetch('/api/organizer/events', auth)
   const events = await response.json()
   return events.map((event) => ({
     ...event,
@@ -100,7 +100,7 @@ async function createEvent(data) {
     contact: data.contact,
     organizationId: data.organizationId,
   }
-  const response = await fetch('http://localhost:3001/organizer/events', {
+  const response = await fetch('/api/organizer/events', {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -123,7 +123,7 @@ export function useCreateEvent() {
 
 async function updateEvent(eventId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}`, {
+  await fetch(`/api/organizer/events/${eventId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -180,7 +180,7 @@ export function useUpdateEventField(eventId, field) {
 
 async function addFormat(eventId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}/formats`, {
+  await fetch(`/api/organizer/events/${eventId}/formats`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -202,7 +202,7 @@ export function useAddFormat(eventId) {
 
 async function updateFormat(eventId, formatId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}/formats/${formatId}`, {
+  await fetch(`/api/organizer/events/${eventId}/formats/${formatId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -227,7 +227,7 @@ export function useUpdateFormat(eventId) {
 
 async function deleteFormat(eventId, formatId) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}/formats/${formatId}`, {
+  await fetch(`/api/organizer/events/${eventId}/formats/${formatId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -248,7 +248,7 @@ export function useDeleteFormat(eventId) {
 
 async function addCategory(eventId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}/categories`, {
+  await fetch(`/api/organizer/events/${eventId}/categories`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -270,7 +270,7 @@ export function useAddCategory(eventId) {
 
 async function updateCategory(eventId, categoryId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}/categories/${categoryId}`, {
+  await fetch(`/api/organizer/events/${eventId}/categories/${categoryId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -295,7 +295,7 @@ export function useUpdateCategory(eventId) {
 
 async function deleteCategory(eventId, categoryId) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/events/${eventId}/categories/${categoryId}`, {
+  await fetch(`/api/organizer/events/${eventId}/categories/${categoryId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -318,7 +318,7 @@ async function fetchSpeakerSurvey(eventId, speakerId) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
   const response = await fetch(
-    `http://localhost:3001/organizer/events/${eventId}/speakers/${speakerId}/survey`,
+    `/api/organizer/events/${eventId}/speakers/${speakerId}/survey`,
     auth,
   )
   const survey = await response.json()

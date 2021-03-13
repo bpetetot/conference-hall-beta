@@ -5,7 +5,7 @@ import { useAuth } from '../features/auth'
 async function fetchUserOrganizations() {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch('http://localhost:3001/organizer/organizations', auth)
+  const response = await fetch('/api/organizer/organizations', auth)
   const talks = await response.json()
   return talks.map((talk) => ({
     ...talk,
@@ -31,7 +31,7 @@ export function useOrganizationsForRoles(roles) {
 
 async function createOrganization(data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch('http://localhost:3001/organizer/organizations', {
+  const response = await fetch('/api/organizer/organizations', {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -55,7 +55,7 @@ export function useCreateOrganization() {
 
 async function updateOrganization(organizationId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/organizer/organizations/${organizationId}`, {
+  await fetch(`/api/organizer/organizations/${organizationId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -79,7 +79,7 @@ export function useUpdateOrganization(organizationId) {
 async function fetchOrganization(id) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`http://localhost:3001/organizer/organizations/${id}`, auth)
+  const response = await fetch(`/api/organizer/organizations/${id}`, auth)
   const talk = await response.json()
   return {
     ...talk,
@@ -97,7 +97,7 @@ export function useOrganization(organizationId) {
 async function fetchOrganizationMembers(id) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`http://localhost:3001/organizer/organizations/${id}/members`, auth)
+  const response = await fetch(`/api/organizer/organizations/${id}/members`, auth)
   const members = await response.json()
   return members.map((member) => ({
     ...member,
@@ -117,17 +117,14 @@ export function useOrganizationMembers(organizationId) {
 
 async function addMember(organizationId, memberId) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(
-    `http://localhost:3001/organizer/organizations/${organizationId}/members/${memberId}`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
+  await fetch(`/api/organizer/organizations/${organizationId}/members/${memberId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  )
+    method: 'POST',
+  })
 }
 
 export function useAddMember(organizationId) {
@@ -141,17 +138,14 @@ export function useAddMember(organizationId) {
 
 async function removeMember(organizationId, memberId) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(
-    `http://localhost:3001/organizer/organizations/${organizationId}/members/${memberId}`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'DELETE',
+  await fetch(`/api/organizer/organizations/${organizationId}/members/${memberId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  )
+    method: 'DELETE',
+  })
 }
 
 export function useRemoveMember(organizationId, memberId) {
@@ -166,18 +160,15 @@ export function useRemoveMember(organizationId, memberId) {
 
 async function updateMemberRole(organizationId, memberId, role) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(
-    `http://localhost:3001/organizer/organizations/${organizationId}/members/${memberId}`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'PATCH',
-      body: JSON.stringify({ role }),
+  await fetch(`/api/organizer/organizations/${organizationId}/members/${memberId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  )
+    method: 'PATCH',
+    body: JSON.stringify({ role }),
+  })
 }
 
 export function useUpdateMemberRole(organizationId, memberId) {

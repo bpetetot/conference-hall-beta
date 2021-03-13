@@ -5,7 +5,7 @@ import pick from 'lodash/pick'
 async function fetchUserTalks() {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch('http://localhost:3001/speaker/talks', auth)
+  const response = await fetch('/api/speaker/talks', auth)
   const talks = await response.json()
   return talks.map((talk) => ({
     ...talk,
@@ -25,7 +25,7 @@ export function useTalks() {
 async function fetchTalk(talkId) {
   const token = await firebase.auth().currentUser.getIdToken()
   const auth = { headers: { authorization: `Bearer ${token}` } }
-  const response = await fetch(`http://localhost:3001/speaker/talks/${talkId}`, auth)
+  const response = await fetch(`/api/speaker/talks/${talkId}`, auth)
   const talk = await response.json()
   return {
     ...talk,
@@ -44,7 +44,7 @@ export function useTalk(talkId) {
 
 async function createTalk(data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch('http://localhost:3001/speaker/talks', {
+  const response = await fetch('/api/speaker/talks', {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -67,7 +67,7 @@ export function useCreateTalk() {
 
 async function updateTalk(talkId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/speaker/talks/${talkId}`, {
+  await fetch(`/api/speaker/talks/${talkId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -92,7 +92,7 @@ export function useUpdateTalk(talkId) {
 
 async function deleteTalk(talkId) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/speaker/talks/${talkId}`, {
+  await fetch(`/api/speaker/talks/${talkId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -113,7 +113,7 @@ export function useDeleteTalk() {
 
 async function addSpeaker(talkId, speakerId) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/speaker/talks/${talkId}/speakers/${speakerId}`, {
+  await fetch(`/api/speaker/talks/${talkId}/speakers/${speakerId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -135,7 +135,7 @@ export function useAddSpeaker(talkId) {
 
 async function removeSpeaker(talkId, speakerId) {
   const token = await firebase.auth().currentUser.getIdToken()
-  await fetch(`http://localhost:3001/speaker/talks/${talkId}/speakers/${speakerId}`, {
+  await fetch(`/api/speaker/talks/${talkId}/speakers/${speakerId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -157,7 +157,7 @@ export function useRemoveSpeaker(talkId, speakerId) {
 
 async function submitTalk(eventId, talkId, data) {
   const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch(`http://localhost:3001/speaker/talks/${talkId}/submit/${eventId}`, {
+  const response = await fetch(`/api/speaker/talks/${talkId}/submit/${eventId}`, {
     headers: {
       authorization: `Bearer ${token}`,
       Accept: 'application/json',
@@ -189,17 +189,14 @@ export function useSubmitTalk(eventId, talkId) {
 
 async function unsubmitTalk(eventId, talkId) {
   const token = await firebase.auth().currentUser.getIdToken()
-  const response = await fetch(
-    `http://localhost:3001/speaker/talks/${talkId}/unsubmit/${eventId}`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'PUT',
+  const response = await fetch(`/api/speaker/talks/${talkId}/unsubmit/${eventId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  )
+    method: 'PUT',
+  })
   if (!response.ok) {
     const body = await response.json()
     throw new Error(body?.message)
