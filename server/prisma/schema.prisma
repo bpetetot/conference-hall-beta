@@ -1,0 +1,255 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int                  @id @default(autoincrement())
+  uid           String               @unique
+  email         String?
+  name          String?
+  bio           String?
+  photoURL      String?
+  betaAccess    String?
+  github        String?
+  company       String?
+  language      String?
+  phone         String?
+  references    String?
+  twitter       String?
+  address       String?
+  lat           Float?
+  lng           Float?
+  timezone      String?
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  talks         Talk[]               @relation("speakers_talks")
+  proposals     Proposal[]           @relation("speakers_proposals")
+  organizations OrganizationMember[]
+  surveys       Survey[]
+  ratings       Rating[]
+  messages      Message[]
+
+  @@map("users")
+}
+
+model Talk {
+  id         Int        @id @default(autoincrement())
+  title      String
+  abstract   String
+  level      String?
+  language   String?
+  references String?
+  ownerId    Int
+  archived   Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  speakers   User[]     @relation("speakers_talks")
+  proposals  Proposal[]
+
+  @@map("talks")
+}
+
+model BetaKey {
+  uuid         String  @id @default(uuid())
+  organization String?
+
+  @@map("beta_keys")
+}
+
+model Event {
+  id                       Int             @id @default(autoincrement())
+  name                     String
+  description              String
+  type                     EventType       @default(CONFERENCE)
+  visibility               EventVisibility @default(PRIVATE)
+  organizationId           Int?
+  organization             Organization?   @relation(fields: [organizationId], references: [id])
+  address                  String?
+  lat                      Float?
+  lng                      Float?
+  timezone                 String?
+  remote                   Boolean         @default(false)
+  contact                  String?
+  website                  String?
+  bannerUrl                String?
+  conferenceStart          DateTime?
+  conferenceEnd            DateTime?
+  cfpStart                 DateTime?
+  cfpEnd                   DateTime?
+  formats                  EventFormat[]
+  formatsRequired          Boolean         @default(false)
+  categories               EventCategory[]
+  categoriesRequired       Boolean         @default(false)
+  maxProposals             Int?
+  ownerId                  Int
+  archived                 Boolean         @default(false)
+  deliberationEnabled      Boolean         @default(false)
+  displayOrganizersRatings Boolean         @default(true)
+  displayProposalsRatings  Boolean         @default(true)
+  displayProposalsSpeakers Boolean         @default(true)
+  surveyEnabled            Boolean         @default(false)
+  surveyQuestions          Json?
+  slackWebhookUrl          String?
+  slackNotifSubmitted      Boolean         @default(false)
+  apiKey                   String?
+  createdAt                DateTime        @default(now())
+  updatedAt                DateTime        @updatedAt
+  proposals                Proposal[]
+  surveys                  Survey[]
+
+  @@map("events")
+}
+
+model EventFormat {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String?
+  event       Event?     @relation(fields: [eventId], references: [id])
+  eventId     Int?
+  proposals   Proposal[] @relation("proposals_formats")
+
+  @@map("event_formats")
+}
+
+model EventCategory {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String?
+  event       Event?     @relation(fields: [eventId], references: [id])
+  eventId     Int?
+  proposals   Proposal[] @relation("proposals_categories")
+
+  @@map("event_categories")
+}
+
+enum EventType {
+  MEETUP
+  CONFERENCE
+}
+
+enum EventVisibility {
+  PUBLIC
+  PRIVATE
+}
+
+model Organization {
+  id        Int                  @id @default(autoincrement())
+  name      String
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+  members   OrganizationMember[]
+  events    Event[]
+
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  member         User             @relation(fields: [memberId], references: [id])
+  memberId       Int
+  organization   Organization     @relation(fields: [organizationId], references: [id])
+  organizationId Int
+  role           OrganizationRole @default(MEMBER)
+  createdAt      DateTime         @default(now())
+
+  @@id([memberId, organizationId])
+  @@map("organizations_members")
+}
+
+enum OrganizationRole {
+  OWNER
+  MEMBER
+  REVIEWER
+}
+
+model Proposal {
+  id         Int             @id @default(autoincrement())
+  talkId     Int
+  talk       Talk            @relation(fields: [talkId], references: [id])
+  eventId    Int
+  event      Event           @relation(fields: [eventId], references: [id])
+  title      String
+  abstract   String
+  level      String?
+  language   String?
+  references String?
+  comments   String?
+  speakers   User[]          @relation("speakers_proposals")
+  formats    EventFormat[]   @relation("proposals_formats")
+  categories EventCategory[] @relation("proposals_categories")
+  ratings    Rating[]
+  status     ProposalStatus  @default(SUBMITTED)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  messages   Message[]
+
+  @@unique([talkId, eventId])
+  @@map("proposals")
+}
+
+model Survey {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  eventId   Int
+  event     Event    @relation(fields: [eventId], references: [id])
+  answers   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, eventId])
+  @@map("surveys")
+}
+
+enum ProposalStatus {
+  SUBMITTED
+  ACCEPTED
+  REJECTED
+  CONFIRMED
+  DECLINED
+}
+
+model Rating {
+  id         Int           @id @default(autoincrement())
+  userId     Int
+  user       User          @relation(fields: [userId], references: [id])
+  proposalId Int
+  proposal   Proposal      @relation(fields: [proposalId], references: [id])
+  feeling    RatingFeeling @default(NEUTRAL)
+  rating     Int?
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  @@unique([userId, proposalId])
+  @@map("ratings")
+}
+
+enum RatingFeeling {
+  LOVE
+  HATE
+  NEUTRAL
+  NO_OPINION
+}
+
+model Message {
+  id         Int            @id @default(autoincrement())
+  userId     Int
+  user       User           @relation(fields: [userId], references: [id])
+  proposalId Int
+  proposal   Proposal       @relation(fields: [proposalId], references: [id])
+  message    String
+  channel    MessageChannel
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  @@map("messages")
+}
+
+enum MessageChannel {
+  ORGANIZER
+  SPEAKER
+}

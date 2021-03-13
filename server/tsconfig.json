@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "pretty": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "target": "es2017",
+    "outDir": "./dist",
+    "baseUrl": "./src"
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts", "prisma/scripts/**/*.ts"],
+  "exclude": ["node_modules"]
+}
