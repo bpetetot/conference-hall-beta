@@ -9,6 +9,7 @@
     "plugin:prettier/recommended"
   ],
   "env": {
+    "node": true,
     "jest/globals": true
   },
   "rules": {

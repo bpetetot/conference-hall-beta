@@ -1,3 +1,4 @@
+import path from 'path'
 import * as dotenv from 'dotenv'
 
 const ENV = process.env.NODE_ENV || 'development'
@@ -9,10 +10,7 @@ if (ENV === 'test') {
   envFile = '.env.dev'
 }
 
-const result = dotenv.config({ path: envFile })
-if (result.error) {
-  throw result.error
-}
+dotenv.config({ path: path.join(__dirname, '..', envFile) })
 
 export default {
   ENV,

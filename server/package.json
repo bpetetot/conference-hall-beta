@@ -50,19 +50,5 @@
     "ts-jest": "^26.5.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.5"
-  },
-  "jest": {
-    "roots": [
-      "src",
-      "tests"
-    ],
-    "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "<rootDir>/tests/helpers/setup-tests.ts"
-    ],
-    "testRegex": ".(spec|e2e).ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    }
   }
 }
