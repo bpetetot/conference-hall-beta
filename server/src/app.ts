@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import config from './config'
@@ -16,7 +17,7 @@ if (config.ENV !== 'test') {
   app.use(morgan('dev'))
 }
 
-app.use(helmet())
+app.use(helmet({ contentSecurityPolicy: false }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
@@ -28,5 +29,13 @@ app.use('/api/organizer/events', organizerEvents)
 app.use('/api/organizer/organizations', organizerOrganizations)
 
 app.use(errorHandler)
+
+if (config.ENV === 'production') {
+  const client = path.resolve(__dirname, '../../webapp/build')
+  app.use(express.static(client))
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(client, 'index.html'))
+  })
+}
 
 export default app

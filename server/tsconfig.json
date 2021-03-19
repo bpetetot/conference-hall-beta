@@ -2,15 +2,16 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "pretty": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "strict": true,
     "target": "es2017",
+    "baseUrl": "./",
     "outDir": "./dist",
-    "baseUrl": "./src"
+    "declaration": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "incremental": true,
+    "noImplicitAny": true,
+    "strict": true,
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "prisma/scripts/**/*.ts"],
-  "exclude": ["node_modules"]
 }
