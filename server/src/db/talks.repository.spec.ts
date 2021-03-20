@@ -1,3 +1,4 @@
+import { setupDatabase } from '../../tests/helpers/setup-test'
 import { buildUser } from '../../tests/builder/user'
 import { buildTalk } from '../../tests/builder/talk'
 import { getTalk, findUserTalks, createTalk, updateTalk, deleteTalk } from './talks.repository'
@@ -6,6 +7,8 @@ import { buildEvent } from '../../tests/builder/event'
 import { buildProposal } from '../../tests/builder/proposal'
 
 describe('Talks repository', () => {
+  setupDatabase()
+
   describe('#getTalk', () => {
     test('should return the talk for the given id', async () => {
       // given

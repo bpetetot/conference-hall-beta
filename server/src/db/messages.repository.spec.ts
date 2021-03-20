@@ -1,3 +1,4 @@
+import { setupDatabase } from '../../tests/helpers/setup-test'
 import { MessageChannel } from '@prisma/client'
 import { buildUser } from '../../tests/builder/user'
 import { buildEvent } from '../../tests/builder/event'
@@ -13,6 +14,8 @@ import {
 } from './messages.repository'
 
 describe('Messages repository', () => {
+  setupDatabase()
+
   describe('#findProposalMessages', () => {
     test('should find messages of a channel and proposal', async () => {
       // given

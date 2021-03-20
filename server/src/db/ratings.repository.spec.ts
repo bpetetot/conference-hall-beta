@@ -1,3 +1,4 @@
+import { setupDatabase } from '../../tests/helpers/setup-test'
 import { saveRating, deleteRating } from './ratings.repository'
 import { buildUser } from '../../tests/builder/user'
 import { buildEvent } from '../../tests/builder/event'
@@ -8,6 +9,8 @@ import { buildRating } from '../../tests/builder/rating'
 import { prisma } from './db'
 
 describe('Ratings repository', () => {
+  setupDatabase()
+
   describe('#saveRating', () => {
     test('should create a proposal rating for the user', async () => {
       // given

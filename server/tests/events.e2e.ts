@@ -1,7 +1,9 @@
-import { getAgent } from './helpers/setup-tests'
+import { setupServer } from './helpers/setup-test'
 import { buildEvent } from './builder/event'
 
 describe('/api/events', () => {
+  const getAgent = setupServer()
+
   describe('GET /api/events/:id', () => {
     test('should return 404 if event not found', async () => {
       // when

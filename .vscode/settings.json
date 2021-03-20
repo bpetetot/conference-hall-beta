@@ -1,0 +1,7 @@
+{
+  "eslint.workingDirectories": [
+    "webapp",
+    "server",
+  ],
+  "jestrunner.jestPath": "server/node_modules/.bin/jest"
+}

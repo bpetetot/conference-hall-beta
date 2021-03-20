@@ -1,4 +1,4 @@
-import { getAgent } from './helpers/setup-tests'
+import { setupServer } from './helpers/setup-test'
 import { getAuthUser } from './helpers/firebase-auth'
 import { buildUser } from './builder/user'
 import { buildEvent } from './builder/event'
@@ -8,6 +8,8 @@ import { buildProposal } from './builder/proposal'
 import { buildTalk } from './builder/talk'
 
 describe('/api/speaker/events', () => {
+  const getAgent = setupServer()
+
   describe('GET /api/speaker/events', () => {
     test('should return 401 if not authenticated', async () => {
       // given

@@ -1,4 +1,4 @@
-import { getAgent } from './helpers/setup-tests'
+import { setupServer } from './helpers/setup-test'
 import { getAuthUser } from './helpers/firebase-auth'
 import { buildUser } from './builder/user'
 import { prisma } from '../src/db/db'
@@ -7,6 +7,8 @@ import { buildOrganization, buildOrganizationMember } from './builder/organizati
 import { OrganizationRole } from '@prisma/client'
 
 describe('/api/users', () => {
+  const getAgent = setupServer()
+
   describe('GET /api/users/me', () => {
     test('should return 401 if not authenticated', async () => {
       // given

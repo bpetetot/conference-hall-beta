@@ -1,3 +1,4 @@
+import { setupDatabase } from '../../tests/helpers/setup-test'
 import { EventVisibility } from '@prisma/client'
 import { buildCategory, buildEvent, buildFormat } from '../../tests/builder/event'
 import { buildOrganization, buildOrganizationMember } from '../../tests/builder/organization'
@@ -20,6 +21,8 @@ import {
 } from './events.repository'
 
 describe('Events repository', () => {
+  setupDatabase()
+
   describe('#getEventById', () => {
     test('should return the event for the given id', async () => {
       // given

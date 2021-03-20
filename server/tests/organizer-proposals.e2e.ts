@@ -1,4 +1,4 @@
-import { getAgent } from './helpers/setup-tests'
+import { setupServer } from './helpers/setup-test'
 import { getAuthUser } from './helpers/firebase-auth'
 import { buildUser } from './builder/user'
 import { buildCategory, buildEvent, buildFormat } from './builder/event'
@@ -11,6 +11,8 @@ import { buildRating } from './builder/rating'
 import { buildMessage } from './builder/message'
 
 describe('/api/organizer/events/:id/proposals', () => {
+  const getAgent = setupServer()
+
   describe('GET /api/organizer/events/:id/proposals', () => {
     test('should return 404 if user not found', async () => {
       // when

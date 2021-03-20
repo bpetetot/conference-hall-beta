@@ -14,7 +14,6 @@ yarn-lock.json
 # misc
 .DS_Store
 .idea/
-.vscode/
 
 # dotenv
 .env.local

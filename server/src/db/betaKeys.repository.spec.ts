@@ -1,7 +1,10 @@
+import { setupDatabase } from '../../tests/helpers/setup-test'
 import { buildBetaKey } from '../../tests/builder/betaKey'
 import { isBetaKeyValid } from './betaKeys.repository'
 
 describe('Beta key repository', () => {
+  setupDatabase()
+
   describe('#isBetaKeyValid', () => {
     test('should return true if the key exists', async () => {
       // given

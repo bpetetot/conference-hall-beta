@@ -1,3 +1,4 @@
+import { setupDatabase } from '../../tests/helpers/setup-test'
 import { buildUser } from '../../tests/builder/user'
 import {
   createUser,
@@ -11,6 +12,8 @@ import { prisma } from './db'
 import { buildOrganization, buildOrganizationMember } from '../../tests/builder/organization'
 
 describe('Users repository', () => {
+  setupDatabase()
+
   describe('#getUser', () => {
     test('should return the user for the given id', async () => {
       // given

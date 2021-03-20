@@ -1,3 +1,4 @@
+import { setupDatabase } from '../../tests/helpers/setup-test'
 import { OrganizationRole } from '@prisma/client'
 import { buildOrganization, buildOrganizationMember } from '../../tests/builder/organization'
 import { buildUser } from '../../tests/builder/user'
@@ -15,6 +16,8 @@ import {
 } from './organizations.repository'
 
 describe('Organizations repository', () => {
+  setupDatabase()
+
   describe('#getOrganizationById', () => {
     test('should organization for the given id', async () => {
       // given

@@ -1,3 +1,4 @@
+import { setupDatabase } from '../../tests/helpers/setup-test'
 import { buildUser } from '../../tests/builder/user'
 import { buildTalk } from '../../tests/builder/talk'
 import {
@@ -17,6 +18,8 @@ import { ProposalStatus, RatingFeeling } from '@prisma/client'
 import { buildRating } from '../../tests/builder/rating'
 
 describe('Proposals repository', () => {
+  setupDatabase()
+
   describe('#getProposalForEvent', () => {
     test('should return proposal for the given event Id and talk Id', async () => {
       // given

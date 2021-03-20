@@ -1,9 +1,12 @@
+import { setupDatabase } from '../../tests/helpers/setup-test'
 import { buildUser } from '../../tests/builder/user'
 import { getEventSurveyForUser, saveEventSurveyForUser } from './surveys.repository'
 import { buildEvent } from '../../tests/builder/event'
 import { buildSurvey } from '../../tests/builder/survey'
 
 describe('Surveys repository', () => {
+  setupDatabase()
+
   describe('#getEventSurveyForUser', () => {
     test('should return the event survey of the user', async () => {
       // given
