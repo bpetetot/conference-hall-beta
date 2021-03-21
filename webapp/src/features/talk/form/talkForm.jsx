@@ -37,15 +37,15 @@ const TalkForm = ({ onSubmit, initialValues }) => (
         </Field>
 
         <RadioGroup name="level" label="Level" inline>
-          <Field name="level" value="beginner" label="Beginner" type="radio" component={radio} />
+          <Field name="level" value="BEGINNER" label="Beginner" type="radio" component={radio} />
           <Field
             name="level"
-            value="intermediate"
+            value="INTERMEDIATE"
             label="Intermediate"
             type="radio"
             component={radio}
           />
-          <Field name="level" value="advanced" label="Advanced" type="radio" component={radio} />
+          <Field name="level" value="ADVANCED" label="Advanced" type="radio" component={radio} />
         </RadioGroup>
         <Field
           name="references"

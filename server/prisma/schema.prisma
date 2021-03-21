@@ -41,7 +41,7 @@ model Talk {
   id         Int        @id @default(autoincrement())
   title      String
   abstract   String
-  level      String?
+  level      TalkLevel?
   language   String?
   references String?
   ownerId    Int
@@ -52,6 +52,12 @@ model Talk {
   proposals  Proposal[]
 
   @@map("talks")
+}
+
+enum TalkLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
 }
 
 model BetaKey {
@@ -174,7 +180,7 @@ model Proposal {
   event      Event           @relation(fields: [eventId], references: [id])
   title      String
   abstract   String
-  level      String?
+  level      TalkLevel?
   language   String?
   references String?
   comments   String?

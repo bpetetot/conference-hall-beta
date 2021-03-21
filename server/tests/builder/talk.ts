@@ -1,4 +1,4 @@
-import { User, Prisma } from '@prisma/client'
+import { User, Prisma, TalkLevel } from '@prisma/client'
 import faker from 'faker'
 import { prisma } from '../../src/db/db'
 
@@ -14,7 +14,11 @@ export async function buildTalk(
     title: faker.lorem.sentence(),
     abstract: faker.lorem.paragraph(3),
     language: faker.random.locale(),
-    level: faker.random.arrayElement(['beginner', 'intermediate', 'advanced']),
+    level: faker.random.arrayElement([
+      TalkLevel.BEGINNER,
+      TalkLevel.INTERMEDIATE,
+      TalkLevel.ADVANCED,
+    ]),
     references: faker.lorem.paragraph(2),
     ownerId: user.id,
     speakers: { connect: speakerIds },
