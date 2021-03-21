@@ -1,4 +1,5 @@
 import { Event, EventCategory, EventFormat, Prisma } from '@prisma/client'
+import { isCfpFinished, isCfpOpened } from '../common/cfp-dates'
 import { CategoryDto } from './Category.dto'
 import { FormatDto } from './Format.dto'
 
@@ -19,6 +20,8 @@ export class OrganizerEventDto {
   contact?: string | null
   cfpStart?: Date | null
   cfpEnd?: Date | null
+  isCfpOpened: boolean
+  isCfpFinished: boolean
   maxProposals?: number | null
   formatsRequired?: boolean | null
   categoriesRequired?: boolean | null
@@ -67,5 +70,7 @@ export class OrganizerEventDto {
     this.slackWebhookUrl = event.slackWebhookUrl
     this.slackNotifSubmitted = event.slackNotifSubmitted
     this.apiKey = event.apiKey
+    this.isCfpOpened = isCfpOpened(event.type, event.cfpStart, event.cfpEnd)
+    this.isCfpFinished = isCfpFinished(event.cfpEnd)
   }
 }

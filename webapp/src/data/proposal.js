@@ -4,13 +4,19 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useLocation } from 'react-router'
 import { fetchBlob, fetchData } from './fetch'
 
+const parseProposalResponse = (raw) => ({
+  ...raw,
+  createdAt: new Date(raw.createdAt),
+})
+
 async function fetchSpeakerProposals({ queryKey }) {
   const [_key, eventId] = queryKey // eslint-disable-line no-unused-vars
-  return fetchData({
+  const proposals = await fetchData({
     method: 'GET',
     url: `/api/speaker/events/${eventId}/proposals`,
     auth: true,
   })
+  return proposals.map(parseProposalResponse)
 }
 
 export function useSpeakerProposals(eventId) {
@@ -24,11 +30,12 @@ function removeEmpty(obj) {
 
 async function fetchOrganizerProposals(eventId, filters) {
   const params = new URLSearchParams(removeEmpty(filters))
-  return fetchData({
+  const result = await fetchData({
     method: 'GET',
     url: `/api/organizer/events/${eventId}/proposals?${params}`,
     auth: true,
   })
+  return { ...result, proposals: result.proposals.map(parseProposalResponse) }
 }
 
 export function useOrganizerProposals(eventId) {

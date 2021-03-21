@@ -98,6 +98,8 @@ describe('/api/organizer/events', () => {
         surveyEnabled: false,
         surveyQuestions: null,
         apiKey: null,
+        isCfpFinished: false,
+        isCfpOpened: false,
       })
     })
   })
@@ -157,6 +159,8 @@ describe('/api/organizer/events', () => {
         surveyEnabled: false,
         surveyQuestions: null,
         apiKey: null,
+        isCfpFinished: false,
+        isCfpOpened: false,
       })
     })
   })

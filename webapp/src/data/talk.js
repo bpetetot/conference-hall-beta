@@ -4,8 +4,6 @@ import { fetchData } from './fetch'
 
 const parseTalkResponse = (raw) => ({
   ...raw,
-  id: parseInt(raw.id, 10),
-  archived: Boolean(raw.archived),
   updatedAt: new Date(raw.updatedAt),
   createdAt: new Date(raw.createdAt),
 })
