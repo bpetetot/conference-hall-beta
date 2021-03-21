@@ -1,26 +1,28 @@
-import { DateTime } from 'luxon'
-
-const SMALL_FORMAT = 'DD ZZZZ'
-const MEDIUM_FORMAT = 'DDD ZZZZ'
-const LARGE_FORMAT = 'fff'
+const SMALL_FORMAT = { year: 'numeric', month: 'short', day: 'numeric' }
+const MEDIUM_FORMAT = { year: 'numeric', month: 'long', day: 'numeric' }
+const LARGE_FORMAT = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+}
 
 /**
  * Format a date
  * @param {Date} date date to format
  * @param {String} size small, medium or large
- * @param {String} timezone display timezone
  */
-export const formatDate = (date, size, timezone = 'local') => {
+export const formatDate = (date, size) => {
   if (!date) return undefined
-  const dateInTimezone = DateTime.fromJSDate(date).setZone(timezone)
 
   switch (size) {
     case 'small':
-      return dateInTimezone.setLocale('en').toFormat(SMALL_FORMAT)
+      return date.toLocaleDateString(undefined, SMALL_FORMAT)
     case 'large':
-      return dateInTimezone.setLocale('en').toFormat(LARGE_FORMAT)
+      return date.toLocaleDateString(undefined, LARGE_FORMAT)
     case 'medium':
     default:
-      return dateInTimezone.setLocale('en').toFormat(MEDIUM_FORMAT)
+      return date.toLocaleDateString(undefined, MEDIUM_FORMAT)
   }
 }

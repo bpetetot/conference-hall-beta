@@ -21,7 +21,6 @@
     "history": "^5.0.0",
     "intl-messageformat": "9.5.2",
     "lodash": "4.17.21",
-    "luxon": "1.26.0",
     "marked": "2.0.1",
     "normalize.css": "8.0.1",
     "popper.js": "1.16.1",

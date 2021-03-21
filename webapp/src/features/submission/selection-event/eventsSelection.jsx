@@ -28,7 +28,7 @@ const EventsSelection = ({ talkId }) => {
     <List
       array={events}
       noResult={<NoEvents />}
-      renderRow={({ id, name, type, address, timezone, conferenceStart, conferenceEnd }) => (
+      renderRow={({ id, name, type, address, conferenceStart, conferenceEnd }) => (
         <ListItem
           key={id}
           title={
@@ -46,7 +46,6 @@ const EventsSelection = ({ talkId }) => {
                   startDate={conferenceStart}
                   endDate={conferenceEnd}
                   className={styles.dates}
-                  timezone={timezone}
                 />
               )}
               <IconLabel icon="fa fa-map-marker" label={address} />

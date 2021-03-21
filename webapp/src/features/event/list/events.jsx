@@ -45,7 +45,7 @@ const MyEvents = () => {
         <List
           array={events}
           noResult={status === 'archived' ? 'No archived event' : 'No event yet !'}
-          renderRow={({ id, name, type, visibility, address, timezone, conferenceDates }) => (
+          renderRow={({ id, name, type, visibility, address, conferenceDates }) => (
             <ListItem
               key={id}
               title={<div className={styles.title}>{name}</div>}
@@ -63,11 +63,7 @@ const MyEvents = () => {
                     </Badge>
                   </div>
                   {type === 'CONFERENCE' && (
-                    <EventDates
-                      dates={conferenceDates}
-                      className={styles.dates}
-                      timezone={timezone}
-                    />
+                    <EventDates dates={conferenceDates} className={styles.dates} />
                   )}
                 </div>
               }

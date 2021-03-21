@@ -8,7 +8,7 @@ import isEqual from 'date-fns/isEqual'
 
 import './eventDates.css'
 
-const EventDates = ({ startDate, endDate, timezone, large, className }) => {
+const EventDates = ({ startDate, endDate, large, className }) => {
   if (!startDate && !endDate) return null
   return (
     <IconLabel
@@ -16,12 +16,12 @@ const EventDates = ({ startDate, endDate, timezone, large, className }) => {
       className={className}
       label={
         isEqual(startDate, endDate) ? (
-          <span>{formatDate(startDate, 'medium', timezone)}</span>
+          <span>{formatDate(startDate, 'medium')}</span>
         ) : (
           <span className="dates-block-range">
-            <b>From</b> {formatDate(startDate, large ? 'medium' : 'small', timezone)}&nbsp;
+            <b>From</b> {formatDate(startDate, large ? 'medium' : 'small')}&nbsp;
             {large && <br />}
-            <b>To</b> {formatDate(endDate, large ? 'medium' : 'small', timezone)}
+            <b>To</b> {formatDate(endDate, large ? 'medium' : 'small')}
           </span>
         )
       }
@@ -33,7 +33,6 @@ EventDates.propTypes = {
   startDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
   large: PropTypes.bool,
-  timezone: PropTypes.string,
   className: PropTypes.string,
 }
 
@@ -42,7 +41,6 @@ EventDates.defaultProps = {
   endDate: undefined,
   large: false,
   className: undefined,
-  timezone: 'Europe/Paris',
 }
 
 export default EventDates
