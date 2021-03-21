@@ -1,4 +1,7 @@
 -- CreateEnum
+CREATE TYPE "TalkLevel" AS ENUM ('BEGINNER', 'INTERMEDIATE', 'ADVANCED');
+
+-- CreateEnum
 CREATE TYPE "EventType" AS ENUM ('MEETUP', 'CONFERENCE');
 
 -- CreateEnum
@@ -28,7 +31,6 @@ CREATE TABLE "users" (
     "github" TEXT,
     "company" TEXT,
     "language" TEXT,
-    "phone" TEXT,
     "references" TEXT,
     "twitter" TEXT,
     "address" TEXT,
@@ -46,7 +48,7 @@ CREATE TABLE "talks" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "abstract" TEXT NOT NULL,
-    "level" TEXT,
+    "level" "TalkLevel",
     "language" TEXT,
     "references" TEXT,
     "ownerId" INTEGER NOT NULL,
@@ -152,7 +154,7 @@ CREATE TABLE "proposals" (
     "eventId" INTEGER NOT NULL,
     "title" TEXT NOT NULL,
     "abstract" TEXT NOT NULL,
-    "level" TEXT,
+    "level" "TalkLevel",
     "language" TEXT,
     "references" TEXT,
     "comments" TEXT,

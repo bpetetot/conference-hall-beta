@@ -19,7 +19,6 @@ model User {
   github        String?
   company       String?
   language      String?
-  phone         String?
   references    String?
   twitter       String?
   address       String?

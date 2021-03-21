@@ -14,7 +14,6 @@ describe('validation | UserMePatch', () => {
         github: 'github',
         company: 'company',
         language: 'language',
-        phone: 'phone',
         references: 'references',
         twitter: 'twitter',
         address: 'address',

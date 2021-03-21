@@ -12,7 +12,6 @@ export async function buildUser(user?: Partial<Prisma.UserCreateInput>) {
     bio: faker.lorem.paragraph(3),
     address: faker.address.city(),
     company: faker.company.companyName(),
-    phone: faker.phone.phoneNumber(),
     photoURL: faker.image.animals(200, 200),
     references: faker.lorem.paragraph(2),
     github: faker.internet.userName(name),

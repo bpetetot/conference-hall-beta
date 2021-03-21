@@ -56,7 +56,6 @@ describe('/api/users', () => {
         company: user.company,
         photoURL: user.photoURL,
         language: user.language,
-        phone: user.phone,
         github: user.github,
         twitter: user.twitter,
         address: user.address,
