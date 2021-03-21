@@ -126,7 +126,7 @@ function buildSearchWhereClause(userId: number, eventId: number, filters: Propos
 }
 
 function buildSearchOrderByClause(sort: ProposalSort) {
-  const orderBy: Prisma.Enumerable<Prisma.ProposalOrderByInput> = {}
+  const orderBy: Prisma.Enumerable<Prisma.ProposalOrderByWithRelationInput> = {}
   if (sort === 'oldest') {
     orderBy.createdAt = 'asc'
   } else {
