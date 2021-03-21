@@ -7,6 +7,7 @@ import * as proposalRepository from '../db/proposals.repository'
 import { HttpException } from '../middleware/error'
 import { checkUser } from '../users/users.controller'
 import { isCfpOpened } from '../common/cfp-dates'
+import { isEmpty } from 'lodash'
 
 export async function findUserTalks(req: Request) {
   const { uid } = req.user
@@ -143,10 +144,10 @@ export async function submitTalk(req: Request) {
   if (!isCfpOpened(event.type, event.cfpStart, event.cfpEnd)) {
     throw new HttpException(403, 'CFP is closed')
   }
-  if (event.formatsRequired && !req.body.formats) {
+  if (event.formatsRequired && isEmpty(req.body.formats)) {
     throw new HttpException(400, 'Formats are required for the event')
   }
-  if (event.categoriesRequired && !req.body.categories) {
+  if (event.categoriesRequired && isEmpty(req.body.categories)) {
     throw new HttpException(400, 'Categories are required for the event')
   }
 

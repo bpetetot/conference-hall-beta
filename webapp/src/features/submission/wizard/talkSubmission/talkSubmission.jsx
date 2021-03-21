@@ -24,8 +24,8 @@ const TalkSubmission = ({ event, talk }) => {
   const isUpdate = !!proposal
   const initialValues = {
     comments: proposal?.comments,
-    formats: String(proposal?.formats?.[0]?.id),
-    categories: String(proposal?.categories?.[0]?.id),
+    formats: proposal?.formats?.[0]?.id?.toString(),
+    categories: proposal?.categories?.[0]?.id?.toString(),
   }
 
   const onSubmit = async (data) => submitTalk(data, { onSuccess: nextStep })

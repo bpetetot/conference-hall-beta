@@ -11,8 +11,9 @@ const SurveyInput = ({ name, label, type, answers }) => (
     {answers ? (
       answers.map((answer) => (
         <div key={answer.name}>
-          <label htmlFor={type === 'radio' ? name : `${name}.${answer.name}`}>
+          <label htmlFor={`${name}.${answer.name}`}>
             <Field
+              id={`${name}.${answer.name}`}
               name={type === 'radio' ? name : `${name}.${answer.name}`}
               component="input"
               type={type}
