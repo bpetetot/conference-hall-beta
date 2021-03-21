@@ -98,7 +98,7 @@ router.patch(
   handler(eventsController.batchUpdateProposals),
 )
 
-router.post(
+router.put(
   '/:eventId/proposals/export',
   checkIfAuthenticated,
   validate(ExportProposalsPost),

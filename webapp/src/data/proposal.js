@@ -134,7 +134,7 @@ export function useRateProposal(eventId, proposalId) {
 
 async function exportProposals(eventId, filters) {
   const blob = await fetchBlob({
-    method: 'POST',
+    method: 'PUT',
     url: `/api/organizer/events/${eventId}/proposals/export`,
     auth: true,
     body: filters,

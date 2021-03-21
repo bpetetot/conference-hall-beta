@@ -114,12 +114,12 @@ describe('/api/organizer/events/:id/proposals', () => {
     })
   })
 
-  describe('POST /api/organizer/events/:id/proposals/export', () => {
+  describe('PUT /api/organizer/events/:id/proposals/export', () => {
     test('should return 404 if user not found', async () => {
       // when
       const { token } = await getAuthUser('ben@example.net')
       const agent = await getAgent(token)
-      const res = await agent.post('/api/organizer/events/1/proposals/export')
+      const res = await agent.put('/api/organizer/events/1/proposals/export')
 
       // then
       expect(res.status).toEqual(404)
@@ -135,7 +135,7 @@ describe('/api/organizer/events/:id/proposals', () => {
       const event = await buildEvent(user2)
 
       // when
-      const res = await agent.post(`/api/organizer/events/${event.id}/proposals/export`)
+      const res = await agent.put(`/api/organizer/events/${event.id}/proposals/export`)
 
       // then
       expect(res.status).toEqual(403)
@@ -152,7 +152,7 @@ describe('/api/organizer/events/:id/proposals', () => {
       const event = await buildEvent(null, { organization: { connect: { id: orga.id } } })
 
       // when
-      const res = await agent.post(`/api/organizer/events/${event.id}/proposals/export`)
+      const res = await agent.put(`/api/organizer/events/${event.id}/proposals/export`)
 
       // then
       expect(res.status).toEqual(403)
@@ -168,7 +168,7 @@ describe('/api/organizer/events/:id/proposals', () => {
       const event = await buildEvent(null, { organization: { connect: { id: orga.id } } })
 
       // when
-      const res = await agent.post(`/api/organizer/events/${event.id}/proposals/export`)
+      const res = await agent.put(`/api/organizer/events/${event.id}/proposals/export`)
 
       // then
       expect(res.status).toEqual(403)
@@ -186,7 +186,7 @@ describe('/api/organizer/events/:id/proposals', () => {
 
       // when
       agent
-        .post(`/api/organizer/events/${event.id}/proposals/export`)
+        .put(`/api/organizer/events/${event.id}/proposals/export`)
         .parse((res, callback) => {
           let data = ''
           res.on('data', (chunk) => (data += chunk))
