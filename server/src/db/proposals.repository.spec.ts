@@ -2,6 +2,7 @@ import { setupDatabase } from '../../tests/helpers/setup-test'
 import { buildUser } from '../../tests/builder/user'
 import { buildTalk } from '../../tests/builder/talk'
 import {
+  countReviewedProposals,
   createProposal,
   deleteProposal,
   findUserProposalsForEvent,
@@ -324,6 +325,45 @@ describe('Proposals repository', () => {
       expect(results.total).toBe(2)
       expect(results.proposals[0].id).toBe(proposal1.id)
       expect(results.proposals[1].id).toBe(proposal2.id)
+    })
+  })
+
+  describe('#countReviewedProposals', () => {
+    test('return 0 if search is filtered by no rated proposals', async () => {
+      // given
+      const user = await buildUser({ uid: 'user1' })
+      const talk1 = await buildTalk(user)
+      const talk2 = await buildTalk(user)
+      const event1 = await buildEvent(user)
+      const proposal1 = await buildProposal(event1.id, talk1)
+      await buildProposal(event1.id, talk2)
+      await buildRating(user.id, proposal1.id, 1, RatingFeeling.NEUTRAL)
+
+      // when
+      const total = await countReviewedProposals(user.id, event1.id, { ratings: 'not-rated' })
+
+      // then
+      expect(total).toBe(0)
+    })
+
+    test('return the number of proposals reviewed by the user', async () => {
+      // given
+      const user = await buildUser({ uid: 'user1' })
+      const talk1 = await buildTalk(user)
+      const talk2 = await buildTalk(user)
+      const talk3 = await buildTalk(user)
+      const event1 = await buildEvent(user)
+      const proposal1 = await buildProposal(event1.id, talk1)
+      const proposal2 = await buildProposal(event1.id, talk2)
+      await buildProposal(event1.id, talk3)
+      await buildRating(user.id, proposal1.id, 1, RatingFeeling.NEUTRAL)
+      await buildRating(user.id, proposal2.id, 1, RatingFeeling.NEUTRAL)
+
+      // when
+      const total = await countReviewedProposals(user.id, event1.id)
+
+      // then
+      expect(total).toBe(2)
     })
   })
 

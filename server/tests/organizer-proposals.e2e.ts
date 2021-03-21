@@ -73,6 +73,7 @@ describe('/api/organizer/events/:id/proposals', () => {
       // then
       expect(res.status).toEqual(200)
       expect(res.body.total).toEqual(1)
+      expect(res.body.totalRated).toEqual(1)
       expect(res.body.proposals).toEqual([
         {
           id: proposal.id,

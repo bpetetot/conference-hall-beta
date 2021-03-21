@@ -149,7 +149,10 @@ export async function searchProposals(req: Request) {
     sort,
     pagination,
   )
-  return new OrganizerProposalsResult(user, result)
+
+  const totalRated = await proposalsRepository.countReviewedProposals(user.id, event.id, filters)
+
+  return new OrganizerProposalsResult(user, result, totalRated)
 }
 
 export async function batchUpdateProposals(req: Request) {

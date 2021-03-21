@@ -10,8 +10,9 @@ export class OrganizerProposalsResult {
   pageCount: number | null
   nextPage: number | null
   previousPage: number | null
+  totalRated: number
 
-  constructor(user: User, result: ProposalsResults) {
+  constructor(user: User, result: ProposalsResults, totalRated: number) {
     this.proposals = result.proposals.map((proposal) => new OrganizerProposalDto(user, proposal))
     this.total = result.total
     this.page = result.page
@@ -19,5 +20,6 @@ export class OrganizerProposalsResult {
     this.pageCount = result.pageCount
     this.nextPage = result.nextPage
     this.previousPage = result.previousPage
+    this.totalRated = totalRated
   }
 }

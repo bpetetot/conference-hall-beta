@@ -175,6 +175,21 @@ export async function searchEventProposals(
   return { total, proposals, nextPage, previousPage, pageSize, page, pageCount }
 }
 
+export async function countReviewedProposals(
+  userId: number,
+  eventId: number,
+  filters: ProposalsFilters = {},
+) {
+  if (filters.ratings === 'not-rated') {
+    return 0
+  }
+  const where = buildSearchWhereClause(userId, eventId, {
+    ...filters,
+    ratings: 'rated',
+  })
+  return prisma.proposal.count({ where })
+}
+
 export function streamEventProposals(
   userId: number,
   eventId: number,
