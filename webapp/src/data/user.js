@@ -6,7 +6,7 @@ export function hasUserOrganizationRoles(user, organizationId, roles) {
   if (!user) return false
   if (!organizationId) return false
   if (!roles || roles.length === 0) return false
-  const orgaId = parseInt(organizationId, 10) // TODO find a way to parse id in useParams
+  const orgaId = parseInt(organizationId, 10)
   const { role } = user.organizations.find((o) => o.organizationId === orgaId) || {}
   return roles.includes(role)
 }

@@ -17,7 +17,10 @@ export async function getOrganizerEventById(
   return prisma.event.findFirst({
     where: {
       id: eventId,
-      OR: [{ ownerId: userId }, { organization: { members: { some: { memberId: userId } } } }],
+      OR: [
+        { ownerId: userId, organizationId: null },
+        { organization: { members: { some: { memberId: userId } } } },
+      ],
     },
     include: {
       formats: options?.withFormatsCategories || false,
@@ -29,7 +32,10 @@ export async function getOrganizerEventById(
 export async function findOrganizerEvents(userId: number) {
   return prisma.event.findMany({
     where: {
-      OR: [{ ownerId: userId }, { organization: { members: { some: { memberId: userId } } } }],
+      OR: [
+        { ownerId: userId, organizationId: null },
+        { organization: { members: { some: { memberId: userId } } } },
+      ],
     },
   })
 }

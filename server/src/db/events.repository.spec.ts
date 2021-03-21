@@ -67,6 +67,18 @@ describe('Events repository', () => {
       expect(result).toEqual(null)
     })
 
+    test('should return null if user is owner but doesnt belongs to the event orga', async () => {
+      // given
+      const user = await buildUser({ uid: '1' })
+      const orga = await buildOrganization()
+      const event = await buildEvent(user, { organization: { connect: { id: orga.id } } })
+      // when
+      // when
+      const result = await getOrganizerEventById(event.id, user.id)
+      //then
+      expect(result).toEqual(null)
+    })
+
     test('should return event that belongs to the user organization', async () => {
       // given
       const user = await buildUser({ uid: '1' })

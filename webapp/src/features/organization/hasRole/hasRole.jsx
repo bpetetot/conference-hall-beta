@@ -8,8 +8,8 @@ const HasRole = ({ of, forOrganizationId, forEvent, children, otherwise = null }
   let hasAccess = false
   if (forOrganizationId) {
     hasAccess = hasUserOrganizationRoles(user, forOrganizationId, roles)
-  } else if (forEvent && forEvent.organisationId) {
-    hasAccess = hasUserOrganizationRoles(user, forEvent.organisationId, roles)
+  } else if (forEvent && forEvent.organizationId) {
+    hasAccess = hasUserOrganizationRoles(user, forEvent.organizationId, roles)
   } else if (forEvent) {
     hasAccess = forEvent.ownerId === user.id
   }
