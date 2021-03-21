@@ -145,6 +145,7 @@ describe('Proposals repository', () => {
       const proposal2 = await buildProposal(event1.id, talk2, {
         createdAt: new Date('2020-02-27T13:00:00.000Z'),
       })
+      const rating = await buildRating(user.id, proposal2.id, 1, RatingFeeling.NEUTRAL)
       await buildProposal(event2.id, talk3)
 
       // when
@@ -156,7 +157,8 @@ describe('Proposals repository', () => {
       expect(results.proposals[0].formats).toEqual([])
       expect(results.proposals[0].categories).toEqual([])
       expect(results.proposals[0].speakers).toEqual([user])
-      expect(results.proposals[0].ratings).toEqual([])
+      expect(results.proposals[0].ratings[0].id).toEqual(rating.id)
+      expect(results.proposals[0].ratings[0].user.id).toEqual(user.id)
       expect(results.proposals[1].id).toEqual(proposal1.id)
     })
 

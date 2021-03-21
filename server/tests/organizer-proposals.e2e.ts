@@ -65,6 +65,7 @@ describe('/api/organizer/events/:id/proposals', () => {
       const event = await buildEvent(user)
       const talk = await buildTalk(user)
       const proposal = await buildProposal(event.id, talk)
+      await buildRating(user.id, proposal.id, 1, RatingFeeling.NEUTRAL)
 
       // when
       const res = await agent.get(`/api/organizer/events/${event.id}/proposals`)
@@ -84,15 +85,29 @@ describe('/api/organizer/events/:id/proposals', () => {
           status: 'SUBMITTED',
           formats: [],
           categories: [],
-          ratings: [],
+          ratings: [
+            {
+              feeling: 'NEUTRAL',
+              rating: 1,
+              userId: user.id,
+              userName: user.name,
+              userPhotoURL: user.photoURL,
+            },
+          ],
           ratingStats: {
-            average: null,
-            count: 0,
+            average: 1,
+            count: 1,
             hates: 0,
             loves: 0,
             noopinion: 0,
           },
-          userRating: {},
+          userRating: {
+            feeling: 'NEUTRAL',
+            rating: 1,
+            userId: user.id,
+            userName: user.name,
+            userPhotoURL: user.photoURL,
+          },
           createdAt: proposal.createdAt.toISOString(),
           speakers: [
             {

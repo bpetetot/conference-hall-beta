@@ -28,7 +28,7 @@ export class OrganizerProposalDto {
       speakers: User[]
       formats: EventFormat[]
       categories: EventCategory[]
-      ratings: Rating[]
+      ratings: (Rating & { user: User })[]
     },
   ) {
     this.id = proposal.id

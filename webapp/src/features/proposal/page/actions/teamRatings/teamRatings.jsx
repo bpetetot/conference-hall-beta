@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 import { displayRating } from 'helpers/number'
+import Avatar from 'components/avatar'
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel/iconLabel'
@@ -11,9 +12,10 @@ import TotalRatings from 'features/ratings/totalRatings'
 import './teamRatings.css'
 
 const UserRating = ({ userRating }) => {
-  const { rating, feeling } = userRating
+  const { rating, feeling, userName, userPhotoURL } = userRating
   return (
     <div className="team-ratings">
+      <Avatar src={userPhotoURL} name={userName} withLabel />
       <div className="team-ratings-rates">
         <IconLabel
           icon={cn('fa', {

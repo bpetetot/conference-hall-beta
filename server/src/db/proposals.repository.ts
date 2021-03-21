@@ -80,7 +80,7 @@ export type ProposalsResults = {
     speakers: User[]
     formats: EventFormat[]
     categories: EventCategory[]
-    ratings: Rating[]
+    ratings: (Rating & { user: User })[]
   })[]
   total: number
   page: number
@@ -161,7 +161,12 @@ export async function searchEventProposals(
     where,
     skip: page * pageSize,
     take: pageSize,
-    include: { formats: true, categories: true, speakers: true, ratings: true },
+    include: {
+      formats: true,
+      categories: true,
+      speakers: true,
+      ratings: { include: { user: true } },
+    },
     orderBy,
   })
 
