@@ -35,12 +35,12 @@ describe('Users repository', () => {
       expect(result).toEqual([])
     })
 
-    test('should find users by email', async () => {
+    test('should find users by email (insensitive)', async () => {
       // given
       const user = await buildUser({ uid: 'user1', email: 'user1@example.net' })
       await buildUser({ uid: 'user2', email: 'user2@example.net' })
       // when
-      const result = await findUsersBy({ email: 'user1@example.net' })
+      const result = await findUsersBy({ email: 'USER1@example.net' })
       //then
       expect(result[0].id).toEqual(user.id)
     })

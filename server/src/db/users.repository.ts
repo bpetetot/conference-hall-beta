@@ -13,7 +13,11 @@ export async function findUsersBy(criterias: UserSearchCriterias = {}) {
   if (Object.keys(criterias).length === 0) {
     return []
   }
-  return prisma.user.findMany({ where: criterias })
+  return prisma.user.findMany({
+    where: {
+      email: { equals: criterias.email, mode: 'insensitive' },
+    },
+  })
 }
 
 export async function getUserByUid(uid: string) {
