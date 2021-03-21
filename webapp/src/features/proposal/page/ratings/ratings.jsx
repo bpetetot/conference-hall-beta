@@ -47,7 +47,7 @@ const Ratings = ({ proposal, nextProposal, previousProposal, className }) => {
         <IconLabel icon="fa fa-angle-left" label="Previous" />
       </Button>
       <div className="btn-ratings">
-        <Rating onRating={handleRating} rating={rating} feeling={feeling} />
+        <Rating onRating={handleRating} defaultRating={rating} defaultFeeling={feeling} />
       </div>
       <Button tertiary className="btn-next" disabled={isNil(nextProposal)} onClick={handleNext}>
         <IconLabel icon="fa fa-angle-right" label="Next" right />

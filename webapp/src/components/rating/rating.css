@@ -45,31 +45,6 @@
   color: #ed4842;
 }
 
-.bounce {
-  animation: bounce 0.8s;
-}
-
-@keyframes bounce {
-  0% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.4);
-    opacity: 0.7;
-  }
-  60% {
-    transform: scale(0.6);
-    opacity: 1;
-  }
-  80% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 @media only screen and (max-width: 480px) {
   .rating-label {
     display: none;
