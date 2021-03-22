@@ -1,7 +1,7 @@
-import { ExportProposalsPost } from './ExportProposalsPost'
+import { SearchProposalsParameters } from './SearchProposalsParameters'
 import { executeValidation } from '../../middleware/validation'
 
-describe('validation | ExportProposalsPost', () => {
+describe('validation | SearchProposalsParameters', () => {
   test('should pass when all fields are valid', async () => {
     // given
     const request = {
@@ -17,7 +17,7 @@ describe('validation | ExportProposalsPost', () => {
       },
     }
     // when
-    const errors = await executeValidation(ExportProposalsPost, request)
+    const errors = await executeValidation(SearchProposalsParameters, request)
     // then
     expect(errors.mapped()).toEqual({})
     expect(request.params.eventId).toEqual(1)

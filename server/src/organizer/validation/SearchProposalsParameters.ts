@@ -2,7 +2,7 @@ import { param, body } from 'express-validator'
 
 const falsy = { checkFalsy: true }
 
-export const ExportProposalsPost = [
+export const SearchProposalsParameters = [
   param('eventId').notEmpty().isNumeric().toInt(),
   body('search').optional(falsy).isString(),
   body('status')

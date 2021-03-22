@@ -158,6 +158,31 @@ export function useExportProposals(eventId) {
   return useMutation(() => exportProposals(eventId, filters))
 }
 
+async function sendProposalsEmails(eventId, filters) {
+  return fetchBlob({
+    method: 'PUT',
+    url: `/api/organizer/events/${eventId}/proposals/sendEmails`,
+    auth: true,
+    body: filters,
+  })
+}
+
+export function useSendProposalsEmails(eventId) {
+  const { exceptItems, selectedItems } = useSelection()
+  const { search } = useLocation()
+  const params = new URLSearchParams(search)
+  const filters = removeEmpty({
+    search: params.get('search'),
+    status: params.get('status'),
+    ratings: params.get('ratings'),
+    format: params.get('format'),
+    category: params.get('category'),
+    exceptItems,
+    selectedItems,
+  })
+  return useMutation(() => sendProposalsEmails(eventId, filters))
+}
+
 async function bulkProposalsStatus(eventId, filters, status) {
   return fetchData({
     method: 'PATCH',

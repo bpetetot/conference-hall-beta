@@ -1,12 +1,13 @@
 import { Request, Response } from 'express'
 import { isNil } from 'lodash'
-import { MessageChannel, OrganizationRole, ProposalStatus, User } from '@prisma/client'
+import { EmailStatus, MessageChannel, OrganizationRole, ProposalStatus, User } from '@prisma/client'
 import { HttpException } from '../middleware/error'
 import * as eventsRepository from '../db/events.repository'
 import * as proposalsRepository from '../db/proposals.repository'
 import * as surveysRepository from '../db/surveys.repository'
 import * as ratingsRepository from '../db/ratings.repository'
 import * as messagesRepository from '../db/messages.repository'
+import * as emailServices from '../emails/email.services'
 import { checkUser } from '../users/users.controller'
 import { checkUserRole } from './organizations.controller'
 import { OrganizerEventDto } from '../dtos/OrganizerEvent.dto'
@@ -210,6 +211,32 @@ export async function exportProposals(req: Request, res: Response) {
   }
   res.write(']')
   res.end()
+}
+
+export async function sendProposalsEmails(req: Request) {
+  const eventId = parseInt(req.params.eventId)
+  const user = await checkUser(req.user.uid)
+  const event = await checkEventAndRoles(user, eventId, [
+    OrganizationRole.MEMBER,
+    OrganizationRole.OWNER,
+  ])
+
+  const filters: proposalsRepository.ProposalsFilters = {
+    search: req.body.search as string,
+    ratings: req.body.ratings as 'rated' | 'not-rated',
+    status: req.body.status as ProposalStatus,
+    format: req.body.format as number,
+    category: req.body.category as number,
+    exceptItems: req.body.exceptItems as number[],
+    selectedItems: req.body.selectedItems as number[],
+  }
+
+  await emailServices.sendProposalsDeliberationEmails(user.id, event, filters)
+
+  await proposalsRepository.updateEventProposals(user.id, event.id, filters, {
+    emailStatus: EmailStatus.SENT,
+    speakerNotified: true,
+  })
 }
 
 export async function updateProposal(req: Request) {

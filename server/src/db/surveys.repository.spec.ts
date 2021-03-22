@@ -1,4 +1,4 @@
-import { setupDatabase } from '../../tests/helpers/setup-test'
+import { setupDatabase } from '../../tests/helpers/setup-services'
 import { buildUser } from '../../tests/builder/user'
 import { getEventSurveyForUser, saveEventSurveyForUser } from './surveys.repository'
 import { buildEvent } from '../../tests/builder/event'

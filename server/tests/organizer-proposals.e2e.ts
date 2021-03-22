@@ -1,4 +1,4 @@
-import { setupServer } from './helpers/setup-test'
+import { setupServer } from './helpers/setup-services'
 import { getAuthUser } from './helpers/firebase-auth'
 import { buildUser } from './builder/user'
 import { buildCategory, buildEvent, buildFormat } from './builder/event'
@@ -9,6 +9,10 @@ import { MessageChannel, OrganizationRole, RatingFeeling } from '@prisma/client'
 import { prisma } from '../src/db/db'
 import { buildRating } from './builder/rating'
 import { buildMessage } from './builder/message'
+
+jest.mock('../src/emails/email.services', () => ({
+  sendProposalsDeliberationEmails: jest.fn(),
+}))
 
 describe('/api/organizer/events/:id/proposals', () => {
   const getAgent = setupServer()
@@ -220,6 +224,86 @@ describe('/api/organizer/events/:id/proposals', () => {
           expect(res.body[0].id).toEqual(proposal.id)
           done()
         })
+    })
+  })
+
+  describe('PUT /api/organizer/events/:id/proposals/sendEmails', () => {
+    test('should return 404 if user not found', async () => {
+      // when
+      const { token } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const res = await agent.put('/api/organizer/events/1/proposals/sendEmails')
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('User not found')
+    })
+
+    test('should return 403 if user is not the owner of the event', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      await buildUser({ uid })
+      const user2 = await buildUser({ uid: 'other' })
+      const event = await buildEvent(user2)
+
+      // when
+      const res = await agent.put(`/api/organizer/events/${event.id}/proposals/sendEmails`)
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should return 403 if event linked to an organization which user not member', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      await buildUser({ uid })
+      const user2 = await buildUser({ uid: 'other' })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user2, orga)
+      const event = await buildEvent(null, { organization: { connect: { id: orga.id } } })
+
+      // when
+      const res = await agent.put(`/api/organizer/events/${event.id}/proposals/sendEmails`)
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should return 403 if event linked to an organization which user is reviewer', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user, orga, OrganizationRole.REVIEWER)
+      const event = await buildEvent(null, { organization: { connect: { id: orga.id } } })
+
+      // when
+      const res = await agent.put(`/api/organizer/events/${event.id}/proposals/sendEmails`)
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should update the proposals when deliberation emails sent', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const event = await buildEvent(user)
+      const talk = await buildTalk(user)
+      const proposal = await buildProposal(event.id, talk)
+
+      // when
+      const res = await agent.put(`/api/organizer/events/${event.id}/proposals/sendEmails`)
+
+      // then
+      expect(res.status).toEqual(204)
+      const result = await prisma.proposal.findUnique({ where: { id: proposal.id } })
+      expect(result?.emailStatus).toEqual('SENT')
+      expect(result?.speakerNotified).toEqual(true)
     })
   })
 

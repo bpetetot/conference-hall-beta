@@ -1,10 +1,15 @@
-import { setupServer } from './helpers/setup-test'
+import { setupServer } from './helpers/setup-services'
 import { getAuthUser } from './helpers/firebase-auth'
 import { buildUser } from './builder/user'
 import { buildTalk } from './builder/talk'
 import { prisma } from '../src/db/db'
 import { buildCategory, buildEvent, buildFormat } from './builder/event'
 import { buildProposal } from './builder/proposal'
+
+jest.mock('../src/emails/email.services', () => ({
+  sendSubmitTalkEmailToSpeakers: jest.fn(),
+  sendSubmitTalkEmailToOrganizers: jest.fn(),
+}))
 
 describe('/api/speaker/talks', () => {
   const getAgent = setupServer()

@@ -5,7 +5,7 @@ import Checkbox from 'components/form/checkbox'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 import { ConfirmationPopin } from 'components/portals'
-import { useBulkProposalsStatus, useExportProposals } from 'data/proposal'
+import { useBulkProposalsStatus, useExportProposals, useSendProposalsEmails } from 'data/proposal'
 import { useNotification } from 'app/layout/notification/context'
 
 import styles from './proposalsToolbar.module.css'
@@ -17,6 +17,7 @@ const ProposalToolbar = ({ event, result }) => {
   const { sendError } = useNotification()
   const { allSelected, selectionCount, toggleAll, resetSelection } = useSelection()
   const { mutateAsync: exportProposals, isLoading } = useExportProposals(event.id)
+  const { mutateAsync: sendProposalsEmails } = useSendProposalsEmails(event.id)
   const { mutateAsync: updateProposals } = useBulkProposalsStatus(event.id)
 
   const onExportProposals = () =>
@@ -31,7 +32,10 @@ const ProposalToolbar = ({ event, result }) => {
     updateProposals('REJECTED', { onSuccess: resetSelection }).catch((error) => {
       sendError(`An unexpected error has occurred: ${error.message}`)
     })
-  const onSendEmails = console.log
+  const onSendEmails = () =>
+    sendProposalsEmails().catch((error) => {
+      sendError(`An unexpected error has occurred: ${error.message}`)
+    })
 
   return (
     <div className={styles.proposalsActions}>

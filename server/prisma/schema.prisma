@@ -173,28 +173,43 @@ enum OrganizationRole {
 }
 
 model Proposal {
-  id         Int             @id @default(autoincrement())
-  talkId     Int
-  talk       Talk            @relation(fields: [talkId], references: [id])
-  eventId    Int
-  event      Event           @relation(fields: [eventId], references: [id])
-  title      String
-  abstract   String
-  level      TalkLevel?
-  language   String?
-  references String?
-  comments   String?
-  speakers   User[]          @relation("speakers_proposals")
-  formats    EventFormat[]   @relation("proposals_formats")
-  categories EventCategory[] @relation("proposals_categories")
-  ratings    Rating[]
-  status     ProposalStatus  @default(SUBMITTED)
-  createdAt  DateTime        @default(now())
-  updatedAt  DateTime        @updatedAt
-  messages   Message[]
+  id              Int             @id @default(autoincrement())
+  talkId          Int
+  talk            Talk            @relation(fields: [talkId], references: [id])
+  eventId         Int
+  event           Event           @relation(fields: [eventId], references: [id])
+  title           String
+  abstract        String
+  level           TalkLevel?
+  language        String?
+  references      String?
+  comments        String?
+  speakers        User[]          @relation("speakers_proposals")
+  formats         EventFormat[]   @relation("proposals_formats")
+  categories      EventCategory[] @relation("proposals_categories")
+  ratings         Rating[]
+  status          ProposalStatus  @default(SUBMITTED)
+  emailStatus     EmailStatus?
+  speakerNotified Boolean         @default(false)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  messages        Message[]
 
   @@unique([talkId, eventId])
   @@map("proposals")
+}
+
+enum ProposalStatus {
+  SUBMITTED
+  ACCEPTED
+  REJECTED
+  CONFIRMED
+  DECLINED
+}
+
+enum EmailStatus {
+  SENT
+  DELIVERED
 }
 
 model Survey {
@@ -209,14 +224,6 @@ model Survey {
 
   @@unique([userId, eventId])
   @@map("surveys")
-}
-
-enum ProposalStatus {
-  SUBMITTED
-  ACCEPTED
-  REJECTED
-  CONFIRMED
-  DECLINED
 }
 
 model Rating {

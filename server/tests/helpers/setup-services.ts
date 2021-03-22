@@ -39,6 +39,3 @@ export function setupServer() {
     return request
   }
 }
-
-// Mock console
-global.console.info = jest.fn()

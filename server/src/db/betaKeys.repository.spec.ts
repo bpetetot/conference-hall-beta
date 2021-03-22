@@ -1,4 +1,4 @@
-import { setupDatabase } from '../../tests/helpers/setup-test'
+import { setupDatabase } from '../../tests/helpers/setup-services'
 import { buildBetaKey } from '../../tests/builder/betaKey'
 import { isBetaKeyValid } from './betaKeys.repository'
 

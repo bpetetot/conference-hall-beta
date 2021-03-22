@@ -1,4 +1,4 @@
-import { setupServer } from './helpers/setup-test'
+import { setupServer } from './helpers/setup-services'
 import { getAuthUser } from './helpers/firebase-auth'
 import { buildUser } from './builder/user'
 import { buildCategory, buildEvent, buildFormat } from './builder/event'

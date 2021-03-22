@@ -22,9 +22,11 @@
     "express": "^4.17.1",
     "express-validator": "^6.9.2",
     "firebase-admin": "^9.5.0",
+    "form-data": "^4.0.0",
     "helmet": "^4.4.1",
     "lodash": "^4.17.21",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
@@ -34,6 +36,7 @@
     "@types/lodash": "^4.14.168",
     "@types/morgan": "^1.9.2",
     "@types/node": "^14.14.30",
+    "@types/node-fetch": "^2.5.8",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",

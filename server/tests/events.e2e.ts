@@ -1,4 +1,4 @@
-import { setupServer } from './helpers/setup-test'
+import { setupServer } from './helpers/setup-services'
 import { buildEvent } from './builder/event'
 
 describe('/api/events', () => {

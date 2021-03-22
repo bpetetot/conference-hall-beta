@@ -4,6 +4,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import config from './config'
 import users from './users/users.routes'
+import emails from './emails/email.routes'
 import events from './events/events.routes'
 import speakerTalks from './speaker/talks.routes'
 import speakerEvents from './speaker/events.routes'
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use('/api/users', users)
 app.use('/api/events', events)
+app.use('/api/emails', emails)
 app.use('/api/speaker/talks', speakerTalks)
 app.use('/api/speaker/events', speakerEvents)
 app.use('/api/organizer/events', organizerEvents)

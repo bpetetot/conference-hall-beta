@@ -13,7 +13,7 @@ import { CategoryPatch } from './validation/CategoryPatch'
 import { SearchProposalGet } from './validation/SearchProposalGet'
 import { ProposalPatch } from './validation/ProposalPatch'
 import { ProposalRatePut } from './validation/ProposalRatePut'
-import { ExportProposalsPost } from './validation/ExportProposalsPost'
+import { SearchProposalsParameters } from './validation/SearchProposalsParameters'
 import { ProposalsPatch } from './validation/ProposalsPatch'
 
 const router = express.Router()
@@ -101,8 +101,15 @@ router.patch(
 router.put(
   '/:eventId/proposals/export',
   checkIfAuthenticated,
-  validate(ExportProposalsPost),
+  validate(SearchProposalsParameters),
   rawHandler(eventsController.exportProposals),
+)
+
+router.put(
+  '/:eventId/proposals/sendEmails',
+  checkIfAuthenticated,
+  validate(SearchProposalsParameters),
+  handler(eventsController.sendProposalsEmails),
 )
 
 router.patch(

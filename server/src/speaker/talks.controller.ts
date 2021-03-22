@@ -4,6 +4,7 @@ import * as talksRepository from '../db/talks.repository'
 import * as usersRepository from '../db/users.repository'
 import * as eventRepository from '../db/events.repository'
 import * as proposalRepository from '../db/proposals.repository'
+import * as emailServices from '../emails/email.services'
 import { HttpException } from '../middleware/error'
 import { checkUser } from '../users/users.controller'
 import { isCfpOpened } from '../common/cfp-dates'
@@ -186,7 +187,7 @@ export async function submitTalk(req: Request) {
   } else if (!!event.maxProposals && proposals.length === event.maxProposals) {
     throw new HttpException(403, 'Max proposals reached')
   } else {
-    await proposalRepository.createProposal(talkId, eventId, {
+    const proposal = await proposalRepository.createProposal(talkId, eventId, {
       title: talk.title,
       abstract: talk.abstract,
       level: talk.level,
@@ -203,7 +204,9 @@ export async function submitTalk(req: Request) {
         connect: categories,
       },
     })
-    // TODO send email submission
+
+    await emailServices.sendSubmitTalkEmailToSpeakers(event, proposal)
+    await emailServices.sendSubmitTalkEmailToOrganizers(event, proposal)
     // TODO send slack submission
   }
 }

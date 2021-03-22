@@ -1,4 +1,4 @@
-import { setupDatabase } from '../../tests/helpers/setup-test'
+import { setupDatabase } from '../../tests/helpers/setup-services'
 import { saveRating, deleteRating } from './ratings.repository'
 import { buildUser } from '../../tests/builder/user'
 import { buildEvent } from '../../tests/builder/event'

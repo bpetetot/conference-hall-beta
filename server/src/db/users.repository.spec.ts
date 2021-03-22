@@ -1,4 +1,4 @@
-import { setupDatabase } from '../../tests/helpers/setup-test'
+import { setupDatabase } from '../../tests/helpers/setup-services'
 import { buildUser } from '../../tests/builder/user'
 import {
   createUser,

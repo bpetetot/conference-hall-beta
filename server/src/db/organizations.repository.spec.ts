@@ -1,4 +1,4 @@
-import { setupDatabase } from '../../tests/helpers/setup-test'
+import { setupDatabase } from '../../tests/helpers/setup-services'
 import { OrganizationRole } from '@prisma/client'
 import { buildOrganization, buildOrganizationMember } from '../../tests/builder/organization'
 import { buildUser } from '../../tests/builder/user'

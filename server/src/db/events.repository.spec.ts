@@ -1,4 +1,4 @@
-import { setupDatabase } from '../../tests/helpers/setup-test'
+import { setupDatabase } from '../../tests/helpers/setup-services'
 import { EventVisibility } from '@prisma/client'
 import { buildCategory, buildEvent, buildFormat } from '../../tests/builder/event'
 import { buildOrganization, buildOrganizationMember } from '../../tests/builder/organization'
