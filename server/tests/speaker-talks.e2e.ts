@@ -6,13 +6,34 @@ import { prisma } from '../src/db/db'
 import { buildCategory, buildEvent, buildFormat } from './builder/event'
 import { buildProposal } from './builder/proposal'
 
+import {
+  sendSubmitTalkEmailToSpeakers,
+  sendSubmitTalkEmailToOrganizers,
+  sendConfirmTalkEmailToOrganizers,
+  sendDeclineTalkEmailToOrganizers,
+} from '../src/emails/email.services'
+
 jest.mock('../src/emails/email.services', () => ({
   sendSubmitTalkEmailToSpeakers: jest.fn(),
   sendSubmitTalkEmailToOrganizers: jest.fn(),
+  sendConfirmTalkEmailToOrganizers: jest.fn(),
+  sendDeclineTalkEmailToOrganizers: jest.fn(),
 }))
+
+const sendSubmitTalkEmailToSpeakersMock = <jest.Mock>sendSubmitTalkEmailToSpeakers
+const sendSubmitTalkEmailToOrganizersMock = <jest.Mock>sendSubmitTalkEmailToOrganizers
+const sendConfirmTalkEmailToOrganizersMock = <jest.Mock>sendConfirmTalkEmailToOrganizers
+const sendDeclineTalkEmailToOrganizersMock = <jest.Mock>sendDeclineTalkEmailToOrganizers
 
 describe('/api/speaker/talks', () => {
   const getAgent = setupServer()
+
+  beforeEach(() => {
+    sendSubmitTalkEmailToSpeakersMock.mockReset()
+    sendSubmitTalkEmailToOrganizersMock.mockReset()
+    sendConfirmTalkEmailToOrganizersMock.mockReset()
+    sendDeclineTalkEmailToOrganizersMock.mockReset()
+  })
 
   describe('GET /api/speaker/talks', () => {
     test('should return 401 if not authenticated', async () => {
@@ -690,6 +711,8 @@ describe('/api/speaker/talks', () => {
       expect(result?.comments).toEqual('hello')
       expect(result?.formats[0].id).toEqual(format.id)
       expect(result?.categories[0].id).toEqual(category.id)
+      expect(sendSubmitTalkEmailToSpeakersMock).toHaveBeenCalled()
+      expect(sendSubmitTalkEmailToOrganizersMock).toHaveBeenCalled()
     })
 
     test('should update the proposal if exists', async () => {
@@ -727,6 +750,8 @@ describe('/api/speaker/talks', () => {
       expect(result?.comments).toEqual('hello')
       expect(result?.formats[0].id).toEqual(format.id)
       expect(result?.categories[0].id).toEqual(category.id)
+      expect(sendSubmitTalkEmailToSpeakersMock).toHaveBeenCalledTimes(0)
+      expect(sendSubmitTalkEmailToOrganizersMock).toHaveBeenCalledTimes(0)
     })
   })
 
@@ -846,6 +871,162 @@ describe('/api/speaker/talks', () => {
       })
       expect(res.status).toEqual(204)
       expect(result).toBe(null)
+    })
+  })
+
+  describe('PUT /api/speaker/talks/:id/confirm/:id', () => {
+    test('should return 401 if not authenticated', async () => {
+      // given
+      const agent = await getAgent()
+
+      // when
+      const res = await agent.put('/api/speaker/talks/1/confirm/1').send({
+        confirmed: true,
+      })
+
+      // then
+      expect(res.status).toEqual(401)
+    })
+
+    test('should return 404 if talk not found', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      await buildUser({ uid })
+      const agent = await getAgent(token)
+
+      // when
+      const res = await agent.put('/api/speaker/talks/1/confirm/1').send({
+        confirmed: true,
+      })
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('Talk not found')
+    })
+
+    test('should return 403 if talk doesnt belongs to the user', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      await buildUser({ uid })
+      const agent = await getAgent(token)
+      const user2 = await buildUser({ uid: 'user2' })
+      const talk = await buildTalk(user2)
+
+      // when
+      const res = await agent.put(`/api/speaker/talks/${talk.id}/confirm/1`).send({
+        confirmed: true,
+      })
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should return 404 if event not found', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const talk = await buildTalk(user)
+
+      // when
+      const res = await agent.put(`/api/speaker/talks/${talk.id}/confirm/1`).send({
+        confirmed: true,
+      })
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('Event not found')
+    })
+
+    test('should return 404 if proposal not found', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const talk = await buildTalk(user)
+      const event = await buildEvent(null, {
+        type: 'MEETUP',
+        cfpStart: new Date('2001-02-26T00:00:00.000Z'),
+      })
+
+      // when
+      const res = await agent.put(`/api/speaker/talks/${talk.id}/confirm/${event.id}`).send({
+        confirmed: true,
+      })
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('Proposal not found')
+    })
+
+    test('should return 409 if proposal cannot be confirmed', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const talk = await buildTalk(user)
+      const event = await buildEvent(null, {
+        type: 'MEETUP',
+        cfpStart: new Date('2001-02-26T00:00:00.000Z'),
+      })
+      await buildProposal(event.id, talk, { status: 'SUBMITTED' })
+
+      // when
+      const res = await agent.put(`/api/speaker/talks/${talk.id}/confirm/${event.id}`).send({
+        confirmed: true,
+      })
+
+      // then
+      expect(res.status).toEqual(409)
+      expect(res.body.message).toEqual('Proposal cannot be confirmed')
+    })
+
+    test('should return 204 if proposal is confirmed', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const talk = await buildTalk(user)
+      const event = await buildEvent(null, {
+        type: 'MEETUP',
+        cfpStart: new Date('2001-02-26T00:00:00.000Z'),
+      })
+      const proposal = await buildProposal(event.id, talk, { status: 'ACCEPTED' })
+
+      // when
+      const res = await agent.put(`/api/speaker/talks/${talk.id}/confirm/${event.id}`).send({
+        confirmed: true,
+      })
+
+      // then
+      const result = await prisma.proposal.findUnique({ where: { id: proposal.id } })
+      expect(res.status).toEqual(204)
+      expect(result?.status).toEqual('CONFIRMED')
+      expect(sendConfirmTalkEmailToOrganizersMock).toHaveBeenCalled()
+    })
+
+    test('should return 204 if proposal is declined', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const talk = await buildTalk(user)
+      const event = await buildEvent(null, {
+        type: 'MEETUP',
+        cfpStart: new Date('2001-02-26T00:00:00.000Z'),
+      })
+      const proposal = await buildProposal(event.id, talk, { status: 'ACCEPTED' })
+
+      // when
+      const res = await agent.put(`/api/speaker/talks/${talk.id}/confirm/${event.id}`).send({
+        confirmed: false,
+      })
+
+      // then
+      const result = await prisma.proposal.findUnique({ where: { id: proposal.id } })
+      expect(res.status).toEqual(204)
+      expect(result?.status).toEqual('DECLINED')
+      expect(sendDeclineTalkEmailToOrganizersMock).toHaveBeenCalled()
     })
   })
 })

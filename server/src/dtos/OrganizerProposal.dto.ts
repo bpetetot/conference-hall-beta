@@ -14,6 +14,8 @@ export class OrganizerProposalDto {
   language?: string | null
   references?: string | null
   comments?: string | null
+  emailStatus?: string | null
+  speakerNotified: boolean
   formats?: FormatDto[]
   categories?: CategoryDto[]
   ratings?: RatingDto[]
@@ -39,6 +41,8 @@ export class OrganizerProposalDto {
     this.language = proposal.language
     this.references = proposal.references
     this.comments = proposal.comments
+    this.emailStatus = proposal.emailStatus
+    this.speakerNotified = proposal.speakerNotified
     this.formats = proposal.formats?.map((f) => new FormatDto(f))
     this.categories = proposal.categories?.map((c) => new CategoryDto(c))
     this.ratings = proposal.ratings?.map((r) => new RatingDto(r))

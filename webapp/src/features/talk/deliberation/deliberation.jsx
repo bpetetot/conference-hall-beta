@@ -5,27 +5,26 @@ import Notification from './notification'
 
 import styles from './deliberation.module.css'
 
-const filterAccepted = (submissions) =>
-  Object.keys(submissions).filter((eventId) => submissions[eventId].state === 'accepted')
+const filterAccepted = (proposals) => proposals.filter((proposal) => proposal.status === 'ACCEPTED')
 
-const TalkDeliberationNotification = ({ submissions }) => {
-  const acceptedSubmission = filterAccepted(submissions)
+const TalkDeliberationNotification = ({ proposals }) => {
+  const acceptedProposals = filterAccepted(proposals)
 
-  if (isEmpty(acceptedSubmission)) {
+  if (isEmpty(acceptedProposals)) {
     return null
   }
 
   return (
     <div className={styles.deliberation}>
-      {acceptedSubmission.map((eventId) => (
-        <Notification key={eventId} eventId={eventId} talkId={submissions[eventId].id} />
+      {acceptedProposals.map((proposal) => (
+        <Notification key={proposal.eventId} proposal={proposal} />
       ))}
     </div>
   )
 }
 
 TalkDeliberationNotification.propTypes = {
-  submissions: PropTypes.object.isRequired,
+  proposals: PropTypes.array.isRequired,
 }
 
 export default TalkDeliberationNotification

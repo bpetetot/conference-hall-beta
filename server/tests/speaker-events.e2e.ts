@@ -92,6 +92,49 @@ describe('/api/speaker/events', () => {
       expect(res.status).toEqual(200)
       expect(res.body.length).toEqual(1)
       expect(res.body[0].title).toEqual('my proposal')
+      expect(res.body[0].status).toEqual('SUBMITTED')
+    })
+
+    test('should status Submitted is proposal Accepted but speaker not notified', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const event = await buildEvent(user)
+      const talk = await buildTalk(user)
+      await buildProposal(event.id, talk, {
+        title: 'my proposal',
+        status: 'ACCEPTED',
+        speakerNotified: false,
+      })
+
+      // when
+      const res = await agent.get(`/api/speaker/events/${event.id}/proposals`)
+
+      // then
+      expect(res.status).toEqual(200)
+      expect(res.body[0].status).toEqual('SUBMITTED')
+    })
+
+    test('should status Accepted is proposal Accepted and speaker notified', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const event = await buildEvent(user)
+      const talk = await buildTalk(user)
+      await buildProposal(event.id, talk, {
+        title: 'my proposal',
+        status: 'ACCEPTED',
+        speakerNotified: true,
+      })
+
+      // when
+      const res = await agent.get(`/api/speaker/events/${event.id}/proposals`)
+
+      // then
+      expect(res.status).toEqual(200)
+      expect(res.body[0].status).toEqual('ACCEPTED')
     })
   })
 

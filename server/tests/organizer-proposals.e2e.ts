@@ -88,6 +88,8 @@ describe('/api/organizer/events/:id/proposals', () => {
           references: proposal.references,
           comments: proposal.comments,
           status: 'SUBMITTED',
+          emailStatus: null,
+          speakerNotified: false,
           formats: [],
           categories: [],
           ratings: [

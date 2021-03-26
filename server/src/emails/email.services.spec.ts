@@ -5,6 +5,8 @@ import { buildTalk } from '../../tests/builder/talk'
 import { buildUser } from '../../tests/builder/user'
 import { setupDatabase } from '../../tests/helpers/setup-services'
 import {
+  sendConfirmTalkEmailToOrganizers,
+  sendDeclineTalkEmailToOrganizers,
   sendProposalsDeliberationEmails,
   sendSubmitTalkEmailToOrganizers,
   sendSubmitTalkEmailToSpeakers,
@@ -255,6 +257,114 @@ describe('Email services', () => {
       const rejectedCall = sendEmailMock.mock.calls[1][0]
       expect(rejectedCall.to).toEqual([user1.email])
       expect(rejectedCall.html).toContain('Your talk has been declined')
+    })
+  })
+
+  describe('#sendConfirmTalkEmailToOrganizers', () => {
+    beforeEach(() => {
+      sendEmailMock.mockReset()
+    })
+
+    it('should not send email if no organizer email on event', async () => {
+      //given
+      const event = { name: 'event1' } as Event
+      const proposal = {} as Proposal
+
+      // when
+      await sendConfirmTalkEmailToOrganizers(event, proposal)
+
+      // then
+      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+    })
+
+    it('should not send email if notification not activated', async () => {
+      //given
+      const event = ({
+        name: 'event1',
+        emailOrganizer: 'contact@example.com',
+        emailNotifications: { confirmed: false },
+      } as unknown) as Event
+      const proposal = {} as Proposal
+
+      // when
+      await sendConfirmTalkEmailToOrganizers(event, proposal)
+
+      // then
+      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+    })
+
+    it('should call sendEmail to event contact email', async () => {
+      //given
+      const event = ({
+        name: 'event1',
+        emailOrganizer: 'contact@example.com',
+        emailNotifications: { confirmed: true },
+      } as unknown) as Event
+      const proposal = {} as Proposal
+
+      // when
+      await sendConfirmTalkEmailToOrganizers(event, proposal)
+
+      // then
+      const result = sendEmailMock.mock.calls[0][0]
+      expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
+      expect(result.to).toEqual(['contact@example.com'])
+      expect(result.subject).toEqual('[event1] Talk confirmed by speaker')
+      expect(result.html).toContain('Talk confirmed by speaker')
+    })
+  })
+
+  describe('#sendDeclineTalkEmailToOrganizers', () => {
+    beforeEach(() => {
+      sendEmailMock.mockReset()
+    })
+
+    it('should not send email if no organizer email on event', async () => {
+      //given
+      const event = { name: 'event1' } as Event
+      const proposal = {} as Proposal
+
+      // when
+      await sendDeclineTalkEmailToOrganizers(event, proposal)
+
+      // then
+      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+    })
+
+    it('should not send email if notification not activated', async () => {
+      //given
+      const event = ({
+        name: 'event1',
+        emailOrganizer: 'contact@example.com',
+        emailNotifications: { confirmed: false },
+      } as unknown) as Event
+      const proposal = {} as Proposal
+
+      // when
+      await sendDeclineTalkEmailToOrganizers(event, proposal)
+
+      // then
+      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+    })
+
+    it('should call sendEmail to event contact email', async () => {
+      //given
+      const event = ({
+        name: 'event1',
+        emailOrganizer: 'contact@example.com',
+        emailNotifications: { confirmed: true },
+      } as unknown) as Event
+      const proposal = {} as Proposal
+
+      // when
+      await sendDeclineTalkEmailToOrganizers(event, proposal)
+
+      // then
+      const result = sendEmailMock.mock.calls[0][0]
+      expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
+      expect(result.to).toEqual(['contact@example.com'])
+      expect(result.subject).toEqual('[event1] Talk declined by speaker')
+      expect(result.html).toContain('Talk declined by speaker')
     })
   })
 })

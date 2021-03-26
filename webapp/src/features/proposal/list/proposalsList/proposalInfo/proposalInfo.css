@@ -2,6 +2,11 @@
   display: flex;
   align-items: center;
 }
+
+.proposal-item-info > * {
+  margin-left: 8px;
+}
+
 .list-item .list-item-actions {
     flex-grow: 0;
 }

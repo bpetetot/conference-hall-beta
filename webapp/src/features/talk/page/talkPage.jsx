@@ -11,7 +11,7 @@ import {
   TalkAbstract,
   TalkSpeakers,
   TalkSubmissions,
-  // TalkDeliberationNotification,
+  TalkDeliberationNotification,
 } from 'features/talk'
 import DeleteTalkButton from './delete'
 import './talkPage.css'
@@ -70,7 +70,7 @@ const TalkPage = () => {
           </Button>
         )}
       </Titlebar>
-      {/* <TalkDeliberationNotification submissions={talk.submissions} /> */}
+      <TalkDeliberationNotification proposals={talk.proposals} />
       <div className="talk-page">
         <TalkAbstract
           className="talk-content"

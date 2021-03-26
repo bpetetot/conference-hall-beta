@@ -4,6 +4,8 @@ import * as proposalsRepository from '../db/proposals.repository'
 import {
   proposalBatchAccepted,
   proposalBatchRejected,
+  proposalConfirmed,
+  proposalDeclined,
   proposalReceived,
   proposalSubmitted,
 } from './templates'
@@ -121,4 +123,24 @@ export async function sendProposalsDeliberationEmails(
 
   await sendBatchAcceptedEmails(event, acceptedRecipents)
   await sendBatchRejectedEmails(event, rejectedRecipents)
+}
+
+export async function sendConfirmTalkEmailToOrganizers(event: Event, proposal: Proposal) {
+  if (!hasEmailNotification(event, 'confirmed')) return
+  return sendEmail({
+    from: `${event.name} <no-reply@conference-hall.io>`,
+    to: [event.emailOrganizer],
+    subject: `[${event.name}] Talk confirmed by speaker`,
+    html: proposalConfirmed(event, proposal),
+  })
+}
+
+export async function sendDeclineTalkEmailToOrganizers(event: Event, proposal: Proposal) {
+  if (!hasEmailNotification(event, 'confirmed')) return
+  return sendEmail({
+    from: `${event.name} <no-reply@conference-hall.io>`,
+    to: [event.emailOrganizer],
+    subject: `[${event.name}] Talk declined by speaker`,
+    html: proposalDeclined(event, proposal),
+  })
 }

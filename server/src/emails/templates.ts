@@ -51,7 +51,7 @@ export const proposalBatchAccepted = (event: Event) => `
   <p>Your talk <strong>"%recipient.talkTitle%"</strong> at <strong>"${event.name}"</strong> has been accepted! 🎉  🎊</p>
   <p>In order to help organizers for the selection and the event management, please confirm your participation:<p>
   <ul>
-  <li><a href="${appUrl}/speaker/talk/%recipient.talkId%">My talk <strong>%recipient.talkTitle%</strong></a></li>
+  <li><a href="${appUrl}/speaker/talk/%recipient.talkId%"><strong>%recipient.talkTitle%</strong></a></li>
   </p>
   <p>See you there!</p>
   <p>Made with 💗 by <a href="${appUrl}">conference-hall.io</a> – <i>"${event.name}" team</i></p>

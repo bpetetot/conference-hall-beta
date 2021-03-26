@@ -1,4 +1,4 @@
-import { EventCategory, EventFormat, Proposal } from '@prisma/client'
+import { EventCategory, EventFormat, Proposal, ProposalStatus } from '@prisma/client'
 import { CategoryDto } from './Category.dto'
 import { FormatDto } from './Format.dto'
 
@@ -24,7 +24,7 @@ export class SpeakerProposalDto {
     this.level = proposal.level
     this.language = proposal.language
     this.references = proposal.references
-    this.status = proposal.status
+    this.status = proposal.speakerNotified ? proposal.status : ProposalStatus.SUBMITTED
     this.formats = proposal.formats?.map((f) => new FormatDto(f))
     this.categories = proposal.categories?.map((c) => new CategoryDto(c))
     this.comments = proposal.comments

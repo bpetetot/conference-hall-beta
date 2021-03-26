@@ -5,7 +5,7 @@ import { handler } from '../middleware/handler'
 import * as talksController from './talks.controller'
 import { TalkPost } from './validation/TalkPost'
 import { TalkPatch } from './validation/TalkPatch'
-import { param } from 'express-validator'
+import { body, param } from 'express-validator'
 import { TalkSubmitPut } from './validation/TalkSubmitPut'
 
 const router = express.Router()
@@ -56,6 +56,17 @@ router.put(
   checkIfAuthenticated,
   validate([param('talkId').notEmpty().isNumeric(), param('eventId').notEmpty().isNumeric()]),
   handler(talksController.unsubmitTalk),
+)
+
+router.put(
+  '/:talkId/confirm/:eventId',
+  checkIfAuthenticated,
+  validate([
+    param('talkId').notEmpty().isNumeric(),
+    param('eventId').notEmpty().isNumeric(),
+    body('confirmed').notEmpty().isBoolean().toBoolean(),
+  ]),
+  handler(talksController.confirmTalk),
 )
 
 export default router

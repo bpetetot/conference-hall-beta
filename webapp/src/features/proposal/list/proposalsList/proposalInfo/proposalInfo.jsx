@@ -8,7 +8,7 @@ import './proposalInfo.css'
 
 const ProposalInfo = ({ event, proposal, isMobile }) => {
   const { deliberationEnabled, displayProposalsRatings } = event
-  const { status, emailStatus } = proposal
+  const { status, speakerNotified, emailStatus } = proposal
   return (
     <div className="proposal-item-info">
       {!isMobile && deliberationEnabled && (
@@ -33,18 +33,13 @@ const ProposalInfo = ({ event, proposal, isMobile }) => {
               Declined by speaker
             </Badge>
           )}
-          {emailStatus === 'SENDING' && (
-            <Badge outline light>
-              Sending email...
-            </Badge>
-          )}
-          {emailStatus === 'SENT' && (
-            <Badge outline info>
-              Email sent
+          {speakerNotified && (
+            <Badge outline success>
+              Speaker notified
             </Badge>
           )}
           {emailStatus === 'DELIVERED' && (
-            <Badge outline success>
+            <Badge outline info>
               Email delivered
             </Badge>
           )}

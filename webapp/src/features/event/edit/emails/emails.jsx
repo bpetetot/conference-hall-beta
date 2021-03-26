@@ -18,7 +18,6 @@ const EmailsForm = ({ event }) => {
     accepted: Boolean(event?.emailNotifications?.accepted),
     rejected: Boolean(event?.emailNotifications?.rejected),
     confirmed: Boolean(event?.emailNotifications?.confirmed),
-    declined: Boolean(event?.emailNotifications?.declined),
   }
 
   const { sendError } = useNotification()
@@ -73,17 +72,9 @@ const EmailsForm = ({ event }) => {
             <label htmlFor="confirmed">
               <Field id="confirmed" name="confirmed" component="input" type="checkbox" />
               <span>
-                Confirmed proposals
+                Confirmed and declined proposals
                 <br />
-                <small>Receive an email when a speaker confirm a talk.</small>
-              </span>
-            </label>
-            <label htmlFor="declined">
-              <Field id="declined" name="declined" component="input" type="checkbox" />
-              <span>
-                Declined proposals
-                <br />
-                <small>Receive an email when a speaker decline a talk.</small>
+                <small>Receive an email when a speaker confirm or decline a talk.</small>
               </span>
             </label>
           </div>

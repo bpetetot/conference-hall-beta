@@ -45,7 +45,7 @@ const SubmissionPage = ({ event }) => {
         <div className={styles.header}>
           {proposal.status === 'ACCEPTED' && (
             <div className={styles.notification}>
-              <Notification eventId={event.id} talkId={talkId} />
+              <Notification proposal={proposal} />
             </div>
           )}
           <div className={styles.status}>

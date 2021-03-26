@@ -135,3 +135,21 @@ async function unsubmitTalk(eventId, talkId) {
 export function useUnsubmitTalk(eventId, talkId) {
   return useMutation(() => unsubmitTalk(eventId, talkId))
 }
+
+async function confirmTalk(eventId, talkId, confirmed) {
+  return fetchData({
+    method: 'PUT',
+    url: `/api/speaker/talks/${talkId}/confirm/${eventId}`,
+    auth: true,
+    body: { confirmed },
+  })
+}
+
+export function useConfirmTalk(eventId, talkId) {
+  const queryClient = useQueryClient()
+  return useMutation((confirmed) => confirmTalk(eventId, talkId, confirmed), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['talk', String(talkId)])
+    },
+  })
+}

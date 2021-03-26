@@ -9,6 +9,7 @@ import { HttpException } from '../middleware/error'
 import { checkUser } from '../users/users.controller'
 import { isCfpOpened } from '../common/cfp-dates'
 import { isEmpty } from 'lodash'
+import { ProposalStatus } from '.prisma/client'
 
 export async function findUserTalks(req: Request) {
   const { uid } = req.user
@@ -244,4 +245,44 @@ export async function unsubmitTalk(req: Request) {
   }
 
   await proposalRepository.deleteProposal(proposal.id)
+}
+
+export async function confirmTalk(req: Request) {
+  const { uid } = req.user
+  const talkId = parseInt(req.params.talkId)
+  const eventId = parseInt(req.params.eventId)
+
+  const user = await usersRepository.getUserByUid(uid)
+  if (!user) {
+    throw new HttpException(404, 'User not found')
+  }
+
+  const talk = await talksRepository.getTalk(talkId, { withSpeakers: true })
+  if (!talk) {
+    throw new HttpException(404, 'Talk not found')
+  }
+  const isUserSpeaker = talk.speakers.some((speaker) => speaker.uid === uid)
+  if (!isUserSpeaker) {
+    throw new HttpException(403, 'Forbidden')
+  }
+
+  const event = await eventRepository.getEventById(eventId)
+  if (!event) {
+    throw new HttpException(404, 'Event not found')
+  }
+
+  const proposal = await proposalRepository.getProposalForEvent(talkId, eventId)
+  if (!proposal) {
+    throw new HttpException(404, 'Proposal not found')
+  }
+  if (proposal.status !== ProposalStatus.ACCEPTED) {
+    throw new HttpException(409, 'Proposal cannot be confirmed')
+  }
+  if (req.body.confirmed) {
+    await proposalRepository.updateProposal(proposal.id, { status: ProposalStatus.CONFIRMED })
+    await emailServices.sendConfirmTalkEmailToOrganizers(event, proposal)
+  } else {
+    await proposalRepository.updateProposal(proposal.id, { status: ProposalStatus.DECLINED })
+    await emailServices.sendDeclineTalkEmailToOrganizers(event, proposal)
+  }
 }
