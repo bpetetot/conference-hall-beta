@@ -63,9 +63,9 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const signout = useCallback(async () => {
+    navigate('/')
     await firebase.auth().signOut()
     localStorage.removeItem('currentEventId')
-    navigate('/')
   }, [navigate])
 
   const value = useMemo(
