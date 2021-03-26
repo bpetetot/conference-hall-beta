@@ -30,6 +30,8 @@ describe('validation | EventPatch', () => {
         displayOrganizersRatings: true,
         displayProposalsRatings: true,
         displayProposalsSpeakers: true,
+        emailOrganizer: 'organizer@example.net',
+        emailNotifications: {},
         surveyEnabled: true,
         surveyQuestions: {},
         slackWebhookUrl: 'https://banner.com',

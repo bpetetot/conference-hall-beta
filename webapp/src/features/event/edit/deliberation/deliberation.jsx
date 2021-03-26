@@ -4,11 +4,10 @@ import cn from 'classnames'
 
 import Label from 'components/form/label'
 import Toggle from 'components/form/toggle'
-import Checkbox from 'components/form/checkbox'
-import IconLabel from 'components/iconLabel/iconLabel'
 import { useUpdateEventField } from 'data/event'
 
 import styles from './deliberation.module.css'
+import EmailsForm from '../emails'
 
 const DeliberationForm = ({ event }) => {
   const { mutate: onDeliberation } = useUpdateEventField(event.id, 'deliberationEnabled')
@@ -16,147 +15,61 @@ const DeliberationForm = ({ event }) => {
   const { mutate: onOrganizersRatings } = useUpdateEventField(event.id, 'displayOrganizersRatings')
   const { mutate: onProposalsSpeakers } = useUpdateEventField(event.id, 'displayProposalsSpeakers')
 
-  const recipients = {} // TODO
-  const emails = {} // TODO
-  const onChangeRecipients = () => {} // TODO
-  const onChangeNotifiedEmails = () => {} // TODO
-
-  const disabledEmails =
-    !recipients.organizers && (!recipients.contact || (recipients.contact && !event.contact))
-
   return (
-    <div className={cn(styles.form, 'card')}>
-      <Label
-        name="enabled"
-        label="Enable Deliberation"
-        description="Active deliberation to mark proposals to accepted or rejected, and send confirmation emails to speakers."
-        classNameInput={styles.label}
-        right
-      >
-        <Toggle name="enabled" checked={event.deliberationEnabled} onChange={onDeliberation} />
-      </Label>
+    <>
+      <div className={cn(styles.form, 'card')}>
+        <Label
+          name="enabled"
+          label="Enable Deliberation"
+          description="Active deliberation to mark proposals to accepted or rejected, and send confirmation emails to speakers."
+          classNameInput={styles.label}
+          right
+        >
+          <Toggle name="enabled" checked={event.deliberationEnabled} onChange={onDeliberation} />
+        </Label>
 
-      <Label
-        name="displayOrganizersRatings"
-        label="Display organizers ratings"
-        description="All organizers can see ratings of others."
-        classNameInput={styles.label}
-        right
-      >
-        <Toggle
+        <Label
           name="displayOrganizersRatings"
-          checked={event.displayOrganizersRatings}
-          onChange={onOrganizersRatings}
-        />
-      </Label>
+          label="Display organizers ratings"
+          description="All organizers can see ratings of others."
+          classNameInput={styles.label}
+          right
+        >
+          <Toggle
+            name="displayOrganizersRatings"
+            checked={event.displayOrganizersRatings}
+            onChange={onOrganizersRatings}
+          />
+        </Label>
 
-      <Label
-        name="displayProposalsRatings"
-        label="Display ratings in proposals list"
-        classNameInput={styles.label}
-        right
-      >
-        <Toggle
+        <Label
           name="displayProposalsRatings"
-          checked={event.displayProposalsRatings}
-          onChange={onProposalsRatings}
-        />
-      </Label>
+          label="Display ratings in proposals list"
+          classNameInput={styles.label}
+          right
+        >
+          <Toggle
+            name="displayProposalsRatings"
+            checked={event.displayProposalsRatings}
+            onChange={onProposalsRatings}
+          />
+        </Label>
 
-      <Label
-        name="displayProposalsSpeakers"
-        label="Display speakers info in proposal page"
-        classNameInput={styles.label}
-        right
-      >
-        <Toggle
+        <Label
           name="displayProposalsSpeakers"
-          checked={event.displayProposalsSpeakers}
-          onChange={onProposalsSpeakers}
-        />
-      </Label>
-
-      <h3>Email notifications</h3>
-      {disabledEmails && (
-        <IconLabel
-          icon="fa fa-exclamation-circle"
-          label="No destination email defined, no email will be received."
-          className={styles.error}
-        />
-      )}
-
-      <h4>Configure emails recipients:</h4>
-      <div className={styles.checkboxes}>
-        <Checkbox
-          name="contact"
-          label="Send to the event contact email"
-          info={
-            event.contact ? (
-              'Sent emails will have the event contact email as CC.'
-            ) : (
-              <IconLabel
-                icon="fa fa-exclamation-circle"
-                label="No contact email defined for the event."
-              />
-            )
-          }
-          onChange={onChangeRecipients}
-          value={recipients.contact}
-          disabled={!event.contact}
-        />
-        <Checkbox
-          name="organizers"
-          label="Send to organizer's emails"
-          info="Sent emails will have organizer's email as BCC."
-          onChange={onChangeRecipients}
-          value={recipients.organizers}
-        />
+          label="Display speakers info in proposal page"
+          classNameInput={styles.label}
+          right
+        >
+          <Toggle
+            name="displayProposalsSpeakers"
+            checked={event.displayProposalsSpeakers}
+            onChange={onProposalsSpeakers}
+          />
+        </Label>
       </div>
-
-      <h4>Configure which email you want to receive:</h4>
-      <div className={styles.checkboxes}>
-        <Checkbox
-          name="submitted"
-          label="Submitted proposals"
-          info="Receive an email when a speaker submit a talk."
-          onChange={onChangeNotifiedEmails}
-          value={emails.submitted}
-          disabled={disabledEmails}
-        />
-        <Checkbox
-          name="accepted"
-          label="Accepted proposals"
-          info="Have a copy of acceptation emails sent to speakers."
-          onChange={onChangeNotifiedEmails}
-          value={emails.accepted}
-          disabled={disabledEmails}
-        />
-        <Checkbox
-          name="rejected"
-          label="Rejected proposals"
-          info="Have a copy of rejection emails sent to speakers."
-          onChange={onChangeNotifiedEmails}
-          value={emails.rejected}
-          disabled={disabledEmails}
-        />
-        <Checkbox
-          name="confirmed"
-          label="Confirmed proposals"
-          info="Receive an email when a speaker confirm a talk."
-          onChange={onChangeNotifiedEmails}
-          value={emails.confirmed}
-          disabled={disabledEmails}
-        />
-        <Checkbox
-          name="declined"
-          label="Declined proposals"
-          info="Receive an email when a speaker decline a talk."
-          onChange={onChangeNotifiedEmails}
-          value={emails.declined}
-          disabled={disabledEmails}
-        />
-      </div>
-    </div>
+      <EmailsForm event={event} />
+    </>
   )
 }
 

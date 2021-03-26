@@ -1,35 +1,7 @@
 .form {
-  padding: 2em;
   display: flex;
   flex-direction: column;
-}
-
-.label {
-  display: flex;
-  align-items: center;
-}
-
-.description {
-  margin-left: 2em;
-  font-size: 0.9em;
-  color: var(--grey-color-dark);
-}
-
-.error {
-  color: var(--error-color);
-  font-size: 0.9em;
-}
-
-.checkboxes > * {
-  margin-bottom: 0.5em;
-}
-
-.form h3 {
-  margin-top: 0.5rem;
-}
-
-.form h4 {
-  margin: 0.5em 0;
+  margin-bottom: 1rem;
 }
 
 @media only screen and (max-width: 480px) {

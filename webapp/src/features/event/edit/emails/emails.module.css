@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form > button {
+  align-self: flex-end;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-actions button:last-child {
+  margin-left: 1em;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.checkboxes > * {
+  display: flex;
+  margin: 8px 0;
+}
+
+.checkboxes input {
+  margin-right: 0.5rem;
+}
+
+@media only screen and (max-width: 480px) {
+  .form {
+    padding: 1em;
+  }
+}

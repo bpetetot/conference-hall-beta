@@ -142,6 +142,16 @@ export function useUpdateCfpEvent(eventId) {
   return useUpdateEvent(eventId, onUpdate)
 }
 
+export function useUpdateEmailNotifEvent(eventId) {
+  const onUpdate = ({ emailOrganizer, ...emailNotifications }) => {
+    return {
+      emailOrganizer,
+      emailNotifications: emailOrganizer ? emailNotifications : {},
+    }
+  }
+  return useUpdateEvent(eventId, onUpdate)
+}
+
 export function useUpdateEventField(eventId, field) {
   const { sendError } = useNotification()
   const onUpdate = (value) => ({ [field]: value })

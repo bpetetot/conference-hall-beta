@@ -1,4 +1,4 @@
-import { Event, Proposal, ProposalStatus, User } from '@prisma/client'
+import { Prisma, Event, Proposal, ProposalStatus, User } from '@prisma/client'
 import { isEmailServiceEnabled, sendEmail } from './mailgun'
 import * as proposalsRepository from '../db/proposals.repository'
 import {
@@ -17,6 +17,13 @@ type BatchRecipients = {
   }
 }
 
+function hasEmailNotification(event: Event, notification: string) {
+  if (!event.emailOrganizer) return false
+  const notifications = event?.emailNotifications as Prisma.JsonObject
+  if (!notifications[notification]) return false
+  return true
+}
+
 export async function sendSubmitTalkEmailToSpeakers(
   event: Event,
   proposal: Proposal & { speakers: User[] },
@@ -33,11 +40,10 @@ export async function sendSubmitTalkEmailToOrganizers(
   event: Event,
   proposal: Proposal & { speakers: User[] },
 ) {
-  if (!event.contact) return // TODO use another email in settings
-  // TODO check if notifications.emails submitted enabled
+  if (!hasEmailNotification(event, 'submitted')) return
   return sendEmail({
     from: `${event.name} <no-reply@conference-hall.io>`,
-    to: [event.contact],
+    to: [event.emailOrganizer],
     subject: `[${event.name}] Talk received`,
     html: proposalReceived(event, proposal),
   })
@@ -46,10 +52,11 @@ export async function sendSubmitTalkEmailToOrganizers(
 async function sendBatchAcceptedEmails(event: Event, recipients: BatchRecipients) {
   const emails = Object.keys(recipients)
   if (emails.length === 0) return
+  const bcc = hasEmailNotification(event, 'accepted') ? [event.emailOrganizer] : []
   return sendEmail({
     from: `${event.name} <no-reply@conference-hall.io>`,
     to: emails,
-    bcc: [event.contact], // TODO check if notifications.emails submitted enabled
+    bcc,
     subject: `[${event.name}] [Action required] Talk accepted! Please confirm your presence`,
     html: proposalBatchAccepted(event),
     'recipient-variables': recipients,
@@ -63,10 +70,11 @@ async function sendBatchAcceptedEmails(event: Event, recipients: BatchRecipients
 async function sendBatchRejectedEmails(event: Event, recipients: BatchRecipients) {
   const emails = Object.keys(recipients)
   if (emails.length === 0) return
+  const bcc = hasEmailNotification(event, 'rejected') ? [event.emailOrganizer] : []
   return sendEmail({
     from: `${event.name} <no-reply@conference-hall.io>`,
     to: emails,
-    bcc: [event.contact], // TODO check if notifications.emails submitted enabled
+    bcc,
     subject: `[${event.name}] Talk declined`,
     html: proposalBatchRejected(event),
     'recipient-variables': recipients,

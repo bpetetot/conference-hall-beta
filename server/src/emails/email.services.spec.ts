@@ -87,9 +87,29 @@ describe('Email services', () => {
       expect(sendEmailMock).toHaveBeenCalledTimes(0)
     })
 
+    it('should not send email if notification not activated', async () => {
+      //given
+      const event = ({
+        name: 'event1',
+        emailOrganizer: 'contact@example.com',
+        emailNotifications: { submitted: false },
+      } as unknown) as Event
+      const proposal = {} as Proposal & { speakers: User[] }
+
+      // when
+      await sendSubmitTalkEmailToOrganizers(event, proposal)
+
+      // then
+      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+    })
+
     it('should call sendEmail to event contact email', async () => {
       //given
-      const event = { name: 'event1', contact: 'contact@example.com' } as Event
+      const event = ({
+        name: 'event1',
+        emailOrganizer: 'contact@example.com',
+        emailNotifications: { submitted: true },
+      } as unknown) as Event
       const proposal = {} as Proposal & { speakers: User[] }
 
       // when
@@ -138,7 +158,7 @@ describe('Email services', () => {
       const result = sendEmailMock.mock.calls[0][0]
       expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
       expect(result.to).toEqual([user1.email, user2.email])
-      expect(result.bcc).toEqual([event.contact])
+      expect(result.bcc).toEqual([])
       expect(result.subject).toEqual(
         `[event1] [Action required] Talk accepted! Please confirm your presence`,
       )
@@ -159,6 +179,26 @@ describe('Email services', () => {
       })
     })
 
+    it('should send a copy of accepted emails to organizers', async () => {
+      // given
+      const user = await buildUser()
+      const eventWithCopy = await buildEvent(user, {
+        name: 'event1',
+        emailOrganizer: 'contact@example.com',
+        emailNotifications: { accepted: true },
+      })
+      const talk = await buildTalk(user)
+      await buildProposal(eventWithCopy.id, talk, { status: 'ACCEPTED' })
+
+      // when
+      await sendProposalsDeliberationEmails(user.id, eventWithCopy, { status: 'ACCEPTED' })
+
+      // then
+      expect(sendEmailMock).toHaveBeenCalledTimes(1)
+      const result = sendEmailMock.mock.calls[0][0]
+      expect(result.bcc).toEqual([eventWithCopy.emailOrganizer])
+    })
+
     it('should send rejected proposals', async () => {
       // when
       await sendProposalsDeliberationEmails(user1.id, event, { status: 'REJECTED' })
@@ -168,7 +208,7 @@ describe('Email services', () => {
       const result = sendEmailMock.mock.calls[0][0]
       expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
       expect(result.to).toEqual([user1.email])
-      expect(result.bcc).toEqual([event.contact])
+      expect(result.bcc).toEqual([])
       expect(result.subject).toEqual('[event1] Talk declined')
       expect(result.html).toContain('Your talk has been declined')
       expect(result['recipient-variables']).toEqual({
@@ -179,6 +219,26 @@ describe('Email services', () => {
           talkTitle: proposal3.title,
         },
       })
+    })
+
+    it('should send a copy of rejected emails to organizers', async () => {
+      // given
+      const user = await buildUser()
+      const eventWithCopy = await buildEvent(user, {
+        name: 'event1',
+        emailOrganizer: 'contact@example.com',
+        emailNotifications: { rejected: true },
+      })
+      const talk = await buildTalk(user)
+      await buildProposal(eventWithCopy.id, talk, { status: 'REJECTED' })
+
+      // when
+      await sendProposalsDeliberationEmails(user.id, eventWithCopy, { status: 'REJECTED' })
+
+      // then
+      expect(sendEmailMock).toHaveBeenCalledTimes(1)
+      const result = sendEmailMock.mock.calls[0][0]
+      expect(result.bcc).toEqual([eventWithCopy.emailOrganizer])
     })
 
     it('should send accepted and rejected proposals', async () => {

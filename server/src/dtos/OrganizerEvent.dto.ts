@@ -34,6 +34,8 @@ export class OrganizerEventDto {
   displayProposalsSpeakers: boolean
   surveyEnabled: boolean
   surveyQuestions?: Prisma.JsonValue | null
+  emailOrganizer: string | null
+  emailNotifications?: Prisma.JsonValue | null
   slackWebhookUrl?: string | null
   slackNotifSubmitted?: boolean | null
   apiKey?: string | null
@@ -67,6 +69,8 @@ export class OrganizerEventDto {
     this.displayProposalsSpeakers = event.displayProposalsSpeakers
     this.surveyEnabled = event.surveyEnabled
     this.surveyQuestions = event.surveyQuestions
+    this.emailOrganizer = event.emailOrganizer
+    this.emailNotifications = event.emailNotifications
     this.slackWebhookUrl = event.slackWebhookUrl
     this.slackNotifSubmitted = event.slackNotifSubmitted
     this.apiKey = event.apiKey

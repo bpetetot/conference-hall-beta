@@ -10,7 +10,8 @@ export const required = (value) => {
 }
 
 export const email = (value) => {
-  if (value && isEmail(value)) return undefined
+  if (!value) return undefined
+  if (isEmail(value)) return undefined
   return 'Invalid email'
 }
 

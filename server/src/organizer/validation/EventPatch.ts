@@ -28,6 +28,8 @@ export const EventPatch = [
   body('displayProposalsSpeakers').trim().optional(falsy).isBoolean().toBoolean(),
   body('surveyEnabled').trim().optional(falsy).isBoolean().toBoolean(),
   body('surveyQuestions').optional(falsy),
+  body('emailOrganizer').trim().optional(falsy).isEmail(),
+  body('emailNotifications').optional(falsy),
   body('slackWebhookUrl').trim().optional(falsy).isURL(),
   body('slackNotifSubmitted').trim().optional(falsy).isBoolean().toBoolean(),
   body('apiKey').trim().optional(falsy).isString(),
