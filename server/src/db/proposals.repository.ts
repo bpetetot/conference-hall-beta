@@ -41,7 +41,7 @@ export async function createProposal(
       talk: { connect: { id: talkId } },
       event: { connect: { id: eventId } },
     },
-    include: { speakers: true },
+    include: { speakers: true, formats: true, categories: true },
   })
 }
 

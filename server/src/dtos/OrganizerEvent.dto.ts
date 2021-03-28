@@ -37,7 +37,7 @@ export class OrganizerEventDto {
   emailOrganizer: string | null
   emailNotifications?: Prisma.JsonValue | null
   slackWebhookUrl?: string | null
-  slackNotifSubmitted?: boolean | null
+  slackNotifications?: Prisma.JsonValue | null
   apiKey?: string | null
 
   constructor(event: Event & { formats?: EventFormat[]; categories?: EventCategory[] }) {
@@ -72,7 +72,7 @@ export class OrganizerEventDto {
     this.emailOrganizer = event.emailOrganizer
     this.emailNotifications = event.emailNotifications
     this.slackWebhookUrl = event.slackWebhookUrl
-    this.slackNotifSubmitted = event.slackNotifSubmitted
+    this.slackNotifications = event.slackNotifications
     this.apiKey = event.apiKey
     this.isCfpOpened = isCfpOpened(event.type, event.cfpStart, event.cfpEnd)
     this.isCfpFinished = isCfpFinished(event.cfpEnd)

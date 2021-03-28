@@ -35,7 +35,7 @@ describe('validation | EventPatch', () => {
         surveyEnabled: true,
         surveyQuestions: {},
         slackWebhookUrl: 'https://banner.com',
-        slackNotifSubmitted: true,
+        slackNotifications: { submitted: true },
         apiKey: 'XXX',
       },
     }

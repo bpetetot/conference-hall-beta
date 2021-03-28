@@ -18,10 +18,6 @@ const sendEmailMock = <jest.Mock>sendEmail
 
 describe('Email services', () => {
   describe('#sendSubmitTalkEmailToSpeakers', () => {
-    beforeEach(() => {
-      sendEmailMock.mockReset()
-    })
-
     it('should call sendEmail to one speaker', async () => {
       //given
       const event = { name: 'event1' } as Event
@@ -73,10 +69,6 @@ describe('Email services', () => {
   })
 
   describe('#sendSubmitTalkEmailToOrganizers', () => {
-    beforeEach(() => {
-      sendEmailMock.mockReset()
-    })
-
     it('should not send email if no contact given', async () => {
       //given
       const event = { name: 'event1' } as Event
@@ -137,7 +129,6 @@ describe('Email services', () => {
     setupDatabase()
 
     beforeEach(async () => {
-      sendEmailMock.mockReset()
       user1 = await buildUser()
       user2 = await buildUser()
       event = await buildEvent(user1, { name: 'event1' })
@@ -261,10 +252,6 @@ describe('Email services', () => {
   })
 
   describe('#sendConfirmTalkEmailToOrganizers', () => {
-    beforeEach(() => {
-      sendEmailMock.mockReset()
-    })
-
     it('should not send email if no organizer email on event', async () => {
       //given
       const event = { name: 'event1' } as Event
@@ -315,10 +302,6 @@ describe('Email services', () => {
   })
 
   describe('#sendDeclineTalkEmailToOrganizers', () => {
-    beforeEach(() => {
-      sendEmailMock.mockReset()
-    })
-
     it('should not send email if no organizer email on event', async () => {
       //given
       const event = { name: 'event1' } as Event

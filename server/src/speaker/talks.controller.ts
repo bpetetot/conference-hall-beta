@@ -5,6 +5,7 @@ import * as usersRepository from '../db/users.repository'
 import * as eventRepository from '../db/events.repository'
 import * as proposalRepository from '../db/proposals.repository'
 import * as emailServices from '../emails/email.services'
+import * as slackServices from '../slack/slack.services'
 import { HttpException } from '../middleware/error'
 import { checkUser } from '../users/users.controller'
 import { isCfpOpened } from '../common/cfp-dates'
@@ -208,7 +209,7 @@ export async function submitTalk(req: Request) {
 
     await emailServices.sendSubmitTalkEmailToSpeakers(event, proposal)
     await emailServices.sendSubmitTalkEmailToOrganizers(event, proposal)
-    // TODO send slack submission
+    await slackServices.sendSubmittedTalkSlackMessage(event, proposal)
   }
 }
 

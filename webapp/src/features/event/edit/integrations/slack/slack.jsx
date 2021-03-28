@@ -15,7 +15,9 @@ const Slack = ({ event }) => {
   const [enabled, setEnabled] = useState(!!event.slackWebhookUrl)
   const [url, setUrl] = useState(event.slackWebhookUrl || '')
   const { mutate: saveWebhookUrl } = useUpdateEventField(event.id, 'slackWebhookUrl')
-  const { mutate: saveSlackNotif } = useUpdateEventField(event.id, 'slackNotifSubmitted')
+  const { mutate: saveSlackNotif } = useUpdateEventField(event.id, 'slackNotifications')
+
+  const onSaveSlackNotif = (e) => saveSlackNotif({ submitted: e.target.checked })
 
   return (
     <div className={cn(styles.form, 'card')}>
@@ -57,8 +59,8 @@ const Slack = ({ event }) => {
             name="submitted"
             label="Submitted proposals"
             info="Receive a message in the channel when a speaker submit a talk."
-            onChange={(e) => saveSlackNotif(e.target.checked)}
-            defaultChecked={event.slackNotifSubmitted}
+            onChange={onSaveSlackNotif}
+            defaultChecked={event?.slackNotifications?.submitted}
             disabled={!url}
           />
         </div>

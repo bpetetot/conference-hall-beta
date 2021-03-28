@@ -9,10 +9,6 @@ jest.mock('../config', () => ({
 }))
 
 describe('mailgun', () => {
-  beforeEach(() => {
-    fetchMock.mockReset()
-  })
-
   it('should send an email with all parameters', async () => {
     // when
     await sendEmail({

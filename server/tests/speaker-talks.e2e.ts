@@ -13,6 +13,10 @@ import {
   sendDeclineTalkEmailToOrganizers,
 } from '../src/emails/email.services'
 
+import { sendSubmittedTalkSlackMessage } from '../src/slack/slack.services'
+jest.mock('../src/slack/slack.services', () => ({ sendSubmittedTalkSlackMessage: jest.fn() }))
+const sendSubmittedTalkSlackMessageMock = <jest.Mock>sendSubmittedTalkSlackMessage
+
 jest.mock('../src/emails/email.services', () => ({
   sendSubmitTalkEmailToSpeakers: jest.fn(),
   sendSubmitTalkEmailToOrganizers: jest.fn(),
@@ -27,13 +31,6 @@ const sendDeclineTalkEmailToOrganizersMock = <jest.Mock>sendDeclineTalkEmailToOr
 
 describe('/api/speaker/talks', () => {
   const getAgent = setupServer()
-
-  beforeEach(() => {
-    sendSubmitTalkEmailToSpeakersMock.mockReset()
-    sendSubmitTalkEmailToOrganizersMock.mockReset()
-    sendConfirmTalkEmailToOrganizersMock.mockReset()
-    sendDeclineTalkEmailToOrganizersMock.mockReset()
-  })
 
   describe('GET /api/speaker/talks', () => {
     test('should return 401 if not authenticated', async () => {
@@ -713,6 +710,7 @@ describe('/api/speaker/talks', () => {
       expect(result?.categories[0].id).toEqual(category.id)
       expect(sendSubmitTalkEmailToSpeakersMock).toHaveBeenCalled()
       expect(sendSubmitTalkEmailToOrganizersMock).toHaveBeenCalled()
+      expect(sendSubmittedTalkSlackMessageMock).toHaveBeenCalled()
     })
 
     test('should update the proposal if exists', async () => {
@@ -750,8 +748,9 @@ describe('/api/speaker/talks', () => {
       expect(result?.comments).toEqual('hello')
       expect(result?.formats[0].id).toEqual(format.id)
       expect(result?.categories[0].id).toEqual(category.id)
-      expect(sendSubmitTalkEmailToSpeakersMock).toHaveBeenCalledTimes(0)
-      expect(sendSubmitTalkEmailToOrganizersMock).toHaveBeenCalledTimes(0)
+      expect(sendSubmitTalkEmailToSpeakersMock).not.toHaveBeenCalled()
+      expect(sendSubmitTalkEmailToOrganizersMock).not.toHaveBeenCalled()
+      expect(sendSubmittedTalkSlackMessageMock).not.toHaveBeenCalled()
     })
   })
 

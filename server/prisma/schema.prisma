@@ -103,7 +103,7 @@ model Event {
   emailOrganizer           String?
   emailNotifications       Json?
   slackWebhookUrl          String?
-  slackNotifSubmitted      Boolean         @default(false)
+  slackNotifications       Json?
   apiKey                   String?
   createdAt                DateTime        @default(now())
   updatedAt                DateTime        @updatedAt

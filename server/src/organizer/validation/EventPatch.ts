@@ -31,7 +31,7 @@ export const EventPatch = [
   body('emailOrganizer').trim().optional(falsy).isEmail(),
   body('emailNotifications').optional(falsy),
   body('slackWebhookUrl').trim().optional(falsy).isURL(),
-  body('slackNotifSubmitted').trim().optional(falsy).isBoolean().toBoolean(),
+  body('slackNotifications').optional(falsy),
   body('apiKey').trim().optional(falsy).isString(),
   body('archived').trim().optional(falsy).isBoolean().toBoolean(),
 ]
