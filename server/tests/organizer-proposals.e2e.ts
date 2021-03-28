@@ -134,6 +134,53 @@ describe('/api/organizer/events/:id/proposals', () => {
         },
       ])
     })
+
+    test('should return partial proposals following the event settings', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const event = await buildEvent(user, {
+        displayOrganizersRatings: false,
+        displayProposalsSpeakers: false,
+        displayProposalsRatings: false,
+      })
+      const talk = await buildTalk(user)
+      const proposal = await buildProposal(event.id, talk)
+      await buildRating(user.id, proposal.id, 1, RatingFeeling.NEUTRAL)
+
+      // when
+      const res = await agent.get(`/api/organizer/events/${event.id}/proposals`)
+
+      // then
+      expect(res.status).toEqual(200)
+      expect(res.body.total).toEqual(1)
+      expect(res.body.totalRated).toEqual(1)
+      expect(res.body.proposals).toEqual([
+        {
+          id: proposal.id,
+          title: proposal.title,
+          abstract: proposal.abstract,
+          language: proposal.language,
+          level: proposal.level,
+          references: proposal.references,
+          comments: proposal.comments,
+          status: 'SUBMITTED',
+          emailStatus: null,
+          speakerNotified: false,
+          formats: [],
+          categories: [],
+          userRating: {
+            feeling: 'NEUTRAL',
+            rating: 1,
+            userId: user.id,
+            userName: user.name,
+            userPhotoURL: user.photoURL,
+          },
+          createdAt: proposal.createdAt.toISOString(),
+        },
+      ])
+    })
   })
 
   describe('PUT /api/organizer/events/:id/proposals/export', () => {

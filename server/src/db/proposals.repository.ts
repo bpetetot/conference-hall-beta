@@ -67,6 +67,7 @@ export type ProposalSort = 'newest' | 'oldest' | 'highestRating' | 'lowestRating
 
 export type ProposalsFilters = {
   search?: string
+  isSpeakerSearchDisabled?: boolean
   ratings?: 'rated' | 'not-rated'
   status?: ProposalStatus
   format?: number
@@ -103,7 +104,9 @@ function buildSearchWhereClause(userId: number, eventId: number, filters: Propos
   if (!isEmpty(filters.exceptItems)) {
     where.id = { notIn: filters.exceptItems }
   }
-  if (filters.search) {
+  if (filters.search && filters.isSpeakerSearchDisabled) {
+    where.title = { contains: filters.search, mode: 'insensitive' }
+  } else if (filters.search) {
     where.OR = [
       { title: { contains: filters.search, mode: 'insensitive' } },
       { speakers: { some: { name: { contains: filters.search, mode: 'insensitive' } } } },

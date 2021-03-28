@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { Event, User } from '@prisma/client'
 import { ProposalsResults } from '../db/proposals.repository'
 import { OrganizerProposalDto } from './OrganizerProposal.dto'
 
@@ -12,8 +12,10 @@ export class OrganizerProposalsResult {
   previousPage: number | null
   totalRated: number
 
-  constructor(user: User, result: ProposalsResults, totalRated: number) {
-    this.proposals = result.proposals.map((proposal) => new OrganizerProposalDto(user, proposal))
+  constructor(user: User, event: Event, result: ProposalsResults, totalRated: number) {
+    this.proposals = result.proposals.map(
+      (proposal) => new OrganizerProposalDto(user, proposal, event),
+    )
     this.total = result.total
     this.page = result.page
     this.pageSize = result.pageSize

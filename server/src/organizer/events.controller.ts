@@ -130,6 +130,7 @@ export async function searchProposals(req: Request) {
 
   const filters: proposalsRepository.ProposalsFilters = {
     search: req.query.search as string,
+    isSpeakerSearchDisabled: !event.displayProposalsSpeakers,
     ratings: req.query.ratings as 'rated' | 'not-rated',
     status: req.query.status as ProposalStatus,
     format: (req.query.format as unknown) as number,
@@ -153,7 +154,7 @@ export async function searchProposals(req: Request) {
 
   const totalRated = await proposalsRepository.countReviewedProposals(user.id, event.id, filters)
 
-  return new OrganizerProposalsResult(user, result, totalRated)
+  return new OrganizerProposalsResult(user, event, result, totalRated)
 }
 
 export async function batchUpdateProposals(req: Request) {

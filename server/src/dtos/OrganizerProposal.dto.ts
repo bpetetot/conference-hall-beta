@@ -1,4 +1,4 @@
-import { EventCategory, EventFormat, Proposal, Rating, User } from '@prisma/client'
+import { Event, EventCategory, EventFormat, Proposal, Rating, User } from '@prisma/client'
 import { CategoryDto } from './Category.dto'
 import { FormatDto } from './Format.dto'
 import { OrganizerSpeakerDto } from './OrganizerSpeaker.dto'
@@ -20,8 +20,8 @@ export class OrganizerProposalDto {
   categories?: CategoryDto[]
   ratings?: RatingDto[]
   userRating?: RatingDto
-  ratingStats: RatingStatsDto
-  speakers: OrganizerSpeakerDto[]
+  ratingStats?: RatingStatsDto
+  speakers?: OrganizerSpeakerDto[]
   createdAt: Date
 
   constructor(
@@ -32,23 +32,34 @@ export class OrganizerProposalDto {
       categories: EventCategory[]
       ratings: (Rating & { user: User })[]
     },
+    event: Event,
   ) {
     this.id = proposal.id
-    this.status = proposal.status
     this.title = proposal.title
     this.abstract = proposal.abstract
     this.level = proposal.level
     this.language = proposal.language
     this.references = proposal.references
     this.comments = proposal.comments
-    this.emailStatus = proposal.emailStatus
-    this.speakerNotified = proposal.speakerNotified
     this.formats = proposal.formats?.map((f) => new FormatDto(f))
     this.categories = proposal.categories?.map((c) => new CategoryDto(c))
-    this.ratings = proposal.ratings?.map((r) => new RatingDto(r))
-    this.userRating = new RatingDto(proposal.ratings.find((r) => r.userId === user.id))
-    this.ratingStats = new RatingStatsDto(proposal.ratings)
-    this.speakers = proposal.speakers.map((s) => new OrganizerSpeakerDto(s))
     this.createdAt = proposal.createdAt
+    this.userRating = new RatingDto(proposal.ratings.find((r) => r.userId === user.id))
+
+    this.status = proposal.status
+    this.emailStatus = proposal.emailStatus
+    this.speakerNotified = proposal.speakerNotified
+
+    if (event.displayOrganizersRatings) {
+      this.ratings = proposal.ratings?.map((r) => new RatingDto(r))
+    }
+
+    if (event.displayProposalsRatings) {
+      this.ratingStats = new RatingStatsDto(proposal.ratings)
+    }
+
+    if (event.displayProposalsSpeakers) {
+      this.speakers = proposal.speakers.map((s) => new OrganizerSpeakerDto(s))
+    }
   }
 }

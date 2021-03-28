@@ -190,6 +190,62 @@ describe('Proposals repository', () => {
       expect(results.proposals[0].id).toEqual(proposal.id)
     })
 
+    test('filter results by talk title', async () => {
+      // given
+      const user = await buildUser({ uid: 'user1', name: 'Bob' })
+      const talk1 = await buildTalk(user, { title: 'foo' })
+      const talk2 = await buildTalk(user, { title: 'bar' })
+      const event = await buildEvent(user)
+      const proposal = await buildProposal(event.id, talk1)
+      await buildProposal(event.id, talk2)
+
+      // when
+      const results = await searchEventProposals(user.id, event.id, { search: 'FO' })
+
+      // then
+      expect(results.total).toBe(1)
+      expect(results.proposals[0].id).toBe(proposal.id)
+    })
+
+    test('filter results by speaker name', async () => {
+      // given
+      const user1 = await buildUser({ uid: 'user1', name: 'Bob' })
+      const user2 = await buildUser({ uid: 'user2', name: 'Jack' })
+      const talk1 = await buildTalk(user1, { title: 'foo' })
+      const talk2 = await buildTalk(user2, { title: 'bar' })
+      const event = await buildEvent(user1)
+      await buildProposal(event.id, talk1)
+      const proposal = await buildProposal(event.id, talk2)
+
+      // when
+      const results = await searchEventProposals(user1.id, event.id, { search: 'Jac' })
+
+      // then
+      expect(results.total).toBe(1)
+      expect(results.proposals[0].id).toBe(proposal.id)
+    })
+
+    test('filter results only by title when speaker name disabled', async () => {
+      // given
+      const user1 = await buildUser({ uid: 'user1', name: 'Bob' })
+      const user2 = await buildUser({ uid: 'user2', name: 'Jack' })
+      const talk1 = await buildTalk(user1, { title: 'Jack title' })
+      const talk2 = await buildTalk(user2, { title: 'bar' })
+      const event = await buildEvent(user1)
+      const proposal = await buildProposal(event.id, talk1)
+      await buildProposal(event.id, talk2)
+
+      // when
+      const results = await searchEventProposals(user1.id, event.id, {
+        search: 'Jac',
+        isSpeakerSearchDisabled: true,
+      })
+
+      // then
+      expect(results.total).toBe(1)
+      expect(results.proposals[0].id).toBe(proposal.id)
+    })
+
     test('filter results by status', async () => {
       // given
       const user = await buildUser({ uid: 'user1' })
