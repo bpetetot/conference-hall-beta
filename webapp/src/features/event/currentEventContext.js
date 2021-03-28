@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useLocation, useMatch } from 'react-router-dom'
-import { getTopRoute, isOrganizerApp } from 'features/router/utils'
+import { useMatch } from 'react-router-dom'
 
 const CurrentEventContext = React.createContext()
 
@@ -14,40 +13,28 @@ function getEventIdFromLocalStorage() {
   return value
 }
 
-const CurrentEventContextProvider = ({ children, loadEvent }) => {
+const CurrentEventProvider = ({ children }) => {
   const [currentEventId, setCurrentEventId] = useState()
 
-  const { pathname } = useLocation()
-  const route = getTopRoute(pathname)
-  const match = useMatch(`${route}/event/:eventId/*`)
+  const match = useMatch('/speaker/event/:eventId/*')
+  const routeEventId = match?.params?.eventId
+  const localEventId = getEventIdFromLocalStorage()
 
   useEffect(() => {
-    const routeEventId = match?.params?.eventId
-    const localEventId = getEventIdFromLocalStorage()
-
-    if (isOrganizerApp(pathname)) {
-      if (currentEventId !== routeEventId) {
-        setCurrentEventId(routeEventId)
-      }
-      return
-    }
-
     const eventId = routeEventId || localEventId
     if (currentEventId !== eventId) {
       localStorage.setItem('currentEventId', eventId)
       setCurrentEventId(eventId)
-      loadEvent(eventId)
     }
-  }, [currentEventId, pathname, match, loadEvent])
+  }, [currentEventId, routeEventId, localEventId])
 
   return (
     <CurrentEventContext.Provider value={currentEventId}>{children}</CurrentEventContext.Provider>
   )
 }
 
-CurrentEventContextProvider.propTypes = {
+CurrentEventProvider.propTypes = {
   children: PropTypes.any.isRequired,
-  loadEvent: PropTypes.func.isRequired,
 }
 
-export default CurrentEventContextProvider
+export default CurrentEventProvider
