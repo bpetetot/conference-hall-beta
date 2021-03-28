@@ -61,4 +61,25 @@ router.delete(
   handler(organizationsController.deleteMember),
 )
 
+router.get(
+  '/:id/invite',
+  checkIfAuthenticated,
+  validate([param('id').notEmpty().isNumeric()]),
+  handler(organizationsController.getTalkInvitation),
+)
+
+router.post(
+  '/:id/invite',
+  checkIfAuthenticated,
+  validate([param('id').notEmpty().isNumeric()]),
+  handler(organizationsController.createInvitationLink),
+)
+
+router.delete(
+  '/:id/invite',
+  checkIfAuthenticated,
+  validate([param('id').notEmpty().isNumeric()]),
+  handler(organizationsController.revokeInvitationLink),
+)
+
 export default router

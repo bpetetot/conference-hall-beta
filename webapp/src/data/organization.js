@@ -41,7 +41,9 @@ async function createOrganization(data) {
 export function useCreateOrganization() {
   const queryClient = useQueryClient()
   return useMutation(createOrganization, {
-    onSuccess: () => queryClient.invalidateQueries('users/me'),
+    onSuccess: () => {
+      queryClient.invalidateQueries('users/me')
+    },
   })
 }
 
@@ -57,7 +59,9 @@ async function updateOrganization(organizationId, data) {
 export function useUpdateOrganization(organizationId) {
   const queryClient = useQueryClient()
   return useMutation((data) => updateOrganization(organizationId, data), {
-    onSuccess: () => queryClient.invalidateQueries(['organization', organizationId]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['organization', organizationId])
+    },
   })
 }
 
@@ -103,7 +107,9 @@ async function addMember(organizationId, memberId) {
 export function useAddMember(organizationId) {
   const queryClient = useQueryClient()
   return useMutation((memberId) => addMember(organizationId, memberId), {
-    onSuccess: () => queryClient.invalidateQueries('organization/members'),
+    onSuccess: () => {
+      queryClient.invalidateQueries('organization/members')
+    },
   })
 }
 
@@ -137,6 +143,8 @@ async function updateMemberRole(organizationId, memberId, role) {
 export function useUpdateMemberRole(organizationId, memberId) {
   const queryClient = useQueryClient()
   return useMutation((role) => updateMemberRole(organizationId, memberId, role), {
-    onSuccess: () => queryClient.invalidateQueries('organization/members'),
+    onSuccess: () => {
+      queryClient.invalidateQueries('organization/members')
+    },
   })
 }

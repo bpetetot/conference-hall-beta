@@ -43,7 +43,7 @@ describe('Organizations repository', () => {
       // when
       const result = await findOrganizationsByUser(user1.id)
       //then
-      expect(result).toEqual([organization1, organization2])
+      expect(result.map((o) => o.id)).toEqual([organization1.id, organization2.id])
     })
   })
 
@@ -132,7 +132,7 @@ describe('Organizations repository', () => {
         OrganizationRole.MEMBER,
       ])
       //then
-      expect(result).toEqual(organization)
+      expect(result?.id).toEqual(organization.id)
     })
   })
 
@@ -165,7 +165,7 @@ describe('Organizations repository', () => {
       const result = await prisma.organizationMember.findFirst({
         where: { memberId: user.id, organizationId: organization.id },
       })
-      expect(result?.role).toEqual(OrganizationRole.MEMBER)
+      expect(result?.role).toEqual(OrganizationRole.REVIEWER)
     })
   })
 

@@ -14,10 +14,16 @@ CREATE TYPE "OrganizationRole" AS ENUM ('OWNER', 'MEMBER', 'REVIEWER');
 CREATE TYPE "ProposalStatus" AS ENUM ('SUBMITTED', 'ACCEPTED', 'REJECTED', 'CONFIRMED', 'DECLINED');
 
 -- CreateEnum
+CREATE TYPE "EmailStatus" AS ENUM ('SENT', 'DELIVERED');
+
+-- CreateEnum
 CREATE TYPE "RatingFeeling" AS ENUM ('LOVE', 'HATE', 'NEUTRAL', 'NO_OPINION');
 
 -- CreateEnum
 CREATE TYPE "MessageChannel" AS ENUM ('ORGANIZER', 'SPEAKER');
+
+-- CreateEnum
+CREATE TYPE "InviteType" AS ENUM ('ORGANIZATION', 'SPEAKER');
 
 -- CreateTable
 CREATE TABLE "users" (
@@ -55,6 +61,7 @@ CREATE TABLE "talks" (
     "archived" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "invitationUuid" TEXT,
 
     PRIMARY KEY ("id")
 );
@@ -98,8 +105,10 @@ CREATE TABLE "events" (
     "displayProposalsSpeakers" BOOLEAN NOT NULL DEFAULT true,
     "surveyEnabled" BOOLEAN NOT NULL DEFAULT false,
     "surveyQuestions" JSONB,
+    "emailOrganizer" TEXT,
+    "emailNotifications" JSONB,
     "slackWebhookUrl" TEXT,
-    "slackNotifSubmitted" BOOLEAN NOT NULL DEFAULT false,
+    "slackNotifications" JSONB,
     "apiKey" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -131,6 +140,7 @@ CREATE TABLE "event_categories" (
 CREATE TABLE "organizations" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
+    "invitationUuid" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -141,7 +151,7 @@ CREATE TABLE "organizations" (
 CREATE TABLE "organizations_members" (
     "memberId" INTEGER NOT NULL,
     "organizationId" INTEGER NOT NULL,
-    "role" "OrganizationRole" NOT NULL DEFAULT E'MEMBER',
+    "role" "OrganizationRole" NOT NULL DEFAULT E'REVIEWER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY ("memberId","organizationId")
@@ -159,6 +169,8 @@ CREATE TABLE "proposals" (
     "references" TEXT,
     "comments" TEXT,
     "status" "ProposalStatus" NOT NULL DEFAULT E'SUBMITTED',
+    "emailStatus" "EmailStatus",
+    "speakerNotified" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -204,6 +216,18 @@ CREATE TABLE "messages" (
 );
 
 -- CreateTable
+CREATE TABLE "invites" (
+    "uuid" TEXT NOT NULL,
+    "type" "InviteType" NOT NULL,
+    "entityId" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    PRIMARY KEY ("uuid")
+);
+
+-- CreateTable
 CREATE TABLE "_speakers_talks" (
     "A" INTEGER NOT NULL,
     "B" INTEGER NOT NULL
@@ -240,6 +264,9 @@ CREATE UNIQUE INDEX "surveys.userId_eventId_unique" ON "surveys"("userId", "even
 CREATE UNIQUE INDEX "ratings.userId_proposalId_unique" ON "ratings"("userId", "proposalId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "invites.type_entityId_unique" ON "invites"("type", "entityId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "_speakers_talks_AB_unique" ON "_speakers_talks"("A", "B");
 
 -- CreateIndex
@@ -264,6 +291,9 @@ CREATE UNIQUE INDEX "_proposals_categories_AB_unique" ON "_proposals_categories"
 CREATE INDEX "_proposals_categories_B_index" ON "_proposals_categories"("B");
 
 -- AddForeignKey
+ALTER TABLE "talks" ADD FOREIGN KEY ("invitationUuid") REFERENCES "invites"("uuid") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "events" ADD FOREIGN KEY ("organizationId") REFERENCES "organizations"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -271,6 +301,9 @@ ALTER TABLE "event_formats" ADD FOREIGN KEY ("eventId") REFERENCES "events"("id"
 
 -- AddForeignKey
 ALTER TABLE "event_categories" ADD FOREIGN KEY ("eventId") REFERENCES "events"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "organizations" ADD FOREIGN KEY ("invitationUuid") REFERENCES "invites"("uuid") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "organizations_members" ADD FOREIGN KEY ("memberId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -301,6 +334,9 @@ ALTER TABLE "messages" ADD FOREIGN KEY ("userId") REFERENCES "users"("id") ON DE
 
 -- AddForeignKey
 ALTER TABLE "messages" ADD FOREIGN KEY ("proposalId") REFERENCES "proposals"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "invites" ADD FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_speakers_talks" ADD FOREIGN KEY ("A") REFERENCES "talks"("id") ON DELETE CASCADE ON UPDATE CASCADE;

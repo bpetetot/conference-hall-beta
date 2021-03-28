@@ -109,7 +109,9 @@ async function updateProposal(eventId, proposalId, data) {
 export function useUpdateProposal(eventId, proposalId) {
   const queryClient = useQueryClient()
   return useMutation((data) => updateProposal(eventId, proposalId, data), {
-    onSuccess: () => queryClient.invalidateQueries('proposal'),
+    onSuccess: () => {
+      queryClient.invalidateQueries('proposal')
+    },
   })
 }
 
@@ -128,7 +130,9 @@ async function rateProposal(eventId, proposalId, data) {
 export function useRateProposal(eventId, proposalId) {
   const queryClient = useQueryClient()
   return useMutation((data) => rateProposal(eventId, proposalId, data), {
-    onSuccess: () => queryClient.invalidateQueries('proposal'),
+    onSuccess: () => {
+      queryClient.invalidateQueries('proposal')
+    },
   })
 }
 
@@ -207,6 +211,8 @@ export function useBulkProposalsStatus(eventId) {
     selectedItems,
   })
   return useMutation((status) => bulkProposalsStatus(eventId, filters, status), {
-    onSuccess: () => queryClient.invalidateQueries('proposals/search'),
+    onSuccess: () => {
+      queryClient.invalidateQueries('proposals/search')
+    },
   })
 }

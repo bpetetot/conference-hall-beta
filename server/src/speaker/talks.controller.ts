@@ -4,13 +4,15 @@ import * as talksRepository from '../db/talks.repository'
 import * as usersRepository from '../db/users.repository'
 import * as eventRepository from '../db/events.repository'
 import * as proposalRepository from '../db/proposals.repository'
+import * as inviteRepository from '../db/invites.repository'
 import * as emailServices from '../emails/email.services'
 import * as slackServices from '../slack/slack.services'
 import { HttpException } from '../middleware/error'
 import { checkUser } from '../users/users.controller'
 import { isCfpOpened } from '../common/cfp-dates'
 import { isEmpty } from 'lodash'
-import { ProposalStatus } from '.prisma/client'
+import { InviteType, ProposalStatus } from '.prisma/client'
+import { InviteDto } from '../dtos/Invite.dto'
 
 export async function findUserTalks(req: Request) {
   const { uid } = req.user
@@ -286,4 +288,64 @@ export async function confirmTalk(req: Request) {
     await proposalRepository.updateProposal(proposal.id, { status: ProposalStatus.DECLINED })
     await emailServices.sendDeclineTalkEmailToOrganizers(event, proposal)
   }
+}
+
+export async function getTalkInvitation(req: Request) {
+  const { uid } = req.user
+  const talkId = parseInt(req.params.talkId)
+
+  const user = await usersRepository.getUserByUid(uid)
+  if (!user) {
+    throw new HttpException(404, 'User not found')
+  }
+  const talk = await talksRepository.getTalk(talkId, { withSpeakers: true })
+  if (!talk) {
+    throw new HttpException(404, 'Talk not found')
+  }
+  const isUserSpeaker = talk.speakers.some((speaker) => speaker.uid === uid)
+  if (!isUserSpeaker) {
+    throw new HttpException(403, 'Forbidden')
+  }
+  const invite = await inviteRepository.getInviteForEntity(InviteType.SPEAKER, talkId)
+  if (!invite) return
+  return new InviteDto(invite)
+}
+
+export async function createInvitationLink(req: Request) {
+  const { uid } = req.user
+  const talkId = parseInt(req.params.talkId)
+
+  const user = await usersRepository.getUserByUid(uid)
+  if (!user) {
+    throw new HttpException(404, 'User not found')
+  }
+  const talk = await talksRepository.getTalk(talkId, { withSpeakers: true })
+  if (!talk) {
+    throw new HttpException(404, 'Talk not found')
+  }
+  const isUserSpeaker = talk.speakers.some((speaker) => speaker.uid === uid)
+  if (!isUserSpeaker) {
+    throw new HttpException(403, 'Forbidden')
+  }
+  const invite = await inviteRepository.createInvite(InviteType.SPEAKER, talkId, user.id)
+  return new InviteDto(invite)
+}
+
+export async function revokeInvitationLink(req: Request) {
+  const { uid } = req.user
+  const talkId = parseInt(req.params.talkId)
+
+  const user = await usersRepository.getUserByUid(uid)
+  if (!user) {
+    throw new HttpException(404, 'User not found')
+  }
+  const talk = await talksRepository.getTalk(talkId, { withSpeakers: true })
+  if (!talk) {
+    throw new HttpException(404, 'Talk not found')
+  }
+  const isUserSpeaker = talk.speakers.some((speaker) => speaker.uid === uid)
+  if (!isUserSpeaker) {
+    throw new HttpException(403, 'Forbidden')
+  }
+  await inviteRepository.deleteInvite(InviteType.SPEAKER, talkId)
 }

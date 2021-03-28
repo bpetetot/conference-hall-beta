@@ -1,10 +1,12 @@
 import { Request } from 'express'
-import { OrganizationRole, User } from '@prisma/client'
+import { InviteType, OrganizationRole, User } from '@prisma/client'
 import { HttpException } from '../middleware/error'
 import * as organizationsRepository from '../db/organizations.repository'
+import * as inviteRepository from '../db/invites.repository'
 import { checkUser } from '../users/users.controller'
 import { OrganizationDto } from '../dtos/Organization.dto'
 import { OrganizationMemberDto } from '../dtos/OrganizationMember.dto'
+import { InviteDto } from '../dtos/Invite.dto'
 
 export async function checkUserRole(
   user: User,
@@ -87,4 +89,32 @@ export async function deleteMember(req: Request) {
     await checkUserRole(user, organizationId, [OrganizationRole.OWNER])
   }
   await organizationsRepository.deleteMember(organizationId, memberId)
+}
+
+export async function getTalkInvitation(req: Request) {
+  const user = await checkUser(req.user.uid)
+  const organizationId = parseInt(req.params.id)
+  await checkUserRole(user, organizationId, [OrganizationRole.OWNER])
+  const invite = await inviteRepository.getInviteForEntity(InviteType.ORGANIZATION, organizationId)
+  if (!invite) return
+  return new InviteDto(invite)
+}
+
+export async function createInvitationLink(req: Request) {
+  const user = await checkUser(req.user.uid)
+  const organizationId = parseInt(req.params.id)
+  await checkUserRole(user, organizationId, [OrganizationRole.OWNER])
+  const invite = await inviteRepository.createInvite(
+    InviteType.ORGANIZATION,
+    organizationId,
+    user.id,
+  )
+  return new InviteDto(invite)
+}
+
+export async function revokeInvitationLink(req: Request) {
+  const user = await checkUser(req.user.uid)
+  const organizationId = parseInt(req.params.id)
+  await checkUserRole(user, organizationId, [OrganizationRole.OWNER])
+  await inviteRepository.deleteInvite(InviteType.ORGANIZATION, organizationId)
 }

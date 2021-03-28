@@ -1,8 +1,17 @@
 import { OrganizationRole, Prisma } from '@prisma/client'
 import { prisma } from './db'
 
-export function getOrganizationById(organizationId: number) {
-  return prisma.organization.findUnique({ where: { id: organizationId } })
+type GetOrganizationOptions = {
+  withMembers?: boolean
+}
+
+export function getOrganizationById(organizationId: number, options?: GetOrganizationOptions) {
+  return prisma.organization.findUnique({
+    where: { id: organizationId },
+    include: {
+      members: options?.withMembers || false,
+    },
+  })
 }
 
 export async function getOrganizationForUserRole(
@@ -82,7 +91,7 @@ export function addMember(organizationId: number, memberId: number) {
     data: {
       organizationId,
       memberId,
-      role: OrganizationRole.MEMBER,
+      role: OrganizationRole.REVIEWER,
     },
     include: { member: true },
   })

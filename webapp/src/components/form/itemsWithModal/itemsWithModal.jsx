@@ -25,7 +25,11 @@ const ItemsWithModal = ({ name, onAddItem, onRemoveItem, onSaveItem, form: Form 
             {({ hide }) => (
               <Form
                 onSubmit={(data) => {
-                  onAddItem(data, { onSuccess: (created) => fields.push(created) })
+                  onAddItem(data, {
+                    onSuccess: (created) => {
+                      fields.push(created)
+                    },
+                  })
                   hide()
                 }}
               />

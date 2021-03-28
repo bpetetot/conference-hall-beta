@@ -1,1 +1,1 @@
-export { default } from './addMember'
+export { default } from './AddMemberModal'

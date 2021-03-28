@@ -33,23 +33,26 @@ model User {
   surveys       Survey[]
   ratings       Rating[]
   messages      Message[]
+  invites       Invite[]
 
   @@map("users")
 }
 
 model Talk {
-  id         Int        @id @default(autoincrement())
-  title      String
-  abstract   String
-  level      TalkLevel?
-  language   String?
-  references String?
-  ownerId    Int
-  archived   Boolean    @default(false)
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  speakers   User[]     @relation("speakers_talks")
-  proposals  Proposal[]
+  id             Int        @id @default(autoincrement())
+  title          String
+  abstract       String
+  level          TalkLevel?
+  language       String?
+  references     String?
+  ownerId        Int
+  archived       Boolean    @default(false)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  speakers       User[]     @relation("speakers_talks")
+  proposals      Proposal[]
+  invitationUuid String?
+  invitation     Invite?    @relation(fields: [invitationUuid], references: [uuid])
 
   @@map("talks")
 }
@@ -146,12 +149,14 @@ enum EventVisibility {
 }
 
 model Organization {
-  id        Int                  @id @default(autoincrement())
-  name      String
-  createdAt DateTime             @default(now())
-  updatedAt DateTime             @updatedAt
-  members   OrganizationMember[]
-  events    Event[]
+  id             Int                  @id @default(autoincrement())
+  name           String
+  invitationUuid String?
+  invitation     Invite?              @relation(fields: [invitationUuid], references: [uuid])
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  members        OrganizationMember[]
+  events         Event[]
 
   @@map("organizations")
 }
@@ -161,7 +166,7 @@ model OrganizationMember {
   memberId       Int
   organization   Organization     @relation(fields: [organizationId], references: [id])
   organizationId Int
-  role           OrganizationRole @default(MEMBER)
+  role           OrganizationRole @default(REVIEWER)
   createdAt      DateTime         @default(now())
 
   @@id([memberId, organizationId])
@@ -266,5 +271,25 @@ model Message {
 
 enum MessageChannel {
   ORGANIZER
+  SPEAKER
+}
+
+model Invite {
+  uuid         String         @id @default(uuid())
+  type         InviteType
+  entityId     Int
+  userId       Int
+  invitedBy    User           @relation(fields: [userId], references: [id])
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  organization Organization[]
+  talks        Talk[]
+
+  @@unique([type, entityId])
+  @@map("invites")
+}
+
+enum InviteType {
+  ORGANIZATION
   SPEAKER
 }

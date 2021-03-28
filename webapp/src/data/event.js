@@ -92,7 +92,9 @@ async function createEvent(data) {
 export function useCreateEvent() {
   const queryClient = useQueryClient()
   return useMutation((data) => createEvent(data), {
-    onSuccess: () => queryClient.invalidateQueries('organizer/events'),
+    onSuccess: () => {
+      queryClient.invalidateQueries('organizer/events')
+    },
   })
 }
 
@@ -108,7 +110,9 @@ async function updateEvent(eventId, data) {
 function useUpdateEvent(eventId, onUpdate, onError) {
   const queryClient = useQueryClient()
   return useMutation((data) => updateEvent(eventId, onUpdate(data)), {
-    onSuccess: () => queryClient.invalidateQueries('organizer/events'),
+    onSuccess: () => {
+      queryClient.invalidateQueries('organizer/events')
+    },
     onError,
   })
 }
@@ -173,8 +177,12 @@ export function useAddFormat(eventId) {
   const { sendError } = useNotification()
   const queryClient = useQueryClient()
   return useMutation((data) => addFormat(eventId, data), {
-    onSuccess: () => queryClient.invalidateQueries(['organizer/events', eventId]),
-    onError: (e) => sendError(`An unexpected error has occurred: ${e.message}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['organizer/events', eventId])
+    },
+    onError: (e) => {
+      sendError(`An unexpected error has occurred: ${e.message}`)
+    },
   })
 }
 
@@ -194,8 +202,12 @@ export function useUpdateFormat(eventId) {
   const { sendError } = useNotification()
   const queryClient = useQueryClient()
   return useMutation((data) => updateFormat(eventId, data.id, data), {
-    onSuccess: () => queryClient.invalidateQueries(['organizer/events', eventId]),
-    onError: (e) => sendError(`An unexpected error has occurred: ${e.message}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['organizer/events', eventId])
+    },
+    onError: (e) => {
+      sendError(`An unexpected error has occurred: ${e.message}`)
+    },
   })
 }
 
@@ -211,8 +223,12 @@ export function useDeleteFormat(eventId) {
   const { sendError } = useNotification()
   const queryClient = useQueryClient()
   return useMutation((data) => deleteFormat(eventId, data.id), {
-    onSuccess: () => queryClient.invalidateQueries(['organizer/events', eventId]),
-    onError: (e) => sendError(`An unexpected error has occurred: ${e.message}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['organizer/events', eventId])
+    },
+    onError: (e) => {
+      sendError(`An unexpected error has occurred: ${e.message}`)
+    },
   })
 }
 
@@ -229,8 +245,12 @@ export function useAddCategory(eventId) {
   const { sendError } = useNotification()
   const queryClient = useQueryClient()
   return useMutation((data) => addCategory(eventId, data), {
-    onSuccess: () => queryClient.invalidateQueries(['organizer/events', eventId]),
-    onError: (e) => sendError(`An unexpected error has occurred: ${e.message}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['organizer/events', eventId])
+    },
+    onError: (e) => {
+      sendError(`An unexpected error has occurred: ${e.message}`)
+    },
   })
 }
 
@@ -250,8 +270,12 @@ export function useUpdateCategory(eventId) {
   const { sendError } = useNotification()
   const queryClient = useQueryClient()
   return useMutation((data) => updateCategory(eventId, data.id, data), {
-    onSuccess: () => queryClient.invalidateQueries(['organizer/events', eventId]),
-    onError: (e) => sendError(`An unexpected error has occurred: ${e.message}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['organizer/events', eventId])
+    },
+    onError: (e) => {
+      sendError(`An unexpected error has occurred: ${e.message}`)
+    },
   })
 }
 
@@ -267,8 +291,12 @@ export function useDeleteCategory(eventId) {
   const { sendError } = useNotification()
   const queryClient = useQueryClient()
   return useMutation((data) => deleteCategory(eventId, data.id), {
-    onSuccess: () => queryClient.invalidateQueries(['organizer/events', eventId]),
-    onError: (e) => sendError(`An unexpected error has occurred: ${e.message}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['organizer/events', eventId])
+    },
+    onError: (e) => {
+      sendError(`An unexpected error has occurred: ${e.message}`)
+    },
   })
 }
 

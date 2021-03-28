@@ -56,7 +56,9 @@ async function updateTalk(talkId, data) {
 export function useUpdateTalk(talkId) {
   const queryClient = useQueryClient()
   return useMutation((data) => updateTalk(talkId, data), {
-    onSuccess: () => queryClient.invalidateQueries(['talk', talkId]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['talk', talkId])
+    },
   })
 }
 
@@ -71,7 +73,9 @@ async function deleteTalk(talkId) {
 export function useDeleteTalk() {
   const queryClient = useQueryClient()
   return useMutation(deleteTalk, {
-    onSuccess: () => queryClient.invalidateQueries('talks'),
+    onSuccess: () => {
+      queryClient.invalidateQueries('talks')
+    },
   })
 }
 
@@ -86,7 +90,9 @@ async function addSpeaker(talkId, speakerId) {
 export function useAddSpeaker(talkId) {
   const queryClient = useQueryClient()
   return useMutation((speakerId) => addSpeaker(talkId, speakerId), {
-    onSuccess: () => queryClient.invalidateQueries(['talk', talkId]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['talk', talkId])
+    },
   })
 }
 
@@ -101,7 +107,9 @@ async function removeSpeaker(talkId, speakerId) {
 export function useRemoveSpeaker(talkId, speakerId) {
   const queryClient = useQueryClient()
   return useMutation(() => removeSpeaker(talkId, speakerId), {
-    onSuccess: () => queryClient.invalidateQueries(['talk', talkId]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['talk', talkId])
+    },
   })
 }
 

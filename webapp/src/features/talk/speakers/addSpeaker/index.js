@@ -1,1 +1,1 @@
-export { default } from './addSpeaker'
+export { default } from './AddSpeakerModal'

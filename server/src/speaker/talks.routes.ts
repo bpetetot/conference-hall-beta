@@ -69,4 +69,25 @@ router.put(
   handler(talksController.confirmTalk),
 )
 
+router.get(
+  '/:talkId/invite',
+  checkIfAuthenticated,
+  validate([param('talkId').notEmpty().isNumeric()]),
+  handler(talksController.getTalkInvitation),
+)
+
+router.post(
+  '/:talkId/invite',
+  checkIfAuthenticated,
+  validate([param('talkId').notEmpty().isNumeric()]),
+  handler(talksController.createInvitationLink),
+)
+
+router.delete(
+  '/:talkId/invite',
+  checkIfAuthenticated,
+  validate([param('talkId').notEmpty().isNumeric()]),
+  handler(talksController.revokeInvitationLink),
+)
+
 export default router

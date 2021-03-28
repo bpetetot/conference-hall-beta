@@ -1,30 +1,40 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import AppLayout from 'app/layout'
 import Button from 'components/button'
 import Titlebar from 'components/titlebar'
-
-// import useValidationInvite from './useValidationInvite'
+import { useInvite, useValidateInvite } from 'data/invite'
+import { NotificationProvider, useNotification } from 'app/layout/notification/context'
 import styles from './invite.module.css'
 
 const InvitePage = () => {
-  // const navigate = useNavigate()
-  // const { inviteId } = useParams()
-  // const { invitation, loading, validate } = useValidationInvite(inviteId, navigate)
+  const navigate = useNavigate()
+  const { sendError } = useNotification()
+  const { inviteId } = useParams()
 
-  const invitation = null
-  const loading = false
-  const validate = () => {}
+  const { data: invitation } = useInvite(inviteId)
+  const { mutate: validateInvite, isLoading } = useValidateInvite(inviteId)
 
   if (!invitation) return null
 
-  const { entity } = invitation
+  const { type, label, entityId } = invitation
+
+  const onValidateInvite = () => {
+    validateInvite(undefined, {
+      onError: (err) => sendError(`An unexpected error has occurred: ${err.message}`),
+      onSuccess: () => {
+        if (type === 'SPEAKER') navigate(`/speaker/talk/${entityId}`)
+        if (type === 'ORGANIZATION') navigate(`/organizer/organization/${entityId}`)
+      },
+    })
+  }
+
   return (
     <AppLayout>
       <div className={styles.wrapper}>
         <div className="card">
-          {entity === 'talk' ? (
+          {type === 'SPEAKER' ? (
             <>
               <Titlebar icon="fa fa-microphone" title="Co-speaker invitation" />
               <p>You have been invited to be co-speaker to the talk</p>
@@ -36,7 +46,7 @@ const InvitePage = () => {
             </>
           )}
           <p>
-            <strong>{invitation.entityTitle}</strong>
+            <strong>{label}</strong>
           </p>
           <div className={styles.buttons}>
             <Button secondary>
@@ -46,8 +56,8 @@ const InvitePage = () => {
                 </Link>
               )}
             </Button>
-            <Button onClick={validate} disabled={loading} loading={loading}>
-              {entity === 'talk' ? 'Be co-speaker' : 'Join organization'}
+            <Button onClick={onValidateInvite} disabled={isLoading} loading={isLoading}>
+              {type === 'SPEAKER' ? 'Be co-speaker' : 'Join organization'}
             </Button>
           </div>
         </div>
@@ -56,4 +66,8 @@ const InvitePage = () => {
   )
 }
 
-export default InvitePage
+export default () => (
+  <NotificationProvider>
+    <InvitePage />
+  </NotificationProvider>
+)

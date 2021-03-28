@@ -2,8 +2,9 @@ import { setupServer } from './helpers/setup-services'
 import { getAuthUser } from './helpers/firebase-auth'
 import { buildUser } from './builder/user'
 import { buildOrganization, buildOrganizationMember } from './builder/organization'
-import { OrganizationRole } from '@prisma/client'
+import { InviteType, OrganizationRole } from '@prisma/client'
 import { prisma } from '../src/db/db'
+import { buildInvite } from './builder/invite'
 
 describe('/api/organizer/organizations', () => {
   const getAgent = setupServer()
@@ -402,7 +403,7 @@ describe('/api/organizer/organizations', () => {
       expect(res.status).toEqual(200)
       expect(member?.memberId).toEqual(user2.id)
       expect(member?.organizationId).toEqual(orga.id)
-      expect(member?.role).toEqual(OrganizationRole.MEMBER)
+      expect(member?.role).toEqual(OrganizationRole.REVIEWER)
     })
   })
 
@@ -575,6 +576,183 @@ describe('/api/organizer/organizations', () => {
       })
       expect(res.status).toEqual(204)
       expect(member).toBe(null)
+    })
+  })
+
+  describe('GET /api/organizer/organizations/:id/invite', () => {
+    test('should return 401 if not authenticated', async () => {
+      // given
+      const agent = await getAgent()
+
+      // when
+      const res = await agent.get('/api/organizer/organizations/1/invite')
+
+      // then
+      expect(res.status).toEqual(401)
+    })
+
+    test('should return 404 if user not found', async () => {
+      // given
+      const { token } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+
+      // when
+      const res = await agent.get('/api/organizer/organizations/1/invite')
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('User not found')
+    })
+
+    test('should return 403 if user is not owner of the organization', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user, orga, OrganizationRole.MEMBER)
+
+      // when
+      const res = await agent.get(`/api/organizer/organizations/${orga.id}/invite`)
+
+      // then
+      expect(res.status).toEqual(403)
+      expect(res.body.message).toEqual('No sufficient permissions')
+    })
+
+    test('should get current invitation', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid, name: 'user' })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user, orga, OrganizationRole.OWNER)
+      const invite = await buildInvite(InviteType.ORGANIZATION, orga.id, user.id)
+
+      // when
+      const res = await agent.get(`/api/organizer/organizations/${orga.id}/invite`)
+
+      // then
+      expect(res.status).toEqual(200)
+      expect(res.body.uuid).toEqual(invite.uuid)
+    })
+  })
+
+  describe('POST /api/organizer/organizations/:id/invite', () => {
+    test('should return 401 if not authenticated', async () => {
+      // given
+      const agent = await getAgent()
+
+      // when
+      const res = await agent.post('/api/organizer/organizations/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(401)
+    })
+
+    test('should return 404 if user not found', async () => {
+      // given
+      const { token } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+
+      // when
+      const res = await agent.post('/api/organizer/organizations/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('User not found')
+    })
+
+    test('should return 403 if user is not owner of the organization', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user, orga, OrganizationRole.MEMBER)
+
+      // when
+      const res = await agent.post(`/api/organizer/organizations/${orga.id}/invite`).send()
+
+      // then
+      expect(res.status).toEqual(403)
+      expect(res.body.message).toEqual('No sufficient permissions')
+    })
+
+    test('should create an invitation', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user1 = await buildUser({ uid, name: 'user1' })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user1, orga, OrganizationRole.OWNER)
+
+      // when
+      const res = await agent.post(`/api/organizer/organizations/${orga.id}/invite`).send()
+
+      // then
+      expect(res.status).toEqual(200)
+      expect(res?.body?.uuid).toBeDefined()
+    })
+  })
+
+  describe('DELETE /api/organizer/organizations/:id/invite', () => {
+    test('should return 401 if not authenticated', async () => {
+      // given
+      const agent = await getAgent()
+
+      // when
+      const res = await agent.delete('/api/organizer/organizations/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(401)
+    })
+
+    test('should return 404 if user not found', async () => {
+      // given
+      const { token } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+
+      // when
+      const res = await agent.delete('/api/organizer/organizations/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('User not found')
+    })
+
+    test('should return 403 if user is not owner of the organization', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user, orga, OrganizationRole.MEMBER)
+
+      // when
+      const res = await agent.delete(`/api/organizer/organizations/${orga.id}/invite`).send()
+
+      // then
+      expect(res.status).toEqual(403)
+      expect(res.body.message).toEqual('No sufficient permissions')
+    })
+
+    test('should create an invitation', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user, orga, OrganizationRole.OWNER)
+      const invite = await buildInvite(InviteType.ORGANIZATION, orga.id, user.id)
+
+      // when
+      const res = await agent.delete(`/api/organizer/organizations/${orga.id}/invite`).send()
+
+      // then
+      const result = await prisma.invite.findUnique({ where: { uuid: invite.uuid } })
+      expect(res.status).toEqual(204)
+      expect(result).toBe(null)
     })
   })
 })

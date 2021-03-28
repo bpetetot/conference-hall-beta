@@ -14,6 +14,8 @@ import {
 } from '../src/emails/email.services'
 
 import { sendSubmittedTalkSlackMessage } from '../src/slack/slack.services'
+import { buildInvite } from './builder/invite'
+import { InviteType } from '.prisma/client'
 jest.mock('../src/slack/slack.services', () => ({ sendSubmittedTalkSlackMessage: jest.fn() }))
 const sendSubmittedTalkSlackMessageMock = <jest.Mock>sendSubmittedTalkSlackMessage
 
@@ -1026,6 +1028,180 @@ describe('/api/speaker/talks', () => {
       expect(res.status).toEqual(204)
       expect(result?.status).toEqual('DECLINED')
       expect(sendDeclineTalkEmailToOrganizersMock).toHaveBeenCalled()
+    })
+  })
+
+  describe('GET /api/speaker/talks/:id/invite', () => {
+    test('should return 401 if not authenticated', async () => {
+      // given
+      const agent = await getAgent()
+
+      // when
+      const res = await agent.get('/api/speaker/talks/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(401)
+    })
+
+    test('should return 404 if talk not found', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      await buildUser({ uid })
+      const agent = await getAgent(token)
+
+      // when
+      const res = await agent.get('/api/speaker/talks/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('Talk not found')
+    })
+
+    test('should return 403 if talk doesnt belongs to the user', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      await buildUser({ uid })
+      const agent = await getAgent(token)
+      const user2 = await buildUser({ uid: 'user2' })
+      const talk = await buildTalk(user2)
+
+      // when
+      const res = await agent.get(`/api/speaker/talks/${talk.id}/invite`).send()
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should get an invitation', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const talk = await buildTalk(user)
+      const invite = await buildInvite(InviteType.SPEAKER, talk.id, user.id)
+
+      // when
+      const res = await agent.get(`/api/speaker/talks/${talk.id}/invite`).send()
+
+      // then
+      expect(res.status).toEqual(200)
+      expect(res.body.uuid).toBe(invite.uuid)
+    })
+  })
+
+  describe('POST /api/speaker/talks/:id/invite', () => {
+    test('should return 401 if not authenticated', async () => {
+      // given
+      const agent = await getAgent()
+
+      // when
+      const res = await agent.post('/api/speaker/talks/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(401)
+    })
+
+    test('should return 404 if talk not found', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      await buildUser({ uid })
+      const agent = await getAgent(token)
+
+      // when
+      const res = await agent.post('/api/speaker/talks/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('Talk not found')
+    })
+
+    test('should return 403 if talk doesnt belongs to the user', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      await buildUser({ uid })
+      const agent = await getAgent(token)
+      const user2 = await buildUser({ uid: 'user2' })
+      const talk = await buildTalk(user2)
+
+      // when
+      const res = await agent.post(`/api/speaker/talks/${talk.id}/invite`).send()
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should create a new invitation', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const talk = await buildTalk(user)
+
+      // when
+      const res = await agent.post(`/api/speaker/talks/${talk.id}/invite`).send()
+
+      // then
+      expect(res.status).toEqual(200)
+      expect(res?.body?.uuid).toBeDefined()
+    })
+  })
+
+  describe('DELETE /api/speaker/talks/:id/invite', () => {
+    test('should return 401 if not authenticated', async () => {
+      // given
+      const agent = await getAgent()
+
+      // when
+      const res = await agent.delete('/api/speaker/talks/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(401)
+    })
+
+    test('should return 404 if talk not found', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      await buildUser({ uid })
+      const agent = await getAgent(token)
+
+      // when
+      const res = await agent.delete('/api/speaker/talks/1/invite').send()
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('Talk not found')
+    })
+
+    test('should return 403 if talk doesnt belongs to the user', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      await buildUser({ uid })
+      const agent = await getAgent(token)
+      const user2 = await buildUser({ uid: 'user2' })
+      const talk = await buildTalk(user2)
+
+      // when
+      const res = await agent.delete(`/api/speaker/talks/${talk.id}/invite`).send()
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should delete an invitation', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const talk = await buildTalk(user)
+      const invite = await buildInvite(InviteType.SPEAKER, talk.id, user.id)
+
+      // when
+      const res = await agent.delete(`/api/speaker/talks/${talk.id}/invite`).send()
+
+      // then
+      const result = await prisma.invite.findUnique({ where: { uuid: invite.uuid } })
+      expect(res.status).toEqual(204)
+      expect(result).toBe(null)
     })
   })
 })
