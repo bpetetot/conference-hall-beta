@@ -363,7 +363,7 @@ describe('Proposals repository', () => {
       expect(results.proposals[0].id).toBe(proposal2.id)
     })
 
-    test('sort proposals by newest ratings', async () => {
+    test('sort proposals by newest proposals', async () => {
       // given
       const user = await buildUser({ uid: 'user1' })
       const talk1 = await buildTalk(user)
@@ -381,7 +381,7 @@ describe('Proposals repository', () => {
       expect(results.proposals[1].id).toBe(proposal1.id)
     })
 
-    test('sort proposals by oldest ratings', async () => {
+    test('sort proposals by oldest proposals', async () => {
       // given
       const user = await buildUser({ uid: 'user1' })
       const talk1 = await buildTalk(user)
@@ -392,6 +392,42 @@ describe('Proposals repository', () => {
 
       // when
       const results = await searchEventProposals(user.id, event.id, {}, 'oldest')
+
+      // then
+      expect(results.total).toBe(2)
+      expect(results.proposals[0].id).toBe(proposal1.id)
+      expect(results.proposals[1].id).toBe(proposal2.id)
+    })
+
+    test('sort proposals by highest ratings', async () => {
+      // given
+      const user = await buildUser({ uid: 'user1' })
+      const talk1 = await buildTalk(user)
+      const talk2 = await buildTalk(user)
+      const event = await buildEvent(user)
+      const proposal1 = await buildProposal(event.id, talk1, { avgRateForSort: 1 })
+      const proposal2 = await buildProposal(event.id, talk2, { avgRateForSort: 5 })
+
+      // when
+      const results = await searchEventProposals(user.id, event.id, {}, 'highestRating')
+
+      // then
+      expect(results.total).toBe(2)
+      expect(results.proposals[0].id).toBe(proposal2.id)
+      expect(results.proposals[1].id).toBe(proposal1.id)
+    })
+
+    test('sort proposals by lowest ratings', async () => {
+      // given
+      const user = await buildUser({ uid: 'user1' })
+      const talk1 = await buildTalk(user)
+      const talk2 = await buildTalk(user)
+      const event = await buildEvent(user)
+      const proposal1 = await buildProposal(event.id, talk1, { avgRateForSort: 1 })
+      const proposal2 = await buildProposal(event.id, talk2, { avgRateForSort: 5 })
+
+      // when
+      const results = await searchEventProposals(user.id, event.id, {}, 'lowestRating')
 
       // then
       expect(results.total).toBe(2)

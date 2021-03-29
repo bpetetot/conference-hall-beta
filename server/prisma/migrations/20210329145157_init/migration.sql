@@ -168,6 +168,7 @@ CREATE TABLE "proposals" (
     "language" TEXT,
     "references" TEXT,
     "comments" TEXT,
+    "avgRateForSort" DOUBLE PRECISION,
     "status" "ProposalStatus" NOT NULL DEFAULT E'SUBMITTED',
     "emailStatus" "EmailStatus",
     "speakerNotified" BOOLEAN NOT NULL DEFAULT false,

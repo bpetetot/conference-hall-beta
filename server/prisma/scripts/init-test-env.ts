@@ -8,7 +8,7 @@ import { buildUser } from '../../tests/builder/user'
 import { buildSurvey } from '../../tests/builder/survey'
 import { buildRating } from '../../tests/builder/rating'
 
-const organizerUid = '0zh00kpJ1ecbZk0OE7s29Ask9QTc'
+const organizerUid = 'kuuBIEZpBTH0kOqBcg2NEyB2LUXH'
 const TOTAL_EVENTS = 5
 const TOTAL_PROPOSALS = 200
 
@@ -28,6 +28,7 @@ async function addProposal(event: Event, format: EventFormat, category: EventCat
 
   const talk = await buildTalk(speaker1, {}, [speaker1, speaker2])
   return buildProposal(event.id, talk, {
+    avgRateForSort: faker.random.number(5),
     formats: { connect: [{ id: format.id }] },
     categories: { connect: [{ id: category.id }] },
   })
@@ -64,7 +65,8 @@ async function init() {
             faker.random.arrayElement([format1, format2]),
             faker.random.arrayElement([category1, category2]),
           )
-          await buildRating(orga.id, proposal.id, faker.random.number(5), RatingFeeling.NEUTRAL)
+          await buildRating(orga.id, proposal.id, proposal.avgRateForSort, RatingFeeling.NEUTRAL)
+
           console.log(`   - Proposal  ${p + 1}/${TOTAL_PROPOSALS}: "${proposal.title}"`)
         }
       } else {

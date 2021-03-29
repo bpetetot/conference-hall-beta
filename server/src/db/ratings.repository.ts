@@ -23,3 +23,8 @@ export async function saveRating(userId: number, proposalId: number, data: Ratin
 export async function deleteRating(userId: number, proposalId: number) {
   return prisma.rating.deleteMany({ where: { userId, proposalId } })
 }
+
+export async function getAverageRatings(proposalId: number) {
+  const result = await prisma.rating.aggregate({ avg: { rating: true }, where: { proposalId } })
+  return result.avg.rating
+}

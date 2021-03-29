@@ -838,14 +838,14 @@ describe('/api/organizer/events/:id/proposals', () => {
         })
 
       // then
-      const result = await prisma.rating.findUnique({
-        where: {
-          userId_proposalId: { userId: user.id, proposalId: proposal.id },
-        },
+      const result = await prisma.proposal.findUnique({
+        where: { id: proposal.id },
+        include: { ratings: true },
       })
       expect(res.status).toEqual(204)
-      expect(result?.rating).toEqual(3)
-      expect(result?.feeling).toEqual('NEUTRAL')
+      expect(result?.ratings[0].rating).toEqual(3)
+      expect(result?.ratings[0].feeling).toEqual('NEUTRAL')
+      expect(result?.avgRateForSort).toEqual(3)
     })
 
     test('should delete the proposal rating for the user', async () => {
@@ -864,13 +864,13 @@ describe('/api/organizer/events/:id/proposals', () => {
         .send({ rating: null, feeling: null })
 
       // then
-      const result = await prisma.rating.findUnique({
-        where: {
-          userId_proposalId: { userId: user.id, proposalId: proposal.id },
-        },
+      const result = await prisma.proposal.findUnique({
+        where: { id: proposal.id },
+        include: { ratings: true },
       })
       expect(res.status).toEqual(204)
-      expect(result).toBeNull()
+      expect(result?.ratings).toEqual([])
+      expect(result?.avgRateForSort).toEqual(0)
     })
   })
 

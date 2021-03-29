@@ -320,11 +320,15 @@ export async function rateProposal(req: Request) {
   const feeling = req.body.feeling
   const rating = checkRating(feeling, req.body.rating)
   const proposalId = parseInt(req.params.proposalId)
+
   if (isNil(rating) && isNil(feeling)) {
     await ratingsRepository.deleteRating(user.id, proposalId)
   } else {
     await ratingsRepository.saveRating(user.id, proposalId, { rating, feeling })
   }
+
+  const avgRateForSort = await ratingsRepository.getAverageRatings(proposalId)
+  await proposalsRepository.updateProposal(proposalId, { avgRateForSort })
 }
 
 export async function getSpeakerSurvey(req: Request) {

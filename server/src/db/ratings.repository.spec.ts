@@ -1,5 +1,5 @@
 import { setupDatabase } from '../../tests/helpers/setup-services'
-import { saveRating, deleteRating } from './ratings.repository'
+import { saveRating, deleteRating, getAverageRatings } from './ratings.repository'
 import { buildUser } from '../../tests/builder/user'
 import { buildEvent } from '../../tests/builder/event'
 import { RatingFeeling } from '@prisma/client'
@@ -63,6 +63,23 @@ describe('Ratings repository', () => {
         },
       })
       expect(result).toBeNull()
+    })
+  })
+
+  describe('#getAverageRatings', () => {
+    test('should return the average of ratings', async () => {
+      // given
+      const user = await buildUser()
+      const user2 = await buildUser()
+      const event = await buildEvent(user)
+      const talk = await buildTalk(user)
+      const proposal = await buildProposal(event.id, talk)
+      await buildRating(user.id, proposal.id, 0, RatingFeeling.HATE)
+      await buildRating(user2.id, proposal.id, 5, RatingFeeling.NEUTRAL)
+      // when
+      const result = await getAverageRatings(proposal.id)
+      //then
+      expect(result).toEqual(2.5)
     })
   })
 })
