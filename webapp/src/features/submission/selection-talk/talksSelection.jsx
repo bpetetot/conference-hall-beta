@@ -1,21 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router'
-import Badge from 'components/badge'
 import { List, ListItem } from 'components/list'
 import LoadingIndicator from 'components/loader'
 import RelativeDate from 'components/relativeDate'
 import NoTalks from 'features/talk/noTalks'
 import { useTalks } from 'data/talk'
+import TalkStatus from 'features/talk/status/TalkStatus'
 
 function renderBadge(eventId, proposals) {
   const proposal = proposals?.find((p) => p.eventId === parseInt(eventId, 10))
   if (!proposal) return null
-  return (
-    <Badge outline pill>
-      {proposal.status}
-    </Badge>
-  )
+  return <TalkStatus status={proposal.status} />
 }
 
 const TalksSelection = ({ eventId }) => {

@@ -23,23 +23,15 @@ const ProposalInfo = ({ event, proposal, isMobile }) => {
               Rejected
             </Badge>
           )}
-          {status === 'CONFIRMED' && (
-            <Badge outline success>
-              Confirmed by speaker
-            </Badge>
-          )}
-          {status === 'DECLINED' && (
-            <Badge outline error>
-              Declined by speaker
-            </Badge>
-          )}
+          {status === 'CONFIRMED' && <Badge success>Confirmed</Badge>}
+          {status === 'DECLINED' && <Badge error>Declined</Badge>}
           {speakerNotified && (
-            <Badge outline success>
+            <Badge light outline>
               Speaker notified
             </Badge>
           )}
           {emailStatus === 'DELIVERED' && (
-            <Badge outline info>
+            <Badge light outline>
               Email delivered
             </Badge>
           )}

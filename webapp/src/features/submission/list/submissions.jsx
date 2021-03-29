@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import Titlebar from 'components/titlebar'
 import SubmitTalkLink from 'features/talk/submitTalksLink'
 import { List, ListItem } from 'components/list'
-import Badge from 'components/badge'
 import LoadingIndicator from 'components/loader'
 import { useSpeakerProposals } from 'data/proposal'
+import TalkStatus from 'features/talk/status/TalkStatus'
 
 const Submissions = ({ event }) => {
   const navigate = useNavigate()
@@ -29,7 +29,7 @@ const Submissions = ({ event }) => {
             <ListItem
               key={talkId}
               title={title}
-              info={<Badge>{status}</Badge>}
+              info={<TalkStatus status={status} />}
               onSelect={() => navigate(`/speaker/event/${event.id}/submissions/${talkId}`)}
             />
           )}
