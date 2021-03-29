@@ -60,7 +60,7 @@ export function useUpdateOrganization(organizationId) {
   const queryClient = useQueryClient()
   return useMutation((data) => updateOrganization(organizationId, data), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['organization', organizationId])
+      queryClient.invalidateQueries(['organization', String(organizationId)])
     },
   })
 }
@@ -76,7 +76,7 @@ async function fetchOrganization({ queryKey }) {
 }
 
 export function useOrganization(organizationId) {
-  return useQuery(['organization', organizationId], fetchOrganization, {
+  return useQuery(['organization', String(organizationId)], fetchOrganization, {
     enabled: !!organizationId,
   })
 }

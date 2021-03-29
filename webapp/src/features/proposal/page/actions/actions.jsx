@@ -21,7 +21,7 @@ const Actions = ({ event, proposal, className }) => (
       )}
       {event.surveyEnabled && <SpeakerSurveys event={event} speakers={proposal.speakers} />}
     </HasRole>
-    <ReviewersThread eventId={event.id} proposalId={proposal.id} />
+    <ReviewersThread eventId={event.id} proposal={proposal} />
   </Titlebar>
 )
 

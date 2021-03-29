@@ -333,6 +333,7 @@ describe('/api/organizer/events/:id/proposals', () => {
         speakerNotified: false,
         formats: [],
         categories: [],
+        messageCount: 0,
         ratings: [
           {
             feeling: 'NEUTRAL',

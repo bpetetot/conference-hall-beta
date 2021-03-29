@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
-import isEmpty from 'lodash/isEmpty'
+import PropTypes from 'prop-types'
 
 import { Drawer } from 'components/portals'
 import Button from 'components/button'
@@ -12,12 +11,9 @@ import { useNotification } from 'app/layout/notification/context'
 
 import styles from './reviewersThread.module.css'
 
-const ReviewersThreadDrawer = ({ eventId, proposalId }) => {
+const ReviewersThread = ({ eventId, proposalId }) => {
   const { sendError } = useNotification()
-  const { data: messages, isLoading, isSuccess, isError, error } = useReviewerMessages(
-    eventId,
-    proposalId,
-  )
+  const { data: messages, isLoading, isError, error } = useReviewerMessages(eventId, proposalId)
   const { mutateAsync: saveMessage } = useSaveReviewerMessage(eventId, proposalId)
   const { mutateAsync: deleteMessage } = useDeleteReviewerMessage(eventId, proposalId)
 
@@ -30,7 +26,28 @@ const ReviewersThreadDrawer = ({ eventId, proposalId }) => {
       sendError(`An unexpected error has occurred: ${err.message}`)
     })
 
-  const nbMessages = !isEmpty(messages) ? ` (${messages.length})` : ''
+  if (isLoading) return <LoadingIndicator />
+
+  if (isError) return <div>An unexpected error has occurred: {error.message}</div>
+
+  return (
+    <Thread
+      className={styles.reviewersThread}
+      description="Discuss with other reviewers about this proposal. The speaker WILL NOT see these comments."
+      messages={messages}
+      onSaveMessage={onSave}
+      onDeleteMessage={onDelete}
+    />
+  )
+}
+
+ReviewersThread.propTypes = {
+  eventId: PropTypes.number.isRequired,
+  proposalId: PropTypes.number.isRequired,
+}
+
+const ReviewersThreadDrawer = ({ eventId, proposal }) => {
+  const nbMessages = proposal.messageCount > 0 ? ` (${proposal.messageCount})` : ''
   return (
     <Drawer
       title="Reviewers thread"
@@ -40,19 +57,14 @@ const ReviewersThreadDrawer = ({ eventId, proposalId }) => {
         </Button>
       )}
     >
-      {isLoading && <LoadingIndicator />}
-      {isError && <div>An unexpected error has occurred: {error.message}</div>}
-      {isSuccess && (
-        <Thread
-          className={styles.reviewersThread}
-          description="Discuss with other reviewers about this proposal. The speaker WILL NOT see these comments."
-          messages={messages}
-          onSaveMessage={onSave}
-          onDeleteMessage={onDelete}
-        />
-      )}
+      <ReviewersThread eventId={eventId} proposalId={proposal.id} />
     </Drawer>
   )
+}
+
+ReviewersThreadDrawer.propTypes = {
+  eventId: PropTypes.number.isRequired,
+  proposal: PropTypes.object.isRequired,
 }
 
 export default ReviewersThreadDrawer

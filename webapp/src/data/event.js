@@ -28,7 +28,7 @@ async function fetchEvent({ queryKey }) {
 }
 
 export function useEvent(eventId) {
-  return useQuery(['events', eventId], fetchEvent, { enabled: !!eventId })
+  return useQuery(['events', String(eventId)], fetchEvent, { enabled: !!eventId })
 }
 
 async function fetchSearchEvents() {
@@ -47,7 +47,7 @@ async function fetchOrganizerEvent({ queryKey }) {
 }
 
 export function useOrganizerEvent(eventId) {
-  return useQuery(['organizer/events', eventId], fetchOrganizerEvent, {
+  return useQuery(['organizer/events', String(eventId)], fetchOrganizerEvent, {
     enabled: !!eventId,
   })
 }

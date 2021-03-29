@@ -1,4 +1,4 @@
-import { Event, EventCategory, EventFormat, Proposal, Rating, User } from '@prisma/client'
+import { Event, EventCategory, EventFormat, Message, Proposal, Rating, User } from '@prisma/client'
 import { CategoryDto } from './Category.dto'
 import { FormatDto } from './Format.dto'
 import { OrganizerSpeakerDto } from './OrganizerSpeaker.dto'
@@ -23,6 +23,7 @@ export class OrganizerProposalDto {
   ratingStats?: RatingStatsDto
   speakers?: OrganizerSpeakerDto[]
   createdAt: Date
+  messageCount?: number
 
   constructor(
     user: User,
@@ -33,6 +34,7 @@ export class OrganizerProposalDto {
       ratings: (Rating & { user: User })[]
     },
     event: Event,
+    messageCount?: number,
   ) {
     this.id = proposal.id
     this.title = proposal.title
@@ -45,6 +47,7 @@ export class OrganizerProposalDto {
     this.categories = proposal.categories?.map((c) => new CategoryDto(c))
     this.createdAt = proposal.createdAt
     this.userRating = new RatingDto(proposal.ratings.find((r) => r.userId === user.id))
+    this.messageCount = messageCount
 
     this.status = proposal.status
     this.emailStatus = proposal.emailStatus

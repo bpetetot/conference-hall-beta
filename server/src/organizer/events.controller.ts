@@ -135,7 +135,12 @@ export async function getProposal(req: Request) {
     throw new HttpException(404, 'Proposal not found')
   }
 
-  return new OrganizerProposalDto(user, proposal, event)
+  const messageCount = await messagesRepository.countProposalMessages(
+    proposalId,
+    MessageChannel.ORGANIZER,
+  )
+
+  return new OrganizerProposalDto(user, proposal, event, messageCount)
 }
 
 export async function searchProposals(req: Request) {

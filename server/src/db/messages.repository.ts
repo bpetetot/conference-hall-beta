@@ -9,6 +9,10 @@ export async function findProposalMessages(proposalId: number, channel: MessageC
   })
 }
 
+export async function countProposalMessages(proposalId: number, channel: MessageChannel) {
+  return prisma.message.count({ where: { proposalId, channel } })
+}
+
 export async function addMessage(
   userId: number,
   proposalId: number,

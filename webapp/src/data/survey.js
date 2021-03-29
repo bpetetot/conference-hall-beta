@@ -10,7 +10,7 @@ async function fetchSurvey({ queryKey }) {
 }
 
 export function useSurvey(eventId) {
-  return useQuery(['survey', eventId], fetchSurvey, { enabled: !!eventId })
+  return useQuery(['survey', String(eventId)], fetchSurvey, { enabled: !!eventId })
 }
 
 async function saveSurvey(eventId, answers) {
@@ -26,7 +26,7 @@ export function useSaveSurvey(eventId) {
   const queryClient = useQueryClient()
   return useMutation((answers) => saveSurvey(eventId, answers), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['survey', eventId])
+      queryClient.invalidateQueries(['survey', String(eventId)])
     },
   })
 }
