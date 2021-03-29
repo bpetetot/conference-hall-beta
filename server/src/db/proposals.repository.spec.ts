@@ -6,8 +6,10 @@ import {
   createProposal,
   deleteProposal,
   findUserProposalsForEvent,
+  getProposal,
   getProposalForEvent,
   searchEventProposals,
+  searchEventProposalsIds,
   streamEventProposals,
   updateEventProposals,
   updateProposal,
@@ -20,6 +22,20 @@ import { buildRating } from '../../tests/builder/rating'
 
 describe('Proposals repository', () => {
   setupDatabase()
+
+  describe('#getProposal', () => {
+    test('should return proposal for the given id', async () => {
+      // given
+      const user = await buildUser({ uid: 'user' })
+      const talk = await buildTalk(user)
+      const event = await buildEvent()
+      const proposal = await buildProposal(event.id, talk)
+      // when
+      const result = await getProposal(proposal.id)
+      //then
+      expect(result?.id).toBe(proposal.id)
+    })
+  })
 
   describe('#getProposalForEvent', () => {
     test('should return proposal for the given event Id and talk Id', async () => {
@@ -381,6 +397,54 @@ describe('Proposals repository', () => {
       expect(results.total).toBe(2)
       expect(results.proposals[0].id).toBe(proposal1.id)
       expect(results.proposals[1].id).toBe(proposal2.id)
+    })
+  })
+
+  describe('#searchEventProposalsIds', () => {
+    test('return event proposals without filters and default sort', async () => {
+      // given
+      const user = await buildUser({ uid: 'user1' })
+      const talk1 = await buildTalk(user)
+      const talk2 = await buildTalk(user)
+      const event1 = await buildEvent(user)
+      const proposal1 = await buildProposal(event1.id, talk1, {
+        createdAt: new Date('2020-02-20T13:00:00.000Z'),
+      })
+      const proposal2 = await buildProposal(event1.id, talk2, {
+        createdAt: new Date('2020-02-27T13:00:00.000Z'),
+      })
+
+      // when
+      const results = await searchEventProposalsIds(user.id, event1.id)
+
+      // then
+      expect(results).toEqual([proposal2.id, proposal1.id])
+    })
+
+    test('return event proposals with filters and sort', async () => {
+      // given
+      const user = await buildUser({ uid: 'user1' })
+      const talk1 = await buildTalk(user)
+      const talk2 = await buildTalk(user)
+      const event1 = await buildEvent(user)
+      const proposal1 = await buildProposal(event1.id, talk1, {
+        status: 'ACCEPTED',
+        createdAt: new Date('2020-02-20T13:00:00.000Z'),
+      })
+      await buildProposal(event1.id, talk2, {
+        createdAt: new Date('2020-02-27T13:00:00.000Z'),
+      })
+
+      // when
+      const results = await searchEventProposalsIds(
+        user.id,
+        event1.id,
+        { status: 'ACCEPTED' },
+        'oldest',
+      )
+
+      // then
+      expect(results).toEqual([proposal1.id])
     })
   })
 

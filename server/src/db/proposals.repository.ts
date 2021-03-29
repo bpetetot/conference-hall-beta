@@ -11,6 +11,18 @@ import { Readable } from 'stream'
 import { prisma } from './db'
 import { isEmpty } from 'lodash'
 
+export async function getProposal(proposalId: number) {
+  return prisma.proposal.findUnique({
+    where: { id: proposalId },
+    include: {
+      speakers: true,
+      formats: true,
+      categories: true,
+      ratings: { include: { user: true } },
+    },
+  })
+}
+
 export async function getProposalForEvent(talkId: number, eventId: number) {
   return prisma.proposal.findUnique({
     where: {
@@ -177,6 +189,23 @@ export async function searchEventProposals(
   const nextPage = page + 1 < pageCount ? page + 1 : null
   const previousPage = page - 1 >= 0 ? page - 1 : null
   return { total, proposals, nextPage, previousPage, pageSize, page, pageCount }
+}
+
+export async function searchEventProposalsIds(
+  userId: number,
+  eventId: number,
+  filters: ProposalsFilters = {},
+  sort: ProposalSort = 'newest',
+) {
+  const where = buildSearchWhereClause(userId, eventId, filters)
+  const orderBy = buildSearchOrderByClause(sort)
+
+  const proposals = await prisma.proposal.findMany({
+    select: { id: true },
+    where,
+    orderBy,
+  })
+  return proposals.map((proposal) => proposal.id)
 }
 
 export async function countReviewedProposals(

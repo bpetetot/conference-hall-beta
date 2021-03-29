@@ -8,14 +8,14 @@ import './rating.css'
 
 const STARS = [1, 2, 3, 4, 5]
 
-const Rating = ({ defaultRating, defaultFeeling, onRating, className }) => {
+const Rating = ({ proposalId, defaultRating, defaultFeeling, onRating, className }) => {
   const [rating, setRating] = useState(defaultRating)
   const [feeling, setFeeling] = useState(defaultFeeling)
 
   useEffect(() => {
     setRating(defaultRating)
     setFeeling(defaultFeeling)
-  }, [defaultFeeling, defaultRating])
+  }, [defaultRating, defaultFeeling, proposalId])
 
   const handleClick = (newRating, newFeeling) => () => {
     if (rating === newRating && feeling === newFeeling) {
@@ -83,6 +83,7 @@ const Rating = ({ defaultRating, defaultFeeling, onRating, className }) => {
 }
 
 Rating.propTypes = {
+  proposalId: PropTypes.number.isRequired,
   defaultRating: PropTypes.number,
   defaultFeeling: PropTypes.string,
   onRating: PropTypes.func.isRequired,

@@ -91,6 +91,23 @@ router.get(
   handler(eventsController.searchProposals),
 )
 
+router.get(
+  '/:eventId/proposals/ids',
+  checkIfAuthenticated,
+  validate(SearchProposalGet),
+  handler(eventsController.searchProposalsIds),
+)
+
+router.get(
+  '/:eventId/proposals/:proposalId',
+  checkIfAuthenticated,
+  validate([
+    param('eventId').notEmpty().isNumeric().toInt(),
+    param('proposalId').notEmpty().isNumeric().toInt(),
+  ]),
+  handler(eventsController.getProposal),
+)
+
 router.patch(
   '/:eventId/proposals',
   checkIfAuthenticated,

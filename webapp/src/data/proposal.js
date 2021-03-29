@@ -61,7 +61,16 @@ export function useOrganizerProposals(eventId) {
   )
 }
 
-export function useOrganizerProposal(eventId, proposalIndex) {
+async function fetchOrganizerProposalsIds(eventId, filters) {
+  const params = new URLSearchParams(removeEmpty(filters))
+  return fetchData({
+    method: 'GET',
+    url: `/api/organizer/events/${eventId}/proposals/ids?${params}`,
+    auth: true,
+  })
+}
+
+export function useOrganizerProposalsIds(eventId) {
   const { search } = useLocation()
   const params = new URLSearchParams(search)
   const filters = {
@@ -71,20 +80,28 @@ export function useOrganizerProposal(eventId, proposalIndex) {
     format: params.get('format'),
     category: params.get('category'),
     sort: params.get('sort'),
-    page: proposalIndex,
-    pageSize: 1,
   }
   return useQuery(
-    ['proposal', eventId, filters],
-    async () => {
-      const { proposals, ...result } = await fetchOrganizerProposals(eventId, filters)
-      return {
-        proposal: proposals?.[0],
-        nextProposal: result.nextPage,
-        previousProposal: result.previousPage,
-      }
-    },
-    { enabled: !!eventId && !!proposalIndex },
+    ['proposals/ids', eventId, filters],
+    () => fetchOrganizerProposalsIds(eventId, filters),
+    { enabled: !!eventId },
+  )
+}
+
+async function fetchOrganizerProposal(eventId, proposalId) {
+  const proposal = await fetchData({
+    method: 'GET',
+    url: `/api/organizer/events/${eventId}/proposals/${proposalId}`,
+    auth: true,
+  })
+  return parseProposalResponse(proposal)
+}
+
+export function useOrganizerProposal(eventId, proposalId) {
+  return useQuery(
+    ['proposal', eventId, String(proposalId)],
+    () => fetchOrganizerProposal(eventId, proposalId),
+    { enabled: !!eventId && !!proposalId },
   )
 }
 
@@ -110,7 +127,7 @@ export function useUpdateProposal(eventId, proposalId) {
   const queryClient = useQueryClient()
   return useMutation((data) => updateProposal(eventId, proposalId, data), {
     onSuccess: () => {
-      queryClient.invalidateQueries('proposal')
+      queryClient.invalidateQueries(['proposal', eventId, String(proposalId)])
     },
   })
 }
@@ -131,7 +148,7 @@ export function useRateProposal(eventId, proposalId) {
   const queryClient = useQueryClient()
   return useMutation((data) => rateProposal(eventId, proposalId, data), {
     onSuccess: () => {
-      queryClient.invalidateQueries('proposal')
+      queryClient.invalidateQueries(['proposal', eventId, String(proposalId)])
     },
   })
 }

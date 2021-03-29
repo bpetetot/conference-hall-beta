@@ -11,17 +11,14 @@ import { useSelection } from '../selection-context'
 import './proposalsList.css'
 
 const Proposals = ({ event, result, isFetching, isMobile }) => {
-  const { proposals, page, pageSize } = result
+  const { proposals } = result
   const { toggleItem, isItemSelected } = useSelection()
 
   const navigate = useNavigate()
   const { search } = useLocation()
-  const handleSelect = (index) => {
+  const handleSelect = (proposalId) => {
     const params = new URLSearchParams(search)
-    params.delete('pageSize')
-    params.delete('page')
-    const proposalIndex = index + page * pageSize
-    navigate(`/organizer/event/${event.id}/proposals/${proposalIndex}?${params.toString()}`)
+    navigate(`/organizer/event/${event.id}/proposals/${proposalId}?${params.toString()}`)
   }
 
   if (isFetching) {
@@ -32,14 +29,14 @@ const Proposals = ({ event, result, isFetching, isMobile }) => {
     <List
       className="event-proposals"
       array={proposals}
-      renderRow={(proposal, proposalIndex) => (
+      renderRow={(proposal) => (
         <ListItem
           key={proposal.id}
           id={proposal.id}
           title={proposal.title}
           subtitle={!isMobile && <ProposalSubtitle event={event} proposal={proposal} />}
           info={<ProposalInfo event={event} proposal={proposal} isMobile={isMobile} />}
-          onSelect={() => handleSelect(proposalIndex)}
+          onSelect={() => handleSelect(proposal.id)}
           onCheckboxChange={() => toggleItem(proposal.id)}
           checked={isItemSelected(proposal.id)}
         />

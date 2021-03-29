@@ -16,6 +16,7 @@ import { OrganizerSpeakerSurveyDto } from '../dtos/OrganizerSpeakerSurvey.dto'
 import { checkRating } from '../common/ratings'
 import { ExportProposalDto } from '../dtos/ExportProposal.dto'
 import { MessageDto } from '../dtos/Message.dto'
+import { OrganizerProposalDto } from '../dtos/OrganizerProposal.dto'
 
 async function checkEvent(
   user: User,
@@ -123,6 +124,20 @@ export async function removeEventCategory(req: Request) {
   await eventsRepository.deleteCategory(categoryId)
 }
 
+export async function getProposal(req: Request) {
+  const eventId = parseInt(req.params.eventId)
+  const proposalId = parseInt(req.params.proposalId)
+  const user = await checkUser(req.user.uid)
+  const event = await checkEvent(user, eventId)
+
+  const proposal = await proposalsRepository.getProposal(proposalId)
+  if (!proposal) {
+    throw new HttpException(404, 'Proposal not found')
+  }
+
+  return new OrganizerProposalDto(user, proposal, event)
+}
+
 export async function searchProposals(req: Request) {
   const eventId = parseInt(req.params.eventId)
   const user = await checkUser(req.user.uid)
@@ -155,6 +170,25 @@ export async function searchProposals(req: Request) {
   const totalRated = await proposalsRepository.countReviewedProposals(user.id, event.id, filters)
 
   return new OrganizerProposalsResult(user, event, result, totalRated)
+}
+
+export async function searchProposalsIds(req: Request) {
+  const eventId = parseInt(req.params.eventId)
+  const user = await checkUser(req.user.uid)
+  const event = await checkEvent(user, eventId)
+
+  const filters: proposalsRepository.ProposalsFilters = {
+    search: req.query.search as string,
+    isSpeakerSearchDisabled: !event.displayProposalsSpeakers,
+    ratings: req.query.ratings as 'rated' | 'not-rated',
+    status: req.query.status as ProposalStatus,
+    format: (req.query.format as unknown) as number,
+    category: (req.query.category as unknown) as number,
+  }
+
+  const sort = req.query.sort as proposalsRepository.ProposalSort
+
+  return proposalsRepository.searchEventProposalsIds(user.id, event.id, filters, sort)
 }
 
 export async function batchUpdateProposals(req: Request) {

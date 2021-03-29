@@ -183,6 +183,199 @@ describe('/api/organizer/events/:id/proposals', () => {
     })
   })
 
+  describe('GET /api/organizer/events/:id/proposals/ids', () => {
+    test('should return 404 if user not found', async () => {
+      // when
+      const { token } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const res = await agent.get('/api/organizer/events/1/proposals/ids')
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('User not found')
+    })
+
+    test('should return 403 if user is not the owner of the event', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      await buildUser({ uid })
+      const user2 = await buildUser({ uid: 'other' })
+      const event = await buildEvent(user2)
+
+      // when
+      const res = await agent.get(`/api/organizer/events/${event.id}/proposals/ids`)
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should return 403 if event linked to an organization which user not member', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      await buildUser({ uid })
+      const user2 = await buildUser({ uid: 'other' })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user2, orga)
+      const event = await buildEvent(null, { organization: { connect: { id: orga.id } } })
+
+      // when
+      const res = await agent.get(`/api/organizer/events/${event.id}/proposals/ids`)
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should return proposal ids of the search', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const event = await buildEvent(user)
+      const talk = await buildTalk(user)
+      const proposal = await buildProposal(event.id, talk)
+      await buildRating(user.id, proposal.id, 1, RatingFeeling.NEUTRAL)
+
+      // when
+      const res = await agent.get(`/api/organizer/events/${event.id}/proposals/ids`)
+
+      // then
+      expect(res.status).toEqual(200)
+      expect(res.body).toEqual([proposal.id])
+    })
+  })
+
+  describe('GET /api/organizer/events/:id/proposals/:id', () => {
+    test('should return 404 if user not found', async () => {
+      // when
+      const { token } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const res = await agent.get('/api/organizer/events/1/proposals/1')
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('User not found')
+    })
+
+    test('should return 403 if user is not the owner of the event', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      await buildUser({ uid })
+      const user2 = await buildUser({ uid: 'other' })
+      const event = await buildEvent(user2)
+
+      // when
+      const res = await agent.get(`/api/organizer/events/${event.id}/proposals/1`)
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should return 403 if event linked to an organization which user not member', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      await buildUser({ uid })
+      const user2 = await buildUser({ uid: 'other' })
+      const orga = await buildOrganization()
+      await buildOrganizationMember(user2, orga)
+      const event = await buildEvent(null, { organization: { connect: { id: orga.id } } })
+
+      // when
+      const res = await agent.get(`/api/organizer/events/${event.id}/proposals`)
+
+      // then
+      expect(res.status).toEqual(403)
+    })
+
+    test('should return 404 proposal not found', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const event = await buildEvent(user)
+
+      // when
+      const res = await agent.get(`/api/organizer/events/${event.id}/proposals/1`)
+
+      // then
+      expect(res.status).toEqual(404)
+      expect(res.body.message).toEqual('Proposal not found')
+    })
+
+    test('should return proposals of the event', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const event = await buildEvent(user)
+      const talk = await buildTalk(user)
+      const proposal = await buildProposal(event.id, talk)
+      await buildRating(user.id, proposal.id, 1, RatingFeeling.NEUTRAL)
+
+      // when
+      const res = await agent.get(`/api/organizer/events/${event.id}/proposals/${proposal.id}`)
+
+      // then
+      expect(res.status).toEqual(200)
+      expect(res.body).toEqual({
+        id: proposal.id,
+        title: proposal.title,
+        abstract: proposal.abstract,
+        language: proposal.language,
+        level: proposal.level,
+        references: proposal.references,
+        comments: proposal.comments,
+        status: 'SUBMITTED',
+        emailStatus: null,
+        speakerNotified: false,
+        formats: [],
+        categories: [],
+        ratings: [
+          {
+            feeling: 'NEUTRAL',
+            rating: 1,
+            userId: user.id,
+            userName: user.name,
+            userPhotoURL: user.photoURL,
+          },
+        ],
+        ratingStats: {
+          average: 1,
+          count: 1,
+          hates: 0,
+          loves: 0,
+          noopinion: 0,
+        },
+        userRating: {
+          feeling: 'NEUTRAL',
+          rating: 1,
+          userId: user.id,
+          userName: user.name,
+          userPhotoURL: user.photoURL,
+        },
+        createdAt: proposal.createdAt.toISOString(),
+        speakers: [
+          {
+            id: user.id,
+            name: user.name,
+            photoURL: user.photoURL,
+            address: user.address,
+            bio: user.bio,
+            company: user.company,
+            email: user.email,
+            github: user.github,
+            language: user.language,
+            references: user.references,
+            twitter: user.twitter,
+          },
+        ],
+      })
+    })
+  })
+
   describe('PUT /api/organizer/events/:id/proposals/export', () => {
     test('should return 404 if user not found', async () => {
       // when
