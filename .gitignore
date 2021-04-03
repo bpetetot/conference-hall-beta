@@ -3,10 +3,16 @@
 # dependencies
 node_modules
 yarn-lock.json
+/.pnp
+.pnp.js
 
 # testing
 **/coverage
 **/.nyc_output/
+
+# next.js
+**/.next
+**/out
 
 # production
 /build
@@ -14,6 +20,7 @@ yarn-lock.json
 # misc
 .DS_Store
 .idea/
+*.pem
 
 # dotenv
 .env.local
