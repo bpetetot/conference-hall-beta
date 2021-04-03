@@ -1,16 +1,12 @@
-import Link from 'next/link'
+import Page from '../components/layout/Page'
+import ProfileOverview from '../components/user/ProfileOverview'
 
-import Layout from '../components/Layout'
-
-const IndexPage = () => (
-  <Layout>
-    <h1>Hello Next.js</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-)
+const IndexPage = () => {
+  return (
+    <Page authenticated>
+      <ProfileOverview />
+    </Page>
+  )
+}
 
 export default IndexPage
