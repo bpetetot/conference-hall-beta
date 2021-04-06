@@ -20,7 +20,7 @@ describe('Navbar component', () => {
     mockUseAuth.mockReturnValue({ user })
 
     render(<Navbar />)
-    fireEvent.click(screen.getByRole('button'))
+    fireEvent.click(screen.getByText('Toggle main menu'))
 
     expect(screen.getByText('name')).toBeVisible()
     expect(screen.getByText('email')).toBeVisible()

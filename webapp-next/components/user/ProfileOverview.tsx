@@ -1,10 +1,10 @@
 import { useAuth } from '../../lib/auth'
 import Avatar from '../atoms/Avatar'
-import { Button, ButtonLink } from '../atoms/Button'
+import { ButtonLink } from '../atoms/Button'
 import Card from '../atoms/Card'
 
 const ProfileOverview = () => {
-  const { user, signout } = useAuth()
+  const { user } = useAuth()
 
   return (
     <Card>
@@ -24,9 +24,6 @@ const ProfileOverview = () => {
           <ButtonLink href="/" secondary>
             Your profile
           </ButtonLink>
-          <Button onClick={signout} primary>
-            Signout
-          </Button>
         </div>
       </div>
     </Card>

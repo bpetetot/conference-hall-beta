@@ -1,14 +1,18 @@
 import { MenuIcon } from '@heroicons/react/outline'
 
 import { useAuth } from '../../lib/auth'
+import { useClickOutside } from '../../lib/useClickOutside'
 import Avatar from '../atoms/Avatar'
 import NavbarItem from './Item'
 
-const NavbarMobile = () => {
+type NavbarMobileProps = { onClose: () => void }
+
+const NavbarMobile = ({ onClose }: NavbarMobileProps) => {
   const { user } = useAuth()
+  const { ref } = useClickOutside({ onClose })
 
   return (
-    <nav className="absolute bg-primary-800 md:hidden min-w-full" id="mobile-menu">
+    <nav ref={ref} className="absolute bg-primary-800 md:hidden min-w-full" id="mobile-menu">
       <div className="px-2 py-3 space-y-1 sm:px-3">
         <NavbarItem href="/" block>
           Dashboard
