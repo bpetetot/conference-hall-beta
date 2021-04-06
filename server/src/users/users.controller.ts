@@ -23,12 +23,12 @@ export async function getAuthenticatedUser(req: Request) {
 }
 
 export async function createAuthenticatedUser(req: Request) {
-  const { uid, name, email } = req.user
+  const { uid, name, email, picture } = req.user
   const existingUser = await usersRepository.getUserByUid(uid)
   if (existingUser) {
     throw new HttpException(409, 'User already exists')
   }
-  const user = await usersRepository.createUser(uid, name, email)
+  const user = await usersRepository.createUser(uid, name, email, picture)
   return new UserMeDto(user)
 }
 

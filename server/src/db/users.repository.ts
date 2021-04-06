@@ -28,9 +28,9 @@ export async function getAuthUserByUid(uid: string) {
   return prisma.user.findUnique({ where: { uid }, include: { organizations: true } })
 }
 
-export async function createUser(uid: string, name: string, email?: string) {
+export async function createUser(uid: string, name: string, email?: string, photoURL?: string) {
   return prisma.user.create({
-    data: { uid, name, email },
+    data: { uid, name, email, photoURL },
     include: { organizations: true },
   })
 }
