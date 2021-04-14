@@ -1,8 +1,7 @@
 import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import { useQueryClient } from 'react-query'
 
-import { User } from '../types/user'
-import { useUser } from './api/user'
+import { User, useUser } from '../api/user'
 import firebase, { signinWithFirebase } from './firebase'
 
 const AuthContext = React.createContext(
