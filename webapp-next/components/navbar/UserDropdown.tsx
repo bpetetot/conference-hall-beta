@@ -1,5 +1,6 @@
+import { Menu } from '@headlessui/react'
 import cn from 'classnames'
-import React, { useState } from 'react'
+import React from 'react'
 
 import { useAuth } from '../../lib/auth'
 import Avatar from '../atoms/Avatar'
@@ -7,28 +8,21 @@ import Dropdown from '../atoms/Dropdown'
 
 const UserDropdown = () => {
   const { user, signout } = useAuth()
-  const [opened, setOpened] = useState(false)
 
   return (
-    <div className="ml-3 relative">
-      <button
-        id="user-menu"
-        type="button"
-        onClick={() => setOpened(!opened)}
-        className={buttonStyle}
-        aria-expanded={opened}
-        aria-haspopup="true"
-      >
-        <span className="sr-only">Open user menu</span>
-        <Avatar src={user?.photoURL} name={user?.name} size="s" className="hidden md:flex" />
-      </button>
-      {opened && (
-        <Dropdown id="user-menu" onClose={() => setOpened(false)}>
-          <Dropdown.Link href="/profile">Your profile</Dropdown.Link>
-          <Dropdown.Button onClick={signout}>Disconnect</Dropdown.Button>
-        </Dropdown>
+    <Menu as="div" className="relative inline-block text-left">
+      {({ open }) => (
+        <>
+          <Menu.Button className={buttonStyle}>
+            <Avatar src={user?.photoURL} name={user?.name} size="s" className="hidden md:flex" />
+          </Menu.Button>
+          <Dropdown open={open}>
+            <Dropdown.Link href="/profile">Your profile</Dropdown.Link>
+            <Dropdown.Button onClick={signout}>Disconnect</Dropdown.Button>
+          </Dropdown>
+        </>
       )}
-    </div>
+    </Menu>
   )
 }
 
