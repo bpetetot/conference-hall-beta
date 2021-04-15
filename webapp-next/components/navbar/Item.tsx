@@ -1,7 +1,8 @@
 import cn from 'classnames'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
+
+import { useSelectedRoute } from '../../lib/useSelectedRoute'
 
 type NavbarItemProps = {
   href: string
@@ -11,8 +12,7 @@ type NavbarItemProps = {
 }
 
 const NavbarItem = ({ href, children, size = 'base', block }: NavbarItemProps) => {
-  const router = useRouter()
-  const selected = router.asPath === href
+  const selected = useSelectedRoute(href)
 
   const styles = cn('px-3 py-2 rounded-md font-medium', {
     ['bg-primary-900 text-white']: selected,
