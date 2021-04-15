@@ -36,7 +36,7 @@ type ButtonStyleProps = {
   className?: string
 }
 
-function buildStyle({ primary = true, secondary = false, block, className }: ButtonStyleProps) {
+function buildStyle({ primary = false, secondary = false, block, className }: ButtonStyleProps) {
   const defaultStyle = [
     'inline-flex',
     'justify-center',
@@ -47,7 +47,6 @@ function buildStyle({ primary = true, secondary = false, block, className }: But
     'text-sm',
     'font-medium',
     'border',
-    'border-transparent',
     'focus:outline-none',
     'focus:ring-2',
     'focus:ring-offset-2',

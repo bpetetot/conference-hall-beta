@@ -20,6 +20,7 @@
     "react-query": "^3.13.4"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/jit": "^0.1.18",
     "@testing-library/dom": "^7.30.3",
     "@testing-library/jest-dom": "^5.11.10",

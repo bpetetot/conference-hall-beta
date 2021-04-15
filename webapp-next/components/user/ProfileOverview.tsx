@@ -21,7 +21,7 @@ const ProfileOverview = () => {
           </div>
         </div>
         <div className="mt-5 flex justify-center sm:mt-0 space-x-4">
-          <ButtonLink href="/" secondary>
+          <ButtonLink href="/profile" secondary>
             Your profile
           </ButtonLink>
         </div>

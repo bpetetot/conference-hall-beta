@@ -29,13 +29,13 @@ const LoginPage = () => {
         </h2>
         <Card className="mt-8 sm:mx-auto sm:w-full sm:max-w-md space-y-4">
           <h1>Log in with one of the following:</h1>
-          <Button onClick={() => signin('google')} block>
+          <Button primary onClick={() => signin('google')} block>
             Sign in with Google
           </Button>
-          <Button onClick={() => signin('twitter')} block>
+          <Button primary onClick={() => signin('twitter')} block>
             Sign in with Twitter
           </Button>
-          <Button onClick={() => signin('github')} block>
+          <Button primary onClick={() => signin('github')} block>
             Sign in with GitHub
           </Button>
           {error && <p>{error}</p>}

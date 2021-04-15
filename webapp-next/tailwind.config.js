@@ -1,4 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
+const forms = require('@tailwindcss/forms')
 const colors = require('tailwindcss/colors')
 
 module.exports = {
@@ -12,4 +13,5 @@ module.exports = {
       white: colors.white,
     },
   },
+  plugins: [forms],
 }
