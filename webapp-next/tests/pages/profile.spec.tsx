@@ -47,3 +47,6 @@ jest.mock('../../lib/auth', () => ({
 jest.mock('next/router', () => ({
   useRouter: () => ({ asPath: '/profile' }),
 }))
+jest.mock('../../api/user', () => ({
+  useUpdateUser: () => ({ mutateAsync: jest.fn() }),
+}))

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 
 import Logo from '../atoms/Logo'
 import NavbarDesktop from './Desktop'
@@ -23,4 +23,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default memo(Navbar)

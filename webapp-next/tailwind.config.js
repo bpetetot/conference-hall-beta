@@ -10,6 +10,8 @@ module.exports = {
       current: 'currentColor',
       primary: colors.indigo,
       gray: colors.coolGray,
+      red: colors.red,
+      green: colors.green,
       white: colors.white,
     },
   },

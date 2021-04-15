@@ -1,25 +1,25 @@
 import firebase from 'firebase/app'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { fetchData, HttpError } from './fetch'
 
 export type User = {
   id: number
   uid: string
-  email?: string | null
-  name?: string | null
-  bio?: string | null
-  photoURL?: string | null
-  betaAccess?: string | null
-  github?: string | null
-  company?: string | null
-  language?: string | null
-  references?: string | null
-  twitter?: string | null
-  address?: string | null
-  lat?: number | null
-  lng?: number | null
-  timezone?: string | null
+  email?: string
+  name?: string
+  bio?: string
+  photoURL?: string
+  betaAccess?: string
+  github?: string
+  company?: string
+  language?: string
+  references?: string
+  twitter?: string
+  address?: string
+  lat?: number
+  lng?: number
+  timezone?: string
 }
 
 async function getOrCreateUser(): Promise<User> {
@@ -49,4 +49,22 @@ async function getOrCreateUser(): Promise<User> {
 
 export function useUser(isAuthenticated: boolean) {
   return useQuery('users/me', getOrCreateUser, { enabled: isAuthenticated, retry: false })
+}
+
+async function updateUser(data: Partial<User>) {
+  return fetchData({
+    method: 'PATCH',
+    url: '/api/users/me',
+    auth: true,
+    body: data,
+  })
+}
+
+export function useUpdateUser() {
+  const queryClient = useQueryClient()
+  return useMutation<void, HttpError, Partial<User>>(updateUser, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('users/me')
+    },
+  })
 }

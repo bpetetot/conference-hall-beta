@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 type ButtonProps = ButtonStyleProps & {
   type?: 'button' | 'submit'
-  onClick: () => void
+  onClick?: () => void
   children: ReactNode
 }
 
@@ -54,7 +54,7 @@ function buildStyle({ primary = false, secondary = false, block, className }: Bu
 
   return cn(defaultStyle, className, {
     ['text-white bg-primary-600 border-transparent hover:bg-primary-700 focus:ring-primary-500']: primary,
-    ['text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:ring-offset-gray-100 focus:ring-indigo-500']: secondary,
+    ['text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:ring-offset-gray-100 focus:ring-primary-500']: secondary,
     ['flex w-full']: block,
   })
 }

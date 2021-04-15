@@ -1,10 +1,5 @@
 import firebase from 'firebase/app'
 
-const DEFAULT_HEADERS: Headers = new Headers({
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-})
-
 export class HttpError extends Error {
   status: number
   constructor(status: number, error: { message: string }) {
@@ -21,10 +16,8 @@ type RequestData = {
   headers?: Headers
 }
 
-async function fetchResponse(request: RequestData) {
+async function fetchResponse(request: RequestData, headers: Headers) {
   const { method = 'GET', url, body, auth = false } = request
-
-  const headers = new Headers({ ...DEFAULT_HEADERS, ...(request.headers || {}) })
 
   if (auth) {
     const token = await firebase.auth()?.currentUser?.getIdToken()
@@ -49,11 +42,17 @@ async function fetchResponse(request: RequestData) {
 }
 
 export async function fetchData(args: RequestData) {
-  const response = await fetchResponse(args)
+  const headers = new Headers()
+  headers.set('Accept', 'application/json')
+  headers.set('Content-Type', 'application/json')
+
+  const response = await fetchResponse(args, headers)
   return response?.json()
 }
 
 export async function fetchBlob(args: RequestData) {
-  const response = await fetchResponse(args)
+  const headers = new Headers()
+
+  const response = await fetchResponse(args, headers)
   return response?.blob()
 }

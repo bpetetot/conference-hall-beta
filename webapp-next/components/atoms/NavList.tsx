@@ -75,7 +75,7 @@ const styles = {
     'h-6',
     'w-6',
   ]),
-  iconSelected: 'text-primary-500 group-hover:text-indigo-500',
+  iconSelected: 'text-primary-500 group-hover:text-primary-500',
 }
 
 NavList.Link = NavListLink
