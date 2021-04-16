@@ -6,6 +6,7 @@ import NavList from '../components/NavList'
 import Page from '../features/layout/Page'
 import ProfileOverview from '../features/profile/Overview'
 import PersonalInfoForm from '../features/profile/PersonalInfoForm'
+import SpeakerDetailsForm from '../features/profile/SpeakerDetailsForm'
 
 const ProfilePage = () => {
   return (
@@ -25,7 +26,8 @@ const ProfilePage = () => {
         </NavList>
 
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-          <PersonalInfoForm />
+          <PersonalInfoForm id="personal" />
+          <SpeakerDetailsForm id="speaker" />
         </div>
       </div>
     </Page>

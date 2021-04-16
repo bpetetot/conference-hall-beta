@@ -17,7 +17,7 @@ describe('PersonalInfoForm component', () => {
   })
 
   test('should fill default user values', () => {
-    render(<PersonalInfoForm />)
+    render(<PersonalInfoForm id="personal" />)
     expect(screen.getByDisplayValue('user name')).toBeVisible()
     expect(screen.getByDisplayValue('user@example.net')).toBeVisible()
     expect(screen.getByDisplayValue('https://example.net')).toBeVisible()
@@ -25,7 +25,7 @@ describe('PersonalInfoForm component', () => {
 
   test('display error for required fields', async () => {
     mockAuth.mockReturnValue({ user: {} })
-    render(<PersonalInfoForm />)
+    render(<PersonalInfoForm id="personal" />)
 
     fireEvent.submit(screen.getByRole('button', { name: 'Save' }))
 
@@ -37,7 +37,7 @@ describe('PersonalInfoForm component', () => {
   })
 
   test('display error for invalid email', async () => {
-    render(<PersonalInfoForm />)
+    render(<PersonalInfoForm id="personal" />)
 
     fireEvent.input(screen.getByRole('textbox', { name: /email/i }), {
       target: { value: 'test' },
@@ -51,7 +51,7 @@ describe('PersonalInfoForm component', () => {
   })
 
   test('display error for invalid photo URL', async () => {
-    render(<PersonalInfoForm />)
+    render(<PersonalInfoForm id="personal" />)
 
     fireEvent.input(screen.getByRole('textbox', { name: /photo/i }), {
       target: { value: 'test' },
@@ -66,7 +66,7 @@ describe('PersonalInfoForm component', () => {
 
   test('display error when an unhandled server error occured', async () => {
     mockUpdate.mockRejectedValue({})
-    render(<PersonalInfoForm />)
+    render(<PersonalInfoForm id="personal" />)
 
     fireEvent.submit(screen.getByRole('button', { name: 'Save' }))
 
@@ -78,7 +78,7 @@ describe('PersonalInfoForm component', () => {
 
   test('submit the form when no submission errors', async () => {
     mockUpdate.mockResolvedValue({})
-    render(<PersonalInfoForm />)
+    render(<PersonalInfoForm id="personal" />)
 
     fireEvent.submit(screen.getByRole('button', { name: 'Save' }))
 

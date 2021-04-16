@@ -5,21 +5,20 @@ import { useUpdateUser } from '../../api/user'
 import { Button } from '../../components/Button'
 import FormCard from '../../components/forms/FormCard'
 import Input from '../../components/forms/Input'
-import { email, url } from '../../components/forms/validators'
 import { useAuth } from '../../lib/auth'
 
 type FormValues = {
-  name: string
-  email: string
-  photoURL?: string
+  language?: string
+  bio?: string
+  references?: string
 }
 
-const PersonalInfoForm = ({ id }: { id: string }) => {
+const SpeakerDetailsForm = ({ id }: { id: string }) => {
   const { user } = useAuth()
   const [saved, setSaved] = useState(false)
   const { mutateAsync } = useUpdateUser()
   const { register, handleSubmit, formState } = useForm<FormValues>()
-  const { errors, isSubmitting, isSubmitSuccessful } = formState
+  const { isSubmitting, isSubmitSuccessful } = formState
 
   const onSubmit = handleSubmit((data) => {
     return mutateAsync(data)
@@ -30,7 +29,8 @@ const PersonalInfoForm = ({ id }: { id: string }) => {
   return (
     <FormCard
       id={id}
-      title="Personal information"
+      title="Speaker details"
+      description="Give more information about you, these information will be visible by organizers when you submit a talk."
       isSubmitting={isSubmitting}
       isSubmitSuccess={saved && isSubmitSuccessful}
       isSubmitFail={!saved && isSubmitSuccessful}
@@ -38,31 +38,27 @@ const PersonalInfoForm = ({ id }: { id: string }) => {
     >
       <FormCard.Content>
         <Input
-          {...register('name', { required: 'A full name is required' })}
-          label="Full name"
-          autoComplete="name"
-          defaultValue={user?.name}
-          error={errors.name?.message}
+          {...register('bio')}
+          label="Biography"
+          description="Brief description for your profile. Markdown is supported."
+          defaultValue={user?.bio}
+          optional
         />
         <Input
-          {...register('email', { required: 'An email address is required', validate: email })}
-          label="Email address"
-          autoComplete="email"
-          defaultValue={user?.email}
-          error={errors.email?.message}
+          {...register('references')}
+          label="Speaker references"
+          description="Give some information about your speaker experience: your already-given talks, conferences or meetups as speaker, video links. Markdown is supported."
+          defaultValue={user?.references}
+          optional
         />
         <Input
-          {...register('photoURL', { validate: url })}
-          label="Photo URL"
-          defaultValue={user?.photoURL}
-          error={errors.photoURL?.message}
+          {...register('language')}
+          label="Spoken language"
+          defaultValue={user?.language}
           optional
         />
       </FormCard.Content>
       <FormCard.Actions>
-        <Button onClick={console.log} secondary>
-          Reset defaults
-        </Button>
         <Button type="submit" primary>
           Save
         </Button>
@@ -71,4 +67,4 @@ const PersonalInfoForm = ({ id }: { id: string }) => {
   )
 }
 
-export default PersonalInfoForm
+export default SpeakerDetailsForm
