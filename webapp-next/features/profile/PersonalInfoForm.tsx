@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { useUpdateUser } from '../../api/user'
+import { useResetUser, useUpdateUser } from '../../api/user'
 import { Button } from '../../components/Button'
 import FormCard from '../../components/forms/FormCard'
 import Input from '../../components/forms/Input'
@@ -16,10 +16,11 @@ type FormValues = {
 
 const PersonalInfoForm = ({ id }: { id: string }) => {
   const { user } = useAuth()
-  const [saved, setSaved] = useState(false)
+  const [saved, setSaved] = useState<boolean>()
+  const resetUser = useResetUser()
   const { mutateAsync } = useUpdateUser()
-  const { register, handleSubmit, formState } = useForm<FormValues>()
-  const { errors, isSubmitting, isSubmitSuccessful } = formState
+  const { register, handleSubmit, reset, formState } = useForm<FormValues>()
+  const { errors, isSubmitting } = formState
 
   const onSubmit = handleSubmit((data) => {
     return mutateAsync(data)
@@ -27,13 +28,19 @@ const PersonalInfoForm = ({ id }: { id: string }) => {
       .catch(() => setSaved(false))
   })
 
+  const onReset = () => {
+    const data = resetUser()
+    setSaved(true)
+    reset(data)
+  }
+
   return (
     <FormCard
       id={id}
       title="Personal information"
       isSubmitting={isSubmitting}
-      isSubmitSuccess={saved && isSubmitSuccessful}
-      isSubmitFail={!saved && isSubmitSuccessful}
+      isSubmitSuccess={saved === true}
+      isSubmitFail={saved === false}
       onSubmit={onSubmit}
     >
       <FormCard.Content>
@@ -60,7 +67,7 @@ const PersonalInfoForm = ({ id }: { id: string }) => {
         />
       </FormCard.Content>
       <FormCard.Actions>
-        <Button onClick={console.log} secondary>
+        <Button onClick={onReset} secondary>
           Reset defaults
         </Button>
         <Button type="submit" primary>

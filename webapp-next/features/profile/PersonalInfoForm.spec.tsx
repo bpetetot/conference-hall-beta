@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
-import { useUpdateUser } from '../../api/user'
+import { useResetUser, useUpdateUser } from '../../api/user'
 import { useAuth } from '../../lib/auth'
 import PersonalInfoForm from './PersonalInfoForm'
 
@@ -92,6 +92,24 @@ describe('PersonalInfoForm component', () => {
       expect(screen.getByText('Successfully saved')).toBeVisible()
     })
   })
+
+  test('reset the user data to default', async () => {
+    mockResetUser.mockReturnValue(() => ({
+      name: 'reset name',
+      email: 'reset@example.net',
+      photoURL: 'https://reset.example.net',
+    }))
+    render(<PersonalInfoForm id="personal" />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reset defaults' }))
+
+    await waitFor(() => {
+      expect(screen.getByDisplayValue('reset name')).toBeVisible()
+      expect(screen.getByDisplayValue('reset@example.net')).toBeVisible()
+      expect(screen.getByDisplayValue('https://reset.example.net')).toBeVisible()
+      expect(screen.getByText('Successfully saved')).toBeVisible()
+    })
+  })
 })
 
 // Mocks
@@ -100,6 +118,8 @@ jest.mock('../../lib/auth', () => ({
   useAuth: jest.fn(),
 }))
 const mockUpdateUser = useUpdateUser as jest.Mock
+const mockResetUser = useResetUser as jest.Mock
 jest.mock('../../api/user', () => ({
   useUpdateUser: jest.fn(),
+  useResetUser: jest.fn(),
 }))

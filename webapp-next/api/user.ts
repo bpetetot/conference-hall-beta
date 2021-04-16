@@ -68,3 +68,17 @@ export function useUpdateUser() {
     },
   })
 }
+
+export function useResetUser() {
+  const user = firebase.auth().currentUser
+  const data = {
+    name: user?.displayName || undefined,
+    email: user?.email || undefined,
+    photoURL: user?.photoURL || undefined,
+  }
+  const { mutate } = useUpdateUser()
+  return () => {
+    mutate(data)
+    return data
+  }
+}

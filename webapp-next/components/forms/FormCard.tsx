@@ -3,6 +3,7 @@ import { CheckCircleIcon } from '@heroicons/react/outline'
 import cn from 'classnames'
 import { FormHTMLAttributes, ReactNode } from 'react'
 
+import TailSpinLoader from '../../styles/icons/loader'
 import Card from '../Card'
 
 type FormCardProps = {
@@ -23,7 +24,7 @@ const FormCard = ({
   description,
   children,
   isSubmitting,
-  submittingMessage = 'Saving...',
+  submittingMessage = 'Saving',
   isSubmitSuccess,
   submitSuccessMessage = 'Successfully saved',
   isSubmitFail,
@@ -39,19 +40,24 @@ const FormCard = ({
           {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
         </div>
         <div className="flex-shrink-0 flex items-center">
-          {isSubmitSuccess && (
+          {isSubmitSuccess && !isSubmitting && (
             <>
               <span className="mr-1 text-sm text-gray-500">{submitSuccessMessage}</span>
               <CheckCircleIcon className="h-6 w-6 text-green-500 inline-block" />
             </>
           )}
-          {isSubmitFail && (
+          {isSubmitFail && !isSubmitting && (
             <>
               <span className="mr-1 text-sm text-gray-500">{submitFailMessage}</span>
               <XCircleIcon className="h-6 w-6 text-red-500 inline-block" />
             </>
           )}
-          {isSubmitting && <span className="mr-1 text-sm text-gray-500">{submittingMessage}</span>}
+          {isSubmitting && (
+            <>
+              <span className="mr-1 text-sm text-gray-500">{submittingMessage}</span>
+              <TailSpinLoader className="h-6 w-6 text-gray-400 inline-block animate-spin" />
+            </>
+          )}
         </div>
       </div>
 

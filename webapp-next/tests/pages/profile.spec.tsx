@@ -51,4 +51,5 @@ jest.mock('next/router', () => ({
 }))
 jest.mock('../../api/user', () => ({
   useUpdateUser: () => ({ mutateAsync: jest.fn() }),
+  useResetUser: jest.fn(),
 }))
