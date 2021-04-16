@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-import Logo from '../components/atoms/Logo'
-import Fullpage from '../components/layout/Fullpage'
+import Logo from '../components/Logo'
+import Fullpage from '../features/layout/Fullpage'
 
 const NotFoundPage = () => {
   return (

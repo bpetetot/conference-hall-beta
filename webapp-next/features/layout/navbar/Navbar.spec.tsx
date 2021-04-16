@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 
-import { useAuth } from '../../lib/auth'
+import { useAuth } from '../../../lib/auth'
 import Navbar from './Navbar'
 
 describe('Navbar component', () => {

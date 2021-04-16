@@ -2,7 +2,7 @@ import cn from 'classnames'
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
 
-import { useSelectedRoute } from '../../lib/useSelectedRoute'
+import { useSelectedRoute } from '../lib/useSelectedRoute'
 
 type NavListProps = {
   children: ReactNode

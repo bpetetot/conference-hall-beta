@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 
 import { useAuth } from '../../lib/auth'
-import ProfileOverview from './ProfileOverview'
+import ProfileOverview from './Overview'
 
 describe('ProfileOverview component', () => {
   test('should render the profile overview', () => {

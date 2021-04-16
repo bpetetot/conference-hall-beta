@@ -1,8 +1,8 @@
 import { MenuIcon } from '@heroicons/react/outline'
 
-import { useAuth } from '../../lib/auth'
-import { useClickOutside } from '../../lib/useClickOutside'
-import Avatar from '../atoms/Avatar'
+import Avatar from '../../../components/Avatar'
+import { useAuth } from '../../../lib/auth'
+import { useClickOutside } from '../../../lib/useClickOutside'
 import NavbarItem from './Item'
 
 type NavbarMobileProps = { onClose: () => void }

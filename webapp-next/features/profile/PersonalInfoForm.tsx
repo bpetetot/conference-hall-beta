@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { useUpdateUser } from '../../api/user'
+import { Button } from '../../components/Button'
+import FormCard from '../../components/forms/FormCard'
+import Input from '../../components/forms/Input'
+import { email, url } from '../../components/forms/validators'
 import { useAuth } from '../../lib/auth'
-import { Button } from '../atoms/Button'
-import FormCard from '../atoms/forms/FormCard'
-import Input from '../atoms/forms/Input'
-import { email, url } from '../atoms/forms/validators'
 
 type FormValues = {
   name: string

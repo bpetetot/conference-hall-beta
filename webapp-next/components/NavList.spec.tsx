@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { useRouter } from 'next/router'
 
-import { getByAriaCurrent } from '../../tests/utils'
+import { getByAriaCurrent } from '../tests/utils'
 import NavList from './NavList'
 
 describe('NavList component', () => {

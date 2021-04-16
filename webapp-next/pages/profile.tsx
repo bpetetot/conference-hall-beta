@@ -2,10 +2,10 @@ import { UserCircleIcon } from '@heroicons/react/outline'
 import { AcademicCapIcon } from '@heroicons/react/outline'
 import { AnnotationIcon } from '@heroicons/react/outline'
 
-import NavList from '../components/atoms/NavList'
-import Page from '../components/layout/Page'
-import PersonalInfoForm from '../components/user/PersonalInfoForm'
-import ProfileOverview from '../components/user/ProfileOverview'
+import NavList from '../components/NavList'
+import Page from '../features/layout/Page'
+import ProfileOverview from '../features/profile/Overview'
+import PersonalInfoForm from '../features/profile/PersonalInfoForm'
 
 const ProfilePage = () => {
   return (

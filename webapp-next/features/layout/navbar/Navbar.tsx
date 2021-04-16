@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 
-import Logo from '../atoms/Logo'
+import Logo from '../../../components/Logo'
 import NavbarDesktop from './Desktop'
 import NavbarMobile from './Mobile'
 import AvatarDropdown from './UserDropdown'

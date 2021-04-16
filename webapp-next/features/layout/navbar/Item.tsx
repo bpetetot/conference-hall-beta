@@ -2,7 +2,7 @@ import cn from 'classnames'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
-import { useSelectedRoute } from '../../lib/useSelectedRoute'
+import { useSelectedRoute } from '../../../lib/useSelectedRoute'
 
 type NavbarItemProps = {
   href: string

@@ -2,9 +2,9 @@ import { Menu } from '@headlessui/react'
 import cn from 'classnames'
 import React from 'react'
 
-import { useAuth } from '../../lib/auth'
-import Avatar from '../atoms/Avatar'
-import Dropdown from '../atoms/Dropdown'
+import Avatar from '../../../components/Avatar'
+import Dropdown from '../../../components/Dropdown'
+import { useAuth } from '../../../lib/auth'
 
 const UserDropdown = () => {
   const { user, signout } = useAuth()

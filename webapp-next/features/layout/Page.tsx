@@ -2,9 +2,9 @@ import { useRouter } from 'next/router'
 import React, { ReactNode, useEffect } from 'react'
 
 import { useAuth } from '../../lib/auth'
-import Navbar from '../navbar/Navbar'
 import Footer from './Footer'
 import LoadingPage from './Loading'
+import Navbar from './navbar/Navbar'
 
 type Props = {
   authenticated?: boolean

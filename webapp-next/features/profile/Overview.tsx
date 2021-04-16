@@ -1,7 +1,7 @@
+import Avatar from '../../components/Avatar'
+import { ButtonLink } from '../../components/Button'
+import Card from '../../components/Card'
 import { useAuth } from '../../lib/auth'
-import Avatar from '../atoms/Avatar'
-import { ButtonLink } from '../atoms/Button'
-import Card from '../atoms/Card'
 
 const ProfileOverview = () => {
   const { user } = useAuth()

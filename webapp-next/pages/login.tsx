@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 
-import { Button } from '../components/atoms/Button'
-import Card from '../components/atoms/Card'
-import Logo from '../components/atoms/Logo'
-import Fullpage from '../components/layout/Fullpage'
-import LoadingPage from '../components/layout/Loading'
+import { Button } from '../components/Button'
+import Card from '../components/Card'
+import Logo from '../components/Logo'
+import Fullpage from '../features/layout/Fullpage'
+import LoadingPage from '../features/layout/Loading'
 import { useAuth } from '../lib/auth'
 import { useRedirectNext } from '../lib/useRedirectNext'
 

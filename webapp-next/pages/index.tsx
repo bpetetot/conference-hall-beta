@@ -1,5 +1,5 @@
-import Page from '../components/layout/Page'
-import ProfileOverview from '../components/user/ProfileOverview'
+import Page from '../features/layout/Page'
+import ProfileOverview from '../features/profile/Overview'
 
 const IndexPage = () => {
   return (
