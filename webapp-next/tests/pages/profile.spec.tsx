@@ -31,11 +31,13 @@ describe('Profile page', () => {
   test('should render speaker details menu and form', () => {
     render(<Profile />)
     expect(screen.getByRole('link', { name: 'Speaker details' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Speaker details' })).toBeVisible()
   })
 
   test('should render additional information menu and form', () => {
     render(<Profile />)
     expect(screen.getByRole('link', { name: 'Additional information' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Additional information' })).toBeVisible()
   })
 })
 

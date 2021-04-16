@@ -29,7 +29,7 @@ describe('Navbar component', () => {
 
 // Mocks
 const mockUseAuth = useAuth as jest.Mock
-jest.mock('../../lib/auth', () => ({
+jest.mock('../../../lib/auth', () => ({
   useAuth: jest.fn(),
 }))
 

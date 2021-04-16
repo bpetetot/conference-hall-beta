@@ -4,6 +4,7 @@ import { AnnotationIcon } from '@heroicons/react/outline'
 
 import NavList from '../components/NavList'
 import Page from '../features/layout/Page'
+import AdditionalInfoForm from '../features/profile/AdditionalInfoForm'
 import ProfileOverview from '../features/profile/Overview'
 import PersonalInfoForm from '../features/profile/PersonalInfoForm'
 import SpeakerDetailsForm from '../features/profile/SpeakerDetailsForm'
@@ -28,6 +29,7 @@ const ProfilePage = () => {
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
           <PersonalInfoForm id="personal" />
           <SpeakerDetailsForm id="speaker" />
+          <AdditionalInfoForm id="additional" />
         </div>
       </div>
     </Page>
