@@ -5,6 +5,7 @@ import { useUpdateUser } from '../../api/user'
 import { Button } from '../../components/Button'
 import FormCard from '../../components/forms/FormCard'
 import Input from '../../components/forms/Input'
+import TextArea from '../../components/forms/TextArea'
 import { useAuth } from '../../lib/auth'
 
 type FormValues = {
@@ -37,14 +38,14 @@ const SpeakerDetailsForm = ({ id }: { id: string }) => {
       onSubmit={onSubmit}
     >
       <FormCard.Content>
-        <Input
+        <TextArea
           {...register('bio')}
           label="Biography"
           description="Brief description for your profile. Markdown is supported."
           defaultValue={user?.bio}
           optional
         />
-        <Input
+        <TextArea
           {...register('references')}
           label="Speaker references"
           description="Give some information about your speaker experience: your already-given talks, conferences or meetups as speaker, video links. Markdown is supported."
