@@ -9,7 +9,7 @@ const Navbar = () => {
   const [opened, setOpened] = useState(false)
 
   return (
-    <header className="bg-primary-800 pb-32">
+    <header className="bg-primary-800 pb-24">
       <section className="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 px-4 sm:px-0 md:border-b border-white border-opacity-20">
           <Logo size="s" className="w-auto" />

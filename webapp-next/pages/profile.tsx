@@ -13,7 +13,7 @@ const ProfilePage = () => {
   return (
     <Page authenticated>
       <ProfileOverview />
-      <div className="mt-4 lg:grid lg:grid-cols-12 lg:gap-x-5">
+      <div className="mt-4 lg:mt-10 lg:grid lg:grid-cols-12 lg:gap-x-6">
         <NavList className="lg:col-span-3">
           <NavList.Link href="#personal" icon={UserCircleIcon} defaultSelected>
             Personal information
@@ -27,6 +27,10 @@ const ProfilePage = () => {
         </NavList>
 
         <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
+          <div>
+            <h2>Profile</h2>
+            <p className="mt-1 text-gray-500">Your personal information and speaker details.</p>
+          </div>
           <PersonalInfoForm id="personal" />
           <SpeakerDetailsForm id="speaker" />
           <AdditionalInfoForm id="additional" />

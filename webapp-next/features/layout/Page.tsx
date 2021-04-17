@@ -29,7 +29,7 @@ const Page = ({ authenticated = false, children }: Props) => {
   return (
     <>
       <Navbar />
-      <main className="-mt-28 max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">{children}</main>
+      <main className="-mt-20 max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">{children}</main>
       <Footer />
     </>
   )

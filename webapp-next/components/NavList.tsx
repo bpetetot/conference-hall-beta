@@ -62,7 +62,6 @@ const styles = {
     'py-2',
     'flex',
     'items-center',
-    'text-sm',
     'font-medium',
   ]),
   linkSelected: 'bg-white text-primary-700 hover:text-primary-700',

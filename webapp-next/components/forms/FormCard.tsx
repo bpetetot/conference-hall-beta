@@ -36,7 +36,7 @@ const FormCard = ({
     <Card withPadding={false} className={className}>
       <div className="pt-6 px-4 sm:pt-6 sm:px-6 flex justify-between items-start flex-wrap sm:flex-nowrap">
         <div>
-          <h3 className="text-lg leading-6 font-medium text-gray-900">{title}</h3>
+          <h3>{title}</h3>
           {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
         </div>
         <div className="flex-shrink-0 flex items-center">

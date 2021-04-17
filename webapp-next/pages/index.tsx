@@ -4,7 +4,7 @@ import ProfileOverview from '../features/profile/Overview'
 const IndexPage = () => {
   return (
     <Page authenticated>
-      <ProfileOverview />
+      <ProfileOverview withProfileLink />
     </Page>
   )
 }
