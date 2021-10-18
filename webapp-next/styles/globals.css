@@ -7,6 +7,10 @@
     @apply bg-gray-100;
   }
 
+  h1 {
+    @apply text-2xl leading-6 font-bold text-gray-900;
+  }
+
   h2 {
     @apply text-xl leading-6 font-medium text-gray-900;
   }
