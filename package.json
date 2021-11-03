@@ -46,7 +46,7 @@
     "react-sizes": "2.0.0",
     "redux": "4.0.5",
     "uuid": "8.3.1",
-    "validator": "13.1.17"
+    "validator": "13.7.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.3",
