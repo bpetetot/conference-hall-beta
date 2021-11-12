@@ -15,18 +15,8 @@ function getTwitterUrl(twitter) {
 }
 
 const Speaker = ({ speaker }) => {
-  const {
-    photoURL,
-    name,
-    bio,
-    email,
-    company,
-    address,
-    language,
-    github,
-    twitter,
-    references,
-  } = speaker
+  const { photoURL, name, bio, email, company, address, language, github, twitter, references } =
+    speaker
 
   return (
     <div>

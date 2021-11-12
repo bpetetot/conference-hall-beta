@@ -1,7 +1,18 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect, useContext, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import firebase from 'firebase/app'
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  TwitterAuthProvider,
+  GithubAuthProvider,
+  FacebookAuthProvider,
+  signInWithRedirect,
+  signOut,
+} from 'firebase/auth'
+
 import { useNavigate } from 'react-router-dom'
 
 import { useUser } from '../../data/user'
@@ -12,6 +23,7 @@ const STATES = {
   SIGNED_OUT: 'SIGNED_OUT',
 }
 
+const auth = getAuth()
 const AuthContext = React.createContext()
 
 export const useAuth = () => useContext(AuthContext)
@@ -30,7 +42,7 @@ export const AuthProvider = ({ children }) => {
   const isAuthenticating = isPending || isLoading
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(async (authenticated) => {
+    onAuthStateChanged(auth, async (authenticated) => {
       if (authenticated) {
         setAuthState(STATES.SIGNED_IN)
       } else {
@@ -43,28 +55,28 @@ export const AuthProvider = ({ children }) => {
     let provider
     switch (providerName) {
       case 'google':
-        provider = new firebase.auth.GoogleAuthProvider()
+        provider = new GoogleAuthProvider()
         break
       case 'twitter':
-        provider = new firebase.auth.TwitterAuthProvider()
+        provider = new TwitterAuthProvider()
         break
       case 'github':
-        provider = new firebase.auth.GithubAuthProvider()
+        provider = new GithubAuthProvider()
         break
       case 'facebook':
-        provider = new firebase.auth.FacebookAuthProvider()
+        provider = new FacebookAuthProvider()
         break
       default:
         return
     }
     provider.setCustomParameters({ prompt: 'select_account' })
 
-    await firebase.auth().signInWithRedirect(provider)
+    await signInWithRedirect(auth, provider)
   }, [])
 
   const signout = useCallback(async () => {
     navigate('/')
-    await firebase.auth().signOut()
+    await signOut(auth)
     localStorage.removeItem('currentEventId')
   }, [navigate])
 

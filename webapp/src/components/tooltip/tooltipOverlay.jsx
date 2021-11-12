@@ -1,4 +1,4 @@
-/* eslint-disable no-return-assign,react/forbid-prop-types */
+/* eslint-disable no-return-assign,react/forbid-prop-types,react/no-unused-class-component-methods */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 

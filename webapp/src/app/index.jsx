@@ -41,9 +41,31 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/beta" element={<Beta />} />
             <Route path="/public/*" element={<Public />} />
-            <PrivateRoute path="/speaker/*" element={<Speaker />} />
-            <PrivateRoute path="/organizer/*" element={<Organizer />} betaAccess />
-            <PrivateRoute path="/invite/:inviteId" element={<Invite />} />
+            <Route
+              path="/speaker/*"
+              element={
+                <PrivateRoute>
+                  <Speaker />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/organizer/*"
+              element={
+                <PrivateRoute>
+                  <Organizer />
+                </PrivateRoute>
+              }
+              betaAccess
+            />
+            <Route
+              path="/invite/:inviteId"
+              element={
+                <PrivateRoute>
+                  <Invite />
+                </PrivateRoute>
+              }
+            />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>

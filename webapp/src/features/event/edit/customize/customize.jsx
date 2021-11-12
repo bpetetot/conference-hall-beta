@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import firebase from 'firebase/app'
+import { getStorage, ref } from 'firebase/storage'
 
 import { useUpdateEventField } from 'data/event'
 import Button from 'components/button'
@@ -9,6 +9,8 @@ import Banner from 'features/event/page/banner'
 import styles from './customize.module.css'
 
 const MAX_SIZE = 100 * 1024 // 100kB
+
+const storage = getStorage()
 
 const CustomizeForm = ({ event }) => {
   const { mutate: onChangeBanner } = useUpdateEventField(event.id, 'bannerUrl')
@@ -26,8 +28,8 @@ const CustomizeForm = ({ event }) => {
       return
     }
 
-    const ref = firebase.storage().ref(`${event.id}/banner.img`)
-    const task = ref.put(file)
+    const fileRef = ref(storage, `${event.id}/banner.img`)
+    const task = fileRef.put(file)
     task.on(
       'state_changed',
       ({ bytesTransferred, totalBytes }) => {

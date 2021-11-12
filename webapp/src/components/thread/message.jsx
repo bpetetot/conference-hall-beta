@@ -45,6 +45,7 @@ const Message = ({
     }
   }
 
+  // eslint-disable-next-line react/no-unstable-nested-components
   const DeleteMessage = () => (
     <ConfirmationPopin
       title="Delete a message"

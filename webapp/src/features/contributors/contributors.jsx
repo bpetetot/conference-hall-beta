@@ -6,7 +6,7 @@ import Contributor from './contributor'
 
 import './contributors.css'
 
-function Contributors() {
+const Contributors = () => {
   const [contributors, setContributors] = useState([])
 
   useEffect(() => {

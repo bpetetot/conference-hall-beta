@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components, react/no-array-index-key */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'react-final-form'
@@ -36,7 +37,6 @@ const ItemsWithModal = ({ name, onAddItem, onRemoveItem, onSaveItem, form: Form 
             )}
           </Modal>
           {fields.map((item, index) => (
-            // eslint-disable-next-line react/no-array-index-key
             <div key={index}>
               <Field
                 name={item}

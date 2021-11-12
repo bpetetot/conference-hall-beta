@@ -8,7 +8,7 @@ import isEmpty from 'lodash/isEmpty'
 import './address.css'
 
 const TIMEZONE_API = 'https://maps.googleapis.com/maps/api/timezone/json'
-const API_KEY = process.env.REACT_APP_API_KEY
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
 const getTimezone = async ({ lat, lng }) => {
   const timestamp = Date.now() / 1000

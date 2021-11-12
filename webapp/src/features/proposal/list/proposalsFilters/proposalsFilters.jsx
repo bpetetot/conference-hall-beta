@@ -12,7 +12,7 @@ import { useSelection } from '../selection-context'
 
 const { statuses, ratings } = filterTypes
 
-function ProposalFilters({ event }) {
+const ProposalFilters = ({ event }) => {
   const navigate = useNavigate()
 
   const { resetSelection } = useSelection()

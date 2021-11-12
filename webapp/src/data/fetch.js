@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 
 const JSON_HEADERS = {
   Accept: 'application/json',
@@ -16,7 +16,7 @@ async function fetchResponse({ method = 'GET', url, body, auth, headers = {} }) 
   const allHeaders = { ...JSON_HEADERS, headers }
 
   if (auth) {
-    const token = await firebase.auth().currentUser.getIdToken()
+    const token = await getAuth().currentUser.getIdToken()
     allHeaders.authorization = `Bearer ${token}`
   }
 

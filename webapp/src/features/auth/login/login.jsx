@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import firebase from 'firebase/app'
+import { getAuth, getRedirectResult } from 'firebase/auth'
 import split from 'lodash/split'
 
 import useRedirectNext from 'features/router/useRedirectNext'
@@ -9,6 +9,8 @@ import Button from 'components/button'
 import { useAuth } from '../context'
 
 import './login.css'
+
+const auth = getAuth()
 
 const PROVIDERS = split(process.env.REACT_APP_AUTH_PROVIDERS, ',') || []
 
@@ -24,9 +26,7 @@ const Login = () => {
 
   useEffect(() => {
     setRedirecting(true)
-    firebase
-      .auth()
-      .getRedirectResult()
+    getRedirectResult(auth)
       .then(() => setRedirecting(false))
       .catch((e) => {
         setRedirecting(false)

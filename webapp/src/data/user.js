@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { fetchData } from './fetch'
 
@@ -17,7 +17,7 @@ async function getOrCreateUser() {
     user = await fetchData({ url: '/api/users/me', auth: true })
   } catch (error) {
     if (error.status !== 404) throw error
-    const authUser = firebase.auth().currentUser
+    const authUser = getAuth().currentUser
     user = fetchData({
       method: 'POST',
       url: '/api/users/me',
@@ -69,7 +69,7 @@ export function useUpdateProfile() {
 
 export function useResetUserProvider() {
   const onUpdate = () => {
-    const user = firebase.auth().currentUser
+    const user = getAuth().currentUser
     return {
       name: user.displayName,
       email: user.email,

@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Navigate, Route, useLocation } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import LoadingIndicator from 'components/loader'
 import { useAuth } from 'features/auth'
 
 const SKIP_BETA_ACCESS = process.env.NODE_ENV === 'development'
 
-function PrivateRoute({ betaAccess, ...rest }) {
+const PrivateRoute = ({ betaAccess, children }) => {
   const { user, isAuthenticated, isAuthenticating } = useAuth()
   const location = useLocation()
 
@@ -22,11 +22,12 @@ function PrivateRoute({ betaAccess, ...rest }) {
     return <Navigate to={`/beta?next=${location.pathname}`} replace />
   }
 
-  return <Route {...rest} />
+  return children
 }
 
 PrivateRoute.propTypes = {
   betaAccess: PropTypes.bool,
+  children: PropTypes.node.isRequired,
 }
 
 PrivateRoute.defaultProps = {

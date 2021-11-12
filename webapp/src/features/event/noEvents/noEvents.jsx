@@ -1,9 +1,5 @@
 import React from 'react'
 
-const NoEvents = () => (
-  <>
-    <span>No event yet!</span>
-  </>
-)
+const NoEvents = () => <span>No event yet!</span>
 
 export default NoEvents

@@ -12,7 +12,7 @@ import { useDeleteTalk } from '../../../../data/talk'
 
 import './deleteTalkModal.css'
 
-function DeleteTalkForm({ talkId, talkTitle, onClose }) {
+const DeleteTalkForm = ({ talkId, talkTitle, onClose }) => {
   const navigate = useNavigate()
   const { sendError } = useNotification()
   const [disabled, setDisabled] = useState(true)
@@ -56,7 +56,7 @@ DeleteTalkForm.propTypes = {
   onClose: PropTypes.func.isRequired,
 }
 
-function DeleteTalkModal({ talkId, talkTitle }) {
+const DeleteTalkModal = ({ talkId, talkTitle }) => {
   return (
     <Modal
       className="delete-talk-modal"

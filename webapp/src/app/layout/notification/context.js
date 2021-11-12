@@ -18,11 +18,10 @@ export const NotificationProvider = ({ children }) => {
   const sendSuccess = useCallback((message) => setNotification({ type: 'success', message }), [])
   const sendWarning = useCallback((message) => setNotification({ type: 'warning', message }), [])
 
-  const value = useMemo(() => ({ sendError, sendSuccess, sendWarning }), [
-    sendError,
-    sendSuccess,
-    sendWarning,
-  ])
+  const value = useMemo(
+    () => ({ sendError, sendSuccess, sendWarning }),
+    [sendError, sendSuccess, sendWarning],
+  )
 
   return (
     <NotificationContext.Provider value={value}>

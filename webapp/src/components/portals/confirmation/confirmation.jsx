@@ -8,7 +8,7 @@ import useTheme from 'styles/themes/useTheme'
 
 import './confirmation.css'
 
-function ConfirmationPopin({
+const ConfirmationPopin = ({
   className,
   title,
   content,
@@ -18,7 +18,7 @@ function ConfirmationPopin({
   withCancel,
   renderTrigger,
   defaultOpen,
-}) {
+}) => {
   const theme = useTheme()
 
   const handleOk = useCallback(
