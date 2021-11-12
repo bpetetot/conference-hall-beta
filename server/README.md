@@ -1,7 +1,6 @@
 ## Prerequisites
 
-- Node
-- Yarn
+- Node / Npm
 - Docker
 
 ## Getting started
@@ -9,7 +8,7 @@
 **Install dependencies:**
 
 ```
-yarn
+npm ci
 ```
 
 **Start postgresql database and Firebase auth emulator with Docker:**
@@ -23,7 +22,7 @@ docker-compose up -d
 
 Server running is on http://localhost:3000
 ```
-yarn dev
+npm run dev
 ```
 _Needs `docker-compose up -d` to run_
 
@@ -31,19 +30,19 @@ _Needs `docker-compose up -d` to run_
 
 Prisma studio is running on http://localhost:5555
 ```
-yarn dev:studio
+npm run dev:studio
 ```
 
 **Execute tests:**
 
 ```
-yarn test
+npm test
 ```
 _Needs `docker-compose up -d` to run_
 
 ## Database migrations
 
 1. Make changes on the prisma schema in `/prisma/schema.prisma`.
-2. Execute `yarn dev:migrate --name <migration-name>`.
-3. Run `yarn prisma:generate` to build the prisma client.
+2. Execute `npm dev:migrate --name <migration-name>`.
+3. Run `npm prisma:generate` to build the prisma client.
 
