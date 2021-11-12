@@ -438,7 +438,7 @@ describe('/api/organizer/events/:id/proposals', () => {
     })
 
     // eslint-disable-next-line jest/no-done-callback
-    test('should stream the export of event proposals', async (done) => {
+    test('should stream the export of event proposals', async () => {
       // given
       const { token, uid } = await getAuthUser('ben@example.net')
       const agent = await getAgent(token)
@@ -454,18 +454,12 @@ describe('/api/organizer/events/:id/proposals', () => {
           let data = ''
           res.on('data', (chunk) => (data += chunk))
           res.on('end', () => {
-            try {
-              callback(null, JSON.parse(data))
-            } catch (err) {
-              done(err)
-            }
+            callback(null, JSON.parse(data))
           })
         })
         .end((err, res) => {
-          if (err) return done(err)
           expect(res.status).toEqual(200)
           expect(res.body[0].id).toEqual(proposal.id)
-          done()
         })
     })
   })

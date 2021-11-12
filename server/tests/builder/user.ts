@@ -6,7 +6,7 @@ export async function buildUser(user?: Partial<Prisma.UserCreateInput>) {
   const name = user?.name || faker.name.findName()
 
   const data: Prisma.UserCreateInput = {
-    uid: faker.random.uuid(),
+    uid: faker.datatype.uuid(),
     name,
     email: faker.internet.email(name),
     bio: faker.lorem.paragraph(3),

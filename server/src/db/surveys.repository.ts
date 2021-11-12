@@ -8,7 +8,7 @@ export async function getEventSurveyForUser(eventId: number, userId: number) {
 export async function saveEventSurveyForUser(
   eventId: number,
   userId: number,
-  answers: Prisma.JsonObject | null,
+  answers: Prisma.InputJsonValue,
 ) {
   return prisma.survey.upsert({
     where: { userId_eventId: { eventId, userId } },

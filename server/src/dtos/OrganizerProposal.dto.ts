@@ -1,4 +1,4 @@
-import { Event, EventCategory, EventFormat, Message, Proposal, Rating, User } from '@prisma/client'
+import { Event, EventCategory, EventFormat, Proposal, Rating, User } from '@prisma/client'
 import { CategoryDto } from './Category.dto'
 import { FormatDto } from './Format.dto'
 import { OrganizerSpeakerDto } from './OrganizerSpeaker.dto'

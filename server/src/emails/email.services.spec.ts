@@ -83,11 +83,11 @@ describe('Email services', () => {
 
     it('should not send email if notification not activated', async () => {
       //given
-      const event = ({
+      const event = {
         name: 'event1',
         emailOrganizer: 'contact@example.com',
         emailNotifications: { submitted: false },
-      } as unknown) as Event
+      } as unknown as Event
       const proposal = {} as Proposal & { speakers: User[] }
 
       // when
@@ -99,11 +99,11 @@ describe('Email services', () => {
 
     it('should call sendEmail to event contact email', async () => {
       //given
-      const event = ({
+      const event = {
         name: 'event1',
         emailOrganizer: 'contact@example.com',
         emailNotifications: { submitted: true },
-      } as unknown) as Event
+      } as unknown as Event
       const proposal = {} as Proposal & { speakers: User[] }
 
       // when
@@ -266,11 +266,11 @@ describe('Email services', () => {
 
     it('should not send email if notification not activated', async () => {
       //given
-      const event = ({
+      const event = {
         name: 'event1',
         emailOrganizer: 'contact@example.com',
         emailNotifications: { confirmed: false },
-      } as unknown) as Event
+      } as unknown as Event
       const proposal = {} as Proposal
 
       // when
@@ -282,11 +282,11 @@ describe('Email services', () => {
 
     it('should call sendEmail to event contact email', async () => {
       //given
-      const event = ({
+      const event = {
         name: 'event1',
         emailOrganizer: 'contact@example.com',
         emailNotifications: { confirmed: true },
-      } as unknown) as Event
+      } as unknown as Event
       const proposal = {} as Proposal
 
       // when
@@ -316,11 +316,11 @@ describe('Email services', () => {
 
     it('should not send email if notification not activated', async () => {
       //given
-      const event = ({
+      const event = {
         name: 'event1',
         emailOrganizer: 'contact@example.com',
         emailNotifications: { confirmed: false },
-      } as unknown) as Event
+      } as unknown as Event
       const proposal = {} as Proposal
 
       // when
@@ -332,11 +332,11 @@ describe('Email services', () => {
 
     it('should call sendEmail to event contact email', async () => {
       //given
-      const event = ({
+      const event = {
         name: 'event1',
         emailOrganizer: 'contact@example.com',
         emailNotifications: { confirmed: true },
-      } as unknown) as Event
+      } as unknown as Event
       const proposal = {} as Proposal
 
       // when

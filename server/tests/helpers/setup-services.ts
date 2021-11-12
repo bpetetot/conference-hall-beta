@@ -5,15 +5,8 @@ import * as db from '../../src/db/db'
 import app from '../../src/app'
 
 export function setupDatabase() {
-  beforeEach(async (done) => {
-    await db.resetTestDatabase()
-    done()
-  })
-
-  afterAll(async (done) => {
-    await db.disconnect()
-    done()
-  })
+  beforeEach(db.resetTestDatabase)
+  afterAll(db.disconnect)
 }
 
 export function setupServer() {
@@ -26,7 +19,7 @@ export function setupServer() {
   })
 
   afterAll((done) => {
-    return server && server.close(done)
+    if (server) server.close(done)
   })
 
   setupDatabase()

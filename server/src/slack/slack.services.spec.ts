@@ -55,8 +55,7 @@ describe('Slack services', () => {
 
     // then
     expect(fetchMock).toHaveBeenCalledWith('http://webhook.slack', {
-      body:
-        '{"attachments":[{"fallback":"New Talk submitted to Event","pretext":"*New talk submitted to Event*","author_name":"by Speaker 1 & Speaker 2","title":"Title","text":"Abstract","title_link":"http://localhost:3000/organizer/event/1/proposal/2","color":"#ffab00","fields":[{"title":"Categories","value":"Category 1 & Category 2","short":true},{"title":"Formats","value":"Format 1 & Format 2","short":true}]}]}',
+      body: '{"attachments":[{"fallback":"New Talk submitted to Event","pretext":"*New talk submitted to Event*","author_name":"by Speaker 1 & Speaker 2","title":"Title","text":"Abstract","title_link":"http://localhost:3000/organizer/event/1/proposal/2","color":"#ffab00","fields":[{"title":"Categories","value":"Category 1 & Category 2","short":true},{"title":"Formats","value":"Format 1 & Format 2","short":true}]}]}',
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
     })

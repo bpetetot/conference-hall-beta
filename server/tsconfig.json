@@ -13,5 +13,6 @@
     "incremental": true,
     "noImplicitAny": true,
     "strict": true,
+    "useUnknownInCatchVariables": false,
   },
 }

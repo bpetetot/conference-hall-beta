@@ -21,7 +21,7 @@ export const EventPatch = [
   body('maxProposals').trim().optional(falsy).isNumeric().toInt(),
   body('formatsRequired').trim().optional(falsy).isBoolean().toBoolean(),
   body('categoriesRequired').trim().optional(falsy).isBoolean().toBoolean(),
-  body('bannerUrl').trim().optional(falsy).isURL(),
+  body('bannerUrl').trim().optional(falsy).isURL({ require_tld: false }),
   body('deliberationEnabled').trim().optional(falsy).isBoolean().toBoolean(),
   body('displayOrganizersRatings').trim().optional(falsy).isBoolean().toBoolean(),
   body('displayProposalsRatings').trim().optional(falsy).isBoolean().toBoolean(),

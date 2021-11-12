@@ -25,6 +25,6 @@ export async function deleteRating(userId: number, proposalId: number) {
 }
 
 export async function getAverageRatings(proposalId: number) {
-  const result = await prisma.rating.aggregate({ avg: { rating: true }, where: { proposalId } })
-  return result.avg.rating
+  const result = await prisma.rating.aggregate({ _avg: { rating: true }, where: { proposalId } })
+  return result._avg.rating || 0
 }

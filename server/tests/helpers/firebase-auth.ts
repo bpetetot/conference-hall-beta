@@ -1,26 +1,35 @@
-import firebase from 'firebase'
+import { initializeApp } from 'firebase/app'
+import {
+  getAuth,
+  UserCredential,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  connectAuthEmulator,
+} from 'firebase/auth'
 
 export type AuthUser = {
   token?: string
   uid?: string
 }
 
-firebase.initializeApp({
+const firebaseApp = initializeApp({
   projectId: 'conference-hall',
   apiKey: 'XXX',
 })
 
-firebase.auth().useEmulator('http://localhost:9099')
+const auth = getAuth(firebaseApp)
+
+connectAuthEmulator(auth, 'http://localhost:9099')
 
 export async function getAuthUser(email: string): Promise<AuthUser> {
-  let credentials: firebase.auth.UserCredential
+  let credentials: UserCredential
   try {
-    credentials = await firebase.auth().createUserWithEmailAndPassword(email, 'password')
+    credentials = await createUserWithEmailAndPassword(auth, email, 'password')
   } catch (error) {
     if (error.code !== 'auth/email-already-in-use') {
       throw new Error(error)
     }
-    credentials = await firebase.auth().signInWithEmailAndPassword(email, 'password')
+    credentials = await signInWithEmailAndPassword(auth, email, 'password')
   }
 
   if (!credentials || !credentials.user) {
