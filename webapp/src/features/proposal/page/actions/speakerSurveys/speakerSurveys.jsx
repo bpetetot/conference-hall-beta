@@ -9,7 +9,7 @@ import Answers from './answers'
 
 import './speakerSurveys.css'
 
-const SpeakerSurveys = ({ event, speakers }) => (
+const SpeakerSurveys = ({ event, speakers = [] }) => (
   <Drawer
     title="Speaker survey"
     renderTrigger={({ show }) => (

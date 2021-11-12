@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import { getStorage, ref } from 'firebase/storage'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
 import { useUpdateEventField } from 'data/event'
 import Button from 'components/button'
@@ -28,18 +28,21 @@ const CustomizeForm = ({ event }) => {
       return
     }
 
-    const fileRef = ref(storage, `${event.id}/banner.img`)
-    const task = fileRef.put(file)
+    const storageRef = ref(storage, `${event.id}/banner.img`)
+    const task = uploadBytesResumable(storageRef, file)
     task.on(
       'state_changed',
       ({ bytesTransferred, totalBytes }) => {
         setPercentage(parseInt((bytesTransferred / totalBytes) * 100, 10))
       },
-      setError,
-      async () => {
-        const url = await task.snapshot.ref.getDownloadURL()
-        setPercentage()
-        onChangeBanner(url)
+      (err) => {
+        setError(err)
+      },
+      () => {
+        getDownloadURL(task.snapshot.ref).then((downloadUrl) => {
+          setPercentage()
+          onChangeBanner(downloadUrl)
+        })
       },
     )
   }

@@ -10,11 +10,12 @@ services:
     environment:
       POSTGRES_MULTIPLE_DATABASES: "\"conference-hall\",\"conference-hall-test\""
       POSTGRES_HOST_AUTH_METHOD: trust
-  firebase-auth:
+  firebase-emulators:
     build:
       context: ./firebase
     ports:
       - "9099:9099"
+      - "9199:9199"
       - "4000:4000"
     volumes:
       - ./firebase:/app

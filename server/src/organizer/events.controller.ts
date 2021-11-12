@@ -153,15 +153,15 @@ export async function searchProposals(req: Request) {
     isSpeakerSearchDisabled: !event.displayProposalsSpeakers,
     ratings: req.query.ratings as 'rated' | 'not-rated',
     status: req.query.status as ProposalStatus,
-    format: (req.query.format as unknown) as number,
-    category: (req.query.category as unknown) as number,
+    format: req.query.format as unknown as number,
+    category: req.query.category as unknown as number,
   }
 
   const sort = req.query.sort as proposalsRepository.ProposalSort
 
   const pagination: proposalsRepository.ProposalsPagination = {
-    page: (req.query.page as unknown) as number,
-    pageSize: (req.query.pageSize as unknown) as number,
+    page: req.query.page as unknown as number,
+    pageSize: req.query.pageSize as unknown as number,
   }
 
   const result = await proposalsRepository.searchEventProposals(
@@ -187,8 +187,8 @@ export async function searchProposalsIds(req: Request) {
     isSpeakerSearchDisabled: !event.displayProposalsSpeakers,
     ratings: req.query.ratings as 'rated' | 'not-rated',
     status: req.query.status as ProposalStatus,
-    format: (req.query.format as unknown) as number,
-    category: (req.query.category as unknown) as number,
+    format: req.query.format as unknown as number,
+    category: req.query.category as unknown as number,
   }
 
   const sort = req.query.sort as proposalsRepository.ProposalSort

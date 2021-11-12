@@ -6,4 +6,4 @@ RUN npm install -g firebase-tools
 
 WORKDIR /app
 
-CMD [ "firebase", "--project=conference-hall", "emulators:start", "--only", "auth" ]
+CMD [ "firebase", "--project=conference-hall", "emulators:start", "--only", "auth,storage" ]
