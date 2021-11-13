@@ -1031,7 +1031,7 @@ describe('/api/organizer/events/:id/proposals', () => {
       expect(res.status).toEqual(400)
     })
 
-    test('should stream the export of event proposals', async () => {
+    test('should post a message to the proposal', async () => {
       // given
       const { token, uid } = await getAuthUser('ben@example.net')
       const agent = await getAgent(token)
@@ -1154,7 +1154,7 @@ describe('/api/organizer/events/:id/proposals', () => {
       expect(res.body.message).toEqual('Message not found')
     })
 
-    test('should stream the export of event proposals', async () => {
+    test('should update a message on the proposals', async () => {
       // given
       const { token, uid } = await getAuthUser('ben@example.net')
       const agent = await getAgent(token)

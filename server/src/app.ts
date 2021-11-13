@@ -3,6 +3,7 @@ import path from 'path'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import config from './config'
+import api from './api/api.routes'
 import users from './users/users.routes'
 import emails from './emails/email.routes'
 import invites from './invites/invites.routes'
@@ -23,6 +24,7 @@ app.use(helmet({ contentSecurityPolicy: false }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.use('/api/v1', api)
 app.use('/api/users', users)
 app.use('/api/events', events)
 app.use('/api/emails', emails)
