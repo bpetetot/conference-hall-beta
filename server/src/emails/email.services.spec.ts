@@ -1,3 +1,4 @@
+import { mocked } from 'ts-jest/utils'
 import { Event, Proposal, User } from '@prisma/client'
 import { buildEvent } from '../../tests/builder/event'
 import { buildProposal } from '../../tests/builder/proposal'
@@ -12,11 +13,24 @@ import {
   sendSubmitTalkEmailToSpeakers,
 } from './email.services'
 
-import { sendEmail } from './mailgun'
-jest.mock('./mailgun', () => ({ sendEmail: jest.fn(), isEmailServiceEnabled: () => true }))
-const sendEmailMock = <jest.Mock>sendEmail
+import { getEmailProvider } from './providers/email'
+
+jest.mock('./providers/email', () => {
+  const sendEmail = jest.fn()
+  const sendCustomEmail = jest.fn()
+  return {
+    getEmailProvider: () => ({ sendEmail, sendCustomEmail }),
+  }
+})
+
+const providerMock = mocked(getEmailProvider(), true)
 
 describe('Email services', () => {
+  beforeEach(() => {
+    providerMock.sendEmail.mockClear()
+    providerMock.sendCustomEmail.mockClear()
+  })
+
   describe('#sendSubmitTalkEmailToSpeakers', () => {
     it('should call sendEmail to one speaker', async () => {
       //given
@@ -28,7 +42,7 @@ describe('Email services', () => {
       await sendSubmitTalkEmailToSpeakers(event, proposal)
 
       // then
-      const result = sendEmailMock.mock.calls[0][0]
+      const result = providerMock.sendEmail.mock.calls[0][0]
       expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
       expect(result.to).toEqual(['speaker1@example.com'])
       expect(result.subject).toEqual('[event1] Talk submitted')
@@ -49,7 +63,7 @@ describe('Email services', () => {
       await sendSubmitTalkEmailToSpeakers(event, proposal)
 
       // then
-      const result = sendEmailMock.mock.calls[0][0]
+      const result = providerMock.sendEmail.mock.calls[0][0]
       expect(result.to).toEqual(['speaker1@example.com', 'speaker2@example.com'])
     })
 
@@ -63,7 +77,7 @@ describe('Email services', () => {
       await sendSubmitTalkEmailToSpeakers(event, proposal)
 
       // then
-      const result = sendEmailMock.mock.calls[0][0]
+      const result = providerMock.sendEmail.mock.calls[0][0]
       expect(result.html).toContain('The speaker survey')
     })
   })
@@ -78,7 +92,7 @@ describe('Email services', () => {
       await sendSubmitTalkEmailToOrganizers(event, proposal)
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+      expect(providerMock.sendEmail).toHaveBeenCalledTimes(0)
     })
 
     it('should not send email if notification not activated', async () => {
@@ -94,7 +108,7 @@ describe('Email services', () => {
       await sendSubmitTalkEmailToOrganizers(event, proposal)
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+      expect(providerMock.sendEmail).toHaveBeenCalledTimes(0)
     })
 
     it('should call sendEmail to event contact email', async () => {
@@ -110,7 +124,7 @@ describe('Email services', () => {
       await sendSubmitTalkEmailToOrganizers(event, proposal)
 
       // then
-      const result = sendEmailMock.mock.calls[0][0]
+      const result = providerMock.sendEmail.mock.calls[0][0]
       expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
       expect(result.to).toEqual(['contact@example.com'])
       expect(result.subject).toEqual('[event1] Talk received')
@@ -147,8 +161,8 @@ describe('Email services', () => {
       await sendProposalsDeliberationEmails(user1.id, event, { status: 'ACCEPTED' })
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(1)
-      const result = sendEmailMock.mock.calls[0][0]
+      expect(providerMock.sendCustomEmail).toHaveBeenCalledTimes(1)
+      const result = providerMock.sendCustomEmail.mock.calls[0][0]
       expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
       expect(result.to).toEqual([user1.email, user2.email])
       expect(result.bcc).toEqual([])
@@ -156,7 +170,9 @@ describe('Email services', () => {
         `[event1] [Action required] Talk accepted! Please confirm your presence`,
       )
       expect(result.html).toContain('Your talk has been accepted')
-      expect(result['recipient-variables']).toEqual({
+
+      const variables = providerMock.sendCustomEmail.mock.calls[0][2]
+      expect(variables).toEqual({
         [user1.email || '']: {
           speakerName: user1.name,
           proposalId: proposal1.id,
@@ -187,8 +203,8 @@ describe('Email services', () => {
       await sendProposalsDeliberationEmails(user.id, eventWithCopy, { status: 'ACCEPTED' })
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(1)
-      const result = sendEmailMock.mock.calls[0][0]
+      expect(providerMock.sendCustomEmail).toHaveBeenCalledTimes(1)
+      const result = providerMock.sendCustomEmail.mock.calls[0][0]
       expect(result.bcc).toEqual([eventWithCopy.emailOrganizer])
     })
 
@@ -197,14 +213,16 @@ describe('Email services', () => {
       await sendProposalsDeliberationEmails(user1.id, event, { status: 'REJECTED' })
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(1)
-      const result = sendEmailMock.mock.calls[0][0]
+      expect(providerMock.sendCustomEmail).toHaveBeenCalledTimes(1)
+      const result = providerMock.sendCustomEmail.mock.calls[0][0]
       expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
       expect(result.to).toEqual([user1.email])
       expect(result.bcc).toEqual([])
       expect(result.subject).toEqual('[event1] Talk declined')
       expect(result.html).toContain('Your talk has been declined')
-      expect(result['recipient-variables']).toEqual({
+
+      const variables = providerMock.sendCustomEmail.mock.calls[0][2]
+      expect(variables).toEqual({
         [user1.email || '']: {
           speakerName: user1.name,
           proposalId: proposal3.id,
@@ -229,8 +247,8 @@ describe('Email services', () => {
       await sendProposalsDeliberationEmails(user.id, eventWithCopy, { status: 'REJECTED' })
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(1)
-      const result = sendEmailMock.mock.calls[0][0]
+      expect(providerMock.sendCustomEmail).toHaveBeenCalledTimes(1)
+      const result = providerMock.sendCustomEmail.mock.calls[0][0]
       expect(result.bcc).toEqual([eventWithCopy.emailOrganizer])
     })
 
@@ -239,13 +257,13 @@ describe('Email services', () => {
       await sendProposalsDeliberationEmails(user1.id, event, {})
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(2)
+      expect(providerMock.sendCustomEmail).toHaveBeenCalledTimes(2)
 
-      const acceptedCall = sendEmailMock.mock.calls[0][0]
+      const acceptedCall = providerMock.sendCustomEmail.mock.calls[0][0]
       expect(acceptedCall.to).toEqual([user1.email, user2.email])
       expect(acceptedCall.html).toContain('Your talk has been accepted')
 
-      const rejectedCall = sendEmailMock.mock.calls[1][0]
+      const rejectedCall = providerMock.sendCustomEmail.mock.calls[1][0]
       expect(rejectedCall.to).toEqual([user1.email])
       expect(rejectedCall.html).toContain('Your talk has been declined')
     })
@@ -261,7 +279,7 @@ describe('Email services', () => {
       await sendConfirmTalkEmailToOrganizers(event, proposal)
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+      expect(providerMock.sendEmail).toHaveBeenCalledTimes(0)
     })
 
     it('should not send email if notification not activated', async () => {
@@ -277,7 +295,7 @@ describe('Email services', () => {
       await sendConfirmTalkEmailToOrganizers(event, proposal)
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+      expect(providerMock.sendEmail).toHaveBeenCalledTimes(0)
     })
 
     it('should call sendEmail to event contact email', async () => {
@@ -293,7 +311,7 @@ describe('Email services', () => {
       await sendConfirmTalkEmailToOrganizers(event, proposal)
 
       // then
-      const result = sendEmailMock.mock.calls[0][0]
+      const result = providerMock.sendEmail.mock.calls[0][0]
       expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
       expect(result.to).toEqual(['contact@example.com'])
       expect(result.subject).toEqual('[event1] Talk confirmed by speaker')
@@ -311,7 +329,7 @@ describe('Email services', () => {
       await sendDeclineTalkEmailToOrganizers(event, proposal)
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+      expect(providerMock.sendEmail).toHaveBeenCalledTimes(0)
     })
 
     it('should not send email if notification not activated', async () => {
@@ -327,7 +345,7 @@ describe('Email services', () => {
       await sendDeclineTalkEmailToOrganizers(event, proposal)
 
       // then
-      expect(sendEmailMock).toHaveBeenCalledTimes(0)
+      expect(providerMock.sendEmail).toHaveBeenCalledTimes(0)
     })
 
     it('should call sendEmail to event contact email', async () => {
@@ -343,7 +361,7 @@ describe('Email services', () => {
       await sendDeclineTalkEmailToOrganizers(event, proposal)
 
       // then
-      const result = sendEmailMock.mock.calls[0][0]
+      const result = providerMock.sendEmail.mock.calls[0][0]
       expect(result.from).toEqual('event1 <no-reply@conference-hall.io>')
       expect(result.to).toEqual(['contact@example.com'])
       expect(result.subject).toEqual('[event1] Talk declined by speaker')

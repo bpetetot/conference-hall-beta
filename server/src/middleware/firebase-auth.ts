@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-if (config.ENV === 'production') {
+if (config.isProduction) {
   admin.initializeApp({
     credential: admin.credential.cert({
       projectId: config.FIREBASE_PROJECT_ID,

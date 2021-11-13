@@ -10,7 +10,7 @@ export async function disconnect() {
 }
 
 export async function resetTestDatabase() {
-  if (config.ENV === 'test') {
+  if (config.isTest) {
     await prisma.betaKey.deleteMany()
     await prisma.invite.deleteMany()
     await prisma.survey.deleteMany()

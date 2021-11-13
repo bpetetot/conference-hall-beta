@@ -19,5 +19,11 @@ services:
       - "4000:4000"
     volumes:
       - ./firebase:/app
-      - ./firebase/.cache:/app/.cache/firebase/emulators/ 
+      - ./firebase/.cache:/app/.cache/firebase/emulators/
+  mailhog:
+    image: mailhog/mailhog:latest
+    restart: always
+    ports:
+      - 1025:1025
+      - 8025:8025
 

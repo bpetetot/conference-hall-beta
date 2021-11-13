@@ -26,7 +26,8 @@
     "helmet": "^4.6.0",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
-    "node-fetch": "^2.6.6"
+    "node-fetch": "^2.6.6",
+    "nodemailer": "^6.7.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -37,6 +38,7 @@
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.11.7",
     "@types/node-fetch": "^2.5.12",
+    "@types/nodemailer": "^6.4.4",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",

@@ -1,5 +1,5 @@
 import { Prisma, Event, Proposal, ProposalStatus, User } from '@prisma/client'
-import { isEmailServiceEnabled, sendEmail } from './mailgun'
+import { getEmailProvider } from './providers/email'
 import * as proposalsRepository from '../db/proposals.repository'
 import {
   proposalBatchAccepted,
@@ -10,13 +10,20 @@ import {
   proposalSubmitted,
 } from './templates'
 
-type BatchRecipients = {
+type RecipentsTalkVariables = {
   [key: string]: {
     speakerName: string
     talkTitle: string
     talkId: string
     proposalId: string
   }
+}
+
+export const provider = getEmailProvider()
+
+const MAILGUN_DELIBERATION_VARS = {
+  'v:type': 'deliberation_email',
+  'v:proposalId': '%recipient.proposalId%',
 }
 
 function hasEmailNotification(event: Event, notification: string) {
@@ -30,9 +37,12 @@ export async function sendSubmitTalkEmailToSpeakers(
   event: Event,
   proposal: Proposal & { speakers: User[] },
 ) {
-  return sendEmail({
+  const emails = proposal.speakers.map((s) => s.email).filter((e): e is string => !!e)
+  if (emails.length === 0) return
+
+  return provider.sendEmail({
     from: `${event.name} <no-reply@conference-hall.io>`,
-    to: proposal.speakers.map((s) => s.email),
+    to: emails,
     subject: `[${event.name}] Talk submitted`,
     html: proposalSubmitted(event, proposal),
   })
@@ -42,8 +52,9 @@ export async function sendSubmitTalkEmailToOrganizers(
   event: Event,
   proposal: Proposal & { speakers: User[] },
 ) {
-  if (!hasEmailNotification(event, 'submitted')) return
-  return sendEmail({
+  if (!hasEmailNotification(event, 'submitted') || !event.emailOrganizer) return
+
+  return provider.sendEmail({
     from: `${event.name} <no-reply@conference-hall.io>`,
     to: [event.emailOrganizer],
     subject: `[${event.name}] Talk received`,
@@ -51,40 +62,42 @@ export async function sendSubmitTalkEmailToOrganizers(
   })
 }
 
-async function sendBatchAcceptedEmails(event: Event, recipients: BatchRecipients) {
+async function sendBatchAcceptedEmails(event: Event, recipients: RecipentsTalkVariables) {
   const emails = Object.keys(recipients)
   if (emails.length === 0) return
-  const bcc = hasEmailNotification(event, 'accepted') ? [event.emailOrganizer] : []
-  return sendEmail({
-    from: `${event.name} <no-reply@conference-hall.io>`,
-    to: emails,
-    bcc,
-    subject: `[${event.name}] [Action required] Talk accepted! Please confirm your presence`,
-    html: proposalBatchAccepted(event),
-    'recipient-variables': recipients,
-    'mailgun-variables': {
-      'v:type': 'deliberation_email',
-      'v:proposalId': '%recipient.proposalId%',
+  const bcc =
+    hasEmailNotification(event, 'accepted') && event.emailOrganizer ? [event.emailOrganizer] : []
+
+  return provider.sendCustomEmail(
+    {
+      from: `${event.name} <no-reply@conference-hall.io>`,
+      to: emails,
+      bcc,
+      subject: `[${event.name}] [Action required] Talk accepted! Please confirm your presence`,
+      html: proposalBatchAccepted(event),
     },
-  })
+    MAILGUN_DELIBERATION_VARS,
+    recipients,
+  )
 }
 
-async function sendBatchRejectedEmails(event: Event, recipients: BatchRecipients) {
+async function sendBatchRejectedEmails(event: Event, recipients: RecipentsTalkVariables) {
   const emails = Object.keys(recipients)
   if (emails.length === 0) return
-  const bcc = hasEmailNotification(event, 'rejected') ? [event.emailOrganizer] : []
-  return sendEmail({
-    from: `${event.name} <no-reply@conference-hall.io>`,
-    to: emails,
-    bcc,
-    subject: `[${event.name}] Talk declined`,
-    html: proposalBatchRejected(event),
-    'recipient-variables': recipients,
-    'mailgun-variables': {
-      'v:type': 'deliberation_email',
-      'v:proposalId': '%recipient.proposalId%',
+  const bcc =
+    hasEmailNotification(event, 'rejected') && event.emailOrganizer ? [event.emailOrganizer] : []
+
+  return provider.sendCustomEmail(
+    {
+      from: `${event.name} <no-reply@conference-hall.io>`,
+      to: emails,
+      bcc,
+      subject: `[${event.name}] Talk declined`,
+      html: proposalBatchRejected(event),
     },
-  })
+    MAILGUN_DELIBERATION_VARS,
+    recipients,
+  )
 }
 
 export async function sendProposalsDeliberationEmails(
@@ -92,17 +105,15 @@ export async function sendProposalsDeliberationEmails(
   event: Event,
   filters: proposalsRepository.ProposalsFilters,
 ) {
-  if (!isEmailServiceEnabled()) return
-
   const proposalsStream = proposalsRepository.streamEventProposals(userId, event.id, filters, {
     batchSize: 20,
   })
 
-  let acceptedRecipents: BatchRecipients = {}
-  let rejectedRecipents: BatchRecipients = {}
+  let acceptedRecipents: RecipentsTalkVariables = {}
+  let rejectedRecipents: RecipentsTalkVariables = {}
 
   for await (const proposal of proposalsStream) {
-    const speakers: BatchRecipients = {}
+    const speakers: RecipentsTalkVariables = {}
     for (const speaker of proposal.speakers) {
       if (speaker.email) {
         speakers[speaker.email] = {
@@ -126,8 +137,9 @@ export async function sendProposalsDeliberationEmails(
 }
 
 export async function sendConfirmTalkEmailToOrganizers(event: Event, proposal: Proposal) {
-  if (!hasEmailNotification(event, 'confirmed')) return
-  return sendEmail({
+  if (!hasEmailNotification(event, 'confirmed') || !event.emailOrganizer) return
+
+  return provider.sendEmail({
     from: `${event.name} <no-reply@conference-hall.io>`,
     to: [event.emailOrganizer],
     subject: `[${event.name}] Talk confirmed by speaker`,
@@ -136,8 +148,9 @@ export async function sendConfirmTalkEmailToOrganizers(event: Event, proposal: P
 }
 
 export async function sendDeclineTalkEmailToOrganizers(event: Event, proposal: Proposal) {
-  if (!hasEmailNotification(event, 'confirmed')) return
-  return sendEmail({
+  if (!hasEmailNotification(event, 'confirmed') || !event.emailOrganizer) return
+
+  return provider.sendEmail({
     from: `${event.name} <no-reply@conference-hall.io>`,
     to: [event.emailOrganizer],
     subject: `[${event.name}] Talk declined by speaker`,

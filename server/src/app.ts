@@ -15,7 +15,7 @@ import { errorHandler } from './middleware/error'
 
 const app = express()
 
-if (config.ENV !== 'test') {
+if (!config.isTest) {
   app.use(morgan('dev'))
 }
 
@@ -34,7 +34,7 @@ app.use('/api/organizer/organizations', organizerOrganizations)
 
 app.use(errorHandler)
 
-if (config.ENV === 'production') {
+if (config.isProduction) {
   const client = path.resolve(__dirname, '../../webapp/build')
   app.use(express.static(client))
   app.get('*', (req, res) => {

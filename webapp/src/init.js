@@ -20,8 +20,9 @@ if (!app) {
     connectAuthEmulator(auth, 'http://localhost:9099')
     connectStorageEmulator(storage, 'localhost', 9199)
 
-    console.info('Firebase emulators connected')
+    console.info('Conference Hall developer mode')
     console.info('- Auth emulator UI    : http://localhost:4000/auth')
     console.info('- Storage emulator UI : http://localhost:4000/storage')
+    console.info('- Email inbox UI      : http://localhost:8025')
   }
 }

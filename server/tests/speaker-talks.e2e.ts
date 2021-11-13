@@ -16,6 +16,7 @@ import {
 import { sendSubmittedTalkSlackMessage } from '../src/slack/slack.services'
 import { buildInvite } from './builder/invite'
 import { InviteType } from '.prisma/client'
+
 jest.mock('../src/slack/slack.services', () => ({ sendSubmittedTalkSlackMessage: jest.fn() }))
 const sendSubmittedTalkSlackMessageMock = <jest.Mock>sendSubmittedTalkSlackMessage
 
