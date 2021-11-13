@@ -3,5 +3,7 @@
     "webapp",
     "server",
   ],
-  "jestrunner.jestPath": "server/node_modules/.bin/jest"
+  "jest.autoRun": "off",
+  "jest.jestCommandLine": "echo 'No test'",
+  "jest.testExplorer": { "enabled": false },
 }

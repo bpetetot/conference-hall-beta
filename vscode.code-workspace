@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "conference-hall",
+			"path": "."
+		},
+		{
+			"name": "webapp",
+			"path": "webapp"
+		},
+		{
+			"name": "server",
+			"path": "server"
+		}
+	]
+}
