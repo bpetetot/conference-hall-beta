@@ -2,6 +2,7 @@ import express from 'express'
 import path from 'path'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import enforce from 'express-sslify'
 import config from './config'
 import api from './api/api.routes'
 import users from './users/users.routes'
@@ -18,6 +19,9 @@ const app = express()
 
 if (!config.isTest) {
   app.use(morgan('dev'))
+}
+if (config.isProduction) {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }))
 }
 
 app.use(helmet({ contentSecurityPolicy: false }))

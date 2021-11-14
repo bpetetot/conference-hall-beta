@@ -12,8 +12,8 @@
     "npm": "6.x"
   },
   "scripts": {
-    "build": "make",
     "start": "make start",
+    "install": "make",
     "changelog": "npx gitmoji-changelog@latest"
   }
 }

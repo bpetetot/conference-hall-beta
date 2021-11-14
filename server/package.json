@@ -6,20 +6,21 @@
   "scripts": {
     "dev": "npm run dev:migrate && npm run dev:exec",
     "dev:exec": "nodemon ./src/index.ts",
-    "dev:migrate": "dotenv -e .env.dev -- prisma migrate dev --preview-feature",
+    "dev:migrate": "dotenv -e .env.dev -- prisma migrate dev",
     "dev:studio": "dotenv -e .env.dev -- prisma studio",
     "test": "npm run test:migrate && npm run test:exec",
     "test:exec": "jest -i",
-    "test:migrate": "dotenv -e .env.test -- prisma migrate dev --preview-feature",
+    "test:migrate": "dotenv -e .env.test -- prisma migrate dev",
     "lint": "eslint ./src/* ./tests/* --ext .js,.ts",
     "prod:start": "node dist/index.js",
     "prod:build": "tsc -p tsconfig.prod.json",
-    "prod:migrate": "prisma migrate dev --preview-feature"
+    "prod:migrate": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^3.4.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-sslify": "^1.2.0",
     "express-validator": "^6.13.0",
     "firebase-admin": "^10.0.0",
     "form-data": "^4.0.0",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/express-sslify": "^1.2.2",
     "@types/faker": "^5.5.9",
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.176",
