@@ -1,9 +1,5 @@
 # Conference Hall
 
-[![circleci](https://circleci.com/gh/bpetetot/conference-hall.svg?style=shield)](https://circleci.com/gh/bpetetot/conference-hall)&nbsp;
-[![Gitter](https://badges.gitter.im/conference-hall.svg)](https://gitter.im/conference-hall)
-
-
 **Conference Hall** is an opened SaaS platform to manage call for papers and speaker submissions for your conferences and meetups. Any speaker writes a talk once and can submit it to every event of the platform.
 
 **Application:** **[https://conference-hall.io](https://conference-hall.io)**
