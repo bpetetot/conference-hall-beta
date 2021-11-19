@@ -17,7 +17,7 @@ CREATE TYPE "ProposalStatus" AS ENUM ('SUBMITTED', 'ACCEPTED', 'REJECTED', 'CONF
 CREATE TYPE "EmailStatus" AS ENUM ('SENT', 'DELIVERED');
 
 -- CreateEnum
-CREATE TYPE "RatingFeeling" AS ENUM ('LOVE', 'HATE', 'NEUTRAL', 'NO_OPINION');
+CREATE TYPE "RatingFeeling" AS ENUM ('POSITIVE', 'NEGATIVE', 'NEUTRAL', 'NO_OPINION');
 
 -- CreateEnum
 CREATE TYPE "MessageChannel" AS ENUM ('ORGANIZER', 'SPEAKER');
@@ -267,10 +267,16 @@ CREATE UNIQUE INDEX "users_uid_key" ON "users"("uid");
 CREATE UNIQUE INDEX "talks_uid_key" ON "talks"("uid");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "talks_invitationUuid_key" ON "talks"("invitationUuid");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "events_uid_key" ON "events"("uid");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "organizations_uid_key" ON "organizations"("uid");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "organizations_invitationUuid_key" ON "organizations"("invitationUuid");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "proposals_uid_key" ON "proposals"("uid");

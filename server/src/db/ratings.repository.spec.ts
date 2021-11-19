@@ -38,11 +38,11 @@ describe('Ratings repository', () => {
       // when
       const rating = await saveRating(user.id, proposal.id, {
         rating: 5,
-        feeling: RatingFeeling.LOVE,
+        feeling: RatingFeeling.POSITIVE,
       })
       //then
       expect(rating?.rating).toEqual(5)
-      expect(rating?.feeling).toEqual(RatingFeeling.LOVE)
+      expect(rating?.feeling).toEqual(RatingFeeling.POSITIVE)
     })
   })
 
@@ -74,7 +74,7 @@ describe('Ratings repository', () => {
       const event = await buildEvent(user)
       const talk = await buildTalk(user)
       const proposal = await buildProposal(event.id, talk)
-      await buildRating(user.id, proposal.id, 0, RatingFeeling.HATE)
+      await buildRating(user.id, proposal.id, 0, RatingFeeling.NEGATIVE)
       await buildRating(user2.id, proposal.id, 5, RatingFeeling.NEUTRAL)
       // when
       const result = await getAverageRatings(proposal.id)

@@ -7,13 +7,15 @@
   cursor: pointer;
 }
 
-.rating > span, .rating > i {
+.rating > span,
+.rating > i {
   cursor: pointer;
   padding: 0 0.5em;
   transition: all 0.5s;
 }
 
-.rating > span, .rating > button {
+.rating > span,
+.rating > button {
   cursor: pointer;
 }
 
@@ -29,11 +31,11 @@
   color: #ccc;
 }
 
-.rating-hate {
+.rating-negative {
   color: #000;
 }
 
-.rating-hate-disable {
+.rating-negative-disable {
   color: #ccc;
 }
 
@@ -41,7 +43,7 @@
   color: #ffc74c;
 }
 
-.rating-love {
+.rating-positive {
   color: #ed4842;
 }
 
@@ -50,7 +52,8 @@
     display: none;
   }
 
-  .rating > span, .rating > i {
+  .rating > span,
+  .rating > i {
     padding: 0 0.3em;
   }
 

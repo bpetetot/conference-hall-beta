@@ -48,6 +48,7 @@ const Proposal = ({ event }) => {
       <Actions className="proposal-actions" event={event} proposal={proposal} />
       <Ratings
         className="proposal-ratings"
+        event={event}
         proposal={proposal}
         nextProposal={next}
         previousProposal={previous}

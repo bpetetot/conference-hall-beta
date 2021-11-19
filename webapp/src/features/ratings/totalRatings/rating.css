@@ -26,13 +26,13 @@
   margin-top: 0.5em;
 }
 
-.rating-display-feelings .loves {
+.rating-display-feelings .positives {
   color: #ed4842;
   margin-left: 1em;
   margin-top: 0.5em;
 }
 
-.rating-display-feelings .hates {
+.rating-display-feelings .negatives {
   color: #000;
   margin-left: 1em;
   margin-top: 0.5em;

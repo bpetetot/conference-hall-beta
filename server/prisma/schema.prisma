@@ -54,7 +54,7 @@ model Talk {
   updatedAt      DateTime   @updatedAt
   speakers       User[]     @relation("speakers_talks")
   proposals      Proposal[]
-  invitationUuid String?
+  invitationUuid String?    @unique
   invitation     Invite?    @relation(fields: [invitationUuid], references: [uuid])
 
   @@map("talks")
@@ -158,7 +158,7 @@ model Organization {
   id             Int                  @id @default(autoincrement())
   uid            String               @unique @default(uuid())
   name           String
-  invitationUuid String?
+  invitationUuid String?              @unique
   invitation     Invite?              @relation(fields: [invitationUuid], references: [uuid])
   createdAt      DateTime             @default(now())
   updatedAt      DateTime             @updatedAt
@@ -260,8 +260,8 @@ model Rating {
 }
 
 enum RatingFeeling {
-  LOVE
-  HATE
+  POSITIVE
+  NEGATIVE
   NEUTRAL
   NO_OPINION
 }
@@ -287,15 +287,15 @@ enum MessageChannel {
 }
 
 model Invite {
-  uuid         String         @id @default(uuid())
+  uuid         String        @id @default(uuid())
   type         InviteType
   entityId     Int
   userId       Int
-  invitedBy    User           @relation(fields: [userId], references: [id])
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  organization Organization[]
-  talks        Talk[]
+  invitedBy    User          @relation(fields: [userId], references: [id])
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  organization Organization?
+  talk         Talk?
 
   @@unique([type, entityId])
   @@map("invites")

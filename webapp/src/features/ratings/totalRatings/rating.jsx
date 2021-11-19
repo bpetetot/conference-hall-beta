@@ -10,8 +10,8 @@ const Rating = ({ stats }) => (
     <div className="rating-display-rate">{displayRating(stats.average)}</div>
     <div className="rating-display-feelings">
       <IconLabel icon="fa fa-ban" label={stats.noopinion} right className="noopinion" />
-      <IconLabel icon="fa fa-circle" label={stats.hates} right className="hates" />
-      <IconLabel icon="fa fa-heart" label={stats.loves} right className="loves" />
+      <IconLabel icon="fa fa-circle" label={stats.negatives} right className="negatives" />
+      <IconLabel icon="fa fa-heart" label={stats.positives} right className="positives" />
       <IconLabel icon="fa fa-users" label={stats.count} right className="votes" />
     </div>
   </div>

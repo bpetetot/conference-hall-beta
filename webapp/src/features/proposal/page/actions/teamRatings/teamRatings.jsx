@@ -21,8 +21,8 @@ const UserRating = ({ userRating }) => {
           icon={cn('fa', {
             'fa-ban': feeling === 'NO_OPINION',
             'fa-star': feeling === 'NEUTRAL',
-            'fa-heart': feeling === 'LOVE',
-            'fa-circle': feeling === 'HATE',
+            'fa-heart': feeling === 'POSITIVE',
+            'fa-circle': feeling === 'NEGATIVE',
           })}
           label={String(displayRating(rating))}
           right

@@ -47,10 +47,10 @@ const Rating = ({ proposalId, defaultRating, defaultFeeling, onRating, className
         <i
           className={cn('fa fa-2x', {
             'fa-circle-thin': isNil(rating) || rating < 0,
-            'fa-circle rating-hate': feeling === 'HATE',
-            'fa-circle rating-hate-disable': rating > 0,
+            'fa-circle rating-negative': feeling === 'NEGATIVE',
+            'fa-circle rating-negative-disable': rating > 0,
           })}
-          onClick={handleClick(0, 'HATE')}
+          onClick={handleClick(0, 'NEGATIVE')}
           aria-label="No way vote"
           role="button"
         />
@@ -70,10 +70,10 @@ const Rating = ({ proposalId, defaultRating, defaultFeeling, onRating, className
       <Tooltip tooltip="I love it! (5)" placement="right">
         <i
           className={cn('fa fa-2x', {
-            'fa-heart-o': isNil(rating) || feeling !== 'LOVE',
-            'fa-heart rating-love': feeling === 'LOVE',
+            'fa-heart-o': isNil(rating) || feeling !== 'POSITIVE',
+            'fa-heart rating-positive': feeling === 'POSITIVE',
           })}
-          onClick={handleClick(5, 'LOVE')}
+          onClick={handleClick(5, 'POSITIVE')}
           aria-label="I love it vote"
           role="button"
         />

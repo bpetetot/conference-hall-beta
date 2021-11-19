@@ -18,10 +18,10 @@ describe('#averageRatings', () => {
   test('average of the number of ratings (excluding null ratings)', () => {
     // given
     const ratings = buildRatings([
-      { rating: 0, feeling: RatingFeeling.HATE },
+      { rating: 0, feeling: RatingFeeling.NEGATIVE },
       { rating: 4, feeling: RatingFeeling.NEUTRAL },
       { rating: null, feeling: RatingFeeling.NEUTRAL },
-      { rating: 5, feeling: RatingFeeling.LOVE },
+      { rating: 5, feeling: RatingFeeling.POSITIVE },
       { rating: null, feeling: RatingFeeling.NO_OPINION },
     ])
     // when
@@ -32,17 +32,17 @@ describe('#averageRatings', () => {
 })
 
 describe('#countFeelings', () => {
-  test('counts love feelings', () => {
+  test('counts positive feelings', () => {
     // given
     const ratings = buildRatings([
-      { rating: 0, feeling: RatingFeeling.HATE },
+      { rating: 0, feeling: RatingFeeling.NEGATIVE },
       { rating: 4, feeling: RatingFeeling.NEUTRAL },
-      { rating: 5, feeling: RatingFeeling.LOVE },
-      { rating: 5, feeling: RatingFeeling.LOVE },
+      { rating: 5, feeling: RatingFeeling.POSITIVE },
+      { rating: 5, feeling: RatingFeeling.POSITIVE },
       { rating: null, feeling: RatingFeeling.NO_OPINION },
     ])
     // when
-    const feelings = countFeelings(ratings, RatingFeeling.LOVE)
+    const feelings = countFeelings(ratings, RatingFeeling.POSITIVE)
     // then
     expect(feelings).toBe(2)
   })
@@ -61,15 +61,15 @@ describe('#checkRating', () => {
     // then
     expect(rating).toBeNull()
   })
-  test('return 5 if love feeling', () => {
+  test('return 5 if positive feeling', () => {
     // when
-    const rating = checkRating(RatingFeeling.LOVE)
+    const rating = checkRating(RatingFeeling.POSITIVE)
     // then
     expect(rating).toBe(5)
   })
-  test('return 0 if hate feeling', () => {
+  test('return 0 if negative feeling', () => {
     // when
-    const rating = checkRating(RatingFeeling.HATE)
+    const rating = checkRating(RatingFeeling.NEGATIVE)
     // then
     expect(rating).toBe(0)
   })

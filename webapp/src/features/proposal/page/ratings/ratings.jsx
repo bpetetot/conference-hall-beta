@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import isNil from 'lodash/isNil'
 
 import IconLabel from 'components/iconLabel'
@@ -11,25 +11,24 @@ import { useNotification } from 'app/layout/notification/context'
 import { useRateProposal } from 'data/proposal'
 import './ratings.css'
 
-const Ratings = ({ proposal, nextProposal, previousProposal, className }) => {
-  const { eventId } = useParams()
+const Ratings = ({ event, proposal, nextProposal, previousProposal, className }) => {
   const navigate = useNavigate()
   const { search } = useLocation()
   const { sendError } = useNotification()
 
   const { rating, feeling } = proposal.userRating
-  const { mutateAsync: rate } = useRateProposal(eventId, proposal.id)
+  const { mutateAsync: rate } = useRateProposal(event.id, proposal.id)
 
   const handleNext = () => {
     if (isNil(nextProposal)) return
     const params = new URLSearchParams(search)
-    navigate(`/organizer/event/${eventId}/proposals/${nextProposal}?${params.toString()}`)
+    navigate(`/organizer/event/${event.id}/proposals/${nextProposal}?${params.toString()}`)
   }
 
   const handlePrevious = () => {
     if (isNil(previousProposal)) return
     const params = new URLSearchParams(search)
-    navigate(`/organizer/event/${eventId}/proposals/${previousProposal}?${params.toString()}`)
+    navigate(`/organizer/event/${event.id}/proposals/${previousProposal}?${params.toString()}`)
   }
 
   const handleRating = async (data) => {
@@ -62,6 +61,7 @@ const Ratings = ({ proposal, nextProposal, previousProposal, className }) => {
 }
 
 Ratings.propTypes = {
+  event: PropTypes.object.isRequired,
   proposal: PropTypes.object.isRequired,
   nextProposal: PropTypes.number,
   previousProposal: PropTypes.number,

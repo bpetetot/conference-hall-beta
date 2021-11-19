@@ -13,9 +13,9 @@ export function countFeelings(ratings: Rating[], feeling: RatingFeeling) {
 export function checkRating(feeling?: RatingFeeling | null, rating?: number | null) {
   if (feeling === RatingFeeling.NO_OPINION) {
     return null
-  } else if (feeling === RatingFeeling.LOVE) {
+  } else if (feeling === RatingFeeling.POSITIVE) {
     return 5
-  } else if (feeling === RatingFeeling.HATE) {
+  } else if (feeling === RatingFeeling.NEGATIVE) {
     return 0
   } else if (feeling === RatingFeeling.NEUTRAL) {
     return min([max([rating, 1]), 5])

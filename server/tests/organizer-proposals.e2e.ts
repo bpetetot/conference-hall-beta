@@ -104,8 +104,8 @@ describe('/api/organizer/events/:id/proposals', () => {
           ratingStats: {
             average: 1,
             count: 1,
-            hates: 0,
-            loves: 0,
+            negatives: 0,
+            positives: 0,
             noopinion: 0,
           },
           userRating: {
@@ -346,8 +346,8 @@ describe('/api/organizer/events/:id/proposals', () => {
         ratingStats: {
           average: 1,
           count: 1,
-          hates: 0,
-          loves: 0,
+          negatives: 0,
+          positives: 0,
           noopinion: 0,
         },
         userRating: {
