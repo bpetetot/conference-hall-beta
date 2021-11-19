@@ -17,7 +17,7 @@ export async function buildEvent(user?: User | null, event?: Partial<Prisma.Even
     bannerUrl: faker.image.abstract(),
     type: 'CONFERENCE',
     visibility: 'PUBLIC',
-    ownerId: user.id,
+    creator: { connect: { id: user.id } },
     ...(event || {}),
   }
 

@@ -40,7 +40,7 @@ export async function findUserProposalsForEvent(eventId: number, userId: number)
   })
 }
 
-type ProposalCreateInput = Omit<Prisma.ProposalCreateInput, 'talk' | 'event'>
+type ProposalCreateInput = Omit<Prisma.ProposalCreateInput, 'event'>
 
 export async function createProposal(
   talkId: number,

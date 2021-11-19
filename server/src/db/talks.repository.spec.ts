@@ -81,7 +81,7 @@ describe('Talks repository', () => {
       })
       expect(result?.title).toEqual('title1')
       expect(result?.abstract).toEqual('abstract1')
-      expect(result?.ownerId).toEqual(user.id)
+      expect(result?.creatorId).toEqual(user.id)
       expect(result?.speakers[0].uid).toEqual(user.uid)
     })
   })

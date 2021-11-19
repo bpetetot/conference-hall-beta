@@ -58,7 +58,7 @@ CREATE TABLE "talks" (
     "level" "TalkLevel",
     "language" TEXT,
     "references" TEXT,
-    "ownerId" INTEGER NOT NULL,
+    "creatorId" INTEGER NOT NULL,
     "archived" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE "events" (
     "formatsRequired" BOOLEAN NOT NULL DEFAULT false,
     "categoriesRequired" BOOLEAN NOT NULL DEFAULT false,
     "maxProposals" INTEGER,
-    "ownerId" INTEGER NOT NULL,
+    "creatorId" INTEGER NOT NULL,
     "archived" BOOLEAN NOT NULL DEFAULT false,
     "deliberationEnabled" BOOLEAN NOT NULL DEFAULT false,
     "displayOrganizersRatings" BOOLEAN NOT NULL DEFAULT true,
@@ -321,10 +321,16 @@ CREATE UNIQUE INDEX "_proposals_categories_AB_unique" ON "_proposals_categories"
 CREATE INDEX "_proposals_categories_B_index" ON "_proposals_categories"("B");
 
 -- AddForeignKey
+ALTER TABLE "talks" ADD CONSTRAINT "talks_creatorId_fkey" FOREIGN KEY ("creatorId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "talks" ADD CONSTRAINT "talks_invitationUuid_fkey" FOREIGN KEY ("invitationUuid") REFERENCES "invites"("uuid") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "events" ADD CONSTRAINT "events_organizationId_fkey" FOREIGN KEY ("organizationId") REFERENCES "organizations"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "events" ADD CONSTRAINT "events_creatorId_fkey" FOREIGN KEY ("creatorId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "event_formats" ADD CONSTRAINT "event_formats_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "events"("id") ON DELETE SET NULL ON UPDATE CASCADE;

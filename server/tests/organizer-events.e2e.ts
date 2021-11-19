@@ -419,7 +419,7 @@ describe('/api/organizer/events', () => {
       expect(result?.description).toEqual('description1')
     })
 
-    test('should update the event if user the talk owner', async () => {
+    test('should update the event if the user is the talk owner', async () => {
       // given
       const { token, uid } = await getAuthUser('ben@example.net')
       const agent = await getAgent(token)

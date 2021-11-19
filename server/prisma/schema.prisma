@@ -29,8 +29,10 @@ model User {
   talks         Talk[]               @relation("speakers_talks")
   proposals     Proposal[]           @relation("speakers_proposals")
   organizations OrganizationMember[]
-  surveys       Survey[]
   ratings       Rating[]
+  surveys       Survey[]
+  createdTalks  Talk[]
+  createdEvents Event[]
   messages      Message[]
   invites       Invite[]
 
@@ -45,7 +47,8 @@ model Talk {
   level          TalkLevel?
   language       String?
   references     String?
-  ownerId        Int
+  creatorId      Int
+  creator        User       @relation(fields: [creatorId], references: [id])
   archived       Boolean    @default(false)
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
@@ -95,7 +98,8 @@ model Event {
   categories               EventCategory[]
   categoriesRequired       Boolean         @default(false)
   maxProposals             Int?
-  ownerId                  Int
+  creatorId                Int
+  creator                  User            @relation(fields: [creatorId], references: [id])
   archived                 Boolean         @default(false)
   deliberationEnabled      Boolean         @default(false)
   displayOrganizersRatings Boolean         @default(true)

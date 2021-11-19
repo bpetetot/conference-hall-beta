@@ -20,7 +20,7 @@ export async function buildTalk(
       TalkLevel.ADVANCED,
     ]),
     references: faker.lorem.paragraph(2),
-    ownerId: user.id,
+    creator: { connect: { id: user.id } },
     speakers: { connect: speakerIds },
     ...(talk || {}),
   }

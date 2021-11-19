@@ -23,7 +23,7 @@ export class SpeakerTalkDto {
     this.level = talk.level
     this.language = talk.language
     this.references = talk.references
-    this.ownerId = talk.ownerId
+    this.ownerId = talk.creatorId
     this.archived = talk.archived
     this.updatedAt = talk.updatedAt
     this.createdAt = talk.createdAt

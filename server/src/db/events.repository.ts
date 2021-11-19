@@ -18,7 +18,7 @@ export async function getOrganizerEventById(
     where: {
       id: eventId,
       OR: [
-        { ownerId: userId, organizationId: null },
+        { creatorId: userId, organizationId: null },
         { organization: { members: { some: { memberId: userId } } } },
       ],
     },
@@ -33,20 +33,20 @@ export async function findOrganizerEvents(userId: number) {
   return prisma.event.findMany({
     where: {
       OR: [
-        { ownerId: userId, organizationId: null },
+        { creatorId: userId, organizationId: null },
         { organization: { members: { some: { memberId: userId } } } },
       ],
     },
   })
 }
 
-type EventCreateInput = Omit<Prisma.EventCreateInput, 'ownerId'>
+type EventCreateInput = Omit<Prisma.EventCreateInput, 'creator'>
 
 export async function createEvent(userId: number, event: EventCreateInput) {
   return prisma.event.create({
     data: {
       ...event,
-      ownerId: userId,
+      creator: { connect: { id: userId } },
     },
   })
 }

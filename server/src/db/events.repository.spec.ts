@@ -144,7 +144,7 @@ describe('Events repository', () => {
       expect(result?.description).toEqual('description1')
       expect(result?.type).toEqual('CONFERENCE')
       expect(result?.visibility).toEqual('PUBLIC')
-      expect(result?.ownerId).toEqual(user.id)
+      expect(result?.creatorId).toEqual(user.id)
     })
   })
 

@@ -46,7 +46,7 @@ export class OrganizerEventDto {
     this.description = event.description
     this.type = event.type
     this.visibility = event.visibility
-    this.ownerId = event.ownerId
+    this.ownerId = event.creatorId // TODO change to creatorId
     this.address = event.address
     this.timezone = event.timezone
     this.archived = event.archived

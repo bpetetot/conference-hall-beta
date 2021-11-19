@@ -32,13 +32,13 @@ export async function findUserTalks(uid: string) {
   })
 }
 
-type TalkCreateInput = Omit<Prisma.TalkCreateInput, 'ownerId'>
+type TalkCreateInput = Omit<Prisma.TalkCreateInput, 'creator'>
 
 export async function createTalk(userId: number, talk: TalkCreateInput) {
   return prisma.talk.create({
     data: {
       ...talk,
-      ownerId: userId,
+      creator: { connect: { id: userId } },
       speakers: { connect: [{ id: userId }] },
     },
     include: { speakers: true },
