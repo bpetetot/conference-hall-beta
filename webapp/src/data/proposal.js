@@ -106,8 +106,6 @@ export function useOrganizerProposal(eventId, proposalId) {
 }
 
 async function updateProposal(eventId, proposalId, data) {
-  const format = parseInt(data.format, 10)
-  const category = parseInt(data.category, 10)
   return fetchData({
     method: 'PATCH',
     url: `/api/organizer/events/${eventId}/proposals/${proposalId}`,
@@ -117,8 +115,8 @@ async function updateProposal(eventId, proposalId, data) {
       abstract: data.abstract,
       level: data.level,
       language: data.language,
-      formats: [format],
-      categories: [category],
+      formats: data.format ? [parseInt(data.format, 10)] : null,
+      categories: data.category ? [parseInt(data.category, 10)] : null,
     },
   })
 }
