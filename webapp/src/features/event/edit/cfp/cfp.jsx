@@ -48,7 +48,12 @@ const CFPForm = ({ event }) => {
   )
 
   const onUpdateCfp = (data) => {
-    return updateCfp(data).catch((error) => {
+    const saved = { ...data }
+    if (event.type === 'MEETUP') {
+      const start = data.cfpOpened ? new Date() : null
+      saved.cfpDates = { start, end: null }
+    }
+    return updateCfp(saved).catch((error) => {
       sendError(`An unexpected error has occurred: ${error.message}`)
     })
   }
