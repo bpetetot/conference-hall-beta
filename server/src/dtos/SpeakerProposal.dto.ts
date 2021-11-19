@@ -4,7 +4,7 @@ import { FormatDto } from './Format.dto'
 
 export class SpeakerProposalDto {
   eventId: number
-  talkId: number
+  talkId: number | null
   status: string
   title: string
   abstract: string

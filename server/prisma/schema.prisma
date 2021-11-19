@@ -3,13 +3,13 @@ generator client {
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
   id            Int                  @id @default(autoincrement())
-  uid           String               @unique
+  uid           String               @unique @default(uuid())
   email         String?
   name          String?
   bio           String?
@@ -39,6 +39,7 @@ model User {
 
 model Talk {
   id             Int        @id @default(autoincrement())
+  uid            String     @unique @default(uuid())
   title          String
   abstract       String
   level          TalkLevel?
@@ -71,6 +72,7 @@ model BetaKey {
 
 model Event {
   id                       Int             @id @default(autoincrement())
+  uid                      String          @unique @default(uuid())
   name                     String
   description              String
   type                     EventType       @default(CONFERENCE)
@@ -81,7 +83,6 @@ model Event {
   lat                      Float?
   lng                      Float?
   timezone                 String?
-  remote                   Boolean         @default(false)
   contact                  String?
   website                  String?
   bannerUrl                String?
@@ -117,6 +118,7 @@ model Event {
 
 model EventFormat {
   id          Int        @id @default(autoincrement())
+  uid         String     @default(uuid())
   name        String
   description String?
   event       Event?     @relation(fields: [eventId], references: [id])
@@ -128,6 +130,7 @@ model EventFormat {
 
 model EventCategory {
   id          Int        @id @default(autoincrement())
+  uid         String     @default(uuid())
   name        String
   description String?
   event       Event?     @relation(fields: [eventId], references: [id])
@@ -149,6 +152,7 @@ enum EventVisibility {
 
 model Organization {
   id             Int                  @id @default(autoincrement())
+  uid            String               @unique @default(uuid())
   name           String
   invitationUuid String?
   invitation     Invite?              @relation(fields: [invitationUuid], references: [uuid])
@@ -180,8 +184,9 @@ enum OrganizationRole {
 
 model Proposal {
   id              Int             @id @default(autoincrement())
-  talkId          Int
-  talk            Talk            @relation(fields: [talkId], references: [id])
+  uid             String          @unique @default(uuid())
+  talkId          Int?
+  talk            Talk?           @relation(fields: [talkId], references: [id])
   eventId         Int
   event           Event           @relation(fields: [eventId], references: [id])
   title           String
@@ -221,6 +226,7 @@ enum EmailStatus {
 
 model Survey {
   id        Int      @id @default(autoincrement())
+  uid       String   @unique @default(uuid())
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
   eventId   Int
@@ -235,6 +241,7 @@ model Survey {
 
 model Rating {
   id         Int           @id @default(autoincrement())
+  uid        String        @unique @default(uuid())
   userId     Int
   user       User          @relation(fields: [userId], references: [id])
   proposalId Int
@@ -257,6 +264,7 @@ enum RatingFeeling {
 
 model Message {
   id         Int            @id @default(autoincrement())
+  uid        String         @unique @default(uuid())
   userId     Int
   user       User           @relation(fields: [userId], references: [id])
   proposalId Int

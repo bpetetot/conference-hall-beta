@@ -52,6 +52,7 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "talks" (
     "id" SERIAL NOT NULL,
+    "uid" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "abstract" TEXT NOT NULL,
     "level" "TalkLevel",
@@ -77,6 +78,7 @@ CREATE TABLE "beta_keys" (
 -- CreateTable
 CREATE TABLE "events" (
     "id" SERIAL NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "type" "EventType" NOT NULL DEFAULT E'CONFERENCE',
@@ -86,7 +88,6 @@ CREATE TABLE "events" (
     "lat" DOUBLE PRECISION,
     "lng" DOUBLE PRECISION,
     "timezone" TEXT,
-    "remote" BOOLEAN NOT NULL DEFAULT false,
     "contact" TEXT,
     "website" TEXT,
     "bannerUrl" TEXT,
@@ -119,6 +120,7 @@ CREATE TABLE "events" (
 -- CreateTable
 CREATE TABLE "event_formats" (
     "id" SERIAL NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
     "eventId" INTEGER,
@@ -129,6 +131,7 @@ CREATE TABLE "event_formats" (
 -- CreateTable
 CREATE TABLE "event_categories" (
     "id" SERIAL NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT,
     "eventId" INTEGER,
@@ -139,6 +142,7 @@ CREATE TABLE "event_categories" (
 -- CreateTable
 CREATE TABLE "organizations" (
     "id" SERIAL NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "invitationUuid" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -160,7 +164,8 @@ CREATE TABLE "organizations_members" (
 -- CreateTable
 CREATE TABLE "proposals" (
     "id" SERIAL NOT NULL,
-    "talkId" INTEGER NOT NULL,
+    "uid" TEXT NOT NULL,
+    "talkId" INTEGER,
     "eventId" INTEGER NOT NULL,
     "title" TEXT NOT NULL,
     "abstract" TEXT NOT NULL,
@@ -181,6 +186,7 @@ CREATE TABLE "proposals" (
 -- CreateTable
 CREATE TABLE "surveys" (
     "id" SERIAL NOT NULL,
+    "uid" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
     "eventId" INTEGER NOT NULL,
     "answers" JSONB NOT NULL,
@@ -193,6 +199,7 @@ CREATE TABLE "surveys" (
 -- CreateTable
 CREATE TABLE "ratings" (
     "id" SERIAL NOT NULL,
+    "uid" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
     "proposalId" INTEGER NOT NULL,
     "feeling" "RatingFeeling" NOT NULL DEFAULT E'NEUTRAL',
@@ -206,6 +213,7 @@ CREATE TABLE "ratings" (
 -- CreateTable
 CREATE TABLE "messages" (
     "id" SERIAL NOT NULL,
+    "uid" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
     "proposalId" INTEGER NOT NULL,
     "message" TEXT NOT NULL,
@@ -256,13 +264,34 @@ CREATE TABLE "_proposals_categories" (
 CREATE UNIQUE INDEX "users_uid_key" ON "users"("uid");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "talks_uid_key" ON "talks"("uid");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "events_uid_key" ON "events"("uid");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "organizations_uid_key" ON "organizations"("uid");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "proposals_uid_key" ON "proposals"("uid");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "proposals_talkId_eventId_key" ON "proposals"("talkId", "eventId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "surveys_uid_key" ON "surveys"("uid");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "surveys_userId_eventId_key" ON "surveys"("userId", "eventId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "ratings_uid_key" ON "ratings"("uid");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "ratings_userId_proposalId_key" ON "ratings"("userId", "proposalId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "messages_uid_key" ON "messages"("uid");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "invites_type_entityId_key" ON "invites"("type", "entityId");
@@ -313,7 +342,7 @@ ALTER TABLE "organizations_members" ADD CONSTRAINT "organizations_members_member
 ALTER TABLE "organizations_members" ADD CONSTRAINT "organizations_members_organizationId_fkey" FOREIGN KEY ("organizationId") REFERENCES "organizations"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "proposals" ADD CONSTRAINT "proposals_talkId_fkey" FOREIGN KEY ("talkId") REFERENCES "talks"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "proposals" ADD CONSTRAINT "proposals_talkId_fkey" FOREIGN KEY ("talkId") REFERENCES "talks"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "proposals" ADD CONSTRAINT "proposals_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "events"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

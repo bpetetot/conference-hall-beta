@@ -4,6 +4,7 @@ import { averageRatings, countFeelings, checkRating } from './ratings'
 function buildRatings(ratings: { rating: number | null; feeling: RatingFeeling }[]): Rating[] {
   return ratings.map(({ rating, feeling }) => ({
     id: 1,
+    uid: '1',
     userId: 1,
     proposalId: 1,
     rating,
