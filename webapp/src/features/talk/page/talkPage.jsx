@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import isEmpty from 'lodash/isEmpty'
 
 import Titlebar from 'components/titlebar'
 import IconLabel from 'components/iconLabel'
@@ -43,7 +42,7 @@ const TalkPage = () => {
   return (
     <div>
       <Titlebar icon="fa fa-microphone" title={talk.title}>
-        {isEmpty(talk.proposals) && <DeleteTalkButton talkId={talk.id} talkTitle={talk.title} />}
+        {<DeleteTalkButton talkId={talk.id} talkTitle={talk.title} />}
         {!talk.archived && (
           <Button secondary onClick={toggleArchive}>
             <IconLabel icon="fa fa-archive" label="Archive" />
