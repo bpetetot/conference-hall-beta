@@ -7,7 +7,7 @@ export class SpeakerTalkDto {
   title: string
   abstract: string
   level?: string | null
-  language?: string | null
+  languages?: string[] | null
   references?: string | null
   ownerId: number
   archived: boolean
@@ -21,7 +21,7 @@ export class SpeakerTalkDto {
     this.title = talk.title
     this.abstract = talk.abstract
     this.level = talk.level
-    this.language = talk.language
+    this.languages = talk.languages as string[] | null
     this.references = talk.references
     this.ownerId = talk.creatorId
     this.archived = talk.archived

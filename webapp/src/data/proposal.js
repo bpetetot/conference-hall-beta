@@ -114,7 +114,7 @@ async function updateProposal(eventId, proposalId, data) {
       title: data.title,
       abstract: data.abstract,
       level: data.level,
-      language: data.language,
+      languages: data.language ? [data.language] : undefined,
       formats: data.format ? [parseInt(data.format, 10)] : null,
       categories: data.category ? [parseInt(data.category, 10)] : null,
     },

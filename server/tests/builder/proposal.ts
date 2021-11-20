@@ -11,7 +11,7 @@ export async function buildProposal(
     title: proposal?.title || talk.title,
     abstract: proposal?.abstract || talk.abstract,
     level: proposal?.level || talk.level,
-    language: proposal?.language || talk.language,
+    languages: proposal?.languages || talk.languages || undefined,
     references: proposal?.references || talk.references,
     comments: faker.lorem.paragraph(1),
     event: { connect: { id: eventId } },

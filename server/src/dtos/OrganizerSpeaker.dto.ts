@@ -5,7 +5,6 @@ export class OrganizerSpeakerDto {
   name: string | null
   photoURL: string | null
   email: string | null
-  language: string | null
   address: string | null
   twitter: string | null
   github: string | null
@@ -18,7 +17,6 @@ export class OrganizerSpeakerDto {
     this.name = speaker.name
     this.photoURL = speaker.photoURL
     this.email = speaker.email
-    this.language = speaker.language
     this.address = speaker.address
     this.twitter = speaker.twitter
     this.github = speaker.github

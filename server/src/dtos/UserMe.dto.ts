@@ -11,7 +11,6 @@ export class UserMeDto {
   betaAccess?: string | null
   github?: string | null
   company?: string | null
-  language?: string | null
   references?: string | null
   twitter?: string | null
   address?: string | null
@@ -34,7 +33,6 @@ export class UserMeDto {
     this.betaAccess = user.betaAccess
     this.github = user.github
     this.company = user.company
-    this.language = user.language
     this.references = user.references
     this.twitter = user.twitter
     this.address = user.address

@@ -27,7 +27,6 @@ const Profile = () => {
       name: user.name,
       company: user.company,
       photoURL: user.photoURL,
-      language: user.language,
       twitter: user.twitter,
       github: user.github,
       bio: user.bio,
@@ -96,7 +95,6 @@ const Profile = () => {
               inline
             />
             <Field name="company" label="Company" type="text" component={input} inline />
-            <Field name="language" label="Spoken language" type="text" component={input} inline />
             <Field
               name="twitter"
               label="Twitter"

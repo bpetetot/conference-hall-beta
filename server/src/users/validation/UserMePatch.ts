@@ -10,7 +10,6 @@ export const UserMePatch = [
   body('betaAccess').trim().optional(falsy).isString(),
   body('github').trim().optional(falsy).isString(),
   body('company').trim().optional(falsy).isString(),
-  body('language').trim().optional(falsy).isString(),
   body('references').trim().optional(falsy).isString(),
   body('twitter').trim().optional(falsy).isString(),
   body('address').trim().optional(falsy).isString(),

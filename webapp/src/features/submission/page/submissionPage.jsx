@@ -58,7 +58,7 @@ const SubmissionPage = ({ event }) => {
           className={styles.content}
           abstract={proposal.abstract}
           references={proposal.references}
-          language={proposal.language}
+          languages={proposal.languages}
           level={proposal.level}
         />
         <div className={styles.info}>

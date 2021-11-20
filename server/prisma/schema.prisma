@@ -17,7 +17,6 @@ model User {
   betaAccess    String?
   github        String?
   company       String?
-  language      String?
   references    String?
   twitter       String?
   address       String?
@@ -45,7 +44,7 @@ model Talk {
   title          String
   abstract       String
   level          TalkLevel?
-  language       String?
+  languages      Json?
   references     String?
   creatorId      Int
   creator        User       @relation(fields: [creatorId], references: [id])
@@ -196,7 +195,7 @@ model Proposal {
   title           String
   abstract        String
   level           TalkLevel?
-  language        String?
+  languages       Json?
   references      String?
   comments        String?
   speakers        User[]          @relation("speakers_proposals")

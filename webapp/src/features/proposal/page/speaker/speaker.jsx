@@ -15,8 +15,7 @@ function getTwitterUrl(twitter) {
 }
 
 const Speaker = ({ speaker }) => {
-  const { photoURL, name, bio, email, company, address, language, github, twitter, references } =
-    speaker
+  const { photoURL, name, bio, email, company, address, github, twitter, references } = speaker
 
   return (
     <div>
@@ -27,7 +26,6 @@ const Speaker = ({ speaker }) => {
         <IconLink icon="fa fa-twitter" label={twitter} href={getTwitterUrl(twitter)} />
         <IconLabel icon="fa fa-building-o" label={company} />
         <IconLabel icon="fa fa-map-marker" label={address} />
-        <IconLabel icon="fa fa-language" label={language} />
       </div>
       {bio && <Markdown source={bio} className={styles.bio} />}
       {references && (

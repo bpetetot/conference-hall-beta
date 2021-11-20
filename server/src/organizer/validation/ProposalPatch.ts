@@ -2,6 +2,13 @@ import { body, param } from 'express-validator'
 
 const falsy = { checkFalsy: true }
 
+function isArrayOfString(value: Array<string>) {
+  if (!value.every((val) => typeof val === 'string')) {
+    throw new Error('Not an array of string')
+  }
+  return true
+}
+
 function isArrayOfInt(value: Array<string | number>) {
   if (!value.every(Number.isInteger)) {
     throw new Error('Not an array of integer')
@@ -15,8 +22,8 @@ export const ProposalPatch = [
   body('title').trim().optional(falsy).isString(),
   body('abstract').trim().optional(falsy).isString(),
   body('level').trim().optional(falsy).isString(),
-  body('language').trim().optional(falsy).isString(),
   body('status').trim().optional(falsy).isIn(['SUBMITTED', 'ACCEPTED', 'REJECTED']),
+  body('languages').isArray().custom(isArrayOfString).optional(falsy),
   body('formats').isArray().custom(isArrayOfInt).optional(falsy),
   body('categories').isArray().custom(isArrayOfInt).optional(falsy),
 ]

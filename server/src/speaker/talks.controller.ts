@@ -172,7 +172,7 @@ export async function submitTalk(req: Request) {
       title: talk.title,
       abstract: talk.abstract,
       level: talk.level,
-      language: talk.language,
+      languages: talk.languages || undefined,
       references: talk.references,
       comments: req.body.comments,
       speakers: {
@@ -195,7 +195,7 @@ export async function submitTalk(req: Request) {
       title: talk.title,
       abstract: talk.abstract,
       level: talk.level,
-      language: talk.language,
+      languages: talk.languages || undefined,
       references: talk.references,
       comments: req.body.comments,
       speakers: {

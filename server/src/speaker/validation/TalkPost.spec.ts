@@ -9,7 +9,7 @@ describe('validation | TalkPost', () => {
         title: 'title',
         abstract: 'abstract',
         level: 'level',
-        language: 'language',
+        languages: ['language'],
         references: 'references',
       },
     }

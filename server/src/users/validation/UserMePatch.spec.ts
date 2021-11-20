@@ -13,7 +13,6 @@ describe('validation | UserMePatch', () => {
         betaAccess: 'betaAccess',
         github: 'github',
         company: 'company',
-        language: 'language',
         references: 'references',
         twitter: 'twitter',
         address: 'address',

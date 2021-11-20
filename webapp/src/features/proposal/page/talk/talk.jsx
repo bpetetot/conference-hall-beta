@@ -30,7 +30,7 @@ const Talk = ({ proposal, className }) => (
           {proposal.level}
         </Badge>
         <Badge outline pill light>
-          {proposal.language}
+          {proposal.languages && proposal.languages[0]}
         </Badge>
       </div>
       <div>

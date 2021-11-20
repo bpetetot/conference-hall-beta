@@ -13,7 +13,7 @@ describe('validation | ProposalPatch', () => {
         title: 'title',
         abstract: 'abstract',
         level: 'level',
-        language: 'language',
+        languages: ['language'],
         status: 'SUBMITTED',
       },
     }

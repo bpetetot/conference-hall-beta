@@ -32,11 +32,15 @@ export function useTalk(talkId) {
 }
 
 async function createTalk(data) {
+  const body = {
+    ...pick(data, ['title', 'abstract', 'level', 'references']),
+    languages: data?.language ? [data.language] : undefined,
+  }
   return fetchData({
     method: 'POST',
     url: '/api/speaker/talks',
     auth: true,
-    body: pick(data, ['title', 'abstract', 'level', 'language', 'references']),
+    body,
   })
 }
 
@@ -45,11 +49,15 @@ export function useCreateTalk() {
 }
 
 async function updateTalk(talkId, data) {
+  const body = {
+    ...pick(data, ['title', 'abstract', 'level', 'references', 'archived']),
+    languages: data?.language ? [data.language] : undefined,
+  }
   return fetchData({
     method: 'PATCH',
     url: `/api/speaker/talks/${talkId}`,
     auth: true,
-    body: pick(data, ['title', 'abstract', 'level', 'language', 'references', 'archived']),
+    body,
   })
 }
 

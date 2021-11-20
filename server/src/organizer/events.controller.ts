@@ -285,7 +285,7 @@ export async function updateProposal(req: Request) {
   const user = await checkUser(req.user.uid)
   await checkEventAndRoles(user, eventId, [OrganizationRole.MEMBER, OrganizationRole.OWNER])
 
-  const { title, abstract, language, level, status, formats, categories } = req.body
+  const { title, abstract, languages, level, status, formats, categories } = req.body
 
   let formatsToSave, categoriesToSave
   if (formats && formats.length > 0) {
@@ -304,9 +304,9 @@ export async function updateProposal(req: Request) {
   await proposalsRepository.updateProposal(proposalId, {
     title,
     abstract,
-    language,
     level,
     status,
+    languages,
     formats: formatsToSave,
     categories: categoriesToSave,
   })

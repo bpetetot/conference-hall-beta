@@ -23,7 +23,7 @@ const TalkPage = ({ talk }) => {
           className="talk-content"
           abstract={talk.abstract}
           references={talk.references}
-          language={talk.language}
+          languages={talk.languages}
           level={talk.level}
         />
         <TalkSpeakers

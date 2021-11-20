@@ -12,7 +12,7 @@ describe('validation | TalkPatch', () => {
         title: 'title',
         abstract: 'abstract',
         level: 'level',
-        language: 'language',
+        languages: ['language'],
         references: 'references',
         archived: true,
       },

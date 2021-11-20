@@ -11,7 +11,7 @@ export class OrganizerProposalDto {
   title: string
   abstract: string
   level?: string | null
-  language?: string | null
+  languages?: string[] | null
   references?: string | null
   comments?: string | null
   emailStatus?: string | null
@@ -40,7 +40,7 @@ export class OrganizerProposalDto {
     this.title = proposal.title
     this.abstract = proposal.abstract
     this.level = proposal.level
-    this.language = proposal.language
+    this.languages = proposal.languages as string[] | null
     this.references = proposal.references
     this.comments = proposal.comments
     this.formats = proposal.formats?.map((f) => new FormatDto(f))

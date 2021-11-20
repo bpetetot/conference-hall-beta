@@ -21,7 +21,7 @@ const EditProposalForm = ({ event, proposal, onClose }) => {
     () => ({
       title: proposal.title,
       abstract: proposal.abstract,
-      language: proposal.language,
+      language: proposal.languages && proposal.languages[0],
       level: proposal.level,
       format: !isEmpty(proposal.formats) ? String(proposal.formats[0].id) : null,
       category: !isEmpty(proposal.categories) ? String(proposal.categories[0].id) : null,

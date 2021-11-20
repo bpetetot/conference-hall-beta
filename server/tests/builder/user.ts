@@ -16,7 +16,6 @@ export async function buildUser(user?: Partial<Prisma.UserCreateInput>) {
     references: faker.lorem.paragraph(2),
     github: faker.internet.userName(name),
     twitter: faker.internet.userName(name),
-    language: faker.random.locale(),
     timezone: faker.address.timeZone(),
     ...(user || {}),
   }

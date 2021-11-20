@@ -13,7 +13,7 @@ export async function buildTalk(
   const data: Prisma.TalkCreateInput = {
     title: faker.lorem.sentence(),
     abstract: faker.lorem.paragraph(3),
-    language: faker.random.locale(),
+    languages: [faker.random.locale()],
     level: faker.random.arrayElement([
       TalkLevel.BEGINNER,
       TalkLevel.INTERMEDIATE,
