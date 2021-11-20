@@ -245,7 +245,12 @@ export function streamEventProposals(
           take: options.batchSize,
           skip: cursorId ? 1 : 0,
           cursor: cursorId ? { id: cursorId } : undefined,
-          include: { formats: true, categories: true, speakers: true, ratings: true },
+          include: {
+            formats: true,
+            categories: true,
+            speakers: { include: { surveys: { where: { eventId } } } },
+            ratings: true,
+          },
         })
         for (const item of items) {
           this.push(item)
