@@ -187,6 +187,7 @@ async function sendProposalsEmails(eventId, filters) {
 }
 
 export function useSendProposalsEmails(eventId) {
+  const queryClient = useQueryClient()
   const { exceptItems, selectedItems } = useSelection()
   const { search } = useLocation()
   const params = new URLSearchParams(search)
@@ -199,7 +200,11 @@ export function useSendProposalsEmails(eventId) {
     exceptItems,
     selectedItems,
   })
-  return useMutation(() => sendProposalsEmails(eventId, filters))
+  return useMutation(() => sendProposalsEmails(eventId, filters), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('proposals/search')
+    },
+  })
 }
 
 async function bulkProposalsStatus(eventId, filters, status) {

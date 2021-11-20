@@ -100,11 +100,11 @@ async function createEvent(prisma: PrismaClient, event: any) {
     displayProposalsRatings: !settings?.deliberation?.hideRatings,
     displayProposalsSpeakers: !settings?.deliberation?.blindRating,
     surveyEnabled: Boolean(event?.surveyActive),
-    surveyQuestions: event.survey, // json // TODO CHECK
+    surveyQuestions: event.survey,
     emailOrganizer: settings?.notifications?.recipients?.contact ? event.contact : undefined,
-    emailNotifications: settings?.notifications?.emails, // json // TODO CHECK
+    emailNotifications: settings?.notifications?.emails,
     slackWebhookUrl: settings?.slack?.webhookUrl,
-    slackNotifications: settings?.slack?.notifications, // json // TODO CHECK
+    slackNotifications: settings?.slack?.notifications,
     apiKey: settings?.api?.apiKey,
     surveys: connectedSurveys,
     createdAt: timestampToDate(event?.createTimestamp),
@@ -214,13 +214,13 @@ async function createProposal(prisma: PrismaClient, event: EventWithFormatsAndCa
     speakers: { connect: speakersIds },
     formats: connectFormat(proposal.formats, event),
     categories: connectCategory(proposal.categories, event),
-    status: mapStatus(proposal.state), // TODO CHECK
-    emailStatus: mapEmailStatus(proposal.emailStatus), // TODO CHECK
-    speakerNotified: !!proposal.emailSent, // TODO CHECK
+    status: mapStatus(proposal.state),
+    emailStatus: mapEmailStatus(proposal.emailStatus),
+    speakerNotified: !!proposal.emailSent,
     createdAt: timestampToDate(proposal?.createTimestamp),
     updatedAt: timestampToDate(proposal?.updateTimestamp),
     avgRateForSort: averageRatings(connectedRatings?.createMany?.data),
-    messages: connectedMessages, // TODO CHECK
+    messages: connectedMessages,
     ratings: connectedRatings,
   }
 
