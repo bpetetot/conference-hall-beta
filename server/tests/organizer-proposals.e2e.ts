@@ -9,6 +9,7 @@ import { MessageChannel, OrganizationRole, RatingFeeling } from '@prisma/client'
 import { prisma } from '../src/db/db'
 import { buildRating } from './builder/rating'
 import { buildMessage } from './builder/message'
+import { buildSurvey } from './builder/survey'
 
 jest.mock('../src/emails/email.services', () => ({
   sendProposalsDeliberationEmails: jest.fn(),
@@ -435,18 +436,18 @@ describe('/api/organizer/events/:id/proposals', () => {
       expect(res.status).toEqual(403)
     })
 
-    // eslint-disable-next-line jest/no-done-callback
-    test.skip('should stream the export of event proposals', async () => {
+    test('should stream the export of event proposals', async () => {
       // given
       const { token, uid } = await getAuthUser('ben@example.net')
       const agent = await getAgent(token)
       const user = await buildUser({ uid })
       const event = await buildEvent(user)
       const talk = await buildTalk(user)
+      const survey = await buildSurvey(user.id, event.id, { response: 'ko' })
       const proposal = await buildProposal(event.id, talk)
 
       // when
-      agent
+      const res = await agent
         .put(`/api/organizer/events/${event.id}/proposals/export`)
         .parse((res, callback) => {
           let data = ''
@@ -455,10 +456,37 @@ describe('/api/organizer/events/:id/proposals', () => {
             callback(null, JSON.parse(data))
           })
         })
-        .end((err, res) => {
-          expect(res.status).toEqual(200)
-          expect(res.body[0].id).toEqual(proposal.id)
-        })
+
+      expect(res.status).toEqual(200)
+      expect(res.body[0]).toEqual({
+        id: proposal.id,
+        title: proposal.title,
+        abstract: proposal.abstract,
+        comments: proposal.comments,
+        level: proposal.level,
+        references: proposal.references,
+        languages: proposal.languages,
+        status: proposal.status,
+        createdAt: proposal.createdAt.toISOString(),
+        categories: [],
+        formats: [],
+        ratingStats: { average: null, count: 0, negatives: 0, noopinion: 0, positives: 0 },
+        speakers: [
+          {
+            id: user.id,
+            name: user.name,
+            bio: user.bio,
+            address: user.address,
+            company: user.company,
+            email: user.email,
+            github: user.github,
+            twitter: user.twitter,
+            photoURL: user.photoURL,
+            references: user.references,
+            survey: survey.answers,
+          },
+        ],
+      })
     })
   })
 
@@ -1251,7 +1279,7 @@ describe('/api/organizer/events/:id/proposals', () => {
       expect(res.body.message).toEqual('Message not found')
     })
 
-    test('should stream the export of event proposals', async () => {
+    test('should delete the message', async () => {
       // given
       const { token, uid } = await getAuthUser('ben@example.net')
       const agent = await getAgent(token)
