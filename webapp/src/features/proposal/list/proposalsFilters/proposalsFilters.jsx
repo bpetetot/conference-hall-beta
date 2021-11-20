@@ -18,7 +18,14 @@ const ProposalFilters = ({ event }) => {
   const { resetSelection } = useSelection()
   const { search } = useLocation()
   const params = new URLSearchParams(search)
-  const { id: eventId, deliberationEnabled, formats, categories, displayProposalsRatings } = event
+  const {
+    id: eventId,
+    deliberationEnabled,
+    formats,
+    categories,
+    displayProposalsRatings,
+    displayProposalsSpeakers,
+  } = event
 
   const handleChange = (e) => {
     resetSelection()
@@ -40,13 +47,15 @@ const ProposalFilters = ({ event }) => {
     onChangeDebounced(e)
   }
 
+  const searchLabel = displayProposalsSpeakers ? 'Search by title or speaker' : 'Search by title'
+
   return (
     <div className={styles.proposalsFilters}>
       <input
         id="search"
         type="search"
-        placeholder="Search by title or speaker"
-        aria-label="Search by title or speaker"
+        placeholder={searchLabel}
+        aria-label={searchLabel}
         onChange={handleSearchChange}
         defaultValue={params.get('search')}
       />
