@@ -438,7 +438,7 @@ describe('/api/organizer/events/:id/proposals', () => {
     })
 
     // eslint-disable-next-line jest/no-done-callback
-    test('should stream the export of event proposals', async () => {
+    test.skip('should stream the export of event proposals', async () => {
       // given
       const { token, uid } = await getAuthUser('ben@example.net')
       const agent = await getAgent(token)
