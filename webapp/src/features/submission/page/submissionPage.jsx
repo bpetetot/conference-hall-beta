@@ -66,7 +66,7 @@ const SubmissionPage = ({ event }) => {
             talkId={talkId}
             talkTitle={talk.title}
             speakers={talk.speakers}
-            ownerId={talk.ownerId}
+            creatorId={talk.creatorId}
           />
         </div>
       </div>

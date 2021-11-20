@@ -11,7 +11,7 @@ const HasRole = ({ of, forOrganizationId, forEvent, children, otherwise = null }
   } else if (forEvent && forEvent.organizationId) {
     hasAccess = hasUserOrganizationRoles(user, forEvent.organizationId, roles)
   } else if (forEvent) {
-    hasAccess = forEvent.ownerId === user.id
+    hasAccess = forEvent.creatorId === user.id
   }
   if (!hasAccess) {
     return otherwise

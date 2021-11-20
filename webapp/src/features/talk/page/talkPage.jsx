@@ -83,7 +83,7 @@ const TalkPage = () => {
             talkId={talkId}
             talkTitle={talk.title}
             speakers={talk.speakers}
-            ownerId={talk.ownerId}
+            creatorId={talk.creatorId}
             edit
           />
           <TalkSubmissions id={talkId} proposals={talk.proposals} />

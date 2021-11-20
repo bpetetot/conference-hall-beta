@@ -9,7 +9,7 @@ export class OrganizerEventDto {
   description: string
   type: string
   visibility: string
-  ownerId: number
+  creatorId: number
   address?: string | null
   timezone?: string | null
   archived: boolean
@@ -46,7 +46,7 @@ export class OrganizerEventDto {
     this.description = event.description
     this.type = event.type
     this.visibility = event.visibility
-    this.ownerId = event.creatorId // TODO change to creatorId
+    this.creatorId = event.creatorId
     this.address = event.address
     this.timezone = event.timezone
     this.archived = event.archived

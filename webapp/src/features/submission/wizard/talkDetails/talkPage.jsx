@@ -29,7 +29,7 @@ const TalkPage = ({ talk }) => {
         <TalkSpeakers
           className="talk-info"
           talkId={String(talk.id)}
-          ownerId={talk.ownerId}
+          creatorId={talk.creatorId}
           speakers={talk.speakers}
         />
       </div>
