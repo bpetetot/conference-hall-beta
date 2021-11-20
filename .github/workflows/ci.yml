@@ -44,11 +44,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-server-
       - name: Pull Docker images and cache
-        run: cd docker && docker-compose pull
+        run: docker compose pull
       - uses: satackey/action-docker-layer-caching@v0.0.11
-    
+
       - name: Start Postgres and Firebase emulator
-        run: cd docker && docker-compose up -d
+        run: docker compose up -d
       - name: Install dependencies
         run: cd server && npm ci
       - name: Lint

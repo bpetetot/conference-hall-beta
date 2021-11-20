@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: ch_postgres
+    image: postgres:12.5-alpine
+    volumes:
+      - ./docker/postgres:/docker-entrypoint-initdb.d
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: '"conference-hall","conference-hall-test"'
+      POSTGRES_HOST_AUTH_METHOD: trust
+  firebase-emulators:
+    container_name: ch_firebase_emulators
+    build:
+      context: ./docker/firebase
+    ports:
+      - '9099:9099'
+      - '9199:9199'
+      - '4000:4000'
+    volumes:
+      - ./docker/firebase:/app
+      - ./docker/firebase/.cache:/app/.cache/firebase/emulators/
+  mailhog:
+    container_name: ch_mailhog
+    image: mailhog/mailhog:latest
+    restart: always
+    ports:
+      - 1025:1025
+      - 8025:8025

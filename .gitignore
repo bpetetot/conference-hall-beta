@@ -31,6 +31,7 @@ firestore-debug.log*
 .runtimeconfig.json
 .firebase/
 serviceAccount.json
+/docker/firebase/.cache/firebase
 
 # Logs
 logs
@@ -46,7 +47,7 @@ pids
 
 # Optional npm cache directory
 .npm
-.cache/
+/.cache
 
 # build
 dist/
