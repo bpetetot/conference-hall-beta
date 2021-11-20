@@ -1,5 +1,5 @@
 import { firestore } from 'firebase-admin'
-import { meanBy } from 'lodash'
+import { meanBy, isEmpty } from 'lodash'
 import {
   EmailStatus,
   Event,
@@ -158,7 +158,7 @@ async function connectOrCreateSurveys(prisma: PrismaClient, eventUid: string) {
     const user = await prisma.user.findUnique({ where: { uid } })
     if (!user) continue
     connectedSurveys.push({
-      answers: answers, // TODO CHECK
+      answers: mapAnswers(answers),
       userId: user.id,
       createdAt: timestampToDate(updateTimestamp),
       updatedAt: timestampToDate(updateTimestamp),
@@ -166,6 +166,22 @@ async function connectOrCreateSurveys(prisma: PrismaClient, eventUid: string) {
   }
 
   return { createMany: { data: connectedSurveys } }
+}
+
+function mapAnswers(answers: any) {
+  if (!answers) return undefined
+  const mappedAnswers = { ...answers }
+  if (answers.diet) {
+    mappedAnswers.diet = Object.entries(answers.diet)
+      .filter(([key, value]) => !isEmpty(value))
+      .map(([key]) => key)
+  }
+  if (answers.transports) {
+    mappedAnswers.transports = Object.entries(answers.transports)
+      .filter(([key, value]) => !isEmpty(value))
+      .map(([key]) => key)
+  }
+  return mappedAnswers
 }
 
 async function createEventProposals(prisma: PrismaClient, event: EventWithFormatsAndCats) {
