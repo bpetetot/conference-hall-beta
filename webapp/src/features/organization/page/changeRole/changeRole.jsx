@@ -26,7 +26,7 @@ const ChangeRoleSelect = ({ organizationId, member, role }) => {
   return (
     <ConfirmationPopin
       title="Change member role"
-      content={<RoleText displayName={member.name} role={selectedRole} />}
+      content={<RoleText name={member.name} role={selectedRole} />}
       onOk={() => mutate(selectedRole)}
       onCancel={() => setSelectedRole(role)}
       withCancel

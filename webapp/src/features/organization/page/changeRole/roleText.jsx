@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import { ROLES } from 'features/organization/constants'
 
-const RoleText = ({ displayName, role }) => {
-  const title = `Set role “${role}” to “${displayName}” in the organization.`
+const RoleText = ({ name, role }) => {
+  const title = `Set role “${role}” to “${name}” in the organization.`
   const subtitle = `The role “${role}” will allow to:`
 
   return (
@@ -18,7 +18,7 @@ const RoleText = ({ displayName, role }) => {
       )}
       {role === ROLES.MEMBER && (
         <ul>
-          <li>Mannage events of the organization</li>
+          <li>Manage events of the organization</li>
           <li>Manage proposals</li>
           <li>Review proposals</li>
         </ul>
@@ -26,7 +26,7 @@ const RoleText = ({ displayName, role }) => {
       {role === ROLES.OWNER && (
         <ul>
           <li>Manage the organization</li>
-          <li>Mannage events of the organization</li>
+          <li>Manage events of the organization</li>
           <li>Manage proposals</li>
           <li>Review proposals</li>
         </ul>
@@ -36,7 +36,7 @@ const RoleText = ({ displayName, role }) => {
 }
 
 RoleText.propTypes = {
-  displayName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
 }
 

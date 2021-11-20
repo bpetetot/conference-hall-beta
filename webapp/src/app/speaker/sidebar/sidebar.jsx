@@ -11,7 +11,7 @@ const SpeakerSideBar = ({ className }) => {
 
   return (
     <SideBar className={className}>
-      <SideBarPanel label={user.displayName}>
+      <SideBarPanel label={user.name}>
         <SideBarLink to="/speaker/profile" exact>
           <IconLabel icon="fa fa-user-o" label="Profile" />
         </SideBarLink>
