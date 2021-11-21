@@ -202,7 +202,7 @@ model Proposal {
   formats         EventFormat[]   @relation("proposals_formats")
   categories      EventCategory[] @relation("proposals_categories")
   ratings         Rating[]
-  avgRateForSort  Float?
+  avgRateForSort  Float           @default(0)
   status          ProposalStatus  @default(SUBMITTED)
   emailStatus     EmailStatus?
   speakerNotified Boolean         @default(false)

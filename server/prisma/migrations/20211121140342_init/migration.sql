@@ -172,7 +172,7 @@ CREATE TABLE "proposals" (
     "languages" JSONB,
     "references" TEXT,
     "comments" TEXT,
-    "avgRateForSort" DOUBLE PRECISION,
+    "avgRateForSort" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "status" "ProposalStatus" NOT NULL DEFAULT E'SUBMITTED',
     "emailStatus" "EmailStatus",
     "speakerNotified" BOOLEAN NOT NULL DEFAULT false,

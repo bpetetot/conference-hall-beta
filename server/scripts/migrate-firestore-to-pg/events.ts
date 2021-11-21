@@ -286,8 +286,9 @@ async function connectOrCreateRatings(prisma: PrismaClient, eventUid: string, pr
 }
 
 function averageRatings(ratings?: { rating: any }[]) {
-  if (!ratings) return null
+  if (!ratings) return 0
   const ratingsForAvg = ratings.filter((r) => r.rating !== null)
+  if (ratingsForAvg.length === 0) return 0
   return meanBy(ratingsForAvg, 'rating')
 }
 
