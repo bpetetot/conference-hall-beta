@@ -3,6 +3,7 @@ import { meanBy, max, min } from 'lodash'
 
 export function averageRatings(ratings: Rating[]) {
   const ratingsForAvg = ratings.filter((r) => r.rating !== null)
+  if (ratingsForAvg.length === 0) return 0
   return meanBy(ratingsForAvg, 'rating')
 }
 

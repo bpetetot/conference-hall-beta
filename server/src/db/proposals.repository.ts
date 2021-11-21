@@ -231,7 +231,7 @@ export function streamEventProposals(
   userId: number,
   eventId: number,
   filters: ProposalsFilters = {},
-  options: { batchSize: number },
+  options: { batchSize: number } = { batchSize: 20 },
 ): Readable {
   const where = buildSearchWhereClause(userId, eventId, filters)
 

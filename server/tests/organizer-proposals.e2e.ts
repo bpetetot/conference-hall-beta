@@ -436,7 +436,7 @@ describe('/api/organizer/events/:id/proposals', () => {
       expect(res.status).toEqual(403)
     })
 
-    test('should stream the export of event proposals', async () => {
+    test('should stream the JSON export of event proposals', async () => {
       // given
       const { token, uid } = await getAuthUser('ben@example.net')
       const agent = await getAgent(token)
@@ -448,7 +448,7 @@ describe('/api/organizer/events/:id/proposals', () => {
 
       // when
       const res = await agent
-        .put(`/api/organizer/events/${event.id}/proposals/export`)
+        .put(`/api/organizer/events/${event.id}/proposals/export?format=json`)
         .parse((res, callback) => {
           let data = ''
           res.on('data', (chunk) => (data += chunk))
@@ -470,7 +470,7 @@ describe('/api/organizer/events/:id/proposals', () => {
         createdAt: proposal.createdAt.toISOString(),
         categories: [],
         formats: [],
-        ratingStats: { average: null, count: 0, negatives: 0, noopinion: 0, positives: 0 },
+        ratingStats: { average: 0, count: 0, negatives: 0, noopinion: 0, positives: 0 },
         speakers: [
           {
             id: user.id,
@@ -487,6 +487,30 @@ describe('/api/organizer/events/:id/proposals', () => {
           },
         ],
       })
+    })
+
+    test('should stream the HTML export of event proposals', async () => {
+      // given
+      const { token, uid } = await getAuthUser('ben@example.net')
+      const agent = await getAgent(token)
+      const user = await buildUser({ uid })
+      const event = await buildEvent(user)
+      const talk = await buildTalk(user)
+      await buildProposal(event.id, talk)
+
+      // when
+      const res = await agent
+        .put(`/api/organizer/events/${event.id}/proposals/export?format=html`)
+        .parse((res, callback) => {
+          let data = ''
+          res.on('data', (chunk) => (data += chunk))
+          res.on('end', () => {
+            callback(null, data)
+          })
+        })
+
+      expect(res.status).toEqual(200)
+      expect(res.body).toContain('<html>')
     })
   })
 

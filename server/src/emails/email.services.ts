@@ -105,9 +105,7 @@ export async function sendProposalsDeliberationEmails(
   event: Event,
   filters: proposalsRepository.ProposalsFilters,
 ) {
-  const proposalsStream = proposalsRepository.streamEventProposals(userId, event.id, filters, {
-    batchSize: 20,
-  })
+  const proposalsStream = proposalsRepository.streamEventProposals(userId, event.id, filters)
 
   let acceptedRecipents: RecipentsTalkVariables = {}
   let rejectedRecipents: RecipentsTalkVariables = {}

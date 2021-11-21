@@ -17,12 +17,7 @@ export async function exportEventData(req: Request) {
     throw new HttpException(401, 'Invalid API key')
   }
 
-  const proposalsStream = proposalsRepository.streamEventProposals(
-    1,
-    event.id,
-    {},
-    { batchSize: 20 },
-  )
+  const proposalsStream = proposalsRepository.streamEventProposals(1, event.id, {})
 
   const proposals: ApiProposalDto[] = []
   for await (const proposal of proposalsStream) {

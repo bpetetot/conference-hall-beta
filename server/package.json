@@ -26,6 +26,7 @@
     "express-validator": "^6.13.0",
     "firebase-admin": "^10.0.0",
     "form-data": "^4.0.0",
+    "handlebars": "^4.7.7",
     "helmet": "^4.6.0",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",

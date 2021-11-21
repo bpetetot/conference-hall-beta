@@ -237,19 +237,13 @@ export async function exportProposals(req: Request, res: Response) {
     selectedItems: req.body.selectedItems as number[],
   }
 
-  const proposalsStream = proposalsRepository.streamEventProposals(user.id, event.id, filters, {
-    batchSize: 20,
-  })
+  const proposalsStream = proposalsRepository.streamEventProposals(user.id, event.id, filters)
 
-  let count = 0
-  res.write('[')
-  for await (const proposal of proposalsStream) {
-    if (count > 0) res.write(',')
-    const exported = new ExportProposalDto(proposal)
-    res.write(JSON.stringify(exported))
-    count++
+  if (req.query.format === 'json') {
+    await ExportProposalDto.streamJsonProposals(proposalsStream, res)
+  } else if (req.query.format === 'html') {
+    await ExportProposalDto.streamHtmlProposals(proposalsStream, res)
   }
-  res.write(']')
   res.end()
 }
 

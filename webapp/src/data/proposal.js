@@ -151,17 +151,17 @@ export function useRateProposal(eventId, proposalId) {
   })
 }
 
-async function exportProposals(eventId, filters) {
+async function exportProposals(eventId, format, filters) {
   const blob = await fetchBlob({
     method: 'PUT',
-    url: `/api/organizer/events/${eventId}/proposals/export`,
+    url: `/api/organizer/events/${eventId}/proposals/export?format=${format}`,
     auth: true,
     body: filters,
   })
-  downloadFile(`export-${Date.now()}.json`, blob)
+  downloadFile(`export-${Date.now()}.${format}`, blob)
 }
 
-export function useExportProposals(eventId) {
+export function useExportProposals(eventId, format) {
   const { exceptItems, selectedItems } = useSelection()
   const { search } = useLocation()
   const params = new URLSearchParams(search)
@@ -174,7 +174,7 @@ export function useExportProposals(eventId) {
     exceptItems,
     selectedItems,
   })
-  return useMutation(() => exportProposals(eventId, filters))
+  return useMutation(() => exportProposals(eventId, format, filters))
 }
 
 async function sendProposalsEmails(eventId, filters) {

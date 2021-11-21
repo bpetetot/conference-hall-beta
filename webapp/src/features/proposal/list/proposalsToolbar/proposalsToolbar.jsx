@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Checkbox from 'components/form/checkbox'
 import Button from 'components/button'
+import Dropdown from 'components/dropdown'
 import IconLabel from 'components/iconLabel'
 import { ConfirmationPopin } from 'components/portals'
 import { useBulkProposalsStatus, useExportProposals, useSendProposalsEmails } from 'data/proposal'
@@ -16,12 +17,17 @@ const ProposalToolbar = ({ event, result }) => {
   const { deliberationEnabled } = event
   const { sendError } = useNotification()
   const { allSelected, selectionCount, toggleAll, resetSelection } = useSelection()
-  const { mutateAsync: exportProposals, isLoading } = useExportProposals(event.id)
+  const { mutateAsync: exportJsonProposals, isJsonExporting } = useExportProposals(event.id, 'json')
+  const { mutateAsync: exportHtmlProposals, isHtmlExporting } = useExportProposals(event.id, 'html')
   const { mutateAsync: sendProposalsEmails } = useSendProposalsEmails(event.id)
   const { mutateAsync: updateProposals } = useBulkProposalsStatus(event.id)
 
-  const onExportProposals = () =>
-    exportProposals().catch((error) => {
+  const onExportJsonProposals = () =>
+    exportJsonProposals().catch((error) => {
+      sendError(`An unexpected error has occurred: ${error.message}`)
+    })
+  const onExportHtmlProposals = () =>
+    exportHtmlProposals().catch((error) => {
       sendError(`An unexpected error has occurred: ${error.message}`)
     })
   const onAcceptProposals = () =>
@@ -75,14 +81,30 @@ const ProposalToolbar = ({ event, result }) => {
             />
           </>
         )}
-        <Button
-          tertiary
-          onClick={onExportProposals}
-          loading={isLoading}
-          disabled={isLoading || selectionCount === 0}
+        <Dropdown
+          action={
+            <Button tertiary disabled={selectionCount === 0}>
+              <IconLabel icon="fa fa-caret-down" label="Export..." right />
+            </Button>
+          }
         >
-          <IconLabel icon="fa fa-cloud-download" label="JSON export" />
-        </Button>
+          <Button
+            tertiary
+            onClick={onExportJsonProposals}
+            loading={isJsonExporting}
+            disabled={isJsonExporting || selectionCount === 0}
+          >
+            <IconLabel icon="fa fa-code" label="JSON export" />
+          </Button>
+          <Button
+            tertiary
+            onClick={onExportHtmlProposals}
+            loading={isHtmlExporting}
+            disabled={isHtmlExporting || selectionCount === 0}
+          >
+            <IconLabel icon="fa fa-clone" label="Cards export" />
+          </Button>
+        </Dropdown>
       </div>
     </div>
   )

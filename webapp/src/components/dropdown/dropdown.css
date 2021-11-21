@@ -81,11 +81,17 @@
 
 .dropdown .dropdown-menu > button:hover {
   cursor: pointer;
-  color: var(--primary-color-font);
+  color: var(--grey-color-light);
   background: var(--primary-color-light);
 }
 
+.dropdown .dropdown-menu > button:hover:disabled {
+  cursor: not-allowed;
+  color: var(--grey-color-dark);
+  background: var(--grey-color-light);
+}
+
 .dropdown.dark .dropdown-menu > button:hover {
-  color: var(--primary-color-font);
+  color: var(--primary-color-light);
   background: var(--primary-color-light);
 }
