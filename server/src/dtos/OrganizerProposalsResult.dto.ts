@@ -12,9 +12,15 @@ export class OrganizerProposalsResult {
   previousPage: number | null
   totalRated: number
 
-  constructor(user: User, event: Event, result: ProposalsResults, totalRated: number) {
+  constructor(
+    user: User,
+    event: Event,
+    result: ProposalsResults,
+    totalRated: number,
+    userRole?: string,
+  ) {
     this.proposals = result.proposals.map(
-      (proposal) => new OrganizerProposalDto(user, proposal, event),
+      (proposal) => new OrganizerProposalDto(user, proposal, event, userRole),
     )
     this.total = result.total
     this.page = result.page

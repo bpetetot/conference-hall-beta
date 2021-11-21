@@ -14,6 +14,15 @@ export function getOrganizationById(organizationId: number, options?: GetOrganiz
   })
 }
 
+export async function getMemberRole(organizationId: number | null, memberId: number) {
+  if (!organizationId) return undefined
+
+  const member = await prisma.organizationMember.findUnique({
+    where: { memberId_organizationId: { memberId, organizationId } },
+  })
+  return member?.role
+}
+
 export async function getOrganizationForUserRole(
   organizationId: number,
   userId: number,

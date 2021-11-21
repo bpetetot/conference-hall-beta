@@ -13,6 +13,7 @@ import {
   addMember,
   updateMemberRole,
   deleteMember,
+  getMemberRole,
 } from './organizations.repository'
 
 describe('Organizations repository', () => {
@@ -26,6 +27,22 @@ describe('Organizations repository', () => {
       const result = await getOrganizationById(organization.id)
       //then
       expect(result).toEqual(organization)
+    })
+  })
+
+  describe('#getMemberRole', () => {
+    test('returns the user role in the organization', async () => {
+      // given
+      const user1 = await buildUser({ uid: 'user1' })
+      const user2 = await buildUser({ uid: 'user2' })
+      const organization1 = await buildOrganization({ name: 'A' })
+      const organization2 = await buildOrganization({ name: 'B' })
+      await buildOrganizationMember(user1, organization1, OrganizationRole.MEMBER)
+      await buildOrganizationMember(user2, organization2, OrganizationRole.OWNER)
+      // when
+      const role = await getMemberRole(organization1.id, user1.id)
+      //then
+      expect(role).toEqual(OrganizationRole.MEMBER)
     })
   })
 

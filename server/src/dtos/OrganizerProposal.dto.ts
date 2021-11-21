@@ -1,4 +1,12 @@
-import { Event, EventCategory, EventFormat, Proposal, Rating, User } from '@prisma/client'
+import {
+  Event,
+  EventCategory,
+  EventFormat,
+  OrganizationRole,
+  Proposal,
+  Rating,
+  User,
+} from '@prisma/client'
 import { CategoryDto } from './Category.dto'
 import { FormatDto } from './Format.dto'
 import { OrganizerSpeakerDto } from './OrganizerSpeaker.dto'
@@ -7,15 +15,15 @@ import { RatingStatsDto } from './RatingStats.dto'
 
 export class OrganizerProposalDto {
   id: number
-  status: string
   title: string
   abstract: string
+  status?: string
   level?: string | null
   languages?: string[] | null
   references?: string | null
   comments?: string | null
   emailStatus?: string | null
-  speakerNotified: boolean
+  speakerNotified?: boolean
   formats?: FormatDto[]
   categories?: CategoryDto[]
   ratings?: RatingDto[]
@@ -34,6 +42,7 @@ export class OrganizerProposalDto {
       ratings: (Rating & { user: User })[]
     },
     event: Event,
+    userRole?: string,
     messageCount?: number,
   ) {
     this.id = proposal.id
@@ -49,9 +58,11 @@ export class OrganizerProposalDto {
     this.userRating = new RatingDto(proposal.ratings.find((r) => r.userId === user.id))
     this.messageCount = messageCount
 
-    this.status = proposal.status
-    this.emailStatus = proposal.emailStatus
-    this.speakerNotified = proposal.speakerNotified
+    if (!userRole || userRole !== OrganizationRole.REVIEWER) {
+      this.status = proposal.status
+      this.emailStatus = proposal.emailStatus
+      this.speakerNotified = proposal.speakerNotified
+    }
 
     if (event.displayOrganizersRatings) {
       this.ratings = proposal.ratings?.map((r) => new RatingDto(r))

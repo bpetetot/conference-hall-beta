@@ -7,6 +7,7 @@ import * as proposalsRepository from '../db/proposals.repository'
 import * as surveysRepository from '../db/surveys.repository'
 import * as ratingsRepository from '../db/ratings.repository'
 import * as messagesRepository from '../db/messages.repository'
+import * as organizationsRepository from '../db/organizations.repository'
 import * as emailServices from '../emails/email.services'
 import { checkUser } from '../users/users.controller'
 import { checkUserRole } from './organizations.controller'
@@ -140,7 +141,9 @@ export async function getProposal(req: Request) {
     MessageChannel.ORGANIZER,
   )
 
-  return new OrganizerProposalDto(user, proposal, event, messageCount)
+  const userRole = await organizationsRepository.getMemberRole(event.organizationId, user.id)
+
+  return new OrganizerProposalDto(user, proposal, event, userRole, messageCount)
 }
 
 export async function searchProposals(req: Request) {
@@ -174,7 +177,9 @@ export async function searchProposals(req: Request) {
 
   const totalRated = await proposalsRepository.countReviewedProposals(user.id, event.id, filters)
 
-  return new OrganizerProposalsResult(user, event, result, totalRated)
+  const userRole = await organizationsRepository.getMemberRole(event.organizationId, user.id)
+
+  return new OrganizerProposalsResult(user, event, result, totalRated, userRole)
 }
 
 export async function searchProposalsIds(req: Request) {
