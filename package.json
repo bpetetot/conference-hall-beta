@@ -31,7 +31,7 @@
     "k-ramel": "3.0.1",
     "lodash": "4.17.20",
     "luxon": "1.25.0",
-    "marked": "1.2.2",
+    "marked": "4.0.10",
     "normalize.css": "8.0.1",
     "popper.js": "1.16.1",
     "prop-types": "15.7.2",
