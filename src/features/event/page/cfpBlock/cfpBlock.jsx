@@ -8,7 +8,7 @@ class CfpBlock extends Component {
   renderCfpLabel = () => {
     const { cfpState } = this.props
     if (cfpState === 'not-started') return 'is not open yet'
-    if (cfpState === 'opened') return 'is opened'
+    if (cfpState === 'open') return 'is open'
     return 'is closed'
   }
 
@@ -21,7 +21,7 @@ class CfpBlock extends Component {
         {type === 'conference' && (
           <p className="cfp-block-subtitle">
             {cfpState === 'not-started' && !!start && `Will open ${start}`}
-            {cfpState === 'opened' && !!end && `Until ${end}`}
+            {cfpState === 'open' && !!end && `Until ${end}`}
             {cfpState === 'closed' && deliberation && `Deliberation date will be ${deliberation}`}
           </p>
         )}
@@ -32,7 +32,7 @@ class CfpBlock extends Component {
 
 CfpBlock.propTypes = {
   type: PropTypes.string,
-  cfpState: PropTypes.oneOf(['not-started', 'opened', 'closed']),
+  cfpState: PropTypes.oneOf(['not-started', 'open', 'closed']),
   start: PropTypes.string,
   end: PropTypes.string,
   deliberation: PropTypes.string,

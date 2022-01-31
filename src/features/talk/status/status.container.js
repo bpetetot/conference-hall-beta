@@ -1,6 +1,6 @@
 import { inject } from '@k-ramel/react'
 
-import { isCfpOpened } from 'store/reducers/data/events.selector'
+import { isCfpOpen } from 'store/reducers/data/events.selector'
 import {
   isRejected,
   isAccepted,
@@ -13,7 +13,7 @@ import Status from './status'
 
 const mapStore = (store, { talkId, eventId }) => ({
   loaded: !!store.data.events.get(eventId),
-  cfpOpened: isCfpOpened(eventId)(store),
+  cfpOpen: isCfpOpen(eventId)(store),
   submitted: isSubmitted(talkId, eventId)(store),
   confirmed: isConfirmed(talkId, eventId)(store),
   accepted: isAccepted(talkId, eventId)(store),

@@ -25,7 +25,7 @@ const SubmissionPage = ({
   speakers,
   categories,
   onUpdateSubmission,
-  cfpOpened,
+  cfpOpen,
 }) => {
   const navigate = useNavigate()
 
@@ -40,7 +40,7 @@ const SubmissionPage = ({
         <Link to={`/speaker/talk/${id}`}>
           <IconLabel icon="fa fa-history" label="Show current version" />
         </Link>
-        {cfpOpened && (
+        {cfpOpen && (
           <Button accent onClick={handleUpdateSubmission}>
             Update submission
           </Button>
@@ -88,7 +88,7 @@ SubmissionPage.propTypes = {
   categories: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
   onUpdateSubmission: PropTypes.func.isRequired,
-  cfpOpened: PropTypes.bool,
+  cfpOpen: PropTypes.bool,
 }
 
 SubmissionPage.defaultProps = {
@@ -103,7 +103,7 @@ SubmissionPage.defaultProps = {
   formats: undefined,
   categories: undefined,
   speakers: {},
-  cfpOpened: false,
+  cfpOpen: false,
 }
 
 export default SubmissionPage

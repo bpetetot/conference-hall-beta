@@ -24,7 +24,7 @@ const isSubmitted = (talk, eventId) => {
 
 const getCfpState = ({ event, userTimezone = 'utc' }) => {
   if (event.type === 'meetup') {
-    return event.cfpOpened ? 'opened' : 'closed'
+    return event.cfpOpen ? 'open' : 'closed'
   }
 
   const { address, cfpDates } = event
@@ -51,7 +51,7 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
   if (today > end) {
     return 'closed'
   }
-  return 'opened'
+  return 'open'
 }
 
 const submitTalk = async ({ eventId, talk, userTimezone, initialize }, context) => {
@@ -63,11 +63,11 @@ const submitTalk = async ({ eventId, talk, userTimezone, initialize }, context) 
 
   const event = await getEvent(eventId)
 
-  const isCfpOpened = getCfpState({ event, userTimezone }) === 'opened'
-  if (!isCfpOpened) {
+  const isCfpOpen = getCfpState({ event, userTimezone }) === 'open'
+  if (!isCfpOpen) {
     throw new functions.https.HttpsError(
       'failed-precondition',
-      "Can't submit, CFP is not opened anymore.",
+      "Can't submit, CFP is not open anymore.",
     )
   }
   // check limit of proposals when creating a new submission
@@ -98,11 +98,11 @@ const unsubmitTalk = async ({ eventId, talk, userTimezone, initialize }, context
 
   const event = await getEvent(eventId)
 
-  const isCfpOpened = getCfpState({ event, userTimezone }) === 'opened'
-  if (!isCfpOpened) {
+  const isCfpOpen = getCfpState({ event, userTimezone }) === 'open'
+  if (!isCfpOpen) {
     throw new functions.https.HttpsError(
       'failed-precondition',
-      "Can't unsubmit, CFP is not opened anymore.",
+      "Can't unsubmit, CFP is not open anymore.",
     )
   }
 

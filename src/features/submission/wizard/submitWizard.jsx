@@ -18,9 +18,9 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const SubmitWizard = ({ eventId, cfpOpened, eventName, currentStep }) => {
+const SubmitWizard = ({ eventId, cfpOpen, eventName, currentStep }) => {
   const { user } = useAuth()
-  if (!eventId || !cfpOpened) return null
+  if (!eventId || !cfpOpen) return null
   return (
     <div className="submitWizard">
       <EventTitle name={eventName} subtitle="Talk submission" />
@@ -35,14 +35,14 @@ const SubmitWizard = ({ eventId, cfpOpened, eventName, currentStep }) => {
 
 SubmitWizard.propTypes = {
   eventId: PropTypes.string,
-  cfpOpened: PropTypes.bool,
+  cfpOpen: PropTypes.bool,
   eventName: PropTypes.string,
   currentStep: PropTypes.number,
 }
 
 SubmitWizard.defaultProps = {
   eventId: undefined,
-  cfpOpened: false,
+  cfpOpen: false,
   eventName: undefined,
   currentStep: 0,
 }

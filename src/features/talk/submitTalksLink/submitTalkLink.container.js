@@ -1,11 +1,11 @@
 import { inject } from '@k-ramel/react'
 
-import { isCfpOpened } from 'store/reducers/data/events.selector'
+import { isCfpOpen } from 'store/reducers/data/events.selector'
 import SubmitTalkLink from './submitTalkLink'
 
 const mapStore = (store, { eventId }) => {
   return {
-    displayed: eventId && isCfpOpened(eventId)(store),
+    displayed: eventId && isCfpOpen(eventId)(store),
     onClick: () => store.ui.speaker.submission.reset(),
   }
 }

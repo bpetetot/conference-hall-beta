@@ -2,7 +2,7 @@ import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 
 import loader from 'components/loader'
-import { isCfpOpened } from 'store/reducers/data/events.selector'
+import { isCfpOpen } from 'store/reducers/data/events.selector'
 import SubmitWizard from './submitWizard'
 
 const mapStore = (store, { eventId }) => {
@@ -10,7 +10,7 @@ const mapStore = (store, { eventId }) => {
   const { currentStep } = store.ui.speaker.submission.get()
   return {
     loaded: !!event,
-    cfpOpened: isCfpOpened(event.id)(store),
+    cfpOpen: isCfpOpen(event.id)(store),
     eventId: event.id,
     eventName: event.name,
     currentStep,

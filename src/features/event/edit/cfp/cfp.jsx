@@ -26,7 +26,7 @@ const CFPForm = ({ type, onSubmit, initialValues, submitting }) => (
           <Field name="maxProposals" label="Max proposals" type="number" component={input} inline />
         )}
         {type === 'meetup' && (
-          <Field name="cfpOpened" label="Enable CFP" type="checkbox" component={toggle} />
+          <Field name="cfpOpen" label="Enable CFP" type="checkbox" component={toggle} />
         )}
         <Label name="categories" label="Talk Categories" inline>
           <CategoriesField />

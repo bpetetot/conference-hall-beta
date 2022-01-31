@@ -26,7 +26,7 @@ export const getCfpOpeningDates = (cfpDates, eventTimezone) => {
  */
 export const getEventCfpState = (event, userTimezone = 'local') => {
   if (event.type === 'meetup') {
-    return event.cfpOpened ? 'opened' : 'closed'
+    return event.cfpOpen ? 'open' : 'closed'
   }
 
   const { address, cfpDates } = event
@@ -46,12 +46,12 @@ export const getEventCfpState = (event, userTimezone = 'local') => {
   if (today > end) {
     return 'closed'
   }
-  return 'opened'
+  return 'open'
 }
 
 /**
  * Return the opening state of the cfp for the given eventId.
- * Values can be : not-started, opened, closed
+ * Values can be : not-started, open, closed
  * @param {String} eventId event Id
  */
 export const getCfpState = (eventId) => (store) => {
@@ -60,10 +60,10 @@ export const getCfpState = (eventId) => (store) => {
 }
 
 /**
- * Return true if CFP is opened
+ * Return true if CFP is open
  * @param {string} eventId event id
  */
-export const isCfpOpened = (eventId) => (store) => getCfpState(eventId)(store) === 'opened'
+export const isCfpOpen = (eventId) => (store) => getCfpState(eventId)(store) === 'open'
 
 /**
  * Return the format
