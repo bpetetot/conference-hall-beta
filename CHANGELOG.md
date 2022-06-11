@@ -1,12 +1,5 @@
 # Changelog
 
-<a name="0.39.0"></a>
-## 0.39.0 (2022-06-11)
-
-### Fixed
-
-- 🐛 fix speaker's twitter and github links in case it's a url instead of a login
-
 <a name="0.38.0"></a>
 ## 0.38.0 (2020-12-06)
 

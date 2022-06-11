@@ -20,16 +20,20 @@ const Speaker = ({
   bio,
   speakerReferences,
 }) => {
-  let twitterUser, twitterUrl
+  let twitterUser
+  let twitterUrl
   if (twitter) {
-    twitterUser = twitter.startsWith('@') ? twitter.substr(1) : twitter.replace(/https:\/\/twitter\.com\//, '')
+    twitterUser = twitter.startsWith('@')
+      ? twitter.substr(1)
+      : twitter.replace(/https:\/\/twitter\.com\//, '')
     twitterUrl = `https://twitter.com/${twitterUser}`
   }
-  let githubUser, githubUrl
-  if (github){
+  let githubUser
+  let githubUrl
+  if (github) {
     githubUser = github.replace(/https:\/\/github\.com\//, '')
     githubUrl = getGitHubUserRepo(githubUser)
-  } 
+  }
 
   return (
     <div>
