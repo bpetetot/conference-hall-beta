@@ -13,5 +13,7 @@ router.get('/event/:eventId', withApiKey, getEvent)
 // Proposal deliberation API
 router.put('/proposal/:eventId/:proposalId/accept', withApiKey, acceptProposal)
 router.put('/proposal/:eventId/:proposalId/reject', withApiKey, rejectProposal)
+router.get('/proposal/:eventId/:proposalId/accept', withApiKey, acceptProposal)
+router.get('/proposal/:eventId/:proposalId/reject', withApiKey, rejectProposal)
 
 module.exports = router
