@@ -18,7 +18,7 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const SubmitWizard = ({ eventId, cfpOpened, eventName, currentStep }) => {
+function SubmitWizard({ eventId, cfpOpened, eventName, currentStep }) {
   const { user } = useAuth()
   if (!eventId || !cfpOpened) return null
   return (

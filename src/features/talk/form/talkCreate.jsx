@@ -5,7 +5,7 @@ import talkCrud from 'firebase/talks'
 import { useAuth } from 'features/auth'
 import TalkForm from './talkForm'
 
-const TalkCreate = () => {
+function TalkCreate() {
   const { user } = useAuth()
   const navigate = useNavigate()
 

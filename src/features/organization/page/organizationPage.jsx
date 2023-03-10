@@ -16,7 +16,7 @@ import AddMember from './addMember'
 import MemberRow from './memberRow'
 import './organizationPage.css'
 
-const OrganizationPage = ({ id: organizationId, name, members, addMember }) => {
+function OrganizationPage({ id: organizationId, name, members, addMember }) {
   const { user } = useAuth()
   const [users, setUsers] = useState([])
 

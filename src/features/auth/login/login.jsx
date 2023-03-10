@@ -12,7 +12,7 @@ import './login.css'
 
 const PROVIDERS = split(process.env.REACT_APP_AUTH_PROVIDERS, ',') || []
 
-const Login = () => {
+function Login() {
   const [redirecting, setRedirecting] = useState(false)
   const [error, setError] = useState()
   const { user, loading, signin } = useAuth()

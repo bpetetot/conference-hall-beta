@@ -14,7 +14,7 @@ import AvatarDropdown from '../avatarDropdown'
 
 import styles from './brand.module.css'
 
-const SidebarWrapper = ({ onClick, content }) => {
+function SidebarWrapper({ onClick, content }) {
   const theme = useTheme()
   return (
     <Portal className={cn(theme, styles.mobileSidebarPortal)}>
@@ -30,7 +30,7 @@ SidebarWrapper.propTypes = {
   content: PropTypes.node.isRequired,
 }
 
-const Brand = ({ isTablet, isMobile, sidebar, className }) => {
+function Brand({ isTablet, isMobile, sidebar, className }) {
   const { pathname } = useLocation()
 
   return (

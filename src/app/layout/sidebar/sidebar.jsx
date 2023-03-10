@@ -6,14 +6,16 @@ import IconLabel from 'components/iconLabel'
 
 import './sidebar.css'
 
-const SideBar = ({ className, children }) => (
-  <aside className={cn('sidebar', className)}>
-    <div>{children}</div>
-    <a href="https://github.com/sponsors/bpetetot" target="NEW" className="donate-button">
-      <IconLabel icon="fa fa-heart" label="Donate to help ;)" />
-    </a>
-  </aside>
-)
+function SideBar({ className, children }) {
+  return (
+    <aside className={cn('sidebar', className)}>
+      <div>{children}</div>
+      <a href="https://github.com/sponsors/bpetetot" target="NEW" className="donate-button">
+        <IconLabel icon="fa fa-heart" label="Donate to help ;)" />
+      </a>
+    </aside>
+  )
+}
 
 SideBar.propTypes = {
   className: PropTypes.string,

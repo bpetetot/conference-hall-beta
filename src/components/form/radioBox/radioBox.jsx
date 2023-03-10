@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 
 import './radioBox.css'
 
-const RadioBox = ({ name, value, children, ...rest }) => (
-  <label className="form-radio" htmlFor={`${name}-${value}`}>
-    <input name={name} id={`${name}-${value}`} type="radio" value={value} {...rest} />
-    <span>{children}</span>
-  </label>
-)
+function RadioBox({ name, value, children, ...rest }) {
+  return (
+    <label className="form-radio" htmlFor={`${name}-${value}`}>
+      <input name={name} id={`${name}-${value}`} type="radio" value={value} {...rest} />
+      <span>{children}</span>
+    </label>
+  )
+}
 
 RadioBox.propTypes = {
   name: PropTypes.string.isRequired,

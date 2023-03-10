@@ -6,14 +6,14 @@ import Button from 'components/button'
 import { ConfirmationPopin } from 'components/portals'
 import useLeaveOrganization from './useLeaveOrganization'
 
-const RemoveMemberButton = ({
+function RemoveMemberButton({
   organizationId,
   user,
   isOwner,
   onRemoveMember,
   onLeaveMember,
   authUserId,
-}) => {
+}) {
   const { uid, displayName } = user
   const { leave } = useLeaveOrganization(organizationId, onLeaveMember)
   const canRemove = isOwner && authUserId !== uid

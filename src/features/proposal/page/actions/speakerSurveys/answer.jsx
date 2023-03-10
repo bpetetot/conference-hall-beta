@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { getQuestion, getAnswersLabel } from 'features/survey/questions'
 
-const Answer = ({ question, answer }) => {
+function Answer({ question, answer }) {
   const answerLabel = getAnswersLabel(question, answer)
   if (!answerLabel) return null
 

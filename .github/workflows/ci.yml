@@ -38,4 +38,3 @@ jobs:
           yarn test
           yarn test:emulator
       - run: yarn build
-      - run: yarn size

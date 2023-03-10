@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { ROLES } from 'firebase/constants'
 
-const RoleText = ({ displayName, role }) => {
+function RoleText({ displayName, role }) {
   const title = `Set role “${role}” to “${displayName}” in the organization.`
   const subtitle = `The role “${role}” will allow to:`
 

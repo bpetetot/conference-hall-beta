@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Button from 'components/button'
 import './item.css'
 
-const Item = ({ name, onEdit, onDelete }) => {
+function Item({ name, onEdit, onDelete }) {
   const handleDelete = (e) => {
     e.stopPropagation()
     onDelete()

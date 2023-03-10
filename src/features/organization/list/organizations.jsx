@@ -10,7 +10,7 @@ import RelativeDate from 'components/relativeDate'
 
 import { toDate } from 'helpers/firebase'
 
-const MyOrganizations = ({ organizations }) => {
+function MyOrganizations({ organizations }) {
   const navigate = useNavigate()
   const handleSelect = useCallback(
     (organizationId) => {

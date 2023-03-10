@@ -5,7 +5,7 @@ import Badge from 'components/badge'
 import './talkInfo.css'
 import { Link } from 'react-router-dom'
 
-const TalkInfo = ({ id, archived, submissions }) => {
+function TalkInfo({ id, archived, submissions }) {
   if (archived) {
     return (
       <Badge light outline>

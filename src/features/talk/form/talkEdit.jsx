@@ -9,7 +9,7 @@ import talkCrud from 'firebase/talks'
 
 import TalkForm from './talkForm'
 
-const TalkEdit = ({ talkId, updateCache, ...rest }) => {
+function TalkEdit({ talkId, updateCache, ...rest }) {
   const navigate = useNavigate()
 
   const onSubmit = useCallback(

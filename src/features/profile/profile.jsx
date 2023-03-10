@@ -12,7 +12,7 @@ import './profile.css'
 
 const validateEmail = validators.validate([validators.required, validators.email])
 
-const Profile = () => {
+function Profile() {
   const { user, updateUser, resetUserFromProvider } = useAuth()
   const { displayName, photoURL, email } = user
 

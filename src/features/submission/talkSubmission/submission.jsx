@@ -14,7 +14,7 @@ const steps = [
   { label: 'Done !', icon: 'fa fa-paper-plane' },
 ]
 
-const Submission = ({ talkId, talkTitle }) => {
+function Submission({ talkId, talkTitle }) {
   if (!talkId) return null
   return (
     <div className="submission">

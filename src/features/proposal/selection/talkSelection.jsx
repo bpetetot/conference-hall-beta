@@ -6,68 +6,70 @@ import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
 import styles from './talkSelection.module.css'
 
-const TalkSelection = ({ eventId, onChange, state, emailStatus, isDeliberationDone }) => (
-  <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
-    <div className={styles.wrapper}>
-      {isDeliberationDone && (
-        <div>
-          {state === 'accepted' && (
-            <Badge success outline>
+function TalkSelection({ eventId, onChange, state, emailStatus, isDeliberationDone }) {
+  return (
+    <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
+      <div className={styles.wrapper}>
+        {isDeliberationDone && (
+          <div>
+            {state === 'accepted' && (
+              <Badge success outline>
+                Accepted proposal
+              </Badge>
+            )}
+            {state === 'rejected' && (
+              <Badge error outline>
+                Rejected proposal
+              </Badge>
+            )}
+            {state === 'confirmed' && <Badge success>Confirmed by speaker</Badge>}
+            {state === 'declined' && <Badge error>Declined by speaker</Badge>}
+          </div>
+        )}
+
+        {!isDeliberationDone && (
+          <select
+            className={styles.selector}
+            onChange={onChange}
+            onClick={(e) => e.stopPropagation()}
+            defaultValue={state}
+            aria-label="Set proposal deliberation"
+          >
+            <option key="submitted" value="submitted">
+              Deliberate...
+            </option>
+            <option key="accepted" value="accepted">
               Accepted proposal
-            </Badge>
-          )}
-          {state === 'rejected' && (
-            <Badge error outline>
+            </option>
+            <option key="rejected" value="rejected">
               Rejected proposal
-            </Badge>
-          )}
-          {state === 'confirmed' && <Badge success>Confirmed by speaker</Badge>}
-          {state === 'declined' && <Badge error>Declined by speaker</Badge>}
-        </div>
-      )}
+            </option>
+          </select>
+        )}
 
-      {!isDeliberationDone && (
-        <select
-          className={styles.selector}
-          onChange={onChange}
-          onClick={(e) => e.stopPropagation()}
-          defaultValue={state}
-          aria-label="Set proposal deliberation"
-        >
-          <option key="submitted" value="submitted">
-            Deliberate...
-          </option>
-          <option key="accepted" value="accepted">
-            Accepted proposal
-          </option>
-          <option key="rejected" value="rejected">
-            Rejected proposal
-          </option>
-        </select>
-      )}
-
-      {emailStatus && emailStatus !== 'none' && (
-        <div className={styles.email}>
-          {emailStatus === 'sending' && (
-            <Badge light outline>
-              Sending email...
-            </Badge>
-          )}
-          {emailStatus === 'sent' && (
-            <Badge info outline>
-              Email sent
-            </Badge>
-          )}
-          {emailStatus === 'delivered' && (
-            <Badge success outline>
-              Email delivered
-            </Badge>
-          )}
-        </div>
-      )}
-    </div>
-  </HasRole>
-)
+        {emailStatus && emailStatus !== 'none' && (
+          <div className={styles.email}>
+            {emailStatus === 'sending' && (
+              <Badge light outline>
+                Sending email...
+              </Badge>
+            )}
+            {emailStatus === 'sent' && (
+              <Badge info outline>
+                Email sent
+              </Badge>
+            )}
+            {emailStatus === 'delivered' && (
+              <Badge success outline>
+                Email delivered
+              </Badge>
+            )}
+          </div>
+        )}
+      </div>
+    </HasRole>
+  )
+}
 
 TalkSelection.propTypes = {
   eventId: PropTypes.string.isRequired,

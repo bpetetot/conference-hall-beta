@@ -11,7 +11,7 @@ import Thread from 'components/thread'
 import useReviewerThreads from './useReviewerThreads'
 import styles from './reviewersThread.module.css'
 
-const ReviewersThread = ({ eventId, proposalId }) => {
+function ReviewersThread({ eventId, proposalId }) {
   const { user } = useAuth()
 
   const { messages, saveMessage, deleteMessage } = useReviewerThreads({

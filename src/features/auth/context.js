@@ -14,7 +14,7 @@ const AuthContext = React.createContext()
 export const useAuth = () => useContext(AuthContext)
 
 // TODO Add Unit Tests
-export const AuthContextProvider = ({ children, resetStore }) => {
+export function AuthContextProvider({ children, resetStore }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()

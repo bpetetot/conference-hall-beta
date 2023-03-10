@@ -7,7 +7,7 @@ import InputButton from 'components/form/inputButton'
 
 import styles from './Beta.module.css'
 
-const BetaAccess = () => {
+function BetaAccess() {
   const { updateUser } = useAuth()
   const [error, setError] = useState()
   const redirectNext = useRedirectNext()

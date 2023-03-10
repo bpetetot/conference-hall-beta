@@ -5,28 +5,30 @@ import Field from 'components/form/field'
 
 import './surveyInput.css'
 
-const SurveyInput = ({ name, label, type, answers }) => (
-  <div className="survey-input">
-    <label htmlFor={name}>{label}</label>
-    {answers ? (
-      answers.map((answer) => (
-        <div key={answer.name}>
-          <label htmlFor={type === 'radio' ? name : `${name}.${answer.name}`}>
-            <Field
-              name={type === 'radio' ? name : `${name}.${answer.name}`}
-              component="input"
-              type={type}
-              value={answer.name}
-            />
-            {answer.label}
-          </label>
-        </div>
-      ))
-    ) : (
-      <Field name={name} id={name} component="input" type={type} value={name} />
-    )}
-  </div>
-)
+function SurveyInput({ name, label, type, answers }) {
+  return (
+    <div className="survey-input">
+      <label htmlFor={name}>{label}</label>
+      {answers ? (
+        answers.map((answer) => (
+          <div key={answer.name}>
+            <label htmlFor={type === 'radio' ? name : `${name}.${answer.name}`}>
+              <Field
+                name={type === 'radio' ? name : `${name}.${answer.name}`}
+                component="input"
+                type={type}
+                value={answer.name}
+              />
+              {answer.label}
+            </label>
+          </div>
+        ))
+      ) : (
+        <Field name={name} id={name} component="input" type={type} value={name} />
+      )}
+    </div>
+  )
+}
 
 SurveyInput.propTypes = {
   name: PropTypes.string.isRequired,

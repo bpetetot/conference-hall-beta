@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 
 import Checkbox from './checkbox'
 
-const ReduxFormCheckbox = ({ input, ...rest }) => <Checkbox {...input} {...rest} />
+function ReduxFormCheckbox({ input, ...rest }) {
+  return <Checkbox {...input} {...rest} />
+}
 
 ReduxFormCheckbox.propTypes = {
   input: PropTypes.objectOf(PropTypes.any).isRequired,

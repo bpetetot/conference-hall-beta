@@ -11,7 +11,7 @@ import ChangeRole from '../changeRole'
 import RemoveMemberButton from '../removeMember'
 import styles from './memberRow.module.css'
 
-const MemberRow = ({ organizationId, user, role, isOwner, authUserId }) => {
+function MemberRow({ organizationId, user, role, isOwner, authUserId }) {
   const { uid, displayName, photoURL } = user
   if (!displayName) return null
 

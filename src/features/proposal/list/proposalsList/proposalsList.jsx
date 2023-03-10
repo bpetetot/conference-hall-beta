@@ -8,7 +8,7 @@ import ProposalSubtitle from './proposalSubtitle'
 import ProposalInfo from './proposalInfo'
 import './proposalsList.css'
 
-const Proposals = ({
+function Proposals({
   eventId,
   proposals,
   proposalsSelection,
@@ -18,7 +18,7 @@ const Proposals = ({
   onLoad,
   filters,
   isMobile,
-}) => {
+}) {
   useEffect(() => {
     onLoad({ filters })
     // eslint-disable-next-line react-hooks/exhaustive-deps

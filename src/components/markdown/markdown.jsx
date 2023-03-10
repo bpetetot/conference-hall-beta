@@ -6,7 +6,7 @@ import DOMPurify from 'dompurify'
 
 import './markdown.css'
 
-const Markdown = ({ source, className }) => {
+function Markdown({ source, className }) {
   const html = marked(source || '')
   const safeHtml = DOMPurify.sanitize(html)
   return (

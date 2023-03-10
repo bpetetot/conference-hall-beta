@@ -5,11 +5,13 @@ import isEmpty from 'lodash/isEmpty'
 
 import './list.css'
 
-const List = ({ array, className, noResult, renderRow }) => (
-  <div className={cn('list', className)}>
-    {isEmpty(array) ? <div className="no-result">{noResult}</div> : array.map(renderRow)}
-  </div>
-)
+function List({ array, className, noResult, renderRow }) {
+  return (
+    <div className={cn('list', className)}>
+      {isEmpty(array) ? <div className="no-result">{noResult}</div> : array.map(renderRow)}
+    </div>
+  )
+}
 
 List.propTypes = {
   array: PropTypes.arrayOf(PropTypes.any),

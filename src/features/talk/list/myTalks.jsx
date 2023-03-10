@@ -12,7 +12,7 @@ import NoTalks from 'features/talk/noTalks'
 
 import TalkInfo from './talkInfo'
 
-const MyTalks = ({ talks }) => {
+function MyTalks({ talks }) {
   const navigate = useNavigate()
 
   const [status, setStatus] = useState('active')

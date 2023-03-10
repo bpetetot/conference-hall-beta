@@ -6,18 +6,20 @@ import Badge from 'components/badge'
 
 import styles from './eventTitle.module.css'
 
-const EventTitle = ({ name, type, subtitle, className }) => (
-  <h1 className={cn(styles.title, className)}>
-    <div>
-      <span className={styles.name}>{name}</span> • {subtitle}
-    </div>
-    {type && (
-      <Badge pill outline className={styles.type}>
-        {type}
-      </Badge>
-    )}
-  </h1>
-)
+function EventTitle({ name, type, subtitle, className }) {
+  return (
+    <h1 className={cn(styles.title, className)}>
+      <div>
+        <span className={styles.name}>{name}</span> • {subtitle}
+      </div>
+      {type && (
+        <Badge pill outline className={styles.type}>
+          {type}
+        </Badge>
+      )}
+    </h1>
+  )
+}
 
 EventTitle.propTypes = {
   name: PropTypes.string.isRequired,

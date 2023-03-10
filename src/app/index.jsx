@@ -19,7 +19,7 @@ import Organizer from './organizer'
 
 import 'styles'
 
-const App = () => {
+function App() {
   const theme = useTheme()
   return (
     <div className={cn('app', theme)}>

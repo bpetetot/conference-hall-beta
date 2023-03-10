@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types,func-names */
 import React from 'react'
 
 import Toggle from './toggle'
@@ -8,10 +8,9 @@ import { DayPicker, DayRangePicker } from './dayPicker'
 
 import Label from './label'
 
-const renderField =
-  (component) =>
-  ({ input, label, tooltip, hints, meta, type, placeholder, children, inline, ...rest }) =>
-    (
+const renderField = (component) =>
+  function ({ input, label, tooltip, hints, meta, type, placeholder, children, inline, ...rest }) {
+    return (
       <Label
         name={input.name}
         label={label}
@@ -45,5 +44,6 @@ const renderField =
         {component === 'toggle' && <Toggle {...rest} {...input} />}
       </Label>
     )
+  }
 
 export default renderField

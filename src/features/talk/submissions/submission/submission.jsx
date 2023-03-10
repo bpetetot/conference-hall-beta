@@ -6,14 +6,16 @@ import { Link } from 'react-router-dom'
 import Status from '../../status'
 import './submission.css'
 
-const Submission = ({ talkId, eventId, name }) => (
-  <div className="talk-submission-event">
-    <Link to={`/speaker/event/${eventId}/submissions/${talkId}`}>{name}</Link>
-    <div className="talk-submission-event-actions">
-      <Status talkId={talkId} eventId={eventId} />
+function Submission({ talkId, eventId, name }) {
+  return (
+    <div className="talk-submission-event">
+      <Link to={`/speaker/event/${eventId}/submissions/${talkId}`}>{name}</Link>
+      <div className="talk-submission-event-actions">
+        <Status talkId={talkId} eventId={eventId} />
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 Submission.propTypes = {
   talkId: PropTypes.string.isRequired,

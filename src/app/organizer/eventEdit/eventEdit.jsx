@@ -13,21 +13,23 @@ import SurveyForm from 'features/event/edit/survey'
 import DeliberationForm from 'features/event/edit/deliberation'
 import IntegrationsForm from 'features/event/edit/integrations'
 
-const EventEdit = ({ eventId }) => (
-  <div>
-    <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
-      <Tabs eventId={eventId} />
-      <Routes>
-        <Route path="/" element={<EventForm eventId={eventId} />} />
-        <Route path="cfp" element={<CfpForm eventId={eventId} />} />
-        <Route path="deliberation" element={<DeliberationForm eventId={eventId} />} />
-        <Route path="custom" element={<CustomizeForm eventId={eventId} />} />
-        <Route path="survey" element={<SurveyForm eventId={eventId} />} />
-        <Route path="integrations" element={<IntegrationsForm eventId={eventId} />} />
-      </Routes>
-    </HasRole>
-  </div>
-)
+function EventEdit({ eventId }) {
+  return (
+    <div>
+      <HasRole of={ROLE_OWNER_OR_MEMBER} forEventId={eventId}>
+        <Tabs eventId={eventId} />
+        <Routes>
+          <Route path="/" element={<EventForm eventId={eventId} />} />
+          <Route path="cfp" element={<CfpForm eventId={eventId} />} />
+          <Route path="deliberation" element={<DeliberationForm eventId={eventId} />} />
+          <Route path="custom" element={<CustomizeForm eventId={eventId} />} />
+          <Route path="survey" element={<SurveyForm eventId={eventId} />} />
+          <Route path="integrations" element={<IntegrationsForm eventId={eventId} />} />
+        </Routes>
+      </HasRole>
+    </div>
+  )
+}
 
 EventEdit.propTypes = {
   eventId: PropTypes.string.isRequired,

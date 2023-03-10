@@ -8,7 +8,7 @@ import { useAuth } from 'features/auth'
 
 import RoleText from './roleText'
 
-const ChangeRoleSelect = ({ user, role, changeMemberRole }) => {
+function ChangeRoleSelect({ user, role, changeMemberRole }) {
   const { user: authUser } = useAuth()
   const isAuthenticatedUser = authUser.uid === user.uid
 

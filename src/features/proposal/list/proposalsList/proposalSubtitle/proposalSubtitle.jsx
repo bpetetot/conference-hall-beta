@@ -5,13 +5,15 @@ import Inline from 'components/inline'
 
 import './proposalSubtitle.css'
 
-const ProposalSubtitle = ({ formatLabel, categoryLabel, speakerName }) => (
-  <Inline className="proposal-subtitle" classNameItem="proposal-subtitle-item">
-    {!!speakerName && `by ${speakerName}`}
-    {!!formatLabel && formatLabel}
-    {!!categoryLabel && categoryLabel}
-  </Inline>
-)
+function ProposalSubtitle({ formatLabel, categoryLabel, speakerName }) {
+  return (
+    <Inline className="proposal-subtitle" classNameItem="proposal-subtitle-item">
+      {!!speakerName && `by ${speakerName}`}
+      {!!formatLabel && formatLabel}
+      {!!categoryLabel && categoryLabel}
+    </Inline>
+  )
+}
 
 ProposalSubtitle.propTypes = {
   formatLabel: PropTypes.string,

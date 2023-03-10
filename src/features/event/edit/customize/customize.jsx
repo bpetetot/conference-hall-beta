@@ -9,7 +9,7 @@ import styles from './customize.module.css'
 
 const MAX_SIZE = 100 * 1024 // 100kB
 
-const CustomizeForm = ({ eventId, onChangeBanner }) => {
+function CustomizeForm({ eventId, onChangeBanner }) {
   const [percentage, setPercentage] = useState()
   const [error, setError] = useState()
 

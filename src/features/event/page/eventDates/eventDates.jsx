@@ -9,7 +9,7 @@ import isEqual from 'date-fns/isEqual'
 
 import './eventDates.css'
 
-const EventDates = ({ dates: { start, end }, timezone, large, className }) => {
+function EventDates({ dates: { start, end }, timezone, large, className }) {
   if (!start && !end) return null
   const startDate = toDate(start)
   const endDate = toDate(end)

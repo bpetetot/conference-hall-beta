@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import styles from './toggle.module.css'
 
-const Toggle = ({ name, checked, onChange, ...rest }) => {
+function Toggle({ name, checked, onChange, ...rest }) {
   const [isChecked, setChecked] = useState(checked)
 
   useEffect(() => {

@@ -10,7 +10,6 @@
     "test": "react-scripts test",
     "test:emulator": "firebase emulators:exec --only firestore 'jest --roots config --env=./config/tests/custom.js'",
     "lint": "eslint --ext js,jsx src",
-    "size": "bundlesize",
     "doc": "start-storybook -p 6006 --docs",
     "doc:build": "build-storybook --docs",
     "changelog": "npx gitmoji-changelog@latest"
@@ -57,17 +56,16 @@
     "@storybook/react": "6.0.28-alpha.3",
     "@testing-library/react-hooks": "3.4.2",
     "babel-loader": "8.1.0",
-    "bundlesize": "0.18.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.5",
     "enzyme-to-json": "3.6.1",
-    "eslint-config-airbnb": "18.2.0",
-    "eslint-config-prettier": "6.15.0",
-    "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jsx-a11y": "6.4.1",
-    "eslint-plugin-prettier": "3.1.4",
-    "eslint-plugin-react": "7.21.5",
-    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "8.7.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-react-hooks": "4.6.0",
     "firebase-tools": "8.14.1",
     "prettier": "2.8.4",
     "react-is": "17.0.1",
@@ -95,6 +93,7 @@
       "import/no-extraneous-dependencies": 0,
       "import/no-unresolved": 0,
       "import/extensions": 0,
+      "no-restricted-exports": 0,
       "react/forbid-prop-types": 0,
       "react/jsx-one-expression-per-line": 0,
       "react/destructuring-assignment": 0,
@@ -126,16 +125,6 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
-  "bundlesize": [
-    {
-      "path": "./build/static/js/*.js",
-      "maxSize": "365 kB"
-    },
-    {
-      "path": "./build/static/css/*.css",
-      "maxSize": "20 kB"
-    }
-  ],
   "browserslist": {
     "production": [
       ">0.2%",

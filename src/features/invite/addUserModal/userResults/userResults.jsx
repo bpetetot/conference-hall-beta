@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import UserAvatar from 'features/auth/userAvatar'
 import './userResults.css'
 
-const UserResults = ({ users, message, onSelectUser }) => {
+function UserResults({ users, message, onSelectUser }) {
   if (users.length === 0) {
     return (
       <div className="users-no-result">

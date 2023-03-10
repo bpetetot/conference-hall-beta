@@ -4,13 +4,15 @@ import cn from 'classnames'
 
 import './loading.css'
 
-const LoadingIndicator = ({ className }) => (
-  <div className={cn('spinner', className)}>
-    <div className="bounce1" />
-    <div className="bounce2" />
-    <div className="bounce3" />
-  </div>
-)
+function LoadingIndicator({ className }) {
+  return (
+    <div className={cn('spinner', className)}>
+      <div className="bounce1" />
+      <div className="bounce2" />
+      <div className="bounce3" />
+    </div>
+  )
+}
 
 LoadingIndicator.propTypes = {
   className: PropTypes.string,

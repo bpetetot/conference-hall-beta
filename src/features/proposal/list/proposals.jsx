@@ -12,7 +12,7 @@ import ProposalsToolbar from './proposalsToolbar'
 import ProposalsList from './proposalsList'
 import ProposalsPaging from './proposalsPaging'
 
-const Proposals = ({ eventId }) => {
+function Proposals({ eventId }) {
   const { user } = useAuth()
 
   const { search } = useLocation()

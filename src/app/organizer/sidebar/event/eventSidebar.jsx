@@ -6,7 +6,7 @@ import IconLabel from 'components/iconLabel'
 import HasRole from 'features/organization/hasRole'
 import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
-const EventSidebar = ({ eventId, name }) => {
+function EventSidebar({ eventId, name }) {
   if (!eventId) return null
   return (
     <SideBarPanel label={name}>
