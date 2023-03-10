@@ -7,8 +7,13 @@ import DOMPurify from 'dompurify'
 import './markdown.css'
 
 function Markdown({ source, className }) {
-  const html = marked.parse(source || '')
-  const safeHtml = DOMPurify.sanitize(html)
+  const renderer = new marked.Renderer()
+  renderer.link = function (href, title, text) {
+    const link = marked.Renderer.prototype.link.call(this, href, title, text)
+    return link.replace("<a", "<a target='_blank' ")
+  }
+  const html = marked.parse(source || '', { renderer })
+  const safeHtml = DOMPurify.sanitize(html, { ADD_ATTR: ['target'] })
   return (
     <div
       className={cn('markdown', className)}
