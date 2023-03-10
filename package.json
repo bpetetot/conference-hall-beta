@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.12.3",
+    "@babel/eslint-parser": "^7.19.1",
     "@firebase/testing": "0.20.11",
     "@storybook/addon-docs": "6.0.28-alpha.3",
     "@storybook/addons": "6.0.28-alpha.3",
@@ -69,15 +70,11 @@
     "firebase-tools": "8.14.1",
     "prettier": "2.8.4",
     "react-is": "17.0.1",
-    "react-scripts": "4.0.1",
+    "react-scripts": "5.0.1",
     "react-test-renderer": "17.0.1",
     "redux-devtools-extension": "2.13.9"
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
-    "plugins": [
-      "react-hooks"
-    ],
     "extends": [
       "airbnb",
       "plugin:prettier/recommended"
@@ -105,8 +102,6 @@
       "jsx-a11y/interactive-supports-focus": 0,
       "jsx-a11y/label-has-associated-control": 0,
       "jsx-a11y/control-has-associated-label": 0,
-      "react-hooks/rules-of-hooks": 0,
-      "react-hooks/exhaustive-deps": 1,
       "jsx-a11y/anchor-is-valid": [
         "error",
         {

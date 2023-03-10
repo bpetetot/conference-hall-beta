@@ -35,7 +35,6 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
     [navigate, params, eventId],
   )
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onChangeDebounced = useCallback(debounce(handleChange, 200), [handleChange])
 
   const handleSearchChange = (e) => {

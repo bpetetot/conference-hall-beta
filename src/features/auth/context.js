@@ -41,7 +41,7 @@ export function AuthContextProvider({ children, resetStore }) {
       }
       setLoading(false)
     })
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const signin = useCallback(async (providerName) => {
     setLoading(true)

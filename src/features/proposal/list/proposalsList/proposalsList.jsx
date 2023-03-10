@@ -21,7 +21,6 @@ function Proposals({
 }) {
   useEffect(() => {
     onLoad({ filters })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
 
   const navigate = useNavigate()

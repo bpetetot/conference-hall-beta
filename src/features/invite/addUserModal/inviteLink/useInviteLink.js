@@ -27,7 +27,7 @@ export default ({ entity, entityId, entityTitle, uid }) => {
         setInviteId(null)
         setLoading(false)
       })
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   const generate = async () => {
     setLoading(true)
