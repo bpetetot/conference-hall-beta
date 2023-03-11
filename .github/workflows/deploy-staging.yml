@@ -46,7 +46,6 @@ jobs:
           REACT_APP_PROJECT_ID: ${{ secrets.DEV_FIREBASE_PROJECT_ID }}
           REACT_APP_STORAGE: ${{ secrets.DEV_FIREBASE_APP_STORAGE }}
           PUBLIC_URL: https://${{ secrets.DEV_FIREBASE_AUTH_DOMAIN }}
-          REACT_APP_GOOGLE_ANALYTICS_ID: ""
       - uses: actions/upload-artifact@v2
         with:
           name: build
