@@ -1,8 +1,8 @@
 import toLower from 'lodash/toLower'
 import deburr from 'lodash/deburr'
 
-import * as firebase from 'firebase/proposals'
-import userCrud from 'firebase/user'
+import userCrud from '../../../firebase/user'
+import * as firebase from '../../../firebase/proposals'
 
 /* Send email to a selection of proposals */
 export const sendEmails = async (action, store) => {

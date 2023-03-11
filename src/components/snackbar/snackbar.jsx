@@ -9,7 +9,7 @@ import CloseIcon from 'components/icons/close'
 
 import './snackbar.css'
 
-const Snackbar = ({
+function Snackbar({
   content,
   defaultOpen,
   success,
@@ -22,40 +22,42 @@ const Snackbar = ({
   delay,
   renderTrigger,
   className,
-}) => (
-  <OpenTrigger
-    defaultOpen={defaultOpen}
-    renderTrigger={renderTrigger}
-    withEscapeClose={false}
-    onOpen={onOpen}
-    onClose={onClose}
-  >
-    {({ hide }) => (
-      <Timer enabled={autoClose} onFinish={hide} delay={delay}>
-        <div
-          className={cn(
-            'cc-snackbar',
-            {
-              'cc-snackbar-success': success,
-              'cc-snackbar-warning': warning,
-              'cc-snackbar-error': error,
-            },
-            className,
-          )}
-        >
-          <div className="cc-snackbar-content">{content}</div>
-          <div className="cc-snackbar-actions">
-            {withCloseIcon && (
-              <Button simple onClick={hide}>
-                <CloseIcon />
-              </Button>
+}) {
+  return (
+    <OpenTrigger
+      defaultOpen={defaultOpen}
+      renderTrigger={renderTrigger}
+      withEscapeClose={false}
+      onOpen={onOpen}
+      onClose={onClose}
+    >
+      {({ hide }) => (
+        <Timer enabled={autoClose} onFinish={hide} delay={delay}>
+          <div
+            className={cn(
+              'cc-snackbar',
+              {
+                'cc-snackbar-success': success,
+                'cc-snackbar-warning': warning,
+                'cc-snackbar-error': error,
+              },
+              className,
             )}
+          >
+            <div className="cc-snackbar-content">{content}</div>
+            <div className="cc-snackbar-actions">
+              {withCloseIcon && (
+                <Button simple onClick={hide}>
+                  <CloseIcon />
+                </Button>
+              )}
+            </div>
           </div>
-        </div>
-      </Timer>
-    )}
-  </OpenTrigger>
-)
+        </Timer>
+      )}
+    </OpenTrigger>
+  )
+}
 
 Snackbar.propTypes = {
   content: PropTypes.node.isRequired,

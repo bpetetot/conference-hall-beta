@@ -9,7 +9,7 @@ import { required } from 'components/form/validators'
 import './organizationForm.css'
 import { useNavigate } from 'react-router-dom'
 
-const OrganizationForm = ({ onSubmit, initialValues, submitting }) => {
+function OrganizationForm({ onSubmit, initialValues, submitting }) {
   const navigate = useNavigate()
   const handleFormSubmit = useCallback(
     (data) => {

@@ -11,7 +11,7 @@ import useTheme from 'styles/themes/useTheme'
 
 import './drawer.css'
 
-const Drawer = ({ title, subtitle, className, actions, children, defaultOpen, renderTrigger }) => {
+function Drawer({ title, subtitle, className, actions, children, defaultOpen, renderTrigger }) {
   const theme = useTheme()
 
   return (

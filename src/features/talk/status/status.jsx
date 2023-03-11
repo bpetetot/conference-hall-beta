@@ -6,7 +6,7 @@ import cn from 'classnames'
 import Badge from 'components/badge'
 import './status.css'
 
-const Status = ({
+function Status({
   loaded,
   submitted,
   confirmed,
@@ -17,7 +17,7 @@ const Status = ({
   outOfDate,
   className,
   displayCfpStatus,
-}) => {
+}) {
   if (!loaded) return null
   return (
     <div className={cn('submission-status', className)}>

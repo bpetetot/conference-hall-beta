@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
 import split from 'lodash/split'
 
 import useRedirectNext from 'features/router/useRedirectNext'
@@ -12,7 +12,7 @@ import './login.css'
 
 const PROVIDERS = split(process.env.REACT_APP_AUTH_PROVIDERS, ',') || []
 
-const Login = () => {
+function Login() {
   const [redirecting, setRedirecting] = useState(false)
   const [error, setError] = useState()
   const { user, loading, signin } = useAuth()

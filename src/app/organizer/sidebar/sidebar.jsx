@@ -7,7 +7,7 @@ import IconLabel from 'components/iconLabel'
 import { useAuth } from 'features/auth'
 import EventSideBar from './event'
 
-const OrganizerSideBar = ({ className }) => {
+function OrganizerSideBar({ className }) {
   const { user } = useAuth()
   const eventId = useCurrentEventId()
   return (

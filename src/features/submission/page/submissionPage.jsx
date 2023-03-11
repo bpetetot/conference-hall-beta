@@ -11,7 +11,7 @@ import Notification from 'features/talk/deliberation/notification'
 
 import styles from './submissionPage.module.css'
 
-const SubmissionPage = ({
+function SubmissionPage({
   eventId,
   id,
   title,
@@ -26,7 +26,7 @@ const SubmissionPage = ({
   categories,
   onUpdateSubmission,
   cfpOpened,
-}) => {
+}) {
   const navigate = useNavigate()
 
   const handleUpdateSubmission = useCallback(() => {

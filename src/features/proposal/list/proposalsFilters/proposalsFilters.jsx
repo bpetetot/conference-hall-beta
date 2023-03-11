@@ -5,10 +5,10 @@ import debounce from 'lodash/debounce'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import HasRole from 'features/organization/hasRole'
-import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
 import styles from './proposalsFilters.module.css'
 import { filterTypes, statusLabel, ratingsLabel, sortOrderLabel, filterSortOrders } from './filters'
+import { ROLE_OWNER_OR_MEMBER } from '../../../../firebase/constants'
 
 const { statuses, ratings } = filterTypes
 
@@ -35,8 +35,7 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
     [navigate, params, eventId],
   )
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const onChangeDebounced = useCallback(debounce(handleChange, 200), [handleChange])
+  const onChangeDebounced = useCallback(debounce(handleChange, 200), [handleChange]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSearchChange = (e) => {
     e.persist()

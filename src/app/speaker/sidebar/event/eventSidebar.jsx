@@ -5,7 +5,7 @@ import { SideBarPanel, SideBarLink } from 'app/layout/sidebar'
 import IconLabel from 'components/iconLabel'
 import SubmitTalksLink from 'features/talk/submitTalksLink'
 
-const EventSidebar = ({ eventId, name, surveyActive }) => {
+function EventSidebar({ eventId, name, surveyActive }) {
   if (!eventId) return null
   return (
     <SideBarPanel label={name}>

@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import './step.css'
 
-const Step = ({ icon, step, current }) => {
+function Step({ icon, step, current }) {
   const stepIcon = (i, s, c) => cn({ [i]: s >= c, 'fa fa-check': s < c })
   const stepClasses = (s, c) => cn('step-icon', { 'step-active': s === c, 'step-success': s < c })
 

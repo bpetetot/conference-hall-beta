@@ -1,4 +1,4 @@
-import functions from 'firebase/functionCalls'
+import functions from '../../firebase/functionCalls'
 
 export const submitTalkToEvent = async (action, store) => {
   const { talkId, eventId, data } = action.payload

@@ -10,7 +10,7 @@ import Actions from './actions'
 
 import './proposal.css'
 
-const Proposal = ({ eventId, proposal, deliberationActive, blindRating }) => {
+function Proposal({ eventId, proposal, deliberationActive, blindRating }) {
   const { user } = useAuth()
 
   return (

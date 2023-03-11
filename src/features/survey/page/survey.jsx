@@ -7,7 +7,7 @@ import SurveyForm from '../form'
 
 import './survey.css'
 
-const SpeakerSurvey = ({ eventId, name }) => {
+function SpeakerSurvey({ eventId, name }) {
   const { user } = useAuth()
   return (
     <div className="speaker-survey">

@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import './stepLabel.css'
 
-const StepLabel = ({ label, step, current }) => {
+function StepLabel({ label, step, current }) {
   const labelClasses = (s, c) => cn({ 'step-active-label': s === c, 'step-success-label': s < c })
 
   return <div className={labelClasses(step, current)}>{label}</div>

@@ -5,7 +5,7 @@ import cn from 'classnames'
 import Label from '../label'
 import './radioGroup.css'
 
-const RadioGroup = ({ name, label, children, inline, error, className }) => {
+function RadioGroup({ name, label, children, inline, error, className }) {
   const classes = cn('form-radio-group', className, {
     'form-radio-group-inline': inline,
     'form-radio-group-col': !inline,

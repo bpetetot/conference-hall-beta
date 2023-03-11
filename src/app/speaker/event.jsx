@@ -8,7 +8,7 @@ import SubmissionWizard from 'features/submission/wizard'
 import SubmissionsList from 'features/submission/list'
 import SubmissionPage from 'features/submission/page'
 
-const Event = () => {
+function Event() {
   const { user } = useAuth()
   const { eventId } = useParams()
   return (

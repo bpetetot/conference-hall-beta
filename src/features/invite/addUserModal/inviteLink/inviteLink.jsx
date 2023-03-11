@@ -9,7 +9,7 @@ import { useAuth } from 'features/auth'
 import useInviteLink from './useInviteLink'
 import styles from './inviteLink.module.css'
 
-const InviteLink = ({ entity, entityId, entityTitle }) => {
+function InviteLink({ entity, entityId, entityTitle }) {
   const { user } = useAuth()
 
   const { generate, revoke, loading, inviteLink } = useInviteLink({

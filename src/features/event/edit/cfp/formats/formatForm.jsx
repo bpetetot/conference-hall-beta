@@ -8,22 +8,24 @@ import { required } from 'components/form/validators'
 
 import './formatForm.css'
 
-const FormatForm = ({ edit, onSubmit, initialValues }) => (
-  <Form onSubmit={onSubmit} initialValues={initialValues}>
-    {({ handleSubmit, pristine, invalid }) => (
-      <form className="format-form">
-        <h2>{edit ? 'Update format' : 'Add a new format'}</h2>
-        <div className="format-form-content">
-          <Field name="name" label="Name" type="text" component={input} validate={required} />
-          <Field name="description" label="Description" type="text" component={textarea} />
-          <SubmitButton handleSubmit={handleSubmit} pristine={pristine} invalid={invalid}>
-            {edit ? 'Save format' : 'Add format'}
-          </SubmitButton>
-        </div>
-      </form>
-    )}
-  </Form>
-)
+function FormatForm({ edit, onSubmit, initialValues }) {
+  return (
+    <Form onSubmit={onSubmit} initialValues={initialValues}>
+      {({ handleSubmit, pristine, invalid }) => (
+        <form className="format-form">
+          <h2>{edit ? 'Update format' : 'Add a new format'}</h2>
+          <div className="format-form-content">
+            <Field name="name" label="Name" type="text" component={input} validate={required} />
+            <Field name="description" label="Description" type="text" component={textarea} />
+            <SubmitButton handleSubmit={handleSubmit} pristine={pristine} invalid={invalid}>
+              {edit ? 'Save format' : 'Add format'}
+            </SubmitButton>
+          </div>
+        </form>
+      )}
+    </Form>
+  )
+}
 
 FormatForm.propTypes = {
   edit: PropTypes.bool,

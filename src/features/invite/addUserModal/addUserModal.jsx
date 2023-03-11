@@ -10,7 +10,7 @@ import InviteLink from './inviteLink'
 import useSearchUsers from './useSearchUsers'
 import styles from './addUserModal.module.css'
 
-const AddUserModal = ({
+function AddUserModal({
   title,
   description,
   resultsMessage,
@@ -19,7 +19,7 @@ const AddUserModal = ({
   inviteEntity,
   inviteEntityId,
   inviteEntityTitle,
-}) => {
+}) {
   const { email, users, searchUsers, loading } = useSearchUsers()
 
   return (

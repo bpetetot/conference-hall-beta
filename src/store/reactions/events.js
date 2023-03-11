@@ -3,13 +3,13 @@ import map from 'lodash/map'
 import uniqBy from 'lodash/uniqBy'
 import get from 'lodash/get'
 
-import { fetchOrganizationEvents, fetchUserOrganizations } from 'firebase/organizations'
+import { fetchOrganizationEvents, fetchUserOrganizations } from '../../firebase/organizations'
 import eventCrud, {
   fetchPublicEvents,
   fetchUserEvents,
   fetchSettings,
   saveSettings,
-} from 'firebase/events'
+} from '../../firebase/events'
 
 export const updateEventForm = async (action, store) => {
   const event = action.payload

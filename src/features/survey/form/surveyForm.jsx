@@ -6,18 +6,20 @@ import { SubmitButton } from 'components/form'
 import SurveyInput from './surveyInput'
 import questions from '../questions'
 
-const SurveyForm = ({ survey, onSubmit, initialValues, submitting }) => (
-  <Form onSubmit={onSubmit} initialValues={initialValues}>
-    {({ handleSubmit, pristine }) => (
-      <form>
-        {questions.map((q) => survey[q.name] && <SurveyInput key={q.name} {...q} />)}
-        <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
-          Save Survey
-        </SubmitButton>
-      </form>
-    )}
-  </Form>
-)
+function SurveyForm({ survey, onSubmit, initialValues, submitting }) {
+  return (
+    <Form onSubmit={onSubmit} initialValues={initialValues}>
+      {({ handleSubmit, pristine }) => (
+        <form>
+          {questions.map((q) => survey[q.name] && <SurveyInput key={q.name} {...q} />)}
+          <SubmitButton handleSubmit={handleSubmit} pristine={pristine} submitting={submitting}>
+            Save Survey
+          </SubmitButton>
+        </form>
+      )}
+    </Form>
+  )
+}
 
 SurveyForm.propTypes = {
   survey: PropTypes.objectOf(PropTypes.bool),

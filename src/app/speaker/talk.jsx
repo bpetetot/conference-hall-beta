@@ -5,7 +5,7 @@ import TalkPage from 'features/talk/page'
 import TalkEdit from 'features/talk/form/talkEdit'
 import TalkSubmission from 'features/submission/talkSubmission'
 
-const Talk = () => {
+function Talk() {
   const { talkId } = useParams()
   return (
     <Routes>

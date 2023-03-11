@@ -10,14 +10,14 @@ import Checkbox from 'components/form/checkbox'
 
 import styles from './slack.module.css'
 
-const Slack = ({
+function Slack({
   enabled,
   webhookUrl,
   notifications,
   onToggleSlack,
   onSaveUrl,
   onChangeNotification,
-}) => {
+}) {
   const [url, setUrl] = useState(webhookUrl)
 
   return (

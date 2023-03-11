@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Button from 'components/button'
 import IconLabel from 'components/iconLabel'
 
-const SubmitButton = ({
+function SubmitButton({
   type,
   onClick,
   handleSubmit,
@@ -15,19 +15,21 @@ const SubmitButton = ({
   className,
   children,
   secondary,
-}) => (
-  <Button
-    type={type}
-    onClick={onClick || handleSubmit}
-    className={className}
-    accent={!secondary}
-    secondary={secondary}
-    aria-disabled={pristine || submitting || invalid}
-  >
-    {submitting && <IconLabel icon="fa fa-cog fa-spin fa-fw" label={loadingMessage} />}
-    {!submitting && children}
-  </Button>
-)
+}) {
+  return (
+    <Button
+      type={type}
+      onClick={onClick || handleSubmit}
+      className={className}
+      accent={!secondary}
+      secondary={secondary}
+      aria-disabled={pristine || submitting || invalid}
+    >
+      {submitting && <IconLabel icon="fa fa-cog fa-spin fa-fw" label={loadingMessage} />}
+      {!submitting && children}
+    </Button>
+  )
+}
 
 SubmitButton.propTypes = {
   type: PropTypes.string,

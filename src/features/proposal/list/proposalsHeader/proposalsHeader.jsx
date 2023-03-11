@@ -8,7 +8,7 @@ import { useAuth } from 'features/auth'
 
 import styles from './proposalsHeader.module.css'
 
-const ProposalsHeader = ({ eventId }) => {
+function ProposalsHeader({ eventId }) {
   const { user } = useAuth()
   return (
     <div className={styles.header}>

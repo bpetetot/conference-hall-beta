@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
 
 import Button from 'components/button'
 import Banner from 'features/event/page/banner'
@@ -9,7 +9,7 @@ import styles from './customize.module.css'
 
 const MAX_SIZE = 100 * 1024 // 100kB
 
-const CustomizeForm = ({ eventId, onChangeBanner }) => {
+function CustomizeForm({ eventId, onChangeBanner }) {
   const [percentage, setPercentage] = useState()
   const [error, setError] = useState()
 

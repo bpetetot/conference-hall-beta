@@ -11,7 +11,7 @@ import useTheme from 'styles/themes/useTheme'
 
 import './modal.css'
 
-const Modal = ({
+function Modal({
   children,
   onClose,
   withClickOutside,
@@ -20,7 +20,7 @@ const Modal = ({
   className,
   defaultOpen,
   renderTrigger,
-}) => {
+}) {
   const theme = useTheme()
   return (
     <OpenTrigger

@@ -6,7 +6,7 @@ import ProposalsList from 'features/proposal/list'
 import Proposal from 'features/proposal/page'
 import EventEdit from './eventEdit'
 
-const Event = () => {
+function Event() {
   const { eventId } = useParams()
   return (
     <Routes>

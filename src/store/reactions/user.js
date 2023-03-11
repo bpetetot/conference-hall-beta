@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import userCrud from 'firebase/user'
+import userCrud from '../../firebase/user'
 
 export const fetchUser = async (action, store) => {
   // check if user exists in the store

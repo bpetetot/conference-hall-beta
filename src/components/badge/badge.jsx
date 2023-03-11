@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import './badge.css'
 
-const Badge = ({
+function Badge({
   children,
   pill,
   primary,
@@ -18,7 +18,7 @@ const Badge = ({
   outline,
   className,
   style,
-}) => {
+}) {
   if (!children) return null
 
   const classes = cn(

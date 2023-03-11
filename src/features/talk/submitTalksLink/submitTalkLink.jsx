@@ -7,7 +7,7 @@ import cn from 'classnames'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 
-const SubmitTalkLink = ({ eventId, label, displayed, className, size, onClick }) => {
+function SubmitTalkLink({ eventId, label, displayed, className, size, onClick }) {
   if (!displayed) return null
 
   return (

@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import './button.css'
 
-const Button = ({
+function Button({
   className,
   primary,
   secondary,
@@ -19,7 +19,7 @@ const Button = ({
   children,
   onClick,
   ...rest
-}) => {
+}) {
   const classes = cn(
     'cc-button',
     {

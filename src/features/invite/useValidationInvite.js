@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
 
-import inviteReq from 'firebase/invites'
+import inviteReq from '../../firebase/invites'
 
 // TODO Add unit tests
 export default (inviteId, navigate) => {

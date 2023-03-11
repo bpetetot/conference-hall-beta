@@ -5,13 +5,15 @@ import keys from 'lodash/keys'
 
 import Speaker from './speaker'
 
-const Speakers = ({ proposal, className }) => (
-  <div className={cn(className, 'card')}>
-    {keys(proposal.speakers).map((uid) => (
-      <Speaker key={uid} uid={uid} />
-    ))}
-  </div>
-)
+function Speakers({ proposal, className }) {
+  return (
+    <div className={cn(className, 'card')}>
+      {keys(proposal.speakers).map((uid) => (
+        <Speaker key={uid} uid={uid} />
+      ))}
+    </div>
+  )
+}
 
 Speakers.propTypes = {
   proposal: PropTypes.objectOf(PropTypes.any),
