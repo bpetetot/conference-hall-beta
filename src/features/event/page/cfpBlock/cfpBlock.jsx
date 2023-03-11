@@ -8,7 +8,7 @@ class CfpBlock extends Component {
   renderCfpLabel = () => {
     const { cfpState } = this.props
     if (cfpState === 'not-started') return 'is not open yet'
-    if (cfpState === 'opened') return 'is opened'
+    if (cfpState === 'opened') return 'is open'
     return 'is closed'
   }
 
