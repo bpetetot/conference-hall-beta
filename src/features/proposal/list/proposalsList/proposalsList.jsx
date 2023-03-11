@@ -21,7 +21,7 @@ function Proposals({
 }) {
   useEffect(() => {
     onLoad({ filters })
-  }, [filters])
+  }, [filters]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const navigate = useNavigate()
   const { search } = useLocation()

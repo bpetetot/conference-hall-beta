@@ -35,7 +35,7 @@ function ProposalFilters({ eventId, formats, categories, hideRatings, deliberati
     [navigate, params, eventId],
   )
 
-  const onChangeDebounced = useCallback(debounce(handleChange, 200), [handleChange])
+  const onChangeDebounced = useCallback(debounce(handleChange, 200), [handleChange]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSearchChange = (e) => {
     e.persist()
