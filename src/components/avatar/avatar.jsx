@@ -17,17 +17,7 @@ const generateColor = (seed) => {
   }
 }
 
-const Avatar = ({
-  name,
-  src,
-  color,
-  size,
-  square,
-  withLabel,
-  className,
-  labelClassName,
-  style,
-}) => {
+function Avatar({ name, src, color, size, square, withLabel, className, labelClassName, style }) {
   if (!name && !src) return null
 
   let bgColor = { background: 'transparent' }

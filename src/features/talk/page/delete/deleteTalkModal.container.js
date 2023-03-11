@@ -1,5 +1,5 @@
 import { inject } from '@k-ramel/react'
-import talkCrud from 'firebase/talks'
+import talkCrud from '../../../../firebase/talks'
 
 import DeleteTalkModal from './deleteTalkModal'
 

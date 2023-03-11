@@ -2,7 +2,7 @@
 import { act } from 'react-test-renderer'
 import { renderHook } from '@testing-library/react-hooks'
 
-import invites, { fetchInviteByType } from 'firebase/invites'
+import invites, { fetchInviteByType } from '../../../../firebase/invites'
 
 import useInviteLink from './useInviteLink'
 
@@ -105,7 +105,7 @@ describe('useInviteLink', () => {
   })
 })
 
-jest.mock('firebase/invites', () => ({
+jest.mock('../../../../firebase/invites', () => ({
   __esModule: true,
   default: {
     create: jest.fn(),

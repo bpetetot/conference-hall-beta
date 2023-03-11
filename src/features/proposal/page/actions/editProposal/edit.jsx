@@ -8,18 +8,20 @@ import IconLabel from 'components/iconLabel'
 import ProposalEditForm from './form'
 import styles from './edit.module.css'
 
-const EditProposal = ({ eventId, proposal }) => (
-  <Modal
-    className={styles.modal}
-    renderTrigger={({ show }) => (
-      <Button secondary onClick={show}>
-        <IconLabel icon="fa fa-pencil" label="Edit proposal" />
-      </Button>
-    )}
-  >
-    {({ hide }) => <ProposalEditForm eventId={eventId} initialValues={proposal} onClose={hide} />}
-  </Modal>
-)
+function EditProposal({ eventId, proposal }) {
+  return (
+    <Modal
+      className={styles.modal}
+      renderTrigger={({ show }) => (
+        <Button secondary onClick={show}>
+          <IconLabel icon="fa fa-pencil" label="Edit proposal" />
+        </Button>
+      )}
+    >
+      {({ hide }) => <ProposalEditForm eventId={eventId} initialValues={proposal} onClose={hide} />}
+    </Modal>
+  )
+}
 
 EditProposal.propTypes = {
   eventId: PropTypes.string.isRequired,

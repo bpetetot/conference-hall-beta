@@ -56,9 +56,11 @@ class Rating extends Component {
     })
   }
 
-  handleMouseEnterStar = (rating, feeling = DEFAULT_FEELING) => () => {
-    this.setState(() => ({ rating, feeling }))
-  }
+  handleMouseEnterStar =
+    (rating, feeling = DEFAULT_FEELING) =>
+    () => {
+      this.setState(() => ({ rating, feeling }))
+    }
 
   render() {
     const { stars, className } = this.props

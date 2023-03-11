@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import { Link, useMatch } from 'react-router-dom'
 
-const SideBarLink = ({ children, to, exact }) => {
+function SideBarLink({ children, to, exact }) {
   const match = useMatch({ path: to, end: exact })
 
   return (

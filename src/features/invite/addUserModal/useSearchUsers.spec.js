@@ -2,7 +2,7 @@
 import { act } from 'react-test-renderer'
 import { renderHook } from '@testing-library/react-hooks'
 
-import { fetchUsersByEmail } from 'firebase/user'
+import { fetchUsersByEmail } from '../../../firebase/user'
 
 import useSearchUsers from './useSearchUsers'
 
@@ -37,7 +37,7 @@ describe('useSearchUsers', () => {
   })
 })
 
-jest.mock('firebase/user', () => ({
+jest.mock('../../../firebase/user', () => ({
   __esModule: true,
   fetchUsersByEmail: jest.fn(),
 }))

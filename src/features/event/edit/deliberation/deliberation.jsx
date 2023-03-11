@@ -9,7 +9,7 @@ import IconLabel from 'components/iconLabel/iconLabel'
 
 import styles from './deliberation.module.css'
 
-const DeliberationForm = ({
+function DeliberationForm({
   blindRating,
   deliberationEnabled,
   displayRatings,
@@ -23,7 +23,7 @@ const DeliberationForm = ({
   onToggleHideRatings,
   onChangeRecipients,
   onChangeNotifiedEmails,
-}) => {
+}) {
   // eslint-disable-next-line max-len
   const disabledEmails =
     !recipients.organizers && (!recipients.contact || (recipients.contact && !contact))

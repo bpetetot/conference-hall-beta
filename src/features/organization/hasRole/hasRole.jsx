@@ -2,7 +2,7 @@ import { node } from 'prop-types'
 import { useAuth } from 'features/auth'
 
 // TODO Refactor later with a hook
-const HasRole = ({ of, orgaMembers, eventOwner, children, otherwise }) => {
+function HasRole({ of, orgaMembers, eventOwner, children, otherwise }) {
   const { user } = useAuth()
   const roles = Array.isArray(of) ? of : [of]
 

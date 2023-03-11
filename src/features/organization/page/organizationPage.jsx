@@ -8,15 +8,15 @@ import { List } from 'components/list'
 import IconLabel from 'components/iconLabel'
 import Button from 'components/button'
 import HasRole from 'features/organization/hasRole'
-import { fetchUsersList } from 'firebase/user'
-import { ROLES } from 'firebase/constants'
 import { useAuth } from 'features/auth'
+import { ROLES } from '../../../firebase/constants'
+import { fetchUsersList } from '../../../firebase/user'
 
 import AddMember from './addMember'
 import MemberRow from './memberRow'
 import './organizationPage.css'
 
-const OrganizationPage = ({ id: organizationId, name, members, addMember }) => {
+function OrganizationPage({ id: organizationId, name, members, addMember }) {
   const { user } = useAuth()
   const [users, setUsers] = useState([])
 

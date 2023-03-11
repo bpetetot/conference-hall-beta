@@ -8,7 +8,7 @@ import SubmitTalkLink from 'features/talk/submitTalksLink'
 
 import styles from './banner.module.css'
 
-const EventBanner = ({ eventId, name, type, address, bannerUrl, className, isMobile }) => {
+function EventBanner({ eventId, name, type, address, bannerUrl, className, isMobile }) {
   const bannerStyle = bannerUrl ? { backgroundImage: `url('${bannerUrl}')` } : {}
   return (
     <div className={cn(styles.banner, className)} style={bannerStyle}>

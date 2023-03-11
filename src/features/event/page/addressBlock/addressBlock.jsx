@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import IconLink from 'components/iconLink'
 
-const AddressBlock = ({ address, className }) => {
+function AddressBlock({ address, className }) {
   if (!address) return null
   return (
     <IconLink

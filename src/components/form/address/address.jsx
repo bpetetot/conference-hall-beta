@@ -39,7 +39,7 @@ const getAddressComponent = (name) =>
     pick(['short_name', 'long_name']),
   )
 
-const AddressInput = (props) => {
+function AddressInput(props) {
   const [address, setAddress] = useState(props.value.formattedAddress || '')
 
   const handleChange = (inputAddress) => {

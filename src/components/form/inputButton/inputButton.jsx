@@ -22,15 +22,8 @@ class InputButton extends Component {
   }
 
   render() {
-    const {
-      btnLabel,
-      className,
-      btnClassName,
-      defaultValue,
-      onClick,
-      disabled,
-      ...inputProps
-    } = this.props
+    const { btnLabel, className, btnClassName, defaultValue, onClick, disabled, ...inputProps } =
+      this.props
 
     return (
       <div className={cn('input-button', className)}>

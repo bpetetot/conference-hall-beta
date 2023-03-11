@@ -11,7 +11,7 @@ import Notification from 'features/talk/deliberation/notification'
 
 import styles from './submissionPage.module.css'
 
-const SubmissionPage = ({
+function SubmissionPage({
   eventId,
   id,
   title,
@@ -25,8 +25,8 @@ const SubmissionPage = ({
   speakers,
   categories,
   onUpdateSubmission,
-  cfpOpen,
-}) => {
+  cfpOpened,
+}) {
   const navigate = useNavigate()
 
   const handleUpdateSubmission = useCallback(() => {
@@ -40,7 +40,7 @@ const SubmissionPage = ({
         <Link to={`/speaker/talk/${id}`}>
           <IconLabel icon="fa fa-history" label="Show current version" />
         </Link>
-        {cfpOpen && (
+        {cfpOpened && (
           <Button accent onClick={handleUpdateSubmission}>
             Update submission
           </Button>

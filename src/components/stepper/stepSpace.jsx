@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './stepSpace.css'
 
-const StepSpace = ({ step, current }) => {
+function StepSpace({ step, current }) {
   const stepSpaceClasses = (s, c) => {
     if (s === c) return 'step-space space-active-to-default'
     if (s < c - 1) return 'step-space space-success'

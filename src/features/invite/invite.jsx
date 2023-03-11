@@ -8,7 +8,7 @@ import Titlebar from 'components/titlebar'
 import useValidationInvite from './useValidationInvite'
 import styles from './invite.module.css'
 
-const InvitePage = () => {
+function InvitePage() {
   const navigate = useNavigate()
   const { inviteId } = useParams()
   const { invitation, loading, validate } = useValidationInvite(inviteId, navigate)

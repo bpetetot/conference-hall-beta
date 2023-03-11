@@ -16,7 +16,7 @@ import Dates from './eventDates'
 
 import './event.css'
 
-const Event = ({
+function Event({
   id,
   type,
   address,
@@ -26,7 +26,7 @@ const Event = ({
   contact,
   categories,
   formats,
-}) => {
+}) {
   const { pathname } = useLocation()
 
   return (

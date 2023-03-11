@@ -9,7 +9,7 @@ import TalkTitle from './talkTitle'
 
 import './talkPage.css'
 
-const TalkPage = ({
+function TalkPage({
   id,
   eventId,
   title,
@@ -20,7 +20,7 @@ const TalkPage = ({
   language,
   speakers,
   onNext,
-}) => {
+}) {
   const titleComponent = <TalkTitle talkId={id} eventId={eventId} title={title} />
   return (
     <div className="talk-details">

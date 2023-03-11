@@ -12,7 +12,7 @@ import EventDates from 'features/event/page/eventDates'
 
 import styles from './events.module.css'
 
-const MyEvents = ({ events, onChangeEvent }) => {
+function MyEvents({ events, onChangeEvent }) {
   const [status, setStatus] = useState('active')
 
   const filteredEvents = useMemo(

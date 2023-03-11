@@ -7,7 +7,7 @@ import SubmitTalkLink from 'features/talk/submitTalksLink'
 import TalkStatus from 'features/talk/status'
 import { List, ListItem } from 'components/list'
 
-const Submissions = ({ eventId, eventName, talks }) => {
+function Submissions({ eventId, eventName, talks }) {
   const navigate = useNavigate()
 
   return (

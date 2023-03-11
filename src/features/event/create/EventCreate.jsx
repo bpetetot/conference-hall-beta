@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import eventCrud from 'firebase/events'
 
 import { useAuth } from 'features/auth'
+import eventCrud from '../../../firebase/events'
 import EventForm from '../form'
 
-const EventCreate = (props) => {
+function EventCreate(props) {
   const { user } = useAuth()
   const navigate = useNavigate()
 

@@ -4,14 +4,16 @@ import noop from 'lodash/noop'
 
 import './backdrop.css'
 
-const Backdrop = ({ onClick, withClickOutside }) => (
-  <div
-    className="backdrop"
-    onClick={withClickOutside ? onClick : noop}
-    role="button"
-    aria-label="Close"
-  />
-)
+function Backdrop({ onClick, withClickOutside }) {
+  return (
+    <div
+      className="backdrop"
+      onClick={withClickOutside ? onClick : noop}
+      role="button"
+      aria-label="Close"
+    />
+  )
+}
 
 Backdrop.propTypes = {
   onClick: PropTypes.func,

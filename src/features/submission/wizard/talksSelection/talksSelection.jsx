@@ -7,21 +7,23 @@ import Status from 'features/talk/status'
 
 import { toDate } from 'helpers/firebase'
 
-const TalksSelection = ({ eventId, talks, onSelect }) => (
-  <List
-    array={talks}
-    noResult={<NoTalks />}
-    renderRow={({ id, title, updateTimestamp }) => (
-      <ListItem
-        key={id}
-        title={title}
-        subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
-        info={<Status eventId={eventId} talkId={id} />}
-        onSelect={() => onSelect(id)}
-      />
-    )}
-  />
-)
+function TalksSelection({ eventId, talks, onSelect }) {
+  return (
+    <List
+      array={talks}
+      noResult={<NoTalks />}
+      renderRow={({ id, title, updateTimestamp }) => (
+        <ListItem
+          key={id}
+          title={title}
+          subtitle={<RelativeDate date={toDate(updateTimestamp)} />}
+          info={<Status eventId={eventId} talkId={id} />}
+          onSelect={() => onSelect(id)}
+        />
+      )}
+    />
+  )
+}
 
 TalksSelection.propTypes = {
   eventId: PropTypes.string.isRequired,

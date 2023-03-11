@@ -1,7 +1,7 @@
 import { flow, set, unset } from 'immutadot'
 
-import organizationCrud, { fetchUserOrganizations } from 'firebase/organizations'
-import { ROLES } from 'firebase/constants'
+import organizationCrud, { fetchUserOrganizations } from '../../firebase/organizations'
+import { ROLES } from '../../firebase/constants'
 
 export const create = async (action, store) => {
   const { userId, data } = action.payload

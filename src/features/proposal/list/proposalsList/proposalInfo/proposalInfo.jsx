@@ -8,7 +8,7 @@ import TalkSelection from 'features/proposal/selection'
 
 import './proposalInfo.css'
 
-const ProposalInfo = ({ eventId, proposal, isMobile, deliberationActive, hideRatings }) => {
+function ProposalInfo({ eventId, proposal, isMobile, deliberationActive, hideRatings }) {
   const { id, rating, loves, hates, noopinion, usersRatings } = proposal
 
   const nbVotes = compact(values(usersRatings)).length

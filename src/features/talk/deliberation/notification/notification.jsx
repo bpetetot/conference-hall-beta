@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Button from 'components/button'
 import Alert from 'components/alert'
 
-const Notification = ({ name, onConfirm, onDecline, className }) => {
+function Notification({ name, onConfirm, onDecline, className }) {
   const title = `This talk has been accepted at ${name}.`
   return (
     <Alert

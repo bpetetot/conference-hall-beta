@@ -2,13 +2,13 @@
 import { act } from 'react-test-renderer'
 import { renderHook } from '@testing-library/react-hooks'
 
+import { toDate } from 'helpers/firebase'
 import {
   queryReviewersThread,
   addReviewersThreadMessage,
   updateReviewersThreadMessage,
   deleteReviewersThreadMessage,
-} from 'firebase/proposals'
-import { toDate } from 'helpers/firebase'
+} from '../../../../../firebase/proposals'
 
 import useReviewerThreads from './useReviewerThreads'
 
@@ -141,7 +141,7 @@ describe('useReviewerThreads', () => {
   })
 })
 
-jest.mock('firebase/proposals', () => ({
+jest.mock('../../../../../firebase/proposals', () => ({
   __esModule: true,
   queryReviewersThread: jest.fn(),
   addReviewersThreadMessage: jest.fn(),

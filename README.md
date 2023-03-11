@@ -1,15 +1,8 @@
 # Conference Hall
 
-[![circleci](https://circleci.com/gh/bpetetot/conference-hall.svg?style=shield)](https://circleci.com/gh/bpetetot/conference-hall)&nbsp;
-[![Greenkeeper badge](https://badges.greenkeeper.io/bpetetot/conference-hall.svg)](https://greenkeeper.io/)&nbsp;
-[![Gitter](https://badges.gitter.im/conference-hall.svg)](https://gitter.im/conference-hall)
-
-
 **Conference Hall** is an open SaaS platform to manage call for papers and speaker submissions for your conferences and meetups. Any speaker writes a talk once and can submit it to every event of the platform.
 
 **Application:** **[https://conference-hall.io](https://conference-hall.io)**
-
-**Documentation:** **[https://contribute-conference-hall.netlify.com](https://contribute-conference-hall.netlify.com)**
 
 ## Features
 
@@ -40,4 +33,4 @@ Conference Hall is still in beta but already contains a large set of features.
 
 ## You want to contribute?
 
-If you want to contribute and make **Conference Hall** better, read our [Contributing Guidelines.](https://contribute-conference-hall.netlify.app/?path=/docs/documentation-contributing--page)
+If you want to contribute and make **Conference Hall** better, read our Contributing Guidelines.

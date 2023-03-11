@@ -7,7 +7,7 @@ import { useCurrentEventId } from 'features/event/currentEventContext'
 import IconLabel from 'components/iconLabel'
 import EventSidebar from './event'
 
-const SpeakerSideBar = ({ className }) => {
+function SpeakerSideBar({ className }) {
   const { user } = useAuth()
   const eventId = useCurrentEventId()
 

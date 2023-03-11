@@ -8,7 +8,7 @@ import Navbar from './navbar'
 
 import './layout.css'
 
-const AppLayout = ({ children, sidebar }) => {
+function AppLayout({ children, sidebar }) {
   const eventId = useCurrentEventId()
 
   return (

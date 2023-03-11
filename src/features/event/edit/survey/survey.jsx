@@ -9,25 +9,27 @@ import questions from 'features/survey/questions'
 
 import './survey.css'
 
-const SurveyForm = ({ surveyActive, survey, onActiveSurvey, onSelectQuestion }) => (
-  <div className="survey-form card">
-    <Label name="surveyActive" label="Enable Survey">
-      <Toggle name="surveyActive" checked={surveyActive} onChange={onActiveSurvey} />
-    </Label>
-    <h4>Select questions that you want to ask to speakers :</h4>
-    {questions.map((question) => (
-      <Checkbox
-        key={question.name}
-        name={question.name}
-        label={question.label}
-        info={question.organizerInfo}
-        onChange={onSelectQuestion}
-        value={survey[question.name]}
-        disabled={!surveyActive}
-      />
-    ))}
-  </div>
-)
+function SurveyForm({ surveyActive, survey, onActiveSurvey, onSelectQuestion }) {
+  return (
+    <div className="survey-form card">
+      <Label name="surveyActive" label="Enable Survey">
+        <Toggle name="surveyActive" checked={surveyActive} onChange={onActiveSurvey} />
+      </Label>
+      <h4>Select questions that you want to ask to speakers :</h4>
+      {questions.map((question) => (
+        <Checkbox
+          key={question.name}
+          name={question.name}
+          label={question.label}
+          info={question.organizerInfo}
+          onChange={onSelectQuestion}
+          value={survey[question.name]}
+          disabled={!surveyActive}
+        />
+      ))}
+    </div>
+  )
+}
 
 SurveyForm.propTypes = {
   surveyActive: PropTypes.bool,

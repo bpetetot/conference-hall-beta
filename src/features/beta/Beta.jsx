@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react'
 
-import { isValidBetaAccessKey } from 'firebase/betaAccess'
 import { useAuth } from 'features/auth'
 import useRedirectNext from 'features/router/useRedirectNext'
 import InputButton from 'components/form/inputButton'
+import { isValidBetaAccessKey } from '../../firebase/betaAccess'
 
 import styles from './Beta.module.css'
 
-const BetaAccess = () => {
+function BetaAccess() {
   const { updateUser } = useAuth()
   const [error, setError] = useState()
   const redirectNext = useRedirectNext()

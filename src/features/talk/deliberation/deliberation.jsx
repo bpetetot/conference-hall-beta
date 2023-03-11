@@ -8,7 +8,7 @@ import styles from './deliberation.module.css'
 const filterAccepted = (submissions) =>
   Object.keys(submissions).filter((eventId) => submissions[eventId].state === 'accepted')
 
-const TalkDeliberationNotification = ({ submissions }) => {
+function TalkDeliberationNotification({ submissions }) {
   const acceptedSubmission = filterAccepted(submissions)
 
   if (isEmpty(acceptedSubmission)) {
