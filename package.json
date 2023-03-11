@@ -10,8 +10,6 @@
     "test": "react-scripts test",
     "test:emulator": "firebase emulators:exec --only firestore 'jest --roots config --env=./config/tests/custom.js'",
     "lint": "eslint --ext js,jsx src",
-    "doc": "start-storybook -p 6006 --docs",
-    "doc:build": "build-storybook --docs",
     "changelog": "npx gitmoji-changelog@latest"
   },
   "dependencies": {
@@ -49,10 +47,6 @@
   },
   "devDependencies": {
     "@firebase/testing": "0.20.11",
-    "@storybook/addon-docs": "6.5.16",
-    "@storybook/addons": "6.5.16",
-    "@storybook/preset-create-react-app": "4.1.2",
-    "@storybook/react": "6.5.16",
     "@testing-library/react-hooks": "8.0.1",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.7",
