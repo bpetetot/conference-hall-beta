@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types,react/no-array-index-key,react/no-unstable-nested-components */
+/* eslint-disable react/prop-types,react/no-array-index-key,react/no-unstable-nested-components,class-methods-use-this */
 import React from 'react'
 import { Field } from 'react-final-form'
 import { FieldArray } from 'react-final-form-arrays'

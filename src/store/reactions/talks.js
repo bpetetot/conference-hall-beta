@@ -1,6 +1,6 @@
 import compareDesc from 'date-fns/compareDesc'
 import { set, unset } from 'immutadot'
-import talkCrud, { fetchUserTalks } from 'firebase/talks'
+import talkCrud, { fetchUserTalks } from '../../firebase/talks'
 
 export const updateTalk = async (action, store) => {
   const talk = action.payload

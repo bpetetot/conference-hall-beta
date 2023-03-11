@@ -6,7 +6,7 @@ import {
   addReviewersThreadMessage,
   updateReviewersThreadMessage,
   deleteReviewersThreadMessage,
-} from 'firebase/proposals'
+} from '../../../../../firebase/proposals'
 
 export default ({ eventId, proposalId, user }) => {
   const [messages, setMessages] = useState([])

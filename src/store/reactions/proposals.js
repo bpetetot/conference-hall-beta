@@ -1,9 +1,9 @@
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
 import omitBy from 'lodash/omitBy'
 import isNil from 'lodash/isNil'
 
 import { downloadFile } from 'helpers/dom'
-import * as firebaseProposals from 'firebase/proposals'
+import * as firebaseProposals from '../../firebase/proposals'
 
 export const updateProposal = async (action, store) => {
   // get needed inputs

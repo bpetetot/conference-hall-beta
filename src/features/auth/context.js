@@ -2,12 +2,12 @@
 import React, { useState, useEffect, useContext, useCallback, useMemo } from 'react'
 import { inject } from '@k-ramel/react'
 import PropTypes from 'prop-types'
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
 import pick from 'lodash/pick'
 import { useNavigate } from 'react-router-dom'
 
-import userCrud from 'firebase/user'
-import { preloadFunctions } from 'firebase/functionCalls'
+import userCrud from '../../firebase/user'
+import { preloadFunctions } from '../../firebase/functionCalls'
 
 const AuthContext = React.createContext()
 

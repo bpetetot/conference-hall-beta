@@ -18,113 +18,62 @@
     "@k-ramel/react": "3.0.1",
     "classnames": "2.3.2",
     "date-fns": "2.29.3",
-    "dompurify": "2.2.0",
+    "dompurify": "3.0.1",
     "final-form": "4.20.9",
     "final-form-arrays": "3.1.0",
-    "firebase": "8.0.0",
+    "firebase": "9.17.2",
     "font-awesome": "4.7.0",
     "history": "^5.3.0",
     "hoc-react-loader": "6.3.0",
     "immutadot": "1.0.0",
-    "intl-messageformat": "9.3.12",
+    "intl-messageformat": "10.3.1",
     "k-ramel": "3.0.1",
     "lodash": "4.17.21",
-    "luxon": "1.25.0",
-    "marked": "1.2.2",
+    "luxon": "3.3.0",
+    "marked": "4.2.12",
     "normalize.css": "8.0.1",
     "popper.js": "1.16.1",
     "prop-types": "15.8.1",
     "randomcolor": "0.6.2",
-    "react": "17.0.1",
-    "react-datepicker": "3.3.0",
-    "react-dom": "17.0.1",
+    "react": "18.2.0",
+    "react-datepicker": "4.10.0",
+    "react-dom": "18.2.0",
     "react-final-form": "6.5.9",
     "react-final-form-arrays": "3.1.4",
     "react-places-autocomplete": "7.3.0",
-    "react-router-dom": "^6.0.0-beta.0",
+    "react-router-dom": "6.0.0-beta.0",
     "react-sizes": "2.0.0",
     "redux": "4.2.1",
-    "uuid": "8.3.1",
+    "uuid": "9.0.0",
     "validator": "13.9.0"
   },
   "devDependencies": {
-    "@babel/core": "7.12.3",
-    "@babel/eslint-parser": "^7.19.1",
     "@firebase/testing": "0.20.11",
-    "@storybook/addon-docs": "6.0.28-alpha.3",
-    "@storybook/addons": "6.0.28-alpha.3",
-    "@storybook/preset-create-react-app": "3.1.4",
-    "@storybook/react": "6.0.28-alpha.3",
-    "@testing-library/react-hooks": "3.4.2",
-    "babel-loader": "8.1.0",
+    "@storybook/addon-docs": "6.5.16",
+    "@storybook/addons": "6.5.16",
+    "@storybook/preset-create-react-app": "4.1.2",
+    "@storybook/react": "6.5.16",
+    "@testing-library/react-hooks": "8.0.1",
     "enzyme": "3.11.0",
-    "enzyme-adapter-react-16": "1.15.5",
-    "enzyme-to-json": "3.6.1",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-config-prettier": "8.7.0",
-    "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-jsx-a11y": "6.7.1",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.32.2",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "firebase-tools": "8.14.1",
+    "enzyme-adapter-react-16": "1.15.7",
+    "enzyme-to-json": "3.6.2",
+    "firebase-tools": "11.24.1",
     "prettier": "2.8.4",
-    "react-is": "17.0.1",
+    "react-is": "18.2.0",
     "react-scripts": "5.0.1",
-    "react-test-renderer": "17.0.1",
+    "react-test-renderer": "18.2.0",
     "redux-devtools-extension": "2.13.9"
   },
   "eslintConfig": {
     "extends": [
-      "airbnb",
-      "plugin:prettier/recommended"
-    ],
-    "env": {
-      "browser": true
-    },
-    "rules": {
-      "semi": [
-        2,
-        "never"
-      ],
-      "import/no-extraneous-dependencies": 0,
-      "import/no-unresolved": 0,
-      "import/extensions": 0,
-      "no-restricted-exports": 0,
-      "react/forbid-prop-types": 0,
-      "react/jsx-one-expression-per-line": 0,
-      "react/destructuring-assignment": 0,
-      "react/state-in-constructor": 0,
-      "react/jsx-props-no-spreading": 0,
-      "react/jsx-wrap-multilines": 0,
-      "jsx-a11y/label-has-for": 0,
-      "jsx-a11y/click-events-have-key-events": 0,
-      "jsx-a11y/interactive-supports-focus": 0,
-      "jsx-a11y/label-has-associated-control": 0,
-      "jsx-a11y/control-has-associated-label": 0,
-      "jsx-a11y/anchor-is-valid": [
-        "error",
-        {
-          "aspects": [
-            "noHref",
-            "invalidHref",
-            "preferButton"
-          ]
-        }
-      ]
-    }
-  },
-  "prettier": {
-    "printWidth": 100,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all"
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
       ">0.2%",
       "not dead",
-      "not ie <= 11",
       "not op_mini all"
     ],
     "development": [

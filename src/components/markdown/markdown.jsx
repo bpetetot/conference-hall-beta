@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import marked from 'marked'
+import { marked } from 'marked'
 import DOMPurify from 'dompurify'
 
 import './markdown.css'
 
 function Markdown({ source, className }) {
-  const html = marked(source || '')
+  const html = marked.parse(source || '')
   const safeHtml = DOMPurify.sanitize(html)
   return (
     <div

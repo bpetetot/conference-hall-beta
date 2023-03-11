@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import eventCrud from 'firebase/events'
 
 import { useAuth } from 'features/auth'
+import eventCrud from '../../../firebase/events'
 import EventForm from '../form'
 
 function EventCreate(props) {

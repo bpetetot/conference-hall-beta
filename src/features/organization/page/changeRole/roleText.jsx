@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { ROLES } from 'firebase/constants'
+import { ROLES } from '../../../../firebase/constants'
 
 function RoleText({ displayName, role }) {
   const title = `Set role “${role}” to “${displayName}” in the organization.`

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
 
 import Button from 'components/button'
 import Banner from 'features/event/page/banner'

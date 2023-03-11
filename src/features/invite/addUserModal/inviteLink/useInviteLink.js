@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import invites, { fetchInviteByType } from 'firebase/invites'
+import invites, { fetchInviteByType } from '../../../../firebase/invites'
 
 const createInviteLink = (inviteId) => {
   if (!inviteId) return null

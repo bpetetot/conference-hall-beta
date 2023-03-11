@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
 import split from 'lodash/split'
 
 import useRedirectNext from 'features/router/useRedirectNext'

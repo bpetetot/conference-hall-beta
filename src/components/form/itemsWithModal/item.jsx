@@ -12,10 +12,10 @@ function Item({ name, onEdit, onDelete }) {
   return (
     <div className="item-box">
       <div>{name}</div>
-      <Button secondary simple small onClick={onEdit} aria-label={`Edit ${name}`}>
+      <Button secondary simple onClick={onEdit} aria-label={`Edit ${name}`}>
         <i className="fa fa-pencil" />
       </Button>
-      <Button secondary simple small onClick={handleDelete} aria-label={`Delete ${name}`}>
+      <Button secondary simple onClick={handleDelete} aria-label={`Delete ${name}`}>
         <i className="fa fa-times" />
       </Button>
     </div>

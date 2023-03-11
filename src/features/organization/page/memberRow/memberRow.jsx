@@ -5,10 +5,10 @@ import { ListItem } from 'components/list'
 import Avatar from 'components/avatar'
 import Badge from 'components/badge'
 import HasRole from 'features/organization/hasRole'
-import { ROLES } from 'firebase/constants'
 
 import ChangeRole from '../changeRole'
 import RemoveMemberButton from '../removeMember'
+import { ROLES } from '../../../../firebase/constants'
 import styles from './memberRow.module.css'
 
 function MemberRow({ organizationId, user, role, isOwner, authUserId }) {

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 
-import { fetchUsersByEmail } from 'firebase/user'
+import { fetchUsersByEmail } from '../../../firebase/user'
 
 export default () => {
   const [email, setEmail] = useState(null)

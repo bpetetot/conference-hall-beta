@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Route, Routes } from 'react-router-dom'
 
 import HasRole from 'features/organization/hasRole'
-import { ROLE_OWNER_OR_MEMBER } from 'firebase/constants'
 
 import Tabs from 'features/event/edit/eventTabs'
 import EventForm from 'features/event/edit/eventForm'
@@ -12,6 +11,7 @@ import CfpForm from 'features/event/edit/cfp'
 import SurveyForm from 'features/event/edit/survey'
 import DeliberationForm from 'features/event/edit/deliberation'
 import IntegrationsForm from 'features/event/edit/integrations'
+import { ROLE_OWNER_OR_MEMBER } from '../../../firebase/constants'
 
 function EventEdit({ eventId }) {
   return (

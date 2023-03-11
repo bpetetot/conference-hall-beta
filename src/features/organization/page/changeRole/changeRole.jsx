@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import capitalize from 'lodash/capitalize'
 
 import { ConfirmationPopin } from 'components/portals'
-import { ROLES } from 'firebase/constants'
 import { useAuth } from 'features/auth'
+import { ROLES } from '../../../../firebase/constants'
 
 import RoleText from './roleText'
 

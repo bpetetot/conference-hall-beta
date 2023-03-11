@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { inject } from '@k-ramel/react'
 
 import loader from 'components/loader'
-import talkCrud from 'firebase/talks'
+import talkCrud from '../../../firebase/talks'
 
 import TalkForm from './talkForm'
 
