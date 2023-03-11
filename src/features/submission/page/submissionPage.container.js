@@ -1,7 +1,7 @@
 import { compose } from 'redux'
 import { inject } from '@k-ramel/react'
 
-import { isCfpOpen } from 'store/reducers/data/events.selector'
+import { isCfpOpened } from 'store/reducers/data/events.selector'
 import loader from 'components/loader'
 import SubmissionPage from './submissionPage'
 
@@ -13,7 +13,7 @@ const mapStore = (store, { eventId, talkId }) => {
     loaded: !!talk.id,
     eventId,
     ...submission,
-    cfpOpen: isCfpOpen(eventId)(store),
+    cfpOpened: isCfpOpened(eventId)(store),
     load: () => store.dispatch({ type: '@@ui/ON_LOAD_TALK', payload: { talkId } }),
     onUpdateSubmission: () => {
       store.ui.speaker.submission.set({ talkId, currentStep: 2 })

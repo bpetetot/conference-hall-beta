@@ -13,7 +13,7 @@ function Status({
   accepted,
   rejected,
   declined,
-  cfpOpen,
+  cfpOpened,
   outOfDate,
   className,
   displayCfpStatus,
@@ -21,8 +21,8 @@ function Status({
   if (!loaded) return null
   return (
     <div className={cn('submission-status', className)}>
-      {outOfDate && cfpOpen && <Badge warning>Out of date</Badge>}
-      {!cfpOpen && displayCfpStatus && <Badge error>CFP closed</Badge>}
+      {outOfDate && cfpOpened && <Badge warning>Out of date</Badge>}
+      {!cfpOpened && displayCfpStatus && <Badge error>CFP closed</Badge>}
       {accepted && (
         <Badge success outline>
           Accepted
@@ -58,7 +58,7 @@ Status.propTypes = {
   confirmed: PropTypes.bool,
   declined: PropTypes.bool,
   outOfDate: PropTypes.bool,
-  cfpOpen: PropTypes.bool,
+  cfpOpened: PropTypes.bool,
   displayCfpStatus: PropTypes.bool,
   className: PropTypes.string,
 }
@@ -71,7 +71,7 @@ Status.defaultProps = {
   confirmed: false,
   declined: false,
   outOfDate: false,
-  cfpOpen: true,
+  cfpOpened: true,
   displayCfpStatus: true,
   className: undefined,
 }

@@ -8,7 +8,7 @@ import TooltipOverlay from './tooltipOverlay'
 
 class Tooltip extends Component {
   state = {
-    open: false,
+    opened: false,
     popperStyle: {},
     arrowStyle: {},
     placement: '',
@@ -37,15 +37,15 @@ class Tooltip extends Component {
   }
 
   handleHover = (type) => () => {
-    this.setState(() => ({ open: type === 'enter' }))
+    this.setState(() => ({ opened: type === 'enter' }))
     this.popperInstance.update()
   }
 
-  handleOpen = () => {
-    if (this.state.open) {
-      this.setState(() => ({ open: false }))
+  handleOpened = () => {
+    if (this.state.opened) {
+      this.setState(() => ({ opened: false }))
     } else {
-      this.setState(() => ({ open: true }))
+      this.setState(() => ({ opened: true }))
     }
     this.popperInstance.update()
   }
@@ -67,7 +67,7 @@ class Tooltip extends Component {
         ref={(r) => (this.targetRef = r)}
         onMouseEnter={this.handleHover('enter')}
         onMouseLeave={this.handleHover('leave')}
-        onClick={this.handleOpen}
+        onClick={this.handleOpened}
         className={cn('cc-tooltip-button', className)}
         style={{ display: inline ? 'inline' : 'block' }}
         aria-label="More info"

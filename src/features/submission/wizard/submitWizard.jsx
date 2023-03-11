@@ -35,14 +35,14 @@ function SubmitWizard({ eventId, cfpOpened, eventName, currentStep }) {
 
 SubmitWizard.propTypes = {
   eventId: PropTypes.string,
-  cfpOpen: PropTypes.bool,
+  cfpOpened: PropTypes.bool,
   eventName: PropTypes.string,
   currentStep: PropTypes.number,
 }
 
 SubmitWizard.defaultProps = {
   eventId: undefined,
-  cfpOpen: false,
+  cfpOpened: false,
   eventName: undefined,
   currentStep: 0,
 }

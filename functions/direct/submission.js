@@ -24,7 +24,7 @@ const isSubmitted = (talk, eventId) => {
 
 const getCfpState = ({ event, userTimezone = 'utc' }) => {
   if (event.type === 'meetup') {
-    return event.cfpOpen ? 'open' : 'closed'
+    return event.cfpOpened ? 'opened' : 'closed'
   }
 
   const { address, cfpDates } = event
@@ -51,7 +51,7 @@ const getCfpState = ({ event, userTimezone = 'utc' }) => {
   if (today > end) {
     return 'closed'
   }
-  return 'open'
+  return 'opened'
 }
 
 const submitTalk = async ({ eventId, talk, userTimezone, initialize }, context) => {
@@ -63,7 +63,7 @@ const submitTalk = async ({ eventId, talk, userTimezone, initialize }, context) 
 
   const event = await getEvent(eventId)
 
-  const isCfpOpen = getCfpState({ event, userTimezone }) === 'open'
+  const isCfpOpen = getCfpState({ event, userTimezone }) === 'opened'
   if (!isCfpOpen) {
     throw new functions.https.HttpsError(
       'failed-precondition',
@@ -98,7 +98,7 @@ const unsubmitTalk = async ({ eventId, talk, userTimezone, initialize }, context
 
   const event = await getEvent(eventId)
 
-  const isCfpOpen = getCfpState({ event, userTimezone }) === 'open'
+  const isCfpOpen = getCfpState({ event, userTimezone }) === 'opened'
   if (!isCfpOpen) {
     throw new functions.https.HttpsError(
       'failed-precondition',

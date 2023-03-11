@@ -6,8 +6,8 @@ import './tooltipOverlay.css'
 
 class TooltipOverlay extends Component {
   render() {
-    const { content, open, placement, popperStyle, arrowStyle } = this.props
-    const display = !open ? { display: 'none' } : {}
+    const { content, opened, placement, popperStyle, arrowStyle } = this.props
+    const display = !opened ? { display: 'none' } : {}
     return (
       <div
         ref={(r) => (this.popperRef = r)}
@@ -29,14 +29,14 @@ class TooltipOverlay extends Component {
 
 TooltipOverlay.propTypes = {
   content: PropTypes.node.isRequired,
-  open: PropTypes.bool,
+  opened: PropTypes.bool,
   placement: PropTypes.string,
   popperStyle: PropTypes.object,
   arrowStyle: PropTypes.object,
 }
 
 TooltipOverlay.defaultProps = {
-  open: false,
+  opened: false,
   placement: 'top',
   popperStyle: {},
   arrowStyle: {},

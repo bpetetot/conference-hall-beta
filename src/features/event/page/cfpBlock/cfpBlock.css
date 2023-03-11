@@ -20,7 +20,7 @@
   color: var(--grey-color-dark);
 }
 
-.cfp-block.cfp-block-open {
+.cfp-block.cfp-block-opened {
   color: var(--success-color);
 }
 

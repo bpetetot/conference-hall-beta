@@ -88,7 +88,7 @@ SubmissionPage.propTypes = {
   categories: PropTypes.string,
   speakers: PropTypes.objectOf(PropTypes.bool),
   onUpdateSubmission: PropTypes.func.isRequired,
-  cfpOpen: PropTypes.bool,
+  cfpOpened: PropTypes.bool,
 }
 
 SubmissionPage.defaultProps = {
@@ -103,7 +103,7 @@ SubmissionPage.defaultProps = {
   formats: undefined,
   categories: undefined,
   speakers: {},
-  cfpOpen: false,
+  cfpOpened: false,
 }
 
 export default SubmissionPage
