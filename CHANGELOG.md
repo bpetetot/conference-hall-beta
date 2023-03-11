@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="0.40.0"></a>
+## 0.40.0 (2023-03-11)
+
+### Fixed
+
+- 🐛 Fix typo: opened to open ([#908](https://github.com/bpetetot/conference-hall/issues/908)) [[9bca592](https://github.com/bpetetot/conference-hall/commit/9bca59263a4aa2115ca6a24f536d7917ae6b4fab)]
+- 🐛 Fix Twitter and GitHub links ([#931](https://github.com/bpetetot/conference-hall/issues/931)) [[fe7ab33](https://github.com/bpetetot/conference-hall/commit/fe7ab333804b2c300f464d0a25a968bdcbd0139c)]
+
+
 <a name="0.39.0"></a>
 ## 0.39.0 (2023-03-11)
 
