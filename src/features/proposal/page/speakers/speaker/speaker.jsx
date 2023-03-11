@@ -20,9 +20,19 @@ function Speaker({
   bio,
   speakerReferences,
 }) {
+  let twitterUser
   let twitterUrl
   if (twitter) {
-    twitterUrl = twitter.startsWith('@') ? twitter.substr(1) : twitter
+    twitterUser = twitter.startsWith('@')
+      ? twitter.substr(1)
+      : twitter.replace(/https:\/\/twitter\.com\//, '')
+    twitterUrl = `https://twitter.com/${twitterUser}`
+  }
+  let githubUser
+  let githubUrl
+  if (github) {
+    githubUser = github.replace(/https:\/\/github\.com\//, '')
+    githubUrl = getGitHubUserRepo(githubUser)
   }
 
   return (
@@ -30,8 +40,8 @@ function Speaker({
       <UserAvatar id={uid} className={styles.avatar} />
       <div className={styles.icons}>
         <IconLink icon="fa fa-envelope-o" label={email} href={`mailto:${email}`} />
-        <IconLink icon="fa fa-github" label={github} href={getGitHubUserRepo(github)} />
-        <IconLink icon="fa fa-twitter" label={twitter} href={`https://twitter.com/${twitterUrl}`} />
+        <IconLink icon="fa fa-github" label={githubUser} href={githubUrl} />
+        <IconLink icon="fa fa-twitter" label={twitterUser} href={twitterUrl} />
         <IconLabel icon="fa fa-building-o" label={company} />
         <IconLabel icon="fa fa-map-marker" label={address && address.formattedAddress} />
         <IconLabel icon="fa fa-language" label={language} />
