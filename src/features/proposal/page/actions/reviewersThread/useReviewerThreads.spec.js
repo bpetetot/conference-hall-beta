@@ -141,7 +141,7 @@ describe('useReviewerThreads', () => {
   })
 })
 
-jest.mock('../../../../firebase/proposals', () => ({
+jest.mock('../../../../../firebase/proposals', () => ({
   __esModule: true,
   queryReviewersThread: jest.fn(),
   addReviewersThreadMessage: jest.fn(),
