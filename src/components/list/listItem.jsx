@@ -6,7 +6,7 @@ import Checkbox from 'components/form/checkbox'
 
 import './listItem.css'
 
-const ListItem = ({
+function ListItem({
   onSelect,
   id,
   info,
@@ -16,36 +16,38 @@ const ListItem = ({
   onCheckboxChange,
   checkboxDisabled,
   renderActions,
-}) => (
-  <div className={cn('list-item')}>
-    {onCheckboxChange && (
-      <div className="list-item-checkbox">
-        <Checkbox
-          name={id}
-          onChange={onCheckboxChange}
-          value={checked}
-          disabled={checkboxDisabled}
-          aria-label={`Select proposal ${title}`}
-        />
+}) {
+  return (
+    <div className={cn('list-item')}>
+      {onCheckboxChange && (
+        <div className="list-item-checkbox">
+          <Checkbox
+            name={id}
+            onChange={onCheckboxChange}
+            value={checked}
+            disabled={checkboxDisabled}
+            aria-label={`Select proposal ${title}`}
+          />
+        </div>
+      )}
+      <div
+        className={cn('list-item-main', { clickable: onSelect })}
+        onClick={onSelect}
+        onKeyPress={(e) => {
+          if (e.key !== 'Enter') return
+          onSelect()
+        }}
+        role="button"
+        tabIndex="0"
+      >
+        <div className="list-item-title">{title}</div>
+        {subtitle && <div className=" list-item-subtitle">{subtitle}</div>}
       </div>
-    )}
-    <div
-      className={cn('list-item-main', { clickable: onSelect })}
-      onClick={onSelect}
-      onKeyPress={(e) => {
-        if (e.key !== 'Enter') return
-        onSelect()
-      }}
-      role="button"
-      tabIndex="0"
-    >
-      <div className="list-item-title">{title}</div>
-      {subtitle && <div className=" list-item-subtitle">{subtitle}</div>}
+      <div className="list-item-info">{info}</div>
+      {renderActions && <div className="list-item-actions">{renderActions()}</div>}
     </div>
-    <div className="list-item-info">{info}</div>
-    {renderActions && <div className="list-item-actions">{renderActions()}</div>}
-  </div>
-)
+  )
+}
 
 ListItem.propTypes = {
   onSelect: PropTypes.func,

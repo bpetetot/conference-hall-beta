@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import firebase from 'firebase/compat/app'
 
 /**
  * Return ratings with for an event and proposal

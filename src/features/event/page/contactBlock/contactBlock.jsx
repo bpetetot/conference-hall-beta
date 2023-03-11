@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import IconLink from 'components/iconLink'
 
-const ContactBlock = ({ contact, className }) => {
+function ContactBlock({ contact, className }) {
   if (!contact) return null
   return (
     <IconLink

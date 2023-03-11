@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import './alert.css'
 
-const Alert = ({ title, type, actionButtons, className }) => {
+function Alert({ title, type, actionButtons, className }) {
   let icon = 'fa fa-info-circle fa-2x'
   if (type === 'success') {
     icon = 'fa fa-check-circle fa-2x'

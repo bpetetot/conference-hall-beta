@@ -9,7 +9,7 @@ import Markdown from 'components/markdown'
 
 import styles from './speaker.module.css'
 
-const Speaker = ({
+function Speaker({
   uid,
   email,
   github,
@@ -19,7 +19,7 @@ const Speaker = ({
   address,
   bio,
   speakerReferences,
-}) => {
+}) {
   let twitterUser
   let twitterUrl
   if (twitter) {

@@ -5,7 +5,7 @@ import cn from 'classnames'
 import IconLabel from 'components/iconLabel'
 import './listBlock.css'
 
-const ListBlock = ({ title, list, className }) => {
+function ListBlock({ title, list, className }) {
   if (!list || list.length === 0) return null
   return (
     <div className={cn('list-block', className)}>

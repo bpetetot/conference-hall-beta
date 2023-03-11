@@ -10,11 +10,13 @@ const DEFAULT_OPTIONS = {
 const withTooltip = (options) => (Wrapped) => {
   const opts = { ...DEFAULT_OPTIONS, ...options }
 
-  const TooltipWrapper = ({ tooltip, ...rest }) => (
-    <Tooltip tooltip={tooltip} {...opts}>
-      <Wrapped {...rest} />
-    </Tooltip>
-  )
+  function TooltipWrapper({ tooltip, ...rest }) {
+    return (
+      <Tooltip tooltip={tooltip} {...opts}>
+        <Wrapped {...rest} />
+      </Tooltip>
+    )
+  }
 
   TooltipWrapper.propTypes = {
     tooltip: PropTypes.string.isRequired,

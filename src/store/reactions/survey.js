@@ -1,4 +1,4 @@
-import { getSurvey, saveSurvey } from 'firebase/survey'
+import { getSurvey, saveSurvey } from '../../firebase/survey'
 
 export const fetch = async (action, store) => {
   const { eventId, uid } = action.payload

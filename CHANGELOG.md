@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="0.39.0"></a>
+## 0.39.0 (2023-03-11)
+
+### Changed
+
+- ⬆️ Upgrade all dependencies ([#957](https://github.com/bpetetot/conference-hall/issues/957)) [[75265fd](https://github.com/bpetetot/conference-hall/commit/75265fd0a9060ebd795a26aaac76cd931c4556bb)]
+
+### Removed
+
+- 🔥 Remove analytics ([#958](https://github.com/bpetetot/conference-hall/issues/958)) [[3169f68](https://github.com/bpetetot/conference-hall/commit/3169f68fe3eae8ee44bedbf2195b9cf5388a7f02)]
+
+
 <a name="0.38.0"></a>
 ## 0.38.0 (2020-12-06)
 

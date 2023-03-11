@@ -13,7 +13,7 @@ import Event from './event'
 import Organization from './organization'
 import AppLayout from '../layout'
 
-const Organizer = () => {
+function Organizer() {
   const { user } = useAuth()
   return (
     <AppLayout sidebar={<Sidebar />}>

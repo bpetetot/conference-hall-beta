@@ -16,7 +16,7 @@ function getEventIdFromLocalStorage() {
 }
 
 // TODO Add Unit Tests
-const CurrentEventContextProvider = ({ children, loadEvent }) => {
+function CurrentEventContextProvider({ children, loadEvent }) {
   const [currentEventId, setCurrentEventId] = useState()
 
   const { pathname } = useLocation()

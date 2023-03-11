@@ -5,7 +5,7 @@ import cn from 'classnames'
 import './iconWrapper.css'
 
 const iconWrapper = (Icon) => {
-  const Wrapper = ({ className, medium, large, ...rest }) => {
+  function Wrapper({ className, medium, large, ...rest }) {
     const classes = cn(
       'cc-icon cc-icon-small',
       {

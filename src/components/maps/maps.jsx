@@ -5,7 +5,7 @@ import './maps.css'
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-const Maps = ({ address, ...rest }) => {
+function Maps({ address, ...rest }) {
   if (!address) return null
   return (
     <iframe

@@ -9,7 +9,7 @@ import { LoadingIndicator } from 'components/loader'
 import Rating from 'components/rating'
 import './ratings.css'
 
-const Ratings = ({
+function Ratings({
   eventId,
   isLoaded,
   loadRatings,
@@ -19,7 +19,7 @@ const Ratings = ({
   nextProposalId,
   prevProposalId,
   className,
-}) => {
+}) {
   const navigate = useNavigate()
   const { search } = useLocation()
 

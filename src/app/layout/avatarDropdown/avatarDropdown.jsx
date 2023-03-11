@@ -9,7 +9,7 @@ import { getTopRoute } from 'features/router/utils'
 
 import './avatarDropdown.css'
 
-const AvatarDropdown = () => {
+function AvatarDropdown() {
   const { user, signout } = useAuth()
 
   const location = useLocation()

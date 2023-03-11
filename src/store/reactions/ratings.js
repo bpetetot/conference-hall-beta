@@ -1,6 +1,6 @@
 import { getRatingsAverage, getFeelingsCount } from 'store/reducers/data/ratings.selectors'
-import { getRatings, addRating, deleteRating } from 'firebase/ratings'
-import { updateRating } from 'firebase/proposals'
+import { getRatings, addRating, deleteRating } from '../../firebase/ratings'
+import { updateRating } from '../../firebase/proposals'
 
 export const fetchRatings = async (action, store) => {
   const { eventId, proposalId } = action.payload

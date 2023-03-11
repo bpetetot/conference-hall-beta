@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import styles from './ratingsProgress.module.css'
 
-const RatingsProgress = ({ rated, total }) => {
+function RatingsProgress({ rated, total }) {
   if (total === 0) return null
   return (
     <div className={styles.wrapper}>

@@ -5,14 +5,16 @@ import cn from 'classnames'
 import IconLabel from '../iconLabel'
 import './titlebar.css'
 
-const Titlebar = ({ icon, title, children, className }) => (
-  <div className={cn('titlebar', className)}>
-    <span className="titlebar-title">
-      <IconLabel icon={icon} label={title} overflow />
-    </span>
-    {children && <div className="titlebar-actions">{children}</div>}
-  </div>
-)
+function Titlebar({ icon, title, children, className }) {
+  return (
+    <div className={cn('titlebar', className)}>
+      <span className="titlebar-title">
+        <IconLabel icon={icon} label={title} overflow />
+      </span>
+      {children && <div className="titlebar-actions">{children}</div>}
+    </div>
+  )
+}
 
 Titlebar.propTypes = {
   icon: PropTypes.node,

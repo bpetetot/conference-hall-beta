@@ -5,7 +5,7 @@ import cn from 'classnames'
 import IconLabel from '../iconLabel'
 import './iconLink.css'
 
-const IconLink = ({ icon, label, href, target, className, ...rest }) => {
+function IconLink({ icon, label, href, target, className, ...rest }) {
   if (!label || !href) return null
   return (
     <a

@@ -12,7 +12,7 @@ import EventDates from 'features/event/page/eventDates'
 
 import styles from './eventsSelection.module.css'
 
-const TalksSelection = ({ talkId, events, onSelect }) => {
+function TalksSelection({ talkId, events, onSelect }) {
   const navigate = useNavigate()
 
   const handleSelect = useCallback(

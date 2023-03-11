@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import talkCrud from 'firebase/talks'
 
 import { useAuth } from 'features/auth'
+import talkCrud from '../../../firebase/talks'
 import TalkForm from './talkForm'
 
-const TalkCreate = () => {
+function TalkCreate() {
   const { user } = useAuth()
   const navigate = useNavigate()
 

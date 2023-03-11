@@ -11,7 +11,7 @@ import Event from './event'
 import Sidebar from './sidebar'
 import AppLayout from '../layout'
 
-const Speaker = () => {
+function Speaker() {
   const { user } = useAuth()
   return (
     <AppLayout sidebar={<Sidebar />}>
