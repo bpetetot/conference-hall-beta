@@ -20,7 +20,7 @@ exports[`components/mardown should render correct html for advanced markdown 1`]
 <p>Showdown is a Javascript Markdown to HTML converter, based on the original works by John Gruber. It can be used client side (in the browser) or server side (with Node or io). </p>
 <h1 id=\\"installation\\">Installation</h1>
 <h2 id=\\"download-tarball\\">Download tarball</h2>
-<p>You can download the latest release tarball directly from <a href=\\"https://github.com/showdownjs/showdown/releases\\">releases</a></p>
+<p>You can download the latest release tarball directly from <a href=\\"https://github.com/showdownjs/showdown/releases\\" target=\\"_blank\\">releases</a></p>
 <h2 id=\\"bower\\">Bower</h2>
 <pre><code>bower install showdown
 </code></pre>
@@ -43,58 +43,58 @@ exports[`components/mardown should render correct html for advanced markdown 1`]
 <h1 id=\\"syntax\\">Syntax</h1>
 <h2 id=\\"table-of-contents\\">Table of contents</h2>
 <ul>
-<li><a href=\\"#introduction\\">Introduction</a></li>
-<li><a href=\\"#paragraphs\\">Paragraphs</a></li>
-<li><a href=\\"#headings\\">Headings</a><ul>
-<li><a href=\\"#atx-style\\">Atx Style</a></li>
-<li><a href=\\"#setext-style\\">Setext style</a></li>
-<li><a href=\\"#header-ids\\">Header IDs</a></li>
+<li><a href=\\"#introduction\\" target=\\"_blank\\">Introduction</a></li>
+<li><a href=\\"#paragraphs\\" target=\\"_blank\\">Paragraphs</a></li>
+<li><a href=\\"#headings\\" target=\\"_blank\\">Headings</a><ul>
+<li><a href=\\"#atx-style\\" target=\\"_blank\\">Atx Style</a></li>
+<li><a href=\\"#setext-style\\" target=\\"_blank\\">Setext style</a></li>
+<li><a href=\\"#header-ids\\" target=\\"_blank\\">Header IDs</a></li>
 </ul>
 </li>
-<li><a href=\\"#blockquotes\\">Blockquotes</a></li>
-<li><a href=\\"#bold-and-italic\\">Bold and Italic</a></li>
-<li><a href=\\"#strikethrough\\">Strikethrough</a></li>
-<li><a href=\\"#emojis\\">Emojis</a></li>
-<li><a href=\\"#code-formatting\\">Code formatting</a><ul>
-<li><a href=\\"#inline-formats\\">Inline formats</a></li>
-<li><a href=\\"#multiple-lines\\">Multiple lines</a></li>
+<li><a href=\\"#blockquotes\\" target=\\"_blank\\">Blockquotes</a></li>
+<li><a href=\\"#bold-and-italic\\" target=\\"_blank\\">Bold and Italic</a></li>
+<li><a href=\\"#strikethrough\\" target=\\"_blank\\">Strikethrough</a></li>
+<li><a href=\\"#emojis\\" target=\\"_blank\\">Emojis</a></li>
+<li><a href=\\"#code-formatting\\" target=\\"_blank\\">Code formatting</a><ul>
+<li><a href=\\"#inline-formats\\" target=\\"_blank\\">Inline formats</a></li>
+<li><a href=\\"#multiple-lines\\" target=\\"_blank\\">Multiple lines</a></li>
 </ul>
 </li>
-<li><a href=\\"#lists\\">Lists</a><ul>
-<li><a href=\\"#unordered-lists\\">Unordered lists</a></li>
-<li><a href=\\"#ordered-lists\\">Ordered lists</a></li>
-<li><a href=\\"#tasklists--gfm-style-\\">TaskLists (GFM Style)</a></li>
-<li><a href=\\"#list-syntax\\">List syntax</a></li>
-<li><a href=\\"#nested-blocks\\">Nested blocks</a></li>
-<li><a href=\\"#nested-lists\\">Nested lists</a></li>
-<li><a href=\\"#nested-code-blocks\\">Nested code blocks</a></li>
+<li><a href=\\"#lists\\" target=\\"_blank\\">Lists</a><ul>
+<li><a href=\\"#unordered-lists\\" target=\\"_blank\\">Unordered lists</a></li>
+<li><a href=\\"#ordered-lists\\" target=\\"_blank\\">Ordered lists</a></li>
+<li><a href=\\"#tasklists--gfm-style-\\" target=\\"_blank\\">TaskLists (GFM Style)</a></li>
+<li><a href=\\"#list-syntax\\" target=\\"_blank\\">List syntax</a></li>
+<li><a href=\\"#nested-blocks\\" target=\\"_blank\\">Nested blocks</a></li>
+<li><a href=\\"#nested-lists\\" target=\\"_blank\\">Nested lists</a></li>
+<li><a href=\\"#nested-code-blocks\\" target=\\"_blank\\">Nested code blocks</a></li>
 </ul>
 </li>
-<li><a href=\\"#links\\">Links</a><ul>
-<li><a href=\\"#simple\\">Simple</a></li>
-<li><a href=\\"#inline\\">Inline</a></li>
-<li><a href=\\"#reference-style\\">Reference Style</a></li>
+<li><a href=\\"#links\\" target=\\"_blank\\">Links</a><ul>
+<li><a href=\\"#simple\\" target=\\"_blank\\">Simple</a></li>
+<li><a href=\\"#inline\\" target=\\"_blank\\">Inline</a></li>
+<li><a href=\\"#reference-style\\" target=\\"_blank\\">Reference Style</a></li>
 </ul>
 </li>
-<li><a href=\\"#images\\">Images</a><ul>
-<li><a href=\\"#inline-1\\">Inline</a></li>
-<li><a href=\\"#reference-style-1\\">Reference Style</a></li>
-<li><a href=\\"#image-dimensions\\">Image dimensions</a></li>
-<li><a href=\\"#base64-encoded-images\\">Base64 encoded images</a></li>
+<li><a href=\\"#images\\" target=\\"_blank\\">Images</a><ul>
+<li><a href=\\"#inline-1\\" target=\\"_blank\\">Inline</a></li>
+<li><a href=\\"#reference-style-1\\" target=\\"_blank\\">Reference Style</a></li>
+<li><a href=\\"#image-dimensions\\" target=\\"_blank\\">Image dimensions</a></li>
+<li><a href=\\"#base64-encoded-images\\" target=\\"_blank\\">Base64 encoded images</a></li>
 </ul>
 </li>
-<li><a href=\\"#tables\\">Tables</a></li>
-<li><a href=\\"#mentions\\">Mentions</a></li>
-<li><a href=\\"#handling-html-in-markdown-documents\\">Handling HTML in markdown documents</a></li>
-<li><a href=\\"#escaping-entities\\">Escaping entities</a><ul>
-<li><a href=\\"#escaping-markdown-entities\\">Escaping markdown entities</a></li>
-<li><a href=\\"#escaping-html-tags\\">Escaping html tags</a></li>
+<li><a href=\\"#tables\\" target=\\"_blank\\">Tables</a></li>
+<li><a href=\\"#mentions\\" target=\\"_blank\\">Mentions</a></li>
+<li><a href=\\"#handling-html-in-markdown-documents\\" target=\\"_blank\\">Handling HTML in markdown documents</a></li>
+<li><a href=\\"#escaping-entities\\" target=\\"_blank\\">Escaping entities</a><ul>
+<li><a href=\\"#escaping-markdown-entities\\" target=\\"_blank\\">Escaping markdown entities</a></li>
+<li><a href=\\"#escaping-html-tags\\" target=\\"_blank\\">Escaping html tags</a></li>
 </ul>
 </li>
-<li><a href=\\"#known-differences-and-gotchas\\">Known differences and Gotchas</a></li>
+<li><a href=\\"#known-differences-and-gotchas\\" target=\\"_blank\\">Known differences and Gotchas</a></li>
 </ul>
 <h2 id=\\"introduction\\">Introduction</h2>
-<p>Showdown was created by John Fraser as a direct port of the original parser written by markdown's creator, John Gruber. Although Showdown has evolved since its inception, in \\"vanilla mode\\", it tries to follow the <a href=\\"http://daringfireball.net/projects/markdown/\\">original markdown spec</a> (henceforth refereed as vanilla) as much as possible. There are, however, a few important differences, mainly due to inconsistencies in the original spec, which we addressed following the author's advice as stated in the <a href=\\"https://pairlist6.pair.net/mailman/listinfo/markdown-discuss\\">markdown's \\"official\\" newsletter</a>.</p>
+<p>Showdown was created by John Fraser as a direct port of the original parser written by markdown's creator, John Gruber. Although Showdown has evolved since its inception, in \\"vanilla mode\\", it tries to follow the <a href=\\"http://daringfireball.net/projects/markdown/\\" target=\\"_blank\\">original markdown spec</a> (henceforth refereed as vanilla) as much as possible. There are, however, a few important differences, mainly due to inconsistencies in the original spec, which we addressed following the author's advice as stated in the <a href=\\"https://pairlist6.pair.net/mailman/listinfo/markdown-discuss\\" target=\\"_blank\\">markdown's \\"official\\" newsletter</a>.</p>
 <p>Showdown also support \\"extra\\" syntax not defined in the original spec as opt-in features. This means new syntax elements are not enabled by default and require users to enable them through options.</p>
 <p>This document provides a quick description the syntax supported and the differences in output from the original markdown.pl implementation.</p>
 <h2 id=\\"paragraphs\\">Paragraphs</h2>
@@ -119,7 +119,7 @@ you can do so by adding 3 space characters to the end of the line (<code>  </cod
 enabling the option <strong><code>simpleLineBreaks</code></strong>.</p>
 <h2 id=\\"headings\\">Headings</h2>
 <h3 id=\\"atx-style\\">Atx Style</h3>
-<p>You can create a heading by adding one or more # symbols before your heading text. The number of # you use will determine the size of the heading. This is similar to <a href=\\"http://www.aaronsw.com/2002/atx/intro\\"><strong>atx style</strong></a>.</p>
+<p>You can create a heading by adding one or more # symbols before your heading text. The number of # you use will determine the size of the heading. This is similar to <a href=\\"http://www.aaronsw.com/2002/atx/intro\\" target=\\"_blank\\"><strong>atx style</strong></a>.</p>
 <pre><code class=\\"language-md\\"># The largest heading (an &lt;h1&gt; tag)
 ## The second largest heading (an &lt;h2&gt; tag)
 …
@@ -135,7 +135,7 @@ enabling the option <strong><code>simpleLineBreaks</code></strong>.</p>
 #\\\\# My Header \\\\# #
 </code></pre>
 <h3 id=\\"setext-style\\">Setext style</h3>
-<p>You can also use <a href=\\"https://en.wikipedia.org/wiki/Setext\\"><strong>setext style</strong></a> headings, although only two levels are available.</p>
+<p>You can also use <a href=\\"https://en.wikipedia.org/wiki/Setext\\" target=\\"_blank\\"><strong>setext style</strong></a> headings, although only two levels are available.</p>
 <pre><code class=\\"language-md\\">This is an H1
 =============
     
@@ -158,7 +158,7 @@ This is an H2
 <li><strong><code>prefixHeaderId</code></strong> adds a prefix to the generated header ids (either automatic or custom).</li>
 <li><strong><code>headerLevelStart</code></strong> sets the header starting level. For instance, setting this to 3 means that <code># header</code> will be converted to <code>&lt;h3&gt;</code>.</li>
 </ul>
-<p>Read the <a href=\\"https://github.com/showdownjs/showdown/blob/master/README.md\\">README.md</a> for more info</p>
+<p>Read the <a href=\\"https://github.com/showdownjs/showdown/blob/master/README.md\\" target=\\"_blank\\">README.md</a> for more info</p>
 <h2 id=\\"blockquotes\\">Blockquotes</h2>
 <p>You can indicate blockquotes with a &gt;.</p>
 <pre><code class=\\"language-md\\">In the words of Abraham Lincoln:
@@ -189,7 +189,7 @@ a word or groups of words.</p>
 </code></pre>
 <p>a <del>strikethrough</del> element</p>
 <h2 id=\\"emojis\\">Emojis</h2>
-<p>Since version 1.8.0, showdown supports github's emojis. A complete list of available emojis can be foun <a href=\\"https://github.com/showdownjs/showdown/wiki/emojis\\">here</a>.</p>
+<p>Since version 1.8.0, showdown supports github's emojis. A complete list of available emojis can be foun <a href=\\"https://github.com/showdownjs/showdown/wiki/emojis\\" target=\\"_blank\\">here</a>.</p>
 <pre><code class=\\"language-md\\">this is a :smile: smile emoji
 </code></pre>
 <p>this is a :smile: smile emoji</p>
@@ -479,7 +479,7 @@ _   underscore
 !   exclamation mark
 </code></pre>
 <h3 id=\\"escaping-html-tags\\">Escaping HTML tags</h3>
-<p>Since <a href=\\"https://github.com/showdownjs/showdown/tree/1.7.2\\">version 1.7.2</a> backslash escaping HTML tags is supported when <code>backslashEscapesHTMLTags</code> option is enabled.</p>
+<p>Since <a href=\\"https://github.com/showdownjs/showdown/tree/1.7.2\\" target=\\"_blank\\">version 1.7.2</a> backslash escaping HTML tags is supported when <code>backslashEscapesHTMLTags</code> option is enabled.</p>
 <pre><code class=\\"language-md\\">\\\\&lt;div&gt;a literal div\\\\&lt;/div&gt;
 </code></pre>
 <h2 id=\\"known-differences-and-gotchas\\">Known differences and Gotchas</h2>
@@ -512,7 +512,7 @@ _   underscore
 </code></pre>
 </li>
 </ul>
-<p>This new ruleset is based on the comments of Markdown's author John Gruber in the <a href=\\"https://pairlist6.pair.net/mailman/listinfo/markdown-discuss\\">Markdown discussion list</a>.</p>
+<p>This new ruleset is based on the comments of Markdown's author John Gruber in the <a href=\\"https://pairlist6.pair.net/mailman/listinfo/markdown-discuss\\" target=\\"_blank\\">Markdown discussion list</a>.</p>
 ",
     }
   }
