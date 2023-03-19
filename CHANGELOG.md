@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="0.41.0"></a>
+## 0.41.0 (2023-03-19)
+
+### Fixed
+
+- 🐛 open links in a new tab by default in markdown renderer ([#956](https://github.com/bpetetot/conference-hall/issues/956)) [[9a690db](https://github.com/bpetetot/conference-hall/commit/9a690db86c04d5adf0f2b238b6208079f7bade3e)]
+
+
 <a name="0.40.0"></a>
 ## 0.40.0 (2023-03-11)
 
