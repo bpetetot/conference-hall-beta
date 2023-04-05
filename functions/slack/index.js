@@ -15,7 +15,7 @@ const buildMessage = (event, talk, speakers, app) => {
     author_name: `by ${speakers.map(s => s.displayName).join(' & ')}`,
     title: talk.title,
     text: talk.abstract,
-    title_link: `${app.url}/organizer/event/${event.id}/proposal/${talk.id}`,
+    title_link: `${app.url}/organizer/event/${event.id}/proposals/${talk.id}`,
     thumb_url: get(first(speakers), 'photoURL'),
     color: '#ffab00',
     fields: [],
