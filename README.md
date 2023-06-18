@@ -33,4 +33,4 @@ Conference Hall is still in beta but already contains a large set of features.
 
 ## You want to contribute?
 
-If you want to contribute and make **Conference Hall** better, read our Contributing Guidelines.
+If you want to contribute and make **Conference Hall** better, read our [Contributing Guidelines](./docs/CONTRIBUTING.md).
