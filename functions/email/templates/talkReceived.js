@@ -10,7 +10,7 @@ module.exports = (event, talk, app) => `
 <body>
   <p>✨ The talk <strong>"${talk.title}"</strong> has been submitted to <strong>${event.name}</strong></p>
   <p>
-  <strong><a href="${app.url}/organizer/event/${event.id}/proposal/${talk.id}">Check it now!</a></strong>
+  <strong><a href="${app.url}/organizer/event/${event.id}/proposals/${talk.id}">Check it now!</a></strong>
   </p>
   <p>
   Made with 💗 by <a href="${app.url}">conference-hall.io</a> – <i>"${event.name}" team</i>
