@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="0.42.0"></a>
+## 0.42.0 (2023-06-18)
+
+### Fixed
+
+- 🐛 Fix proposal URL in Slack and emails ([#962](https://github.com/bpetetot/conference-hall/issues/962)) [[94b70f7](https://github.com/bpetetot/conference-hall/commit/94b70f7e89a0bcd987586ed1de24487818a53f74)]
+
+### Miscellaneous
+
+- 📝 Add link to contributing.md in readme.md ([#970](https://github.com/bpetetot/conference-hall/issues/970)) [[147e932](https://github.com/bpetetot/conference-hall/commit/147e93206f7e91c34688eb490d44673993a8aaa6)]
+
+
 <a name="0.41.0"></a>
 ## 0.41.0 (2023-03-19)
 
