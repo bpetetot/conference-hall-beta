@@ -3,7 +3,7 @@
   "description": "Cloud Functions for Firebase",
   "private": true,
   "engines": {
-    "node": "14"
+    "node": "16"
   },
   "scripts": {
     "api": "firebase serve --only hosting,functions",
@@ -16,8 +16,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "firebase-admin": "^11.5.0",
-    "firebase-functions": "^4.2.1",
+    "firebase-admin": "^11.9.0",
+    "firebase-functions": "^4.4.1",
     "form-data": "^3.0.0",
     "immutadot": "^1.0.0",
     "isomorphic-fetch": "^3.0.0",
@@ -28,12 +28,12 @@
   },
   "devDependencies": {
     "@firebase/testing": "^0.20.11",
-    "eslint": "^8.36.0",
-    "firebase-functions-test": "^3.0.0",
-    "firebase-tools": "^11.24.1",
+    "eslint": "^8.43.0",
+    "firebase-functions-test": "^3.1.0",
+    "firebase-tools": "^12.4.0",
     "jest": "^29.5.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
-    "sinon": "^15.0.1"
+    "sinon": "^15.1.2"
   }
 }
