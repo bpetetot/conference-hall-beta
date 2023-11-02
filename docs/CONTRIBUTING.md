@@ -2,7 +2,7 @@
 
 Contributions, issues and feature requests are very welcome. If you are using this app and fixed a bug or improved it, please consider submitting a PR!
 
-You can contact other contributors on [Gitter](https://gitter.im/conference-hall) or ping me on [Twitter](https://twitter.com/bpetetot).
+You can contact other contributors on [Gitter](https://matrix.to/#/#conference-hall_Lobby:gitter.im) or ping me on [Twitter](https://twitter.com/bpetetot).
 
 If you want to contribute, you must read and accept our [Code of Conduct](/docs/CODE_OF_CONDUCT.md).
 
@@ -24,4 +24,4 @@ https://gitmoji.carloscuesta.me/
 
 ### Adding new features
 
-Ideally you should talk about it on [Gitter](https://gitter.im/conference-hall) with other contributors or open a suggestion issue on [GitHub](https://github.com/bpetetot/conference-hall).
+Ideally you should talk about it on [Gitter](https://matrix.to/#/#conference-hall_Lobby:gitter.im) with other contributors or open a suggestion issue on [GitHub](https://github.com/bpetetot/conference-hall).
