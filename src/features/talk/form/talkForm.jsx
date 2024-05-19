@@ -51,7 +51,7 @@ function TalkForm({ onSubmit, initialValues }) {
           <Field
             name="references"
             label="Talk References"
-            tooltip="Give more info about your talk: slides, workshop pre-requities, github repo, video, summary, steps of the talk, which conference or meetup where it has been already given?"
+            tooltip="Give more info about your talk: slides, workshop prerequisites, github repo, video, summary, steps of the talk, which conference or meetup where it has been already given?"
             component={markdownInput}
             inline
           />
